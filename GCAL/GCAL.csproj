@@ -1,0 +1,361 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{824864D0-C6F9-4A24-840A-CC80C7CE903B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GCAL</RootNamespace>
+    <AssemblyName>GCAL</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutForm.Designer.cs">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CalendarControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\CalendarControl.Designer.cs">
+      <DependentUpon>CalendarControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SearchResultsList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SearchResultsList.Designer.cs">
+      <DependentUpon>SearchResultsList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TravellingEditControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\TravellingEditControl.Designer.cs">
+      <DependentUpon>TravellingEditControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\DisplaySettingsDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\DisplaySettingsDlg.Designer.cs">
+      <DependentUpon>DisplaySettingsDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\SelectOneOfTwoLocationChangesDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\SelectOneOfTwoLocationChangesDlg.Designer.cs">
+      <DependentUpon>SelectOneOfTwoLocationChangesDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\WizardDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\WizardDlg.Designer.cs">
+      <DependentUpon>WizardDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Engine\CELAsyncResultReceiver.cs" />
+    <Compile Include="Controls\DateTimePickerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\DateTimePickerControl.Designer.cs">
+      <DependentUpon>DateTimePickerControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\LocationPickerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\LocationPickerControl.Designer.cs">
+      <DependentUpon>LocationPickerControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TimeRangeLengthControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\TimeRangeLengthControl.Designer.cs">
+      <DependentUpon>TimeRangeLengthControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\EditCountryDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\EditCountryDlg.Designer.cs">
+      <DependentUpon>EditCountryDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\EditLanguageNameDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\EditLanguageNameDlg.Designer.cs">
+      <DependentUpon>EditLanguageNameDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\EditRelativeEventDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\EditRelativeEventDlg.Designer.cs">
+      <DependentUpon>EditRelativeEventDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\EditSankrantiBasedEventDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\EditSankrantiBasedEventDlg.Designer.cs">
+      <DependentUpon>EditSankrantiBasedEventDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\EditTimezoneNameDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\EditTimezoneNameDlg.Designer.cs">
+      <DependentUpon>EditTimezoneNameDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\EditTimezoneTransitionDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\EditTimezoneTransitionDlg.Designer.cs">
+      <DependentUpon>EditTimezoneTransitionDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\EditTithiEvent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\EditTithiEvent.Designer.cs">
+      <DependentUpon>EditTithiEvent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\GetDateTimeDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\GetDateTimeDlg.Designer.cs">
+      <DependentUpon>GetDateTimeDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\GetLocationDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\GetLocationDlg.Designer.cs">
+      <DependentUpon>GetLocationDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\GetPeriodLengthDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\GetPeriodLengthDlg.Designer.cs">
+      <DependentUpon>GetPeriodLengthDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\GetPeriodYearsDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\GetPeriodYearsDlg.Designer.cs">
+      <DependentUpon>GetPeriodYearsDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\GetStartDateDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\GetStartDateDlg.Designer.cs">
+      <DependentUpon>GetStartDateDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\GetTwoLocationsDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\GetTwoLocationsDlg.Designer.cs">
+      <DependentUpon>GetTwoLocationsDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ListItemsComparer.cs" />
+    <Compile Include="Dialogs\EditLocationProperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\EditLocationProperties.Designer.cs">
+      <DependentUpon>EditLocationProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Engine\CELBase.cs" />
+    <Compile Include="Engine\CELCheckNextWeeksCalendar.cs" />
+    <Compile Include="Engine\CELCheckUpdates.cs" />
+    <Compile Include="Engine\CELDownloadFile.cs" />
+    <Compile Include="Engine\CELFindCity.cs" />
+    <Compile Include="Engine\CELGenerateAppearanceDay.cs" />
+    <Compile Include="Engine\CELGenerateCalendar.cs" />
+    <Compile Include="Engine\CELGenerateCalendarPlusCore.cs" />
+    <Compile Include="Engine\CELGenerateCalendarTwoLocs.cs" />
+    <Compile Include="Engine\CELGenerateCoreEvents.cs" />
+    <Compile Include="Engine\CELGenerateHtml.cs" />
+    <Compile Include="Engine\CELGenerateMasaList.cs" />
+    <Compile Include="Engine\CELSearch.cs" />
+    <Compile Include="Engine\CELStatupTask.cs" />
+    <Compile Include="OrganizerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrganizerForm.Designer.cs">
+      <DependentUpon>OrganizerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SupervisorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SupervisorForm.Designer.cs">
+      <DependentUpon>SupervisorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TodayForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TodayForm.Designer.cs">
+      <DependentUpon>TodayForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AboutForm.resx">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\CalendarControl.resx">
+      <DependentUpon>CalendarControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\DateTimePickerControl.resx">
+      <DependentUpon>DateTimePickerControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\LocationPickerControl.resx">
+      <DependentUpon>LocationPickerControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SearchResultsList.resx">
+      <DependentUpon>SearchResultsList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\TimeRangeLengthControl.resx">
+      <DependentUpon>TimeRangeLengthControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\TravellingEditControl.resx">
+      <DependentUpon>TravellingEditControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\DisplaySettingsDlg.resx">
+      <DependentUpon>DisplaySettingsDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\EditCountryDlg.resx">
+      <DependentUpon>EditCountryDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\EditLanguageNameDlg.resx">
+      <DependentUpon>EditLanguageNameDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\EditLocationProperties.resx">
+      <DependentUpon>EditLocationProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\EditRelativeEventDlg.resx">
+      <DependentUpon>EditRelativeEventDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\EditSankrantiBasedEventDlg.resx">
+      <DependentUpon>EditSankrantiBasedEventDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\EditTimezoneNameDlg.resx">
+      <DependentUpon>EditTimezoneNameDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\EditTimezoneTransitionDlg.resx">
+      <DependentUpon>EditTimezoneTransitionDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\EditTithiEvent.resx">
+      <DependentUpon>EditTithiEvent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\GetDateTimeDlg.resx">
+      <DependentUpon>GetDateTimeDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\GetLocationDlg.resx">
+      <DependentUpon>GetLocationDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\GetPeriodLengthDlg.resx">
+      <DependentUpon>GetPeriodLengthDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\GetPeriodYearsDlg.resx">
+      <DependentUpon>GetPeriodYearsDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\GetStartDateDlg.resx">
+      <DependentUpon>GetStartDateDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\GetTwoLocationsDlg.resx">
+      <DependentUpon>GetTwoLocationsDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SelectOneOfTwoLocationChangesDlg.resx">
+      <DependentUpon>SelectOneOfTwoLocationChangesDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\WizardDlg.resx">
+      <DependentUpon>WizardDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrganizerForm.resx">
+      <DependentUpon>OrganizerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="SupervisorForm.resx">
+      <DependentUpon>SupervisorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TodayForm.resx">
+      <DependentUpon>TodayForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="GCalIcon.ico" />
+    <None Include="Resources\gcal144.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GCAL.Base\GCAL.Base.csproj">
+      <Project>{8518EE2D-F966-4AC4-AFED-E389C10F42EC}</Project>
+      <Name>GCAL.Base</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8518EE2D-F966-4AC4-AFED-E389C10F42EC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GCAL.Base</RootNamespace>
+    <AssemblyName>GCAL.Base</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CivilData\GPLocationChange.cs" />
+    <Compile Include="CivilData\GPLocationProvider.cs" />
+    <Compile Include="Deprecated\GPAstroIterator.cs" />
+    <Compile Include="OutputFormatters\FormaterCSV.cs" />
+    <Compile Include="OutputFormatters\FormaterHtml.cs" />
+    <Compile Include="OutputFormatters\FormaterICAL.cs" />
+    <Compile Include="OutputFormatters\FormaterInternal.cs" />
+    <Compile Include="OutputFormatters\FormaterPlain.cs" />
+    <Compile Include="OutputFormatters\FormaterRtf.cs" />
+    <Compile Include="OutputFormatters\FormaterVCAL.cs" />
+    <Compile Include="OutputFormatters\FormaterXml.cs" />
+    <Compile Include="OutputFormatters\Formatter.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Results\GPAppDayResults.cs" />
+    <Compile Include="UserInterfaceSupport\GPAppHelper.cs" />
+    <Compile Include="Astronomy\GPAstroData.cs" />
+    <Compile Include="Astronomy\GPAyanamsa.cs" />
+    <Compile Include="UserInterfaceSupport\GPCalculationOperation.cs" />
+    <Compile Include="Results\GPCalendarDay.cs" />
+    <Compile Include="Results\GPCalendarPlusEventsResults.cs" />
+    <Compile Include="Results\GPCalendarResults.cs" />
+    <Compile Include="Results\GPCalendarTwoLocResults.cs" />
+    <Compile Include="UserInterfaceSupport\GPCommandLineAnalyzer.cs" />
+    <Compile Include="Deprecated\GPConjunction.cs" />
+    <Compile Include="Results\GPConstants.cs" />
+    <Compile Include="Results\GPCoreEvent.cs" />
+    <Compile Include="Results\GPCoreEventResults.cs" />
+    <Compile Include="CivilData\GPCountry.cs" />
+    <Compile Include="CivilData\GPCountryList.cs" />
+    <Compile Include="UserInterfaceSupport\GPDisplays.cs" />
+    <Compile Include="UserInterfaceSupport\GPEngine.cs" />
+    <Compile Include="Results\GPEvent.cs" />
+    <Compile Include="CivilData\GPEventClass.cs" />
+    <Compile Include="CivilData\GPEventList.cs" />
+    <Compile Include="CivilData\GPEventRelative.cs" />
+    <Compile Include="CivilData\GPEventSankranti.cs" />
+    <Compile Include="CivilData\GPEventTithi.cs" />
+    <Compile Include="UserInterfaceSupport\GPFastType.cs" />
+    <Compile Include="UserInterfaceSupport\GPFileHelper.cs" />
+    <Compile Include="CivilData\GPGaurabdaYear.cs" />
+    <Compile Include="Time\GPGregorianTime.cs" />
+    <Compile Include="UserInterfaceSupport\GPLanguage.cs" />
+    <Compile Include="UserInterfaceSupport\GPLanguageList.cs" />
+    <Compile Include="Results\GPLocalizedNaksatra.cs" />
+    <Compile Include="Results\GPLocalizedTithi.cs" />
+    <Compile Include="CivilData\GPLocation.cs" />
+    <Compile Include="CivilData\GPLocationList.cs" />
+    <Compile Include="UserInterfaceSupport\GPMasa.cs" />
+    <Compile Include="UserInterfaceSupport\GPMasaDays.cs" />
+    <Compile Include="Results\GPMasaListResults.cs" />
+    <Compile Include="Astronomy\GPMath.cs" />
+    <Compile Include="Deprecated\GPMoon.cs" />
+    <Compile Include="Deprecated\GPNaksatra.cs" />
+    <Compile Include="UserInterfaceSupport\GPObjectListBase.cs" />
+    <Compile Include="UserInterfaceSupport\GPPaksa.cs" />
+    <Compile Include="Deprecated\GPSankranti.cs" />
+    <Compile Include="Deprecated\GPShowSetting.cs" />
+    <Compile Include="UserInterfaceSupport\GPStringPair.cs" />
+    <Compile Include="UserInterfaceSupport\GPStrings.cs" />
+    <Compile Include="Deprecated\GPSun.cs" />
+    <Compile Include="Deprecated\GPSunData.cs" />
+    <Compile Include="UserInterfaceSupport\GPTimestamp.cs" />
+    <Compile Include="UserInterfaceSupport\GPTimeZone.cs" />
+    <Compile Include="UserInterfaceSupport\GPTimeZoneList.cs" />
+    <Compile Include="Deprecated\GPTithi.cs" />
+    <Compile Include="UserInterfaceSupport\GPUserDefaults.cs" />
+    <Compile Include="UserInterfaceSupport\GPVedicTime.cs" />
+    <Compile Include="Deprecated\GPYoga.cs" />
+    <Compile Include="IReportProgress.cs" />
+    <Compile Include="Time\GPDynamicTime.cs" />
+    <Compile Include="Astronomy\GPFunctor.cs" />
+    <Compile Include="Astronomy\GPFunctorMoon.cs" />
+    <Compile Include="Astronomy\GPFunctorSun.cs" />
+    <Compile Include="Astronomy\GPFunctorSunMoon.cs" />
+    <Compile Include="Astronomy\GPAstroEngine.cs" />
+    <Compile Include="Astronomy\GPObserver.cs" />
+    <Compile Include="Astronomy\GPSearch.cs" />
+    <Compile Include="Time\GPJulianTime.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Astronomy\GPMeeusVSOP.cs" />
+    <Compile Include="Astronomy\GPMeeusEarth.cs" />
+    <Compile Include="Astronomy\GPVSOPEntry.cs" />
+    <Compile Include="Astronomy\GPMeeusJupiter.cs" />
+    <Compile Include="Astronomy\GPCelestialBodyCoordinates.cs" />
+    <Compile Include="Astronomy\Testing.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Files\Timezones.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Files\Countries.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Files\Events.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Files\Locations.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Files\Strings.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

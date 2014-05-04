@@ -1,0 +1,2385 @@
+﻿Sant Julia de Loria	42.4637237	1.491286755	AD	Europe/Andorra						
+les Escaldes	42.50728696	1.534137726	AD	Europe/Andorra						
+la Massana	42.54498667	1.514825821	AD	Europe/Andorra						
+Umm al Qaywayn	25.5652778	55.5533333	AE	Asia/Dubai						
+Ra's al Khaymah	25.7911111	55.9427778	AE	Asia/Dubai						
+Khawr Fakkan	25.3391667	56.3561111	AE	Asia/Dubai						
+Dubai	25.2522222	55.28	AE	Asia/Dubai						
+Sharjah	25.3622222	55.3911111	AE	Asia/Dubai						
+Al `Ayn	24.1916667	55.7605556	AE	Asia/Dubai						
+Ajman	25.4111053	55.43503761	AE	Asia/Dubai						
+Abu Dhabi	24.4666667	54.3666667	AE	Asia/Dubai						
+Kuhestan	34.6538889	61.1977778	AF	Asia/Kabul						
+Tokzar	35.9488889	66.42	AF	Asia/Kabul						
+Zendeh Jan	34.3455556	61.7316667	AF	Asia/Kabul						
+Mazar-e Sharif	36.7069444	67.1122222	AF	Asia/Kabul						
+Kandahar	31.61	65.7	AF	Asia/Kabul						
+Kabul	34.5166667	69.1833333	AF	Asia/Kabul						
+Jalalabad	34.42	70.45	AF	Asia/Kabul						
+Herat	34.34	62.19	AF	Asia/Kabul						
+Saint John's	17.1166667	-61.85	AG	America/Antigua						
+Sarande	39.8755556	20.0052778	AL	Europe/Tirane						
+Tepelene	40.2958333	20.0191667	AL	Europe/Tirane						
+Polican	40.6122222	20.0980556	AL	Europe/Tirane						
+Tirana	41.3275	19.8188889	AL	Europe/Tirane						
+Vedi	39.9105556	44.7277778	AM	Asia/Yerevan						
+Vayk'	39.6916667	45.4652778	AM	Asia/Yerevan						
+Kapan	39.2011111	46.415	AM	Asia/Yerevan						
+Yerevan	40.1811111	44.5136111	AM	Asia/Yerevan						
+Willemstad	12.1	-68.9166667	AN	America/Curacao						
+Sint Michiel Liber	12.15	-68.9833333	AN	America/Curacao						
+Cul de Sac	18.0333333	-63.0666667	AN	America/Curacao						
+Saurimo	-9.65	20.4	AO	Africa/Luanda						
+Lucapa	-8.4166667	20.75	AO	Africa/Luanda						
+Luau	-10.7	22.2333333	AO	Africa/Luanda						
+Luanda	-8.8383333	13.2344444	AO	Africa/Luanda						
+Lobito	-12.3480556	13.5455556	AO	Africa/Luanda						
+Huambo	-12.7761111	15.7391667	AO	Africa/Luanda						
+Zarate	-34.0922222	-59.035	AR	America/Argentina/Buenos_Aires						
+Tandil	-37.3166667	-59.15	AR	America/Argentina/Buenos_Aires						
+San Lorenzo	-28.1333333	-58.7666667	AR	America/Argentina/Cordoba						
+Resistencia	-27.45	-58.9833333	AR	America/Argentina/Tucuman						
+Quilmes	-34.7202778	-58.2694444	AR	America/Argentina/Buenos_Aires						
+Posadas	-27.3833333	-55.8833333	AR	America/Argentina/Buenos_Aires						
+Mar del Plata	-38	-57.55	AR	America/Argentina/Buenos_Aires						
+La Plata	-34.9313889	-57.9488889	AR	America/Argentina/Buenos_Aires						
+Formosa	-26.1833333	-58.1833333	AR	America/Argentina/Tucuman						
+Corrientes	-27.4666667	-58.8333333	AR	America/Argentina/Tucuman						
+Buenos Aires	-34.57612563	-58.40881348	AR	America/Argentina/Buenos_Aires						
+Santiago del Estero	-27.7833333	-64.2666667	AR	America/Argentina/Tucuman						
+Santa Fe	-31.6333333	-60.7	AR	America/Argentina/Cordoba						
+San Salvador de Jujuy	-24.1833333	-65.3	AR	America/Argentina/Jujuy						
+San Miguel de Tucuman	-26.8166667	-65.2166667	AR	America/Argentina/Tucuman						
+San Juan	-31.5375	-68.5363889	AR	America/Argentina/San_Juan						
+Salta	-24.7833333	-65.4166667	AR	America/Argentina/Jujuy						
+Rosario	-32.9511111	-60.6663889	AR	America/Argentina/Buenos_Aires						
+Parana	-31.7333333	-60.5333333	AR	America/Argentina/Cordoba						
+Neuquen	-38.95	-68.0666667	AR	America/Argentina/Mendoza						
+Mendoza	-32.8833333	-68.8166667	AR	America/Argentina/Mendoza						
+Cordoba	-31.4	-64.1833333	AR	America/Argentina/Cordoba						
+Bahia Blanca	-38.7166667	-62.2833333	AR	America/Argentina/Buenos_Aires						
+Tafuna	-14.33583	-170.72	AS	Pacific/Pago_Pago						
+Neu-Guntramsdorf	48.0666667	16.3166667	AT	Europe/Vienna						
+Zwettl Stift	48.6166667	15.2	AT	Europe/Vienna						
+Zistersdorf	48.5333333	16.75	AT	Europe/Vienna						
+Wien	48.20848776	16.37207508	AT	Europe/Vienna						
+Graz	47.0666667	15.45	AT	Europe/Vienna						
+Whyalla	-33.0333333	137.5833333	AU	Australia/Adelaide						
+Victor Harbour	-35.5666667	138.6166667	AU	Australia/Adelaide						
+Roebourne	-20.7833333	117.1333333	AU	Australia/Perth						
+Perth	-31.9333333	115.8333333	AU	Australia/Perth						
+Adelaide	-34.9333333	138.6	AU	Australia/Adelaide						
+Sydney	-33.86784996	151.2073231	AU	Australia/Sydney						
+Murwilumbah	-28.329202	153.394589	AU	Australia/Sydney						
+Newcastle	-32.9166667	151.75	AU	Australia/Sydney						
+Melbourne	-37.81399656	144.9633229	AU	Australia/Melbourne						
+Wollongong	-34.4333333	150.8833333	AU	Australia/Sydney						
+Canberra	-35.28346247	149.1280746	AU	Australia/Sydney						
+Brisbane	-27.5	153.0166667	AU	Australia/Brisbane						
+Oranjestad	12.5166667	-70.0333333	AW	America/Aruba						
+Goytapa	39.1166667	48.5952778	AZ	Asia/Baku						
+Icari	39.0822222	46.655	AZ	Asia/Baku						
+Xocavand	39.7952778	47.1130556	AZ	Asia/Baku						
+Sumqayit	40.5897222	49.6686111	AZ	Asia/Baku						
+Ganca	40.6827778	46.3605556	AZ	Asia/Baku						
+Baku	40.3952778	49.8822222	AZ	Asia/Baku						
+Zvornik	44.3869444	19.1013889	BA	Europe/Sarajevo						
+Zivinice	44.4494444	18.6497222	BA	Europe/Sarajevo						
+Zepce	44.4266667	18.0377778	BA	Europe/Sarajevo						
+Sarajevo	43.85	18.3833333	BA	Europe/Sarajevo						
+Banja Luka	44.7758333	17.1855556	BA	Europe/Sarajevo						
+Bridgetown	13.1	-59.6166667	BB	America/Barbados						
+Thakurgaon	26.0333333	88.4666667	BD	Asia/Dhaka						
+Teknaf	20.8666667	92.3	BD	Asia/Dhaka						
+Tungi	23.89	90.4058333	BD	Asia/Dhaka						
+Sylhet	24.8966667	91.8716667	BD	Asia/Dhaka						
+Narsingdi	23.9208333	90.7180556	BD	Asia/Dhaka						
+Rajshahi	24.3666667	88.6	BD	Asia/Dhaka						
+Narayanganj	23.6233333	90.5011111	BD	Asia/Dhaka						
+Mymensingh	24.75	90.4	BD	Asia/Dhaka						
+Comilla	23.4577778	91.2044444	BD	Asia/Dhaka						
+Rangpur	25.75	89.25	BD	Asia/Dhaka						
+Dhaka	23.7230556	90.4086111	BD	Asia/Dhaka						
+Dinajpur	25.6333333	88.6333333	BD	Asia/Dhaka						
+Chittagong	22.3330556	91.8363889	BD	Asia/Dhaka						
+Cox's Bazar	21.4422222	91.9780556	BD	Asia/Dhaka						
+Khulna	22.8	89.55	BD	Asia/Dhaka						
+Barisal	22.7019444	90.3711111	BD	Asia/Dhaka						
+Jessore	23.1666667	89.2166667	BD	Asia/Dhaka						
+Zwijndrecht	51.2166667	4.3333333	BE	Europe/Brussels						
+Zwevegem	50.8	3.3333333	BE	Europe/Brussels						
+Zutendaal	50.9333333	5.5666667	BE	Europe/Brussels						
+Gent	51.05	3.7166667	BE	Europe/Brussels						
+Charleroi	50.4166667	4.4333333	BE	Europe/Brussels						
+Brussels	50.84659748	4.35277462	BE	Europe/Brussels						
+Antwerp	51.2166667	4.4166667	BE	Europe/Brussels						
+Zorgho	12.2488889	-0.6158333	BF	Africa/Ouagadougou						
+Ziniare	12.5822222	-1.2983333	BF	Africa/Ouagadougou						
+Yako	12.9666667	-2.2666667	BF	Africa/Ouagadougou						
+Ouagadougou	12.3702778	-1.5247222	BF	Africa/Ouagadougou						
+Bobo Dioulasso	11.2	-4.3	BF	Africa/Ouagadougou						
+Beloslav	43.1833333	27.7	BG	Europe/Sofia						
+Zlatograd	41.3833333	25.1	BG	Europe/Sofia						
+Zlatitsa	42.7166667	24.1333333	BG	Europe/Sofia						
+Varna	43.2166667	27.9166667	BG	Europe/Sofia						
+Sofia	42.69751353	23.32414627	BG	Europe/Sofia						
+Plovdiv	42.15	24.75	BG	Europe/Sofia						
+Sitrah	26.1547222	50.6205556	BH	Asia/Bahrain						
+Madinat `Isa	26.1736111	50.5477778	BH	Asia/Bahrain						
+Jidd Hafs	26.2186111	50.5477778	BH	Asia/Bahrain						
+Makamba	-4.1347222	29.805	BI	Africa/Bujumbura						
+Bururi	-3.948772666	29.6243763	BI	Africa/Bujumbura						
+Rumonge	-3.9722222	29.4388889	BI	Africa/Bujumbura						
+Bujumbura	-3.3761111	29.36	BI	Africa/Bujumbura						
+Tchaourou	8.8833333	2.6	BJ	Africa/Porto-Novo						
+Tanguieta	10.6197222	1.2644444	BJ	Africa/Porto-Novo						
+Save	8.0333333	2.4833333	BJ	Africa/Porto-Novo						
+Porto-Novo	6.4833333	2.6166667	BJ	Africa/Porto-Novo						
+Djougou	9.705	1.6669444	BJ	Africa/Porto-Novo						
+Cotonou	6.35	2.4333333	BJ	Africa/Porto-Novo						
+Abomey-Calavi	6.45	2.35	BJ	Africa/Porto-Novo						
+Gustavia	17.8833333	-62.85	BL	America/Guadeloupe						
+Tutong	4.8	114.65	BN	Asia/Brunei						
+Seria	4.6166667	114.3166667	BN	Asia/Brunei						
+Kuala Belait	4.5833333	114.1833333	BN	Asia/Brunei						
+San Matias	-16.3666667	-58.4	BO	America/La_Paz						
+Robore	-18.3333333	-59.75	BO	America/La_Paz						
+Puerto Quijarro	-17.7833333	-57.7666667	BO	America/La_Paz						
+Sucre	-19.0430556	-65.2591667	BO	America/La_Paz						
+Santa Cruz de la Sierra	-17.8	-63.1666667	BO	America/La_Paz						
+Oruro	-17.9833333	-67.15	BO	America/La_Paz						
+La Paz	-16.5	-68.15	BO	America/La_Paz						
+Cochabamba	-17.3833333	-66.15	BO	America/La_Paz						
+Vitorino Freire	-4.0666667	-45.1666667	BR	America/Belem						
+Vitoria do Mearim	-3.462222222	-44.87055556	BR	America/Belem						
+Vitoria de Santo Antao	-8.118055556	-35.29138889	BR	America/Recife						
+Teresina	-5.089166667	-42.80194444	BR	America/Fortaleza						
+Sao Luis	-2.529722222	-44.30277778	BR	America/Belem						
+Recife	-8.053888889	-34.88111111	BR	America/Recife						
+Paulista	-7.940833333	-34.87305556	BR	America/Recife						
+Olinda	-8.008888889	-34.85527778	BR	America/Recife						
+Natal	-5.795	-35.20944444	BR	America/Recife						
+Mossoro	-5.1875	-37.34416667	BR	America/Fortaleza						
+Maceio	-9.665833333	-35.73527778	BR	America/Maceio						
+Macapa	0.038888889	-51.06638889	BR	America/Belem						
+Juazeiro do Norte	-7.213055556	-39.31527778	BR	America/Fortaleza						
+Joao Pessoa	-7.115	-34.86305556	BR	America/Recife						
+Jaboatao	-8.180277778	-35.00138889	BR	America/Recife						
+Imperatriz	-5.526388889	-47.49166667	BR	America/Araguaina						
+Fortaleza	-3.717222222	-38.54305556	BR	America/Fortaleza						
+Caucaia	-3.736111111	-38.65305556	BR	America/Fortaleza						
+Caruaru	-8.283333333	-35.97611111	BR	America/Recife						
+Campina Grande	-7.230555556	-35.88111111	BR	America/Recife						
+Belem	-1.455833333	-48.50444444	BR	America/Belem						
+Ananindeua	-1.365555556	-48.37222222	BR	America/Belem						
+Volta Redonda	-22.52305556	-44.10416667	BR	America/Sao_Paulo						
+Vitoria da Conquista	-14.86611111	-40.83944444	BR	America/Bahia						
+Vitoria	-20.31944444	-40.33777778	BR	America/Sao_Paulo						
+Vila Velha	-20.32972222	-40.2925	BR	America/Sao_Paulo						
+Viamao	-30.08111111	-51.02333333	BR	America/Sao_Paulo						
+Varzea Grande	-15.64666667	-56.1325	BR	America/Cuiaba						
+Uberlandia	-18.91861111	-48.27722222	BR	America/Sao_Paulo						
+Uberaba	-19.74833333	-47.93194444	BR	America/Sao_Paulo						
+Taubate	-23.02638889	-45.55527778	BR	America/Sao_Paulo						
+Taboao da Serra	-23.62611111	-46.79166667	BR	America/Sao_Paulo						
+Suzano	-23.5425	-46.31083333	BR	America/Sao_Paulo						
+Sumare	-22.82194444	-47.26694444	BR	America/Sao_Paulo						
+Sorocaba	-23.50166667	-47.45805556	BR	America/Sao_Paulo						
+Sete Lagoas	-19.46583333	-44.24666667	BR	America/Sao_Paulo						
+Serra	-20.12861111	-40.30777778	BR	America/Sao_Paulo						
+Sao Vicente	-23.96305556	-46.39194444	BR	America/Sao_Paulo						
+Sao Paulo	-23.5475	-46.63611111	BR	America/Sao_Paulo						
+Sao Leopoldo	-29.76027778	-51.14722222	BR	America/Sao_Paulo						
+Sao Jose dos Campos	-23.17944444	-45.88694444	BR	America/Sao_Paulo						
+Sao Jose do Rio Preto	-20.81972222	-49.37944444	BR	America/Sao_Paulo						
+Sao Joao de Meriti	-22.80388889	-43.37222222	BR	America/Sao_Paulo						
+Sao Carlos	-22.0175	-47.89083333	BR	America/Sao_Paulo						
+Sao Bernardo do Campo	-23.69388889	-46.565	BR	America/Sao_Paulo						
+Santos	-23.96083333	-46.33361111	BR	America/Sao_Paulo						
+Santo Andre	-23.66388889	-46.53833333	BR	America/Sao_Paulo						
+Santa Maria	-29.68416667	-53.80694444	BR	America/Sao_Paulo						
+Santa Luzia	-19.76972222	-43.85138889	BR	America/Sao_Paulo						
+Salvador	-12.97111111	-38.51083333	BR	America/Bahia						
+Rio de Janeiro	-22.90277778	-43.2075	BR	America/Sao_Paulo						
+Ribeirao Preto	-21.1775	-47.81027778	BR	America/Sao_Paulo						
+Ribeirao das Neves	-19.76694444	-44.08666667	BR	America/Sao_Paulo						
+Presidente Prudente	-22.12555556	-51.38888889	BR	America/Sao_Paulo						
+Praia Grande	-24.00583333	-46.40277778	BR	America/Sao_Paulo						
+Porto Alegre	-30.03305556	-51.23	BR	America/Sao_Paulo						
+Ponta Grossa	-25.095	-50.16194444	BR	America/Sao_Paulo						
+Piracicaba	-22.72527778	-47.64916667	BR	America/Sao_Paulo						
+Petropolis	-22.505	-43.17861111	BR	America/Sao_Paulo						
+Pelotas	-31.77194444	-52.3425	BR	America/Sao_Paulo						
+Osasco	-23.5325	-46.79166667	BR	America/Sao_Paulo						
+Novo Hamburgo	-29.67833333	-51.13055556	BR	America/Sao_Paulo						
+Nova Iguacu	-22.75916667	-43.45111111	BR	America/Sao_Paulo						
+Niteroi	-22.88333333	-43.10361111	BR	America/Sao_Paulo						
+Montes Claros	-16.735	-43.86166667	BR	America/Bahia						
+Moji das Cruzes	-23.52277778	-46.18833333	BR	America/Sao_Paulo						
+Maua	-23.66777778	-46.46138889	BR	America/Sao_Paulo						
+Maringa	-23.42527778	-51.93861111	BR	America/Sao_Paulo						
+Marilia	-22.21388889	-49.94583333	BR	America/Sao_Paulo						
+Londrina	-23.31027778	-51.16277778	BR	America/Sao_Paulo						
+Limeira	-22.56472222	-47.40166667	BR	America/Sao_Paulo						
+Jundiai	-23.18638889	-46.88416667	BR	America/Sao_Paulo						
+Juiz de Fora	-21.76416667	-43.35027778	BR	America/Sao_Paulo						
+Joinville	-26.30444444	-48.84555556	BR	America/Sao_Paulo						
+Jacarei	-23.30527778	-45.96583333	BR	America/Sao_Paulo						
+Itaquaquecetuba	-23.48611111	-46.34833333	BR	America/Sao_Paulo						
+Itapevi	-23.54888889	-46.93416667	BR	America/Sao_Paulo						
+Itabuna	-14.78555556	-39.28027778	BR	America/Bahia						
+Ipatinga	-19.46833333	-42.53666667	BR	America/Sao_Paulo						
+Hortolandia	-22.85833333	-47.22	BR	America/Sao_Paulo						
+Guarulhos	-23.46277778	-46.53333333	BR	America/Sao_Paulo						
+Guaruja	-23.99305556	-46.25638889	BR	America/Sao_Paulo						
+Gravatai	-29.94444444	-50.99194444	BR	America/Sao_Paulo						
+Governador Valadares	-18.85111111	-41.94944444	BR	America/Sao_Paulo						
+Goiania	-16.67861111	-49.25388889	BR	America/Sao_Paulo						
+Franca	-20.53861111	-47.40083333	BR	America/Sao_Paulo						
+Foz do Iguacu	-25.54777778	-54.58805556	BR	America/Sao_Paulo						
+Florianopolis	-27.59666667	-48.54916667	BR	America/Sao_Paulo						
+Feira de Santana	-12.26666667	-38.96666667	BR	America/Bahia						
+Embu	-23.64888889	-46.85222222	BR	America/Sao_Paulo						
+Duque de Caxias	-22.78555556	-43.31166667	BR	America/Sao_Paulo						
+Diadema	-23.68611111	-46.62277778	BR	America/Sao_Paulo						
+Curitiba	-25.42777778	-49.27305556	BR	America/Sao_Paulo						
+Cuiaba	-15.59611111	-56.09666667	BR	America/Cuiaba						
+Contagem	-19.93166667	-44.05361111	BR	America/Sao_Paulo						
+Colombo	-25.29166667	-49.22416667	BR	America/Sao_Paulo						
+Caxias do Sul	-29.16805556	-51.17944444	BR	America/Sao_Paulo						
+Cascavel	-24.95583333	-53.45527778	BR	America/Sao_Paulo						
+Carapicuiba	-23.5225	-46.83555556	BR	America/Sao_Paulo						
+Canoas	-29.91777778	-51.18361111	BR	America/Sao_Paulo						
+Campos	-21.75	-41.3	BR	America/Sao_Paulo						
+Campo Grande	-20.44277778	-54.64638889	BR	America/Campo_Grande						
+Campinas	-22.90555556	-47.06083333	BR	America/Sao_Paulo						
+Brasilia	-15.77972	-47.92972	BR	America/Sao_Paulo						
+Blumenau	-26.91944444	-49.06611111	BR	America/Sao_Paulo						
+Betim	-19.96777778	-44.19833333	BR	America/Sao_Paulo						
+Belo Horizonte	-19.92083333	-43.93777778	BR	America/Sao_Paulo						
+Belford Roxo	-22.76416667	-43.39944444	BR	America/Sao_Paulo						
+Bauru	-22.31472222	-49.06055556	BR	America/Sao_Paulo						
+Barueri	-23.51055556	-46.87611111	BR	America/Sao_Paulo						
+Aracaju	-10.91111111	-37.07166667	BR	America/Maceio						
+Anapolis	-16.32666667	-48.95277778	BR	America/Sao_Paulo						
+Rio Branco	-9.974722222	-67.81	BR	America/Rio_Branco						
+Porto Velho	-8.761944444	-63.90388889	BR	America/Porto_Velho						
+Manaus	-3.101944444	-60.025	BR	America/Manaus						
+Boa Vista	2.819722222	-60.67333333	BR	America/Boa_Vista						
+Jaboatao dos Guararapes	-8.112777778	-35.01472222	BR	America/Recife						
+West End	26.6833333	-78.9666667	BS	America/Nassau						
+Nassau	25.0833333	-77.35	BS	America/Nassau						
+Marsh Harbour	26.55	-77.05	BS	America/Nassau						
+Phuntsholing	26.85	89.3833333	BT	Asia/Thimphu						
+Tonota	-21.4833333	27.4833333	BW	Africa/Gaborone						
+Thamaga	-24.7166667	25.5333333	BW	Africa/Gaborone						
+Shakawe	-18.3666667	21.85	BW	Africa/Gaborone						
+Gaborone	-24.6463889	25.9119444	BW	Africa/Gaborone						
+Zhodzina	54.0983333	28.3325	BY	Europe/Minsk						
+Zhytkavichy	52.2286111	27.8636111	BY	Europe/Minsk						
+Zhabinka	52.2005556	24.0233333	BY	Europe/Minsk						
+Minsk	53.9	27.5666667	BY	Europe/Minsk						
+Hrodna	53.6813889	23.8147222	BY	Europe/Minsk						
+Homyel'	52.4416667	30.9833333	BY	Europe/Minsk						
+Brest	52.1	23.7	BY	Europe/Minsk						
+Babruysk	53.15	29.2333333	BY	Europe/Minsk						
+San Pedro	17.9166667	-87.95	BZ	America/Belize						
+San Ignacio	17.1561111	-89.0713889	BZ	America/Belize						
+Punta Gorda	16.1	-88.8	BZ	America/Belize						
+Abbotsford	49.05797669	-122.2525704	CA	America/Vancouver						
+Acton Vale	45.6500696	-72.56582023	CA	America/Montreal						
+Airdrie	51.30011211	-114.035283	CA	America/Edmonton						
+Calgary	51.05011228	-114.0852852	CA	America/Edmonton						
+Edmonton	53.55013594	-113.4687122	CA	America/Edmonton						
+Hamilton	43.23340835	-79.94963987	CA	America/Toronto						
+Kitchener	43.45009561	-80.48298729	CA	America/Toronto						
+London	42.98338928	-81.23304239	CA	America/Toronto						
+Montreal	45.51677922	-73.64917948	CA	America/Montreal						
+Oshawa	43.90012039	-78.84956888	CA	America/Toronto						
+Ottawa	45.4209405	-75.69028616	CA	America/Montreal						
+Toronto	43.70011379	-79.41630419	CA	America/Toronto						
+Vancouver	49.24965739	-123.1193404	CA	America/Vancouver						
+Victoria	48.43293574	-123.3692997	CA	America/Vancouver						
+Windsor	42.30008364	-83.01654348	CA	America/Toronto						
+Winnipeg	49.88439862	-97.14704472	CA	America/Winnipeg						
+Halifax	44.65198617	-63.59684944	CA	America/Halifax						
+Quebec	46.81227912	-71.21453762	CA	America/Montreal						
+Yangambi	0.7833333	24.4666667	CD	Africa/Lubumbashi						
+Watsa	3.05	29.5333333	CD	Africa/Lubumbashi						
+Wamba	2.15	28	CD	Africa/Lubumbashi						
+Tshikapa	-6.4166667	20.8	CD	Africa/Lubumbashi						
+Mbuji-Mayi	-6.15	23.6	CD	Africa/Lubumbashi						
+Kisangani	0.5166667	25.2	CD	Africa/Lubumbashi						
+Kananga	-5.8958333	22.4177778	CD	Africa/Lubumbashi						
+Bukavu	-2.5083333	28.8608333	CD	Africa/Lubumbashi						
+Lubumbashi	-11.6666667	27.4666667	CD	Africa/Lubumbashi						
+Likasi	-10.9813889	26.7333333	CD	Africa/Lubumbashi						
+Kolwezi	-10.7166667	25.4725	CD	Africa/Lubumbashi						
+Kinshasa	-4.3297222	15.315	CD	Africa/Kinshasa						
+Masina	-4.3836111	15.3913889	CD	Africa/Kinshasa						
+Rafai	4.95	23.9166667	CF	Africa/Bangui						
+Ouadda	8.0666667	22.4	CF	Africa/Bangui						
+Obo	5.4	26.5	CF	Africa/Bangui						
+Bangui	4.3666667	18.5833333	CF	Africa/Bangui						
+Sibiti	-3.6858333	13.3458333	CG	Africa/Brazzaville						
+Pointe-Noire	-4.7947222	11.8461111	CG	Africa/Brazzaville						
+Owando	-0.4869444	15.9080556	CG	Africa/Brazzaville						
+Brazzaville	-4.2591667	15.2847222	CG	Africa/Brazzaville						
+Zurich	47.3666667	8.55	CH	Europe/Zurich						
+Zug	47.1666667	8.5166667	CH	Europe/Zurich						
+Zuchwil	47.20172672	7.566490173	CH	Europe/Zurich						
+Zuenoula	7.4291667	-6.0430556	CI	Africa/Abidjan						
+Yamoussoukro	6.8166667	-5.2833333	CI	Africa/Abidjan						
+Vavoua	7.3819444	-6.4777778	CI	Africa/Abidjan						
+Daloa	6.8747222	-6.4519444	CI	Africa/Abidjan						
+Bouake	7.6833333	-5.0330556	CI	Africa/Abidjan						
+Abobo	5.4188889	-4.0205556	CI	Africa/Abidjan						
+Abidjan	5.3411111	-4.0280556	CI	Africa/Abidjan						
+Avarua	-21.2077778	-159.775	CK	Pacific/Rarotonga						
+Yumbel	-37.0833333	-72.5666667	CL	America/Santiago						
+Vina del Mar	-33.0080556	-71.5197222	CL	America/Santiago						
+Villarrica	-39.2666667	-72.2166667	CL	America/Santiago						
+Valparaiso	-33.0477778	-71.6011111	CL	America/Santiago						
+Temuco	-38.7333333	-72.6	CL	America/Santiago						
+Talcahuano	-36.7166667	-73.1166667	CL	America/Santiago						
+Santiago	-33.45	-70.6666667	CL	America/Santiago						
+San Bernardo	-33.6	-70.7166667	CL	America/Santiago						
+Rancagua	-34.1666667	-70.75	CL	America/Santiago						
+vina causino	-33.6166667	-70.5833333	CL	America/Santiago						
+Iquique	-20.2166667	-70.1666667	CL	America/Santiago						
+Concepcion	-36.8333333	-73.05	CL	America/Santiago						
+Antofagasta	-23.65	-70.4	CL	America/Santiago						
+Yoko	5.5333333	12.3166667	CM	Africa/Douala						
+Yokadouma	3.5166667	15.05	CM	Africa/Douala						
+Yaounde	3.8666667	11.5166667	CM	Africa/Douala						
+Ngaoundere	7.3166667	13.5833333	CM	Africa/Douala						
+Mokolo	10.7402778	13.8027778	CM	Africa/Douala						
+Maroua	10.5955556	14.3247222	CM	Africa/Douala						
+Kousseri	12.0783333	15.0308333	CM	Africa/Douala						
+Garoua	9.3	13.4	CM	Africa/Douala						
+Edea	3.8	10.1333333	CM	Africa/Douala						
+Douala	4.0502778	9.7	CM	Africa/Douala						
+Bertoua	4.5833333	13.6833333	CM	Africa/Douala						
+Bamenda	5.9333333	10.1666667	CM	Africa/Douala						
+Bafoussam	5.4666667	10.4166667	CM	Africa/Douala						
+Suzhou	39.7666667	98.5666667	CN	Asia/Urumqi						
+Shache	38.4166667	77.2405556	CN	Asia/Kashgar						
+Lhasa	29.65	91.1	CN	Asia/Chongqing						
+Kashi	39.4547222	75.9797222	CN	Asia/Kashgar						
+Urumqi	43.8	87.5833333	CN	Asia/Urumqi						
+Turpan	42.9333333	89.1666667	CN	Asia/Urumqi						
+Shihezi	44.3	86.0333333	CN	Asia/Urumqi						
+Aral	40.5155556	81.2636111	CN	Asia/Kashgar						
+Aksu	41.1230556	80.2644444	CN	Asia/Kashgar						
+Zunyi	27.6866667	106.9072222	CN	Asia/Chongqing						
+Zigong	29.4	104.7833333	CN	Asia/Chongqing						
+Zhuzhou	27.8333333	113.15	CN	Asia/Chongqing						
+Zhumadian	32.9794444	114.0294444	CN	Asia/Shanghai						
+Zhoukou	33.6333333	114.6333333	CN	Asia/Shanghai						
+Zhenjiang	32.2091667	119.4341667	CN	Asia/Shanghai						
+Zhengzhou	34.7577778	113.6486111	CN	Asia/Shanghai						
+Zhaoqing	23.05	112.45	CN	Asia/Chongqing						
+Zhanjiang	21.2	110.3833333	CN	Asia/Chongqing						
+Zhangzhou	24.5133333	117.6555556	CN	Asia/Shanghai						
+Zibo	36.7905556	118.0633333	CN	Asia/Shanghai						
+Anyang	36.0994444	114.3288889	CN	Asia/Shanghai						
+Yunfu	22.9333333	112.0333333	CN	Asia/Chongqing						
+Yuncheng	35.0230556	110.9927778	CN	Asia/Chongqing						
+Yuci	37.6802778	112.7319444	CN	Asia/Chongqing						
+Yingcheng	30.95	113.55	CN	Asia/Chongqing						
+Yinchuan	38.4680556	106.2730556	CN	Asia/Chongqing						
+Yichang	30.7144444	111.2847222	CN	Asia/Chongqing						
+Yibin	28.7666667	104.5666667	CN	Asia/Chongqing						
+Yantai	37.5333333	121.4	CN	Asia/Shanghai						
+Yangzhou	32.3972222	119.4358333	CN	Asia/Shanghai						
+Yangquan	37.8575	113.5633333	CN	Asia/Shanghai						
+Yancheng	33.3855556	120.1252778	CN	Asia/Shanghai						
+Xuzhou	34.2669444	117.1916667	CN	Asia/Shanghai						
+Xuri	28.4666667	117.9666667	CN	Asia/Shanghai						
+Xuchang	34.0166667	113.8166667	CN	Asia/Shanghai						
+Xinyang	32.1227778	114.0655556	CN	Asia/Shanghai						
+Xinxiang	35.3088889	113.8672222	CN	Asia/Shanghai						
+Xintai	35.9005556	117.7519444	CN	Asia/Shanghai						
+Xinpu	34.5997222	119.1594444	CN	Asia/Shanghai						
+Xining	36.6166667	101.7666667	CN	Asia/Chongqing						
+Xingtai	37.0630556	114.4941667	CN	Asia/Shanghai						
+Xianyang	34.3455556	108.7147222	CN	Asia/Chongqing						
+Xiantao	30.3833333	113.4	CN	Asia/Chongqing						
+Zhuhai	22.2769444	113.5677778	CN	Asia/Chongqing						
+Xiangtan	27.85	112.9	CN	Asia/Chongqing						
+Xiangfan	32.0416667	112.145	CN	Asia/Chongqing						
+Xi'an	34.2583333	108.9286111	CN	Asia/Chongqing						
+Xiamen	24.4675	118.0930556	CN	Asia/Shanghai						
+Wuzhou	23.4833333	111.3166667	CN	Asia/Chongqing						
+Wuxue	29.85	115.55	CN	Asia/Shanghai						
+Wuxi	31.5772222	120.2938889	CN	Asia/Shanghai						
+Changde	29.0322222	111.6780556	CN	Asia/Chongqing						
+Wuhu	31.35	118.3666667	CN	Asia/Shanghai						
+Wuhan	30.5833333	114.2666667	CN	Asia/Shanghai						
+Wuhai	39.6647222	106.8122222	CN	Asia/Chongqing						
+Wenzhou	28.0191667	120.6544444	CN	Asia/Shanghai						
+Weifang	36.71	119.1019444	CN	Asia/Shanghai						
+Wafangdian	39.6183333	122.0080556	CN	Asia/Harbin						
+Tongling	30.95	117.7833333	CN	Asia/Shanghai						
+Tianjin	39.1422222	117.1766667	CN	Asia/Shanghai						
+Tangshan	39.6333333	118.1833333	CN	Asia/Harbin						
+Tanggu	39.0211111	117.6469444	CN	Asia/Shanghai						
+Taizhou	32.4933333	119.9080556	CN	Asia/Shanghai						
+Taiyuan	37.8694444	112.5602778	CN	Asia/Chongqing						
+Tai'an	36.1852778	117.12	CN	Asia/Shanghai						
+Suzhou	33.6361111	116.9788889	CN	Asia/Shanghai						
+Suizhou	31.7111111	113.3630556	CN	Asia/Chongqing						
+Shiyan	32.6475	110.7780556	CN	Asia/Chongqing						
+Shiyan	32.5666667	110.7833333	CN	Asia/Chongqing						
+Shiqi	22.5175	113.3661111	CN	Asia/Chongqing						
+Tongchuan	35.0805556	109.0897222	CN	Asia/Chongqing						
+Shijiazhuang	38.0413889	114.4786111	CN	Asia/Shanghai						
+Shenzhen	22.54553766	114.0682983	CN	Asia/Chongqing						
+Shashi	30.3072222	112.2447222	CN	Asia/Chongqing						
+Shaoxing	30.0016667	120.5811111	CN	Asia/Shanghai						
+Shaoguan	24.8	113.5833333	CN	Asia/Chongqing						
+Shantou	23.36	116.6783333	CN	Asia/Shanghai						
+Shanghai	31.2222222	121.4580556	CN	Asia/Shanghai						
+Sanming	26.2486111	117.6186111	CN	Asia/Shanghai						
+Jieyang	23.5297222	116.3655556	CN	Asia/Shanghai						
+Rizhao	35.4275	119.4552778	CN	Asia/Shanghai						
+Qinhuangdao	39.9316667	119.5883333	CN	Asia/Harbin						
+Huaiyin	33.5886111	119.0191667	CN	Asia/Shanghai						
+Qingdao	36.0986111	120.3719444	CN	Asia/Shanghai						
+Puyang	35.7027778	115.0052778	CN	Asia/Shanghai						
+Putian	25.4394444	119.0102778	CN	Asia/Shanghai						
+Pingxiang	27.6166667	113.85	CN	Asia/Chongqing						
+Pingdingshan	33.7408333	113.3063889	CN	Asia/Chongqing						
+Panzhihua	26.55	101.7333333	CN	Asia/Chongqing						
+Ningbo	29.875	121.5419444	CN	Asia/Shanghai						
+Neijiang	29.5836111	105.0591667	CN	Asia/Chongqing						
+Nanyang	32.9947222	112.5327778	CN	Asia/Chongqing						
+Nantong	32.0302778	120.8747222	CN	Asia/Shanghai						
+Nanning	22.8166667	108.3166667	CN	Asia/Chongqing						
+Nanjing	32.0616667	118.7777778	CN	Asia/Shanghai						
+Nanchong	30.8	106.0666667	CN	Asia/Chongqing						
+Nanchang	28.6833333	115.8833333	CN	Asia/Shanghai						
+Mianyang	31.4666667	104.7666667	CN	Asia/Chongqing						
+Luqiaozhen	28.5788889	121.3783333	CN	Asia/Shanghai						
+Luoyang	34.6836111	112.4536111	CN	Asia/Chongqing						
+Luohe	33.5716667	114.0352778	CN	Asia/Shanghai						
+Luancheng	37.8791667	114.6516667	CN	Asia/Shanghai						
+Linyi	35.0630556	118.3427778	CN	Asia/Shanghai						
+Linxia	35.6002778	103.2063889	CN	Asia/Chongqing						
+Linfen	36.0888889	111.5188889	CN	Asia/Chongqing						
+Liaocheng	36.4438889	115.9647222	CN	Asia/Shanghai						
+Laohekou	32.3858333	111.6677778	CN	Asia/Chongqing						
+Lanzhou	36.0563889	103.7922222	CN	Asia/Chongqing						
+Langfang	39.5097222	116.6947222	CN	Asia/Shanghai						
+Kunming	25.0388889	102.7183333	CN	Asia/Chongqing						
+Kaifeng	34.7911111	114.3483333	CN	Asia/Shanghai						
+Jiujiang	29.7333333	115.9833333	CN	Asia/Shanghai						
+Jinzhou	39.1	121.7166667	CN	Asia/Harbin						
+Jingling	30.65	113.1	CN	Asia/Chongqing						
+Jingdezhen	29.2897222	117.2022222	CN	Asia/Shanghai						
+Jincheng	35.5022222	112.8327778	CN	Asia/Chongqing						
+Jinan	36.6683333	116.9972222	CN	Asia/Shanghai						
+Jiaxing	30.7655556	120.7483333	CN	Asia/Shanghai						
+Jiaozuo	35.2397222	113.2330556	CN	Asia/Shanghai						
+Jiangmen	22.5833333	113.0833333	CN	Asia/Chongqing						
+Yangjiang	21.85	111.9666667	CN	Asia/Chongqing						
+Ji'an	27.1333333	115	CN	Asia/Shanghai						
+Guangyuan	32.4402778	105.8213889	CN	Asia/Chongqing						
+Huizhou	23.0833333	114.4	CN	Asia/Chongqing						
+Huangshi	30.2166667	115.1	CN	Asia/Shanghai						
+Huanggang	23.6752778	117.0033333	CN	Asia/Shanghai						
+Huainan	32.6263889	116.9969444	CN	Asia/Shanghai						
+Huaibei	33.9744444	116.7916667	CN	Asia/Shanghai						
+Heze	35.2430556	115.4411111	CN	Asia/Shanghai						
+Yiyang	28.5891667	112.3283333	CN	Asia/Chongqing						
+Hengyang	26.8880556	112.615	CN	Asia/Chongqing						
+Hengshui	37.7322222	115.7011111	CN	Asia/Shanghai						
+Hefei	31.8638889	117.2808333	CN	Asia/Shanghai						
+Hebi	35.8991667	114.1925	CN	Asia/Shanghai						
+Hangzhou	30.2552778	120.1688889	CN	Asia/Shanghai						
+Hangu	39.2488889	117.7891667	CN	Asia/Shanghai						
+Handan	36.6005556	114.4677778	CN	Asia/Shanghai						
+Jiaojiang	28.6802778	121.4427778	CN	Asia/Shanghai						
+Haikou	20.0458333	110.3416667	CN	Asia/Chongqing						
+Guli	28.8833333	120.0333333	CN	Asia/Shanghai						
+Guiyang	26.5833333	106.7166667	CN	Asia/Chongqing						
+Guilin	25.2819444	110.2863889	CN	Asia/Chongqing						
+Guangzhou	23.1166667	113.25	CN	Asia/Chongqing						
+Gaoping	30.7833333	106.1333333	CN	Asia/Chongqing						
+Fuzhou	26.0613889	119.3061111	CN	Asia/Shanghai						
+Foshan	23.0333333	113.1166667	CN	Asia/Chongqing						
+Dongying	37.4563889	118.4855556	CN	Asia/Shanghai						
+Dongguan	23.0488889	113.7447222	CN	Asia/Chongqing						
+Dezhou	37.4486111	116.2925	CN	Asia/Shanghai						
+Daliang	22.8408333	113.2452778	CN	Asia/Chongqing						
+Dalian	38.9122222	121.6022222	CN	Asia/Shanghai						
+Chuzhou	32.3219444	118.2977778	CN	Asia/Shanghai						
+Chongqing	29.5627778	106.5527778	CN	Asia/Chongqing						
+Chengdu	30.6666667	104.0666667	CN	Asia/Chongqing						
+Chaozhou	23.6658333	116.64	CN	Asia/Shanghai						
+Changzhou	31.7833333	119.9666667	CN	Asia/Shanghai						
+Changzhi	35.2088889	111.7386111	CN	Asia/Chongqing						
+Changsha	28.2	112.9666667	CN	Asia/Chongqing						
+Cangzhou	38.3166667	116.8666667	CN	Asia/Shanghai						
+Bengbu	32.9408333	117.3608333	CN	Asia/Shanghai						
+Beijing	39.9288889	116.3883333	CN	Asia/Harbin						
+Beihai	21.4833333	109.1	CN	Asia/Chongqing						
+Baoding	38.8511111	115.4902778	CN	Asia/Shanghai						
+Anshun	26.25	105.9333333	CN	Asia/Chongqing						
+Anqing	30.5091667	117.0505556	CN	Asia/Shanghai						
+Suzhou	31.3113889	120.6180556	CN	Asia/Shanghai						
+Zhangjiakou	40.81	114.8794444	CN	Asia/Harbin						
+Yingkou	40.6680556	122.2247222	CN	Asia/Harbin						
+Yanji	42.9075	129.5077778	CN	Asia/Harbin						
+Xuanhua	40.6102778	115.0447222	CN	Asia/Harbin						
+Tongliao	43.6125	122.2652778	CN	Asia/Harbin						
+Tieling	42.2930556	123.8413889	CN	Asia/Harbin						
+Suihua	46.6405556	126.9969444	CN	Asia/Harbin						
+Siping	43.1633333	124.3686111	CN	Asia/Harbin						
+Shuangyashan	46.6361111	131.1538889	CN	Asia/Harbin						
+Shenyang	41.7922222	123.4327778	CN	Asia/Harbin						
+Ranghulu	46.65	124.8666667	CN	Asia/Harbin						
+Qitaihe	45.8	130.85	CN	Asia/Harbin						
+Qiqihar	47.3408333	123.9672222	CN	Asia/Harbin						
+Panshan	41.1880556	122.0494444	CN	Asia/Harbin						
+Mudanjiang	44.5833333	129.6	CN	Asia/Harbin						
+Liaoyuan	42.9036111	125.1358333	CN	Asia/Harbin						
+Liaoyang	41.2719444	123.1730556	CN	Asia/Harbin						
+Jixi	45.3	130.9666667	CN	Asia/Harbin						
+Jinxi	40.75	120.8333333	CN	Asia/Harbin						
+Jilin	43.8508333	126.5602778	CN	Asia/Harbin						
+Jiamusi	46.8333333	130.35	CN	Asia/Harbin						
+Hulan Ergi	47.2041667	123.6333333	CN	Asia/Harbin						
+Hohhot	40.8105556	111.6522222	CN	Asia/Chongqing						
+Hegang	47.4	130.3666667	CN	Asia/Harbin						
+Harbin	45.75	126.65	CN	Asia/Harbin						
+Hailar	49.2	119.7	CN	Asia/Harbin						
+Fuxin	42.0155556	121.6588889	CN	Asia/Harbin						
+Fushun	41.8558333	123.9233333	CN	Asia/Harbin						
+Datong	40.0936111	113.2913889	CN	Asia/Shanghai						
+Daqing	46.5833333	125	CN	Asia/Harbin						
+Dandong	40.1291667	124.3947222	CN	Asia/Harbin						
+Chifeng	42.2683333	118.9636111	CN	Asia/Harbin						
+Chengde	40.9725	117.9361111	CN	Asia/Harbin						
+Chaoyang	41.5702778	120.4586111	CN	Asia/Harbin						
+Changchun	43.88	125.3227778	CN	Asia/Harbin						
+Benxi	41.2886111	123.765	CN	Asia/Harbin						
+Baotou	40.6522222	109.8222222	CN	Asia/Chongqing						
+Baicheng	45.6166667	122.8166667	CN	Asia/Harbin						
+Anshan	41.1236111	122.99	CN	Asia/Harbin						
+Zipaquira	5.0283333	-74.0058333	CO	America/Bogota						
+Zarzal	4.3983333	-76.0772222	CO	America/Bogota						
+Zaragoza	7.4941667	-74.8711111	CO	America/Bogota						
+Villavicencio	4.1533333	-73.635	CO	America/Bogota						
+Valledupar	10.4769444	-73.2505556	CO	America/Bogota						
+Soledad	10.9172222	-74.7666667	CO	America/Bogota						
+Soacha	4.5872222	-74.2213889	CO	America/Bogota						
+Sincelejo	9.3047222	-75.3977778	CO	America/Bogota						
+Santa Marta	11.2472222	-74.2016667	CO	America/Bogota						
+Pereira	4.8133333	-75.6961111	CO	America/Bogota						
+Pasto	1.2136111	-77.2811111	CO	America/Bogota						
+Palmira	3.5394444	-76.3036111	CO	America/Bogota						
+Neiva	2.9305556	-75.3302778	CO	America/Bogota						
+Monteria	8.7575	-75.89	CO	America/Bogota						
+Medellin	6.2913889	-75.5361111	CO	America/Bogota						
+Manizales	5.07	-75.5205556	CO	America/Bogota						
+Itagui	6.1719444	-75.6113889	CO	America/Bogota						
+Ibague	4.4388889	-75.2322222	CO	America/Bogota						
+Floridablanca	7.0647222	-73.0897222	CO	America/Bogota						
+Cucuta	7.8833333	-72.5052778	CO	America/Bogota						
+Cartagena	10.3997222	-75.5144444	CO	America/Bogota						
+Cali	3.4372222	-76.5225	CO	America/Bogota						
+Buenaventura	3.8933333	-77.0697222	CO	America/Bogota						
+Buenaventura	3.5833333	-77	CO	America/Bogota						
+Bucaramanga	7.1297222	-73.1258333	CO	America/Bogota						
+Bogota	4.6	-74.0833333	CO	America/Bogota						
+Bello	6.3388889	-75.5622222	CO	America/Bogota						
+Barranquilla	10.9638889	-74.7963889	CO	America/Bogota						
+Armenia	4.5338889	-75.6811111	CO	America/Bogota						
+Turrialba	9.9	-83.6833333	CR	America/Costa_Rica						
+Tres Rios	9.9	-83.9833333	CR	America/Costa_Rica						
+Tilaran	10.4666667	-84.9666667	CR	America/Costa_Rica						
+San Jose	9.9333333	-84.0833333	CR	America/Costa_Rica						
+Zaza del Medio	21.9961111	-79.3669444	CU	America/Havana						
+Yara	20.2752778	-76.9533333	CU	America/Havana						
+Yaguajay	22.3272222	-79.2377778	CU	America/Havana						
+Santiago de Cuba	20.0247222	-75.8219444	CU	America/Havana						
+Santa Clara	22.4	-79.9666667	CU	America/Havana						
+Las Tunas	20.9616667	-76.9511111	CU	America/Havana						
+Havana	23.1319444	-82.3641667	CU	America/Havana						
+Holguin	20.8872222	-76.2630556	CU	America/Havana						
+Guantanamo	20.1444444	-75.2091667	CU	America/Havana						
+Camaguey	21.3808333	-77.9169444	CU	America/Havana						
+Vila da Ribeira Brava	16.6166667	-24.3	CV	Atlantic/Cape_Verde						
+Tarrafal	15.2833333	-23.7666667	CV	Atlantic/Cape_Verde						
+Sao Filipe	14.9	-24.5166667	CV	Atlantic/Cape_Verde						
+Ypsonas	34.6833333	32.9583333	CY	Asia/Nicosia						
+Yeri	35.1	33.4166667	CY	Asia/Nicosia						
+Xeri	35.075	33.3208333	CY	Asia/Nicosia						
+Nicosia	35.1666667	33.3666667	CY	Asia/Nicosia						
+Dvur Kralove nad Labem	50.43172196	15.81402115	CZ	Europe/Prague						
+Zubri	49.46602716	18.09248505	CZ	Europe/Prague						
+Znojmo	48.85549874	16.04879762	CZ	Europe/Prague						
+Praha	50.08783679	14.4241322	CZ	Europe/Prague						
+Ostrava	49.8346452	18.28204408	CZ	Europe/Prague						
+Brno	49.19518996	16.59968858	CZ	Europe/Prague						
+Zwonitz	50.6333333	12.8	DE	Europe/Berlin						
+Zwingenberg	49.7263889	8.6186111	DE	Europe/Berlin						
+Zwiesel	49.0166667	13.2333333	DE	Europe/Berlin						
+Wuppertal	51.2666667	7.1833333	DE	Europe/Berlin						
+Wiesbaden	50.0833333	8.25	DE	Europe/Berlin						
+Wahren	51.3666667	12.3333333	DE	Europe/Berlin						
+Stuttgart	48.7666667	9.1833333	DE	Europe/Berlin						
+Oberhausen	51.4666667	6.85	DE	Europe/Berlin						
+Nuernberg	49.4477778	11.0683333	DE	Europe/Berlin						
+Neustadt	52.15	11.6333333	DE	Europe/Berlin						
+Munster	51.96235591	7.625713348	DE	Europe/Berlin						
+Munich	48.13768314	11.57435417	DE	Europe/Berlin						
+Monchengladbach	51.2	6.4333333	DE	Europe/Berlin						
+Mannheim	49.4883333	8.4647222	DE	Europe/Berlin						
+Lubeck	53.86892704	10.68729401	DE	Europe/Berlin						
+Leipzig	51.33779739	12.36991882	DE	Europe/Berlin						
+Krefeld	51.3333333	6.5666667	DE	Europe/Berlin						
+Koeln	50.9333333	6.95	DE	Europe/Berlin						
+Kiel	54.3333333	10.1333333	DE	Europe/Berlin						
+Karlsruhe	49.0047222	8.3858333	DE	Europe/Berlin						
+Hannover	52.37051627	9.733221531	DE	Europe/Berlin						
+Hamburg	53.55	10	DE	Europe/Berlin						
+Halle-Neustadt	51.4833333	11.9333333	DE	Europe/Berlin						
+Halle	51.5	12	DE	Europe/Berlin						
+Gelsenkirchen-Alt	51.5166667	7.1166667	DE	Europe/Berlin						
+Freiburg	47.99589541	7.852220535	DE	Europe/Berlin						
+Frankfurt am Main	50.1166667	8.6833333	DE	Europe/Berlin						
+Essen	51.45	7.0166667	DE	Europe/Berlin						
+Erfurt	50.9833333	11.0333333	DE	Europe/Berlin						
+Dusseldorf	51.22172257	6.776161194	DE	Europe/Berlin						
+Duisburg	51.4333333	6.75	DE	Europe/Berlin						
+Dresden	51.05089108	13.73831749	DE	Europe/Berlin						
+Dortmund	51.5166667	7.45	DE	Europe/Berlin						
+Chemnitz	50.8333333	12.9166667	DE	Europe/Berlin						
+Bremen	53.07515568	8.80777359	DE	Europe/Berlin						
+Braunschweig	52.2666667	10.5333333	DE	Europe/Berlin						
+Bonn	50.7333333	7.1	DE	Europe/Berlin						
+Bochum	51.4833333	7.2166667	DE	Europe/Berlin						
+Bielefeld	52.0333333	8.5333333	DE	Europe/Berlin						
+Berlin	52.5166667	13.4	DE	Europe/Berlin						
+Augsburg	48.3666667	10.8833333	DE	Europe/Berlin						
+Kreisfreie Stadt Aachen	50.7708333	6.1052778	DE	Europe/Berlin						
+Tadjoura	11.7852778	42.8844444	DJ	Africa/Djibouti						
+Obock	11.9630556	43.2905556	DJ	Africa/Djibouti						
+Djibouti	11.595	43.1480556	DJ	Africa/Djibouti						
+Vordingborg	55.0166667	11.9166667	DK	Europe/Copenhagen						
+Vojens	55.25	9.3166667	DK	Europe/Copenhagen						
+Vejle	55.7	9.5333333	DK	Europe/Copenhagen						
+Copenhagen	55.6666667	12.5833333	DK	Europe/Copenhagen						
+Arhus	56.15	10.2166667	DK	Europe/Copenhagen						
+Roseau	15.3	-61.4	DM	America/Dominica						
+Yayas de Viajama	18.6	-70.9166667	DO	America/Santo_Domingo						
+Yamasa	18.7666667	-70.0166667	DO	America/Santo_Domingo						
+Yaguate	18.3333333	-70.1833333	DO	America/Santo_Domingo						
+Santo Domingo	18.4666667	-69.9	DO	America/Santo_Domingo						
+Santiago de los Caballeros	19.45	-70.7	DO	America/Santo_Domingo						
+San Pedro de Macoris	18.45	-69.3	DO	America/Santo_Domingo						
+La Romana	18.4166667	-68.9666667	DO	America/Santo_Domingo						
+Zeribet el Oued	34.6833333	6.5166667	DZ	Africa/Algiers						
+Zeralda	36.7147222	2.8433333	DZ	Africa/Algiers						
+Zemmora	35.7225	0.76	DZ	Africa/Algiers						
+Oran	35.6911111	-0.6416667	DZ	Africa/Algiers						
+Constantine	36.365	6.6147222	DZ	Africa/Algiers						
+Batna	35.55597105	6.174144745	DZ	Africa/Algiers						
+Bab Ezzouar	36.7166667	3.1833333	DZ	Africa/Algiers						
+Annaba	36.9	7.7666667	DZ	Africa/Algiers						
+Algiers	36.7630556	3.0505556	DZ	Africa/Algiers						
+Zaruma	-3.6833333	-79.6166667	EC	America/Guayaquil						
+Zamora	-4.0691667	-78.9566667	EC	America/Guayaquil						
+Yantzaza	-3.8277778	-78.7594444	EC	America/Guayaquil						
+Santo Domingo de los Colorados	-0.25	-79.15	EC	America/Guayaquil						
+Quito	-0.2166667	-78.5	EC	America/Guayaquil						
+Guayaquil	-2.1666667	-79.9	EC	America/Guayaquil						
+Cuenca	-2.8833333	-78.9833333	EC	America/Guayaquil						
+Voru	57.8338889	27.0194444	EE	Europe/Tallinn						
+Viljandi	58.3638889	25.59	EE	Europe/Tallinn						
+Valga	57.7744444	26.0452778	EE	Europe/Tallinn						
+Tallinn	59.4338889	24.7280556	EE	Europe/Tallinn						
+Zifta	30.7136111	31.2438889	EG	Africa/Cairo						
+Tukh	30.3483333	31.1580556	EG	Africa/Cairo						
+Tanta	30.7911111	30.9980556	EG	Africa/Cairo						
+Suhaj	26.55	31.7	EG	Africa/Cairo						
+Qina	26.17	32.7272222	EG	Africa/Cairo						
+Kafr ad Dawwar	31.1397222	30.1291667	EG	Africa/Cairo						
+Damanhur	31.0333333	30.4666667	EG	Africa/Cairo						
+Az Zaqaziq	30.5913889	31.5102778	EG	Africa/Cairo						
+Asyut	27.1827778	31.1827778	EG	Africa/Cairo						
+Aswan	24.0875	32.8988889	EG	Africa/Cairo						
+Suez	29.9666667	32.55	EG	Africa/Cairo						
+Luxor	25.6833333	32.65	EG	Africa/Cairo						
+Cairo	30.05	31.25	EG	Africa/Cairo						
+Al Minya	28.1194444	30.7444444	EG	Africa/Cairo						
+Al Mansurah	31.0430556	31.3766667	EG	Africa/Cairo						
+Al Mahallah al Kubra	30.9761111	31.1669444	EG	Africa/Cairo						
+Al Jizah	30.0086111	31.2122222	EG	Africa/Cairo						
+Ismailia	30.6052778	32.2772222	EG	Africa/Cairo						
+Alexandria	31.1980556	29.9191667	EG	Africa/Cairo						
+Al Fayyum	29.3077778	30.84	EG	Africa/Cairo						
+Bur Sa`id	31.25976999	32.30049133	EG	Africa/Cairo						
+Ejbei Uad el Aabd	27.135	-13.1625	EH	Africa/El_Aaiun						
+Idi	13.9297222	41.6925	ER	Africa/Asmara						
+Dekemhare	15.07	39.0475	ER	Africa/Asmara						
+Barentu	15.1138889	37.5927778	ER	Africa/Asmara						
+Asmara	15.3333333	38.9333333	ER	Africa/Asmara						
+Zubia	37.1166667	-3.5833333	ES	Africa/Ceuta						
+Zafra	38.4166667	-6.4166667	ES	Europe/Madrid						
+Yecla	38.6166667	-1.1166667	ES	Europe/Madrid						
+Valencia	39.46975242	-0.377386808	ES	Europe/Madrid						
+Sevilla	37.3772222	-5.9869444	ES	Africa/Ceuta						
+Santa Cruz de Tenerife	28.46823859	-16.25461578	ES	Atlantic/Canary						
+Palma	39.56939079	2.650237083	ES	Europe/Madrid						
+Murcia	37.9833333	-1.1166667	ES	Europe/Madrid						
+Malaga	36.72015591	-4.42034483	ES	Africa/Ceuta						
+Las Palmas de Gran Canaria	28.1	-15.4166667	ES	Atlantic/Canary						
+Granada	37.18816839	-3.606669903	ES	Africa/Ceuta						
+Elx	38.26217599	-0.701065063	ES	Europe/Madrid						
+Cordoba	37.8833333	-4.7666667	ES	Europe/Madrid						
+Cartagena	37.6	-0.9833333	ES	Europe/Madrid						
+Alacant	38.34517354	-0.481488705	ES	Europe/Madrid						
+Zaragoza	41.65606433	-0.87733984	ES	Europe/Madrid						
+Vitoria-Gasteiz	42.85	-2.6666667	ES	Europe/Madrid						
+Vigo	42.2333333	-8.7166667	ES	Europe/Madrid						
+Valladolid	41.65	-4.7166667	ES	Europe/Madrid						
+Oviedo	43.3666667	-5.8333333	ES	Europe/Madrid						
+Mostoles	40.32233614	-3.864955902	ES	Europe/Madrid						
+Madrid	40.41650209	-3.70256424	ES	Europe/Madrid						
+A Coruna	43.37134964	-8.396000862	ES	Europe/Madrid						
+l'Hospitalet de Llobregat	41.35967444	2.100276947	ES	Europe/Madrid						
+Gijon	43.5411111	-5.6644444	ES	Europe/Madrid						
+Bilbao	43.26270623	-2.925281525	ES	Europe/Madrid						
+Barcelona	41.38878689	2.158985138	ES	Europe/Madrid						
+Badalona	41.45004466	2.247412205	ES	Europe/Madrid						
+Eixample	41.3889553	2.16179002	ES	Europe/Madrid						
+Sant Marti	41.41814377	2.199325562	ES	Europe/Madrid						
+Ziway	7.9333333	38.7166667	ET	Africa/Addis_Ababa						
+Yirga `Alem	6.75	38.4166667	ET	Africa/Addis_Ababa						
+Yabelo	4.8833333	38.0833333	ET	Africa/Addis_Ababa						
+Nazret	8.55	39.2666667	ET	Africa/Addis_Ababa						
+Dire Dawa	9.5930556	41.8661111	ET	Africa/Addis_Ababa						
+Addis Ababa	9.0333333	38.7	ET	Africa/Addis_Ababa						
+Ylojarvi	61.55	23.6	FI	Europe/Helsinki						
+Ylivieska	64.0833333	24.55	FI	Europe/Helsinki						
+Ylitornio	66.3	23.6666667	FI	Europe/Helsinki						
+Tampere	61.5	23.75	FI	Europe/Helsinki						
+Helsinki	60.1755556	24.9341667	FI	Europe/Helsinki						
+Espoo	60.2166667	24.6666667	FI	Europe/Helsinki						
+Lambasa	-16.4166667	179.3833333	FJ	Pacific/Fiji						
+Colonia	9.5144444	138.1291667	FM	Pacific/Ponape						
+Weno	7.4458333	151.85	FM	Pacific/Ponape						
+Toynim	5.3147222	163.0036111	FM	Pacific/Kosrae						
+Torshavn	62.0166667	-6.7666667	FO	Atlantic/Faroe						
+Blaye	45.1333333	-0.6666667	FR	Europe/Paris						
+Yzeure	46.5666667	3.35	FR	Europe/Paris						
+Yvetot	49.6166667	0.7666667	FR	Europe/Paris						
+Toulouse	43.60426187	1.44367218	FR	Europe/Paris						
+Strasbourg	48.5833333	7.75	FR	Europe/Paris						
+Rennes	48.0833333	-1.6833333	FR	Europe/Paris						
+Paris	48.8666667	2.3333333	FR	Europe/Paris						
+Nice	43.7	7.25	FR	Europe/Paris						
+Nantes	47.2166667	-1.55	FR	Europe/Paris						
+Montpellier	43.6	3.8833333	FR	Europe/Paris						
+Marseille	43.3	5.4	FR	Europe/Paris						
+Lyon	45.75	4.85	FR	Europe/Paris						
+Lille	50.6333333	3.0666667	FR	Europe/Paris						
+Bordeaux	44.8333333	-0.5666667	FR	Europe/Paris						
+Tchibanga	-2.85	11.0333333	GA	Africa/Libreville						
+Port-Gentil	-0.7166667	8.7833333	GA	Africa/Libreville						
+Oyem	1.6166667	11.5833333	GA	Africa/Libreville						
+Libreville	0.3833333	9.45	GA	Africa/Libreville						
+Ystalyfera	51.75	-3.7833333	GB	Europe/London						
+York	53.9666667	-1.0833333	GB	Europe/London						
+Yeovil	50.95	-2.6333333	GB	Europe/London						
+Wolverhampton	52.5833333	-2.1333333	GB	Europe/London						
+Stoke-on-Trent	53	-2.1833333	GB	Europe/London						
+Southampton	50.9	-1.4	GB	Europe/London						
+Sheffield	53.38297	-1.465902328	GB	Europe/London						
+Reading	51.4333333	-1	GB	Europe/London						
+Plymouth	50.37	-4.14	GB	Europe/London						
+Nottingham	52.9666667	-1.1666667	GB	Europe/London						
+Manchester	53.48094643	-2.237434387	GB	Europe/London						
+London	51.50841526	-0.125532746	GB	Europe/London						
+Liverpool	53.4166667	-3	GB	Europe/London						
+Leicester	52.6333333	-1.1333333	GB	Europe/London						
+Leeds	53.79416184	-1.553192139	GB	Europe/London						
+Kingston upon Hull	53.7403863	-0.326156616	GB	Europe/London						
+Glasgow	55.8333333	-4.25	GB	Europe/London						
+Edinburgh	55.95	-3.2	GB	Europe/London						
+Derby	52.9333333	-1.5	GB	Europe/London						
+Coventry	52.4166667	-1.55	GB	Europe/London						
+Caerdydd	51.5	-3.2	GB	Europe/London						
+Bristol	51.45	-2.5833333	GB	Europe/London						
+Bradford	53.7833333	-1.75	GB	Europe/London						
+Birmingham	52.4666667	-1.9166667	GB	Europe/London						
+Belfast	54.5833333	-5.9333333	GB	Europe/London						
+Zugdidi	42.5122222	41.8691667	GE	Asia/Tbilisi						
+Tsnori	41.6169444	45.9719444	GE	Asia/Tbilisi						
+Tsalenjikha	42.6044444	42.0772222	GE	Asia/Tbilisi						
+Tbilisi	41.725	44.7908333	GE	Asia/Tbilisi						
+Saint-Laurent-du-Maroni	5.5	-54.0333333	GF	America/Cayenne						
+Remire-Montjoly	4.9166667	-52.2666667	GF	America/Cayenne						
+Matoury	4.85	-52.3333333	GF	America/Cayenne						
+Yendi	9.4333333	-0.0166667	GH	Africa/Accra						
+Winneba	5.3333333	-0.6166667	GH	Africa/Accra						
+Wenchi	7.7333333	-2.1	GH	Africa/Accra						
+Tamale	9.4	-0.8333333	GH	Africa/Accra						
+Takoradi	4.8833333	-1.75	GH	Africa/Accra						
+Kumasi	6.6833333	-1.6166667	GH	Africa/Accra						
+Achiaman	5.7	-0.3333333	GH	Africa/Accra						
+Accra	5.55	-0.2166667	GH	Africa/Accra						
+Gibraltar	36.1333333	-5.35	GI	Europe/Gibraltar						
+Sisimiut	66.9333333	-53.6833333	GL	America/Godthab						
+Nuuk	64.1833333	-51.75	GL	America/Godthab						
+Tasiilaq	65.6	-37.6333333	GL	America/Godthab						
+Sukuta	13.4113889	-16.7088889	GM	Africa/Banjul						
+Soma	13.4333333	-15.5333333	GM	Africa/Banjul						
+Sabi	13.2333333	-14.2	GM	Africa/Banjul						
+Youkounkoun	12.5333333	-13.1333333	GN	Africa/Conakry						
+Yomou	7.5602778	-9.2652778	GN	Africa/Conakry						
+Tougue	11.45	-11.6833333	GN	Africa/Conakry						
+Conakry	9.5091667	-13.7122222	GN	Africa/Conakry						
+Camayenne	9.535	-13.6877778	GN	Africa/Conakry						
+Vieux-Habitants	16.05	-61.75	GP	America/Guadeloupe						
+Trois-Rivieres	15.9666667	-61.6333333	GP	America/Guadeloupe						
+Saint-Francois	16.25	-61.2666667	GP	America/Guadeloupe						
+Pale	-1.4013889	5.6325	GQ	Africa/Malabo						
+Rebola	3.7166667	8.8333333	GQ	Africa/Malabo						
+Mongomo	1.6333333	11.3166667	GQ	Africa/Malabo						
+Zakynthos	37.7913889	20.8952778	GR	Europe/Athens						
+Zakharo	37.4833333	21.65	GR	Europe/Athens						
+Yiannouli	39.6666667	22.3833333	GR	Europe/Athens						
+Athens	37.9833333	23.7333333	GR	Europe/Athens						
+Thessaloniki	40.6402778	22.9438889	GR	Europe/Athens						
+Zunil	14.7833333	-91.4833333	GT	America/Guatemala						
+Zaragoza	14.6544444	-90.8894444	GT	America/Guatemala						
+Zacualpa	15.0833333	-90.8333333	GT	America/Guatemala						
+Villa Nueva	14.5269444	-90.5875	GT	America/Guatemala						
+Mixco	14.6333333	-90.6063889	GT	America/Guatemala						
+Guatemala City	14.62111	-90.52694	GT	America/Guatemala						
+Tamuning	13.4838889	144.7766667	GU	Pacific/Guam						
+Yigo	13.5344444	144.8855556	GU	Pacific/Guam						
+Quinhamel	11.8833333	-15.85	GW	Africa/Bissau						
+Quebo	11.3333333	-14.9333333	GW	Africa/Bissau						
+Mansoa	12.0733333	-15.3188889	GW	Africa/Bissau						
+Bissau	11.85	-15.5833333	GW	Africa/Bissau						
+Skeldon	5.8833333	-57.1333333	GY	America/Guyana						
+Rosignol	6.2833333	-57.5333333	GY	America/Guyana						
+New Amsterdam	6.25	-57.5166667	GY	America/Guyana						
+Georgetown	6.8	-58.1666667	GY	America/Guyana						
+Kowloon	22.3166667	114.1833333	HK	Asia/Hong_Kong						
+Hong Kong	22.2840136	114.1500735	HK	Asia/Hong_Kong						
+Puerto Cortez	15.8333333	-87.95	HN	America/Tegucigalpa						
+Yoro	15.1333333	-87.1333333	HN	America/Tegucigalpa						
+Villanueva	15.3166667	-88	HN	America/Tegucigalpa						
+Tegucigalpa	14.1	-87.2166667	HN	America/Tegucigalpa						
+San Pedro Sula	15.5	-88.0333333	HN	America/Tegucigalpa						
+Zupanja	45.0775	18.6975	HR	Europe/Zagreb						
+Zapresic	45.8563889	15.8077778	HR	Europe/Zagreb						
+Zagreb	45.8	16	HR	Europe/Zagreb						
+Zagreb - Centar	45.81312755	15.97753286	HR	Europe/Zagreb						
+Verrettes	19.05	-72.4666667	HT	America/Port-au-Prince						
+Trou du Nord	19.6333333	-72.0166667	HT	America/Port-au-Prince						
+Saint-Raphael	19.4333333	-72.2	HT	America/Port-au-Prince						
+Port-au-Prince	18.5391667	-72.335	HT	America/Port-au-Prince						
+Delmas 73	18.5447222	-72.3027778	HT	America/Port-au-Prince						
+Carrefour	18.54114015	-72.3992157	HT	America/Port-au-Prince						
+Veszto	46.9166667	21.2666667	HU	Europe/Budapest						
+Vasarosnameny	48.1333333	22.3166667	HU	Europe/Budapest						
+Vamospercs	47.5333333	21.9	HU	Europe/Budapest						
+Debrecen	47.5333333	21.6333333	HU	Europe/Budapest						
+Budapest	47.5	19.0833333	HU	Europe/Budapest						
+Makassar	2.45	99.7833333	ID	Asia/Makassar						
+Teluknibung	3.0166667	99.8166667	ID	Asia/Pontianak						
+Tebingtinggi	3.3333333	99.15	ID	Asia/Jakarta						
+Percut	3.6833333	98.75	ID	Asia/Pontianak						
+Pematangsiantar	2.95	99.05	ID	Asia/Jakarta						
+Medan	3.5833333	98.6666667	ID	Asia/Jakarta						
+Binjai	3.6	98.5	ID	Asia/Jakarta						
+Banda Aceh	5.5616667	95.3258333	ID	Asia/Pontianak						
+Yogyakarta	-7.7827778	110.3608333	ID	Asia/Jakarta						
+Makassar	-5.1463889	119.4386111	ID	Asia/Makassar						
+Tegal	-6.8666667	109.1333333	ID	Asia/Jakarta						
+Tasikmalaya	-7.3333333	108.2	ID	Asia/Jakarta						
+Tanjungkarang-Telukbetung	-5.45	105.2666667	ID	Asia/Jakarta						
+Tangerang	-6.1780556	106.63	ID	Asia/Jakarta						
+Surakarta	-7.5561111	110.8316667	ID	Asia/Jakarta						
+Surabaya	-7.2491667	112.7508333	ID	Asia/Makassar						
+Sumedang Utara	-6.85	107.9166667	ID	Asia/Jakarta						
+Sukabumi	-6.9166667	106.9272222	ID	Asia/Jakarta						
+Situbondo	-7.706228573	114.0097618	ID	Asia/Makassar						
+Semarang	-6.9666667	110.4166667	ID	Asia/Jakarta						
+Samarinda	-0.5	117.15	ID	Asia/Makassar						
+Rengasdengklok	-6.1483333	107.2830556	ID	Asia/Jakarta						
+Purwokerto	-7.4213889	109.2344444	ID	Asia/Jakarta						
+Purwakarta	-6.5569444	107.4388889	ID	Asia/Jakarta						
+Pontianak	-0.0333333	109.3333333	ID	Asia/Pontianak						
+Pekalongan	-6.8833333	109.6666667	ID	Asia/Jakarta						
+Palu	-0.9016667	119.8597222	ID	Asia/Makassar						
+Palembang	-2.916725333	104.7457981	ID	Asia/Jakarta						
+Padang	-0.949243987	100.3542709	ID	Asia/Jakarta						
+Mataram	-8.5833333	116.1166667	ID	Asia/Makassar						
+Manado	1.5016667	124.8441667	ID	Asia/Makassar						
+Malang	-7.9777778	112.6280556	ID	Asia/Jakarta						
+Loa Janan	-0.582951978	117.0950317	ID	Asia/Makassar						
+Kediri	-7.8166667	112.0166667	ID	Asia/Jakarta						
+Jember	-8.166039092	113.7031746	ID	Asia/Makassar						
+Jambi	-1.6	103.6166667	ID	Asia/Jakarta						
+Jakarta	-6.1744444	106.8294444	ID	Asia/Jakarta						
+Depok	-6.4	106.8186111	ID	Asia/Jakarta						
+Denpasar	-8.65	115.2166667	ID	Asia/Makassar						
+Cirebon	-6.7333333	108.5666667	ID	Asia/Jakarta						
+Ciputat	-6.2375	106.6955556	ID	Asia/Jakarta						
+Cimahi	-6.8722222	107.5425	ID	Asia/Jakarta						
+Cileungsi	-6.3947222	106.9591667	ID	Asia/Jakarta						
+Ciampea	-6.54	106.7102778	ID	Asia/Jakarta						
+Bogor	-6.5897222	106.7913889	ID	Asia/Jakarta						
+Bengkulu	-3.800443037	102.2655433	ID	Asia/Jakarta						
+Bekasi	-6.2366667	106.9919444	ID	Asia/Jakarta						
+Banjarmasin	-3.3333333	114.5833333	ID	Asia/Makassar						
+Bandung	-6.9127778	107.6205556	ID	Asia/Jakarta						
+Balikpapan	-1.2833333	116.8333333	ID	Asia/Makassar						
+Ambon	-3.7166667	128.2	ID	Asia/Jayapura						
+Kupang	-10.1666667	123.5833333	ID	Asia/Makassar						
+Bun Cranncha	55.1333333	-7.45	IE	Europe/Dublin						
+Eochaill	51.95	-7.8505556	IE	Europe/Dublin						
+Cill Mhantain	52.975	-6.0494444	IE	Europe/Dublin						
+Dublin	53.3330556	-6.2488889	IE	Europe/Dublin						
+Jerusalem	31.7666667	35.2333333	IL	Asia/Jerusalem						
+Zefat	32.9666667	35.4944444	IL	Asia/Jerusalem						
+Yeroham	30.9872222	34.9313889	IL	Asia/Jerusalem						
+Tel Aviv-Yafo	32.0677778	34.7647222	IL	Asia/Jerusalem						
+Rishon LeZiyyon	31.9641667	34.8044444	IL	Asia/Jerusalem						
+Haifa	32.8155556	34.9891667	IL	Asia/Jerusalem						
+Punch	33.7666667	74.1	IN	Asia/Calcutta						
+Kilakarai	9.2333333	78.7833333	IN	Asia/Calcutta						
+Zunheboto	25.9666667	94.5166667	IN	Asia/Calcutta						
+Yamunanagar	30.1	77.2833333	IN	Asia/Calcutta						
+Warangal	18	79.5833333	IN	Asia/Calcutta						
+Vishakhapatnam	17.7	83.3	IN	Asia/Calcutta						
+Vijayawada	16.5166667	80.6166667	IN	Asia/Calcutta						
+Benares	25.3333333	83	IN	Asia/Calcutta						
+Vadodara	22.3	73.2	IN	Asia/Calcutta						
+Ulhasnagar	19.2166667	73.15	IN	Asia/Calcutta						
+Ujjain	23.1833333	75.7666667	IN	Asia/Calcutta						
+Udaipur	24.5833333	73.6833333	IN	Asia/Calcutta						
+Tumkur	13.3422222	77.1016667	IN	Asia/Calcutta						
+Thiruvananthapuram	8.4833333	76.9166667	IN	Asia/Calcutta						
+Trichur	10.5166667	76.2166667	IN	Asia/Calcutta						
+Tiruppur	11.1	77.35	IN	Asia/Calcutta						
+Tirupati	13.65	79.4166667	IN	Asia/Calcutta						
+Tirunelveli	8.7333333	77.7	IN	Asia/Calcutta						
+Tiruchchirappalli	10.8166667	78.6833333	IN	Asia/Calcutta						
+Thanjavur	10.8	79.15	IN	Asia/Calcutta						
+Thane	19.2	72.9666667	IN	Asia/Calcutta						
+Surat	21.1666667	72.8333333	IN	Asia/Calcutta						
+Srinagar	34.0833333	74.8166667	IN	Asia/Calcutta						
+Sonipat	28.9833333	77.0166667	IN	Asia/Calcutta						
+Shrirampur	22.7527778	88.3422222	IN	Asia/Calcutta						
+Solapur	17.6833333	75.9166667	IN	Asia/Calcutta						
+Shimoga	13.9166667	75.5666667	IN	Asia/Calcutta						
+Shiliguri	26.7	88.4333333	IN	Asia/Calcutta						
+Shahjahanpur	27.8833333	79.9166667	IN	Asia/Calcutta						
+Satna	24.5833333	80.8333333	IN	Asia/Calcutta						
+Salem	11.65	78.1666667	IN	Asia/Calcutta						
+Saharanpur	29.9666667	77.55	IN	Asia/Calcutta						
+Sagar	23.8333333	78.7166667	IN	Asia/Calcutta						
+Rohtak	28.9	76.5666667	IN	Asia/Calcutta						
+Rewa	24.5333333	81.3	IN	Asia/Calcutta						
+Ratlam	23.3166667	75.0666667	IN	Asia/Calcutta						
+Ranchi	23.35	85.3333333	IN	Asia/Calcutta						
+Rampur	28.8166667	79.0333333	IN	Asia/Calcutta						
+Rajkot	22.3	70.7833333	IN	Asia/Calcutta						
+Rajahmundry	16.9833333	81.7833333	IN	Asia/Calcutta						
+Raipur	21.2333333	81.6333333	IN	Asia/Calcutta						
+Raichur	16.2	77.3666667	IN	Asia/Calcutta						
+Quilon	8.8833333	76.6	IN	Asia/Calcutta						
+Pune	18.5333333	73.8666667	IN	Asia/Calcutta						
+Punasa	22.2333333	76.4	IN	Asia/Calcutta						
+Pondicherry	11.93	79.83	IN	Asia/Calcutta						
+Pimpri	18.6166667	73.8	IN	Asia/Calcutta						
+Patna	25.6	85.1166667	IN	Asia/Calcutta						
+Patiala	30.3266667	76.4002778	IN	Asia/Calcutta						
+Parbhani	19.2666667	76.7833333	IN	Asia/Calcutta						
+Panipat	29.3888889	76.9680556	IN	Asia/Calcutta						
+Panihati	22.6941667	88.3744444	IN	Asia/Calcutta						
+Pali	25.7666667	73.3333333	IN	Asia/Calcutta						
+Nizamabad	18.6666667	78.1166667	IN	Asia/Calcutta						
+New Delhi	28.6	77.2	IN	Asia/Calcutta						
+Nellore	14.4333333	79.9666667	IN	Asia/Calcutta						
+Nasik	19.9833333	73.8	IN	Asia/Calcutta						
+Naihati	22.9027778	88.4169444	IN	Asia/Calcutta						
+Nagpur	21.15	79.1	IN	Asia/Calcutta						
+Nagercoil	8.1666667	77.4333333	IN	Asia/Calcutta						
+Nadiad	22.7	72.8666667	IN	Asia/Calcutta						
+Mysore	12.3072222	76.6497222	IN	Asia/Calcutta						
+Muzaffarpur	26.1166667	85.4	IN	Asia/Calcutta						
+Muzaffarnagar	29.4666667	77.6833333	IN	Asia/Calcutta						
+Munger	25.3833333	86.4666667	IN	Asia/Calcutta						
+Moradabad	28.8333333	78.7833333	IN	Asia/Calcutta						
+Mirzapur	25.15	82.5833333	IN	Asia/Calcutta						
+Meerut	28.9833333	77.7	IN	Asia/Calcutta						
+Mau	25.95	83.55	IN	Asia/Calcutta						
+Mathura	27.5	77.6833333	IN	Asia/Calcutta						
+Mangalore	12.8666667	74.8833333	IN	Asia/Calcutta						
+Malegaon	20.55	74.5333333	IN	Asia/Calcutta						
+Madurai	9.9333333	78.1166667	IN	Asia/Calcutta						
+Madras	13.08783853	80.2784729	IN	Asia/Calcutta						
+Ludhiana	30.9	75.85	IN	Asia/Calcutta						
+Lucknow	26.85	80.9166667	IN	Asia/Calcutta						
+Latur	18.4	76.5833333	IN	Asia/Calcutta						
+Kulti	23.7333333	86.85	IN	Asia/Calcutta						
+Kukatpalli	17.4833333	78.4166667	IN	Asia/Calcutta						
+Calicut	11.25	75.7666667	IN	Asia/Calcutta						
+Kota	25.1833333	75.8333333	IN	Asia/Calcutta						
+Korba	22.35	82.6833333	IN	Asia/Calcutta						
+Kolhapur	16.7	74.2166667	IN	Asia/Calcutta						
+Kharagpur	22.3333333	87.3333333	IN	Asia/Calcutta						
+Karnal	29.6833333	76.9833333	IN	Asia/Calcutta						
+Karimnagar	18.4333333	79.15	IN	Asia/Calcutta						
+Kanpur	26.4666667	80.35	IN	Asia/Calcutta						
+Kamarhati	22.6711111	88.3747222	IN	Asia/Calcutta						
+Kalyan	19.25	73.15	IN	Asia/Calcutta						
+Kakinada	16.9333333	82.2166667	IN	Asia/Calcutta						
+Jalandhar	31.3255556	75.5791667	IN	Asia/Calcutta						
+Jodhpur	26.2866667	73.03	IN	Asia/Calcutta						
+Jhansi	25.4333333	78.5833333	IN	Asia/Calcutta						
+Jamshedpur	22.8	86.1833333	IN	Asia/Calcutta						
+Jamnagar	22.4666667	70.0666667	IN	Asia/Calcutta						
+Jammu	32.7333333	74.8666667	IN	Asia/Calcutta						
+Jalna	19.8333333	75.8833333	IN	Asia/Calcutta						
+Jalgaon	21.0166667	75.5666667	IN	Asia/Calcutta						
+Jaipur	26.9166667	75.8166667	IN	Asia/Calcutta						
+Jabalpur	23.16697486	79.95006323	IN	Asia/Calcutta						
+Indore	22.71792354	75.83330154	IN	Asia/Calcutta						
+Imphal	24.8166667	93.95	IN	Asia/Calcutta						
+Ichalkaranji	16.7	74.4666667	IN	Asia/Calcutta						
+Hyderabad	17.3752778	78.4744444	IN	Asia/Calcutta						
+Hubli	15.35	75.1666667	IN	Asia/Calcutta						
+Hisar	29.1666667	75.7166667	IN	Asia/Calcutta						
+Hapur	28.7166667	77.7833333	IN	Asia/Calcutta						
+Haora	22.5891667	88.3102778	IN	Asia/Calcutta						
+Gwalior	26.2236111	78.1791667	IN	Asia/Calcutta						
+Guntur	16.3	80.45	IN	Asia/Calcutta						
+Gulbarga	17.3333333	76.8333333	IN	Asia/Calcutta						
+Gorakhpur, Haryana	29.45	75.6833333	IN	Asia/Calcutta						
+Gorakhpur, Uttar Pradesh	26.755	83.3738889	IN	Asia/Calcutta						
+Ghaziabad	28.6666667	77.4333333	IN	Asia/Calcutta						
+Gaya	24.7833333	85	IN	Asia/Calcutta						
+Guwahati	26.1833333	91.7333333	IN	Asia/Calcutta						
+Ganganagar	29.9166667	73.8833333	IN	Asia/Calcutta						
+Firozabad	27.15	78.4166667	IN	Asia/Calcutta						
+Farrukhabad	27.4	79.5666667	IN	Asia/Calcutta						
+Faridabad	28.4333333	77.3166667	IN	Asia/Calcutta						
+Etawah	26.7666667	79.0333333	IN	Asia/Calcutta						
+Durgapur	23.4833333	87.3166667	IN	Asia/Calcutta						
+Durg	21.1833333	81.2833333	IN	Asia/Calcutta						
+Dindigul	10.35	77.95	IN	Asia/Calcutta						
+Dhule	20.9	74.7833333	IN	Asia/Calcutta						
+Dhanbad	23.8	86.45	IN	Asia/Calcutta						
+Dewas	22.9666667	76.0666667	IN	Asia/Calcutta						
+Delhi	28.6666667	77.2166667	IN	Asia/Calcutta						
+Dehra Dun	30.3166667	78.0333333	IN	Asia/Calcutta						
+Darbhanga	26.1666667	85.9	IN	Asia/Calcutta						
+Cuttack	20.46497271	85.87926865	IN	Asia/Calcutta						
+Coimbatore	11	76.9666667	IN	Asia/Calcutta						
+Cochin	9.9666667	76.2333333	IN	Asia/Calcutta						
+Chandrapur	19.95	79.3	IN	Asia/Calcutta						
+Chandigarh	30.7372222	76.7872222	IN	Asia/Calcutta						
+Calcutta	22.5697222	88.3697222	IN	Asia/Calcutta						
+Burhanpur	21.3	76.2333333	IN	Asia/Calcutta						
+Brahmapur	19.3166667	84.7833333	IN	Asia/Calcutta						
+Bombay	18.975	72.8258333	IN	Asia/Calcutta						
+Bokaro	23.7833333	85.9666667	IN	Asia/Calcutta						
+Bilaspur	22.0833333	82.15	IN	Asia/Calcutta						
+Bikaner	28.0166667	73.3	IN	Asia/Calcutta						
+Bijapur	16.8333333	75.7	IN	Asia/Calcutta						
+Bihar Sharif	25.1833333	85.5166667	IN	Asia/Calcutta						
+Bidar	17.9	77.55	IN	Asia/Calcutta						
+Bhubaneshwar	20.2333333	85.8333333	IN	Asia/Calcutta						
+Bhopal	23.2666667	77.4	IN	Asia/Calcutta						
+Bhiwandi	19.3	73.0666667	IN	Asia/Calcutta						
+Bhilwara	25.35	74.6333333	IN	Asia/Calcutta						
+Bhilai	21.2166667	81.4333333	IN	Asia/Calcutta						
+Bhavnagar	21.7666667	72.15	IN	Asia/Calcutta						
+Bhatpara	22.8713889	88.4088889	IN	Asia/Calcutta						
+Bhatinda	30.2	74.95	IN	Asia/Calcutta						
+Bharatpur	27.2166667	77.4833333	IN	Asia/Calcutta						
+Bhagalpur	25.25	87	IN	Asia/Calcutta						
+Bellary	15.15	76.9333333	IN	Asia/Calcutta						
+Belgaum	15.8666667	74.5	IN	Asia/Calcutta						
+Bareilly	28.35	79.4166667	IN	Asia/Calcutta						
+Barddhaman	23.25	87.85	IN	Asia/Calcutta						
+Barasat	22.7166667	88.5166667	IN	Asia/Calcutta						
+Baranagar	22.6433333	88.3652778	IN	Asia/Calcutta						
+Bengalooru	12.97662398	77.60012627	IN	Asia/Calcutta						
+Bangalore	12.97662398	77.60012627	IN	Asia/Calcutta						
+Bali	22.6461111	88.3402778	IN	Asia/Calcutta						
+Avadi	13.1155556	80.1016667	IN	Asia/Calcutta						
+Aurangabad	19.8833333	75.3333333	IN	Asia/Calcutta						
+Asansol	23.6833333	86.9833333	IN	Asia/Calcutta						
+Ara	25.5666667	84.6666667	IN	Asia/Calcutta						
+Anantapur	14.6833333	77.6	IN	Asia/Calcutta						
+Amritsar	31.6330556	74.8655556	IN	Asia/Calcutta						
+Amravati	20.9333333	77.75	IN	Asia/Calcutta						
+Ambattur	13.0983333	80.1622222	IN	Asia/Calcutta						
+Amarnath	19.2	73.1666667	IN	Asia/Calcutta						
+Alwar	27.5666667	76.6	IN	Asia/Calcutta						
+Allahabad	25.45	81.85	IN	Asia/Calcutta						
+Aligarh	27.8833333	78.0833333	IN	Asia/Calcutta						
+Akola	20.7333333	77	IN	Asia/Calcutta						
+Ajmer	26.45	74.6333333	IN	Asia/Calcutta						
+Aizawl	23.7333333	92.7166667	IN	Asia/Calcutta						
+Ahmadnagar	19.0833333	74.7333333	IN	Asia/Calcutta						
+Ahmadabad	23.0333333	72.6166667	IN	Asia/Calcutta						
+Agra	27.1833333	78.0166667	IN	Asia/Calcutta						
+Agartala	23.8363889	91.275	IN	Asia/Calcutta						
+Nangi	22.5083333	88.2152778	IN	Asia/Calcutta						
+Zakho	37.1441667	42.6872222	IQ	Asia/Baghdad						
+Tozkhurmato	34.8830556	44.6219444	IQ	Asia/Baghdad						
+Tikrit	34.5966667	43.6769444	IQ	Asia/Baghdad						
+Kirkuk	35.4680556	44.3922222	IQ	Asia/Baghdad						
+Karbala'	32.5977778	44.0161111	IQ	Asia/Baghdad						
+Arbil	36.19	44.0088889	IQ	Asia/Baghdad						
+Baghdad	33.3386111	44.3938889	IQ	Asia/Baghdad						
+As Sulaymaniyah	35.5616667	45.4408333	IQ	Asia/Baghdad						
+Ar Ramadi	33.4197222	43.3125	IQ	Asia/Baghdad						
+An Nasiriyah	31.0541667	46.2594444	IQ	Asia/Baghdad						
+An Najaf	31.9961111	44.3147222	IQ	Asia/Baghdad						
+Al Mawsil al Jadidah	36.3291667	43.0861111	IQ	Asia/Baghdad						
+Mosul	36.335	43.1188889	IQ	Asia/Baghdad						
+Al Kut	32.4975	45.8291667	IQ	Asia/Baghdad						
+Al Hillah	32.4794444	44.4327778	IQ	Asia/Baghdad						
+Al Basrah	30.4941667	47.8191667	IQ	Asia/Baghdad						
+Al `Amarah	31.8452778	47.1752778	IQ	Asia/Baghdad						
+Ad Diwaniyah	31.9877778	44.9255556	IQ	Asia/Baghdad						
+Abu Ghurayb	33.3083333	44.185	IQ	Asia/Baghdad						
+Al Basrah al Qadimah	30.4955556	47.8175	IQ	Asia/Baghdad						
+Azadshahr	34.8	48.55	IR	Asia/Tehran						
+Kahriz	34.3877778	47.0580556	IR	Asia/Tehran						
+Nurabad	34.0666667	47.9666667	IR	Asia/Tehran						
+Qarchak	35.4394444	51.5688889	IR	Asia/Tehran						
+Zanjan	36.6736	48.4787	IR	Asia/Tehran						
+Yazd	31.8972222	54.3675	IR	Asia/Tehran						
+Tehran	35.6719444	51.4244444	IR	Asia/Tehran						
+Tabriz	38.08	46.2919444	IR	Asia/Tehran						
+Sirjan	29.4513889	55.6716667	IR	Asia/Tehran						
+Shiraz	29.615	52.5383333	IR	Asia/Tehran						
+Sari	36.5677778	53.0586111	IR	Asia/Tehran						
+Sanandaj	35.3172222	46.9988889	IR	Asia/Tehran						
+Sabzevar	36.2144444	57.6797222	IR	Asia/Tehran						
+Rasht	37.2794444	49.5858333	IR	Asia/Tehran						
+Qom	34.6452778	50.8808333	IR	Asia/Tehran						
+Qazvin	36.2622222	50.0169444	IR	Asia/Tehran						
+Neyshabur	36.2097222	58.7988889	IR	Asia/Tehran						
+Nazarabad	35.9521	50.6075	IR	Asia/Tehran						
+Mashhad	36.2958333	59.6119444	IR	Asia/Tehran						
+Khorramshahr	30.4391667	48.1791667	IR	Asia/Tehran						
+Khorramabad	33.4877778	48.3558333	IR	Asia/Tehran						
+Kerman	30.2938889	57.0841667	IR	Asia/Tehran						
+Karaj	35.82876113	50.99820256	IR	Asia/Tehran						
+Gorgan	36.8394444	54.4361111	IR	Asia/Tehran						
+Eslamshahr	35.5644444	51.2558333	IR	Asia/Tehran						
+Bukan	36.5219444	46.215	IR	Asia/Tehran						
+Borujerd	33.8963889	48.7558333	IR	Asia/Tehran						
+Babol	36.5441667	52.6788889	IR	Asia/Tehran						
+Ardabil	38.2494444	48.3013889	IR	Asia/Tehran						
+Arak	34.0855556	49.6838889	IR	Asia/Tehran						
+Ahvaz	31.3291667	48.6911111	IR	Asia/Tehran						
+Abadan	30.3525	48.2958333	IR	Asia/Tehran						
+Najafabad	32.6330556	51.3658333	IR	Asia/Tehran						
+Homayunshahr	32.6861111	51.5319444	IR	Asia/Tehran						
+Esfahan	32.6597222	51.6713889	IR	Asia/Tehran						
+Zahedan	29.4977778	60.8727778	IR	Asia/Tehran						
+Akureyri	65.6666667	-18.1	IS	Atlantic/Reykjavik						
+Selfoss	63.9333333	-21	IS	Atlantic/Reykjavik						
+Reykjavik	64.15	-21.95	IS	Atlantic/Reykjavik						
+Zafferana Etnea	37.682156	15.107987	IT	Europe/Rome						
+Vizzini	37.160944	14.749685	IT	Europe/Rome						
+Vittoria	36.95374	14.533182	IT	Europe/Rome						
+Palermo	38.1166667	13.3666667	IT	Europe/Rome						
+Messina	38.193268	15.54969	IT	Europe/Rome						
+Catania	37.50213396	15.08718967	IT	Europe/Rome						
+Verona	45.434186	10.997788	IT	Europe/Rome						
+Venice	45.4386111	12.3266667	IT	Europe/Rome						
+Trieste	45.6486111	13.78	IT	Europe/Rome						
+Turin	45.077147	7.675022	IT	Europe/Rome						
+Taranto	40.4761111	17.2297222	IT	Europe/Rome						
+Rome	41.9	12.4833333	IT	Europe/Rome						
+Padova	45.415194	11.881808	IT	Europe/Rome						
+Napoli	40.8333333	14.25	IT	Europe/Rome						
+Milano	45.46368245	9.188175201	IT	Europe/Rome						
+Genova	44.4166667	8.95	IT	Europe/Rome						
+Florence	43.7666667	11.25	IT	Europe/Rome						
+Bologna	44.49381148	11.33874893	IT	Europe/Rome						
+Bari	41.117734	16.851185	IT	Europe/Rome						
+Yallahs	17.8666667	-76.5666667	JM	America/Jamaica						
+Stony Hill	18.07536797	-76.7910862	JM	America/Jamaica						
+Spanish Town	17.9833333	-76.95	JM	America/Jamaica						
+New Kingston	18.00746792	-76.78318977	JM	America/Jamaica						
+Kingston	17.99701944	-76.79357529	JM	America/Jamaica						
+Waqqas	32.55	35.6	JO	Asia/Amman						
+Wadi as Sir	31.95	35.8166667	JO	Asia/Amman						
+Umm as Summaq	31.8833333	35.85	JO	Asia/Amman						
+Irbid	32.5555556	35.85	JO	Asia/Amman						
+Amman	31.95	35.9333333	JO	Asia/Amman						
+Shingu	33.7333333	135.9833333	JP	Asia/Tokyo						
+Atsugi	35.4388889	139.3597222	JP	Asia/Tokyo						
+Akashi	34.6333333	134.9833333	JP	Asia/Tokyo						
+Yono	35.8833333	139.6333333	JP	Asia/Tokyo						
+Yokosuka	35.2836111	139.6672222	JP	Asia/Tokyo						
+Yokohama	35.45	139.65	JP	Asia/Tokyo						
+Yokkaichi	34.9666667	136.6166667	JP	Asia/Tokyo						
+Yao	34.6166667	135.6	JP	Asia/Tokyo						
+Utsunomiya	36.55	139.8666667	JP	Asia/Tokyo						
+Toyota	35.0833333	137.15	JP	Asia/Tokyo						
+Toyonaka	34.7833333	135.4666667	JP	Asia/Tokyo						
+Toyohashi	34.7666667	137.3833333	JP	Asia/Tokyo						
+Toyama	36.6833333	137.2166667	JP	Asia/Tokyo						
+Tokyo	35.685	139.7513889	JP	Asia/Tokyo						
+Tokushima	34.0666667	134.5666667	JP	Asia/Tokyo						
+Tokorozawa	35.7863889	139.4677778	JP	Asia/Tokyo						
+Takatsuki	34.85	135.6166667	JP	Asia/Tokyo						
+Takasaki	36.3333333	139.0166667	JP	Asia/Tokyo						
+Takarazuka	34.8	135.35	JP	Asia/Tokyo						
+Takamatsu	34.3333333	134.05	JP	Asia/Tokyo						
+Suita	34.75	135.5333333	JP	Asia/Tokyo						
+Soka	35.8202778	139.8044444	JP	Asia/Tokyo						
+Shizuoka	34.9666667	138.3833333	JP	Asia/Tokyo						
+Shimonoseki	33.95	130.95	JP	Asia/Tokyo						
+Shimminatocho	34.1833333	135.2	JP	Asia/Tokyo						
+Sasebo	33.1591667	129.7227778	JP	Asia/Tokyo						
+Sakai	34.5833333	135.4666667	JP	Asia/Tokyo						
+Sagamihara	35.5530556	139.3544444	JP	Asia/Tokyo						
+Otsu	35	135.8666667	JP	Asia/Tokyo						
+Osaka	34.6666667	135.5	JP	Asia/Tokyo						
+Okazaki	34.95	137.1666667	JP	Asia/Tokyo						
+Okayama	34.65	133.9166667	JP	Asia/Tokyo						
+Oita	33.2372222	131.6044444	JP	Asia/Tokyo						
+Odawara	35.2555556	139.1597222	JP	Asia/Tokyo						
+Numazu	35.1	138.8666667	JP	Asia/Tokyo						
+Nishinomiya	34.7166667	135.3333333	JP	Asia/Tokyo						
+Niigata	37.9166667	139.05	JP	Asia/Tokyo						
+Nerima	35.7333333	139.65	JP	Asia/Tokyo						
+Nara	34.6833333	135.8333333	JP	Asia/Tokyo						
+Naha	26.2072222	127.6733333	JP	Asia/Tokyo						
+Nagoya	35.1666667	136.9166667	JP	Asia/Tokyo						
+Nagasaki	32.755	129.8683333	JP	Asia/Tokyo						
+Nagano	36.65	138.1833333	JP	Asia/Tokyo						
+Miyazaki	31.9	131.4333333	JP	Asia/Tokyo						
+Minami-rinkan	35.4833333	139.45	JP	Asia/Tokyo						
+Matsumoto	36.2333333	137.9666667	JP	Asia/Tokyo						
+Matsudo	35.7833333	139.9	JP	Asia/Tokyo						
+Maebashi	36.3833333	139.0666667	JP	Asia/Tokyo						
+Machida	35.5402778	139.4508333	JP	Asia/Tokyo						
+Kyoto	35	135.75	JP	Asia/Tokyo						
+Kurume	33.3166667	130.5166667	JP	Asia/Tokyo						
+Kurashiki	34.5833333	133.7666667	JP	Asia/Tokyo						
+Kumamoto	32.8	130.7166667	JP	Asia/Tokyo						
+Koshigaya	35.8833333	139.7833333	JP	Asia/Tokyo						
+Kochi	33.55	133.55	JP	Asia/Tokyo						
+Kobe	34.6833333	135.1666667	JP	Asia/Tokyo						
+Kitakyushu	33.8333333	130.8333333	JP	Asia/Tokyo						
+Kishiwada	34.4666667	135.3666667	JP	Asia/Tokyo						
+Kawasaki	35.5205556	139.7172222	JP	Asia/Tokyo						
+Kawaguchi	35.805	139.7205556	JP	Asia/Tokyo						
+Kawagoe	35.9086111	139.4852778	JP	Asia/Tokyo						
+Kasukabe	35.9763889	139.7536111	JP	Asia/Tokyo						
+Kasugai	35.2333333	136.9833333	JP	Asia/Tokyo						
+Kashiwa	35.8544444	139.9688889	JP	Asia/Tokyo						
+Kanazawa	36.5666667	136.65	JP	Asia/Tokyo						
+Kakogawa	34.7666667	134.85	JP	Asia/Tokyo						
+Kagoshima	31.6	130.55	JP	Asia/Tokyo						
+Ichinomiya	35.3	136.8	JP	Asia/Tokyo						
+Ichikawa	35.7197222	139.9247222	JP	Asia/Tokyo						
+Ibaraki	34.8166667	135.5666667	JP	Asia/Tokyo						
+Hiroshima	34.4	132.45	JP	Asia/Tokyo						
+Hiratsuka	35.3230556	139.3422222	JP	Asia/Tokyo						
+Hirakata	34.8	135.6333333	JP	Asia/Tokyo						
+Himeji	34.8166667	134.7	JP	Asia/Tokyo						
+Hamamatsu	34.7	137.7333333	JP	Asia/Tokyo						
+Hachioji	35.6558333	139.3238889	JP	Asia/Tokyo						
+Gifu	35.4166667	136.75	JP	Asia/Tokyo						
+Funabashi	35.6930556	139.9833333	JP	Asia/Tokyo						
+Fukuyama	34.4833333	133.3666667	JP	Asia/Tokyo						
+Fukuoka	33.5833333	130.4	JP	Asia/Tokyo						
+Fukui	36.0666667	136.2166667	JP	Asia/Tokyo						
+Fujisawa	35.3419444	139.47	JP	Asia/Tokyo						
+Fuji	35.1666667	138.6833333	JP	Asia/Tokyo						
+Fuchu	35.6666667	139.4833333	JP	Asia/Tokyo						
+Chofu	35.6555556	139.5522222	JP	Asia/Tokyo						
+Chigasaki	35.3261111	139.4038889	JP	Asia/Tokyo						
+Amagasaki	34.7166667	135.4166667	JP	Asia/Tokyo						
+Ageo	35.9697222	139.5886111	JP	Asia/Tokyo						
+Yamagata	38.2527778	140.3375	JP	Asia/Tokyo						
+Sendai	38.2547222	140.8847222	JP	Asia/Tokyo						
+Morioka	39.7	141.15	JP	Asia/Tokyo						
+Mito	36.3666667	140.4666667	JP	Asia/Tokyo						
+Koriyama	37.4	140.3833333	JP	Asia/Tokyo						
+Iwaki	37.05	140.8833333	JP	Asia/Tokyo						
+Ichihara	35.5166667	140.0833333	JP	Asia/Tokyo						
+Fukushima	37.75	140.4666667	JP	Asia/Tokyo						
+Chiba	35.6	140.1166667	JP	Asia/Tokyo						
+Akita	39.7166667	140.1166667	JP	Asia/Tokyo						
+Sapporo	43.0547222	141.3538889	JP	Asia/Tokyo						
+Hakodate	41.7758333	140.7366667	JP	Asia/Tokyo						
+Hachinohe	40.5	141.5	JP	Asia/Tokyo						
+Asahikawa	43.7677778	142.3702778	JP	Asia/Tokyo						
+Aomori	40.8211111	140.7511111	JP	Asia/Tokyo						
+Wundanyi	-3.4	38.3666667	KE	Africa/Nairobi						
+Wote	-1.7833333	37.6333333	KE	Africa/Nairobi						
+Witu	-2.3905556	40.4530556	KE	Africa/Nairobi						
+Nakuru	-0.2833333	36.0666667	KE	Africa/Nairobi						
+Nairobi	-1.2833333	36.8166667	KE	Africa/Nairobi						
+Mombasa	-4.05	39.6666667	KE	Africa/Nairobi						
+Kisumu	-0.1	34.75	KE	Africa/Nairobi						
+Eldoret	0.5166667	35.2833333	KE	Africa/Nairobi						
+Suluktu	39.9302778	69.5697222	KG	Asia/Bishkek						
+Khaydarkan	39.9413889	71.3458333	KG	Asia/Bishkek						
+Isfana	39.8333333	69.5166667	KG	Asia/Bishkek						
+Bishkek	42.8730556	74.6002778	KG	Asia/Bishkek						
+Phnom Penh	11.55	104.9166667	KH	Asia/Phnom_Penh						
+Ta Khmau	11.4833333	104.95	KH	Asia/Phnom_Penh						
+Sisophon	13.5833333	102.9833333	KH	Asia/Phnom_Penh						
+Bairiki	1.329140645	172.9780197	KI	Pacific/Tarawa						
+Sima	-12.1955556	44.2766667	KM	Indian/Comoro						
+Ouani	-12.1322222	44.4258333	KM	Indian/Comoro						
+Moutsamoudou	-12.1627778	44.3963889	KM	Indian/Comoro						
+Basseterre	17.3	-62.7166667	KN	America/St_Kitts						
+Yonggang-up	38.8561111	125.4244444	KP	Asia/Pyongyang						
+Yongbyon	39.8133333	125.8041667	KP	Asia/Pyongyang						
+Yonan-up	37.9088889	126.1611111	KP	Asia/Pyongyang						
+Wonsan	39.1527778	127.4436111	KP	Asia/Pyongyang						
+Pyongyang	39.0194444	125.7547222	KP	Asia/Pyongyang						
+Kaesong	37.9708333	126.5544444	KP	Asia/Pyongyang						
+Hungnam	39.8316667	127.6186111	KP	Asia/Pyongyang						
+Hamhung	39.9183333	127.5363889	KP	Asia/Pyongyang						
+Haeju	38.0405556	125.7147222	KP	Asia/Pyongyang						
+Sinuiju	40.1005556	124.3980556	KP	Asia/Pyongyang						
+Kanggye	40.9872222	126.6113889	KP	Asia/Pyongyang						
+Chongjin	41.7955556	129.7758333	KP	Asia/Pyongyang						
+Hunghae	36.1125	129.3522222	KR	Asia/Seoul						
+Yosu	34.7441667	127.7377778	KR	Asia/Seoul						
+Yonil	35.9941667	129.345	KR	Asia/Seoul						
+Wonju	37.3513889	127.9452778	KR	Asia/Seoul						
+Ulsan	35.5372222	129.3166667	KR	Asia/Seoul						
+Uijongbu	37.7486111	127.0388889	KR	Asia/Seoul						
+Taejon	36.3213889	127.4197222	KR	Asia/Seoul						
+Taegu	35.8702778	128.5911111	KR	Asia/Seoul						
+Suwon	37.2841667	127.0191667	KR	Asia/Seoul						
+Sunch'on	34.9511111	127.4883333	KR	Asia/Seoul						
+Seoul	37.5663889	126.9997222	KR	Asia/Seoul						
+Pusan	35.1027778	129.0402778	KR	Asia/Seoul						
+Puch'on	37.4988889	126.7830556	KR	Asia/Seoul						
+Mokp'o	34.7936111	126.3886111	KR	Asia/Seoul						
+Masan	35.2080556	128.5725	KR	Asia/Seoul						
+Kwangju	35.1547222	126.9155556	KR	Asia/Seoul						
+Kunsan	35.9786111	126.7113889	KR	Asia/Seoul						
+Kumi	36.1272222	128.3447222	KR	Asia/Seoul						
+Kimhae	35.2341667	128.8811111	KR	Asia/Seoul						
+Iksan	35.9438889	126.9544444	KR	Asia/Seoul						
+Ch'unch'on	37.8747222	127.7341667	KR	Asia/Seoul						
+Chonju	35.8219444	127.1488889	KR	Asia/Seoul						
+Ch'ongju	36.6372222	127.4897222	KR	Asia/Seoul						
+Ch'onan	36.8063889	127.1522222	KR	Asia/Seoul						
+Chinju	35.1927778	128.0847222	KR	Asia/Seoul						
+Cheju	33.5097222	126.5219444	KR	Asia/Seoul						
+Ch'angwon	35.2280556	128.6811111	KR	Asia/Seoul						
+Anyang	37.3925	126.9269444	KR	Asia/Seoul						
+Ansan	37.3236111	126.8219444	KR	Asia/Seoul						
+Songnam	37.4386111	127.1377778	KR	Asia/Seoul						
+Kwangmyong	37.4772222	126.8663889	KR	Asia/Seoul						
+Janub as Surrah	29.2691667	47.9780556	KW	Asia/Kuwait						
+Bayan	29.3180556	48.0391667	KW	Asia/Kuwait						
+Kuwait City	29.35	47.97	KW	Asia/Kuwait						
+Az Zawr	29.4425	48.2747222	KW	Asia/Kuwait						
+West Bay	19.3666667	-81.4166667	KY	America/Cayman						
+George Town	19.3	-81.3833333	KY	America/Cayman						
+Bodden Town	19.2833333	-81.25	KY	America/Cayman						
+Zhumysker	49.3333333	49.4	KZ	Asia/Oral						
+Zhetibay	43.5941667	52.0788889	KZ	Asia/Aqtau						
+Shubarshi	48.5872222	57.1869444	KZ	Asia/Aqtobe						
+Karagandy	50.0666667	54.8666667	KZ	Asia/Aqtobe						
+Aqtobe	50.2980556	57.1813889	KZ	Asia/Aqtobe						
+Taraz	42.9	71.3666667	KZ	Asia/Almaty						
+Shymkent	42.3	69.6	KZ	Asia/Qyzylorda						
+Semipalatinsk	50.4111111	80.2275	KZ	Asia/Almaty						
+Petropavlovsk	54.8752778	69.1627778	KZ	Asia/Qyzylorda						
+Pavlodar	52.3	76.95	KZ	Asia/Almaty						
+Ust'-Kamenogorsk	49.9788889	82.6102778	KZ	Asia/Almaty						
+Astana	51.1811111	71.4277778	KZ	Asia/Qyzylorda						
+Almaty	43.25	76.95	KZ	Asia/Almaty						
+Vientiane	17.9666667	102.6	LA	Asia/Vientiane						
+Xam Nua	20.4197222	104.0438889	LA	Asia/Vientiane						
+Savannakhet	16.55	104.75	LA	Asia/Vientiane						
+Zahle	33.8497222	35.9041667	LB	Asia/Beirut						
+Tripoli	34.4366667	35.8497222	LB	Asia/Beirut						
+Tyre	33.2733333	35.1938889	LB	Asia/Beirut						
+Ra's Bayrut	33.9	35.4833333	LB	Asia/Beirut						
+Beirut	33.8719444	35.5097222	LB	Asia/Beirut						
+Bisee	14.0166667	-60.9666667	LC	America/St_Lucia						
+Vaduz	47.1333333	9.5166667	LI	Europe/Vaduz						
+Triesenberg	47.1166667	9.5333333	LI	Europe/Vaduz						
+Triesen	47.1	9.5333333	LI	Europe/Vaduz						
+Welisara	7.0333333	79.9	LK	Asia/Colombo						
+Weligama	5.9666667	80.4166667	LK	Asia/Colombo						
+Wattegama	6.8	81.5	LK	Asia/Colombo						
+Galkissa	6.8333333	79.8666667	LK	Asia/Colombo						
+Colombo	6.9319444	79.8477778	LK	Asia/Colombo						
+Zwedru	6.0666667	-8.1280556	LR	Africa/Monrovia						
+New Yekepa	7.5794444	-8.5377778	LR	Africa/Monrovia						
+Tubmanburg	6.8708333	-10.8172222	LR	Africa/Monrovia						
+Monrovia	6.3105556	-10.8047222	LR	Africa/Monrovia						
+Teyateyaneng	-29.15	27.7333333	LS	Africa/Maseru						
+Quthing	-30.4	27.7166667	LS	Africa/Maseru						
+Qacha's Nek	-30.1166667	28.6833333	LS	Africa/Maseru						
+Zarasai	55.7333333	26.25	LT	Europe/Vilnius						
+Visaginas	55.6	26.4166667	LT	Europe/Vilnius						
+Vilnius	54.6833333	25.3166667	LT	Europe/Vilnius						
+Kaunas	54.9	23.9	LT	Europe/Vilnius						
+Strassen	49.6205556	6.0733333	LU	Europe/Luxembourg						
+Schifflange	49.5063889	6.0127778	LU	Europe/Luxembourg						
+Petange	49.5583333	5.8805556	LU	Europe/Luxembourg						
+Valmiera	57.53591554	25.42442322	LV	Europe/Riga						
+Ventspils	57.3894444	21.5605556	LV	Europe/Riga						
+Vec-Liepaja	56.5333333	21.0166667	LV	Europe/Riga						
+Riga	56.95	24.1	LV	Europe/Riga						
+Bardiyah	31.7666667	25.1	LY	Africa/Tripoli						
+Tobruk	32.0836111	23.9763889	LY	Africa/Tripoli						
+Suluq	31.6686111	20.25	LY	Africa/Tripoli						
+Banghazi	32.1166667	20.0666667	LY	Africa/Tripoli						
+Tarhunah	32.4333333	13.6333333	LY	Africa/Tripoli						
+Tripoli	32.8925	13.18	LY	Africa/Tripoli						
+Misratah	32.3783333	15.0905556	LY	Africa/Tripoli						
+Al Khums	32.65	14.2666667	LY	Africa/Tripoli						
+Zaio	34.93	-2.73	MA	Africa/Casablanca						
+Zagora	30.31	-5.83	MA	Africa/Casablanca						
+Youssoufia	32.25	-8.53	MA	Africa/Casablanca						
+Tetouan	35.57	-5.37	MA	Africa/Casablanca						
+Tangier	35.78	-5.81	MA	Africa/Casablanca						
+Safi	32.3	-9.23	MA	Africa/Casablanca						
+Rabat	34.02	-6.83	MA	Africa/Casablanca						
+Oujda	34.68	-1.91	MA	Africa/Casablanca						
+Meknes	33.9	-5.55	MA	Africa/Casablanca						
+Marrakech	31.63	-8	MA	Africa/Casablanca						
+Kenitra-GHARB	34.26	-6.57	MA	Africa/Casablanca						
+Fes	34.05	-4.98	MA	Africa/Casablanca						
+Casablanca	33.59	-7.61	MA	Africa/Casablanca						
+Agadir	30.4	-9.6	MA	Africa/Casablanca						
+Monte-Carlo	43.7333333	7.4166667	MC	Europe/Monaco						
+La Condamine	43.7333333	7.4166667	MC	Europe/Monaco						
+Edinet	48.1680556	27.305	MD	Europe/Chisinau						
+Iargara	46.4275	28.4366667	MD	Europe/Chisinau						
+Vulcanesti	45.6841667	28.4027778	MD	Europe/Chisinau						
+Chisinau	47.0055556	28.8575	MD	Europe/Chisinau						
+Ulcinj	41.9283333	19.2063889	ME	Europe/Podgorica						
+Tivat	42.4363889	18.6961111	ME	Europe/Podgorica						
+Podgorica	42.4411111	19.2636111	ME	Europe/Podgorica						
+Toamasina	-18.1666667	49.3833333	MG	Indian/Antananarivo						
+Vondrozo	-22.8166667	47.2833333	MG	Indian/Antananarivo						
+Vohibinany	-17.35	49.0333333	MG	Indian/Antananarivo						
+Antananarivo	-18.9166667	47.5166667	MG	Indian/Antananarivo						
+Majuro	7.1	171.3833333	MH	Pacific/Majuro						
+Zrnovci	41.8541667	22.4444444	MK	Europe/Skopje						
+Zletovo	41.9886111	22.2361111	MK	Europe/Skopje						
+Zitose	41.4208333	21.2905556	MK	Europe/Skopje						
+Skopje	42	21.4333333	MK	Europe/Skopje						
+Yorosso	12.3666667	-4.7833333	ML	Africa/Bamako						
+Tombouctou	16.77348	-3.007421494	ML	Africa/Bamako						
+Tenenkou	14.4666667	-4.9166667	ML	Africa/Bamako						
+Bamako	12.65	-8	ML	Africa/Bamako						
+Yenangyaung	20.4666667	94.8833333	MM	Asia/Rangoon						
+Nyaungdon	17.0333333	95.65	MM	Asia/Rangoon						
+Yamethin	20.4333333	96.15	MM	Asia/Rangoon						
+Rangoon	16.8052778	96.1561111	MM	Asia/Rangoon						
+Bago	17.3366667	96.4797222	MM	Asia/Rangoon						
+Mawlamyine	16.4913889	97.6255556	MM	Asia/Rangoon						
+Mandalay	22	96.0833333	MM	Asia/Rangoon						
+Pathein	16.7833333	94.7333333	MM	Asia/Rangoon						
+Ulaangom	49.9811111	92.0666667	MN	Asia/Ulaanbaatar						
+Tosontsengel	48.7566667	98.2838889	MN	Asia/Ulaanbaatar						
+Ulaanbaatar	47.9166667	106.9166667	MN	Asia/Ulaanbaatar						
+San Antonio	15.1325	145.6936111	MP	Pacific/Saipan						
+Saint-Joseph	14.6666667	-61.0333333	MQ	America/Martinique						
+Sainte-Marie	14.7833333	-60.9833333	MQ	America/Martinique						
+Sainte-Luce	14.4666667	-60.9166667	MQ	America/Martinique						
+Nouakchott	18.1194444	-16.0405556	MR	Africa/Nouakchott						
+Zurrieq	35.8311111	14.4741667	MT	Europe/Malta						
+Zejtun	35.8558333	14.5330556	MT	Europe/Malta						
+Zebbug	35.8719444	14.4411111	MT	Europe/Malta						
+Triolet	-20.0547222	57.5452778	MU	Indian/Mauritius						
+Terre Rouge	-20.1261111	57.5244444	MU	Indian/Mauritius						
+Tamarin	-20.3255556	57.3705556	MU	Indian/Mauritius						
+Male	4.177107666	73.50986481	MV	Indian/Maldives						
+Hithadhoo	-0.6	73.0833333	MV	Indian/Maldives						
+Thinadhoo	0.5333333	72.9333333	MV	Indian/Maldives						
+Karonga	-9.9333333	33.9333333	MW	Africa/Blantyre						
+Chitipa	-9.7166667	33.2666667	MW	Africa/Blantyre						
+Zomba	-15.3833333	35.3333333	MW	Africa/Blantyre						
+Lilongwe	-13.9833333	33.7833333	MW	Africa/Blantyre						
+Blantyre	-15.7833333	35	MW	Africa/Blantyre						
+Cuauhtemoc	22.5333333	-98.15	MX	America/Mexico_City						
+Xicotencatl	23.0166667	-98.8833333	MX	America/Monterrey						
+San Fernando	24.85	-98.15	MX	America/Monterrey						
+Xico	19.2666667	-98.9333333	MX	America/Mexico_City						
+Villahermosa	17.9833333	-92.9166667	MX	America/Merida						
+Veracruz	19.2	-96.1333333	MX	America/Mexico_City						
+Tuxtla Gutierrez	16.75	-93.1166667	MX	America/Merida						
+Toluca	19.2883333	-99.6672222	MX	America/Mexico_City						
+Tlalnepantla	19.5269444	-99.2216667	MX	America/Mexico_City						
+Cuautitlan Izcalli	19.6469444	-99.2466667	MX	America/Mexico_City						
+Tehuacan	18.45	-97.3833333	MX	America/Mexico_City						
+Tampico	22.2166667	-97.85	MX	America/Mexico_City						
+Reynosa	26.0833333	-98.2833333	MX	America/Monterrey						
+Puebla de Zaragoza	19.05	-98.2	MX	America/Mexico_City						
+Pachuca de Soto	20.11697324	-98.73329401	MX	America/Mexico_City						
+Oaxaca de Juarez	17.05	-96.7166667	MX	America/Mexico_City						
+Nuevo Laredo	27.5	-99.5166667	MX	America/Monterrey						
+Nicolas Romero	19.6219444	-99.3130556	MX	America/Mexico_City						
+Naucalpan de Juarez	19.47850789	-99.2396307	MX	America/Mexico_City						
+Merida	20.9666667	-89.6166667	MX	America/Merida						
+Matamoros	25.8833333	-97.5	MX	America/Monterrey						
+Los Reyes	19.35	-98.9666667	MX	America/Mexico_City						
+Jalapa Enriquez	19.5333333	-96.9166667	MX	America/Mexico_City						
+Ixtapaluca	19.3166667	-98.8833333	MX	America/Mexico_City						
+Ecatepec	19.6011111	-99.0525	MX	America/Mexico_City						
+Cuernavaca	18.9166667	-99.25	MX	America/Mexico_City						
+Coatzacoalcos	18.15	-94.4166667	MX	America/Mexico_City						
+Coacalco	19.6316667	-99.1102778	MX	America/Mexico_City						
+Ciudad Victoria	23.7333333	-99.1333333	MX	America/Monterrey						
+Ciudad Nezahualcoyotl	19.4136111	-99.0330556	MX	America/Mexico_City						
+Mexico City	19.4341667	-99.1386111	MX	America/Mexico_City						
+Cancun	21.17428757	-86.84655905	MX	America/Cancun						
+Campeche	19.85	-90.5333333	MX	America/Merida						
+Ciudad Lopez Mateos	19.5583333	-99.2613889	MX	America/Mexico_City						
+Acapulco de Juarez	16.85	-99.9166667	MX	America/Mexico_City						
+Zapopan	20.7166667	-103.4	MX	America/Mexico_City						
+Uruapan del Progreso	19.4166667	-102.0666667	MX	America/Mexico_City						
+Torreon	25.55	-103.4333333	MX	America/Monterrey						
+Tonala	20.6166667	-103.2333333	MX	America/Mexico_City						
+Tlaquepaque	20.65	-103.3166667	MX	America/Mexico_City						
+Tijuana	32.5333333	-117.0166667	MX	America/Tijuana						
+Tepic	21.5	-104.9	MX	America/Mazatlan						
+Santa Catarina	25.6833333	-100.4666667	MX	America/Monterrey						
+San Nicolas de los Garzas	25.75	-100.3	MX	America/Monterrey						
+San Luis Potosi	22.15	-100.9833333	MX	America/Mexico_City						
+Saltillo	25.4166667	-101	MX	America/Monterrey						
+Queretaro	20.6	-100.3833333	MX	America/Mexico_City						
+Morelia	19.7	-101.1166667	MX	America/Mexico_City						
+Monterrey	25.6666667	-100.3166667	MX	America/Monterrey						
+Mexicali	32.6519444	-115.4683333	MX	America/Tijuana						
+Mazatlan	23.2166667	-106.4166667	MX	America/Mazatlan						
+Los Mochis	25.7666667	-108.9666667	MX	America/Mazatlan						
+Leon	21.1166667	-101.6666667	MX	America/Mexico_City						
+Irapuato	20.6833333	-101.35	MX	America/Mexico_City						
+Hermosillo	29.0666667	-110.9666667	MX	America/Hermosillo						
+Guadalupe	25.6833333	-100.25	MX	America/Monterrey						
+Guadalajara	20.6666667	-103.3333333	MX	America/Mexico_City						
+Gomez Palacio	25.5666667	-103.5	MX	America/Monterrey						
+General Escobedo	25.8166667	-100.3333333	MX	America/Monterrey						
+Ensenada	31.8666667	-116.6166667	MX	America/Tijuana						
+Durango	24.0333333	-104.6666667	MX	America/Monterrey						
+Culiacan	24.7994444	-107.3897222	MX	America/Mazatlan						
+Ciudad Obregon	27.4833333	-109.9333333	MX	America/Hermosillo						
+Ciudad Juarez	31.7333333	-106.4833333	MX	America/Monterrey						
+Chihuahua	28.6333333	-106.0833333	MX	America/Monterrey						
+Celaya	20.5166667	-100.8166667	MX	America/Mexico_City						
+Apodaca	25.7666667	-100.2	MX	America/Monterrey						
+Aguascalientes	21.8833333	-102.3	MX	America/Mexico_City						
+Kuah	6.3166667	99.85	MY	Asia/Kuala_Lumpur						
+Jerantut	3.9333333	102.3666667	MY	Asia/Kuala_Lumpur						
+Raub	3.8	101.8666667	MY	Asia/Kuala_Lumpur						
+Johor Bahru	1.4666667	103.75	MY	Asia/Kuala_Lumpur						
+Shah Alam	3.085065585	101.5328121	MY	Asia/Kuala_Lumpur						
+Klang	3.0333333	101.45	MY	Asia/Kuala_Lumpur						
+Kota Kinabalu	5.9833333	116.0666667	MY	Asia/Kuching						
+Sandakan	5.8333333	118.1166667	MY	Asia/Kuching						
+Tawau	4.25	117.9	MY	Asia/Kuching						
+Taiping	4.85	100.7333333	MY	Asia/Kuala_Lumpur						
+Ipoh	4.5833333	101.0833333	MY	Asia/Kuala_Lumpur						
+Kuala Terengganu	5.3333333	103.1333333	MY	Asia/Kuala_Lumpur						
+Seremban	2.7166667	101.9333333	MY	Asia/Kuala_Lumpur						
+Bukit Mertajam	5.3666667	100.4666667	MY	Asia/Kuala_Lumpur						
+Petaling Jaya	3.0833333	101.65	MY	Asia/Kuala_Lumpur						
+Kuala Lumpur	3.1666667	101.7	MY	Asia/Kuala_Lumpur						
+Kuantan	3.8	103.3333333	MY	Asia/Kuala_Lumpur						
+Sungai Petani	5.65	100.5	MY	Asia/Kuala_Lumpur						
+Kuching	1.55	110.3333333	MY	Asia/Kuching						
+Alor Setar	6.1166667	100.3666667	MY	Asia/Kuala_Lumpur						
+Kota Baharu	6.1333333	102.25	MY	Asia/Kuala_Lumpur						
+Miri	4.3833333	113.9833333	MY	Asia/Kuching						
+Kampung Baru Subang	3.15	101.5333333	MY	Asia/Kuala_Lumpur						
+Xai-Xai	-25.0519444	33.6441667	MZ	Africa/Maputo						
+Dondo	-19.6094444	34.7430556	MZ	Africa/Maputo						
+Macia	-25.0269444	33.0988889	MZ	Africa/Maputo						
+Nampula	-15.1197222	39.2647222	MZ	Africa/Maputo						
+Cidade de Nacala	-14.5427778	40.6727778	MZ	Africa/Maputo						
+Matola	-25.9622222	32.4588889	MZ	Africa/Maputo						
+Maputo	-25.9652778	32.5891667	MZ	Africa/Maputo						
+Chimoio	-19.1163889	33.4833333	MZ	Africa/Maputo						
+Beira	-19.8436111	34.8388889	MZ	Africa/Maputo						
+Katima Mulilo	-17.5	24.2666667	NA	Africa/Windhoek						
+Windhoek	-22.57	17.0836111	NA	Africa/Windhoek						
+Warmbad	-28.45	18.7333333	NA	Africa/Windhoek						
+We	-20.9	167.2666667	NC	Pacific/Noumea						
+Tadine	-21.55	167.8833333	NC	Pacific/Noumea						
+Paita	-22.1333333	166.3666667	NC	Pacific/Noumea						
+Birnin Konni	13.8	5.25	NE	Africa/Niamey						
+Zinder	13.8	8.9833333	NE	Africa/Niamey						
+Tillaberi	14.2116667	1.4530556	NE	Africa/Niamey						
+Niamey	13.5166667	2.1166667	NE	Africa/Niamey						
+Zuru	11.4302778	5.2375	NG	Africa/Lagos						
+Zungeru	9.8127778	6.1558333	NG	Africa/Lagos						
+Zaria	11.0666667	7.7	NG	Africa/Lagos						
+Warri	5.5166667	5.75	NG	Africa/Lagos						
+Umuahia	5.5333333	7.4833333	NG	Africa/Lagos						
+Ugep	5.8	8.0833333	NG	Africa/Lagos						
+Sokoto	13.0513889	5.2313889	NG	Africa/Lagos						
+Sagamu	6.85	3.65	NG	Africa/Lagos						
+Port Harcourt	4.7891667	6.9986111	NG	Africa/Lagos						
+Oyo	7.85	3.9333333	NG	Africa/Lagos						
+Owo	7.1833333	5.5833333	NG	Africa/Lagos						
+Owerri	5.4833333	7.0333333	NG	Africa/Lagos						
+Onitsha	6.1666667	6.7833333	NG	Africa/Lagos						
+Ondo	7.1	4.8333333	NG	Africa/Lagos						
+Okene	7.55	6.2333333	NG	Africa/Lagos						
+Mubi	10.2688889	13.2705556	NG	Africa/Lagos						
+Minna	9.6138889	6.5569444	NG	Africa/Lagos						
+Makurdi	7.7333333	8.5333333	NG	Africa/Lagos						
+Maiduguri	11.845	13.16	NG	Africa/Lagos						
+Lagos	6.4530556	3.3958333	NG	Africa/Lagos						
+Katsina	12.9977778	7.5994444	NG	Africa/Lagos						
+Kano	11.9963889	8.5166667	NG	Africa/Lagos						
+Kaduna	10.5230556	7.4402778	NG	Africa/Lagos						
+Jos	9.9166667	8.9	NG	Africa/Lagos						
+Jimeta	9.2833333	12.4666667	NG	Africa/Lagos						
+Iwo	7.6333333	4.1833333	NG	Africa/Lagos						
+Ilorin	8.5	4.55	NG	Africa/Lagos						
+Ilesa	7.6166667	4.7333333	NG	Africa/Lagos						
+Ikot Ekpene	5.1666667	7.7166667	NG	Africa/Lagos						
+Ikire	7.35	4.1833333	NG	Africa/Lagos						
+Ijebu Ode	6.8166667	3.9333333	NG	Africa/Lagos						
+Ibadan	7.3877778	3.8963889	NG	Africa/Lagos						
+Gusau	12.1641667	6.6666667	NG	Africa/Lagos						
+Gombe	10.2894444	11.1716667	NG	Africa/Lagos						
+Enugu	6.4333333	7.4833333	NG	Africa/Lagos						
+Effon Alaiye	7.65	4.9166667	NG	Africa/Lagos						
+Ebute Ikorodu	6.6027778	3.4911111	NG	Africa/Lagos						
+Damaturu	11.7486111	11.9638889	NG	Africa/Lagos						
+Calabar	4.95	8.3166667	NG	Africa/Lagos						
+Benin-City	6.3333333	5.6333333	NG	Africa/Lagos						
+Bauchi	10.3158333	9.8441667	NG	Africa/Lagos						
+Akure	7.25	5.2	NG	Africa/Lagos						
+Abuja	9.0833333	7.5333333	NG	Africa/Lagos						
+Abeokuta	7.15	3.35	NG	Africa/Lagos						
+Aba	5.1166667	7.3666667	NG	Africa/Lagos						
+Wiwili	13.6166667	-85.8333333	NI	America/Managua						
+Waspam	14.7333333	-83.9666667	NI	America/Managua						
+Waslala	13.2333333	-85.3833333	NI	America/Managua						
+Managua	12.1508333	-86.2683333	NI	America/Managua						
+Zwolle	52.5125	6.094444	NL	Europe/Amsterdam						
+Zwijndrecht	51.8175	4.633333	NL	Europe/Amsterdam						
+Zwaagwesteinde	53.2573064	6.036300659	NL	Europe/Amsterdam						
+Utrecht	52.090833	5.122222	NL	Europe/Amsterdam						
+The Hague	52.076667	4.298611	NL	Europe/Amsterdam						
+Rotterdam	51.9225	4.479167	NL	Europe/Amsterdam						
+Eindhoven	51.440833	5.477778	NL	Europe/Amsterdam						
+Amsterdam	52.37308399	4.899902344	NL	Europe/Amsterdam						
+Vadso	70.0730556	29.7697222	NO	Europe/Oslo						
+Hammerfest	70.6616667	23.6883333	NO	Europe/Oslo						
+Alta	69.9666667	23.2416667	NO	Europe/Oslo						
+Oslo	59.91324577	10.73892117	NO	Europe/Oslo						
+Bergen	60.3911111	5.3247222	NO	Europe/Oslo						
+Waling	27.9833333	83.7666667	NP	Asia/Katmandu						
+Tulsipur	28.1333333	82.3	NP	Asia/Katmandu						
+Tikapur	28.5	81.1333333	NP	Asia/Katmandu						
+Kathmandu	27.7166667	85.3166667	NP	Asia/Katmandu						
+Wellington	-41.3	174.7833333	NZ	Pacific/Auckland						
+Wanganui	-39.9333333	175.05	NZ	Pacific/Auckland						
+Waiuku	-37.25	174.75	NZ	Pacific/Auckland						
+North Shore	-36.8	174.75	NZ	Pacific/Auckland						
+Christchurch	-43.5333333	172.6333333	NZ	Pacific/Auckland						
+Auckland	-36.8666667	174.7666667	NZ	Pacific/Auckland						
+Sur	22.5666667	59.5288889	OM	Asia/Muscat						
+Suhar	24.3688889	56.7438889	OM	Asia/Muscat						
+Sufalat Sama'il	23.3166667	58.0166667	OM	Asia/Muscat						
+Muscat	23.6133333	58.5933333	OM	Asia/Muscat						
+As Sib	23.6802778	58.1825	OM	Asia/Muscat						
+Volcan	8.7666667	-82.6333333	PA	America/Panama						
+Vista Alegre	8.9333333	-79.7	PA	America/Panama						
+Veracruz	8.8833333	-79.6333333	PA	America/Panama						
+San Miguelito	9.0333333	-79.5	PA	America/Panama						
+Panama	8.9666667	-79.5333333	PA	America/Panama						
+Zorritos	-3.6666667	-80.6666667	PE	America/Lima						
+Yurimaguas	-5.9	-76.0833333	PE	America/Lima						
+Yungay	-9.1383333	-77.7436111	PE	America/Lima						
+Trujillo	-8.115994277	-79.02997971	PE	America/Lima						
+Pucallpa	-8.379147395	-74.55386639	PE	America/Lima						
+Piura	-5.2	-80.6333333	PE	America/Lima						
+Iquitos	-3.7480556	-73.2472222	PE	America/Lima						
+Chimbote	-9.0852778	-78.5783333	PE	America/Lima						
+Chiclayo	-6.7736111	-79.8416667	PE	America/Lima						
+Tacna	-18.0055556	-70.2483333	PE	America/Lima						
+Lima	-12.05	-77.05	PE	America/Lima						
+Juliaca	-15.5	-70.1333333	PE	America/Lima						
+Ica	-14.0680556	-75.7255556	PE	America/Lima						
+Huancayo	-12.0666667	-75.2333333	PE	America/Lima						
+Cusco	-13.5183333	-71.9780556	PE	America/Lima						
+Callao	-12.0666667	-77.15	PE	America/Lima						
+Arequipa	-16.3988889	-71.535	PE	America/Lima						
+Punaauia	-17.6333333	-149.6	PF	Pacific/Tahiti						
+Pirae	-17.5166667	-149.5333333	PF	Pacific/Tahiti						
+Papeete	-17.5333333	-149.5666667	PF	Pacific/Tahiti						
+Wewak	-3.55	143.6333333	PG	Pacific/Port_Moresby						
+Wau	-7.3333333	146.7166667	PG	Pacific/Port_Moresby						
+Vanimo	-2.6833333	141.3	PG	Pacific/Port_Moresby						
+Port Moresby	-9.4647222	147.1925	PG	Pacific/Port_Moresby						
+Zaragoza	16.3883333	119.9436111	PH	Asia/Manila						
+Zamboanguita	9.105	123.1991667	PH	Asia/Manila						
+Zamboanga	6.9102778	122.0738889	PH	Asia/Manila						
+Taytay	14.5691667	121.1325	PH	Asia/Manila						
+Santol	15.1622222	120.5675	PH	Asia/Manila						
+Santa Rosa	14.3122222	121.1113889	PH	Asia/Manila						
+San Pedro	14.3647222	121.0555556	PH	Asia/Manila						
+San Pablo	14.0669444	121.3258333	PH	Asia/Manila						
+San Jose del Monte	14.8138889	121.0452778	PH	Asia/Manila						
+San Fernando	15.0302778	120.6855556	PH	Asia/Manila						
+Olongapo	14.8291667	120.2827778	PH	Asia/Manila						
+Mantampay	8.1666667	124.2166667	PH	Asia/Manila						
+Mansilingan	10.6311111	122.9788889	PH	Asia/Manila						
+Manila	14.6041667	120.9822222	PH	Asia/Manila						
+Mandaue City	10.3236111	123.9222222	PH	Asia/Manila						
+Lucena	13.9313889	121.6172222	PH	Asia/Manila						
+Lipa	13.9394444	121.1738889	PH	Asia/Manila						
+Libertad	8.9441667	125.5019444	PH	Asia/Manila						
+Lapu-Lapu City	10.3102778	123.9494444	PH	Asia/Manila						
+Imus	14.4297222	120.9366667	PH	Asia/Manila						
+Iloilo	10.6969444	122.5644444	PH	Asia/Manila						
+Davao	7.0730556	125.6127778	PH	Asia/Manila						
+Dasmarinas	14.3294444	120.9366667	PH	Asia/Manila						
+Cebu City	10.3111111	123.8916667	PH	Asia/Manila						
+Calamba	14.2116667	121.1652778	PH	Asia/Manila						
+Cainta	14.58	121.1169444	PH	Asia/Manila						
+Cagayan de Oro	8.4822222	124.6472222	PH	Asia/Manila						
+Cabanatuan	15.4869444	120.9675	PH	Asia/Manila						
+Binangonan	14.4655556	121.1919444	PH	Asia/Manila						
+Batangas	13.7594444	121.06	PH	Asia/Manila						
+Baguio	16.4163889	120.5930556	PH	Asia/Manila						
+Bacoor	14.4577778	120.9425	PH	Asia/Manila						
+Antipolo	14.5863889	121.1752778	PH	Asia/Manila						
+Chuhar Jamali	24.3888889	67.9930556	PK	Asia/Karachi						
+Pir jo Goth	27.6	68.6166667	PK	Asia/Karachi						
+Khairpur	27.5333333	68.7666667	PK	Asia/Karachi						
+Sukkur	27.7	68.8666667	PK	Asia/Karachi						
+Sialkot	32.5	74.5166667	PK	Asia/Karachi						
+Shekhupura	31.7130556	73.9783333	PK	Asia/Karachi						
+Sargodha	32.0836111	72.6711111	PK	Asia/Karachi						
+Sahiwal	30.6666667	73.1	PK	Asia/Karachi						
+Rawalpindi	33.6	73.0666667	PK	Asia/Karachi						
+Quetta	30.1872222	67.0125	PK	Asia/Karachi						
+Peshawar	34.0077778	71.5733333	PK	Asia/Karachi						
+Okara	30.8080556	73.4458333	PK	Asia/Karachi						
+Nawabshah	26.25	68.4166667	PK	Asia/Karachi						
+Multan	30.1955556	71.4752778	PK	Asia/Karachi						
+Mirpur Khas	25.5333333	69	PK	Asia/Karachi						
+Mingaora	34.7761111	72.3611111	PK	Asia/Karachi						
+Mardan	34.1983333	72.0458333	PK	Asia/Karachi						
+Larkana	27.55	68.2166667	PK	Asia/Karachi						
+Lahore	31.5497222	74.3436111	PK	Asia/Karachi						
+Kasur	31.1155556	74.4466667	PK	Asia/Karachi						
+Karachi	24.8666667	67.05	PK	Asia/Karachi						
+Jhang Sadr	31.2741667	72.3119444	PK	Asia/Karachi						
+Islamabad	33.61004457	73.05908203	PK	Asia/Karachi						
+Hyderabad	25.3666667	68.3666667	PK	Asia/Karachi						
+Gujrat	32.5666667	74.0833333	PK	Asia/Karachi						
+Gujranwala	32.15	74.1833333	PK	Asia/Karachi						
+Faisalabad	31.4166667	73.0833333	PK	Asia/Karachi						
+Dera Ghazi Khan	30.0561111	70.6344444	PK	Asia/Karachi						
+Chiniot	31.72	72.9788889	PK	Asia/Karachi						
+Bahawalpur	29.4	71.6833333	PK	Asia/Karachi						
+Zyrardow	52.0666667	20.4333333	PL	Europe/Warsaw						
+Zielonka	52.3	21.1666667	PL	Europe/Warsaw						
+Zamosc	50.7166667	23.25	PL	Europe/Warsaw						
+Warsaw	52.25	21	PL	Europe/Warsaw						
+Radom	51.4166667	21.15	PL	Europe/Warsaw						
+Lublin	51.25	22.5666667	PL	Europe/Warsaw						
+Kielce	50.8333333	20.6666667	PL	Europe/Warsaw						
+Bialystok	53.1333333	23.15	PL	Europe/Warsaw						
+Wroclaw	51.1	17.0333333	PL	Europe/Warsaw						
+Torun	53.0333333	18.6	PL	Europe/Warsaw						
+Szczecin Pogodno	53.45	14.5166667	PL	Europe/Warsaw						
+Sosnowiec	50.3	19.1666667	PL	Europe/Warsaw						
+Poznan	52.4166667	16.9666667	PL	Europe/Warsaw						
+Lodz	51.75	19.4666667	PL	Europe/Warsaw						
+Krakow	50.0833333	19.9166667	PL	Europe/Warsaw						
+Katowice	50.2666667	19.0166667	PL	Europe/Warsaw						
+Gdynia	54.5	18.55	PL	Europe/Warsaw						
+Gdansk	54.35	18.6666667	PL	Europe/Warsaw						
+Czestochowa	50.8	19.1166667	PL	Europe/Warsaw						
+Bydgoszcz	53.15	18	PL	Europe/Warsaw						
+Saint-Pierre	46.7666667	-56.1833333	PM	America/Miquelon						
+Adjuntas	18.15849343	-66.80176735	PR	America/Puerto_Rico						
+Aguadilla	18.4274454	-67.1540698	PR	America/Puerto_Rico						
+Aibonito	18.1399594	-66.2660016	PR	America/Puerto_Rico						
+Bayamon	18.3985595	-66.1557224	PR	America/Puerto_Rico						
+Bayamon Gardens	18.377727	-66.1798894	PR	America/Puerto_Rico						
+San Juan	18.4663338	-66.1057217	PR	America/Puerto_Rico						
+Rafah	31.2841667	34.2508333	PS	Asia/Gaza						
+Khan Yunis	31.3438889	34.3025	PS	Asia/Gaza						
+Jabaliya	31.5333333	34.4833333	PS	Asia/Gaza						
+Vila Vicosa	38.7833333	-7.4166667	PT	Europe/Lisbon						
+Vila Real de Santo Antonio	37.2	-7.4166667	PT	Europe/Lisbon						
+Vila Franca de Xira	38.95	-8.9833333	PT	Europe/Lisbon						
+Lisbon	38.7166667	-9.1333333	PT	Europe/Lisbon						
+Porto	41.15	-8.6166667	PT	Europe/Lisbon						
+Ypacarai	-25.3833333	-57.2666667	PY	America/Asuncion						
+Yaguaron	-25.6	-57.3	PY	America/Asuncion						
+Villarrica	-25.75	-56.4333333	PY	America/Asuncion						
+San Lorenzo	-25.3333333	-57.5333333	PY	America/Asuncion						
+Asuncion	-25.2666667	-57.6666667	PY	America/Asuncion						
+Umm Salal Muhammad	25.4169444	51.4038889	QA	Asia/Qatar						
+Dukhan	25.4297222	50.7858333	QA	Asia/Qatar						
+Ar Rayyan	25.2919444	51.4244444	QA	Asia/Qatar						
+Doha	25.2866667	51.5333333	QA	Asia/Qatar						
+Trois-Bassins	-21.1	55.3	RE	Indian/Reunion						
+Salazie	-21.0166667	55.55	RE	Indian/Reunion						
+Saint-Pierre	-21.3166667	55.4833333	RE	Indian/Reunion						
+Zvoristea	47.8333333	26.2833333	RO	Europe/Bucharest						
+Zorleni	46.2666667	27.7166667	RO	Europe/Bucharest						
+Zlatna	46.1166667	23.2166667	RO	Europe/Bucharest						
+Timisoara	45.7494444	21.2272222	RO	Europe/Bucharest						
+Ploiesti	44.95	26.0166667	RO	Europe/Bucharest						
+nagyvarad	47.0666667	21.9333333	RO	Europe/Bucharest						
+Iasi	47.1666667	27.6	RO	Europe/Bucharest						
+Galati	45.45	28.05	RO	Europe/Bucharest						
+Craiova	44.3166667	23.8	RO	Europe/Bucharest						
+Constanta	44.1833333	28.65	RO	Europe/Bucharest						
+Cluj-Napoca	46.7666667	23.6	RO	Europe/Bucharest						
+Bucharest	44.4333333	26.1	RO	Europe/Bucharest						
+Brasov	45.6333333	25.5833333	RO	Europe/Bucharest						
+Braila	45.2666667	27.9833333	RO	Europe/Bucharest						
+Constanta	44.18737406	28.63715172	RO	Europe/Bucharest						
+Zvecka	44.6388889	20.1647222	RS	Europe/Belgrade						
+Zemun	44.8430556	20.4011111	RS	Europe/Belgrade						
+Zabalj	45.3722222	20.0638889	RS	Europe/Belgrade						
+Pristina	42.6666667	21.1666667	RS	Europe/Belgrade						
+Belgrade	44.8186111	20.4680556	RS	Europe/Belgrade						
+Udomlya	57.8794444	34.9925	RU	Europe/Moscow						
+Sasovo	54.3483333	41.9127778	RU	Europe/Moscow						
+Novozavidovskiy	56.55	36.4333333	RU	Europe/Moscow						
+Zelenograd	55.9825	37.1813889	RU	Europe/Moscow						
+Yoshkar-Ola	56.63876667	47.89077759	RU	Europe/Moscow						
+Yaroslavl'	57.6166667	39.8666667	RU	Europe/Moscow						
+Voronezh	51.6663889	39.17	RU	Europe/Moscow						
+Volzhskiy	48.7905556	44.7716667	RU	Europe/Samara						
+Vologda	59.2166667	39.9	RU	Europe/Moscow						
+Volgograd	48.8047222	44.5858333	RU	Europe/Samara						
+Vladimir	56.1427778	40.3980556	RU	Europe/Moscow						
+Vladikavkaz	43.0366667	44.6677778	RU	Europe/Volgograd						
+Ul'yanovsk	54.3333333	48.4	RU	Europe/Volgograd						
+Ufa	54.775	56.0375	RU	Asia/Yekaterinburg						
+Tver'	56.8619444	35.8930556	RU	Europe/Moscow						
+Tula	54.2044444	37.6111111	RU	Europe/Moscow						
+Tol'yatti	53.5233333	49.4125	RU	Europe/Samara						
+Tambov	52.7316667	41.4338889	RU	Europe/Moscow						
+Taganrog	47.2213889	38.9094444	RU	Europe/Volgograd						
+Syktyvkar	61.6666667	50.8122222	RU	Europe/Moscow						
+Sterlitamak	53.6330556	55.9463889	RU	Asia/Yekaterinburg						
+Stavropol'	45.0427778	41.9733333	RU	Europe/Volgograd						
+Staryy Oskol	51.2966667	37.8416667	RU	Europe/Moscow						
+Sochi	43.6	39.7302778	RU	Europe/Volgograd						
+Smolensk	54.7816667	32.04	RU	Europe/Moscow						
+Shakhty	47.7122222	40.2058333	RU	Europe/Volgograd						
+Saratov	51.5666667	46.0333333	RU	Europe/Samara						
+Saransk	54.1833333	45.1833333	RU	Europe/Moscow						
+Saint Petersburg	59.8944444	30.2641667	RU	Europe/Moscow						
+Samara	53.2	50.15	RU	Europe/Samara						
+Rybinsk	58.05	38.8333333	RU	Europe/Moscow						
+Ryazan'	54.6197222	39.74	RU	Europe/Moscow						
+Rostov-na-Donu	47.2363889	39.7138889	RU	Europe/Volgograd						
+Pskov	57.8333333	28.3333333	RU	Europe/Moscow						
+Petrozavodsk	61.8166667	34.3333333	RU	Europe/Moscow						
+Perm'	58	56.25	RU	Asia/Yekaterinburg						
+Penza	53.1958333	45	RU	Europe/Volgograd						
+Orsk	51.2252778	58.57	RU	Asia/Yekaterinburg						
+Orenburg	51.7847222	55.0986111	RU	Asia/Yekaterinburg						
+Orel	52.9658333	36.0802778	RU	Europe/Moscow						
+Novorossiysk	44.7238889	37.7708333	RU	Europe/Volgograd						
+Velikiy Novgorod	58.5166667	31.2833333	RU	Europe/Moscow						
+Nizhniy Tagil	57.9194444	59.965	RU	Asia/Yekaterinburg						
+Nizhniy Novgorod	56.32867332	44.00204659	RU	Europe/Moscow						
+Nizhnekamsk	55.6383333	51.8169444	RU	Europe/Moscow						
+Naberezhnyye Chelny	55.7561111	52.4288889	RU	Europe/Moscow						
+Murmansk	68.9716667	33.0819444	RU	Europe/Moscow						
+Moskva	55.7522222	37.6155556	RU	Europe/Moscow						
+Makhachkala	42.9752778	47.5022222	RU	Europe/Volgograd						
+Magnitogorsk	53.4186111	59.0472222	RU	Asia/Yekaterinburg						
+Lipetsk	52.6186111	39.5688889	RU	Europe/Moscow						
+Kursk	51.7302778	36.1938889	RU	Europe/Moscow						
+Krasnodar	45.0327778	38.9769444	RU	Europe/Volgograd						
+Kostroma	57.7708333	40.9344444	RU	Europe/Moscow						
+Kirov	58.5969444	49.6583333	RU	Europe/Samara						
+Kazan'	55.75	49.1333333	RU	Europe/Moscow						
+Kaluga	54.5358333	36.2705556	RU	Europe/Moscow						
+Kaliningrad	54.71	20.5	RU	Europe/Kaliningrad						
+Izhevsk	56.85	53.2333333	RU	Europe/Samara						
+Ivanovo	56.9941667	40.9858333	RU	Europe/Moscow						
+Dzerzhinsk	56.2388889	43.4630556	RU	Europe/Moscow						
+Cherepovets	59.1333333	37.9	RU	Europe/Moscow						
+Cheboksary	56.1322222	47.2519444	RU	Europe/Moscow						
+Bryansk	53.2875	34.3805556	RU	Europe/Moscow						
+Belgorod	50.61	36.58	RU	Europe/Moscow						
+Balakovo	52.03	47.78	RU	Europe/Samara						
+Astrakhan'	46.34	48.04	RU	Europe/Samara						
+Arkhangel'sk	64.54	40.54	RU	Europe/Moscow						
+Yekaterinburg	56.8575	60.6125	RU	Asia/Yekaterinburg						
+Tyumen'	57.1522222	65.5272222	RU	Asia/Yekaterinburg						
+Tomsk	56.5	84.9666667	RU	Asia/Krasnoyarsk						
+Surgut	61.25	73.4166667	RU	Asia/Yekaterinburg						
+Omsk	55	73.4	RU	Asia/Omsk						
+Novosibirsk	55.0411111	82.9344444	RU	Asia/Krasnoyarsk						
+Novokuznetsk	53.75	87.1	RU	Asia/Krasnoyarsk						
+Nizhnevartovsk	60.9333333	76.5666667	RU	Asia/Yekaterinburg						
+Kurgan	55.45	65.3333333	RU	Asia/Yekaterinburg						
+Krasnoyarsk	56.0097222	92.7916667	RU	Asia/Krasnoyarsk						
+Kemerovo	55.3333333	86.0833333	RU	Asia/Krasnoyarsk						
+Chelyabinsk	55.1544444	61.4297222	RU	Asia/Yekaterinburg						
+Biysk	52.5666667	85.25	RU	Asia/Krasnoyarsk						
+Barnaul	53.36	83.76	RU	Asia/Krasnoyarsk						
+Vladivostok	43.10562023	131.8735313	RU	Asia/Vladivostok						
+Ulan-Ude	51.8333333	107.6166667	RU	Asia/Irkutsk						
+Komsomol'sk-na-Amure	50.5519855	137.0152435	RU	Asia/Sakhalin						
+Khabarovsk	48.4808333	135.0927778	RU	Asia/Sakhalin						
+Irkutsk	52.2977778	104.2963889	RU	Asia/Irkutsk						
+Blagoveshchensk	50.2666667	127.5333333	RU	Asia/Yakutsk						
+Angarsk	52.53	103.88	RU	Asia/Irkutsk						
+Bratsk	56.1325	101.6141667	RU	Asia/Irkutsk						
+Khabarovsk Vtoroy	48.4430556	135.1355556	RU	Asia/Sakhalin						
+Ruhengeri	-1.5041667	29.6358333	RW	Africa/Kigali						
+Nzega	-2.4833333	29.5666667	RW	Africa/Kigali						
+Kigali	-1.9536111	30.0605556	RW	Africa/Kigali						
+Yanbu` al Bahr	24.0852778	38.0486111	SA	Asia/Riyadh						
+Umm Lajj	25.0241667	37.2688889	SA	Asia/Riyadh						
+Umm as Sahik	26.6536111	49.9163889	SA	Asia/Riyadh						
+Tabuk	28.3833333	36.5833333	SA	Asia/Riyadh						
+Sultanah	24.5	39.5833333	SA	Asia/Riyadh						
+Najran	17.5055556	44.1841667	SA	Asia/Riyadh						
+Mecca	21.4266667	39.8261111	SA	Asia/Riyadh						
+Khamis Mushayt	18.3063889	42.7291667	SA	Asia/Riyadh						
+Jiddah	21.5169444	39.2191667	SA	Asia/Riyadh						
+Buraydah	26.3316667	43.9716667	SA	Asia/Riyadh						
+At Ta'if	21.2702778	40.4158333	SA	Asia/Riyadh						
+Riyadh	24.6408333	46.7727778	SA	Asia/Riyadh						
+Al Mubarraz	25.41	49.5808333	SA	Asia/Riyadh						
+Medina	24.4686111	39.6141667	SA	Asia/Riyadh						
+Al Jubayl	27.0047222	49.6613889	SA	Asia/Riyadh						
+Al Hufuf	25.3783333	49.5866667	SA	Asia/Riyadh						
+Ad Dammam	26.4258333	50.1141667	SA	Asia/Riyadh						
+Abha	18.2163889	42.5052778	SA	Asia/Riyadh						
+Honiara	-9.4333333	159.95	SB	Pacific/Guadalcanal						
+Gizo	-8.1	156.85	SB	Pacific/Guadalcanal						
+Victoria	-4.6166667	55.45	SC	Indian/Mahe						
+Zalingei	12.9	23.4833333	SD	Africa/Khartoum						
+Yei	4.0913889	30.6786111	SD	Africa/Khartoum						
+Yambio	4.5705556	28.4163889	SD	Africa/Khartoum						
+Wad Madani	14.4	33.5333333	SD	Africa/Khartoum						
+Omdurman	15.6361111	32.4372222	SD	Africa/Khartoum						
+Kusti	13.1666667	32.6666667	SD	Africa/Khartoum						
+Kassala	15.4558333	36.3988889	SD	Africa/Khartoum						
+Al Ubayyid	13.1833333	30.2166667	SD	Africa/Khartoum						
+Khartoum	15.5880556	32.5341667	SD	Africa/Khartoum						
+Al Fashir	13.6333333	25.35	SD	Africa/Khartoum						
+Umea	63.8333333	20.25	SE	Europe/Stockholm						
+Skelleftea	64.7666667	20.95	SE	Europe/Stockholm						
+Pitea	65.3333333	21.5	SE	Europe/Stockholm						
+Stockholm	59.32946814	18.06263924	SE	Europe/Stockholm						
+Malmoe	55.60586914	13.00073147	SE	Europe/Stockholm						
+Goteborg	57.7166667	11.9666667	SE	Europe/Stockholm						
+Singapore	1.2930556	103.8558333	SG	Asia/Singapore						
+Zagorje ob Savi	46.1341667	15.0013889	SI	Europe/Ljubljana						
+Vrhnika	45.9661111	14.2955556	SI	Europe/Ljubljana						
+Trbovlje	46.155	15.0533333	SI	Europe/Ljubljana						
+Ljubljana	46.0552778	14.5144444	SI	Europe/Ljubljana						
+Vranov nad Topl'ou	48.9	21.6833333	SK	Europe/Bratislava						
+Trebisov	48.6333333	21.7166667	SK	Europe/Bratislava						
+Svit	49.0666667	20.2	SK	Europe/Bratislava						
+Kosice	48.7166667	21.25	SK	Europe/Bratislava						
+Bratislava	48.15	17.1166667	SK	Europe/Bratislava						
+Yengema	8.7166667	-11.1666667	SL	Africa/Freetown						
+Waterloo	8.3383333	-13.0719444	SL	Africa/Freetown						
+Tombodu	8.1333333	-10.6166667	SL	Africa/Freetown						
+Freetown	8.49	-13.2341667	SL	Africa/Freetown						
+Serravalle	43.95	12.5	SM	Europe/San_Marino						
+Acquaviva	43.95	12.4166667	SM	Europe/San_Marino						
+Ziguinchor	12.5833333	-16.2719444	SN	Africa/Dakar						
+Velingara	13.15	-14.1166667	SN	Africa/Dakar						
+Tionk Essil	12.7855556	-16.5216667	SN	Africa/Dakar						
+Thies Nones	14.7833333	-16.9666667	SN	Africa/Dakar						
+Grand Dakar	14.7088889	-17.4552778	SN	Africa/Dakar						
+Dakar	14.69511189	-17.4438858	SN	Africa/Dakar						
+Yeed	4.55	43.0333333	SO	Africa/Mogadishu						
+Wanlaweyn	2.6166667	44.9	SO	Africa/Mogadishu						
+Waajid	3.8	43.25	SO	Africa/Mogadishu						
+Mogadishu	2.0666667	45.3666667	SO	Africa/Mogadishu						
+Chisimayu	-0.3666667	42.5333333	SO	Africa/Mogadishu						
+Hargeysa	9.56	44.065	SO	Africa/Mogadishu						
+Berbera	10.4355556	45.0163889	SO	Africa/Mogadishu						
+Paramaribo	5.8333333	-55.1666667	SR	America/Paramaribo						
+Nieuw Nickerie	5.95	-56.9833333	SR	America/Paramaribo						
+Moengo	5.6166667	-54.4	SR	America/Paramaribo						
+Sao Tome	0.3333333	6.7333333	ST	Africa/Sao_Tome						
+Zaragoza	13.5894444	-89.2888889	SV	America/El_Salvador						
+Zacatecoluca	13.5	-88.8666667	SV	America/El_Salvador						
+Usulutan	13.35	-88.45	SV	America/El_Salvador						
+Soyapango	13.7347222	-89.1513889	SV	America/El_Salvador						
+San Salvador	13.7086111	-89.2030556	SV	America/El_Salvador						
+Yabrud	33.9666667	36.6666667	SY	Asia/Damascus						
+Tayyibat al Imam	35.2666667	36.7166667	SY	Asia/Damascus						
+Tartus	34.8833333	35.8833333	SY	Asia/Damascus						
+Hims	34.7333333	36.7166667	SY	Asia/Damascus						
+Hamah	35.1333333	36.75	SY	Asia/Damascus						
+Aleppo	36.2027778	37.1586111	SY	Asia/Damascus						
+Damascus	33.5	36.3	SY	Asia/Damascus						
+Dayr az Zawr	35.3333333	40.15	SY	Asia/Damascus						
+Latakia	35.5166667	35.7833333	SY	Asia/Damascus						
+Siteki	-26.45	31.95	SZ	Africa/Mbabane						
+Piggs Peak	-25.9666667	31.25	SZ	Africa/Mbabane						
+Mhlume	-26.0333333	31.85	SZ	Africa/Mbabane						
+Biltine	14.5333333	20.9166667	TD	Africa/Ndjamena						
+Am Timan	11.0333333	20.2833333	TD	Africa/Ndjamena						
+Adre	13.4666667	22.2	TD	Africa/Ndjamena						
+N'Djamena	12.1130556	15.0491667	TD	Africa/Ndjamena						
+Vogan	6.3333333	1.5333333	TG	Africa/Lome						
+Tsevie	6.4261111	1.2133333	TG	Africa/Lome						
+Tchamba	9.0333333	1.4166667	TG	Africa/Lome						
+Lome	6.1319444	1.2227778	TG	Africa/Lome						
+Don Sak	9.3	99.6833333	TH	Asia/Bangkok						
+Ban Sam Roi Yot	12.2	99.8833333	TH	Asia/Bangkok						
+Phetchaburi	13.1	99.95	TH	Asia/Bangkok						
+Chiang Mai	18.7902778	98.9816667	TH	Asia/Bangkok						
+Udon Thani	17.4075	102.7930556	TH	Asia/Bangkok						
+Samut Prakan	13.6	100.6	TH	Asia/Bangkok						
+Nakhon Ratchasima	14.9666667	102.1166667	TH	Asia/Bangkok						
+Bangkok	13.75	100.5166667	TH	Asia/Bangkok						
+Chon Buri	13.3666667	100.9833333	TH	Asia/Bangkok						
+Yovan	38.3130556	69.0430556	TJ	Asia/Dushanbe						
+Vose'	37.8025	69.6441667	TJ	Asia/Dushanbe						
+Vakhsh	37.7108333	68.8311111	TJ	Asia/Dushanbe						
+Dushanbe	38.56	68.7738889	TJ	Asia/Dushanbe						
+Dili	-8.5586111	125.5736111	TL	Asia/Dili						
+Balkanabat	39.5119444	54.365	TM	Asia/Ashgabat						
+Kaka	37.35	59.6	TM	Asia/Ashgabat						
+Gumdag	39.2061111	54.5905556	TM	Asia/Ashgabat						
+Ashgabat	37.95	58.3833333	TM	Asia/Ashgabat						
+Turkmenabat	39.1013889	63.575	TM	Asia/Ashgabat						
+Zawiyat al Jadidi	36.65	10.5833333	TN	Africa/Tunis						
+Zaghouan	36.4	10.15	TN	Africa/Tunis						
+Oued Lill	36.8341667	10.0422222	TN	Africa/Tunis						
+Tunis	36.8027778	10.1797222	TN	Africa/Tunis						
+Sfax	34.7405556	10.7602778	TN	Africa/Tunis						
+Kale	36.2444444	29.985	TR	Europe/Istanbul						
+Zara	39.8977778	37.7583333	TR	Europe/Istanbul						
+Yunak	38.8172222	31.7355556	TR	Europe/Istanbul						
+Van	38.4941667	43.38	TR	Europe/Istanbul						
+Sanliurfa	37.1511111	38.7927778	TR	Europe/Istanbul						
+Tarsus	36.9177778	34.8916667	TR	Europe/Istanbul						
+Sivas	39.7483333	37.0161111	TR	Europe/Istanbul						
+Osmaniye	37.0741667	36.2477778	TR	Europe/Istanbul						
+Mercin	36.79526474	34.61791992	TR	Europe/Istanbul						
+Manisa	38.6130556	27.4261111	TR	Europe/Istanbul						
+Malatya	38.3533333	38.3119444	TR	Europe/Istanbul						
+Konya	37.8655556	32.4825	TR	Europe/Istanbul						
+Kirikkale	39.8452778	33.5063889	TR	Europe/Istanbul						
+Kayseri	38.7322222	35.4852778	TR	Europe/Istanbul						
+Kahramanmaras	37.5875	36.9316667	TR	Europe/Istanbul						
+Izmir	38.4072222	27.1502778	TR	Europe/Istanbul						
+Gaziantep	37.0594444	37.3825	TR	Europe/Istanbul						
+Eskisehir Ili	39.6666667	31.1666667	TR	Europe/Istanbul						
+Eskisehir	39.7766667	30.5205556	TR	Europe/Istanbul						
+Erzurum	39.9086111	41.2769444	TR	Europe/Istanbul						
+Elazig	38.6752778	39.2205556	TR	Europe/Istanbul						
+Diyarbakir	37.9188889	40.2105556	TR	Europe/Istanbul						
+Denizli	37.7741667	29.0875	TR	Europe/Istanbul						
+Batman	37.8827778	41.1205556	TR	Europe/Istanbul						
+Balikesir	39.6491667	27.8861111	TR	Europe/Istanbul						
+Antalya	36.9125	30.6897222	TR	Europe/Istanbul						
+Ankara	39.9272222	32.8644444	TR	Europe/Istanbul						
+Adiyaman	37.7591667	38.2783333	TR	Europe/Istanbul						
+Adana	37.0016667	35.3288889	TR	Europe/Istanbul						
+Batikent	39.9683333	32.7308333	TR	Europe/Istanbul						
+Trabzon	41.005	39.7269444	TR	Europe/Istanbul						
+Samsun	41.2866667	36.33	TR	Europe/Istanbul						
+Istanbul	41.01384296	28.94966125	TR	Europe/Istanbul						
+Gebze	40.7977778	29.4305556	TR	Europe/Istanbul						
+Esenyurt	41.0333333	28.6752778	TR	Europe/Istanbul						
+Corlu	41.1591667	27.8	TR	Europe/Istanbul						
+Bursa	40.1916667	29.0611111	TR	Europe/Istanbul						
+Sakarya	40.7805556	30.4033333	TR	Europe/Istanbul						
+Tunapuna	10.6333333	-61.3833333	TT	America/Port_of_Spain						
+Paradise	10.63471163	-61.36671066	TT	America/Port_of_Spain						
+Siparia	10.1333333	-61.5	TT	America/Port_of_Spain						
+Yun-lin	23.7091667	120.5422222	TW	Asia/Taipei						
+Taipei	25.0391667	121.525	TW	Asia/Taipei						
+T'ai-chung-shih	24.1483333	120.6866667	TW	Asia/Taipei						
+Kao-hsiung	22.6177778	120.3013889	TW	Asia/Taipei						
+Hualian	23.9769444	121.6044444	TW	Asia/Taipei						
+Chi-lung	25.1313889	121.7375	TW	Asia/Taipei						
+Zanzibar	-6.163936944	39.19793129	TZ	Africa/Dar_es_Salaam						
+Wete	-5.0666667	39.7166667	TZ	Africa/Dar_es_Salaam						
+Vwawa	-9.1166667	32.9333333	TZ	Africa/Dar_es_Salaam						
+Tanga	-5.0666667	39.1	TZ	Africa/Dar_es_Salaam						
+Mwanza	-2.5166667	32.9	TZ	Africa/Dar_es_Salaam						
+Morogoro	-6.8166667	37.6666667	TZ	Africa/Dar_es_Salaam						
+Mbeya	-8.9	33.45	TZ	Africa/Dar_es_Salaam						
+Dar es Salaam	-6.8	39.2833333	TZ	Africa/Dar_es_Salaam						
+Arusha	-3.3666667	36.6833333	TZ	Africa/Dar_es_Salaam						
+Lebedyn	50.5880556	34.4802778	UA	Europe/Kiev						
+Staryy Dobrotvor	50.25	24.35	UA	Europe/Uzhgorod						
+Druzhkovka	48.6166667	37.55	UA	Europe/Zaporozhye						
+Zhytomyr	50.25	28.6666667	UA	Europe/Kiev						
+Zaporizhzhya	47.8166667	35.1833333	UA	Europe/Zaporozhye						
+Vinnytsya	49.2333333	28.4833333	UA	Europe/Kiev						
+Ternopil'	49.55	25.5833333	UA	Europe/Uzhgorod						
+Sumy	50.9197222	34.7819444	UA	Europe/Kiev						
+Simferopol'	44.95	34.1	UA	Europe/Simferopol						
+Sevastopol'	44.6	33.5333333	UA	Europe/Simferopol						
+Rivne	50.6166667	26.25	UA	Europe/Kiev						
+Poltava	49.5833333	34.5666667	UA	Europe/Zaporozhye						
+Odesa	46.4666667	30.7333333	UA	Europe/Simferopol						
+Mykolayiv	46.9666667	32	UA	Europe/Zaporozhye						
+Mariupol'	47.0666667	37.5	UA	Europe/Zaporozhye						
+Makiyivka	48.0333333	37.9666667	UA	Europe/Zaporozhye						
+L'viv	49.83825924	24.02323723	UA	Europe/Uzhgorod						
+Luts'k	50.75	25.3333333	UA	Europe/Uzhgorod						
+Luhans'k	48.5666667	39.3333333	UA	Europe/Zaporozhye						
+Kiev	50.4333333	30.5166667	UA	Europe/Kiev						
+Kryvyy Rih	47.9166667	33.35	UA	Europe/Zaporozhye						
+Kremenchuk	49.0666667	33.4166667	UA	Europe/Zaporozhye						
+Kirovohrad	48.5041667	32.2630556	UA	Europe/Zaporozhye						
+Kherson	46.6333333	32.6	UA	Europe/Simferopol						
+Kharkiv	50	36.25	UA	Europe/Zaporozhye						
+Horlivka	48.3	38.05	UA	Europe/Zaporozhye						
+Donets'k	48	37.8	UA	Europe/Zaporozhye						
+Dnipropetrovs'k	48.45	34.9833333	UA	Europe/Zaporozhye						
+Dniprodzerzhyns'k	48.5	34.6166667	UA	Europe/Zaporozhye						
+Chernivtsi	48.3	25.9333333	UA	Europe/Uzhgorod						
+Chernihiv	51.5	31.3	UA	Europe/Kiev						
+Cherkasy	49.4333333	32.0666667	UA	Europe/Kiev						
+Wobulenzi	0.7283333	32.5122222	UG	Africa/Kampala						
+Wakiso	0.4044444	32.4594444	UG	Africa/Kampala						
+Sembabule	-0.0772222	31.4566667	UG	Africa/Kampala						
+Kampala	0.3155556	32.5655556	UG	Africa/Kampala						
+Bay Minette	30.8829628	-87.7730474	US	America/Indiana/Knox						
+Edna	28.9785947	-96.6460877	US	America/Indiana/Knox						
+Henderson	32.1532157	-94.7993802	US	America/Indiana/Knox						
+Birmingham	33.5206608	-86.80249	US	America/Indiana/Knox						
+Washington	38.8951118	-77.0363658	US	America/New_York						
+Hialeah	25.8575963	-80.2781057	US	America/Kentucky/Monticello						
+Jacksonville	30.3321838	-81.655651	US	America/Kentucky/Monticello						
+Miami	25.7742658	-80.1936589	US	America/Kentucky/Monticello						
+Orlando	28.5383355	-81.3792365	US	America/Kentucky/Monticello						
+Saint Petersburg	27.7708606	-82.6792661	US	America/Kentucky/Monticello						
+Tampa	27.9475216	-82.4584279	US	America/Kentucky/Monticello						
+Atlanta	33.7489954	-84.3879824	US	America/Kentucky/Monticello						
+Indianapolis	39.7683765	-86.1580423	US	America/Indiana/Indianapolis						
+Wichita	37.6922361	-97.3375448	US	America/Chicago						
+Lexington	37.9886892	-84.4777153	US	America/Indiana/Vevay						
+Lexington-Fayette	38.0497996	-84.4585485	US	America/Indiana/Vevay						
+Louisville	38.2542376	-85.759407	US	America/Kentucky/Louisville						
+Baton Rouge	30.4507462	-91.154551	US	America/Indiana/Knox						
+New Orleans	29.9546482	-90.075072	US	America/Indiana/Knox						
+Shreveport	32.5251516	-93.7501789	US	America/Indiana/Knox						
+Baltimore	39.2903848	-76.6121893	US	America/New_York						
+Kansas City	39.0997266	-94.5785667	US	America/Chicago						
+North Kansas City	39.130004	-94.5621773	US	America/Chicago						
+Saint Louis	38.6272733	-90.1978889	US	America/Chicago						
+Charlotte	35.2270869	-80.8431268	US	America/Kentucky/Monticello						
+Durham	35.9940329	-78.898619	US	America/Kentucky/Monticello						
+Greensboro	36.0726355	-79.7919754	US	America/Kentucky/Monticello						
+Raleigh	35.772096	-78.6386145	US	America/Kentucky/Monticello						
+West Raleigh	35.7868182	-78.6638927	US	America/Kentucky/Monticello						
+Cincinnati	39.1620036	-84.4568863	US	America/Indiana/Vevay						
+Columbus	39.9611755	-82.9987942	US	America/Indiana/Vevay						
+Oklahoma City	35.4675602	-97.5164276	US	America/Chicago						
+Tulsa	36.1539816	-95.992775	US	America/Chicago						
+Philadelphia	39.952335	-75.163789	US	America/New_York						
+Memphis	35.1495343	-90.0489801	US	America/Indiana/Knox						
+Nashville	36.1658899	-86.7844432	US	America/Indiana/Knox						
+New South Memphis	35.0867579	-90.0567584	US	America/Indiana/Knox						
+Arlington	32.735687	-97.1080656	US	America/Chicago						
+Austin	30.267153	-97.7430608	US	America/Chicago						
+Corpus Christi	27.8005828	-97.396381	US	America/Indiana/Knox						
+Dallas	32.7830556	-96.8066667	US	America/Chicago						
+Fort Worth	32.725409	-97.3208496	US	America/Chicago						
+Garland	32.912624	-96.6388833	US	America/Chicago						
+Houston	29.7632836	-95.3632715	US	America/Indiana/Knox						
+Laredo	27.506407	-99.5075421	US	America/Chicago						
+Plano	33.0198431	-96.6988856	US	America/Chicago						
+San Antonio	29.4241219	-98.4936282	US	America/Chicago						
+Norfolk	36.8468146	-76.2852183	US	America/New_York						
+Virginia Beach	36.8529263	-75.977985	US	America/New_York						
+Chicago	41.850033	-87.6500523	US	America/Chicago						
+Fort Wayne	41.1306041	-85.1288597	US	America/Indiana/Indianapolis						
+Boston	42.3584308	-71.0597732	US	America/New_York						
+South Boston	42.3334312	-71.0494949	US	America/New_York						
+Detroit	42.331427	-83.0457538	US	America/Detroit						
+Minneapolis	44.9799654	-93.2638361	US	America/Menominee						
+Saint Paul	44.9444101	-93.0932742	US	America/Menominee						
+Lincoln	40.8000011	-96.6669599	US	America/Chicago						
+Omaha	41.2586096	-95.937792	US	America/Chicago						
+Jersey City	40.7281575	-74.0776417	US	America/New_York						
+Newark	40.735657	-74.1723667	US	America/New_York						
+Buffalo	42.8864468	-78.8783689	US	America/Detroit						
+New York City	40.7142691	-74.0059729	US	America/New_York						
+Rochester	43.1547845	-77.6155568	US	America/New_York						
+Akron	41.0814447	-81.5190053	US	America/Detroit						
+Cleveland	41.4994954	-81.6954088	US	America/Detroit						
+Toledo	41.6639383	-83.555212	US	America/Detroit						
+Pittsburgh	40.4406248	-79.9958864	US	America/Detroit						
+Madison	43.0730517	-89.4012302	US	America/Chicago						
+Milwaukee	43.0389025	-87.9064736	US	America/Chicago						
+Chandler	33.3061605	-111.8412502	US	America/Phoenix						
+Glendale	33.5386523	-112.1859866	US	America/Phoenix						
+Mesa	33.4222685	-111.8226402	US	America/Phoenix						
+Phoenix	33.4483771	-112.0740373	US	America/Phoenix						
+Scottsdale	33.5092103	-111.8990327	US	America/Phoenix						
+Mesa	33.4017142	-111.7495822	US	America/Phoenix						
+Tucson	32.2217429	-110.926479	US	America/Phoenix						
+Anaheim	33.8352932	-117.9145036	US	America/Los_Angeles						
+Bakersfield	35.3732921	-119.0187125	US	America/Los_Angeles						
+Chula Vista	32.6400541	-117.0841955	US	America/Los_Angeles						
+Fremont	37.5482697	-121.9885719	US	America/Los_Angeles						
+Fresno	36.7477272	-119.7723661	US	America/Los_Angeles						
+Long Beach	33.7669623	-118.1892348	US	America/Los_Angeles						
+Los Angeles	34.0522342	-118.2436849	US	America/Los_Angeles						
+Modesto	37.6390972	-120.9968782	US	America/Los_Angeles						
+North Glendale	34.1605626	-118.2645198	US	America/Los_Angeles						
+Oakland	37.8043722	-122.2708026	US	America/Los_Angeles						
+Riverside	33.9533487	-117.3961564	US	America/Los_Angeles						
+Sacramento	38.5815719	-121.4943996	US	America/Los_Angeles						
+San Bernardino	34.1083449	-117.2897652	US	America/Los_Angeles						
+San Diego	32.7153292	-117.1572551	US	America/Los_Angeles						
+San Francisco	37.7749295	-122.4194155	US	America/Los_Angeles						
+San Jose	37.3393857	-121.8949555	US	America/Los_Angeles						
+Santa Ana	33.7455731	-117.8678338	US	America/Los_Angeles						
+Stockton	37.9577016	-121.2907796	US	America/Los_Angeles						
+Aurora	39.7294319	-104.8319195	US	America/Denver						
+Colorado Springs	38.8338816	-104.8213634	US	America/Denver						
+Denver	39.7391536	-104.9847034	US	America/Denver						
+Albuquerque	35.0844909	-106.6511367	US	America/Shiprock						
+Henderson	36.0396988	-114.9819368	US	America/Los_Angeles						
+Las Vegas	36.1749705	-115.137223	US	America/Los_Angeles						
+Paradise	36.0971945	-115.1466648	US	America/Los_Angeles						
+Reno	39.5296329	-119.8138027	US	America/Los_Angeles						
+El Paso	31.7587198	-106.4869314	US	America/Phoenix						
+Lubbock	33.5778631	-101.8551665	US	America/North_Dakota/New_Salem						
+Portland	45.5234515	-122.6762071	US	America/Los_Angeles						
+Seattle	47.6062095	-122.3320708	US	America/Los_Angeles						
+Honolulu	21.3069444	-157.8583333	US	Pacific/Honolulu						
+Anchorage	61.2180556	-149.9002778	US	America/Anchorage						
+Young	-32.6833333	-57.6333333	UY	America/Montevideo						
+Trinidad	-33.5388889	-56.8886111	UY	America/Montevideo						
+Treinta y Tres	-33.2333333	-54.3833333	UY	America/Montevideo						
+Montevideo	-34.8580556	-56.1708333	UY	America/Montevideo						
+Nukus	42.4530556	59.6102778	UZ	Asia/Samarkand						
+Kegayli	42.7766667	59.6077778	UZ	Asia/Samarkand						
+Chimboy	42.9358333	59.7752778	UZ	Asia/Samarkand						
+Samarqand	39.6541667	66.9597222	UZ	Asia/Samarkand						
+Qarshi	38.8633333	65.7977778	UZ	Asia/Samarkand						
+Buxoro	39.7747222	64.4286111	UZ	Asia/Samarkand						
+Tashkent	41.3166667	69.25	UZ	Asia/Tashkent						
+Namangan	40.99829785	71.67257309	UZ	Asia/Tashkent						
+Andijon	40.7830556	72.3438889	UZ	Asia/Tashkent						
+Kingstown Park	13.1583333	-61.235	VC	America/St_Vincent						
+La Asuncion	11.0333333	-63.8627778	VE	America/Caracas						
+Anaco	9.4388889	-64.4727778	VE	America/Caracas						
+Alto Barinas	8.5944444	-70.2222222	VE	America/Caracas						
+Valencia	10.1805556	-68.0038889	VE	America/Caracas						
+Turmero	10.2333333	-67.4833333	VE	America/Caracas						
+Santa Teresa	10.2313889	-66.6636111	VE	America/Caracas						
+San Cristobal	7.7669444	-72.225	VE	America/Caracas						
+Petare	10.4833333	-66.8166667	VE	America/Caracas						
+Mucumpiz	8.4166667	-71.1333333	VE	America/Caracas						
+Maracaibo	10.6316667	-71.6405556	VE	America/Caracas						
+Cumana	10.4666667	-64.1666667	VE	America/Caracas						
+Ciudad Guayana	8.3533333	-62.6527778	VE	America/Caracas						
+Caracas	10.5	-66.9166667	VE	America/Caracas						
+Cabimas	10.4019444	-71.4461111	VE	America/Caracas						
+Baruta	10.4333333	-66.8833333	VE	America/Caracas						
+Barquisimeto	10.0738889	-69.3227778	VE	America/Caracas						
+Barcelona	10.1333333	-64.7	VE	America/Caracas						
+Maturin	9.75	-63.1766667	VE	America/Caracas						
+Road Town	18.4166667	-64.6166667	VG	America/Tortola						
+Yen Vinh	18.6666667	105.6666667	VN	Asia/Saigon						
+Yen Bai	21.7	104.8666667	VN	Asia/Saigon						
+Vung Tau	10.35	107.0666667	VN	Asia/Saigon						
+Ho Chi Minh City	10.75	106.6666667	VN	Asia/Saigon						
+Rach Gia	10.0166667	105.0833333	VN	Asia/Saigon						
+Quy Nhon	13.7666667	109.2333333	VN	Asia/Saigon						
+Nha Trang	12.25	109.1833333	VN	Asia/Saigon						
+Hue	16.4666667	107.6	VN	Asia/Saigon						
+Hanoi	21.0333333	105.85	VN	Asia/Saigon						
+Haiphong	20.8561111	106.6822222	VN	Asia/Saigon						
+Da Nang	16.0677778	108.2208333	VN	Asia/Saigon						
+Can Tho	10.0333333	105.7833333	VN	Asia/Saigon						
+Bien Hoa	10.95	106.8166667	VN	Asia/Saigon						
+Port-Vila	-17.7333333	168.3166667	VU	Pacific/Efate						
+Luganville	-15.5333333	167.1666667	VU	Pacific/Efate						
+Vaitele	-13.8166667	-171.7833333	WS	Pacific/Apia						
+Apia	-13.8333333	-171.7333333	WS	Pacific/Apia						
+Zabid	14.195	43.3152778	YE	Asia/Aden						
+Yarim	14.2972222	44.3802778	YE	Asia/Aden						
+Ta`izz	13.5666667	44.0333333	YE	Asia/Aden						
+Sanaa	15.3547222	44.2066667	YE	Asia/Aden						
+Ibb	13.9666667	44.1833333	YE	Asia/Aden						
+Al Mukalla	14.53	49.1313889	YE	Asia/Aden						
+Al Hudaydah	14.7977778	42.9522222	YE	Asia/Aden						
+Aden	12.7794444	45.0366667	YE	Asia/Aden						
+Mamoudzou	-12.7794444	45.2272222	YT	Indian/Mayotte						
+Bandraboua	-12.7016667	45.1205556	YT	Indian/Mayotte						
+Mtsamboro	-12.6966667	45.0666667	YT	Indian/Mayotte						
+Zeerust	-25.5333333	26.0833333	ZA	Africa/Johannesburg						
+Zastron	-30.3	27.0833333	ZA	Africa/Johannesburg						
+Wolmaransstad	-27.2	25.9666667	ZA	Africa/Johannesburg						
+Witbank	-25.8666667	29.2333333	ZA	Africa/Johannesburg						
+Welkom	-27.9833333	26.7333333	ZA	Africa/Johannesburg						
+Vereeniging	-26.6666667	27.9333333	ZA	Africa/Johannesburg						
+Vanderbijlpark	-26.7	27.8166667	ZA	Africa/Johannesburg						
+Uitenhage	-33.7652778	25.4022222	ZA	Africa/Johannesburg						
+Tembisa	-25.9988889	28.2269444	ZA	Africa/Johannesburg						
+Soweto	-26.2666667	27.8666667	ZA	Africa/Johannesburg						
+Richards Bay	-28.8	32.1	ZA	Africa/Johannesburg						
+Pretoria	-25.7069444	28.2294444	ZA	Africa/Johannesburg						
+Port Elizabeth	-33.9666667	25.5833333	ZA	Africa/Johannesburg						
+Pietermaritzburg	-29.6166667	30.3833333	ZA	Africa/Johannesburg						
+Newcastle	-27.75	29.9333333	ZA	Africa/Johannesburg						
+Krugersdorp	-26.1	27.7666667	ZA	Africa/Johannesburg						
+Johannesburg	-26.2	28.0833333	ZA	Africa/Johannesburg						
+Durban	-29.85	31.0166667	ZA	Africa/Johannesburg						
+Brakpan	-26.2333333	28.3666667	ZA	Africa/Johannesburg						
+Botshabelo	-29.2333333	26.7333333	ZA	Africa/Johannesburg						
+Boksburg	-26.2166667	28.25	ZA	Africa/Johannesburg						
+Bloemfontein	-29.1333333	26.2	ZA	Africa/Johannesburg						
+Benoni	-26.1833333	28.3166667	ZA	Africa/Johannesburg						
+Centurion	-25.8744444	28.1705556	ZA	Africa/Johannesburg						
+Cape Town	-33.9166667	18.4166667	ZA	Africa/Johannesburg						
+Nchelenge	-9.35	28.7333333	ZM	Africa/Lusaka						
+Nakonde	-9.3333333	32.7666667	ZM	Africa/Lusaka						
+Mpulungu	-8.7666667	31.1333333	ZM	Africa/Lusaka						
+Ndola	-12.9666667	28.6333333	ZM	Africa/Lusaka						
+Lusaka	-15.4166667	28.2833333	ZM	Africa/Lusaka						
+Kitwe	-12.8166667	28.2	ZM	Africa/Lusaka						
+Zvishavane District	-20.25	30.0833333	ZW	Africa/Harare						
+Zvishavane	-20.3333333	30.0333333	ZW	Africa/Harare						
+Victoria Falls	-17.9333333	25.8333333	ZW	Africa/Harare						
+Harare	-17.8177778	31.0447222	ZW	Africa/Harare						
+Bulawayo	-20.15	28.5833333	ZW	Africa/Harare						
+Chitungwiza	-17.9938889	31.0480556	ZW	Africa/Harare						
+Manama	26.2186111	50.583	BH	Asia/Bahrain						
+Vasco da Gamma	15.4	73.83	IN	Asia/Calcutta						
+Vrindavan	27.577989	77.701241	IN	Asia/Calcutta						
+Mayapur	23.423413	88.388079	IN	Asia/Calcutta						
