@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml;
 
 namespace GCAL.Base
 {
@@ -35,6 +36,62 @@ namespace GCAL.Base
         }
 
 
+        public void writeToXmlNode(XmlElement elem, XmlDocument doc)
+        {
+            XmlElement e1;
+
+            e1 = doc.CreateElement("LocationA");
+            elem.AppendChild(e1);
+            LocationA.writeToXmlNode(e1, doc);
+
+            e1 = doc.CreateElement("LocationB");
+            elem.AppendChild(e1);
+            LocationB.writeToXmlNode(e1, doc);
+
+            e1 = doc.CreateElement("Time");
+            elem.AppendChild(e1);
+            e1.SetAttribute("TzStart", TimezoneStart.ToString());
+            e1.SetAttribute("JuStart", julianStart.ToString());
+            e1.SetAttribute("JuEnd", julianEnd.ToString());
+        }
+
+        public void loadFromXmlNode(XmlElement elem)
+        {
+            foreach (XmlElement e1 in elem.ChildNodes)
+            {
+                if (e1.Name.Equals("LocationA"))
+                {
+                    LocationA = new GPLocation();
+                    LocationA.loadFromXmlNode(e1);
+                }
+                else if (e1.Name.Equals("LocationB"))
+                {
+                    LocationB = new GPLocation();
+                    LocationB.loadFromXmlNode(e1);
+                }
+                else if (e1.Name.Equals("Time"))
+                {
+                    bool b;
+                    double d;
+                    if (e1.HasAttribute("TzStart"))
+                    {
+                        b = true;
+                        bool.TryParse(e1.GetAttribute("TzStart"), out b);
+                        TimezoneStart = b;
+                    }
+                    if (e1.HasAttribute("JuStart"))
+                    {
+                        double.TryParse(e1.GetAttribute("JuStart"), out d);
+                        julianStart = d;
+                    }
+                    if (e1.HasAttribute("JuEnd"))
+                    {
+                        double.TryParse(e1.GetAttribute("JuEnd"), out d);
+                        julianEnd = d;
+                    }
+                }
+            }
+        }
 
         public String humanLength
         {

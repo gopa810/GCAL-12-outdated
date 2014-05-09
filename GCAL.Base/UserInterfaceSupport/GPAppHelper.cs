@@ -81,18 +81,47 @@ namespace GCAL.Base
             if (myLocation == null)
             {
                 myLocation = new GPLocationProvider();
+                bool bSucc = false;
+                string possibleFile = GPFileHelper.getAppDataFile("mylocation.xml");
+                if (File.Exists(possibleFile))
+                {
+                    try
+                    {
+                        myLocation.loadXml(possibleFile);
+                        bSucc = true;
+                    }
+                    catch
+                    {
+                    }
+                }
 
-                GPLocation loc = new GPLocation();
-                loc.setCity(GPUserDefaults.StringForKey("myloc.city", "Mayapur"));
-                loc.setCountryCode(GPUserDefaults.StringForKey("myloc.country", "IN"));
-                loc.setLatitudeNorthPositive(double.Parse(GPUserDefaults.StringForKey("myloc.lat", "23.423413")));
-                loc.setLongitudeEastPositive(double.Parse(GPUserDefaults.StringForKey("myloc.lon", "88.388079")));
-                loc.setTimeZoneName(GPUserDefaults.StringForKey("myloc.tzname", "Asia/Calcutta"));
-
-                myLocation.setDefaultLocation(loc);
+                if (bSucc == false)
+                {
+                    GPLocation loc = new GPLocation();
+                    loc.setCity(GPUserDefaults.StringForKey("myloc.city", "Mayapur"));
+                    loc.setCountryCode(GPUserDefaults.StringForKey("myloc.country", "IN"));
+                    loc.setLatitudeNorthPositive(double.Parse(GPUserDefaults.StringForKey("myloc.lat", "23.423413")));
+                    loc.setLongitudeEastPositive(double.Parse(GPUserDefaults.StringForKey("myloc.lon", "88.388079")));
+                    loc.setTimeZoneName(GPUserDefaults.StringForKey("myloc.tzname", "Asia/Calcutta"));
+                    myLocation.setDefaultLocation(loc);
+                }
             }
 
             return myLocation;
+        }
+
+        public static void saveMyLocation()
+        {
+            string possibleFile = GPFileHelper.getAppDataFile("mylocation.xml");
+            try
+            {
+                if (myLocation != null)
+                    myLocation.saveXml(possibleFile);
+            }
+            catch
+            {
+            }
+
         }
 
         public static void setMyLocation(GPLocationProvider value)

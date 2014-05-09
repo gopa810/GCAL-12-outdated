@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace GCAL.Dialogs
 {
-    public partial class WizardDlg : Form
+    public partial class WizardDlg : Form, WizardDialogDelegate
     {
         public string nextButtonTitle = "Next >>";
         public string prevButtonTitle = "<< Prev";
@@ -54,6 +54,11 @@ namespace GCAL.Dialogs
             }
         }
 
+        public void EnableNext(bool bEnable)
+        {
+            button2.Enabled = bEnable;
+        }
+
         public void AddPage(Control ctrl, string title, string subtitle)
         {
             pages.Add(new PageInfo(ctrl, title, subtitle));
@@ -65,6 +70,11 @@ namespace GCAL.Dialogs
             ctrl.TabStop = true;
             ctrl.Dock = DockStyle.Fill;
             ctrl.Visible = false;
+
+            if (ctrl is WizardChildDelegate)
+            {
+                ((WizardChildDelegate)ctrl).setParent(this);
+            }
         }
 
         public void ResetPages()

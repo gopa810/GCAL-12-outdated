@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml;
 
 namespace GCAL.Base
 {
@@ -39,6 +40,70 @@ namespace GCAL.Base
             return (loc.getCity().Equals(getCity())
                 && Math.Abs(loc.GetLatitudeNorthPositive() - GetLatitudeNorthPositive()) < 0.01
                 && Math.Abs(loc.GetLongitudeEastPositive() - GetLongitudeEastPositive()) < 0.01) ;
+        }
+
+        public void writeToXmlNode(XmlElement elem, XmlDocument doc)
+        {
+            XmlElement e1;
+
+            e1 = doc.CreateElement("Latitude");
+            elem.AppendChild(e1);
+            e1.InnerText = GetLatitudeNorthPositive().ToString();
+
+            e1 = doc.CreateElement("Longitude");
+            elem.AppendChild(e1);
+            e1.InnerText = GetLongitudeEastPositive().ToString();
+
+            e1 = doc.CreateElement("Altitude");
+            elem.AppendChild(e1);
+            e1.InnerText = GetAltitude().ToString();
+
+            e1 = doc.CreateElement("City");
+            elem.AppendChild(e1);
+            e1.InnerText = city;
+
+            e1 = doc.CreateElement("CountryCode");
+            elem.AppendChild(e1);
+            e1.InnerText = countryCode;
+
+            e1 = doc.CreateElement("Timezone");
+            elem.AppendChild(e1);
+            e1.InnerText = timezoneName;
+        }
+
+        public void loadFromXmlNode(XmlElement elem)
+        {
+            double d;
+            foreach (XmlElement e1 in elem.ChildNodes)
+            {
+                if (e1.Name.Equals("Latitude"))
+                {
+                    if (double.TryParse(e1.InnerText, out d))
+                        setLatitudeNorthPositive(d);
+                }
+                else if (e1.Name.Equals("Longitude"))
+                {
+                    if (double.TryParse(e1.InnerText, out d))
+                        setLongitudeEastPositive(d);
+                }
+                else if (e1.Name.Equals("Altitude"))
+                {
+                    if (double.TryParse(e1.InnerText, out d))
+                        SetAltitude(d);
+                }
+                else if (e1.Name.Equals("City"))
+                {
+                    setCity(e1.InnerText);
+                }
+                else if (e1.Name.Equals("CountryCode"))
+                {
+                    setCountryCode(e1.InnerText);
+                }
+                else if (e1.Name.Equals("Timezone"))
+                {
+                    setTimeZoneName(e1.InnerText);
+                }
+            }
         }
 
         public string getCity()

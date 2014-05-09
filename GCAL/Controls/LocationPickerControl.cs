@@ -14,7 +14,7 @@ using GCAL.Dialogs;
 
 namespace GCAL.Controls
 {
-    public partial class LocationPickerControl : UserControl, CELAsyncResultReceiver
+    public partial class LocationPickerControl : UserControl, CELAsyncResultReceiver, WizardChildDelegate
     {
         private string initPrefix = string.Empty;
         private bool supressLocationChangedEvent = false;
@@ -23,6 +23,13 @@ namespace GCAL.Controls
         private bool supressTextChange = false;
         private bool modifiedFlagAdded = false;
         private CELFindCity findOperation = null;
+        private WizardDialogDelegate wizardDelegate = null;
+        private bool travellingChanged = true;
+
+        public void setParent(WizardDialogDelegate aDelegate)
+        {
+            wizardDelegate = aDelegate;
+        }
 
         public void SetUserInterfaceStrings()
         {
@@ -40,6 +47,9 @@ namespace GCAL.Controls
             this.label4.Text = GPStrings.getSharedStrings().getString(11);
             this.label3.Text = GPStrings.getSharedStrings().getString(253);
             this.label2.Text = GPStrings.getSharedStrings().getString(9);
+
+            if (wizardDelegate != null)
+                wizardDelegate.EnableNext(false);
         }
 
 
@@ -262,6 +272,15 @@ namespace GCAL.Controls
                 listView1.Items.Add(lvi);
             }
             listView1.EndUpdate();
+
+            CheckNextButtonInParent();
+
+        }
+
+        private void CheckNextButtonInParent()
+        {
+            if (wizardDelegate != null)
+                wizardDelegate.EnableNext(listView1.Items.Count > 0);
         }
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
@@ -629,6 +648,7 @@ namespace GCAL.Controls
                 lp.addChange(newChange);
 
                 RefreshList();
+                travellingChanged = true;
             }
         }
 
@@ -652,6 +672,8 @@ namespace GCAL.Controls
             {
                 EditTravellingInListbox(lbox, index);
             }
+            travellingChanged = true;
+
 
         }
 
@@ -743,6 +765,8 @@ namespace GCAL.Controls
                 provider.removeChangeAtIndex(changeIndex);
             }
             RefreshList();
+            travellingChanged = true;
+
         }
 
         // clear all
@@ -753,6 +777,8 @@ namespace GCAL.Controls
             prov.Clear();
 
             RefreshList();
+            travellingChanged = true;
+
         }
 
         // remove before
@@ -770,6 +796,8 @@ namespace GCAL.Controls
                 i++;
             }
             RefreshList();
+            travellingChanged = true;
+
         }
 
         // insert before
@@ -842,6 +870,8 @@ namespace GCAL.Controls
                 provider.insertChangeAtIndex(0, newChange);
 
                 RefreshList();
+                travellingChanged = true;
+
             }
 
         }
@@ -917,6 +947,8 @@ namespace GCAL.Controls
                 provider.addChange(newChange);
 
                 RefreshList();
+                travellingChanged = true;
+
             }
 
         }
@@ -932,6 +964,16 @@ namespace GCAL.Controls
         private void LocationPickerControl_Enter(object sender, EventArgs e)
         {
             textBox1.Select();
+            CheckNextButtonInParent();
         }
+
+        private void LocationPickerControl_Leave(object sender, EventArgs e)
+        {
+            if (TravellerVisible && travellingChanged)
+            {
+                GPAppHelper.saveMyLocation();
+            }
+        }
+
     }
 }

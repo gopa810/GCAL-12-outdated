@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml;
 
 namespace GCAL.Base
 {
@@ -253,6 +254,78 @@ namespace GCAL.Base
         public void insertChangeAtIndex(int p, GPLocationChange newChange)
         {
             changes.Insert(p, newChange);
+        }
+
+        /// <summary>
+        /// Loads complete data for location provider from Xml file
+        /// </summary>
+        /// <param name="file">file name (complete path)</param>
+        public void loadXml(string file)
+        {
+            XmlDocument doc = new XmlDocument();
+
+            doc.Load(file);
+
+            if (doc.ChildNodes.Count != 1)
+                return;
+            XmlElement elem = null;
+            foreach (XmlNode node in doc.ChildNodes)
+            {
+                if (node.Name.Equals("MyLocation"))
+                {
+                    elem = node as XmlElement;
+                }
+            }
+
+            if (elem == null)
+                return;
+
+            changes = new List<GPLocationChange>();
+
+            foreach (XmlElement e1 in elem.ChildNodes)
+            {
+                if (e1.Name.Equals("Change"))
+                {
+                    GPLocationChange chng = new GPLocationChange();
+                    chng.loadFromXmlNode(e1);
+                    changes.Add(chng);
+                }
+                else if (e1.Name.Equals("DefaultLocation"))
+                {
+                    defaultLocation = new GPLocation();
+                    defaultLocation.loadFromXmlNode(e1);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Save complete data about this location provider to XML file
+        /// </summary>
+        /// <param name="file">complete file name (with path)</param>
+        public void saveXml(string file)
+        {
+            XmlDocument doc = new XmlDocument();
+            XmlElement elem1;
+            XmlElement elem2;
+
+            elem1 = doc.CreateElement("MyLocation");
+            doc.AppendChild(elem1);
+
+            foreach (GPLocationChange chng in changes)
+            {
+                elem2 = doc.CreateElement("Change");
+                elem1.AppendChild(elem2);
+
+                chng.writeToXmlNode(elem2, doc);
+            }
+
+            elem2 = doc.CreateElement("DefaultLocation");
+            elem1.AppendChild(elem2);
+
+            defaultLocation.writeToXmlNode(elem2, doc);
+
+            doc.Save(file);
+
         }
     }
 }

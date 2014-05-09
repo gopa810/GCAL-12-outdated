@@ -56,6 +56,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.buttonInsertAfter = new System.Windows.Forms.Button();
+            this.buttonInsertBefore = new System.Windows.Forms.Button();
+            this.buttonRemoveBefore = new System.Windows.Forms.Button();
             this.buttonClearAll = new System.Windows.Forms.Button();
             this.labelSubtitle = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
@@ -63,9 +66,6 @@
             this.labelCount = new System.Windows.Forms.Label();
             this.buttonRemoveAfter = new System.Windows.Forms.Button();
             this.buttonAddTravelling = new System.Windows.Forms.Button();
-            this.buttonRemoveBefore = new System.Windows.Forms.Button();
-            this.buttonInsertBefore = new System.Windows.Forms.Button();
-            this.buttonInsertAfter = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -109,9 +109,9 @@
             // 
             // listView1
             // 
-            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
@@ -151,8 +151,8 @@
             // 
             // textBox1
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox1.Location = new System.Drawing.Point(19, 36);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(468, 20);
@@ -356,6 +356,39 @@
             this.tabPage3.Text = "Traveller";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // buttonInsertAfter
+            // 
+            this.buttonInsertAfter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonInsertAfter.Location = new System.Drawing.Point(398, 144);
+            this.buttonInsertAfter.Name = "buttonInsertAfter";
+            this.buttonInsertAfter.Size = new System.Drawing.Size(96, 23);
+            this.buttonInsertAfter.TabIndex = 9;
+            this.buttonInsertAfter.Text = "Insert After";
+            this.buttonInsertAfter.UseVisualStyleBackColor = true;
+            this.buttonInsertAfter.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // buttonInsertBefore
+            // 
+            this.buttonInsertBefore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonInsertBefore.Location = new System.Drawing.Point(398, 57);
+            this.buttonInsertBefore.Name = "buttonInsertBefore";
+            this.buttonInsertBefore.Size = new System.Drawing.Size(96, 23);
+            this.buttonInsertBefore.TabIndex = 8;
+            this.buttonInsertBefore.Text = "Insert Before";
+            this.buttonInsertBefore.UseVisualStyleBackColor = true;
+            this.buttonInsertBefore.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // buttonRemoveBefore
+            // 
+            this.buttonRemoveBefore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonRemoveBefore.Location = new System.Drawing.Point(398, 28);
+            this.buttonRemoveBefore.Name = "buttonRemoveBefore";
+            this.buttonRemoveBefore.Size = new System.Drawing.Size(96, 23);
+            this.buttonRemoveBefore.TabIndex = 7;
+            this.buttonRemoveBefore.Text = "Remove Before";
+            this.buttonRemoveBefore.UseVisualStyleBackColor = true;
+            this.buttonRemoveBefore.Click += new System.EventHandler(this.button5_Click);
+            // 
             // buttonClearAll
             // 
             this.buttonClearAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -378,9 +411,9 @@
             // 
             // listBox1
             // 
-            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(7, 28);
@@ -438,39 +471,6 @@
             this.buttonAddTravelling.UseVisualStyleBackColor = true;
             this.buttonAddTravelling.Click += new System.EventHandler(this.button1_Click);
             // 
-            // buttonRemoveBefore
-            // 
-            this.buttonRemoveBefore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonRemoveBefore.Location = new System.Drawing.Point(398, 28);
-            this.buttonRemoveBefore.Name = "buttonRemoveBefore";
-            this.buttonRemoveBefore.Size = new System.Drawing.Size(96, 23);
-            this.buttonRemoveBefore.TabIndex = 7;
-            this.buttonRemoveBefore.Text = "Remove Before";
-            this.buttonRemoveBefore.UseVisualStyleBackColor = true;
-            this.buttonRemoveBefore.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // buttonInsertBefore
-            // 
-            this.buttonInsertBefore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonInsertBefore.Location = new System.Drawing.Point(398, 57);
-            this.buttonInsertBefore.Name = "buttonInsertBefore";
-            this.buttonInsertBefore.Size = new System.Drawing.Size(96, 23);
-            this.buttonInsertBefore.TabIndex = 8;
-            this.buttonInsertBefore.Text = "Insert Before";
-            this.buttonInsertBefore.UseVisualStyleBackColor = true;
-            this.buttonInsertBefore.Click += new System.EventHandler(this.button6_Click);
-            // 
-            // buttonInsertAfter
-            // 
-            this.buttonInsertAfter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonInsertAfter.Location = new System.Drawing.Point(398, 144);
-            this.buttonInsertAfter.Name = "buttonInsertAfter";
-            this.buttonInsertAfter.Size = new System.Drawing.Size(96, 23);
-            this.buttonInsertAfter.TabIndex = 9;
-            this.buttonInsertAfter.Text = "Insert After";
-            this.buttonInsertAfter.UseVisualStyleBackColor = true;
-            this.buttonInsertAfter.Click += new System.EventHandler(this.button7_Click);
-            // 
             // LocationPickerControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -479,6 +479,7 @@
             this.Name = "LocationPickerControl";
             this.Size = new System.Drawing.Size(515, 329);
             this.Enter += new System.EventHandler(this.LocationPickerControl_Enter);
+            this.Leave += new System.EventHandler(this.LocationPickerControl_Leave);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();

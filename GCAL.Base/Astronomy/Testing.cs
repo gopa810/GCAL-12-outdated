@@ -167,10 +167,13 @@ namespace GCAL.Base
 
             string path = "d:\\gcal\\reports\\";
 
-            File.WriteAllText(Path.Combine(path, prefix + "-cal-" + loc.getCity() + ".txt"), 
-                FormaterInternal.getInternalDalendarData(calendar));
-            File.WriteAllText(Path.Combine(path, prefix + "-eve-" + loc.getCity() + ".txt"),
-                FormaterInternal.getInternalEventsText(coreEvents));
+            if (Directory.Exists(path))
+            {
+                File.WriteAllText(Path.Combine(path, prefix + "-cal-" + loc.getCity() + ".txt"),
+                    FormaterInternal.getInternalDalendarData(calendar));
+                File.WriteAllText(Path.Combine(path, prefix + "-eve-" + loc.getCity() + ".txt"),
+                    FormaterInternal.getInternalEventsText(coreEvents));
+            }
         }
     }
 }

@@ -82,6 +82,8 @@
     <Compile Include="Dialogs\SelectOneOfTwoLocationChangesDlg.Designer.cs">
       <DependentUpon>SelectOneOfTwoLocationChangesDlg.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\WizardChildDelegate.cs" />
+    <Compile Include="Dialogs\WizardDialogDelegate.cs" />
     <Compile Include="Dialogs\WizardDlg.cs">
       <SubType>Form</SubType>
     </Compile>
