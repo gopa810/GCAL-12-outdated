@@ -104,7 +104,6 @@ namespace GCAL.Base
         public static int WriteXML_FirstDay_Year(StringBuilder doc, GPGregorianTime vcStart)
         {
             vcStart = GPGaurabdaYear.getFirstDayOfYear(vcStart.getLocationProvider(), vcStart.getYear());
-            vcStart.InitWeekDay();
 
             // write
             doc.Append("<xml>\n");
@@ -142,7 +141,6 @@ namespace GCAL.Base
             while (d.IsBeforeThis(vcEnd))
             {
                 d = GPSankranti.GetNextSankranti(d, out zodiac);
-                d.InitWeekDay();
                 doc.Append("\t\t<sank date=\"" + d + "\" ");
                 doc.Append("dayweekid=\"" + d.getDayOfWeek() + "\" dayweek=\"" + getSharedStrings()[d.getDayOfWeek()] + "\" ");
                 doc.Append(" time=\"" + d.getShortTimeString() + "\" >\n");

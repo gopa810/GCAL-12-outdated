@@ -21,7 +21,7 @@ namespace GCAL.Engine
             GPLocation loc1 = GPLocationList.getShared().findLocation("Bratislava");
             loc.setDefaultLocation(loc1);
 
-            Testing.Report(loc, "gcal13");
+            //Testing.Report(loc, "gcal13");
 
             //loc1.setLatitudeNorthPositive(48.16);
             //loc1.setLongitudeEastPositive(17.09);

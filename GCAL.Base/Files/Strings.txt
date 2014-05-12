@@ -786,3 +786,6 @@
 1021	Beginning of full penumbral			
 1022	End of penumbral moon eclipse			
 1023	Beginning of penumbral moon eclipse			
+1030	Travelling			
+1031	Travelling starts			
+1032	Travelling ends			

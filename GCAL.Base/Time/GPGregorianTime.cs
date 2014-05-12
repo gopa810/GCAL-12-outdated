@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Diagnostics;
 
 namespace GCAL.Base
 {
@@ -12,7 +13,6 @@ namespace GCAL.Base
 
         public static bool timeFormat24 = true;
 
-        private int dayOfWeek = -1;
         private int p_year;
         private int p_month;
         private int p_day;
@@ -31,7 +31,6 @@ namespace GCAL.Base
         {
             setLocation(loc);
             Today();
-            setDayOfWeek(0);
             setDayHours(0.0);
         }
 
@@ -39,7 +38,6 @@ namespace GCAL.Base
         {
             p_locationProvider = loc;
             Today();
-            setDayOfWeek(0);
             setDayHours(0.0);
         }
 
@@ -211,11 +209,6 @@ namespace GCAL.Base
             p_shour = final - Math.Floor(final);
         }
 
-        public void InitWeekDay()
-        {
-            setDayOfWeek((Convert.ToInt32(getJulianLocalNoon()) + 1) % 7);
-        }
-
         /// <summary>
         /// This is value of Julian Day in the moment of 12:00 (noon)
         /// in local coordinates at local time.
@@ -240,6 +233,9 @@ namespace GCAL.Base
             j = k1 + k2 + getDay() + 59;
             if (j > 2299160)
                 j -= k3;
+
+            //Debugger.Log(0, "", String.Format("yy={0}, mm={1}, k1={2}, k2={3}, k3={4}, j={5}; y={6}, m={7}, d={8}\n",
+            //    yy, mm, k1, k2, k3, j, getYear(), getMonth(), getDay()));
 
             return Convert.ToDouble(j);
         }
@@ -268,6 +264,8 @@ namespace GCAL.Base
         /// <returns></returns>
         public double getJulianGreenwichTime()
         {
+            //if (p_julian < 0)
+            recalculateJulianGreenwichTime();
             return p_julian;
             //return getJulianLocalNoon() - 0.5 + getDayHours() - getTimeZoneOffsetHours() / 24.0;
         }
@@ -339,7 +337,6 @@ namespace GCAL.Base
                 }
                 p_day = 1;
             }
-            dayOfWeek = (dayOfWeek + 1) % 7;
             p_julian += 1;
         }
 
@@ -356,7 +353,6 @@ namespace GCAL.Base
                 }
                 p_day = GetMonthMaxDays(getYear(), getMonth());
             }
-            dayOfWeek = (dayOfWeek + 6) % 7;
             p_julian -= 1;
         }
 
@@ -456,16 +452,7 @@ namespace GCAL.Base
 
         public int getDayOfWeek()
         {
-            if (dayOfWeek < 0)
-            {
-                InitWeekDay();
-            }
-            return dayOfWeek;
-        }
-
-        public void setDayOfWeek(int value)
-        {
-            dayOfWeek = value;
+            return (Convert.ToInt32(getJulianLocalNoon()) + 1) % 7;
         }
 
         public double getDayHours()
@@ -496,7 +483,6 @@ namespace GCAL.Base
         {
             p_year = vc.getYear();
             p_month = vc.getMonth();
-            setDayOfWeek(vc.getDayOfWeek());
             p_day = vc.getDay();
             setDayHours(vc.getDayHours());
             setLocationProvider(vc.getLocationProvider());
@@ -630,6 +616,45 @@ namespace GCAL.Base
             DateTime dt;
             getLocalTimeEx(out dt, out dst);
             return string.Format("{0} {1} {2}", dt.Day, GPAppHelper.getMonthAbr(dt.Month), dt.Year);
+        }
+
+        public string getCompleteLongDateString()
+        {
+            bool dst;
+            DateTime dt;
+            getLocalTimeEx(out dt, out dst);
+            return string.Format("{0} {1} {2} ({3})", dt.Day, GPAppHelper.getMonthAbr(dt.Month), dt.Year, getDayOfWeekName(dt.DayOfWeek));
+        }
+
+        public string getDayOfWeekName(DayOfWeek dow)
+        {
+            int idx = 0;
+            switch (dow)
+            {
+                case DayOfWeek.Sunday:
+                    idx = 0;
+                    break;
+                case DayOfWeek.Monday:
+                    idx = 1;
+                    break;
+                case DayOfWeek.Tuesday:
+                    idx = 2;
+                    break;
+                case DayOfWeek.Wednesday:
+                    idx = 3;
+                    break;
+                case DayOfWeek.Thursday:
+                    idx = 4;
+                    break;
+                case DayOfWeek.Friday:
+                    idx = 5;
+                    break;
+                case DayOfWeek.Saturday:
+                    idx = 6;
+                    break;
+            }
+
+            return GPStrings.getSharedStrings().getString(idx);
         }
 
 

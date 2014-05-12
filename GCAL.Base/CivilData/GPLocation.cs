@@ -9,8 +9,6 @@ namespace GCAL.Base
     public class GPLocation : GPObserver
     {
         private string city = string.Empty;
-        //private double latitude = 0.0;
-        //private double longitude = 0.0;
         private string countryCode = string.Empty;
         private string timezoneName = "GMT";
         private GPTimeZone timezone = null;
@@ -141,7 +139,7 @@ namespace GCAL.Base
 
         public string getFullName()
         {
-            return string.Format("{0} {1}, {2} {3}", getCity(), getCountryName(), getLatitudeString(), getLongitudeString());
+            return string.Format("{0} ({1}), {2} {3}", getCity(), getCountryName(), getLatitudeString(), getLongitudeString());
         }
 
         public string getTimeZoneName()

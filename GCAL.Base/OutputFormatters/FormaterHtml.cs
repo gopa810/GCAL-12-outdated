@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Diagnostics;
 
 namespace GCAL.Base
 {
@@ -111,7 +112,15 @@ namespace GCAL.Base
             fprintf(f, gstr[983], inEvents.m_vcStart.ToString(), inEvents.m_vcEnd.ToString());
             fprintf(f, "</p>");
 
-            fprintf(f, "<p class=HeaderLocation>{0}</p>\n", inEvents.m_location.getFullName());
+            List<GPLocation> locList = inEvents.getLocationList();
+            fprintf(f, "<p class=HeaderLocation>");
+            foreach (GPLocation loc in locList)
+            {
+                fprintf(f, "{0}<br>", loc.getFullName());
+            }
+            fprintf(f, "</p>\n");
+            
+            //fprintf(f, "<p class=HeaderLocation>{0}</p>\n", inEvents.m_location.getFullName());
 
             DateTime prevd = new DateTime(1970,1,1);
             string prevt = string.Empty;
@@ -127,7 +136,9 @@ namespace GCAL.Base
                     DateTime dt = dnr.Time.getLocalTime();
                     if (prevd.Day != dt.Day || prevd.Month != dt.Month || prevd.Year != dt.Year)
                     {
-                        fprintf(f, "<td class=hed colspan=2>{0}</td></tr>", dnr.Time.ToString());
+//                        int wd = dnr.Time.getDayOfWeek();
+//                        Debugger.Log(0, "", string.Format("Date: {0}, Julian: {1}, Weekday: {2}\n", dnr.Time.getLongDateString(), dnr.Time.getJulianLocalNoon(), wd));
+                        fprintf(f, "<td class=hed colspan=2>{0}</td><td class=hed>{1}</td><td class=hed>{2}</td></tr>", dnr.Time.getCompleteLongDateString(), gstr[12], gstr[9]);
                     }
                     prevd = dt;
                 }
@@ -135,7 +146,7 @@ namespace GCAL.Base
                 {
                     if (prevt != dnr.getTypeTitle())
                     {
-                        fprintf(f, "<td class=hed colspan=3>{0}</td></tr>\n", dnr.getTypeTitle());
+                        fprintf(f, "<td class=hed colspan=2>{0}</td><td class=hed>{1}</td><td class=hed>{2}</td></tr>\n", dnr.getTypeTitle(), gstr[12], gstr[9]);
                     }
                     prevt = dnr.getTypeTitle();
                 }
@@ -155,7 +166,10 @@ namespace GCAL.Base
                     fprintf(f, "<td>{0} </td>", dnr.Time.ToString());
                 }
 
-                fprintf(f, "<td>{0}</td><td>{1}</td></tr>\n", dnr.getEventTitle(), dnr.Time.getLongTimeString());
+                GPLocation loc = dnr.Time.getLocation();
+                fprintf(f, "<td>{0}</td><td>{1}</td><td>{2}</td><td>{3} {4}</td></tr>\n", 
+                    dnr.getEventTitle(), dnr.Time.getLongTimeString(),
+                    loc.getTimeZoneName(), loc.getLongitudeString(), loc.getLatitudeString());
             }
 
             fprintf(f, "</tr></table>\n");
@@ -303,6 +317,41 @@ namespace GCAL.Base
                         fout.Append("</tr>");
 
                         nPrevMonth = pvd.date.getMonth();
+                        writeHeaders = true;
+                    }
+                    else if (pvd.Travelling != null)
+                    {
+                        fout.Append("<tr>");
+                        fout.AppendFormat("<td colspan={0}>", columnHeaderCount);
+                        fout.Append("<p class=MasaHeader>");
+                        fout.AppendFormat("<span class=HeaderTitle>{0}</span><br>", GPStrings.getSharedStrings().getString(1030));
+                        GPLocationChange lastLocChange = null;
+                        foreach (GPLocationChange lc in pvd.Travelling)
+                        {
+                            if (lastLocChange != lc)
+                            {
+                                fout.AppendFormat("<span class=HeaderLocation>{0} &#10132; {1}</span><br>", lc.LocationA.getFullName(), lc.LocationB.getFullName());
+                                lastLocChange = lc;
+                            }
+                        }
+                        fout.Append("</p>");
+                        fout.Append("</td>");
+                        fout.Append("</tr>");
+
+                        writeHeaders = true;
+                    }
+                    else if (pvd.FlagNewLocation)
+                    {
+                        fout.Append("<tr>");
+                        fout.AppendFormat("<td colspan={0}>", columnHeaderCount);
+                        fout.Append("<p class=MasaHeader>");
+                        fout.AppendFormat("<span class=HeaderTitle>{0}</span><br>", GPStrings.getSharedStrings().getString(9));
+                        fout.AppendFormat("<span class=HeaderLocation>{0}</span><br>", pvd.date.getLocation().getFullName());
+                        fout.AppendFormat("<span class=HeaderTimezone>Timezone: {0}</span>", pvd.date.getLocation().getTimeZone().getFullName());
+                        fout.Append("</p>");
+                        fout.Append("</td>");
+                        fout.Append("</tr>");
+
                         writeHeaders = true;
                     }
 
@@ -903,6 +952,41 @@ span.GramE
                         nPrevMonth = pvd.date.getMonth();
                         writeHeaders = true;
                     }
+                    else if (pvd.Travelling != null)
+                    {
+                        fout.Append("<tr>");
+                        fout.AppendFormat("<td colspan={0}>", columnHeaderCount);
+                        fout.Append("<p class=MasaHeader>");
+                        fout.AppendFormat("<span class=HeaderTitle>{0}</span><br>", GPStrings.getSharedStrings().getString(1030));
+                        GPLocationChange lastLocChange = null;
+                        foreach (GPLocationChange lc in pvd.Travelling)
+                        {
+                            if (lastLocChange != lc)
+                            {
+                                fout.AppendFormat("<span class=HeaderLocation>{0} &#10132; {1}</span><br>", lc.LocationA.getFullName(), lc.LocationB.getFullName());
+                                lastLocChange = lc;
+                            }
+                        }
+                        fout.Append("</p>");
+                        fout.Append("</td>");
+                        fout.Append("</tr>");
+
+                        writeHeaders = true;
+                    }
+                    else if (pvd.FlagNewLocation)
+                    {
+                        fout.Append("<tr>");
+                        fout.AppendFormat("<td colspan={0}>", columnHeaderCount);
+                        fout.Append("<p class=MasaHeader>");
+                        fout.AppendFormat("<span class=HeaderTitle>{0}</span><br>", GPStrings.getSharedStrings().getString(9));
+                        fout.AppendFormat("<span class=HeaderLocation>{0}</span><br>", pvd.date.getLocation().getFullName());
+                        fout.AppendFormat("<span class=HeaderTimezone>Timezone: {0}</span>", pvd.date.getLocation().getTimeZone().getFullName());
+                        fout.Append("</p>");
+                        fout.Append("</td>");
+                        fout.Append("</tr>");
+
+                        writeHeaders = true;
+                    }
 
 
                     if (writeHeaders)
@@ -926,7 +1010,7 @@ span.GramE
 			        fprintf(fout, "<td>{0}</td>\n", GPNaksatra.getName(pvd.astrodata.nNaksatra));
 			        fprintf(fout, "<td>{0}</td>\n", GPYoga.getName(pvd.astrodata.nYoga) );
 			        fprintf(fout, "<td>{0}</td>\n", pvd.getFastingFlag());
-
+                    fprintf(fout, "<td>{0}</td>\n", pvd.getRasiOfMoonName());
                     fprintf(fout, "</tr>\n\n");
 
 

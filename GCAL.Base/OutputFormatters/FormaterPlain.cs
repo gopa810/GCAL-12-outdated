@@ -58,8 +58,11 @@ namespace GCAL.Base
             res.AppendLine();
             res.AppendLine();
 
-            res.Append(inEvents.m_location.getLocation(0).getFullName());
-            res.AppendLine();
+            List<GPLocation> locList = inEvents.getLocationList();
+            foreach (GPLocation loc in locList)
+            {
+                res.AppendLine(inEvents.m_location.getLocation(0).getFullName());
+            }
             res.AppendLine();
 
             DateTime prevd = new DateTime(1970, 1, 1);
@@ -75,7 +78,7 @@ namespace GCAL.Base
                     if (prevd.Day != dt.Day || prevd.Month != dt.Month || prevd.Year != dt.Year)
                     {
                         res.AppendLine();
-                        res.AppendLine(GPAppHelper.CenterString(dnr.Time.ToString(), 80, '='));
+                        res.AppendLine(GPAppHelper.CenterString(dnr.Time.getCompleteLongDateString(), 80, '='));
                         res.AppendLine();
                     }
                     prevd = dt;
@@ -97,7 +100,9 @@ namespace GCAL.Base
                     res.Append(dnr.Time.ToString().PadLeft(20));
                 }
 
-                res.AppendFormat("   {0}  {1}", dnr.Time.getLongTimeString(), dnr.getEventTitle());
+                GPLocation loc = dnr.Time.getLocation();
+                res.AppendFormat("   {0}  {1} {2} {3} {4}", dnr.Time.getLongTimeString(), dnr.getEventTitle().PadRight(45),
+                    loc.getTimeZoneName().PadRight(32), loc.getLongitudeString().PadLeft(6), loc.getLatitudeString().PadLeft(6));
                 res.AppendLine();
 
             }
@@ -181,6 +186,8 @@ namespace GCAL.Base
                             AddListText(m_text, getSharedStrings()[128]);
                         }
                         m_text.AppendLine();
+                        m_text.AppendLine(GPAppHelper.CenterString(daybuff.m_Location.getLocation(pvd.date.getJulianGreenwichTime()).getFullName(), 80));
+                        m_text.AppendLine();
                         lastmasa = pvd.astrodata.nMasa;
                     }
 
@@ -194,13 +201,38 @@ namespace GCAL.Base
                         m_text.Append(str);
                         m_text.Append(string.Empty.PadLeft(tp1 - GPFileHelper.FileVersion.Length));
                         m_text.AppendLine(GPFileHelper.FileVersion);
+                        m_text.AppendLine(GPAppHelper.CenterString(daybuff.m_Location.getLocation(pvd.date.getJulianGreenwichTime()).getFullName(), 80));
+                        m_text.AppendLine();
                         lastmonth = pvd.date.getMonth();
                     }
-                    if (nMasaHeader == 1)
+
+                    else if (pvd.Travelling != null)
                     {
+                        m_text.AppendLine(GPAppHelper.CenterString(GPStrings.getSharedStrings().getString(1030), 80));
+                        GPLocationChange lastLocChange = null;
+                        foreach (GPLocationChange lc in pvd.Travelling)
+                        {
+                            if (lastLocChange != lc)
+                            {
+                                m_text.AppendLine(GPAppHelper.CenterString(String.Format("{0} -> {1}", lc.LocationA.getFullName(), lc.LocationB.getFullName()), 80));
+                                lastLocChange = lc;
+                            }
+                        }
+                        m_text.AppendLine();
+
+                        nMasaHeader = 1;
+                    }
+                    else if (pvd.FlagNewLocation)
+                    {
+                        m_text.AppendLine(GPAppHelper.CenterString(GPStrings.getSharedStrings().getString(9), 80));
                         m_text.AppendLine(GPAppHelper.CenterString(daybuff.m_Location.getLocation(pvd.date.getJulianGreenwichTime()).getFullName(), 80));
                         m_text.AppendLine();
 
+                        nMasaHeader = 1;
+                    }
+
+                    if (nMasaHeader == 1)
+                    {
                         nMasaHeader = m_text.Length;
                         m_text.Append(" ");
                         m_text.Append(getSharedStrings()[985].PadRight(16));
@@ -450,8 +482,6 @@ namespace GCAL.Base
 
             if (p == null)
                 return;
-
-            vc.InitWeekDay();
 
             str.AppendFormat("{0}, {1} {2}", loc.getFullName(), loc.getLocation(0).getLatitudeString(), loc.getLocation(0).getLongitudeString());
             str.AppendLine();

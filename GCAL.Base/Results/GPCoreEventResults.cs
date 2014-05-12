@@ -52,7 +52,17 @@ namespace GCAL.Base
 
             p_events.Add(eve);
             return true;
+        }
 
+        private bool AddEvent(GPGregorianTime inTime, int inType, string inData)
+        {
+            GPCoreEvent eve = new GPCoreEvent();
+            eve.Time = inTime;
+            eve.strData = inData;
+            eve.nType = inType;
+
+            p_events.Add(eve);
+            return true;
         }
 
         public void Sort(bool inSort)
@@ -132,7 +142,6 @@ namespace GCAL.Base
             if (GPDisplays.CoreEvents.Sunrise())
             {
                 vcAdd.Copy(vc);
-                vcAdd.InitWeekDay();
                 while (vcAdd.IsBeforeThis(vcEnd))
                 {
                     sun.SunCalc(vcAdd, earth);
@@ -217,7 +226,7 @@ namespace GCAL.Base
                         GPAstroEngine.CalculateTimesSunEclipse(vcAdd.getJulianGreenwichTime(), vcAdd.getLocation(), out times);
                         if (times != null && times[2] > 0)
                         {
-                            for(int i = 0; i < 5; i++)
+                            for (int i = 0; i < 5; i++)
                             {
                                 if (times[i] > 0)
                                 {
@@ -275,18 +284,71 @@ namespace GCAL.Base
                     nextJulian = GPAstroEngine.GetNextMoonEvent(julian, vc.getLocationProvider(), out kind);
                     if (kind == TRiseSet.RISE)
                     {
-                        inEvents.AddEvent(new GPGregorianTime(vc.getLocation(), nextJulian), GPConstants.CoreEventMoonRise, 0);
+                        inEvents.AddEvent(new GPGregorianTime(loc, nextJulian), GPConstants.CoreEventMoonRise, 0);
                     }
                     else if (kind == TRiseSet.SET)
                     {
-                        inEvents.AddEvent(new GPGregorianTime(vc.getLocation(), nextJulian), GPConstants.CoreEventMoonSet, 0);
+                        inEvents.AddEvent(new GPGregorianTime(loc, nextJulian), GPConstants.CoreEventMoonSet, 0);
                     }
-                    julian.setGreenwichJulianDay(nextJulian.getGreenwichJulianDay() + 10.0/1440.0);
+                    julian.setGreenwichJulianDay(nextJulian.getGreenwichJulianDay() + 10.0 / 1440.0);
+                }
+            }
+
+            // travellings
+            {
+                GPJulianTime julian = vc.getJulian();
+                GPJulianTime julianEnd = vcEnd.getJulian();
+                double start, end;
+
+                start = julian.getGreenwichJulianDay();
+                end = julianEnd.getGreenwichJulianDay();
+
+                for(int i = 0; i < loc.getChangeCount(); i++)
+                {
+                    GPLocationChange chn = loc.getChangeAtIndex(i);
+                    if ((chn.julianStart >= start && chn.julianStart <= end) 
+                        || (chn.julianStart >= start && chn.julianEnd <= end))
+                    {
+                        GPGregorianTime startTime = new GPGregorianTime(chn.LocationA);
+                        startTime.setJulianGreenwichTime(new GPJulianTime(chn.julianStart, 0));
+                        GPGregorianTime endTime = new GPGregorianTime(chn.LocationB);
+                        endTime.setJulianGreenwichTime(new GPJulianTime(chn.julianEnd, 0));
+                        inEvents.AddEvent(startTime, GPConstants.CCTYPE_TRAVELLING_START, 0);
+                        inEvents.AddEvent(endTime, GPConstants.CCTYPE_TRAVELLING_END, 0);
+                    }
                 }
             }
 
             // eventual sorting
             inEvents.Sort(GPDisplays.CoreEvents.Sort());
+        }
+
+        public List<GPLocation> getLocationList()
+        {
+            List<GPLocation> locList = new List<GPLocation>();
+
+            double start = m_vcStart.getJulianGreenwichTime();
+            double end = m_vcEnd.getJulianGreenwichTime();
+
+            for (int i = 0; i < m_location.getChangeCount(); i++)
+            {
+                GPLocationChange lc = m_location.getChangeAtIndex(i);
+
+                if ((lc.julianStart >= start && lc.julianStart <= end) &&
+                    (lc.julianEnd >= start && lc.julianEnd <= end))
+                {
+                    addLocationToList(lc.LocationA, locList);
+                    addLocationToList(lc.LocationB, locList);
+                }
+            }
+
+            return locList;
+        }
+
+        private void addLocationToList(GPLocation lc, List<GPLocation> list)
+        {
+            if (list.IndexOf(lc) < 0)
+                list.Add(lc);
         }
     }
 }

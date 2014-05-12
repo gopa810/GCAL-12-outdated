@@ -7,9 +7,11 @@ namespace GCAL.Base
 {
     public class GPCoreEvent
     {
-	    public int nType;
-	    public int nData;
-	    public GPGregorianTime Time;
+	    public int nType = 0;
+	    public int nData = 0;
+	    public GPGregorianTime Time = null;
+        public string strData = String.Empty;
+
         public int getDstFlag()
         {
             return Time.getDaylightTimeON() ? 1 : 0;
@@ -52,6 +54,9 @@ namespace GCAL.Base
                 case GPConstants.CCTYPE_MOONECLIPSE_PENUM_PART_END:
                 case GPConstants.CCTYPE_MOONECLIPSE_PENUM_PART_START:
                     return GPStrings.getSharedStrings().getString(1009);
+                case GPConstants.CCTYPE_TRAVELLING_START:
+                case GPConstants.CCTYPE_TRAVELLING_END:
+                    return GPStrings.getSharedStrings().getString(1030);
                 default:
                     return string.Empty;
             }
@@ -109,6 +114,10 @@ namespace GCAL.Base
                     return GPStrings.getSharedStrings().getString(1022);
                 case GPConstants.CCTYPE_MOONECLIPSE_PENUM_PART_START:
                     return GPStrings.getSharedStrings().getString(1023);
+                case GPConstants.CCTYPE_TRAVELLING_START:
+                    return GPStrings.getSharedStrings().getString(1031);
+                case GPConstants.CCTYPE_TRAVELLING_END:
+                    return GPStrings.getSharedStrings().getString(1032);
                 default:
                     return string.Empty;
             }

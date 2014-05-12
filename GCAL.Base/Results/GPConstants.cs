@@ -48,6 +48,8 @@ namespace GCAL.Base
         public const int CCTYPE_MOONECLIPSE_MAIN_FULL_START = 56;
         public const int CCTYPE_MOONECLIPSE_MAIN_FULL_END = 57;
         public const int CCTYPE_MOONECLIPSE_CENTER = 58;
+        public const int CCTYPE_TRAVELLING_START = 70;
+        public const int CCTYPE_TRAVELLING_END = 72;
 
         public static int[] SUNECLIPSE_CONSTS = new int[] {
             CCTYPE_SUNECLIPSE_PARTIAL_START,

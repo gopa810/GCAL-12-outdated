@@ -142,7 +142,7 @@ namespace GCAL.Base
             return nend.getJulianLocalNoon() - today.getJulianLocalNoon() + nend.getDayHours();
         }
 
-        /* Function is writen accoring this algorithms:
+        /* Function is writen accoring this algorithm:
 
 
         1. Normal - fasting day has ekadasi at sunrise and dvadasi at next sunrise.
@@ -257,76 +257,76 @@ namespace GCAL.Base
             t.nMhdType = GPConstants.EV_NULL;
             t.nFastType = GPConstants.FAST_NULL;
 
-            double titBeg, titEnd, tithi_quart;
-            double sunRise, third_day, naksEnd;
-            double parBeg = -1.0, parEnd = -1.0;
-            double tithi_len;
+            double startOfTithi, endOfTithi, theOneFourthOfTithi;
+            double sunRise, theOneThirdOfDaylight, endOfNaksatra;
+            double startOfParana = -1.0, endOfParana = -1.0;
+            double lengthOfTithi;
 
             sunRise = t.astrodata.sun.getSunriseDayHours();
-            third_day = sunRise + (t.astrodata.sun.set.getJulianGreenwichTime() - t.astrodata.sun.rise.getJulianGreenwichTime());
-            tithi_len = GPTithi.GetTithiTimes(t.date, out titBeg, out titEnd, sunRise);
-            tithi_quart = tithi_len / 4.0 + titBeg;
+            theOneThirdOfDaylight = sunRise + (t.astrodata.sun.set.getJulianGreenwichTime() - t.astrodata.sun.rise.getJulianGreenwichTime())/3;
+            lengthOfTithi = GPTithi.GetTithiTimes(t.date, out startOfTithi, out endOfTithi, sunRise);
+            theOneFourthOfTithi = lengthOfTithi / 4.0 + startOfTithi;
 
             switch (s.nMhdType)
             {
                 case GPConstants.EV_UNMILANI:
-                    parEnd = titEnd;
+                    endOfParana = endOfTithi;
                     t.EkadasiParanaReasonEnd = GPConstants.EP_TYPE_TEND;
-                    if (parEnd > third_day)
+                    if (endOfParana > theOneThirdOfDaylight)
                     {
-                        parEnd = third_day;
+                        endOfParana = theOneThirdOfDaylight;
                         t.EkadasiParanaReasonEnd = GPConstants.EP_TYPE_3DAY;
                     }
-                    parBeg = sunRise;
+                    startOfParana = sunRise;
                     t.EkadasiParanaReasonStart = GPConstants.EP_TYPE_SUNRISE;
                     break;
                 case GPConstants.EV_VYANJULI:
-                    parBeg = sunRise;
+                    startOfParana = sunRise;
                     t.EkadasiParanaReasonStart = GPConstants.EP_TYPE_SUNRISE;
-                    parEnd = Math.Min(titEnd, third_day);
-                    if (parEnd == titEnd)
+                    endOfParana = Math.Min(endOfTithi, theOneThirdOfDaylight);
+                    if (endOfParana == endOfTithi)
                         t.EkadasiParanaReasonEnd = GPConstants.EP_TYPE_TEND;
                     else
                         t.EkadasiParanaReasonEnd = GPConstants.EP_TYPE_3DAY;
                     break;
                 case GPConstants.EV_TRISPRSA:
-                    parBeg = sunRise;
-                    parEnd = third_day;
+                    startOfParana = sunRise;
+                    endOfParana = theOneThirdOfDaylight;
                     t.EkadasiParanaReasonStart = GPConstants.EP_TYPE_SUNRISE;
                     t.EkadasiParanaReasonEnd = GPConstants.EP_TYPE_3DAY;
                     break;
                 case GPConstants.EV_JAYANTI:
                 case GPConstants.EV_VIJAYA:
 
-                    naksEnd = GcGetNaksatraEndHour(earth, s.date, t.date); //GetNextNaksatra(earth, snd, nend);
+                    endOfNaksatra = GcGetNaksatraEndHour(earth, s.date, t.date); //GetNextNaksatra(earth, snd, nend);
                     if (GPTithi.TITHI_DVADASI(t.astrodata.nTithi))
                     {
-                        if (naksEnd < titEnd)
+                        if (endOfNaksatra < endOfTithi)
                         {
-                            if (naksEnd < third_day)
+                            if (endOfNaksatra < theOneThirdOfDaylight)
                             {
-                                parBeg = naksEnd;
+                                startOfParana = endOfNaksatra;
                                 t.EkadasiParanaReasonStart = GPConstants.EP_TYPE_NAKEND;
-                                parEnd = Math.Min(titEnd, third_day);
-                                if (parEnd == titEnd)
+                                endOfParana = Math.Min(endOfTithi, theOneThirdOfDaylight);
+                                if (endOfParana == endOfTithi)
                                     t.EkadasiParanaReasonEnd = GPConstants.EP_TYPE_TEND;
                                 else
                                     t.EkadasiParanaReasonEnd = GPConstants.EP_TYPE_3DAY;
                             }
                             else
                             {
-                                parBeg = naksEnd;
+                                startOfParana = endOfNaksatra;
                                 t.EkadasiParanaReasonStart = GPConstants.EP_TYPE_NAKEND;
-                                parEnd = titEnd;
+                                endOfParana = endOfTithi;
                                 t.EkadasiParanaReasonEnd = GPConstants.EP_TYPE_TEND;
                             }
                         }
                         else
                         {
-                            parBeg = sunRise;
+                            startOfParana = sunRise;
                             t.EkadasiParanaReasonStart = GPConstants.EP_TYPE_SUNRISE;
-                            parEnd = Math.Min(titEnd, third_day);
-                            if (parEnd == titEnd)
+                            endOfParana = Math.Min(endOfTithi, theOneThirdOfDaylight);
+                            if (endOfParana == endOfTithi)
                                 t.EkadasiParanaReasonEnd = GPConstants.EP_TYPE_TEND;
                             else
                                 t.EkadasiParanaReasonEnd = GPConstants.EP_TYPE_3DAY;
@@ -334,10 +334,10 @@ namespace GCAL.Base
                     }
                     else
                     {
-                        parBeg = sunRise;
+                        startOfParana = sunRise;
                         t.EkadasiParanaReasonStart = GPConstants.EP_TYPE_SUNRISE;
-                        parEnd = Math.Min(naksEnd, third_day);
-                        if (parEnd == naksEnd)
+                        endOfParana = Math.Min(endOfNaksatra, theOneThirdOfDaylight);
+                        if (endOfParana == endOfNaksatra)
                             t.EkadasiParanaReasonEnd = GPConstants.EP_TYPE_NAKEND;
                         else
                             t.EkadasiParanaReasonEnd = GPConstants.EP_TYPE_3DAY;
@@ -347,36 +347,36 @@ namespace GCAL.Base
                 case GPConstants.EV_JAYA:
                 case GPConstants.EV_PAPA_NASINI:
 
-                    naksEnd = GcGetNaksatraEndHour(earth, s.date, t.date); //GetNextNaksatra(earth, snd, nend);
+                    endOfNaksatra = GcGetNaksatraEndHour(earth, s.date, t.date); //GetNextNaksatra(earth, snd, nend);
 
                     if (GPTithi.TITHI_DVADASI(t.astrodata.nTithi))
                     {
-                        if (naksEnd < titEnd)
+                        if (endOfNaksatra < endOfTithi)
                         {
-                            if (naksEnd < third_day)
+                            if (endOfNaksatra < theOneThirdOfDaylight)
                             {
-                                parBeg = naksEnd;
+                                startOfParana = endOfNaksatra;
                                 t.EkadasiParanaReasonStart = GPConstants.EP_TYPE_NAKEND;
-                                parEnd = Math.Min(titEnd, third_day);
-                                if (parEnd == titEnd)
+                                endOfParana = Math.Min(endOfTithi, theOneThirdOfDaylight);
+                                if (endOfParana == endOfTithi)
                                     t.EkadasiParanaReasonEnd = GPConstants.EP_TYPE_TEND;
                                 else
                                     t.EkadasiParanaReasonEnd = GPConstants.EP_TYPE_3DAY;
                             }
                             else
                             {
-                                parBeg = naksEnd;
+                                startOfParana = endOfNaksatra;
                                 t.EkadasiParanaReasonStart = GPConstants.EP_TYPE_NAKEND;
-                                parEnd = titEnd;
+                                endOfParana = endOfTithi;
                                 t.EkadasiParanaReasonEnd = GPConstants.EP_TYPE_TEND;
                             }
                         }
                         else
                         {
-                            parBeg = sunRise;
+                            startOfParana = sunRise;
                             t.EkadasiParanaReasonStart = GPConstants.EP_TYPE_SUNRISE;
-                            parEnd = Math.Min(titEnd, third_day);
-                            if (parEnd == titEnd)
+                            endOfParana = Math.Min(endOfTithi, theOneThirdOfDaylight);
+                            if (endOfParana == endOfTithi)
                                 t.EkadasiParanaReasonEnd = GPConstants.EP_TYPE_TEND;
                             else
                                 t.EkadasiParanaReasonEnd = GPConstants.EP_TYPE_3DAY;
@@ -384,18 +384,18 @@ namespace GCAL.Base
                     }
                     else
                     {
-                        if (naksEnd < third_day)
+                        if (endOfNaksatra < theOneThirdOfDaylight)
                         {
-                            parBeg = naksEnd;
+                            startOfParana = endOfNaksatra;
                             t.EkadasiParanaReasonStart = GPConstants.EP_TYPE_NAKEND;
-                            parEnd = third_day;
+                            endOfParana = theOneThirdOfDaylight;
                             t.EkadasiParanaReasonEnd = GPConstants.EP_TYPE_3DAY;
                         }
                         else
                         {
-                            parBeg = naksEnd;
+                            startOfParana = endOfNaksatra;
                             t.EkadasiParanaReasonStart = GPConstants.EP_TYPE_NAKEND;
-                            parEnd = -1.0;
+                            endOfParana = -1.0;
                             t.EkadasiParanaReasonEnd = GPConstants.EP_TYPE_NULL;
                         }
                     }
@@ -403,28 +403,28 @@ namespace GCAL.Base
                     break;
                 default:
                     // first initial
-                    parEnd = Math.Min(titEnd, third_day);
-                    if (parEnd == titEnd)
+                    endOfParana = Math.Min(endOfTithi, theOneThirdOfDaylight);
+                    if (endOfParana == endOfTithi)
                         t.EkadasiParanaReasonEnd = GPConstants.EP_TYPE_TEND;
                     else
                         t.EkadasiParanaReasonEnd = GPConstants.EP_TYPE_3DAY;
-                    parBeg = Math.Max(sunRise, tithi_quart);
-                    if (parBeg == sunRise)
+                    startOfParana = Math.Max(sunRise, theOneFourthOfTithi);
+                    if (startOfParana == sunRise)
                         t.EkadasiParanaReasonStart = GPConstants.EP_TYPE_SUNRISE;
                     else
                         t.EkadasiParanaReasonStart = GPConstants.EP_TYPE_4TITHI;
 
                     if (GPTithi.TITHI_DVADASI(s.astrodata.nTithi))
                     {
-                        parBeg = sunRise;
+                        startOfParana = sunRise;
                         t.EkadasiParanaReasonStart = GPConstants.EP_TYPE_SUNRISE;
                     }
 
                     //if (parBeg > third_day)
-                    if (parBeg > parEnd)
+                    if (startOfParana > endOfParana)
                     {
                         //			parBeg = sunRise;
-                        parEnd = -1.0;
+                        endOfParana = -1.0;
                         t.EkadasiParanaReasonEnd = GPConstants.EP_TYPE_NULL;
                     }
                     break;
@@ -434,15 +434,15 @@ namespace GCAL.Base
             //begin = parBeg;
             //end = parEnd;
 
-            if (parBeg > 0.0)
+            if (startOfParana > 0.0)
             {
                 t.ekadasiParanaStart = new GPGregorianTime(t.date);
-                t.ekadasiParanaStart.setDayHours(parBeg);
+                t.ekadasiParanaStart.setDayHours(startOfParana);
             }
-            if (parEnd > 0.0)
+            if (endOfParana > 0.0)
             {
                 t.ekadasiParanaEnd = new GPGregorianTime(t.date);
-                t.ekadasiParanaEnd.setDayHours(parEnd);
+                t.ekadasiParanaEnd.setDayHours(endOfParana);
             }
         }
 
@@ -1153,9 +1153,7 @@ namespace GCAL.Base
             foreach (GPCalendarDay vd in m_pData)
             {
                 vd.date = new GPGregorianTime(date);
-                vd.date.setDayOfWeek(weekday);
                 date.NextDay();
-                weekday = (weekday + 1) % 7;
             }
 
             // 3
@@ -1224,14 +1222,6 @@ namespace GCAL.Base
             // resolve festivals fasting
             for (i = BEFORE_DAYS; i < m_PureCount + BEFORE_DAYS; i++)
             {
-                /*if (m_pData[i].astrodata.sun.longitude_deg > 0.0)
-                {
-                    m_pData[i].astrodata.sun.rise.AddHours(m_pData[i].DaylightHoursBias);
-                    m_pData[i].astrodata.sun.set.AddHours(m_pData[i].DaylightHoursBias);
-                    m_pData[i].astrodata.sun.noon.AddHours(m_pData[i].DaylightHoursBias);
-                    m_pData[i].astrodata.sun.arunodaya.AddHours(m_pData[i].DaylightHoursBias);
-                }*/
-
                 ResolveFestivalsFasting(i);
             }
 
@@ -1352,10 +1342,101 @@ namespace GCAL.Base
                     m_pData[i].ksayaTithi = prevTithi;
                 }
             }
+
+            // travellings insert into data array
+            int currIndex = BEFORE_DAYS;
+            for (int ci = 0; ci < loc.getChangeCount(); ci++)
+            {
+                GPLocationChange lc = loc.getChangeAtIndex(ci);
+
+                GPGregorianTime timeStart = new GPGregorianTime(lc.LocationA, new GPJulianTime(lc.julianStart, 0));
+                GPGregorianTime timeEnd = new GPGregorianTime(lc.LocationB, new GPJulianTime(lc.julianEnd, 0));
+
+                currIndex = IndexOf(timeStart, currIndex);
+                if (currIndex == -2)
+                {
+                    currIndex = BEFORE_DAYS;
+                }
+                else if (currIndex == -1)
+                {
+                    break;
+                }
+                else
+                {
+                    if (m_pData[currIndex].Travelling == null)
+                        m_pData[currIndex].Travelling = new List<GPLocationChange>();
+                    m_pData[currIndex].Travelling.Add(lc);
+                }
+
+                currIndex = IndexOf(timeEnd, currIndex);
+                if (currIndex == -2)
+                {
+                    currIndex = BEFORE_DAYS;
+                }
+                else if (currIndex == -1)
+                {
+                    break;
+                }
+                else
+                {
+                    if (m_pData[currIndex].Travelling == null)
+                        m_pData[currIndex].Travelling = new List<GPLocationChange>();
+                    m_pData[currIndex].Travelling.Add(lc);
+                }
+            }
+
+            // adjust travellings list and newlocation flag
+            for (i = BEFORE_DAYS; i < m_PureCount + BEFORE_DAYS; i++)
+            {
+                if (m_pData[i].Travelling != null)
+                {
+                    for (int mi = i + 1; mi < m_PureCount + BEFORE_DAYS; mi++)
+                    {
+                        if (m_pData[mi].Travelling != null)
+                        {
+                            m_pData[i].Travelling.AddRange(m_pData[mi].Travelling);
+                            m_pData[mi].Travelling = null;
+                        }
+                        else
+                        {
+                            m_pData[mi].FlagNewLocation = true;
+                            i = mi;
+                            break;
+                        }
+                    }
+                }
+            }
+
             return 1;
 
         }
 
+        public int IndexOf(GPGregorianTime time)
+        {
+            return IndexOf(time, BEFORE_DAYS);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="time"></param>
+        /// <param name="startIndex"></param>
+        /// <returns>Returns -1 in case date is not found and returns -2 in case when 
+        /// first tested date was greater than input date. Otherwise returned valid index
+        /// in array m_pData.</returns>
+        public int IndexOf(GPGregorianTime time, int startIndex)
+        {
+            int res = 0;
+            for (int i = startIndex; i < BEFORE_DAYS + m_PureCount; i++)
+            {
+                res = m_pData[i].date.CompareYMD(time);
+                if (res == 0)
+                    return i;
+                if (res > 0)
+                    return -2;
+            }
+            return -1;
+        }
 
 
         public bool IsMhd58(int nIndex, out int nMahaType)

@@ -73,8 +73,16 @@ namespace GCAL.Base
             res.AppendFormat("{\\fs{0}\\f2 ", g_Header2Size, g_TextSize);
             res.AppendFormat(getSharedStrings()[983], inEvents.m_vcStart, inEvents.m_vcEnd);
             res.AppendLine("} \\par");
-            res.AppendFormat(inEvents.m_location.getFullName());
-            res.AppendLine("\\par");
+            List<GPLocation> locList = inEvents.getLocationList();
+            foreach (GPLocation loc in locList)
+            {
+                res.Append(loc.getFullName());
+                res.AppendLine("\\par");
+            }
+            res.AppendLine(); 
+            
+            //res.AppendFormat(inEvents.m_location.getFullName());
+            //res.AppendLine("\\par");
             res.AppendLine("\\par");
 
             DateTime prevd = new DateTime(1970, 1, 1);
@@ -90,7 +98,7 @@ namespace GCAL.Base
                     if (prevd.Day != dt.Day || prevd.Month != dt.Month || prevd.Year != dt.Year)
                     {
                         res.AppendLine("\\par");
-                        res.Append(GPAppHelper.CenterString(dnr.Time.getLongTimeString(), 60, '-'));
+                        res.Append(GPAppHelper.CenterString(dnr.Time.getCompleteLongDateString(), 60, '-'));
                         res.AppendLine("\\par");
                         res.AppendLine("\\par");
                     }
@@ -114,7 +122,9 @@ namespace GCAL.Base
                     res.Append(dnr.Time.ToString().PadLeft(20));
                 }
 
-                res.AppendFormat("  {0}  {1}", dnr.Time.getLongTimeString(), dnr.getEventTitle());
+                GPLocation loc = dnr.Time.getLocation();
+                res.AppendFormat("  {0}  {1} {2} {3} {4}", dnr.Time.getLongTimeString(), dnr.getEventTitle().PadRight(45),
+                    loc.getTimeZoneName().PadRight(32), loc.getLongitudeString().PadLeft(6), loc.getLatitudeString().PadLeft(6));
                 res.AppendLine("\\par");
 
             }
@@ -413,6 +423,29 @@ namespace GCAL.Base
                         m_text.AppendFormat("\\par\\pard\\f2\\qc\\fs{0}\r\n", g_Header2Size);
                         m_text.AppendFormat("{0} {1}", getSharedStrings()[759 + pvd.date.getMonth()], pvd.date.getYear());
                         lastmonth = pvd.date.getMonth();
+                    }
+
+                    if (pvd.Travelling != null)
+                    {
+                        m_text.AppendFormat("\\par\\pard\\f2\\qc\\fs{0}\r\n", g_Header2Size);
+                        m_text.AppendFormat("{0}", getSharedStrings()[1030]);
+                        GPLocationChange lastLocChange = null;
+                        foreach (GPLocationChange lc in pvd.Travelling)
+                        {
+                            if (lastLocChange != lc)
+                            {
+                                m_text.Append("\\par\\pard\\qc\\cf2\\fs22 ");
+                                m_text.AppendFormat("{0} -> {1}", lc.LocationA.getFullName(), lc.LocationB.getFullName());
+                                lastLocChange = lc;
+                            }
+                        }
+                    }
+                    if (pvd.FlagNewLocation)
+                    {
+                        m_text.AppendFormat("\\par\\pard\\f2\\qc\\fs{0}\r\n", g_Header2Size);
+                        m_text.Append(GPStrings.getSharedStrings().getString(9));
+                        m_text.Append("\\par\\pard\\qc\\cf2\\fs22 ");
+                        m_text.Append(pvd.date.getLocation().getFullName());
                     }
 
                     // print location text

@@ -395,6 +395,8 @@ namespace GCAL.Base
         public int nFastType = GPConstants.FAST_NULL;
         public int nMhdType = GPConstants.EV_NULL;
         public String ekadasi_vrata_name = String.Empty;
+        public List<GPLocationChange> Travelling = null;
+        public bool FlagNewLocation = false;
 
         public bool hasEkadasiParana()
         {
