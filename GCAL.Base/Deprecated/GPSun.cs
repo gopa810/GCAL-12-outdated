@@ -170,13 +170,12 @@ namespace GCAL.Base
 
             if ((x >= -1.0) && (x <= 1.0))
             {
-                double difference = dLongitude + RAD * Math.Asin(x) - equationOfTime;
                 // time of sunrise
-                sun.sunrise_deg = 90.0 - difference;
+                sun.sunrise_deg = 90.0 - dLongitude - RAD * Math.Asin(x) + equationOfTime;
                 // time of noon
-                sun.noon_deg = 180.0 - difference;
+                sun.noon_deg = 180.0 - dLongitude + equationOfTime;
                 // time of sunset
-                sun.sunset_deg = 270.0 - difference;
+                sun.sunset_deg = 270.0 - dLongitude + RAD * Math.Asin(x) + equationOfTime;
             }
         }
 
