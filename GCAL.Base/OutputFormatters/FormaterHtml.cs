@@ -1006,11 +1006,16 @@ span.GramE
                     fprintf(fout, "<td align=right>{0}</td>", pvd.date.ToString().Replace(" ", "&nbsp;"));
 			        fprintf(fout, "<td>&nbsp;{0}</td>\n", gstr[pvd.date.getDayOfWeek()].Substring(0,2));
 			        fprintf(fout, "<td>{0}</td>\n", pvd.getTithiNameExtended());
-			        fprintf(fout, "<td>{0}</td>\n", pvd.getPaksaAbbreviation());
-			        fprintf(fout, "<td>{0}</td>\n", GPNaksatra.getName(pvd.astrodata.nNaksatra));
-			        fprintf(fout, "<td>{0}</td>\n", GPYoga.getName(pvd.astrodata.nYoga) );
-			        fprintf(fout, "<td>{0}</td>\n", pvd.getFastingFlag());
-                    fprintf(fout, "<td>{0}</td>\n", pvd.getRasiOfMoonName());
+                    if (GPDisplays.Calendar.PaksaInfoVisible())
+    			        fprintf(fout, "<td>{0}</td>\n", pvd.getPaksaAbbreviation());
+                    if (GPDisplays.Calendar.NaksatraVisible())
+    			        fprintf(fout, "<td>{0}</td>\n", GPNaksatra.getName(pvd.astrodata.nNaksatra));
+                    if (GPDisplays.Calendar.YogaVisible())
+    			        fprintf(fout, "<td>{0}</td>\n", GPYoga.getName(pvd.astrodata.nYoga) );
+                    if (GPDisplays.Calendar.FastingFlagVisible())
+    			        fprintf(fout, "<td>{0}</td>\n", pvd.getFastingFlag());
+                    if (GPDisplays.Calendar.RasiVisible())
+                        fprintf(fout, "<td>{0}</td>\n", pvd.getRasiOfMoonName());
                     fprintf(fout, "</tr>\n\n");
 
 

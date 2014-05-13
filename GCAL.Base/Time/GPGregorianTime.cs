@@ -182,6 +182,7 @@ namespace GCAL.Base
 
         public void setJulianLocalTime(double jd)
         {
+            p_julian = jd - getTimeZoneOffsetHours();
             double z = Math.Floor(jd + 0.5);
 
             double f = (jd + 0.5) - z;
@@ -265,7 +266,7 @@ namespace GCAL.Base
         public double getJulianGreenwichTime()
         {
             //if (p_julian < 0)
-            recalculateJulianGreenwichTime();
+            //recalculateJulianGreenwichTime();
             return p_julian;
             //return getJulianLocalNoon() - 0.5 + getDayHours() - getTimeZoneOffsetHours() / 24.0;
         }

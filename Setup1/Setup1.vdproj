@@ -341,7 +341,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:GCAL"
         "ProductCode" = "8:{8A6AA0B2-E839-4A60-84C7-6188535FEDF8}"
-        "PackageCode" = "8:{01245522-E7A4-4EFF-8C3C-DF2623F51CB7}"
+        "PackageCode" = "8:{2E5323AB-7F4C-4FDF-90B4-08816E5685AA}"
         "UpgradeCode" = "8:{8A254EF6-8DA8-4472-BB75-0052F8A08BC6}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

@@ -108,6 +108,25 @@ namespace GCAL.Base
 
         private GPLocation temp = new GPLocation();
 
+        public GPLocation getTravellingLocation(double ratio)
+        {
+            double lonA, lonB;
+            double latA, latB;
+
+            lonA = LocationA.GetLongitudeEastPositive();
+            lonB = LocationB.GetLongitudeEastPositive();
+            latA = LocationA.GetLatitudeNorthPositive();
+            latB = LocationB.GetLatitudeNorthPositive();
+
+            GPLocation newLoc = new GPLocation();
+            newLoc.setTimeZone(TimezoneStart ? LocationA.getTimeZone() : LocationB.getTimeZone());
+            newLoc.setLongitudeEastPositive(lonA + (lonB - lonA) * ratio);
+            newLoc.setLatitudeNorthPositive(latA + (latB - latA) * ratio);
+            newLoc.SetAltitude(0);
+
+            return temp;
+        }
+
         public GPLocation getLocation(double jdate)
         {
             if (jdate < julianStart)

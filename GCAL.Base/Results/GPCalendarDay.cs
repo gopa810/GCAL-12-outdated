@@ -279,6 +279,11 @@ namespace GCAL.Base
                 return Convert.ToInt32(astrodata.nNaksatraElapse / 25) % 4;
         }
 
+        public string getNaksatraName()
+        {
+            return GPNaksatra.getName(astrodata.nNaksatra);
+        }
+
         public string getTithiName()
         {
             return GPTithi.getName(astrodata.nTithi);
@@ -304,6 +309,10 @@ namespace GCAL.Base
                 return ((nFastType != GPConstants.FAST_NULL) ? GPStrings.getSharedStrings().getString(987).ToUpper() : string.Empty);
         }
 
+        public string getYogaName()
+        {
+            return GPYoga.getName(astrodata.nYoga);
+        }
 
         public string getEkadasiParanaString()
         {

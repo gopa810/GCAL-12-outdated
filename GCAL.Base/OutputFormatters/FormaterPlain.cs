@@ -237,12 +237,18 @@ namespace GCAL.Base
                         m_text.Append(" ");
                         m_text.Append(getSharedStrings()[985].PadRight(16));
                         m_text.Append(getSharedStrings()[986].ToUpper().PadRight(30));
-                        if (GPDisplays.Calendar.PaksaInfoVisible()) m_text.Append(getSharedStrings()[20].ToUpper().PadRight(6));
-                        else m_text.Append(string.Empty.PadRight(6));
-                        if (GPDisplays.Calendar.YogaVisible()) m_text.Append(getSharedStrings()[104].ToUpper().PadRight(10));
-                        if (GPDisplays.Calendar.NaksatraVisible()) m_text.Append(getSharedStrings()[15].ToUpper().PadRight(15));
-                        if (GPDisplays.Calendar.FastingFlagVisible()) m_text.Append(getSharedStrings()[987].ToUpper().PadRight(5));
-                        if (GPDisplays.Calendar.RasiVisible()) m_text.Append(getSharedStrings()[105].ToUpper().PadRight(15));
+                        if (GPDisplays.Calendar.PaksaInfoVisible())
+                            m_text.Append(getSharedStrings()[20].ToUpper().PadRight(6));
+                        else
+                            m_text.Append(string.Empty.PadRight(6));
+                        if (GPDisplays.Calendar.YogaVisible())
+                            m_text.Append(getSharedStrings()[104].ToUpper().PadRight(10));
+                        if (GPDisplays.Calendar.NaksatraVisible())
+                            m_text.Append(getSharedStrings()[15].ToUpper().PadRight(15));
+                        if (GPDisplays.Calendar.FastingFlagVisible())
+                            m_text.Append(getSharedStrings()[987].ToUpper().PadRight(5));
+                        if (GPDisplays.Calendar.RasiVisible())
+                            m_text.Append(getSharedStrings()[105].ToUpper().PadRight(15));
                         nMasaHeader = m_text.Length - nMasaHeader;
                         m_text.AppendLine();
                         m_text.AppendLine(string.Empty.PadRight(nMasaHeader, '-'));

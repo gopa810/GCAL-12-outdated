@@ -30,6 +30,32 @@ namespace GCAL.Base
             defaultLocation = def;
         }
 
+        public bool hasTravelling(double julianDay)
+        {
+            if (changes.Count < 1)
+                return false;
+
+            double dist = 1000.0;
+
+            if (julianDay >= currStart && julianDay <= currEnd)
+            {
+                dist = Math.Min(dist, Math.Abs(currStart - julianDay));
+                dist = Math.Min(dist, Math.Abs(currEnd - julianDay));
+                if (dist < 0.7)
+                    return true;
+            }
+
+            foreach (GPLocationChange lch in changes)
+            {
+                dist = Math.Min(dist, Math.Abs(lch.julianStart - julianDay));
+                dist = Math.Min(dist, Math.Abs(lch.julianEnd - julianDay));
+                if (dist < 0.7)
+                    return true;
+            }
+
+            return false;
+        }
+
         /// <summary>
         /// Gets location based on given julian day
         /// </summary>

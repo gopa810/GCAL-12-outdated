@@ -33,6 +33,7 @@ namespace GCAL.Base
         public double arunodaya_deg;
         public double sunrise_deg;
         public double sunset_deg;
+        public double noon_deg;
 
 
         public double longitude_set_deg;
@@ -169,11 +170,13 @@ namespace GCAL.Base
 
             if ((x >= -1.0) && (x <= 1.0))
             {
+                double difference = dLongitude + RAD * Math.Asin(x) - equationOfTime;
                 // time of sunrise
-                sun.sunrise_deg = 90.0 - dLongitude - RAD * Math.Asin(x) + equationOfTime;
-
+                sun.sunrise_deg = 90.0 - difference;
+                // time of noon
+                sun.noon_deg = 180.0 - difference;
                 // time of sunset
-                sun.sunset_deg = 270.0 - dLongitude + RAD * Math.Asin(x) + equationOfTime;
+                sun.sunset_deg = 270.0 - difference;
             }
         }
 
@@ -219,7 +222,6 @@ namespace GCAL.Base
             sun.arunodaya_deg = s_rise.sunrise_deg - 24.0;
             sun.sunrise_deg = s_rise.sunrise_deg;
             sun.sunset_deg = s_set.sunset_deg;
-            sun.length_deg = s_set.sunset_deg - s_rise.sunrise_deg;
 
             // arunodaya is 96 min before sunrise
             //  sunrise_deg is from range 0-360 so 96min=24deg
@@ -228,14 +230,63 @@ namespace GCAL.Base
             // sunrise
             sun.rise = new GPGregorianTime(vct);
             sun.rise.setDayHours(SetDegTime(sun.sunrise_deg + earth.getTimeZoneOffsetHours() * 15.0));
+
             // noon
             sun.noon = new GPGregorianTime(vct);
             sun.noon.setDayHours(SetDegTime((sun.sunset_deg + sun.sunrise_deg) / 2 + earth.getTimeZoneOffsetHours() * 15.0));
+
             // sunset
             sun.set = new GPGregorianTime(vct);
             sun.set.setDayHours(SetDegTime(sun.sunset_deg + earth.getTimeZoneOffsetHours() * 15.0));
             // length
+
+            // if there is travelling during arunodaya/sunrise
+            // then we need to recalculate exact time of arunodaya for travelling path
+            if (earth.hasTravelling(sun.rise.getJulianGreenwichTime()))
+            {
+                GPLocation arunodayaLocation = new GPLocation(earth.getLocation(sun.arunodaya.getJulianGreenwichTime()));
+                GPLocation sunriseLocation = earth.getLocation(sun.rise.getJulianGreenwichTime());
+                if (!arunodayaLocation.Equals(sunriseLocation))
+                {
+                    // recalculate arunodaya
+                    GPSun newSun = new GPSun();
+                    GPLocationProvider arunodayaLocationProvider = new GPLocationProvider(arunodayaLocation);
+
+                    newSun.arunodaya = new GPGregorianTime(sun.arunodaya);
+                    for (int count = 0; count < 3; count++)
+                    {
+                        newSun.SunCalc(sun.arunodaya, arunodayaLocationProvider);
+                        arunodayaLocation = earth.getLocation(newSun.arunodaya.getJulianGreenwichTime());
+                        arunodayaLocationProvider.setDefaultLocation(arunodayaLocation);
+                    }
+
+                    sun.arunodaya_deg = newSun.arunodaya_deg;
+                    sun.arunodaya = new GPGregorianTime(vct);
+                    sun.arunodaya.setDayHours(SetDegTime(sun.arunodaya_deg + earth.getTimeZoneOffsetHours() * 15.0));
+                }
+
+                //
+                // recalculate noon time
+                GPSun s_noon = new GPSun();
+                // first calculation
+                // for 12:00 universal time
+                s_noon.calculateRiseSet(vct, earth, 0.0);
+                // second calculation
+                // for time of sunrise
+                s_noon.calculateRiseSet(vct, earth, s_noon.noon_deg - 180);
+                // third (last) calculation
+                // for time of sunrise
+                s_noon.calculateRiseSet(vct, earth, s_noon.noon_deg - 180);
+
+                sun.noon_deg = s_noon.noon_deg;
+                sun.noon = new GPGregorianTime(vct);
+                sun.noon.setDayHours(SetDegTime(sun.noon_deg + earth.getTimeZoneOffsetHours() * 15.0));
+            }
+
+            sun.length_deg = s_set.sunset_deg - s_rise.sunrise_deg;
             sun.DayLength = (sun.length_deg / 360.0) * 24.0;
+
+
 
         }
 
