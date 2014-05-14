@@ -913,35 +913,35 @@ namespace GCAL
                 if (CurrentCalculatedObject is GPCalendarResults)
                 {
                     StringBuilder sb = new StringBuilder();
-                    if (sfd.FilterIndex == 0)
+                    if (sfd.FilterIndex == 1)
                     {
                         FormaterPlain.FormatCalendarOld((CurrentCalculatedObject as GPCalendarResults), sb);
                     }
-                    else if (sfd.FilterIndex == 1)
+                    else if (sfd.FilterIndex == 2)
                     {
                         FormaterRtf.FormatCalendarRtf((CurrentCalculatedObject as GPCalendarResults), sb);
                     }
-                    else if (sfd.FilterIndex == 2)
+                    else if (sfd.FilterIndex == 3)
                     {
                         FormaterHtml.WriteCalendarHTML((CurrentCalculatedObject as GPCalendarResults), sb);
                     }
-                    else if (sfd.FilterIndex == 3)
+                    else if (sfd.FilterIndex == 4)
                     {
                         FormaterHtml.WriteCalendarHtmlTable((CurrentCalculatedObject as GPCalendarResults), sb);
                     }
-                    else if (sfd.FilterIndex == 4)
+                    else if (sfd.FilterIndex == 5)
                     {
                         FormaterCSV.FormatCalendarCSV((CurrentCalculatedObject as GPCalendarResults), sb);
                     }
-                    else if (sfd.FilterIndex == 5)
+                    else if (sfd.FilterIndex == 6)
                     {
                         FormaterICAL.FormatCalendarICAL((CurrentCalculatedObject as GPCalendarResults), sb);
                     }
-                    else if (sfd.FilterIndex == 6)
+                    else if (sfd.FilterIndex == 7)
                     {
                         FormaterVCAL.FormatCalendarVCAL((CurrentCalculatedObject as GPCalendarResults), sb);
                     }
-                    else if (sfd.FilterIndex == 7)
+                    else if (sfd.FilterIndex == 8)
                     {
                         FormaterXml.WriteCalendarXml((CurrentCalculatedObject as GPCalendarResults), sb);
                     }
@@ -959,11 +959,11 @@ namespace GCAL
                 if (CurrentCalculatedObject is GPCalendarPlusEventsResults)
                 {
                     StringBuilder sb = new StringBuilder();
-                    if (sfd.FilterIndex == 0)
+                    if (sfd.FilterIndex == 1)
                     {
                         FormaterPlain.FormatCalendarPlusCorePlain((CurrentCalculatedObject as GPCalendarPlusEventsResults), sb);
                     }
-                    else if (sfd.FilterIndex == 1)
+                    else if (sfd.FilterIndex == 2)
                     {
                         FormaterHtml.WriteCalendarPlusCoreHTML((CurrentCalculatedObject as GPCalendarPlusEventsResults), sb);
                     }
@@ -981,19 +981,19 @@ namespace GCAL
                 if (CurrentCalculatedObject is GPCoreEventResults)
                 {
                     StringBuilder sb = new StringBuilder();
-                    if (sfd.FilterIndex == 0)
+                    if (sfd.FilterIndex == 1)
                     {
                         FormaterPlain.FormatEventsText((CurrentCalculatedObject as GPCoreEventResults), sb);
                     }
-                    else if (sfd.FilterIndex == 1)
+                    else if (sfd.FilterIndex == 2)
                     {
                         FormaterRtf.FormatEventsRtf((CurrentCalculatedObject as GPCoreEventResults), sb);
                     }
-                    else if (sfd.FilterIndex == 2)
+                    else if (sfd.FilterIndex == 3)
                     {
                         FormaterHtml.WriteEventsHTML((CurrentCalculatedObject as GPCoreEventResults), sb);
                     }
-                    else if (sfd.FilterIndex == 3)
+                    else if (sfd.FilterIndex == 4)
                     {
                         FormaterXml.FormatEventsXML((CurrentCalculatedObject as GPCoreEventResults), sb);
                     }
@@ -1009,7 +1009,7 @@ namespace GCAL
             {
                 if (CurrentCalculatedObject is GPCalendarTwoLocResults)
                 {
-                    if (sfd.FilterIndex == 0)
+                    if (sfd.FilterIndex == 1)
                     {
                         StringBuilder sb = new StringBuilder();
                         FormaterHtml.WriteCompareCalendarHTML((CurrentCalculatedObject as GPCalendarTwoLocResults), sb);
@@ -1027,15 +1027,15 @@ namespace GCAL
                 if (CurrentCalculatedObject is GPMasaListResults)
                 {
                     StringBuilder sb = new StringBuilder();
-                    if (sfd.FilterIndex == 0)
+                    if (sfd.FilterIndex == 1)
                     {
                         FormaterPlain.FormatMasaListText((CurrentCalculatedObject as GPMasaListResults), sb);
                     }
-                    else if (sfd.FilterIndex == 1)
+                    else if (sfd.FilterIndex == 2)
                     {
                         FormaterRtf.FormatMasaListRtf((CurrentCalculatedObject as GPMasaListResults), sb);
                     }
-                    else if (sfd.FilterIndex == 2)
+                    else if (sfd.FilterIndex == 3)
                     {
                         FormaterHtml.WriteMasaListHTML((CurrentCalculatedObject as GPMasaListResults), sb);
                     }
@@ -1053,19 +1053,19 @@ namespace GCAL
                 if (CurrentCalculatedObject is GPAppDayResults)
                 {
                     StringBuilder sb = new StringBuilder();
-                    if (sfd.FilterIndex == 0)
+                    if (sfd.FilterIndex == 1)
                     {
                         FormaterPlain.FormatAppDayText((CurrentCalculatedObject as GPAppDayResults), sb);
                     }
-                    else if (sfd.FilterIndex == 1)
+                    else if (sfd.FilterIndex == 2)
                     {
                         FormaterRtf.FormatAppDayRtf((CurrentCalculatedObject as GPAppDayResults), sb);
                     }
-                    else if (sfd.FilterIndex == 2)
+                    else if (sfd.FilterIndex == 3)
                     {
                         FormaterHtml.WriteAppDayHTML((CurrentCalculatedObject as GPAppDayResults), sb);
                     }
-                    else if (sfd.FilterIndex == 3)
+                    else if (sfd.FilterIndex == 4)
                     {
                         FormaterXml.FormatAppDayXML((CurrentCalculatedObject as GPAppDayResults), sb);
                     }

@@ -21,21 +21,21 @@ namespace GCAL.Base
             builder.AppendLine();
             builder.Append(gpszSeparator);
             builder.AppendLine();
-            builder.AppendLine(getSharedStrings()[978]);
+            builder.AppendLine(getSharedString(978));
             builder.AppendLine();
             builder.AppendLine();
-            builder.AppendLine(getSharedStrings()[979]);
-            builder.AppendLine(getSharedStrings()[980]);
+            builder.AppendLine(getSharedString(979));
+            builder.AppendLine(getSharedString(980));
 
             if (GPDisplays.Calendar.JulianDayVisible() || GPDisplays.Calendar.AyanamsaValueVisible() || GPDisplays.Calendar.SunLongitudeVisible() || GPDisplays.Calendar.MoonLongitudeVisible())
             {
-                builder.AppendLine(getSharedStrings()[981]);
+                builder.AppendLine(getSharedString(981));
             }
 
             // last line
             builder.AppendLine();
-            builder.AppendFormat(getSharedStrings()[982], GPAppHelper.getShortVersionText());
-            builder.Append(GPAppHelper.getShortVersionText());
+            builder.AppendFormat(getSharedString(982), GPAppHelper.getLongVersionText());
+            //builder.Append(GPAppHelper.getShortVersionText());
         }
 
         public static void AddTextLine(StringBuilder text, string added)
@@ -54,7 +54,7 @@ namespace GCAL.Base
 
             int i;
 
-            res.AppendFormat(getSharedStrings()[983], inEvents.m_vcStart, inEvents.m_vcEnd);
+            res.AppendFormat(getSharedString(983), inEvents.m_vcStart, inEvents.m_vcEnd);
             res.AppendLine();
             res.AppendLine();
 
@@ -179,11 +179,11 @@ namespace GCAL.Base
                         tp1 = (80 - str.Length) / 2;
                         m_text.Append(string.Empty.PadLeft(tp1));
                         m_text.Append(str);
-                        m_text.Append(string.Empty.PadLeft(tp1 - GPFileHelper.FileVersion.Length));
-                        m_text.AppendLine(GPFileHelper.FileVersion);
+                        m_text.Append(string.Empty.PadLeft(tp1 - GPAppHelper.getShortVersionText().Length));
+                        m_text.AppendLine(GPAppHelper.getShortVersionText());
                         if ((pvd.astrodata.nMasa == GPMasa.ADHIKA_MASA) && ((lastmasa >= GPMasa.SRIDHARA_MASA) && (lastmasa <= GPMasa.DAMODARA_MASA)))
                         {
-                            AddListText(m_text, getSharedStrings()[128]);
+                            AddListText(m_text, getSharedString(128));
                         }
                         m_text.AppendLine();
                         m_text.AppendLine(GPAppHelper.CenterString(daybuff.m_Location.getLocation(pvd.date.getJulianGreenwichTime()).getFullName(), 80));
@@ -199,8 +199,8 @@ namespace GCAL.Base
                         tp1 = (80 - str.Length) / 2;
                         m_text.Append(string.Empty.PadLeft(tp1));
                         m_text.Append(str);
-                        m_text.Append(string.Empty.PadLeft(tp1 - GPFileHelper.FileVersion.Length));
-                        m_text.AppendLine(GPFileHelper.FileVersion);
+                        m_text.Append(string.Empty.PadLeft(tp1 - GPAppHelper.getShortVersionText().Length));
+                        m_text.AppendLine(GPAppHelper.getShortVersionText());
                         m_text.AppendLine(GPAppHelper.CenterString(daybuff.m_Location.getLocation(pvd.date.getJulianGreenwichTime()).getFullName(), 80));
                         m_text.AppendLine();
                         lastmonth = pvd.date.getMonth();
@@ -235,20 +235,20 @@ namespace GCAL.Base
                     {
                         nMasaHeader = m_text.Length;
                         m_text.Append(" ");
-                        m_text.Append(getSharedStrings()[985].PadRight(16));
-                        m_text.Append(getSharedStrings()[986].ToUpper().PadRight(30));
+                        m_text.Append(getSharedString(985).ToUpper().PadRight(16));
+                        m_text.Append(getSharedString(986).ToUpper().PadRight(30));
                         if (GPDisplays.Calendar.PaksaInfoVisible())
-                            m_text.Append(getSharedStrings()[20].ToUpper().PadRight(6));
+                            m_text.Append(getSharedString(20).ToUpper().PadRight(6));
                         else
                             m_text.Append(string.Empty.PadRight(6));
                         if (GPDisplays.Calendar.YogaVisible())
-                            m_text.Append(getSharedStrings()[104].ToUpper().PadRight(10));
+                            m_text.Append(getSharedString(104).ToUpper().PadRight(10));
                         if (GPDisplays.Calendar.NaksatraVisible())
-                            m_text.Append(getSharedStrings()[15].ToUpper().PadRight(15));
+                            m_text.Append(getSharedString(15).ToUpper().PadRight(15));
                         if (GPDisplays.Calendar.FastingFlagVisible())
-                            m_text.Append(getSharedStrings()[987].ToUpper().PadRight(5));
+                            m_text.Append(getSharedString(987).ToUpper().PadRight(5));
                         if (GPDisplays.Calendar.RasiVisible())
-                            m_text.Append(getSharedStrings()[105].ToUpper().PadRight(15));
+                            m_text.Append(getSharedString(105).ToUpper().PadRight(15));
                         nMasaHeader = m_text.Length - nMasaHeader;
                         m_text.AppendLine();
                         m_text.AppendLine(string.Empty.PadRight(nMasaHeader, '-'));
@@ -260,6 +260,8 @@ namespace GCAL.Base
                         m_text.Append(dayText);
                 }
             }
+
+            AddNoteText(m_text);
 
             return 1;
         }
@@ -276,7 +278,7 @@ namespace GCAL.Base
             str = str3;
             if (pvd.astrodata.sun.eclipticalLongitude < 0.0)
             {
-                AddListText(dayText, str, getSharedStrings()[974]);
+                AddListText(dayText, str, getSharedString(974));
                 return 1;
             }
             AddListText(dayText, str, str2);
@@ -448,11 +450,11 @@ namespace GCAL.Base
             string stt;
 
             str.Remove(0, str.Length);
-            str.AppendLine(GPAppHelper.CenterString(getSharedStrings()[39], 60));
+            str.AppendLine(GPAppHelper.CenterString(getSharedString(39), 60));
             str.AppendLine();
             str.AppendLine();
             str.AppendLine(GPAppHelper.CenterString(mlist.m_location.getLocation(0).getFullName(), 60));
-            str.AppendFormat(getSharedStrings()[41], mlist.vc_start, mlist.vc_end);
+            str.AppendFormat(getSharedString(41), mlist.vc_start, mlist.vc_end);
             str.AppendLine();
             str.AppendLine(string.Empty.PadRight(60,'='));
             str.AppendLine();
@@ -491,12 +493,12 @@ namespace GCAL.Base
 
             str.AppendFormat("{0}, {1} {2}", loc.getFullName(), loc.getLocation(0).getLatitudeString(), loc.getLocation(0).getLongitudeString());
             str.AppendLine();
-            str.AppendFormat("{0}: {1}", getSharedStrings()[12], loc.getLocation(0).getTimeZoneString());
+            str.AppendFormat("{0}: {1}", getSharedString(12), loc.getLocation(0).getTimeZoneString());
             str.AppendLine();
             str.AppendLine();
             str.AppendFormat("[{0} - {1}]", vc, getSharedStrings()[vc.getDayOfWeek()]);
             str.AppendLine();
-            str.AppendFormat("  {0}, {1} {2}", GPTithi.getName(p.astrodata.nTithi), GPPaksa.getName(p.astrodata.nPaksa), getSharedStrings()[20]);
+            str.AppendFormat("  {0}, {1} {2}", GPTithi.getName(p.astrodata.nTithi), GPPaksa.getName(p.astrodata.nPaksa), getSharedString(20));
             str.AppendLine();
             str.Append("  ");
             str.AppendFormat("{0}, {1}", p.getMasaLongName(), p.getGaurabdaYearLongString());
@@ -534,29 +536,29 @@ namespace GCAL.Base
             if (GPDisplays.Today.BrahmaMuhurtaVisible())
             {
                 str.AppendLine();
-                str.AppendFormat("{0} {1}", getSharedStrings()[988], p.astrodata.sun.arunodaya.getShortMuhurtaRange(0));
+                str.AppendFormat("{0} {1}", getSharedString(988), p.astrodata.sun.arunodaya.getShortMuhurtaRange(0));
             }
 
             if (GPDisplays.Today.SunriseVisible())
             {
                 str.AppendLine();
                 str2 = string.Format("{0} {1} ",
-                    getSharedStrings()[51], p.astrodata.sun.rise.getShortTimeString());
+                    getSharedString(51), p.astrodata.sun.rise.getShortTimeString());
                 str.Append(str2);
                 if (GPDisplays.Today.SandhyaTimesVisible())
                 {
-                    str.AppendFormat(" {0} {1}", getSharedStrings()[989], p.astrodata.sun.rise.getShortSandhyaRange());
+                    str.AppendFormat(" {0} {1}", getSharedString(989), p.astrodata.sun.rise.getShortSandhyaRange());
                 }
                 str.AppendFormat(" ({0})", GPAppHelper.GetDSTSignature(p.isDaylightInEffect()));
                 str.AppendLine();
             }
             if (GPDisplays.Today.NoonVisible())
             {
-                str2 = string.Format("{0}    {1} ", getSharedStrings()[857], p.astrodata.sun.noon.getShortTimeString());
+                str2 = string.Format("{0}    {1} ", getSharedString(857), p.astrodata.sun.noon.getShortTimeString());
                 str.Append(str2);
                 if (GPDisplays.Today.SandhyaTimesVisible())
                 {
-                    str.AppendFormat(" {0} {1} ", getSharedStrings()[989], p.astrodata.sun.noon.getShortSandhyaRange());
+                    str.AppendFormat(" {0} {1} ", getSharedString(989), p.astrodata.sun.noon.getShortSandhyaRange());
                 }
                 str2 = string.Format(" ({0})", GPAppHelper.GetDSTSignature(p.isDaylightInEffect()));
                 str.Append(str2);
@@ -564,11 +566,11 @@ namespace GCAL.Base
             }
             if (GPDisplays.Today.SunsetVisible())
             {
-                str2 = string.Format("{0}  {1} ", getSharedStrings()[52], p.astrodata.sun.set.getShortTimeString());
+                str2 = string.Format("{0}  {1} ", getSharedString(52), p.astrodata.sun.set.getShortTimeString());
                 str.Append(str2);
                 if (GPDisplays.Today.SandhyaTimesVisible())
                 {
-                    str.AppendFormat(" {0} {1} ", getSharedStrings()[989], p.astrodata.sun.set.getShortSandhyaRange());
+                    str.AppendFormat(" {0} {1} ", getSharedString(989), p.astrodata.sun.set.getShortSandhyaRange());
                 }
                 str.AppendFormat(" ({0})", GPAppHelper.GetDSTSignature(p.isDaylightInEffect()));
                 str.AppendLine();
@@ -577,20 +579,20 @@ namespace GCAL.Base
             if (GPDisplays.Today.SunriseInfo())
             {
                 str.AppendLine();
-                str.AppendLine(getSharedStrings()[990]);
+                str.AppendLine(getSharedString(990));
                 str.AppendLine();
-                str.AppendFormat("   {0} {1}", GPNaksatra.getName(p.astrodata.nNaksatra), getSharedStrings()[15]);
+                str.AppendFormat("   {0} {1}", GPNaksatra.getName(p.astrodata.nNaksatra), getSharedString(15));
                 if (GPDisplays.Today.NaksatraPadaVisible())
                 {
-                    str.AppendFormat(", {0} {1} ({2})", p.getNaksatraElapsedString(), getSharedStrings()[993], getSharedStrings()[811 + p.getNaksatraPada()]);
+                    str.AppendFormat(", {0} {1} ({2})", p.getNaksatraElapsedString(), getSharedString(993), getSharedStrings()[811 + p.getNaksatraPada()]);
                 }
                 if (GPDisplays.Today.RasiOfMoonVisible())
                 {
-                    str.AppendFormat(", {0}: {1}", getSharedStrings()[991], GPSankranti.getName(p.astrodata.nMoonRasi), getSharedStrings()[105]);
+                    str.AppendFormat(", {0}: {1}", getSharedString(991), GPSankranti.getName(p.astrodata.nMoonRasi), getSharedString(105));
                 }
-                str.AppendFormat(", {0} {1}", GPYoga.getName(p.astrodata.nYoga), getSharedStrings()[104]);
+                str.AppendFormat(", {0} {1}", GPYoga.getName(p.astrodata.nYoga), getSharedString(104));
                 str.AppendLine();
-                str.AppendFormat("   {0}: {1}.", getSharedStrings()[992], GPSankranti.getName(p.astrodata.nSunRasi));
+                str.AppendFormat("   {0}: {1}.", getSharedString(992), GPSankranti.getName(p.astrodata.nSunRasi));
                 str.AppendLine();
             }
 

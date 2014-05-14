@@ -17,5 +17,10 @@ namespace GCAL.Base
         {
             return GPStrings.getSharedStrings().gstr;
         }
+
+        public static string getSharedString(int index)
+        {
+            return GPStrings.getSharedStrings().gstr[index];
+        }
     }
 }

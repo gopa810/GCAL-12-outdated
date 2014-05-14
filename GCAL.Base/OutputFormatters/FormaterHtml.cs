@@ -297,7 +297,7 @@ namespace GCAL.Base
                         fprintf(fout, "</span>");
                         fprintf(fout, "<br><span class=HeaderLocation>{0}</span>", pvd.getGaurabdaYearLongString());
                         fprintf(fout, "<br><span class=HeaderLocation>{0}</span>", pvd.date.getLocation().getFullName());
-                        fout.AppendFormat("<br><span class=HeaderTimezone>{0}: {1}</span>", gstr[12], pvd.date.getLocation().getTimeZone().getFullName());
+                        //fout.AppendFormat("<br><span class=HeaderTimezone>{0}: {1}</span>", gstr[12], pvd.date.getLocation().getTimeZone().getFullName());
                         fprintf(fout, "</p>");
                         fout.Append("</tr>");
 
@@ -311,7 +311,7 @@ namespace GCAL.Base
                         fout.Append("<p class=MasaHeader>");
                         fout.AppendFormat("<span class=HeaderTitle>{0} {1}</span><br>", GPStrings.getSharedStrings().getString(759 + pvd.date.getMonth()), pvd.date.getYear());
                         fout.AppendFormat("<span class=HeaderLocation>{0}</span><br>", pvd.date.getLocation().getFullName());
-                        fout.AppendFormat("<span class=HeaderTimezone>{0}: {1}</span>", gstr[12], pvd.date.getLocation().getTimeZone().getFullName());
+                        //fout.AppendFormat("<span class=HeaderTimezone>{0}: {1}</span>", gstr[12], pvd.date.getLocation().getTimeZone().getFullName());
                         fout.Append("</p>");
                         fout.Append("</td>");
                         fout.Append("</tr>");
@@ -347,7 +347,7 @@ namespace GCAL.Base
                         fout.Append("<p class=MasaHeader>");
                         fout.AppendFormat("<span class=HeaderTitle>{0}</span><br>", GPStrings.getSharedStrings().getString(9));
                         fout.AppendFormat("<span class=HeaderLocation>{0}</span><br>", pvd.date.getLocation().getFullName());
-                        fout.AppendFormat("<span class=HeaderTimezone>Timezone: {0}</span>", pvd.date.getLocation().getTimeZone().getFullName());
+                        //fout.AppendFormat("<span class=HeaderTimezone>Timezone: {0}</span>", pvd.date.getLocation().getTimeZone().getFullName());
                         fout.Append("</p>");
                         fout.Append("</td>");
                         fout.Append("</tr>");
@@ -447,7 +447,7 @@ namespace GCAL.Base
         {
             fprintf(fout, "<hr align=center width=\"65%\">\n");
             fprintf(fout, "<p align=center>");
-            fprintf(fout, getSharedStrings()[982], GPAppHelper.getShortVersionText());
+            fprintf(fout, getSharedString(982), GPAppHelper.getShortVersionText());
             fprintf(fout, "</p>\n");
         }
 
@@ -470,34 +470,34 @@ namespace GCAL.Base
             int i = 0;
             StringBuilder fout = new StringBuilder();
 
-            fprintf(fout, "<td class=hed colspan=2>{0}</td>", getSharedStrings()[986].ToUpper());
+            fprintf(fout, "<td class=hed colspan=2>{0}</td>", getSharedString(986).ToUpper());
             i += 2;
-            fprintf(fout, "<td class=hed>{0}</td>", getSharedStrings()[986].ToUpper());
+            fprintf(fout, "<td class=hed>{0}</td>", getSharedString(986).ToUpper());
             i++;
 
             if (GPDisplays.Calendar.PaksaInfoVisible())
             {
-                fprintf(fout, "<td class=hed>{0}</td>", getSharedStrings()[20].ToUpper());
+                fprintf(fout, "<td class=hed>{0}</td>", getSharedString(20).ToUpper());
                 i++;
             }
             if (GPDisplays.Calendar.NaksatraVisible())
             {
-                fprintf(fout, "<td class=hed>{0}</td>", getSharedStrings()[15].ToUpper());
+                fprintf(fout, "<td class=hed>{0}</td>", getSharedString(15).ToUpper());
                 i++;
             }
             if (GPDisplays.Calendar.YogaVisible())
             {
-                fprintf(fout, "<td class=hed>{0}</td>", getSharedStrings()[104].ToUpper());
+                fprintf(fout, "<td class=hed>{0}</td>", getSharedString(104).ToUpper());
                 i++;
             }
             if (GPDisplays.Calendar.FastingFlagVisible())
             {
-                fprintf(fout, "<td class=hed>{0}</td>", getSharedStrings()[987].ToUpper());
+                fprintf(fout, "<td class=hed>{0}</td>", getSharedString(987).ToUpper());
                 i++;
             }
             if (GPDisplays.Calendar.RasiVisible())
             {
-                fprintf(fout, "<td class=hed>{0}</td>", getSharedStrings()[105].ToUpper());
+                fprintf(fout, "<td class=hed>{0}</td>", getSharedString(105).ToUpper());
                 i++;
             }
 
@@ -647,11 +647,11 @@ namespace GCAL.Base
 
                     while (festA.Count < m)
                     {
-                        festA.Add(new GPCalendarDay.Festival(""));
+                        festA.Add(new GPCalendarDay.Festival(900, ""));
                     }
                     while (festB.Count < m)
                     {
-                        festB.Add(new GPCalendarDay.Festival(""));
+                        festB.Add(new GPCalendarDay.Festival(900, ""));
                     }
 
                     i = 0;
@@ -930,7 +930,7 @@ span.GramE
 				        fprintf(fout, "</span>");
 				        fprintf(fout, "<br><span class=HeaderLocation>{0}</span>", pvd.getGaurabdaYearLongString());
 				        fprintf(fout, "<br><span class=HeaderLocation>{0}</span>", pvd.date.getLocation().getFullName());
-                        fout.AppendFormat("<br><span class=HeaderTimezone>{0}: {1}</span>", gstr[12], pvd.date.getLocation().getTimeZone().getFullName());
+                        //fout.AppendFormat("<br><span class=HeaderTimezone>{0}: {1}</span>", gstr[12], pvd.date.getLocation().getTimeZone().getFullName());
                         fprintf(fout, "</p>");
                         fout.Append("</tr>");
 
@@ -944,7 +944,7 @@ span.GramE
                         fout.Append("<p class=MasaHeader>");
                         fout.AppendFormat("<span class=HeaderTitle>{0} {1}</span><br>", GPStrings.getSharedStrings().getString(759 + pvd.date.getMonth()), pvd.date.getYear());
                         fout.AppendFormat("<span class=HeaderLocation>{0}</span><br>", pvd.date.getLocation().getFullName());
-                        fout.AppendFormat("<span class=HeaderTimezone>Timezone: {0}</span>", pvd.date.getLocation().getTimeZone().getFullName());
+                        //fout.AppendFormat("<span class=HeaderTimezone>Timezone: {0}</span>", pvd.date.getLocation().getTimeZone().getFullName());
                         fout.Append("</p>");
                         fout.Append("</td>");
                         fout.Append("</tr>");
@@ -980,7 +980,7 @@ span.GramE
                         fout.Append("<p class=MasaHeader>");
                         fout.AppendFormat("<span class=HeaderTitle>{0}</span><br>", GPStrings.getSharedStrings().getString(9));
                         fout.AppendFormat("<span class=HeaderLocation>{0}</span><br>", pvd.date.getLocation().getFullName());
-                        fout.AppendFormat("<span class=HeaderTimezone>Timezone: {0}</span>", pvd.date.getLocation().getTimeZone().getFullName());
+                        //fout.AppendFormat("<span class=HeaderTimezone>Timezone: {0}</span>", pvd.date.getLocation().getTimeZone().getFullName());
                         fout.Append("</p>");
                         fout.Append("</td>");
                         fout.Append("</tr>");

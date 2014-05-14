@@ -139,7 +139,9 @@ namespace GCAL.Base
 
         public string getFullName()
         {
-            return string.Format("{0} ({1}), {2} {3}", getCity(), getCountryName(), getLatitudeString(), getLongitudeString());
+            return string.Format("{0} ({1}), {2} {3}, {4}", getCity(), getCountryName(),
+                getLatitudeString(), getLongitudeString(),
+                getTimeZoneString());
         }
 
         public string getTimeZoneName()

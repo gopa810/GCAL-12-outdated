@@ -135,7 +135,7 @@ namespace GCAL.Base
 
             StringBuilder res = new StringBuilder();
 
-            res.AppendFormat(getSharedStrings()[983], inEvents.m_vcStart, inEvents.m_vcEnd);
+            res.AppendFormat(getSharedString(983), inEvents.m_vcStart, inEvents.m_vcEnd);
             res.AppendLine();
             res.AppendLine();
 

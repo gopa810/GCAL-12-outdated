@@ -245,17 +245,17 @@ namespace GCAL.Base
             switch (i)
             {
                 case GPConstants.FAST_NOON:
-                    return GPStrings.getSharedStrings().gstr[751];
+                    return GPStrings.getSharedStrings().gstr[931];
                 case GPConstants.FAST_SUNSET:
-                    return GPStrings.getSharedStrings().gstr[752];
+                    return GPStrings.getSharedStrings().gstr[932];
                 case GPConstants.FAST_MOONRISE:
-                    return GPStrings.getSharedStrings().gstr[753];
+                    return GPStrings.getSharedStrings().gstr[933];
                 case GPConstants.FAST_DUSK:
-                    return GPStrings.getSharedStrings().gstr[754];
+                    return GPStrings.getSharedStrings().gstr[934];
                 case GPConstants.FAST_MIDNIGHT:
-                    return GPStrings.getSharedStrings().gstr[755];
+                    return GPStrings.getSharedStrings().gstr[935];
                 case GPConstants.FAST_DAY:
-                    return GPStrings.getSharedStrings().gstr[756];
+                    return GPStrings.getSharedStrings().gstr[936];
                 default:
                     return null;
             }

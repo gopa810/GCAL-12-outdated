@@ -224,7 +224,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:GCAL.Base, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:GCAL.Base, Version=13.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_ED20053C653DA26EA1AC2403DDFF706A"
@@ -341,7 +341,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:GCAL"
         "ProductCode" = "8:{8A6AA0B2-E839-4A60-84C7-6188535FEDF8}"
-        "PackageCode" = "8:{2E5323AB-7F4C-4FDF-90B4-08816E5685AA}"
+        "PackageCode" = "8:{F7139EBF-924F-442F-A3BF-7E5A0F2DCDCD}"
         "UpgradeCode" = "8:{8A254EF6-8DA8-4472-BB75-0052F8A08BC6}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

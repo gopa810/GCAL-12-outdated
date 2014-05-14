@@ -94,7 +94,8 @@ namespace GCAL.Base
                 eve.nUsed = int.Parse(parts[8]);
                 eve.nStartYear = int.Parse(parts[9]);
                 int.TryParse(parts[10], out eve.nSpec);
-                eve.nOffsetFromSankranti = int.Parse(parts[12]);
+                eve.nSankranti = int.Parse(parts[12]);
+                eve.nOffsetFromSankranti = int.Parse(parts[13]);
                 sankrantiEvents.Add(eve);
             }
         }

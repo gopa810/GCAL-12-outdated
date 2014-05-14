@@ -108,9 +108,9 @@ namespace GCAL.Engine
             {
                 temp.Clear();
                 GPCalendarDay vd = p_cal.get(i);
-                if (vd.ekadasi_vrata_name.Length > 0)
+                if (vd.sEkadasiVrataName.Length > 0)
                 {
-                    temp.Add(string.Format(GPStrings.getSharedStrings().getString(87), vd.ekadasi_vrata_name));
+                    temp.Add(string.Format(GPStrings.getSharedStrings().getString(87), vd.sEkadasiVrataName));
                 }
                 else if (vd.hasEkadasiParana())
                 {

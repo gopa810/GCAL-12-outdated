@@ -147,6 +147,6 @@ R	1			1		Return Ratha (8 days after Ratha Yatra)	0	0	-10000	3	11		8
 R	1			1		Hera Pancami (4 days after Ratha Yatra)	0	0	-10000	4	11		4
 R	1			1		Gundica Marjana	0	0	-10000	5	11		-1
 R	1			1		Festival of Jagannatha Misra	0	0	-10000	14	12		1
-S	5			1		Ganga Sagara Mela	0	0	-10000			0	0
+S	5			1		Ganga Sagara Mela	0	0	-10000			9	0
 S	5			1		Tulasi Jala Dan begins	0	0	-10000			0	0
 S	5			1		Tulasi Jala Dan ends	0	0	-10000			1	-1

@@ -7,7 +7,7 @@ namespace GCAL.Base
 {
     public class GPEventSankranti: GPEvent
     {
-        public int nSanskranti = 0;
+        public int nSankranti = 0;
         public int nOffsetFromSankranti = 0;
     }
 }

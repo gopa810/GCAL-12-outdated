@@ -395,7 +395,7 @@ namespace GCAL
             foreach (GPEventSankranti eve in eventList.sankrantiEvents)
             {
                 ListViewItem lvi = new ListViewItem(eve.strText);
-                lvi.SubItems.Add(GPSankranti.getName(eve.nSanskranti));
+                lvi.SubItems.Add(GPSankranti.getName(eve.nSankranti));
                 lvi.SubItems.Add(eve.nOffsetFromSankranti.ToString());
                 lvi.SubItems.Add(GPFastType.getName(eve.getRawFastType()));
                 lvi.SubItems.Add(eve.strFastSubject);
@@ -481,7 +481,7 @@ namespace GCAL
                 eve.nOffsetFromSankranti = dlg.Offset;
                 eve.nStartYear = -10000;
                 int.TryParse(dlg.SinceYear, out eve.nStartYear);
-                eve.nSanskranti = dlg.Sankranti;
+                eve.nSankranti = dlg.Sankranti;
                 eve.nUsed = 1;
                 eve.nVisible = dlg.EventVisible ? 1 : 0;
                 eve.strFastSubject = dlg.FastSubject;
@@ -657,7 +657,7 @@ namespace GCAL
             dlg.FastType = eve.getRawFastType();
             dlg.Offset = eve.nOffsetFromSankranti;
             dlg.SinceYear = ((eve.nStartYear < -9999) ? "" : eve.nStartYear.ToString());
-            dlg.Sankranti = eve.nSanskranti;
+            dlg.Sankranti = eve.nSankranti;
             dlg.EventVisible = (eve.nVisible != 0);
             dlg.FastSubject = eve.strFastSubject;
 
@@ -669,7 +669,7 @@ namespace GCAL
                 eve.nOffsetFromSankranti = dlg.Offset;
                 eve.nStartYear = -10000;
                 int.TryParse(dlg.SinceYear, out eve.nStartYear);
-                eve.nSanskranti = dlg.Sankranti;
+                eve.nSankranti = dlg.Sankranti;
                 eve.nUsed = 1;
                 eve.nVisible = dlg.EventVisible ? 1 : 0;
                 eve.strFastSubject = dlg.FastSubject;

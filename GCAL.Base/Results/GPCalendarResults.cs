@@ -17,107 +17,101 @@ namespace GCAL.Base
 
         public void ResolveFestivalsFasting(int nIndex)
         {
-            GPCalendarDay s = m_pData[nIndex - 1];
-            GPCalendarDay t = m_pData[nIndex];
-            GPCalendarDay u = m_pData[nIndex + 1];
+            GPCalendarDay previousDay = m_pData[nIndex - 1];
+            GPCalendarDay currentDay = m_pData[nIndex];
+            GPCalendarDay nextDay = m_pData[nIndex + 1];
 
-            int nfIndex = 0;
-            int nftype;
-            GPCalendarDay.Festival nf = null;
+            int fastItemIndex = 0;
+            int fastTypeOfEvent;
+            GPCalendarDay.Festival fastingItem = null;
             String str;
             String subject;
-            int fasting = 0;
+            int fastTypeOfDay = 0;
             string ch;
 
-            if (t.nMhdType != GPConstants.EV_NULL)
+            if (currentDay.nMahadvadasiType != GPConstants.EV_NULL)
             {
                 // begin of inserting "total fast even from water..."
                 // in case of pandava nirjala and old style fasting
-                if (t.ekadasi_vrata_name == GPStrings.getSharedStrings().getString(563)
+                if (currentDay.sEkadasiVrataName == GPStrings.getSharedStrings().getString(563)
                     && GPDisplays.General.OldStyleFasting())
-                    t.Festivals.Insert(0, new GPCalendarDay.Festival(GPStrings.getSharedStrings().getString(173)));
+                    currentDay.Festivals.Insert(0, new GPCalendarDay.Festival(11, GPStrings.getSharedStrings().getString(173)));
                 // end of inserting "total fast even from water..." text
 
-                str = string.Format(GPStrings.getSharedStrings().getString(87), t.ekadasi_vrata_name);
-                t.Festivals.Insert(0, new GPCalendarDay.Festival(str));
+                str = string.Format(GPStrings.getSharedStrings().getString(87), currentDay.sEkadasiVrataName);
+                currentDay.Festivals.Insert(0, new GPCalendarDay.Festival(10, str));
             }
 
-            ch = GPAppHelper.GetMahadvadasiName(t.nMhdType);
+            ch = GPAppHelper.GetMahadvadasiName(currentDay.nMahadvadasiType);
             if (ch != null)
             {
-                t.Festivals.Insert(0, new GPCalendarDay.Festival(ch));
+                currentDay.Festivals.Insert(0, new GPCalendarDay.Festival(8, ch));
             }
 
             // analyze for fasting
-            nfIndex = t.GetFastingItemIndex();
-            while (nfIndex >= 0)
+            fastItemIndex = currentDay.GetFastingItemIndex();
+            while (fastItemIndex >= 0)
             {
-                nf = t.Festivals[nfIndex];
-                // ziskava typ postu
-                nftype = nf.getFastType();
-                subject = (nf.FastSubject != null ? nf.FastSubject : string.Empty);
+                fastingItem = currentDay.Festivals[fastItemIndex];
+                // getting the type of fast
+                fastTypeOfEvent = fastingItem.getFastType();
+                subject = (fastingItem.FastSubject != null ? fastingItem.FastSubject : string.Empty);
 
-                // zaraduje post do dni
-                if (nftype != 0)
+                // resolving fast
+                if (fastTypeOfEvent > GPConstants.FAST_NULL)
                 {
-                    if (s.nFastType == GPConstants.FAST_EKADASI)
+                    if (previousDay.nFastType == GPConstants.FAST_EKADASI)
                     {
 
                         if (!GPDisplays.General.OldStyleFasting())
                         {
-                            s.Festivals.Add(new GPCalendarDay.Festival(string.Format(GPStrings.getSharedStrings().getString(960), subject)));
-                            t.Festivals.Add(new GPCalendarDay.Festival(GPStrings.getSharedStrings().getString(860)));
+                            previousDay.Festivals.Add(new GPCalendarDay.Festival(100, string.Format(GPStrings.getSharedStrings().getString(960), subject)));
+                            currentDay.Festivals.Insert(fastItemIndex + 1, new GPCalendarDay.Festival(fastingItem.SortKey + 1, GPStrings.getSharedStrings().getString(860)));
                         }
                         else
                         {
-                            s.Festivals.Add(new GPCalendarDay.Festival(string.Format(GPStrings.getSharedStrings().getString(961), subject)));
-                            t.Festivals.Add(new GPCalendarDay.Festival(GPStrings.getSharedStrings().getString(861)));
+                            previousDay.Festivals.Add(new GPCalendarDay.Festival(100, string.Format(GPStrings.getSharedStrings().getString(961), subject)));
+                            currentDay.Festivals.Insert(fastItemIndex + 1, new GPCalendarDay.Festival(fastingItem.SortKey + 1, GPStrings.getSharedStrings().getString(861)));
                         }
-                        nf.setFastType(GPConstants.FAST_NULL);
+                        fastingItem.setFastType(GPConstants.FAST_NULL);
                     }
-                    else if (t.nFastType == GPConstants.FAST_EKADASI)
+                    else if (currentDay.nFastType == GPConstants.FAST_EKADASI)
                     {
                         if (GPDisplays.General.OldStyleFasting())
-                            t.Festivals.Insert(nfIndex, new GPCalendarDay.Festival(GPStrings.getSharedStrings().getString(862)));//"(Fasting till noon, with feast tomorrow)";
+                            currentDay.Festivals.Insert(fastItemIndex + 1, new GPCalendarDay.Festival(fastingItem.SortKey + 1, GPStrings.getSharedStrings().getString(862)));//"(Fasting till noon, with feast tomorrow)";
                         else
-                            t.Festivals.Insert(nfIndex, new GPCalendarDay.Festival(GPStrings.getSharedStrings().getString(756)));//"(Fast today)"
-                        nf.setFastType(GPConstants.FAST_NULL);
+                            currentDay.Festivals.Insert(fastItemIndex + 1, new GPCalendarDay.Festival(fastingItem.SortKey + 1, GPStrings.getSharedStrings().getString(936)));//"(Fast today)"
+                        fastingItem.setFastType(GPConstants.FAST_NULL);
                     }
                     else
                     {
                         if (!GPDisplays.General.OldStyleFasting())
                         {
-                            if (nftype > 1)
-                                nftype = 7;
-                            else nftype = 0;
+                            if (fastTypeOfEvent > GPConstants.FAST_NOON)
+                                fastTypeOfEvent = GPConstants.FAST_DAY;
+                            else fastTypeOfEvent = GPConstants.FAST_NULL;
                         }
-                        if (nftype != 0)
-                            t.Festivals.Insert(nfIndex, new GPCalendarDay.Festival(GPAppHelper.GetFastingName(0x200 + nftype)));
-                        nf.setFastType(GPConstants.FAST_NULL);
+                        if (fastTypeOfEvent != GPConstants.FAST_NULL)
+                            currentDay.Festivals.Insert(fastItemIndex + 1, new GPCalendarDay.Festival(fastingItem.SortKey + 1, GPAppHelper.GetFastingName(fastTypeOfEvent)));
+                        fastingItem.setFastType(GPConstants.FAST_NULL);
                     }
                 }
-                if (fasting < nftype)
-                    fasting = nftype;
+                if (fastTypeOfDay < fastTypeOfEvent)
+                    fastTypeOfDay = fastTypeOfEvent;
 
-                nfIndex = t.GetFastingItemIndex();
+                // get next fasting item
+                fastItemIndex = currentDay.GetFastingItemIndex();
             }
 
-            if (fasting != 0)
+            // set fasting flag if:
+            //   - new flag is not NULL
+            //   - today is not Ekadasi (when Ekadasi, this is primary fasting type)
+            //   - yesterday is not Ekadashi (we can't do fasting day after Ekadasi)
+            if (fastTypeOfDay != GPConstants.FAST_NULL
+                && previousDay.nFastType != GPConstants.FAST_EKADASI
+                && currentDay.nFastType != GPConstants.FAST_EKADASI)
             {
-                if (s.nFastType == GPConstants.FAST_EKADASI)
-                {
-                    t.nFeasting = GPConstants.FEAST_TODAY_FAST_YESTERDAY;
-                    s.nFeasting = GPConstants.FEAST_TOMMOROW_FAST_TODAY;
-                }
-                else if (t.nFastType == GPConstants.FAST_EKADASI)
-                {
-                    u.nFeasting = GPConstants.FEAST_TODAY_FAST_YESTERDAY;
-                    t.nFeasting = GPConstants.FEAST_TOMMOROW_FAST_TODAY;
-                }
-                else
-                {
-                    t.nFastType = 0x200 + fasting;
-                }
+                currentDay.nFastType = fastTypeOfDay;
             }
 
         }
@@ -254,7 +248,7 @@ namespace GCAL.Base
 
         public void CalculateEParana(GPCalendarDay s, GPCalendarDay t, GPLocationProvider earth)
         {
-            t.nMhdType = GPConstants.EV_NULL;
+            t.nMahadvadasiType = GPConstants.EV_NULL;
             t.nFastType = GPConstants.FAST_NULL;
 
             double startOfTithi, endOfTithi, theOneFourthOfTithi;
@@ -267,7 +261,7 @@ namespace GCAL.Base
             lengthOfTithi = GPTithi.GetTithiTimes(t.date, out startOfTithi, out endOfTithi, sunRise);
             theOneFourthOfTithi = lengthOfTithi / 4.0 + startOfTithi;
 
-            switch (s.nMhdType)
+            switch (s.nMahadvadasiType)
             {
                 case GPConstants.EV_UNMILANI:
                     endOfParana = endOfTithi;
@@ -508,24 +502,24 @@ namespace GCAL.Base
 
             if (GPTithi.TITHI_GAURA_DVADASI == t.astrodata.nTithi && GPTithi.TITHI_GAURA_DVADASI == t.astrodata.getTithiAtSunset() && IsMhd58(nIndex, out nMahaType))
             {
-                t.nMhdType = nMahaType;
+                t.nMahadvadasiType = nMahaType;
                 nMhdDay = nIndex;
             }
             else if (GPTithi.TITHI_DVADASI(t.astrodata.nTithi))
             {
                 if (GPTithi.TITHI_DVADASI(u.astrodata.nTithi) && GPTithi.TITHI_EKADASI(s.astrodata.nTithi) && GPTithi.TITHI_EKADASI(s.astrodata.getTithiAtArunodaya()))
                 {
-                    t.nMhdType = GPConstants.EV_VYANJULI;
+                    t.nMahadvadasiType = GPConstants.EV_VYANJULI;
                     nMhdDay = nIndex;
                 }
                 else if (NextNewFullIsVriddhi(nIndex, earth))
                 {
-                    t.nMhdType = GPConstants.EV_PAKSAVARDHINI;
+                    t.nMahadvadasiType = GPConstants.EV_PAKSAVARDHINI;
                     nMhdDay = nIndex;
                 }
                 else if (GPTithi.TITHI_LESS_EKADASI(s.astrodata.getTithiAtArunodaya()))
                 {
-                    t.nMhdType = GPConstants.EV_SUDDHA;
+                    t.nMahadvadasiType = GPConstants.EV_SUDDHA;
                     nMhdDay = nIndex;
                 }
             }
@@ -534,7 +528,7 @@ namespace GCAL.Base
             {
                 // fasting day
                 m_pData[nMhdDay].nFastType = GPConstants.FAST_EKADASI;
-                m_pData[nMhdDay].ekadasi_vrata_name = GPAppHelper.GetEkadasiName(t.astrodata.nMasa, t.astrodata.nPaksa);
+                m_pData[nMhdDay].sEkadasiVrataName = GPAppHelper.GetEkadasiName(t.astrodata.nMasa, t.astrodata.nPaksa);
                 m_pData[nMhdDay].ekadasiParanaStart = null;
                 m_pData[nMhdDay].ekadasiParanaEnd = null;
 
@@ -553,6 +547,7 @@ namespace GCAL.Base
             GPCalendarDay t = m_pData[nIndex];
             GPCalendarDay u = m_pData[nIndex + 1];
             GPCalendarDay v = m_pData[nIndex + 2];
+            GPCalendarDay.Festival newFestival = null;
 
             // test for Govardhan-puja
             if (t.astrodata.nMasa == GPMasa.DAMODARA_MASA)
@@ -832,7 +827,7 @@ namespace GCAL.Base
             {
                 if ((t.astrodata.nPaksa == GPPaksa.GAURA_PAKSA) && (t.nFastType == GPConstants.FAST_EKADASI))
                 {
-                    t.Festivals.Add(new GPCalendarDay.Festival(GPStrings.getSharedStrings().getString(81)));
+                    t.Festivals.Add(new GPCalendarDay.Festival(100, GPStrings.getSharedStrings().getString(81)));
                 }
             }
 
@@ -846,16 +841,16 @@ namespace GCAL.Base
                 // purnima system
                 if (GPTithi.TITHI_TRANSIT(t.astrodata.nTithi, u.astrodata.nTithi, GPTithi.TITHI_GAURA_CATURDASI, GPTithi.TITHI_PURNIMA))
                 {
-                    u.Festivals.Add(new GPCalendarDay.Festival(GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getSharedStrings().getString(112) + " " + GPStrings.getSharedStrings().getString(965)));
-                    u.Festivals.Add(new GPCalendarDay.Festival(GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getSharedStrings().getString(114)));
+                    u.Festivals.Add(new GPCalendarDay.Festival(400, GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getSharedStrings().getString(112) + " " + GPStrings.getSharedStrings().getString(965)));
+                    u.Festivals.Add(new GPCalendarDay.Festival(401, GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getSharedStrings().getString(114)));
                 }
 
                 // ekadasi system
                 //if (GPTithi.TITHI_TRANSIT(s.astrodata.nTithi, t.astrodata.nTithi, GPTithi.TITHI_GAURA_DASAMI, GPTithi.TITHI_GAURA_EKADASI))
-                if ((t.astrodata.nPaksa == GPPaksa.GAURA_PAKSA) && (t.nMhdType != GPConstants.EV_NULL))
+                if ((t.astrodata.nPaksa == GPPaksa.GAURA_PAKSA) && (t.nMahadvadasiType != GPConstants.EV_NULL))
                 {
-                    t.Festivals.Add(new GPCalendarDay.Festival(GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getSharedStrings().getString(112) + " " + GPStrings.getSharedStrings().getString(967)));
-                    t.Festivals.Add(new GPCalendarDay.Festival(GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getSharedStrings().getString(114)));
+                    t.Festivals.Add(new GPCalendarDay.Festival(402, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getSharedStrings().getString(112) + " " + GPStrings.getSharedStrings().getString(967)));
+                    t.Festivals.Add(new GPCalendarDay.Festival(403, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getSharedStrings().getString(114)));
                 }
             }
 
@@ -865,33 +860,33 @@ namespace GCAL.Base
             {
                 if (s.astrodata.nMasa == GPMasa.ADHIKA_MASA)
                 {
-                    t.Festivals.Add(new GPCalendarDay.Festival(GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getSharedStrings().getString(115)));
-                    t.Festivals.Add(new GPCalendarDay.Festival(GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getSharedStrings().getString(115)));
-                    t.Festivals.Add(new GPCalendarDay.Festival(GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getSharedStrings().getString(115)));
+                    t.Festivals.Add(new GPCalendarDay.Festival(404, GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getSharedStrings().getString(115)));
+                    t.Festivals.Add(new GPCalendarDay.Festival(405, GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getSharedStrings().getString(115)));
+                    t.Festivals.Add(new GPCalendarDay.Festival(406, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getSharedStrings().getString(115)));
                 }
 
                 // pratipat system
                 if (GPTithi.TITHI_TRANSIT(s.astrodata.nTithi, t.astrodata.nTithi, GPTithi.TITHI_PURNIMA, GPTithi.TITHI_KRSNA_PRATIPAT))
                 {
-                    t.Festivals.Add(new GPCalendarDay.Festival(GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getSharedStrings().getString(112) + " " + GPStrings.getSharedStrings().getString(966)));
-                    t.Festivals.Add(new GPCalendarDay.Festival(GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getSharedStrings().getString(114)));
+                    t.Festivals.Add(new GPCalendarDay.Festival(407, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getSharedStrings().getString(112) + " " + GPStrings.getSharedStrings().getString(966)));
+                    t.Festivals.Add(new GPCalendarDay.Festival(408, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getSharedStrings().getString(114)));
                 }
 
                 // first day of particular month for PURNIMA system, when purnima is not KSAYA
                 if (GPTithi.TITHI_TRANSIT(t.astrodata.nTithi, u.astrodata.nTithi, GPTithi.TITHI_GAURA_CATURDASI, GPTithi.TITHI_PURNIMA))
                 {
-                    u.Festivals.Add(new GPCalendarDay.Festival(GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getSharedStrings().getString(116) + " " + GPStrings.getSharedStrings().getString(965)));
-                    u.Festivals.Add(new GPCalendarDay.Festival(GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getSharedStrings().getString(118)));
-                    t.Festivals.Add(new GPCalendarDay.Festival(GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getSharedStrings().getString(113) + " " + GPStrings.getSharedStrings().getString(965)));
+                    u.Festivals.Add(new GPCalendarDay.Festival(409, GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getSharedStrings().getString(116) + " " + GPStrings.getSharedStrings().getString(965)));
+                    u.Festivals.Add(new GPCalendarDay.Festival(410, GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getSharedStrings().getString(118)));
+                    t.Festivals.Add(new GPCalendarDay.Festival(411, GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getSharedStrings().getString(113) + " " + GPStrings.getSharedStrings().getString(965)));
                 }
 
                 // ekadasi system
                 //if (GPTithi.TITHI_TRANSIT(s.astrodata.nTithi, t.astrodata.nTithi, GPTithi.TITHI_GAURA_DASAMI, GPTithi.TITHI_GAURA_EKADASI))
-                if ((t.astrodata.nPaksa == GPPaksa.GAURA_PAKSA) && (t.nMhdType != GPConstants.EV_NULL))
+                if ((t.astrodata.nPaksa == GPPaksa.GAURA_PAKSA) && (t.nMahadvadasiType != GPConstants.EV_NULL))
                 {
-                    t.Festivals.Add(new GPCalendarDay.Festival(GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getSharedStrings().getString(116) + " " + GPStrings.getSharedStrings().getString(967)));
-                    t.Festivals.Add(new GPCalendarDay.Festival(GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getSharedStrings().getString(118)));
-                    s.Festivals.Add(new GPCalendarDay.Festival(GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getSharedStrings().getString(113) + " " + GPStrings.getSharedStrings().getString(967)));
+                    t.Festivals.Add(new GPCalendarDay.Festival(412, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getSharedStrings().getString(116) + " " + GPStrings.getSharedStrings().getString(967)));
+                    t.Festivals.Add(new GPCalendarDay.Festival(413, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getSharedStrings().getString(118)));
+                    s.Festivals.Add(new GPCalendarDay.Festival(414, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getSharedStrings().getString(113) + " " + GPStrings.getSharedStrings().getString(967)));
                 }
             }
 
@@ -901,34 +896,34 @@ namespace GCAL.Base
             {
                 if (s.astrodata.nMasa == GPMasa.ADHIKA_MASA)
                 {
-                    t.Festivals.Add(new GPCalendarDay.Festival(GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getSharedStrings().getString(119)));
-                    t.Festivals.Add(new GPCalendarDay.Festival(GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getSharedStrings().getString(119)));
-                    t.Festivals.Add(new GPCalendarDay.Festival(GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getSharedStrings().getString(119)));
+                    t.Festivals.Add(new GPCalendarDay.Festival(415, GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getSharedStrings().getString(119)));
+                    t.Festivals.Add(new GPCalendarDay.Festival(416, GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getSharedStrings().getString(119)));
+                    t.Festivals.Add(new GPCalendarDay.Festival(417, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getSharedStrings().getString(119)));
                 }
 
                 // pratipat system
                 if (GPTithi.TITHI_TRANSIT(s.astrodata.nTithi, t.astrodata.nTithi, GPTithi.TITHI_PURNIMA, GPTithi.TITHI_KRSNA_PRATIPAT))
                 //		if (s.astrodata.nMasa == SRIDHARA_MASA)
                 {
-                    t.Festivals.Add(new GPCalendarDay.Festival(GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getSharedStrings().getString(116) + " " + GPStrings.getSharedStrings().getString(966)));
-                    t.Festivals.Add(new GPCalendarDay.Festival(GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getSharedStrings().getString(118)));
-                    s.Festivals.Add(new GPCalendarDay.Festival(GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getSharedStrings().getString(113) + " " + GPStrings.getSharedStrings().getString(966)));
+                    t.Festivals.Add(new GPCalendarDay.Festival(418, GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getSharedStrings().getString(116) + " " + GPStrings.getSharedStrings().getString(966)));
+                    t.Festivals.Add(new GPCalendarDay.Festival(419, GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getSharedStrings().getString(118)));
+                    s.Festivals.Add(new GPCalendarDay.Festival(420, GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getSharedStrings().getString(113) + " " + GPStrings.getSharedStrings().getString(966)));
                 }
 
                 // first day of particular month for PURNIMA system, when purnima is not KSAYA
                 if (GPTithi.TITHI_TRANSIT(t.astrodata.nTithi, u.astrodata.nTithi, GPTithi.TITHI_GAURA_CATURDASI, GPTithi.TITHI_PURNIMA))
                 {
-                    u.Festivals.Add(new GPCalendarDay.Festival(GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getSharedStrings().getString(120) + " " + GPStrings.getSharedStrings().getString(965)));
-                    u.Festivals.Add(new GPCalendarDay.Festival(GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getSharedStrings().getString(122)));
-                    t.Festivals.Add(new GPCalendarDay.Festival(GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getSharedStrings().getString(117) + " " + GPStrings.getSharedStrings().getString(965)));
+                    u.Festivals.Add(new GPCalendarDay.Festival(421, GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getSharedStrings().getString(120) + " " + GPStrings.getSharedStrings().getString(965)));
+                    u.Festivals.Add(new GPCalendarDay.Festival(422, GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getSharedStrings().getString(122)));
+                    t.Festivals.Add(new GPCalendarDay.Festival(423, GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getSharedStrings().getString(117) + " " + GPStrings.getSharedStrings().getString(965)));
                 }
                 // ekadasi system
-                if ((t.astrodata.nPaksa == GPPaksa.GAURA_PAKSA) && (t.nMhdType != GPConstants.EV_NULL))
+                if ((t.astrodata.nPaksa == GPPaksa.GAURA_PAKSA) && (t.nMahadvadasiType != GPConstants.EV_NULL))
                 //if (GPTithi.TITHI_TRANSIT(s.astrodata.nTithi, t.astrodata.nTithi, GPTithi.TITHI_GAURA_DASAMI, GPTithi.TITHI_GAURA_EKADASI))
                 {
-                    t.Festivals.Add(new GPCalendarDay.Festival(GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getSharedStrings().getString(120) + " " + GPStrings.getSharedStrings().getString(967)));
-                    t.Festivals.Add(new GPCalendarDay.Festival(GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getSharedStrings().getString(122)));
-                    s.Festivals.Add(new GPCalendarDay.Festival(GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getSharedStrings().getString(117) + " " + GPStrings.getSharedStrings().getString(967)));
+                    t.Festivals.Add(new GPCalendarDay.Festival(424, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getSharedStrings().getString(120) + " " + GPStrings.getSharedStrings().getString(967)));
+                    t.Festivals.Add(new GPCalendarDay.Festival(425, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getSharedStrings().getString(122)));
+                    s.Festivals.Add(new GPCalendarDay.Festival(426, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getSharedStrings().getString(117) + " " + GPStrings.getSharedStrings().getString(967)));
                 }
             }
 
@@ -938,34 +933,34 @@ namespace GCAL.Base
             {
                 if (s.astrodata.nMasa == GPMasa.ADHIKA_MASA)
                 {
-                    t.Festivals.Add(new GPCalendarDay.Festival(GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getSharedStrings().getString(123)));
-                    t.Festivals.Add(new GPCalendarDay.Festival(GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getSharedStrings().getString(123)));
-                    t.Festivals.Add(new GPCalendarDay.Festival(GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getSharedStrings().getString(123)));
+                    t.Festivals.Add(new GPCalendarDay.Festival(427, GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getSharedStrings().getString(123)));
+                    t.Festivals.Add(new GPCalendarDay.Festival(428, GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getSharedStrings().getString(123)));
+                    t.Festivals.Add(new GPCalendarDay.Festival(429, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getSharedStrings().getString(123)));
                 }
                 // pratipat system
                 if (GPTithi.TITHI_TRANSIT(s.astrodata.nTithi, t.astrodata.nTithi, GPTithi.TITHI_PURNIMA, GPTithi.TITHI_KRSNA_PRATIPAT))
                 //		if (s.astrodata.nMasa == HRSIKESA_MASA)
                 {
-                    t.Festivals.Add(new GPCalendarDay.Festival(GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getSharedStrings().getString(120) + " " + GPStrings.getSharedStrings().getString(966)));
-                    t.Festivals.Add(new GPCalendarDay.Festival(GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getSharedStrings().getString(122)));
-                    s.Festivals.Add(new GPCalendarDay.Festival(GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getSharedStrings().getString(117) + " " + GPStrings.getSharedStrings().getString(966)));
+                    t.Festivals.Add(new GPCalendarDay.Festival(430, GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getSharedStrings().getString(120) + " " + GPStrings.getSharedStrings().getString(966)));
+                    t.Festivals.Add(new GPCalendarDay.Festival(431, GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getSharedStrings().getString(122)));
+                    s.Festivals.Add(new GPCalendarDay.Festival(432, GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getSharedStrings().getString(117) + " " + GPStrings.getSharedStrings().getString(966)));
                 }
 
                 // first day of particular month for PURNIMA system, when purnima is not KSAYA
                 if (GPTithi.TITHI_TRANSIT(t.astrodata.nTithi, u.astrodata.nTithi, GPTithi.TITHI_GAURA_CATURDASI, GPTithi.TITHI_PURNIMA))
                 {
-                    u.Festivals.Add(new GPCalendarDay.Festival(GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getSharedStrings().getString(124) + " " + GPStrings.getSharedStrings().getString(965)));
-                    u.Festivals.Add(new GPCalendarDay.Festival(GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getSharedStrings().getString(126)));
-                    t.Festivals.Add(new GPCalendarDay.Festival(GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getSharedStrings().getString(121) + " " + GPStrings.getSharedStrings().getString(965)));
+                    u.Festivals.Add(new GPCalendarDay.Festival(433, GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getSharedStrings().getString(124) + " " + GPStrings.getSharedStrings().getString(965)));
+                    u.Festivals.Add(new GPCalendarDay.Festival(434, GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getSharedStrings().getString(126)));
+                    t.Festivals.Add(new GPCalendarDay.Festival(435, GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getSharedStrings().getString(121) + " " + GPStrings.getSharedStrings().getString(965)));
                 }
 
                 // ekadasi system
-                if ((t.astrodata.nPaksa == GPPaksa.GAURA_PAKSA) && (t.nMhdType != GPConstants.EV_NULL))
+                if ((t.astrodata.nPaksa == GPPaksa.GAURA_PAKSA) && (t.nMahadvadasiType != GPConstants.EV_NULL))
                 //if (GPTithi.TITHI_TRANSIT(s.astrodata.nTithi, t.astrodata.nTithi, GPTithi.TITHI_GAURA_DASAMI, GPTithi.TITHI_GAURA_EKADASI))
                 {
-                    t.Festivals.Add(new GPCalendarDay.Festival(GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getSharedStrings().getString(124) + " " + GPStrings.getSharedStrings().getString(967)));
-                    t.Festivals.Add(new GPCalendarDay.Festival(GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getSharedStrings().getString(126)));
-                    s.Festivals.Add(new GPCalendarDay.Festival(GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getSharedStrings().getString(121) + " " + GPStrings.getSharedStrings().getString(967)));
+                    t.Festivals.Add(new GPCalendarDay.Festival(436, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getSharedStrings().getString(124) + " " + GPStrings.getSharedStrings().getString(967)));
+                    t.Festivals.Add(new GPCalendarDay.Festival(437, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getSharedStrings().getString(126)));
+                    s.Festivals.Add(new GPCalendarDay.Festival(438, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getSharedStrings().getString(121) + " " + GPStrings.getSharedStrings().getString(967)));
                 }
             }
 
@@ -975,37 +970,37 @@ namespace GCAL.Base
             {
                 if (s.astrodata.nMasa == GPMasa.ADHIKA_MASA)
                 {
-                    t.Festivals.Add(new GPCalendarDay.Festival(GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getSharedStrings().getString(127)));
-                    t.Festivals.Add(new GPCalendarDay.Festival(GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getSharedStrings().getString(127)));
-                    t.Festivals.Add(new GPCalendarDay.Festival(GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getSharedStrings().getString(127)));
+                    t.Festivals.Add(new GPCalendarDay.Festival(439, GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getSharedStrings().getString(127)));
+                    t.Festivals.Add(new GPCalendarDay.Festival(440, GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getSharedStrings().getString(127)));
+                    t.Festivals.Add(new GPCalendarDay.Festival(441, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getSharedStrings().getString(127)));
                 }
                 // pratipat system
                 if (GPTithi.TITHI_TRANSIT(s.astrodata.nTithi, t.astrodata.nTithi, GPTithi.TITHI_PURNIMA, GPTithi.TITHI_KRSNA_PRATIPAT))
                 {
-                    t.Festivals.Add(new GPCalendarDay.Festival(GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getSharedStrings().getString(124) + " " + GPStrings.getSharedStrings().getString(966)));
-                    t.Festivals.Add(new GPCalendarDay.Festival(GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getSharedStrings().getString(126)));
-                    s.Festivals.Add(new GPCalendarDay.Festival(GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getSharedStrings().getString(121) + " " + GPStrings.getSharedStrings().getString(966)));
+                    t.Festivals.Add(new GPCalendarDay.Festival(442, GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getSharedStrings().getString(124) + " " + GPStrings.getSharedStrings().getString(966)));
+                    t.Festivals.Add(new GPCalendarDay.Festival(443, GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getSharedStrings().getString(126)));
+                    s.Festivals.Add(new GPCalendarDay.Festival(444, GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getSharedStrings().getString(121) + " " + GPStrings.getSharedStrings().getString(966)));
                 }
 
                 // last day for punima system
                 if (GPTithi.TITHI_TRANSIT(t.astrodata.nTithi, u.astrodata.nTithi, GPTithi.TITHI_GAURA_CATURDASI, GPTithi.TITHI_PURNIMA))
                 {
-                    t.Festivals.Add(new GPCalendarDay.Festival(GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getSharedStrings().getString(125) + " " + GPStrings.getSharedStrings().getString(965)));
+                    t.Festivals.Add(new GPCalendarDay.Festival(445, GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getSharedStrings().getString(125) + " " + GPStrings.getSharedStrings().getString(965)));
                 }
 
                 // ekadasi system
                 //if (GPTithi.TITHI_TRANSIT(t.astrodata.nTithi, u.astrodata.nTithi, GPTithi.TITHI_GAURA_DASAMI, GPTithi.TITHI_GAURA_EKADASI))
-                if ((t.astrodata.nPaksa == GPPaksa.GAURA_PAKSA) && (t.nMhdType != GPConstants.EV_NULL))
+                if ((t.astrodata.nPaksa == GPPaksa.GAURA_PAKSA) && (t.nMahadvadasiType != GPConstants.EV_NULL))
                 {
-                    s.Festivals.Add(new GPCalendarDay.Festival(GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getSharedStrings().getString(125) + " " + GPStrings.getSharedStrings().getString(967)));
+                    s.Festivals.Add(new GPCalendarDay.Festival(446, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getSharedStrings().getString(125) + " " + GPStrings.getSharedStrings().getString(967)));
                 }
 
                 if (GPTithi.TITHI_TRANSIT(t.astrodata.nTithi, u.astrodata.nTithi, GPTithi.TITHI_PURNIMA, GPTithi.TITHI_KRSNA_PRATIPAT))
                 {
-                    t.Festivals.Add(new GPCalendarDay.Festival(GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getSharedStrings().getString(125) + " " + GPStrings.getSharedStrings().getString(966)));
+                    t.Festivals.Add(new GPCalendarDay.Festival(447, GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getSharedStrings().getString(125) + " " + GPStrings.getSharedStrings().getString(966)));
 
                     // on last day of Caturmasya pratipat system is Bhisma Pancaka ending
-                    t.Festivals.Add(new GPCalendarDay.Festival(GPStrings.getSharedStrings().getString(82)));
+                    t.Festivals.Add(new GPCalendarDay.Festival(448, GPStrings.getSharedStrings().getString(82)));
                 }
             }
 
@@ -1023,8 +1018,8 @@ namespace GCAL.Base
                 // if TAT < 11 then NOT_EKADASI
                 if (GPTithi.TITHI_LESS_EKADASI(t.astrodata.getTithiAtArunodaya()))
                 {
-                    t.nMhdType = GPConstants.EV_NULL;
-                    t.ekadasi_vrata_name = string.Empty;
+                    t.nMahadvadasiType = GPConstants.EV_NULL;
+                    t.sEkadasiVrataName = string.Empty;
                     t.nFastType = GPConstants.FAST_NULL;
                 }
                 else
@@ -1034,14 +1029,14 @@ namespace GCAL.Base
                     {
                         if (GPTithi.TITHI_TRAYODASI(u.astrodata.nTithi))
                         {
-                            t.nMhdType = GPConstants.EV_UNMILANI_TRISPRSA;
-                            t.ekadasi_vrata_name = GPAppHelper.GetEkadasiName(t.astrodata.nMasa, t.astrodata.nPaksa);
+                            t.nMahadvadasiType = GPConstants.EV_UNMILANI_TRISPRSA;
+                            t.sEkadasiVrataName = GPAppHelper.GetEkadasiName(t.astrodata.nMasa, t.astrodata.nPaksa);
                             t.nFastType = GPConstants.FAST_EKADASI;
                         }
                         else
                         {
-                            t.nMhdType = GPConstants.EV_UNMILANI;
-                            t.ekadasi_vrata_name = GPAppHelper.GetEkadasiName(t.astrodata.nMasa, t.astrodata.nPaksa);
+                            t.nMahadvadasiType = GPConstants.EV_UNMILANI;
+                            t.sEkadasiVrataName = GPAppHelper.GetEkadasiName(t.astrodata.nMasa, t.astrodata.nPaksa);
                             t.nFastType = GPConstants.FAST_EKADASI;
                         }
                     }
@@ -1049,24 +1044,24 @@ namespace GCAL.Base
                     {
                         if (GPTithi.TITHI_TRAYODASI(u.astrodata.nTithi))
                         {
-                            t.nMhdType = GPConstants.EV_TRISPRSA;
-                            t.ekadasi_vrata_name = GPAppHelper.GetEkadasiName(t.astrodata.nMasa, t.astrodata.nPaksa);
+                            t.nMahadvadasiType = GPConstants.EV_TRISPRSA;
+                            t.sEkadasiVrataName = GPAppHelper.GetEkadasiName(t.astrodata.nMasa, t.astrodata.nPaksa);
                             t.nFastType = GPConstants.FAST_EKADASI;
                         }
                         else
                         {
                             // else ak U je MAHADVADASI then NOT_EKADASI
-                            if (GPTithi.TITHI_EKADASI(u.astrodata.nTithi) || (u.nMhdType >= GPConstants.EV_SUDDHA))
+                            if (GPTithi.TITHI_EKADASI(u.astrodata.nTithi) || (u.nMahadvadasiType >= GPConstants.EV_SUDDHA))
                             {
-                                t.nMhdType = GPConstants.EV_NULL;
-                                t.ekadasi_vrata_name = string.Empty;
+                                t.nMahadvadasiType = GPConstants.EV_NULL;
+                                t.sEkadasiVrataName = string.Empty;
                                 t.nFastType = GPConstants.FAST_NULL;
                             }
-                            else if (u.nMhdType == GPConstants.EV_NULL)
+                            else if (u.nMahadvadasiType == GPConstants.EV_NULL)
                             {
                                 // else suddha ekadasi
-                                t.nMhdType = GPConstants.EV_SUDDHA;
-                                t.ekadasi_vrata_name = GPAppHelper.GetEkadasiName(t.astrodata.nMasa, t.astrodata.nPaksa);
+                                t.nMahadvadasiType = GPConstants.EV_SUDDHA;
+                                t.sEkadasiVrataName = GPAppHelper.GetEkadasiName(t.astrodata.nMasa, t.astrodata.nPaksa);
                                 t.nFastType = GPConstants.FAST_EKADASI;
                             }
                         }
@@ -1310,9 +1305,9 @@ namespace GCAL.Base
             {
                 foreach (GPEventSankranti eve in GPEventList.getShared().sankrantiEvents)
                 {
-                    if (m_pData[i].sankranti_zodiac == eve.nSanskranti)
+                    if (m_pData[i].sankranti_zodiac == eve.nSankranti)
                     {
-                        m_pData[i + eve.nOffsetFromSankranti].Festivals.Add(new GPCalendarDay.Festival(GPDisplays.Keys.FestivalClass(eve.nClass), eve.strText));
+                        m_pData[i + eve.nOffsetFromSankranti].Festivals.Add(new GPCalendarDay.Festival(350, GPDisplays.Keys.FestivalClass(eve.nClass), eve.strText));
                     }
                 }
                 /*if (m_pData[i].sankranti_zodiac == GPSankranti.MAKARA_SANKRANTI)
@@ -1405,6 +1400,11 @@ namespace GCAL.Base
                         }
                     }
                 }
+            }
+
+            for (i = BEFORE_DAYS; i < m_PureCount + BEFORE_DAYS; i++)
+            {
+                m_pData[i].SortFestivals();
             }
 
             return 1;
