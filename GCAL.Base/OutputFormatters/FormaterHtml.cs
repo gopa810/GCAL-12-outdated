@@ -647,11 +647,11 @@ namespace GCAL.Base
 
                     while (festA.Count < m)
                     {
-                        festA.Add(new GPCalendarDay.Festival(900, ""));
+                        festA.Add(new GPCalendarDay.Festival(999, ""));
                     }
                     while (festB.Count < m)
                     {
-                        festB.Add(new GPCalendarDay.Festival(900, ""));
+                        festB.Add(new GPCalendarDay.Festival(999, ""));
                     }
 
                     i = 0;

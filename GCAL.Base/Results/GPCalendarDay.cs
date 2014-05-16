@@ -14,6 +14,26 @@ namespace GCAL.Base
             private int p_fastType = 0;
             private int p_previousFastType = 0;
             public string FastSubject = null;
+
+            /// <summary>
+            /// Sortkey used for sorting results
+            /// 
+            /// Values are used as follows:
+            /// 8       - Mahadvadasi type
+            /// 10      - Ekadasi parana string
+            /// 10      - ekadasi Type
+            /// 11      - Total fast even .....
+            /// 35-65   - event of specified class
+            /// 80      - events depending on sankranti
+            /// 100     - (fasting done yesterday, today ...)
+            /// 200     - event of unspecified class
+            /// 300-316 - various astronomical/civil events for calendar day
+            /// 400-447 - caturmasya strings
+            /// 448     - start/end of Bhisma pancaka
+            /// 900     - default value
+            /// 999     - empty line in comparision HTML report
+            /// </summary>
+            /// 
             public int SortKey = 900;
 
             public Festival()
@@ -350,16 +370,25 @@ namespace GCAL.Base
         public string getEkadasiParanaString()
         {
             string str;
+            string dstIndicator = string.Empty;
+            string dstIndicator2 = string.Empty;
+            string shortTime = "";
 
             if (ekadasiParanaEnd != null)
             {
                 if (GPDisplays.Calendar.EkadasiParanaDetails())
-                    str = string.Format("{0} {1} ({2}) - {3} ({4})", GPStrings.getSharedStrings().gstr[60],
-                        ekadasiParanaStart.getShortTimeString(), GPAppHelper.GetParanaReasonText(EkadasiParanaReasonStart),
-                        ekadasiParanaEnd.getShortTimeString(), GPAppHelper.GetParanaReasonText(EkadasiParanaReasonEnd));
+                {
+                    shortTime = ekadasiParanaStart.getShortTimeString(false, ref dstIndicator);
+                    str = string.Format("{0} {1} ({2}) - {3} ({4}) {5}", GPStrings.getSharedStrings().gstr[60],
+                        shortTime, GPAppHelper.GetParanaReasonText(EkadasiParanaReasonStart),
+                        ekadasiParanaEnd.getShortTimeString(false, ref dstIndicator2), GPAppHelper.GetParanaReasonText(EkadasiParanaReasonEnd), dstIndicator);
+                }
                 else
-                    str = string.Format("{0} {1} - {2}", GPStrings.getSharedStrings().gstr[60],
-                        ekadasiParanaStart.getShortTimeString(), ekadasiParanaEnd.getShortTimeString());
+                {
+                    shortTime = ekadasiParanaStart.getShortTimeString(false, ref dstIndicator);
+                    str = string.Format("{0} {1} - {2} {3}", GPStrings.getSharedStrings().gstr[60],
+                        shortTime, ekadasiParanaEnd.getShortTimeString(false, ref dstIndicator2), dstIndicator);
+                }
             }
             else if (ekadasiParanaStart != null)
             {
@@ -454,11 +483,11 @@ namespace GCAL.Base
             GPCalendarDay.Festival fest = null;
             if (pEvx.hasFasting())
             {
-                fest = new GPCalendarDay.Festival(((pEvx.nClass > 0) ? pEvx.nClass*5 + 30 : 200), GPDisplays.Keys.FestivalClass(pEvx.nClass), pEvx.strText, pEvx.getFastType(), pEvx.strFastSubject);
+                fest = new GPCalendarDay.Festival(((pEvx.nClass >= 0) ? pEvx.nClass*5 + 30 : 200), GPDisplays.Keys.FestivalClass(pEvx.nClass), pEvx.strText, pEvx.getFastType(), pEvx.strFastSubject);
             }
             else
             {
-                fest = new GPCalendarDay.Festival(((pEvx.nClass > 0) ? pEvx.nClass*5 + 30 : 200), GPDisplays.Keys.FestivalClass(pEvx.nClass), pEvx.strText);
+                fest = new GPCalendarDay.Festival(((pEvx.nClass >= 0) ? pEvx.nClass*5 + 30 : 200), GPDisplays.Keys.FestivalClass(pEvx.nClass), pEvx.strText);
             }
             Festivals.Add(fest);
 

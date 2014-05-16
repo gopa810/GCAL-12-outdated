@@ -17,8 +17,8 @@ namespace GCAL.Base
         }
 
         public List<GPMasaDays> arr = new List<GPMasaDays>();
-        public GPGregorianTime vc_end;
-        public GPGregorianTime vc_start;
+        public GPGregorianTime vc_end = null;
+        public GPGregorianTime vc_start = null;
         public int n_countYears = 0;
         public int n_countMasa = 0;
         public int n_startYear = 0;
@@ -30,8 +30,6 @@ namespace GCAL.Base
             n_countMasa = 0;
             n_countYears = 0;
             n_startYear = 0;
-            vc_end = new GPGregorianTime(m_location);
-            vc_start = new GPGregorianTime(m_location);
         }
 
         public int CalcMasaList(GPLocationProvider loc, int nYear, int nCount)
@@ -41,6 +39,8 @@ namespace GCAL.Base
             GPGregorianTime d = new GPGregorianTime(loc);
             GPGregorianTime de = new GPGregorianTime(loc);
             GPGregorianTime t = new GPGregorianTime(loc);
+            vc_end = new GPGregorianTime(loc);
+            vc_start = new GPGregorianTime(loc);
             int lm = -1;
 
             mlist.n_startYear = nYear;

@@ -27,6 +27,7 @@ namespace GCAL.Base
 
             b_adhika = false;
 
+            d.calculateDayData(aEvente, aLocation);
             //d.nTithi = GetPrevTithiStart(m_earth, vc, dprev);
             //GetNextTithiStart(m_earth, vc, dnext);
             //vcsun.setDayHours(vcsun.getDayHours() - vcsun.getTimeZoneOffsetHours() / 24.0);
@@ -57,16 +58,16 @@ namespace GCAL.Base
                 d.nMasa = GPEngine.GetRasi(d.sun.eclipticalLongitude, d.msAyanamsa);
                 b_adhika = true;
             }
-
+            string dstApplicable = "";
             List<string> gstr = GPStrings.getSharedStrings().gstr;
             output.Add(new GPStringPair(gstr[25], "", true));
             output.Add(new GPStringPair(gstr[7], vc.ToString()));
-            output.Add(new GPStringPair(gstr[8], vc.getShortTimeString()));
-            output.Add(new GPStringPair(gstr[9], vc.getLocation().getCity()));
-            output.Add(new GPStringPair(gstr[10], vc.getLocation().getLatitudeString()));
-            output.Add(new GPStringPair(gstr[11], vc.getLocation().getLongitudeString()));
-            output.Add(new GPStringPair(gstr[12], vc.getLocation().getTimeZoneName()));
-            output.Add(new GPStringPair(gstr[1001], "N/A"));
+            output.Add(new GPStringPair(gstr[8], vc.getShortTimeString(true, ref dstApplicable)));
+            output.Add(new GPStringPair(gstr[9], vc.getLocation().getFullName()));
+            //output.Add(new GPStringPair(gstr[10], vc.getLocation().getLatitudeString()));
+            //output.Add(new GPStringPair(gstr[11], vc.getLocation().getLongitudeString()));
+            //output.Add(new GPStringPair(gstr[12], vc.getLocation().getTimeZoneName()));
+            //output.Add(new GPStringPair(gstr[1001], dstApplicable));
             output.Add(new GPStringPair(gstr[13], GPTithi.getName(d.nTithi)));
             output.Add(new GPStringPair(gstr[14], string.Format("{0:0.###} %", d.nTithiElapse)));
             output.Add(new GPStringPair(gstr[15], GPNaksatra.getName(d.nNaksatra)));

@@ -690,34 +690,43 @@ namespace GCAL.Base
 
         public string getShortTimeString()
         {
-                bool dst;
-                DateTime dt;
-                getLocalTimeEx(out dt, out dst);
-                int h = dt.Hour;
-                int m = dt.Minute + ((dt.Second > 30) ? 1 : 0);
+            string s = string.Empty;
+            return getShortTimeString(true, ref s);
+        }
 
-                if (getLocation().getTimeZone().isSupportDaylightSaving())
+        public string getShortTimeString(bool showDstIndicator, ref string dstIndicator)
+        {
+            bool dst;
+            DateTime dt;
+            getLocalTimeEx(out dt, out dst);
+            int h = dt.Hour;
+            int m = dt.Minute + ((dt.Second > 30) ? 1 : 0);
+
+            if (dstIndicator != null && getLocation().getTimeZone().isSupportDaylightSaving())
+                dstIndicator = GPAppHelper.GetDSTSignature(dst ? 1 : 0);
+
+            if (getLocation().getTimeZone().isSupportDaylightSaving() && showDstIndicator)
+            {
+                if (timeFormat24)
                 {
-                    if (timeFormat24)
-                    {
-                        return string.Format("{0:00}:{1:00} ({2})", h, m, GPAppHelper.GetDSTSignature(dst ? 1 : 0));
-                    }
-                    else
-                    {
-                        return string.Format("{0:00}:{1:00} {2} ({3})", (((h % 12) + 11) % 12 + 1), m, (h >= 12 ? "PM" : "AM"), GPAppHelper.GetDSTSignature(dst ? 1 : 0));
-                    }
+                    return string.Format("{0:00}:{1:00} ({2})", h, m, GPAppHelper.GetDSTSignature(dst ? 1 : 0));
                 }
                 else
                 {
-                    if (timeFormat24)
-                    {
-                        return string.Format("{0:00}:{1:00}", h, m);
-                    }
-                    else
-                    {
-                        return string.Format("{0:00}:{1:00} {2}", (((h % 12) + 11) % 12 + 1), m, (h >= 12 ? "PM" : "AM"));
-                    }
+                    return string.Format("{0:00}:{1:00} {2} ({3})", (((h % 12) + 11) % 12 + 1), m, (h >= 12 ? "PM" : "AM"), GPAppHelper.GetDSTSignature(dst ? 1 : 0));
                 }
+            }
+            else
+            {
+                if (timeFormat24)
+                {
+                    return string.Format("{0:00}:{1:00}", h, m);
+                }
+                else
+                {
+                    return string.Format("{0:00}:{1:00} {2}", (((h % 12) + 11) % 12 + 1), m, (h >= 12 ? "PM" : "AM"));
+                }
+            }
         }
 
         public string getShortSandhyaRange()

@@ -827,7 +827,7 @@ namespace GCAL.Base
             {
                 if ((t.astrodata.nPaksa == GPPaksa.GAURA_PAKSA) && (t.nFastType == GPConstants.FAST_EKADASI))
                 {
-                    t.Festivals.Add(new GPCalendarDay.Festival(100, GPStrings.getSharedStrings().getString(81)));
+                    t.Festivals.Add(new GPCalendarDay.Festival(448, GPStrings.getSharedStrings().getString(81)));
                 }
             }
 
@@ -1307,7 +1307,7 @@ namespace GCAL.Base
                 {
                     if (m_pData[i].sankranti_zodiac == eve.nSankranti)
                     {
-                        m_pData[i + eve.nOffsetFromSankranti].Festivals.Add(new GPCalendarDay.Festival(350, GPDisplays.Keys.FestivalClass(eve.nClass), eve.strText));
+                        m_pData[i + eve.nOffsetFromSankranti].Festivals.Add(new GPCalendarDay.Festival(80, GPDisplays.Keys.FestivalClass(eve.nClass), eve.strText));
                     }
                 }
                 /*if (m_pData[i].sankranti_zodiac == GPSankranti.MAKARA_SANKRANTI)
