@@ -1,0 +1,88 @@
+<html>
+<head><title></title>
+<script>
+<!--
+
+function shh(highIndex, elemId) {
+
+	var highColor2 = '#bbbbbb';
+
+    var elem = document.getElementById(elemId);
+	var isSelectedElem = 0;
+	if (elem.hasAttribute('seld') && elem.getAttribute('seld') == 1) {
+		isSelectedElem = 1;
+	}
+	if (highIndex == 2) {
+	    attr = elem.attributes.getNamedItem('seld');
+	    if (isSelectedElem == 1) {
+			elem.style.backgroundColor = '#dddddd';
+			elem.setAttribute('seld', 0);
+		} else {
+			elem.style.backgroundColor = '#bbbbbb';
+			elem.setAttribute('seld', 1);
+		}
+	}
+	else if (highIndex == 1) {
+	    if (isSelectedElem == 0) {
+			elem.style.backgroundColor = '#dddddd';
+		}
+	}
+	else if (highIndex == 0) {
+	    if (isSelectedElem == 0) {
+			elem.style.backgroundColor = '';
+		}
+	}
+
+}
+
+-->
+</script>
+</head>
+
+
+<body>
+
+<table style='border=0px' width="100%">
+<tr height=32px>
+
+<!-- element should not be selectable by using these:
+
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+
+http://stackoverflow.com/questions/826782/css-rule-to-disable-text-selection-highlighting
+
+-->
+
+<td onmouseover='shh(1, "t0")' onmouseout='shh(0, "t0")' onclick='shh(2,"t0")' id='t0'>
+Some text inside;
+</td>
+</tr>
+<tr height=32px>
+<td  height=32px onmouseover='shh(1, "t1")' onmouseout='shh(0, "t1")' onclick='shh(2,"t1")' id='t1'>
+Some text inside;
+</td>
+</tr>
+<tr height=32px>
+<td height=32px onmouseover='shh(1, "t2")' onmouseout='shh(0, "t2")' onclick='shh(2,"t2")' id='t2'>
+Some text inside;
+</td>
+</tr>
+<tr height=32px>
+<td height=32px onmouseover='shh(1, "t3")' onmouseout='shh(0, "t3")' onclick='shh(2,"t3")' id='t3'>
+Some text inside;
+</td>
+</tr>
+<tr>
+<td height=32px onmouseover='shh(1, "t4")' onmouseout='shh(0, "t4")' onclick='shh(2,"t4")' id='t4'>
+Some text inside;
+</td>
+</tr>
+</table>
+
+</body>
+</html>

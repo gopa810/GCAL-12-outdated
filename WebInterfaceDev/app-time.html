@@ -1,0 +1,115 @@
+<html>
+<head>
+<title></title>
+
+
+<style>
+td.noselect
+{
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+}
+</style>
+
+<script>
+var format24 = 1;
+var lastRadio = '';
+var date = new Date();
+var count0 = date.getHours();
+var count1 = date.getMinutes();
+
+function updateCounter()
+{
+	var elem = document.getElementById('counter');
+	elem.innerHTML = count0 + ":" + (count1 < 10 ? "0" : "") + count1;
+}
+
+function validateHours()
+{
+	  if (count0 > 23)
+	    count0 -= 24;
+	  if (count0 < 0)
+	     count0 += 24;
+}
+
+function incr(type, dif)
+{
+	if (type == 0) {
+	  count0 += dif;
+	  validateHours();
+	}
+    else {
+	  count1 += dif;
+	  if (count1 > 59)
+	  {
+	     count1 -= 60;
+ 		 count0 ++;
+		 validateHours();
+	  }
+	}
+	updateCounter();
+}
+
+function decr(type, dif)
+{
+	if (type == 0)
+	{
+	  count0 -= dif;
+	  validateHours();
+	}
+    else
+	{
+	  count1 -= dif;
+	  if (count1 < 0)
+	  {
+	     count1 += 60;
+		 count0 --;
+		 validateHours();
+	  }
+	}
+
+	updateCounter();
+}
+
+</script>
+
+</head>
+
+<body>
+
+
+<h1>Time</h1>
+
+<table width=240pt align=center>
+<tr>
+<td style='text-align:right;font-size:24pt' id='counter' rowspan=2>00:00</td>
+<td width=32pt class='noselect' style='text-align:center;cursor:pointer' onclick='incr(0, 1);'>+ Hr</td>
+<td width=32pt class='noselect' style='text-align:center;cursor:pointer' onclick='incr(1, 1);'>+ Min</td>
+<td width=32pt class='noselect' style='text-align:center;cursor:pointer' onclick='incr(1, 10);'>+10 Min</td>
+</tr><tr>
+<td width=32pt class='noselect' style='text-align:center;cursor:pointer' onclick='decr(0, 1);'>- Hr</td>
+<td width=32pt class='noselect' style='text-align:center;cursor:pointer' onclick='decr(1, 1);'>- Min</td>
+<td width=32pt class='noselect' style='text-align:center;cursor:pointer' onclick='decr(1, 10);'>-10 Min</td>
+</tr>
+</table>
+
+<script>
+	updateCounter();
+</script>
+
+<div>
+<table align=center width=240pt>
+<tr>
+<td style='cursor:pointer;text-align:center' onclick='window.location.href="app-start.html"'>&lt; Date</td>
+<td style='cursor:pointer;text-align:center' onclick='window.location.href="appday.html"'>Calculate &gt;</td>
+</tr>
+</table>
+</div>
+</body>
+</html>
+
+

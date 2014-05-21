@@ -1,0 +1,81 @@
+<html>
+<head>
+<title></title>
+
+
+<style>
+td.noselect
+{
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+}
+</style>
+
+<script>
+
+var date = new Date();
+var lastRadio = '';
+var count = date.getFullYear();
+
+
+function updateCounter()
+{
+	var elem = document.getElementById('counter');
+	elem.innerHTML = count;
+}
+
+function incr(dif)
+{
+    count += dif;
+	updateCounter();
+}
+
+function decr(dif)
+{
+    count -= dif;
+	if (count < 1)
+		count = 1;
+	updateCounter();
+}
+
+</script>
+
+</head>
+
+<body>
+
+
+<h1>Start Year</h1>
+
+<table width=240pt align=center>
+<tr>
+<td style='text-align:right;font-size:24pt' id='counter' rowspan=2>1</td>
+<td width=32pt class='noselect' style='text-align:center;cursor:pointer' onclick='incr(1);'>+1</td>
+<td width=32pt class='noselect' style='text-align:center;cursor:pointer' onclick='incr(10);'>+10</td>
+</tr><tr>
+<td width=32pt class='noselect' style='text-align:center;cursor:pointer' onclick='decr(1);'>-1</td>
+<td width=32pt class='noselect' style='text-align:center;cursor:pointer' onclick='decr(10);'>-10</td>
+</tr>
+</table>
+
+
+<script>
+	updateCounter();
+</script>
+
+<div>
+<table align=center width=240pt>
+<tr>
+<td style='cursor:pointer;text-align:center' onclick='window.location.href="mas-locsel.html"'>&lt; Location</td>
+<td style='cursor:pointer;text-align:center' onclick='window.location.href="mas-count.html"'>Count of Years &gt;</td>
+</tr>
+</table>
+</div>
+</body>
+</html>
+
+

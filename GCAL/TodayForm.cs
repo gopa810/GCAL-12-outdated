@@ -251,15 +251,15 @@ namespace GCAL
             if (sdlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 StringBuilder sb = new StringBuilder();
-                if (sdlg.FilterIndex == 0)
+                if (sdlg.FilterIndex == 1)
                 {
                     FormaterPlain.AvcGetTodayInfo(myDate, myLocation, sb);
                 }
-                else if (sdlg.FilterIndex == 1)
+                else if (sdlg.FilterIndex == 2)
                 {
                     FormaterRtf.FormatTodayInfoRtf(myDate, myLocation, sb);
                 }
-                else if (sdlg.FilterIndex == 2)
+                else if (sdlg.FilterIndex == 3)
                 {
                     FormaterHtml.WriteTodayInfoHTML(myDate, myLocation, sb, 11);
                 }
