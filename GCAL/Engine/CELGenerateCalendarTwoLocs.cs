@@ -48,5 +48,64 @@ namespace GCAL.Engine
             CalculatedObject = cals;
 
         }
+
+        public CELGenerateCalendarTwoLocs()
+        {
+        }
+
+        public CELGenerateCalendarTwoLocs(GCAL.ContentServer content)
+        {
+            GPLocationProvider locProvA = null;
+            GPLocationProvider locProvB = null;
+            GPGregorianTime startWesternTime = null;
+            GPGregorianTime endWesternTime = null;
+
+            if (content.getString("locationtypea") == "selected")
+            {
+                GPLocation loc = GPLocationList.getShared().findLocationById(content.getInt("locationida"));
+                if (loc != null)
+                    locProvA = new GPLocationProvider(loc);
+            }
+
+            if (locProvA == null)
+            {
+                HtmlText = "<p>Error: location provider A is null";
+                return;
+            }
+
+            if (content.getString("locationtypeb") == "selected")
+            {
+                GPLocation loc = GPLocationList.getShared().findLocationById(content.getInt("locationidb"));
+                if (loc != null)
+                    locProvB = new GPLocationProvider(loc);
+            }
+
+            if (locProvB == null)
+            {
+                HtmlText = "<p>Error: location provider B is null";
+                return;
+            }
+
+            startWesternTime = new GPGregorianTime(locProvA);
+            startWesternTime.setDate(content.getInt("startyear"), content.getInt("startmonth"), content.getInt("startday"));
+
+            GPVedicTime startVedicTime, endVedicTime;
+            int unitType = content.getInt("endperiodtype");
+            int nCount = content.getInt("endperiodlength");
+
+            GPEngine.VCTIMEtoVATIME(startWesternTime, out startVedicTime, locProvA);
+
+            GPEngine.CalcEndDate(locProvA, startWesternTime, startVedicTime, out endWesternTime, out endVedicTime, unitType, GPEngine.CorrectedCount(unitType, nCount));
+
+            nCount = Convert.ToInt32(endWesternTime.getJulianGreenwichNoon() - startWesternTime.getJulianGreenwichNoon());
+
+            SetData(locProvA, locProvB, startWesternTime, nCount);
+            SyncExecute();
+
+            StringBuilder sb = new StringBuilder();
+            FormaterHtml.WriteCompareCalendarHTML_BodyTable(CalculatedObject as GPCalendarTwoLocResults, sb);
+            HtmlText = sb.ToString();
+        }
+
     }
 }

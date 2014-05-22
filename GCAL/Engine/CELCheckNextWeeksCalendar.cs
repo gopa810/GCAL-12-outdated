@@ -16,7 +16,7 @@ namespace GCAL.Engine
 
         protected override void Execute()
         {
-
+            
             GPLocationProvider loc = new GPLocationProvider();
             GPLocation loc1 = GPLocationList.getShared().findLocation("Bratislava");
             loc.setDefaultLocation(loc1);
@@ -29,19 +29,19 @@ namespace GCAL.Engine
             p_today = new GPGregorianTime(loc);
             p_today.setDate(2014, 2, 20);
             p_today.setDayHours(0.5 + 1/24.0);
-
+            /*
             Debugger.Log(0,"", String.Format("Location: {0} {1} {2}\n", loc.getFullName(), loc1.getLongitudeString(), loc1.getLatitudeString()));
 
             double date = p_today.getJulianLocalNoon();
             TEclipse te;
-            /*for (int i = 0; i < 30; i++)
+            for (int i = 0; i < 30; i++)
             {
                 te = MA.Engine.NextEclipse(ref date, true);
                 int y, m, d;
                 MA.Engine.DecodeDateCorrect(date, out y, out m, out d);
                 Debugger.Log(0, "", String.Format("eclipse:{0}  date: {1} {2} {3}\n", te, y, m, d));
                 date += 20;
-            }*/
+            }
 
             //double a1 = MA.GPMeeusEngine.star_time(2456708.3200) ;
             //a1 = MA.GPMeeusEngine.star_time(2452083) - a1;
@@ -61,12 +61,12 @@ namespace GCAL.Engine
 
             time.setLocalJulianDay(2456708.5);
             time.setLocalTimezoneOffset(1);
-            /*for (int l = 0; l < 40; l++)
+            for (int l = 0; l < 40; l++)
             {
                 Log("Julian  {0}     = {1} / {2} / {3}   {4}:{5}:{6}\n", time.GetJulianDay(), time.GetYear(),
                     time.GetMonth(), time.GetDay(), time.GetHour(), time.GetMinute(), time.GetSecond());
                 time.AddSeconds(79367.6);
-            }*/
+            }
 
             //GPGregorianTime gt = new GPGregorianTime(loc);
             //gt.setJulianGreenwichTime(time);
@@ -101,7 +101,7 @@ namespace GCAL.Engine
             //Log("Sunrise {0}", sun.rise.LongTimeString);
 
             return;
-
+            */
             p_cal.CalculateCalendar(p_today, 16);
             List<string> temp = new List<string>();
             for (int i = 0; i < p_cal.getCount(); i++)

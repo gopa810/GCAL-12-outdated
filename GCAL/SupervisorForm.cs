@@ -32,6 +32,8 @@ namespace GCAL
                 TodayForm.ShowForm();
             }
 
+            StartForm form2 = new StartForm();
+            form2.Show();
         }
 
         public static void WindowOpened(Form form)

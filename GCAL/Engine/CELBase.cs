@@ -81,7 +81,7 @@ namespace GCAL.Engine
             }
         }
 
-        private void SyncExecute()
+        public void SyncExecute()
         {
             Execute();
         }

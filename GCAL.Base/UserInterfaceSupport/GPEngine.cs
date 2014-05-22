@@ -7,6 +7,13 @@ namespace GCAL.Base
 {
     public class GPEngine
     {
+        private static int[] maxCounts = new int[] { 0, 30240, 4320, 1080, 90, 30240, 1080, 90 };
+
+        public static int CorrectedCount(int unitType, int count)
+        {
+            return Math.Min(maxCounts[unitType], count);
+        }
+
         public static int CalcEndDate(GPLocationProvider m_earth, GPGregorianTime vcStart, GPVedicTime vaStart, out GPGregorianTime vcEnd, out GPVedicTime vaEnd, int nType, int nCount)
         {
             vcEnd = new GPGregorianTime(vcStart);

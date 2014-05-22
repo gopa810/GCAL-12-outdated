@@ -68,5 +68,35 @@ namespace GCAL.Engine
                 FormaterHtml.WriteMasaListHTML(cal, sb);
             }
         }
+
+        public CELGenerateMasaList()
+        {
+        }
+
+        public CELGenerateMasaList(GCAL.ContentServer content)
+        {
+            GPLocationProvider locProv = null;
+
+            if (content.getString("locationtype") == "selected")
+            {
+                GPLocation loc = GPLocationList.getShared().findLocationById(content.getInt("locationid"));
+                if (loc != null)
+                    locProv = new GPLocationProvider(loc);
+            }
+
+            if (locProv == null)
+            {
+                HtmlText = "<p>Error: location provider is null";
+                return;
+            }
+
+            SetData(locProv, content.getInt("startyear"), content.getInt("yearcount"));
+            SyncExecute();
+
+            StringBuilder sb = new StringBuilder();
+            FormaterHtml.WriteMasaListHTML_BodyTable(CalculatedObject as GPMasaListResults, sb);
+            HtmlText = sb.ToString();
+        }
+
     }
 }

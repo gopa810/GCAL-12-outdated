@@ -39,12 +39,26 @@ namespace GCAL.Base
             List<string> gstr = GPStrings.getSharedStrings().gstr;
             GPAstroData d = app.details;
             GPGregorianTime vc = app.evente;
-            bool evline = false;
             builder.AppendFormat("<html><head><title>{0}</title>", gstr[45]);
             builder.Append("<style>\n<!--\n");
             builder.AppendLine(CurrentFormattingStyles);
             builder.Append("-->\n</style>\n");
             builder.AppendFormat("</head>\n\n<body>");
+
+            WriteAppDayHTML_BodyTable(app, builder);
+
+            WriteVersionInfo(builder);
+            builder.AppendLine("</body></html>");
+
+        }
+
+        public static void WriteAppDayHTML_BodyTable(GPAppDayResults app, StringBuilder builder)
+        {
+            List<string> gstr = GPStrings.getSharedStrings().gstr;
+            GPAstroData d = app.details;
+            GPGregorianTime vc = app.evente;
+            bool evline = false;
+
             builder.AppendFormat("<p class=Header1>{0}</p>", gstr[45]);
             builder.AppendFormat("<table align=center cellpadding=4 cellspacing=0>");
 
@@ -74,28 +88,8 @@ namespace GCAL.Base
             }
 
             builder.AppendLine("</table>");
-            WriteVersionInfo(builder);
-            builder.AppendLine("</body></html>");
-
         }
 
-        /******************************************************************************************/
-        /*                                                                                        */
-        /*                                                                                        */
-        /*                                                                                        */
-        /*                                                                                        */
-        /*                                                                                        */
-        /*                                                                                        */
-        /*                                                                                        */
-        /*                                                                                        */
-        /*                                                                                        */
-        /*                                                                                        */
-        /*                                                                                        */
-        /*                                                                                        */
-        /*                                                                                        */
-        /*                                                                                        */
-        /*                                                                                        */
-        /******************************************************************************************/
 
         public static int WriteEventsHTML(GPCoreEventResults inEvents, StringBuilder f)
         {
@@ -108,6 +102,26 @@ namespace GCAL.Base
             fprintf(f, "-->\n</style>\n");
             fprintf(f, "</head>\n");
             fprintf(f, "<body>\n\n");
+
+            WriteEventsHTML_BodyTable(inEvents, f);
+
+            WriteVersionInfo(f);
+            fprintf(f, "</body>\n</html>\n");
+
+            return 1;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="inEvents"></param>
+        /// <param name="f"></param>
+        /// <returns></returns>
+        public static int WriteEventsHTML_BodyTable(GPCoreEventResults inEvents, StringBuilder f)
+        {
+            List<string> gstr = GPStrings.getSharedStrings().gstr;
+            int i;
+
             fprintf(f, "<p class=Header1>{0}</p>\n<p class=Header2>", gstr[46]);
             fprintf(f, gstr[983], inEvents.m_vcStart.ToString(), inEvents.m_vcEnd.ToString());
             fprintf(f, "</p>");
@@ -173,8 +187,6 @@ namespace GCAL.Base
             }
 
             fprintf(f, "</tr></table>\n");
-            WriteVersionInfo(f);
-            fprintf(f, "</body>\n</html>\n");
 
             return 1;
         }
@@ -208,6 +220,18 @@ namespace GCAL.Base
             fprintf(f, "</head>\n");
             fprintf(f, "<body>\n\n");
 
+            WriteMasaListHTML_BodyTable(mlist, f);
+
+            fprintf(f, "<hr>");
+            WriteVersionInfo(f);
+            fprintf(f, "</body></html>");
+            return 1;
+        }
+
+        public static int WriteMasaListHTML_BodyTable(GPMasaListResults mlist, StringBuilder f)
+        {
+            List<string> gstr = GPStrings.getSharedStrings().gstr;
+
             fprintf(f, "<p class=Header1>{0}</p>\n", gstr[48]);
             fprintf(f, "<p class=HeaderLocation>{0}</p>", mlist.m_location.getLocation(0).getFullName());
             fprintf(f, "<p class=HeaderTimezone>{0}</p>", mlist.m_location.getLocation(0).getTimeZone().getFullName());
@@ -238,8 +262,6 @@ namespace GCAL.Base
                 fprintf(f, "</tr>");
             }
             fprintf(f, "</table>");
-            WriteVersionInfo(f);
-            fprintf(f, "</body></html>");
             return 1;
         }
 
@@ -277,6 +299,40 @@ namespace GCAL.Base
             fout.AppendLine("</style>");
             fout.AppendLine("</head>");
             fout.AppendLine("<body>");
+
+
+            WriteCalendarPlusCoreHTML_BodyTable(calev, fout);
+
+            WriteVersionInfo(fout);
+
+            fprintf(fout, "</body>\n</html>\n");
+
+            return 1;
+        }
+
+        public static int WriteCalendarPlusCoreHTML_BodyTable(GPCalendarPlusEventsResults calev, StringBuilder fout)
+        {
+            GPCalendarResults daybuff = calev.theCalendar;
+            GPCoreEventResults events = calev.theEvents;
+
+            List<string> gstr = GPStrings.getSharedStrings().gstr;
+            int k;
+            string str;
+            GPGregorianTime date = new GPGregorianTime(daybuff.m_Location);
+            GPCalendarDay pvd;
+            int nPrevMasa = -1;
+            int nPrevMonth = -1;
+            bool evline = false;
+
+            if (events.b_sorted == false)
+            {
+                events.Sort(true);
+            }
+
+            string columnHeader;
+            int columnHeaderCount = 0;
+
+            PrepareHtmlCalendarColumnHeader(out columnHeader, out columnHeaderCount);
 
             fout.AppendLine("<table cellpadding=4 cellspacing=0 align=center>");
 
@@ -398,7 +454,7 @@ namespace GCAL.Base
                         fprintf(fout, "<tr>");
                     }
                     fout.AppendFormat("<td></td><td></td><td colspan={0} valign=top>", columnHeaderCount - 2);
-                    foreach (GPCalendarDay.Festival fest in pvd.CompleteFestivalList(daybuff.get(k-1), daybuff.get(k+1)))
+                    foreach (GPCalendarDay.Festival fest in pvd.CompleteFestivalList(daybuff.get(k - 1), daybuff.get(k + 1)))
                     {
                         if (GPUserDefaults.BoolForKey(fest.ShowSettingItem, true))
                         {
@@ -423,7 +479,7 @@ namespace GCAL.Base
                     List<GPStringPair> recs = events.ExtractRecordsForDate(pvd.date);
                     foreach (GPStringPair rec in recs)
                     {
-                        fout.AppendFormat("<td><span class=CoreInCalHeader>{0}</span><br>{1}</td>", rec.Name, rec.Value); 
+                        fout.AppendFormat("<td><span class=CoreInCalHeader>{0}</span><br>{1}</td>", rec.Name, rec.Value);
                     }
                     fout.AppendLine("</tr>");
                     fout.Append("</table></td>");
@@ -435,10 +491,6 @@ namespace GCAL.Base
                 date.NextDay();
             }
             fprintf(fout, "\t</table>\n\n");
-
-            WriteVersionInfo(fout);
-
-            fprintf(fout, "</body>\n</html>\n");
 
             return 1;
         }
@@ -513,10 +565,6 @@ namespace GCAL.Base
             List<string> gstr = GPStrings.getSharedStrings().gstr;
             int k;
             GPGregorianTime date = new GPGregorianTime(daybuffA.m_Location);
-            GPCalendarDay pvd;
-            GPCalendarDay pve;
-            int nPrevMasaA = -1;
-            int nPrevMasaB = -1;
 
             fprintf(fout, "<html><head><title>\n");
 
@@ -526,6 +574,29 @@ namespace GCAL.Base
             fout.AppendLine(CurrentFormattingStyles);
             fprintf(fout, "-->\n</style>\n");
             fprintf(fout, "</head>\n<body>");
+
+            WriteCompareCalendarHTML_BodyTable(cals, fout);
+
+            WriteVersionInfo(fout);
+
+            fprintf(fout, "</body>\n</html>\n");
+
+            return 1;
+
+        }
+
+        public static int WriteCompareCalendarHTML_BodyTable(GPCalendarTwoLocResults cals, StringBuilder fout)
+        {
+            GPCalendarResults daybuffA = cals.CalendarA;
+            GPCalendarResults daybuffB = cals.CalendarB;
+
+            List<string> gstr = GPStrings.getSharedStrings().gstr;
+            int k;
+            GPGregorianTime date = new GPGregorianTime(daybuffA.m_Location);
+            GPCalendarDay pvd;
+            GPCalendarDay pve;
+            int nPrevMasaA = -1;
+            int nPrevMasaB = -1;
 
             fprintf(fout, "<table align=center cellspacing=0 cellpadding=3>");
 
@@ -551,7 +622,7 @@ namespace GCAL.Base
 
                     if (nPrevMasaA != pvd.astrodata.nMasa)
                     {
-                        fprintf(colA, "<td colspan={0} style=\'text-align:center;font-weight:bold\'><span style =\'font-size:14pt\'>{1}", columnHeadersCount, 
+                        fprintf(colA, "<td colspan={0} style=\'text-align:center;font-weight:bold\'><span style =\'font-size:14pt\'>{1}", columnHeadersCount,
                             pvd.getMasaLongName());
                         if (nPrevMasaA == GPMasa.ADHIKA_MASA)
                             fprintf(colA, " " + gstr[109]);
@@ -564,7 +635,7 @@ namespace GCAL.Base
 
                     if (nPrevMasaB != pve.astrodata.nMasa)
                     {
-                        fprintf(colB, "<td colspan={0} style=\'text-align:center;font-weight:bold\'><span style =\'font-size:14pt\'>{1}", 
+                        fprintf(colB, "<td colspan={0} style=\'text-align:center;font-weight:bold\'><span style =\'font-size:14pt\'>{1}",
                             columnHeadersCount, pve.getMasaLongName());
                         if (nPrevMasaB == GPMasa.ADHIKA_MASA)
                             fprintf(colB, " " + gstr[109]);
@@ -640,8 +711,8 @@ namespace GCAL.Base
                     colA.AppendFormat("<td></td><td></td><td colspan={0}>", columnHeadersCount - 2);
                     colB.AppendFormat("<td></td><td></td><td colspan={0}>", columnHeadersCount - 2);
 
-                    List<GPCalendarDay.Festival> festA = pvd.CompleteFestivalList(daybuffA.get(k-1), daybuffA.get(k+1));
-                    List<GPCalendarDay.Festival> festB = pve.CompleteFestivalList(daybuffB.get(k-1), daybuffB.get(k+1));
+                    List<GPCalendarDay.Festival> festA = pvd.CompleteFestivalList(daybuffA.get(k - 1), daybuffA.get(k + 1));
+                    List<GPCalendarDay.Festival> festB = pve.CompleteFestivalList(daybuffB.get(k - 1), daybuffB.get(k + 1));
                     int i = 0;
                     int m = Math.Max(festA.Count, festB.Count);
 
@@ -682,10 +753,6 @@ namespace GCAL.Base
                 date.NextDay();
             }
             fprintf(fout, "\t</table>\n\n");
-
-            WriteVersionInfo(fout);
-
-            fprintf(fout, "</body>\n</html>\n");
 
             return 1;
 
@@ -866,77 +933,47 @@ span.GramE
             }
         }
 
-
-        /******************************************************************************************/
-        /*                                                                                        */
-        /*                                                                                        */
-        /*                                                                                        */
-        /*                                                                                        */
-        /*                                                                                        */
-        /*                                                                                        */
-        /*                                                                                        */
-        /*                                                                                        */
-        /*                                                                                        */
-        /*                                                                                        */
-        /*                                                                                        */
-        /*                                                                                        */
-        /*                                                                                        */
-        /*                                                                                        */
-        /*                                                                                        */
-        /******************************************************************************************/
-
-        public static int WriteCalendarHTML(GPCalendarResults daybuff, StringBuilder fout)
+        public static int WriteCalendarHTML_BodyTable(GPCalendarResults daybuff, StringBuilder fout)
         {
-            List<string> gstr = GPStrings.getSharedStrings().gstr;
-	        int k;
-	        GPGregorianTime date = new GPGregorianTime(daybuff.m_Location);
-	        GPCalendarDay pvd;
-	        int nPrevMasa = -1;
+            GPCalendarDay pvd;
+            int nPrevMasa = -1;
             int nPrevMonth = -1;
-            StringBuilder tempBuilder = new StringBuilder();
+            int k;
             string columnHeader;
             int columnHeaderCount;
+            GPGregorianTime date = new GPGregorianTime(daybuff.m_Location);
+            StringBuilder tempBuilder = new StringBuilder();
+            List<string> gstr = GPStrings.getSharedStrings().gstr;
 
 
             PrepareHtmlCalendarColumnHeader(out columnHeader, out columnHeaderCount);
 
-	        fout.Append("<html><head>");
-
-            fout.AppendFormat("<title>Calendar {0}</title>", daybuff.m_vcStart.getYear());
-	        fout.AppendLine("<style>");
-	        fout.AppendLine("<!--");
-            fout.AppendLine(CurrentFormattingStyles);
-            fout.AppendLine("-->");
-	        fout.AppendLine("</style>");
-	        fout.AppendLine("</head>");
-            fout.AppendLine("<body>");
-
             fprintf(fout, "<table align=center cellspacing=0 cellpadding=4>\n");
             bool shouldHighlight = true;
-	        for (k = 0; k < daybuff.getCount(); k++)
-	        {
-		        pvd = daybuff.get(k);
-		        if (pvd != null)
-		        {
+            for (k = 0; k < daybuff.getCount(); k++)
+            {
+                pvd = daybuff.get(k);
+                if (pvd != null)
+                {
                     bool writeHeaders = false;
 
-			        if (nPrevMasa != pvd.astrodata.nMasa && GPDisplays.Calendar.MasaHeader())
-			        {
+                    if (nPrevMasa != pvd.astrodata.nMasa && GPDisplays.Calendar.MasaHeader())
+                    {
                         fout.Append("<tr>");
                         fprintf(fout, "<td colspan={0}>", columnHeaderCount);
-				        fprintf(fout, "<p class=MasaHeader><span class=HeaderTitle>{0}", pvd.getMasaLongName());
-				        if (nPrevMasa == GPMasa.ADHIKA_MASA)
-					        fprintf(fout, " " + gstr[109]);
-				        fprintf(fout, "</span>");
-				        fprintf(fout, "<br><span class=HeaderLocation>{0}</span>", pvd.getGaurabdaYearLongString());
-				        fprintf(fout, "<br><span class=HeaderLocation>{0}</span>", pvd.date.getLocation().getFullName());
+                        fprintf(fout, "<p class=MasaHeader><span class=HeaderTitle>{0}", pvd.getMasaLongName());
+                        if (nPrevMasa == GPMasa.ADHIKA_MASA)
+                            fprintf(fout, " " + gstr[109]);
+                        fprintf(fout, "</span>");
+                        fprintf(fout, "<br><span class=HeaderLocation>{0}</span>", pvd.getGaurabdaYearLongString());
+                        fprintf(fout, "<br><span class=HeaderLocation>{0}</span>", pvd.date.getLocation().getFullName());
                         //fout.AppendFormat("<br><span class=HeaderTimezone>{0}: {1}</span>", gstr[12], pvd.date.getLocation().getTimeZone().getFullName());
                         fprintf(fout, "</p>");
                         fout.Append("</tr>");
 
                         nPrevMasa = pvd.astrodata.nMasa;
                         writeHeaders = true;
-			        }
+                    }
                     else if (nPrevMonth != pvd.date.getMonth() && GPDisplays.Calendar.MonthHeader())
                     {
                         fout.Append("<tr>");
@@ -996,7 +1033,7 @@ span.GramE
                         fprintf(fout, "</tr>");
                     }
 
-			        // date data
+                    // date data
                     shouldHighlight = !shouldHighlight;
                     if (shouldHighlight && GPDisplays.General.HighlightEvenLines())
                         fprintf(fout, "<tr>");
@@ -1004,16 +1041,16 @@ span.GramE
                         fprintf(fout, "<tr class=evenLine>");
 
                     fprintf(fout, "<td align=right>{0}</td>", pvd.date.ToString().Replace(" ", "&nbsp;"));
-			        fprintf(fout, "<td>&nbsp;{0}</td>\n", gstr[pvd.date.getDayOfWeek()].Substring(0,2));
-			        fprintf(fout, "<td>{0}</td>\n", pvd.getTithiNameExtended());
+                    fprintf(fout, "<td>&nbsp;{0}</td>\n", gstr[pvd.date.getDayOfWeek()].Substring(0, 2));
+                    fprintf(fout, "<td>{0}</td>\n", pvd.getTithiNameExtended());
                     if (GPDisplays.Calendar.PaksaInfoVisible())
-    			        fprintf(fout, "<td>{0}</td>\n", pvd.getPaksaAbbreviation());
+                        fprintf(fout, "<td>{0}</td>\n", pvd.getPaksaAbbreviation());
                     if (GPDisplays.Calendar.NaksatraVisible())
-    			        fprintf(fout, "<td>{0}</td>\n", GPNaksatra.getName(pvd.astrodata.nNaksatra));
+                        fprintf(fout, "<td>{0}</td>\n", GPNaksatra.getName(pvd.astrodata.nNaksatra));
                     if (GPDisplays.Calendar.YogaVisible())
-    			        fprintf(fout, "<td>{0}</td>\n", GPYoga.getName(pvd.astrodata.nYoga) );
+                        fprintf(fout, "<td>{0}</td>\n", GPYoga.getName(pvd.astrodata.nYoga));
                     if (GPDisplays.Calendar.FastingFlagVisible())
-    			        fprintf(fout, "<td>{0}</td>\n", pvd.getFastingFlag());
+                        fprintf(fout, "<td>{0}</td>\n", pvd.getFastingFlag());
                     if (GPDisplays.Calendar.RasiVisible())
                         fprintf(fout, "<td>{0}</td>\n", pvd.getRasiOfMoonName());
                     fprintf(fout, "</tr>\n\n");
@@ -1021,7 +1058,7 @@ span.GramE
 
                     tempBuilder.Remove(0, tempBuilder.Length);
 
-                    foreach (GPCalendarDay.Festival fest in pvd.CompleteFestivalList(daybuff.get(k-1), daybuff.get(k+1)))
+                    foreach (GPCalendarDay.Festival fest in pvd.CompleteFestivalList(daybuff.get(k - 1), daybuff.get(k + 1)))
                     {
                         if (GPUserDefaults.BoolForKey(fest.ShowSettingItem, true))
                         {
@@ -1031,7 +1068,7 @@ span.GramE
                                 fprintf(tempBuilder, "{0}<br>\n", fest.Text);
                         }
                     }
-                    
+
                     if (tempBuilder.Length > 0)
                     {
                         if (shouldHighlight && GPDisplays.General.HighlightEvenLines())
@@ -1044,11 +1081,49 @@ span.GramE
                     }
 
 
-		        }
-		        date.setDayHours(0.0);
-		        date.NextDay();
-	        }
-	        fprintf(fout, "\t</table>\n\n");
+                }
+                date.setDayHours(0.0);
+                date.NextDay();
+            }
+            fprintf(fout, "\t</table>\n\n");
+
+            return 0;
+        }
+
+        /******************************************************************************************/
+        /*                                                                                        */
+        /*                                                                                        */
+        /*                                                                                        */
+        /*                                                                                        */
+        /*                                                                                        */
+        /*                                                                                        */
+        /*                                                                                        */
+        /*                                                                                        */
+        /*                                                                                        */
+        /*                                                                                        */
+        /*                                                                                        */
+        /*                                                                                        */
+        /*                                                                                        */
+        /*                                                                                        */
+        /*                                                                                        */
+        /******************************************************************************************/
+
+        public static int WriteCalendarHTML(GPCalendarResults daybuff, StringBuilder fout)
+        {
+            List<string> gstr = GPStrings.getSharedStrings().gstr;
+
+	        fout.Append("<html><head>");
+
+            fout.AppendFormat("<title>Calendar {0}</title>", daybuff.m_vcStart.getYear());
+	        fout.AppendLine("<style>");
+	        fout.AppendLine("<!--");
+            fout.AppendLine(CurrentFormattingStyles);
+            fout.AppendLine("-->");
+	        fout.AppendLine("</style>");
+	        fout.AppendLine("</head>");
+            fout.AppendLine("<body>");
+
+            WriteCalendarHTML_BodyTable(daybuff, fout);
 
             WriteVersionInfo(fout);
 

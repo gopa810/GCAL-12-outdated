@@ -8,18 +8,28 @@ namespace GCAL.Base
 {
     public class GPLocation : GPObserver
     {
+        private static int globalLocationId = 0;
+
         private string city = string.Empty;
         private string countryCode = string.Empty;
         private string timezoneName = "GMT";
         private GPTimeZone timezone = null;
+        private int _id = 0;
 
+        private static int getNextId()
+        {
+            globalLocationId++;
+            return globalLocationId;
+        }
 
         public GPLocation()
         {
+            _id = getNextId();
         }
 
         public GPLocation(GPLocation loc)
         {
+            _id = loc.getId();
             city = loc.city;
             setLatitudeNorthPositive(loc.GetLatitudeNorthPositive());
             setLongitudeEastPositive(loc.GetLongitudeEastPositive());
@@ -38,6 +48,11 @@ namespace GCAL.Base
             return (loc.getCity().Equals(getCity())
                 && Math.Abs(loc.GetLatitudeNorthPositive() - GetLatitudeNorthPositive()) < 0.01
                 && Math.Abs(loc.GetLongitudeEastPositive() - GetLongitudeEastPositive()) < 0.01) ;
+        }
+
+        public int getId()
+        {
+            return _id;
         }
 
         public void writeToXmlNode(XmlElement elem, XmlDocument doc)

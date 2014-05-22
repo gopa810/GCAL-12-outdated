@@ -53,12 +53,21 @@ namespace GCAL.Base
         private static GPLocationList _sharedList = null;
         public static GPLocationList getShared()
         {
-
             if (_sharedList == null)
             {
                 _sharedList = new GPLocationList();
             }
             return _sharedList;
+        }
+
+        public GPLocation findLocationById(int id)
+        {
+            foreach (GPLocation loc in locations)
+            {
+                if (loc.getId() == id)
+                    return loc;
+            }
+            return null;
         }
 
         public int GetLocationCountForCountryCode(string code)
