@@ -1,8 +1,8 @@
 <html>
 <head>
 <title></title>
-
-
+<script type="text/javascript" src="{%homedir}/shh.js"></script>
+<link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
 <style>
 td.noselect
 {
@@ -16,11 +16,10 @@ user-select: none;
 </style>
 
 <script>
+var count = '{%string yearcount}';
 
-var date = new Date();
-var lastRadio = '';
-var count = date.getFullYear();
-
+if (count == '')
+	count = 1;
 
 function updateCounter()
 {
@@ -30,16 +29,21 @@ function updateCounter()
 
 function incr(dif)
 {
-    count += dif;
+    count = Number(count) + dif;
 	updateCounter();
 }
 
 function decr(dif)
 {
-    count -= dif;
+    count = Number(count) - dif;
 	if (count < 1)
 		count = 1;
 	updateCounter();
+}
+
+function onSave()
+{
+	saveString('yearcount', count);
 }
 
 </script>
@@ -49,7 +53,7 @@ function decr(dif)
 <body>
 
 
-<h1>Start Year</h1>
+<h1>Count of Years</h1>
 
 <table width=240pt align=center>
 <tr>
@@ -62,19 +66,24 @@ function decr(dif)
 </tr>
 </table>
 
-
 <script>
 	updateCounter();
 </script>
 
-<div>
-<table align=center width=240pt>
-<tr>
-<td style='cursor:pointer;text-align:center' onclick='window.location.href="mas-locsel.html"'>&lt; Location</td>
-<td style='cursor:pointer;text-align:center' onclick='window.location.href="mas-count.html"'>Count of Years &gt;</td>
-</tr>
-</table>
-</div>
+
+
+<script type="text/javascript">
+writeNavigStart();
+writeNavigItem("Main Menu", "window.location.href=\"mainmenu.html\"");
+writeNavigItem("{%string leftArrow} {%title -1}", "onSave();goBack()");
+writeNavigItem("{%title +1} {%string rightArrow}", "onSave();goNext()");
+writeNavigEnd();
+</script>
+
+
+
+
+
 </body>
 </html>
 

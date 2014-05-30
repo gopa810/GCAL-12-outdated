@@ -1,0 +1,59 @@
+<html>
+<head><title></title>
+<script type="text/javascript" src="{%homedir}/shh.js"></script>
+<link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
+</head>
+
+<body>
+
+<h1>Select Timezone</h1>
+
+<h2>{%string locationcountry}</h2>
+
+<table style='border:0px' cellspacing=0 cellpadding=8>
+<script type="text/javascript">
+
+function onSave()
+{
+     saveString("locationtimezone{%string ppx}", scriptObject.getTimezoneNameById(lastId));
+}
+
+var list = [];
+var storedOffset = loadString("locationcountrycode{%string ppx}");
+var tzoff = scriptObject.getTimezonesByCountry(storedOffset);
+var list = tzoff.split("<line>");
+
+var i = 0;
+var b = 1;
+var str = '<table cellspacing=0 cellpadding=8>';
+for(i = 0; i < list.length; i++)
+{
+    var tags = list[i].split('<br>');
+    str += getStringComboChoiceValue(tags[1], "Offset: " + tags[2], tags[0], b);
+    b = 0;
+    /*var line = list[i].split("<br>");
+	str += "<input style='padding-top:8pt;padding-bottom:8pt;padding-left:24pt;padding-right:24pt;width:100%' type=\"button\" onclick='saveString(\"locationtimezone{%string ppx}\", \"" + line[1] + "\");goNext();' value=\"" + line[1] + "\">";
+	str += "<br>";*/
+}
+
+//str += "</table>";
+
+document.write(str);
+
+</script>
+</td></tr>
+</table>
+
+<script type="text/javascript">
+writeNavigStart();
+writeNavigItem("Main Menu", "window.location.href=\"mainmenu.html\"");
+writeNavigItem("{%string leftArrow} {%title -1}", "goPrev();");
+writeNavigItem("{%string rightArrow} {%title +1}", "onSave();goNext();");
+writeNavigEnd();
+</script>
+
+
+
+
+</body>
+</html>

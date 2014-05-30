@@ -1,0 +1,70 @@
+<html>
+<head><title></title>
+
+<script type="text/javascript" src="{%homedir}/shh.js"></script>
+<link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
+<script type="text/javascript">
+function onSave()
+{
+	saveString("locationid{%string ppx}", lastId);
+	saveString("locationtype{%string ppx}", "selected");
+}
+
+var locs = [];
+
+scriptObject.findLocations(loadString("locpart"));
+var nloc = scriptObject.getNextLocation();
+while(nloc.length > 0)
+{
+    locs.push(nloc.split("<br>"));
+    nloc = scriptObject.getNextLocation();
+}
+var selc = 1;
+
+</script>
+
+<!--
+var locs = [
+  ["Location a", "loc a", "1"],
+  ["Location b", "loc b", "2"],
+  ["Location c", "loc c", "3"]
+];
+
+-->
+
+</head>
+
+
+<body>
+
+<table style='border=0px' width="100%" cellpadding=8 cellspacing=0>
+
+<script>
+
+lastId = loadString('locationid{%string ppx}');
+
+for(var i= 0; i < locs.length; i++)
+{
+    if (selc == 1 && lastId == '')
+		lastId = locs[i][2];
+    writeComboChoiceValue(locs[i][0], locs[i][1], locs[i][2], (locs[i][2] == lastId ? 1 : 0));
+	selc = 0;
+}
+
+</script>
+
+</table>
+
+<script type="text/javascript">
+writeNavigStart();
+writeNavigItem("Main Menu", "window.location.href=\"mainmenu.html\"");
+writeNavigItem("{%string leftArrow} {%title -1}", "onSave();goBack()");
+writeNavigItem("{%title +1} {%string rightArrow}", "onSave();goNext()");
+writeNavigEnd();
+</script>
+
+
+
+
+</body>
+</html>

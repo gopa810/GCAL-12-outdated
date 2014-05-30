@@ -1,0 +1,182 @@
+<html>
+<head>
+<title></title>
+<script type="text/javascript" src="{%homedir}/shh.js"></script>
+<link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
+
+<style>
+td.noselect {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+
+td.buttonw {
+    text-align:center;
+	cursor:pointer
+}
+
+</style>
+
+<script>
+var format24 = 1;
+var lastRadio = '';
+var count0 = '';
+var count1 = '';
+var countx = '';
+var date = scriptObject.getString('locationlatitude{%string ppx}');
+var datearr = date.split('N');
+if (datearr.length == 2)
+{
+      count0 = Number(datearr[0]);
+	  count1 = Number(datearr[1]);
+}
+else {
+   datearr = date.split('S');
+   if (datearr.length == 2)
+   {
+      count0 = Number(datearr[0]);
+	  count1 = Number(datearr[1]);
+	  count0 = - count0;
+   }
+   else
+   {
+       date = '';
+   }
+}
+
+
+if (date == '')
+{
+  count0 = 19;
+  count1 = 45;
+}
+
+function onSave()
+{
+    var absc0 = absm(count0);
+	saveString("locationlatitude{%string ppx}", absc0 + (count0 < 0 ? 'S' : 'N') + count1);
+}
+
+function updateCounter()
+{
+    var absc0 = absm(count0);
+	var elem = document.getElementById('counter');
+	elem.innerHTML = (absc0 < 10 ? "0" : "") + absc0 + (count0 < 0 ? 'S' : 'N') + (count1 < 10 ? "0" : "") + count1;
+}
+
+function validateHours()
+{
+	  if (count0 > 90)
+	  {
+	    count0 -= 180;
+	  }
+	  if (count0 < -90)
+	     count0 += 180;
+}
+
+function incr(type, dif)
+{
+	if (type == 0) {
+	  if (count0 < 0)
+	  {
+		  decr(type, dif);
+	  }
+	  else
+	  {
+		  count0 += dif;
+		  validateHours();
+	  }
+	}
+    else {
+	  count1 += dif;
+	  if (count1 > 59)
+	  {
+	     count1 -= 60;
+ 		 count0 ++;
+		 validateHours();
+	  }
+	}
+	updateCounter();
+}
+
+function decr(type, dif)
+{
+	if (type == 0)
+	{
+	  if (count0 < 0)
+	  {
+	      incr(type,dif);
+	  }
+	  else
+	  {
+          count0 -= dif;
+	      validateHours();
+	  }
+	}
+    else
+	{
+	  count1 -= dif;
+	  if (count1 < 0)
+	  {
+	     count1 += 60;
+		 count0 --;
+		 validateHours();
+	  }
+	}
+
+	updateCounter();
+}
+
+</script>
+
+</head>
+
+<body>
+
+
+<h1>Enter Latitude</h1>
+
+<table width=240pt align=center>
+<tr>
+<td style='text-align:center;font-size:24pt;vertical-align:center' id='counter' rowspan=4>00:00</td>
+<td class='buttonw' ><input type="button" value="+10 Deg" onclick='incr(0, 10);'></td>
+<td class='buttonw' ><input type="button" value="+10 Arc" onclick='incr(1, 10);'></td>
+</tr><tr>
+<td class='buttonw' ><input type="button" value="+1 Deg" onclick='incr(0, 1);'></td>
+<td class='buttonw' ><input type="button" value="+1 Arc" onclick='incr(1, 1);'></td>
+</tr><tr>
+<td class='buttonw' ><input type="button" value="-1 Deg" onclick='decr(0, 1);'></td>
+<td class='buttonw' ><input type="button" value="-1 Arc" onclick='decr(1, 1);'></td>
+</tr><tr>
+<td class='buttonw' ><input type="button" value="-10 Deg" onclick='decr(0, 10);'></td>
+<td class='buttonw' ><input type="button" value="-10 Arc" onclick='decr(1, 10);'></td>
+</tr>
+</table>
+
+<script>
+	updateCounter();
+</script>
+
+
+<script type="text/javascript">
+writeNavigStart();
+writeNavigItem("Main Menu", "window.location.href=\"mainmenu.html\"");
+writeNavigItem("{%string leftArrow} {%title -1}", "onSave();goBack()");
+writeNavigItem("{%title +1} {%string rightArrow}", "onSave();goNext()");
+writeNavigEnd();
+</script>
+
+
+
+
+
+
+</body>
+</html>
+
+

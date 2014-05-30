@@ -3,43 +3,43 @@
 <script type="text/javascript" src="{%homedir}/shh.js"></script>
 <link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
 
-
 <script type="text/javascript">
 
 function onSave()
 {
-    setUserDefaultsInt('core.sorttype', lastId);
+    setUserDefaultsInt('nextfest.days', getElementValue("t0"));
+	setUserDefaultsBool('nextfest.onlyfast', getSwitchValue("t1"));
+	
+	
 }
 
 </script>
+
 </head>
 
 <body>
 
-<table style='border=0px' align=center cellspacing=0 cellpadding=4>
-
-<h1>Sort Core Events</h1>
+<table style='border=0px' align=center>
 
 <script type="text/javascript">
-writeComboChoiceValue("{%getSelectionText core.sorttype 0}", "", "0", 0);
-writeComboChoiceValue("{%getSelectionText core.sorttype 1}", "", "1", 1);
+writeCounterChoice("Days in Advance", "Length of the period for calculation", "t0");
+writeCheckBox("Only Fasting Days", "Check this on, if you want to show only days with some type of fast", "t1");
 </script>
-
-
-
 </table>
 
 <script type="text/javascript">
-setNewComboChoice(getUserDefaultsInt('core.sorttype'));
-</script>
+setElementValue("t0", getUserDefaultsInt('nextfest.days'));
+setSwitchValue("t1", getUserDefaultsBool('nextfast.onlyfast'));
 
+</script>
 
 <div class="menuBarDiv">
 <table class="menuBar" align=center cellspacing=8 cellpadding=8>
 <tr>
 <td class="menuItem" onclick='onSave();window.location.href="mainmenu.html"'>Main Menu</td>
 <td class="menuItem" onclick='onSave();window.location.href="set-disp.html"'>Display Settings</td>
-<td class="menuItem" onclick='onSave();window.location.href="set-disp-core.html"'>Core Events Settings</td>
+<td class="menuItem" onclick='onSave();window.location.href="nextfest.html"'>Next Festivals</td>
+
 </tr>
 </table>
 </div>

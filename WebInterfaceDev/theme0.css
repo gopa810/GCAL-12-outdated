@@ -1,0 +1,87 @@
+
+.mainmenuicon {
+	float:left;
+	width:64;
+	border:0px;
+	margin:16px;
+	cursor:pointer;
+}
+
+body {
+   font-family:Helvetica;
+   font-size:11pt;
+}
+
+h1 {
+   font-family:Helvetica;
+   font-size:13pt;
+}
+
+h2 {
+   font-family:Helvetica;
+   font-size:12pt;
+}
+
+.calendarTable {
+    background-color:#fff;
+    color:#333;
+    border: 1px solid #bbb;
+}
+.calendarTable td {
+    text-align: center;
+    padding: 2px 4px 2px 4px;
+}
+.calendarTable td.monthHead {
+    font-weight: bold;
+    border: 1px solid #bbb;
+    background-color:#ddd;
+}
+.calendarTable td.weekDay {
+    font-weight: bold;
+}
+.calendarTable td.monthDay {
+    border: 0px solid #ddd;
+	cursor: pointer;
+}
+.calendarTable td.currentDay {
+    font-weight: bold;
+    color:white;
+	background-color: #777;
+    border: 0px solid #aaa;
+}
+.menuItem {
+    padding-left:8px;
+	padding-right:8px;
+	padding-top:8px;
+	padding-bottom:8px;
+}
+.navigCal {
+}
+.navigCal td.menuItem {
+    text-align:center;
+	cursor:pointer;
+}
+
+.graytext {
+    color:#777;
+}
+
+.menuBarDiv {
+    border-top:1px solid black;
+	width:100%;
+}
+
+.menuBarTop{
+    border-bottom:1px solid black;
+	width:100%;
+}
+
+.menuBar {
+	text-align:center;
+}
+
+
+.menuBar td.menuItem {
+    cursor:pointer;
+	border:1px solid black;	
+}

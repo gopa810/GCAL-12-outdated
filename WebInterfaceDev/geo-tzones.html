@@ -1,6 +1,7 @@
 <html>
 <head><title></title>
-<script type="text/javascript" src="shh.js"></script>
+<script type="text/javascript" src="{%homedir}/shh.js"></script>
+<link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
 </head>
 
 <body>
@@ -16,6 +17,13 @@ writeChoice("Remove Timezone", "t2", "geo-events-del.html");
 </script>
 
 </table>
+
+<script type="text/javascript">
+writeNavigStart();
+writeNavigItem("Main Menu", "window.location.href=\"mainmenu.html\"");
+writeNavigEnd();
+</script>
+
 
 </body>
 </html>

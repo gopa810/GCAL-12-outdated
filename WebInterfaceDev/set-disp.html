@@ -1,6 +1,7 @@
 <html>
 <head><title></title>
-<script type="text/javascript" src="shh.js"></script>
+<script type="text/javascript" src="{%homedir}/shh.js"></script>
+<link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
 </head>
 
 <body>
@@ -14,9 +15,20 @@ writeChoice("Calendar Display Settings", "t0", "set-disp-cal.html");
 writeChoice("Core Events Settings", "t1", "set-disp-core.html");
 writeChoice("Appearance Day", "t2", "set-disp-app.html");
 writeChoice("Masa List", "t3", "set-disp-masa.html");
+writeChoice("Today Screen", "t4", "set-disp-today.html");
+writeChoice("Next Festivals Screen", "t5", "set-disp-nextfest.html");
 </script>
 
 </table>
+
+<div class="menuBarDiv">
+<table class="menuBar" align=center cellspacing=8 cellpadding=8>
+<tr>
+<td class="menuItem" onclick='window.location.href="mainmenu.html"'>Main Menu</td>
+</tr>
+</table>
+</div>
+
 
 </body>
 </html>

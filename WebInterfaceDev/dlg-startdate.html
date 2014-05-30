@@ -1,0 +1,70 @@
+<html>
+<head>
+<title>Get Start Date</title>
+<script type="text/javascript" src="{%homedir}/shh.js"></script>
+<link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
+<script type="text/javascript" src="{%homedir}/calendar.js"></script>
+
+<script type="text/javascript">
+var selectedDate = new Date();
+
+ var sd = '{%string startday}';
+ var sm = '{%string startmonth}';
+ var sy = '{%string startyear}';
+ 
+ if (sd != '' && sm != '' && sy != '')
+ {
+     selectedDate.setFullYear(sy);
+	 selectedDate.setMonth(sm);
+	 selectedDate.setDate(sd);
+ }
+
+function onSave()
+{
+    saveString("startday", selectedDate.getDate());
+	saveString("startmonth", selectedDate.getMonth());
+	saveString("startyear", selectedDate.getFullYear());
+}
+
+</script>
+</head>
+
+<body>
+  <h1>Start Date</h1>
+
+  <div id='thiscal' style='text-align:center'>
+  </div>
+  <script type="text/javascript">calendar();</script>
+
+  <center>
+  <table class="navigCal" cellpadding=8 cellspacing=8>
+  <tr>
+      <td class="menuItem" onclick="setPrevMonth();calendar();">&lt; Previous month</td>
+	  <td class="menuItem" onclick="selectedDate.setDate(1);calendar();">Start Month</td>
+	  <td class="menuItem" onclick="setNextMonth();calendar();">Next month &gt;</td>
+  </tr>
+  <tr>
+	  <td class="menuItem" onclick="setPrevYear();calendar();">&lt; Previous year</td>
+	  <td class="menuItem" onclick="selectedDate.setDate(1);selectedDate.setMonth(0);calendar();">Start Year</td>
+	  <td class="menuItem" onclick="setNextYear();calendar();">Next year &gt;</td>
+  </tr>
+  </table>
+  
+  </center>
+
+  
+  
+<script type="text/javascript">
+writeNavigStart();
+writeNavigItem("Main Menu", "window.location.href=\"mainmenu.html\"");
+writeNavigItem("{%string leftArrow} {%title -1}", "onSave();goBack()");
+writeNavigItem("{%title +1} {%string rightArrow}", "onSave();goNext()");
+writeNavigEnd();
+</script>
+
+
+
+
+
+</body>
+</html>

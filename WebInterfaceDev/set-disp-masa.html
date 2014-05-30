@@ -1,6 +1,29 @@
 <html>
 <head><title></title>
-<script type="text/javascript" src="shh.js"></script>
+<script type="text/javascript" src="{%homedir}/shh.js"></script>
+<link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
+
+<script type="text/javascript">
+
+function onSave()
+{
+	setUserDefaultsBool('masa.visible.0', getSwitchValue("t0"));
+	setUserDefaultsBool('masa.visible.1', getSwitchValue("t1"));
+	setUserDefaultsBool('masa.visible.2', getSwitchValue("t2"));
+	setUserDefaultsBool('masa.visible.3', getSwitchValue("t3"));
+	setUserDefaultsBool('masa.visible.4', getSwitchValue("t4"));
+	setUserDefaultsBool('masa.visible.5', getSwitchValue("t5"));
+	setUserDefaultsBool('masa.visible.6', getSwitchValue("t6"));
+	setUserDefaultsBool('masa.visible.7', getSwitchValue("t7"));
+	setUserDefaultsBool('masa.visible.8', getSwitchValue("t8"));
+	setUserDefaultsBool('masa.visible.9', getSwitchValue("t9"));
+	setUserDefaultsBool('masa.visible.10', getSwitchValue("t10"));
+	setUserDefaultsBool('masa.visible.11', getSwitchValue("t11"));
+	setUserDefaultsBool('masa.visible.12', getSwitchValue("t12"));
+	
+}
+
+</script>
 </head>
 
 <body>
@@ -26,6 +49,34 @@ writeCheckBox("Purusottama-adhika"," Shows month Purusottama-adhika in results",
 
 
 </table>
+
+<script type="text/javascript">
+setSwitchValue("t0", getUserDefaultsBool('masa.visible.0'));
+setSwitchValue("t1", getUserDefaultsBool('masa.visible.1'));
+setSwitchValue("t2", getUserDefaultsBool('masa.visible.2'));
+setSwitchValue("t3", getUserDefaultsBool('masa.visible.3'));
+setSwitchValue("t4", getUserDefaultsBool('masa.visible.4'));
+setSwitchValue("t5", getUserDefaultsBool('masa.visible.5'));
+setSwitchValue("t6", getUserDefaultsBool('masa.visible.6'));
+setSwitchValue("t7", getUserDefaultsBool('masa.visible.7'));
+setSwitchValue("t8", getUserDefaultsBool('masa.visible.8'));
+setSwitchValue("t9", getUserDefaultsBool('masa.visible.9'));
+setSwitchValue("t10", getUserDefaultsBool('masa.visible.10'));
+setSwitchValue("t11", getUserDefaultsBool('masa.visible.11'));
+setSwitchValue("t12", getUserDefaultsBool('masa.visible.12'));
+
+</script>
+
+
+<div class="menuBarDiv">
+<table class="menuBar" align=center cellspacing=8 cellpadding=8>
+<tr>
+<td class="menuItem" onclick='onSave();window.location.href="mainmenu.html"'>Main Menu</td>
+<td class="menuItem" onclick='onSave();window.location.href="set-disp.html"'>Display Settings</td>
+</tr>
+</table>
+</div>
+
 
 </body>
 </html>

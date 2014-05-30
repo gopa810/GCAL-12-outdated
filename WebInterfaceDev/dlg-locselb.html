@@ -1,0 +1,68 @@
+<html>
+<head><title></title>
+
+<script type="text/javascript" src="{%homedir}/shh.js"></script>
+<link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
+<script type="text/javascript">
+function onSave()
+{
+	saveString("locationidb", lastId);
+	saveString("locationtypeb", "selected");
+}
+
+var locs = [
+{%find locations locpartb}
+];
+
+var selc = 1;
+
+</script>
+
+<!--
+var locs = [
+  ["Location a", "loc a", "1"],
+  ["Location b", "loc b", "2"],
+  ["Location c", "loc c", "3"]
+];
+
+-->
+
+</head>
+
+
+<body>
+
+<table style='border=0px' width="100%" cellpadding=8 cellspacing=0>
+
+<script>
+
+lastId = '{%string locationidb}';
+
+for(var i= 0; i < locs.length; i++)
+{
+    if (selc == 1 && lastId == '')
+		lastId = locs[i][2];
+    writeComboChoiceValue(locs[i][0], locs[i][1], locs[i][2], (locs[i][2] == lastId ? 1 : 0));
+	selc = 0;
+}
+
+</script>
+
+</table>
+
+<div class="menuBarDiv">
+<table class="menuBar" align=center cellspacing=8 cellpadding=8>
+<tr>
+<td class="menuItem" onclick='window.location.href="mainmenu.html"'>Main Menu</td>
+<td class="menuItem" onclick='onSave();goBack()'>&lt; {%title -1}</td>
+<td class="menuItem" onclick='onSave();goNext();'>{%title +1} &gt;</td>
+</tr>
+</table>
+</div>
+
+
+
+
+
+</body>
+</html>

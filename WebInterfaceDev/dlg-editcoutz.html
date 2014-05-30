@@ -1,0 +1,105 @@
+<html>
+<head><title></title>
+<script type="text/javascript" src="{%homedir}/shh.js"></script>
+<link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
+</head>
+
+<script type="text/javascript">
+
+function onSave()
+{
+}
+
+var lastTzCount = 0;
+
+function deleteItem(tzname)
+{
+//    deletedItems.push(tzname);
+	scriptObject.deleteTimezoneForCountry(loadString("locationcountry"), tzname);
+	initList();
+}
+
+function getTimezonesList()
+{
+	var list = [];
+	var storedOffset = loadString("locationcountrycode");
+	var tzoff = scriptObject.getTimezonesByCountry(storedOffset);
+	
+	list = tzoff.split("<line>");
+
+	var i = 0;
+	var str = '<table cellspacing=0 cellpadding=8>';
+	if (tzoff.length > 0)
+	{
+		for(i = 0; i < list.length; i++)
+		{
+			var tags = list[i].split('<br>');
+			str += "<tr>";
+			str += "<td>" + tags[2] + "</td>";
+			str += "<td>" + tags[1] + "</td>";
+			str += "<td><button type=\"button\" onclick=\"deleteItem('" + tags[1] + "')\">Remove</button></td>";
+			str += "</tr>";
+		}
+	}
+
+	str += "</table>";
+	lastTzCount = tzoff.length;
+	
+	return str;
+}
+
+function initList()
+{
+	var elem = document.getElementById('list0');
+	elem.innerHTML = getTimezonesList();
+	
+	if (lastTzCount == 0)
+	{
+	    setDisplay('bar0', 'none');
+	}
+	else
+	{
+	    setDisplay('bar0', 'block');
+	}
+}
+
+
+function startAddTimezone()
+{
+    scriptObject.clearHistory();
+    setCurrTitle("Edit Countries");
+	saveString("ppx", "");
+	addFutureFile2("dlg-seltzoff.html", "Select Timezone Offset");
+	addFutureFile2("dlg-seltimezone.html", "Choose Timezone");
+	addFutureFile2("dlg-editcoutz.html?preaction=savetzforcountry", "Save");
+	goNext();
+}
+
+</script>
+
+<body>
+
+<h1>Edit Timezones for {%string locationcountry}</h1>
+
+<div id='list0'>
+</div>
+
+<center>
+<button type="button" onclick="startAddTimezone();">Add Timezone</button>
+</center>
+
+<div id='bar0' style='display:block'>
+<script type="text/javascript">
+writeNavigStart();
+writeNavigItem("Main Menu", "window.location.href=\"mainmenu.html\"");
+writeNavigItem("Countries", "window.location.href=\"geo-countries.html\"");
+writeNavigEnd();
+</script>
+</div>
+
+<script>
+initList();
+</script>
+
+</body>
+</html>

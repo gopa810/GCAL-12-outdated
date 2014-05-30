@@ -1,7 +1,48 @@
 <html>
 <head><title></title>
-<script type="text/javascript" src="shh.js"></script>
+<script type="text/javascript" src="{%homedir}/shh.js"></script>
+<link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
 </head>
+
+<script type="text/javascript">
+
+
+function startGeoAdd()
+{
+    scriptObject.clearHistory();
+    setCurrTitle("Edit Cities");
+	saveString("ppx", "");
+	saveString("locationtype", "entered");
+	addFutureFile2("dlg-locfull.html", "Location Full Name");
+	addFutureFile2("dlg-country.html", "Choose Country");
+	addFutureFile2("dlg-enterlongitude.html", "Enter Longitude");
+	addFutureFile2("dlg-enterlatitude.html", "Enter Latitude");
+	addFutureFile2("dlg-selcoutz.html", "Enter Timezone");
+	addFutureFile2("dlg-savelocation.html", "Save");
+	goNext();
+}
+
+function startGeoEdit()
+{
+    scriptObject.clearHistory();
+    setCurrTitle("Edit Cities");
+	addFutureFile2("dlg-loc.html?ppx=&locationtype=selected", "Location Name");
+	addFutureFile2("dlg-locsel.html", "Select Location");
+	addFutureFile2("dlg-editlocation.html?preaction=loadlocationid", "Edit");
+	goNext();
+}
+
+function startGeoDelete()
+{
+    scriptObject.clearHistory();
+    setCurrTitle("Edit Cities");
+	addFutureFile2("dlg-loc.html?ppx=&locationtype=selected", "Location Name");
+	addFutureFile2("dlg-locsel.html", "Select Location");
+	addFutureFile2("dlg-dellocation.html?preaction=loadlocationid", "Confirm Delete");
+	goNext();
+}
+
+</script>
 
 
 <body>
@@ -11,13 +52,18 @@
 <table style='border:0px' width="100%" cellspacing=8 cellpadding=8>
 
 <script type="text/javascript">
-writeChoice("Add New Location", "t0", "geo-cities-add.html");
-writeChoice("Edit existing", "t1", "geo-cities-edit.html");
-writeChoice("Remove", "t2", "geo-cities-del.html");
+writeChoiceWithAction("Add New Location", "t0", "startGeoAdd();");
+writeChoiceWithAction("Edit existing", "t1", "startGeoEdit();");
+writeChoiceWithAction("Remove", "t2", "startGeoDelete();");
 </script>
 
 </table>
 
+<script type="text/javascript">
+writeNavigStart();
+writeNavigItem("Main Menu", "window.location.href=\"mainmenu.html\"");
+writeNavigEnd();
+</script>
 
 </body>
 </html>

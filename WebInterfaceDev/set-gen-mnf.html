@@ -1,6 +1,18 @@
 <html>
 <head><title></title>
-<script type="text/javascript" src="shh.js"></script>
+<script type="text/javascript" src="{%homedir}/shh.js"></script>
+<link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
+
+
+<script type="text/javascript">
+
+function onSave()
+{
+    setUserDefaultsInt('gen.masaname.format', lastId);
+}
+
+</script>
+
 </head>
 
 <body>
@@ -10,15 +22,30 @@
 <h1>Masa Name Format</h1>
 
 <script type="text/javascript">
-writeComboChoiceValue("Damodara", "", "t0", 0);
-writeComboChoiceValue("Damodara (Kartik)", "", "t1", 1);
-writeComboChoiceValue("Kartik", "", "t2", 0);
-writeComboChoiceValue("Kartik (Damodara)", "", "t3", 0);
+writeComboChoiceValue("{%getSelectionText gen.masaname.format 0}", "", "0", 0);
+writeComboChoiceValue("{%getSelectionText gen.masaname.format 1}", "", "1", 1);
+writeComboChoiceValue("{%getSelectionText gen.masaname.format 2}", "", "2", 0);
+writeComboChoiceValue("{%getSelectionText gen.masaname.format 3}", "", "3", 0);
 </script>
 
 
 
 </table>
+
+<script type="text/javascript">
+setNewComboChoice(getUserDefaultsInt('gen.masaname.format'));
+</script>
+
+<div class="menuBarDiv">
+<table class="menuBar" align=center cellspacing=8 cellpadding=8>
+<tr>
+<td class="menuItem" onclick='onSave();window.location.href="mainmenu.html"'>Main Menu</td>
+<td class="menuItem" onclick='onSave();window.location.href="set-general.html"'>General Settings</td>
+</tr>
+</table>
+</div>
+
+
 
 </body>
 </html>

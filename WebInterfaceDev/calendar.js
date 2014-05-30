@@ -1,49 +1,8 @@
-<html>
-<title>www.scriptSplash.com => javaScript - Basic Calendar</title>
-<head>
-<style type="text/css">
-.calendarTable {
-    background-color:#fff;
-    color:#333;
-    border: 1px solid #bbb;
-}
-.calendarTable td {
-    text-align: center;
-    padding: 2px 4px 2px 4px;
-}
-.calendarTable td.monthHead {
-    font-weight: bold;
-    border: 1px solid #bbb;
-    background-color:#ddd;
-}
-.calendarTable td.weekDay {
-    font-weight: bold;
-}
-.calendarTable td.monthDay {
-    border: 0px solid #ddd;
-	cursor: pointer;
-}
-.calendarTable td.currentDay {
-    font-weight: bold;
-    color:white;
-	background-color: #777;
-    border: 0px solid #aaa;
-}
-.navigCal {
-    width:100%;
-}
-.navigCal td.menuItem {
-    text-align:center;
-	cursor:pointer;
-}
 
-</style>
-<script type="text/javascript" language="javascript">
-/** Function to display a Calendar based on javascript. **/
-
-var selectedDate = new Date();
 var date = new Date();
 var monthDays = new Array(31,28,31,30,31,30,31,31,30,31,30,31);
+
+
 
 function getMonthDays(year, month) {
   if (month != 1)
@@ -56,6 +15,20 @@ function getMonthDays(year, month) {
   {
      return 28;
   }
+}
+
+function setPrevYear() {
+   var year = selectedDate.getFullYear();
+   selectedDate.setDate(1);
+   selectedDate.setMonth(0);
+   selectedDate.setFullYear(year - 1);
+}
+
+function setNextYear() {
+   var year = selectedDate.getFullYear();
+   selectedDate.setDate(1);
+   selectedDate.setMonth(0);
+   selectedDate.setFullYear(year + 1);
 }
 
 function setPrevMonth() {
@@ -140,15 +113,6 @@ function calendar() {
   }
   calendar_html += '</tr>';
   calendar_html += '</table>';
-  
-  calendar_html += '<table class="navigCal"><tr><td class="menuItem" onclick="setPrevMonth();calendar();">&lt; Previous month</td>';
-  calendar_html += '<td class="menuItem" onclick="selectedDate.setDate(1);calendar();">Start Month</td>';
-  calendar_html += '<td class="menuItem" onclick="setNextMonth();calendar();">Next month &gt;</td>';
-  calendar_html += '</tr><tr>';
-  calendar_html += '<td class="menuItem">&lt; Previous year</td>';
-  calendar_html += '<td class="menuItem" onclick="selectedDate.setDate(1);selectedDate.setMonth(0);calendar();">Start Year</td><td class="menuItem">Next year &gt;</td>';
-  calendar_html += '</table>';
-  
   calendar_html += '</center>';
   
   // Display the calendar.
@@ -156,24 +120,4 @@ function calendar() {
   elem.innerHTML = calendar_html;
   //document.write(calendar_html);
 }
-</script>
-</head>
 
-<body>
-  <h1>Start Date</h1>
-
-  <br/>
-  <div id='thiscal' style='text-align:center'>
-  </div>
-  <script type="text/javascript">calendar();</script>
-<div>
-<table style='width:100%'>
-<tr>
-<td style='cursor:pointer;text-align:center' onclick='window.location.href="app-locsel.html"'>&lt; Locations</td>
-<td style='cursor:pointer;text-align:center' onclick='window.location.href="app-time.html"'>Time of day &gt;</td>
-</tr>
-</table>
-</div>
-
-</body>
-</html>

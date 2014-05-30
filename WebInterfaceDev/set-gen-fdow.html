@@ -1,6 +1,17 @@
 <html>
 <head><title></title>
-<script type="text/javascript" src="shh.js"></script>
+<script type="text/javascript" src="{%homedir}/shh.js"></script>
+<link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
+
+
+<script type="text/javascript">
+
+function onSave()
+{
+    setUserDefaultsInt('gen.week.firstday', lastId);
+}
+
+</script>
 </head>
 
 <body>
@@ -10,18 +21,35 @@
 <h1>First Day of Week settings</h1>
 
 <script type="text/javascript">
-writeComboChoiceValue("Sunday", "", "t0", 1);
-writeComboChoiceValue("Monday", "", "t1", 0);
-writeComboChoiceValue("Tuesday", "", "t2", 0);
-writeComboChoiceValue("Wednesday", "", "t3", 0);
-writeComboChoiceValue("Thursday", "", "t4", 0);
-writeComboChoiceValue("Friday", "", "t5", 0);
-writeComboChoiceValue("Saturday", "", "t6", 0);
+writeComboChoiceValue("{%getSelectionText gen.week.firstday 0}", "", "0", 1);
+writeComboChoiceValue("{%getSelectionText gen.week.firstday 1}", "", "1", 0);
+writeComboChoiceValue("{%getSelectionText gen.week.firstday 2}", "", "2", 0);
+writeComboChoiceValue("{%getSelectionText gen.week.firstday 3}", "", "3", 0);
+writeComboChoiceValue("{%getSelectionText gen.week.firstday 4}", "", "4", 0);
+writeComboChoiceValue("{%getSelectionText gen.week.firstday 5}", "", "5", 0);
+writeComboChoiceValue("{%getSelectionText gen.week.firstday 6}", "", "6", 0);
 </script>
 
 
 
 </table>
+
+
+<script>
+setNewComboChoice(getUserDefaultsInt('gen.week.firstday'));
+</script>
+
+
+<div class="menuBarDiv">
+<table class="menuBar" align=center cellspacing=8 cellpadding=8>
+<tr>
+<td class="menuItem" onclick='onSave();window.location.href="mainmenu.html"'>Main Menu</td>
+<td class="menuItem" onclick='onSave();window.location.href="set-general.html"'>General Settings</td>
+</tr>
+</table>
+</div>
+
+
 
 </body>
 </html>

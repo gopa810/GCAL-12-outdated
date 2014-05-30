@@ -1,0 +1,36 @@
+<html>
+<head>
+<title></title>
+<script type="text/javascript" src="{%homedir}/shh.js"></script>
+<link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
+<script type="text/javascript">
+function onSave()
+{
+	var el = document.getElementById("textField0");
+	saveString("locparta", el.value);
+}
+</script>
+</head>
+
+<body>
+
+
+<h1>Location A</h1>
+<input type="text" id="textField0" value="{%string locparta}">
+
+
+
+<div class="menuBarDiv">
+<table class="menuBar" align=center cellspacing=8 cellpadding=8>
+<tr>
+<td class="menuItem" onclick='onSave();goBack()'>&lt; {%title -1}</td>
+<td class="menuItem" onclick='onSave();goNext();'>{%title +1} &gt;</td>
+</tr>
+</table>
+</div>
+
+
+
+
+</body>
+</html>

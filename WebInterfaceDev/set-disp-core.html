@@ -1,6 +1,23 @@
 <html>
 <head><title></title>
-<script type="text/javascript" src="shh.js"></script>
+<script type="text/javascript" src="{%homedir}/shh.js"></script>
+<link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
+
+<script type="text/javascript">
+
+function onSave()
+{
+	setUserDefaultsBool('core.sun', getSwitchValue("t0"));
+	setUserDefaultsBool('core.moon', getSwitchValue("t1"));
+	setUserDefaultsBool('core.tithi', getSwitchValue("t2"));
+	setUserDefaultsBool('core.naksatra', getSwitchValue("t3"));
+	setUserDefaultsBool('core.sankranti', getSwitchValue("t4"));
+	setUserDefaultsBool('core.conjunction', getSwitchValue("t5"));
+	setUserDefaultsBool('core.suneclipse', getSwitchValue("t6"));
+	setUserDefaultsBool('core.mooneclipse', getSwitchValue("t7"));
+}
+
+</script>
 </head>
 
 <body>
@@ -9,16 +26,42 @@
 
 <script type="text/javascript">
 writeCheckBox("Sunrise, Noon, Sunset", "", "t0");
-writeCheckBox("Tithis", "Start of tithi", "t1");
-writeCheckBox("Naksatras", "Start of naksatra", "t2");
-writeCheckBox("Sankrantis", "Occurs when sun enter new zodiac sign", "t3");
-writeCheckBox("Conjunctions", "Occurs when sun and moon has the same longitude", "t4");
-writeComboChoice("Sort Results", "Sort by Time", "t5", "set-disp-core-sort.html");
+writeCheckBox("Moonrise, Moonset", "", "t1");
+writeCheckBox("Tithis", "Start of tithi", "t2");
+writeCheckBox("Naksatras", "Start of naksatra", "t3");
+writeCheckBox("Sankrantis", "Occurs when sun enter new zodiac sign", "t4");
+writeCheckBox("Conjunctions", "Occurs when sun and moon has the same longitude", "t5");
+writeCheckBox("Sun Eclipse", "", "t6");
+writeCheckBox("Moon Eclipse", "", "t7");
+writeComboChoice("Sort Results", "Sort by Time", "t20", "set-disp-core-sort.html");
 </script>
 
 
 
 </table>
+
+<script type="text/javascript">
+setSwitchValue("t0", getUserDefaultsBool('core.sun'));
+setSwitchValue("t1", getUserDefaultsBool('core.moon'));
+setSwitchValue("t2", getUserDefaultsBool('core.tithi'));
+setSwitchValue("t3", getUserDefaultsBool('core.naksatra'));
+setSwitchValue("t4", getUserDefaultsBool('core.sankranti'));
+setSwitchValue("t5", getUserDefaultsBool('core.conjunction'));
+setSwitchValue("t6", getUserDefaultsBool('core.suneclipse'));
+setSwitchValue("t7", getUserDefaultsBool('core.mooneclipse'));
+
+</script>
+
+<div class="menuBarDiv">
+<table class="menuBar" align=center cellspacing=8 cellpadding=8>
+<tr>
+<td class="menuItem" onclick='onSave();window.location.href="mainmenu.html"'>Main Menu</td>
+<td class="menuItem" onclick='onSave();window.location.href="set-disp.html"'>Display Settings</td>
+</tr>
+</table>
+</div>
+
+
 
 </body>
 </html>

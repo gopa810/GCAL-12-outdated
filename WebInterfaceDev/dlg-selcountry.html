@@ -1,0 +1,52 @@
+<html>
+<head><title></title>
+<script type="text/javascript" src="{%homedir}/shh.js"></script>
+<link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
+</head>
+
+<body>
+
+<h1>Select Country</h1>
+
+
+<table style='border:0px' cellspacing=8 cellpadding=8>
+<tr><td>
+<script type="text/javascript">
+
+var list = [];
+var storedGroup = loadString("tzgroup");
+
+
+if (storedGroup == "offset")
+{
+	var storedOffset = loadString("tzoffset");
+	var tzoff = scriptObject.getTimezonesByOffset(storedOffset);
+	var list = tzoff.split("<line>");
+}
+
+var i = 0;
+var str = '';
+for(i = 0; i < list.length; i++)
+{
+    var line = list[i].split("<br>");
+	str += "<input style='padding-top:8pt;padding-bottom:8pt;padding-left:24pt;padding-right:24pt;width:100%' type=\"button\" onclick='saveString(\"locationtimezone{%string ppx}\", \"" + line[1] + "\");goNext();' value=\"" + line[1] + "\">";
+	str += "<br>";
+}
+
+document.write(str);
+
+</script>
+</td></tr>
+</table>
+
+<script type="text/javascript">
+writeNavigStart();
+writeNavigItem("Main Menu", "window.location.href=\"mainmenu.html\"");
+writeNavigEnd();
+</script>
+
+
+
+
+</body>
+</html>

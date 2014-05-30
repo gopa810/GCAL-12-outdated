@@ -1,0 +1,39 @@
+<html>
+<head>
+<title></title>
+<script type="text/javascript" src="{%homedir}/shh.js"></script>
+<link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
+<script type="text/javascript">
+function onSave()
+{
+	//var el = document.getElementById("textField0");
+	scriptObject.removeLocation(Number(scriptObject.getString("locationid")));
+}
+</script>
+</head>
+
+<body>
+
+<center>
+<h1>Remove Location ?</h1>
+<p width=50%>Confirm that you want to <b>remove</b> following location from the global list of locations in GCAL application.</p>
+<table>
+<tr><td>Name</td><td>{%string locationname}</td></tr>
+<tr><td>Country</td><td>{%string locationcountry}</td></tr>
+<tr><td>Longitude</td><td>{%string locationlongitude}</td></tr>
+<tr><td>Latitude</td><td>{%string locationlatitude}</td></tr>
+<tr><td>Timezone</td><td>{%string locationtimezone}</td></tr>
+</table>
+
+</center>
+
+
+<script type="text/javascript">
+writeNavigStart();
+writeNavigItem("{%string leftArrow} {%title -1}", "goBack()");
+writeNavigItem("Don't delete", "window.location.href=\"mainmenu.html\"");
+writeNavigItem("Yes, delete", "onSave();window.location.href=\"geo-cities.html\";");
+writeNavigEnd();
+</script>
+
+

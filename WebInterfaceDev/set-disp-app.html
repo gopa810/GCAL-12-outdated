@@ -1,6 +1,20 @@
 <html>
 <head><title></title>
-<script type="text/javascript" src="shh.js"></script>
+<script type="text/javascript" src="{%homedir}/shh.js"></script>
+<link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
+
+<script type="text/javascript">
+
+function onSave()
+{
+    setUserDefaultsInt('appday.celebs', getElementValue("t0"));
+	setUserDefaultsBool('appday.childn', getSwitchValue("t1"));
+	
+	
+}
+
+</script>
+
 </head>
 
 <body>
@@ -11,10 +25,23 @@
 writeCounterChoice("Celebrations", "Number of celebrations showed in results", "t0");
 writeCheckBox("Child Name Suggestions", "Shows suggestions for child name acording naksatra and rasi of the Sun", "t1");
 </script>
-
-
-
 </table>
+
+<script type="text/javascript">
+setElementValue("t0", getUserDefaultsInt('appday.celebs'));
+setSwitchValue("t1", getUserDefaultsBool('appday.childn'));
+
+</script>
+
+<div class="menuBarDiv">
+<table class="menuBar" align=center cellspacing=8 cellpadding=8>
+<tr>
+<td class="menuItem" onclick='onSave();window.location.href="mainmenu.html"'>Main Menu</td>
+<td class="menuItem" onclick='onSave();window.location.href="set-disp.html"'>Display Settings</td>
+</tr>
+</table>
+</div>
+
 
 </body>
 </html>

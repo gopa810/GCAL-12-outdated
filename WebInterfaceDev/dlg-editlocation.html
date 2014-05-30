@@ -1,0 +1,92 @@
+<html>
+<head>
+<title></title>
+<script type="text/javascript" src="{%homedir}/shh.js"></script>
+<link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
+<script type="text/javascript">
+function onSave()
+{
+	//var el = document.getElementById("textField0");
+	scriptObject.saveEditedLocation();
+}
+
+function startEditName()
+{
+    scriptObject.clearHistory();
+    setCurrTitle("Edit Location");
+	saveString("ppx", "");
+	addFutureFile2("dlg-locfull.html", "Location Full Name");
+	addFutureFile2("dlg-editlocation.html", "Save");
+	goNext();
+}
+
+function startEditCountry()
+{
+    scriptObject.clearHistory();
+    setCurrTitle("Edit Location");
+	saveString("ppx", "");
+	addFutureFile2("dlg-country.html", "Location Full Name");
+	addFutureFile2("dlg-selcoutz.html", "Select Timezone");
+	addFutureFile2("dlg-editlocation.html", "Save");
+	goNext();
+}
+
+function startEditLatitude()
+{
+    scriptObject.clearHistory();
+    setCurrTitle("Edit Location");
+	saveString("ppx", "");
+	addFutureFile2("dlg-enterlatitude.html", "Enter Latitude");
+	addFutureFile2("dlg-editlocation.html", "Save");
+	goNext();
+}
+
+function startEditLongitude()
+{
+    scriptObject.clearHistory();
+    setCurrTitle("Edit Location");
+	saveString("ppx", "");
+	addFutureFile2("dlg-enterlongitude.html", "Enter Longitude");
+	addFutureFile2("dlg-editlocation.html", "Save");
+	goNext();
+}
+
+function startEditTimezone()
+{
+    scriptObject.clearHistory();
+    setCurrTitle("Edit Location");
+	saveString("ppx", "");
+	addFutureFile2("dlg-selcoutz.html", "Select Timezone");
+	addFutureFile2("dlg-editlocation.html", "Save");
+	goNext();
+}
+
+</script>
+</head>
+
+<body>
+
+<center>
+<h1>Edit Location</h1>
+<p width=50%>Edit name, coordinates, country or timezone for selected location. Then press "Save" to save edited values and return to the Cities menu.</p>
+<table>
+<tr><td><button style='width:100%' type="button" onclick='startEditName()'>Edit Name</button></td><td>{%string locationname}</td></tr>
+<tr><td><button style='width:100%' type="button" onclick='startEditCountry()'>Edit Country</button></td><td>{%string locationcountrycode} {%string locationcountry}</td></tr>
+<tr><td><button style='width:100%' type="button" onclick='startEditLongitude()'>Edit Longitude</button></td><td>{%string locationlongitude}</td></tr>
+<tr><td><button style='width:100%' type="button" onclick='startEditLatitude()'>Edit Latitude</button></td><td>{%string locationlatitude}</td></tr>
+<tr><td><button style='width:100%' type="button" onclick='startEditTimezone()'>Edit Timezone</button></td><td>{%string locationtimezone}</td></tr>
+</table>
+
+</center>
+
+
+<script type="text/javascript">
+writeNavigStart();
+writeNavigItem("Main Menu", "onSave();window.location.href=\"mainmenu.html\"");
+writeNavigItem("Cities", "onSave();window.location.href=\"geo-cities.html\"");
+writeNavigEnd();
+</script>
+
+
+</body>
+</html>

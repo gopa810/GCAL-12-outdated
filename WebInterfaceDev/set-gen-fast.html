@@ -1,6 +1,17 @@
 <html>
 <head><title></title>
-<script type="text/javascript" src="shh.js"></script>
+<script type="text/javascript" src="{%homedir}/shh.js"></script>
+<link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
+
+
+<script type="text/javascript">
+
+function onSave()
+{
+    setUserDefaultsInt('gen.fastingnotation', lastId);
+}
+
+</script>
 </head>
 
 <body>
@@ -10,13 +21,28 @@
 <h1>Fasting Notation Settings</h1>
 
 <script type="text/javascript">
-writeComboChoiceValue("Hari Bhakti Vilasa style", "Fast today on Vishnu tattva appearance, other days no fast", "t0", 1);
-writeComboChoiceValue("Old style", "Fast till noon, sunset, dusk, etc according old program", "t1", 0);
+writeComboChoiceValue("{%getSelectionText gen.fastingnotation 0}", "Fast today on Vishnu tattva appearance, other days no fast", "0", 1);
+writeComboChoiceValue("{%getSelectionText gen.fastingnotation 2}", "Fast till noon, sunset, dusk, etc according old program", "1", 0);
 </script>
 
 
 
 </table>
+
+<script>
+setNewComboChoice(getUserDefaultsInt('gen.fastingnotation'));
+</script>
+
+
+<div class="menuBarDiv">
+<table class="menuBar" align=center cellspacing=8 cellpadding=8>
+<tr>
+<td class="menuItem" onclick='onSave();window.location.href="mainmenu.html"'>Main Menu</td>
+<td class="menuItem" onclick='onSave();window.location.href="set-general.html"'>General Settings</td>
+</tr>
+</table>
+</div>
+
 
 </body>
 </html>

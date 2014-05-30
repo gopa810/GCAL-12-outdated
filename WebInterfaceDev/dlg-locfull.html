@@ -1,0 +1,35 @@
+<html>
+<head>
+<title></title>
+<script type="text/javascript" src="{%homedir}/shh.js"></script>
+<link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
+<script type="text/javascript">
+function onSave()
+{
+	//var el = document.getElementById("textField0");
+	saveString("locationname", getElementValue("textField0"));
+}
+</script>
+</head>
+
+<body>
+
+<center>
+<h1>{%title 0}</h1>
+<p>Enter full name of location.</p>
+<input type="text" id="textField0" value="">
+</center>
+
+
+<script>
+setElementValue("textField0", "{%string locationname}");
+</script>
+
+<script type="text/javascript">
+writeNavigStart();
+writeNavigItem("Main Menu", "window.location.href=\"mainmenu.html\"");
+writeNavigItem("{%string leftArrow} {%title -1}", "onSave();goBack()");
+writeNavigItem("{%title +1} {%string rightArrow}", "onSave();goNext()");
+writeNavigEnd();
+</script>
+

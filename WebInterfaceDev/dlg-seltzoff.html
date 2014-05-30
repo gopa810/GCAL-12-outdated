@@ -6,14 +6,25 @@
 
 <body>
 
-<h1>Calendar Events</h1>
+<h1>{%title 0}</h1>
+
+<h2>Offset</h2>
 
 <table style='border:0px' width="100%" cellspacing=8 cellpadding=8>
 
 <script type="text/javascript">
-writeChoice("New Event", "t0", "geo-events-add.html");
-writeChoice("Edit Selected", "t1", "geo-events-edit.html");
-writeChoice("Remove", "t2", "geo-events-del.html");
+var tzoff = scriptObject.getTimezoneOffsets();
+var list = tzoff.split("<line>");
+var i = 0;
+var str = '';
+for(i = 0; i < list.length; i++)
+{
+    var line = list[i].split("<br>");
+	str += "<input type=\"button\" onclick='saveString(\"tzgroup\", \"offset\");saveString(\"tzoffset\", \"" + line[0] + "\");saveString(\"tzoffsettext\", \"" + line[1] + "\");goNext();' value=\"" + line[1] + "\">";
+}
+
+document.write(str);
+
 </script>
 
 </table>
@@ -23,6 +34,8 @@ writeNavigStart();
 writeNavigItem("Main Menu", "window.location.href=\"mainmenu.html\"");
 writeNavigEnd();
 </script>
+
+
 
 
 </body>

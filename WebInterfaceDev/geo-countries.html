@@ -1,8 +1,45 @@
 <html>
 <head><title></title>
-<script type="text/javascript" src="shh.js"></script>
+<script type="text/javascript" src="{%homedir}/shh.js"></script>
+<link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
 </head>
 
+<script type="text/javascript">
+function startAddCountry()
+{
+    scriptObject.clearHistory();
+    setCurrTitle("Edit Countries");
+	saveString("ppx", "");
+	saveString("locationtype", "entered");
+	addFutureFile2("dlg-newcountry.html", "Enter Country Data");
+	addFutureFile2("dlg-editcoutz.html", "Edit Timezones");
+	addFutureFile2("geo-countries.html", "Countries");
+	goNext();
+}
+
+function startRenameCountry()
+{
+    scriptObject.clearHistory();
+    setCurrTitle("Edit Countries");
+	saveString("ppx", "");
+	saveString("locationtype", "entered");
+	addFutureFile2("dlg-country.html", "Choose Country");
+	addFutureFile2("dlg-renamecountry.html", "Enter New Name");
+	goNext();
+}
+
+function startDeleteCountry()
+{
+    scriptObject.clearHistory();
+    setCurrTitle("Edit Countries");
+	saveString("ppx", "");
+	saveString("locationtype", "entered");
+	addFutureFile2("dlg-country.html", "Choose Country");
+	addFutureFile2("dlg-confirm-del-country.html", "Confirm Delete");
+	goNext();
+}
+
+</script>
 
 <body>
 
@@ -11,12 +48,19 @@
 <table style='border:0px' width="100%" cellspacing=8 cellpadding=8>
 
 <script type="text/javascript">
-writeChoice("Add New Country", "t0", "geo-cities-add.html");
-writeChoice("Rename existing", "t1", "geo-cities-edit.html");
-writeChoice("Remove", "t2", "geo-cities-del.html");
+writeChoiceWithAction("Add New Country", "t0", "startAddCountry();");
+writeChoiceWithAction("Rename existing", "t1", "startRenameCountry");
+writeChoiceWithAction("Remove", "t2", "startDeleteCountry();");
 </script>
 
 </table>
+
+<script type="text/javascript">
+writeNavigStart();
+writeNavigItem("Main Menu", "window.location.href=\"mainmenu.html\"");
+writeNavigEnd();
+</script>
+
 
 </body>
 </html>

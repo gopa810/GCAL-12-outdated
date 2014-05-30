@@ -1,7 +1,8 @@
 <html>
 <head>
 <title></title>
-
+<script type="text/javascript" src="{%homedir}/shh.js"></script>
+<link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
 
 <style>
 td.noselect
@@ -19,8 +20,20 @@ user-select: none;
 var format24 = 1;
 var lastRadio = '';
 var date = new Date();
-var count0 = date.getHours();
-var count1 = date.getMinutes();
+var count0 = '{%string starthour}';
+var count1 = '{%string startmin}';
+
+if (count0 == '' || count1 == '')
+{
+  count0 = date.getHours();
+  count1 = date.getMinutes();
+}
+
+function onSave()
+{
+	saveInt("starthour", count0);
+	saveInt("startmin", count1);
+}
 
 function updateCounter()
 {
@@ -101,14 +114,19 @@ function decr(type, dif)
 	updateCounter();
 </script>
 
-<div>
-<table align=center width=240pt>
-<tr>
-<td style='cursor:pointer;text-align:center' onclick='window.location.href="app-start.html"'>&lt; Date</td>
-<td style='cursor:pointer;text-align:center' onclick='window.location.href="appday.html"'>Calculate &gt;</td>
-</tr>
-</table>
-</div>
+
+<script type="text/javascript">
+writeNavigStart();
+writeNavigItem("Main Menu", "window.location.href=\"mainmenu.html\"");
+writeNavigItem("{%string leftArrow} {%title -1}", "onSave();goBack()");
+writeNavigItem("{%title +1} {%string rightArrow}", "onSave();goNext()");
+writeNavigEnd();
+</script>
+
+
+
+
+
 </body>
 </html>
 

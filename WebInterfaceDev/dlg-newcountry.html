@@ -1,0 +1,80 @@
+<html>
+<head>
+<title></title>
+<script type="text/javascript" src="{%homedir}/shh.js"></script>
+<link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
+<script type="text/javascript">
+function onSave()
+{
+	//var el = document.getElementById("textField0");
+	scriptObject.createCountry(getElementValue("textField0"), getElementValue("textField1"));
+	scriptObject.saveString("locationcountrycode", getElementValue("textField0"));
+	scriptObject.saveString("locationcountry", getElementValue("textField1"));
+}
+
+
+function checkValues()
+{
+	var ccode = getElementValue("textField0");
+	var cname = getElementValue("textField1");
+	var errs = scriptObject.existCountry(ccode, cname);
+	var errList = errs.split(';');
+	
+	setDisplay('err1', 'none');
+	setDisplay('err2', 'none');
+	setDisplay('err3', 'none');
+	setDisplay('err4', 'none');
+	
+	if (errs.length > 0 && errList != null && errList.length > 0)
+	{
+		setVisibility('savebtn', 'hidden');
+		var i = 0;
+		for(i = 0; i < errList.length; i++)
+		{
+			setDisplay(errList[i], 'block');
+		}
+	}
+	else
+	{
+		setVisibility('savebtn', 'visible');
+	}
+}
+
+setInterval(checkValues, 300);
+
+</script>
+</head>
+
+<body>
+
+<center>
+<h1>{%title 0}</h1>
+<p width=50%>Enter new unique country code and name of the country.</p>
+<table>
+	<tr>
+		<td>Country Code:</td>
+		<td><input type="text" id="textField0" value=""></td>
+	</tr>
+	<tr>
+		<td>Country Name:</td>
+		<td><input type="text" id="textField1" value=""></td>
+	</tr>
+</table>
+<ul>
+<li id='err1' style='display:none'><span style='color:red'>Country code may not be empty.</span></p>
+<li id='err2' style='display:none'><span style='color:red'>Country name may not be empty.</span></p>
+<li id='err3' style='display:none'><span style='color:red'>Country code already in use.</span></p>
+<li id='err4' style='display:none'><span style='color:red'>Country name already in use.</span></p>
+</ul>
+</center>
+
+
+<script type="text/javascript">
+writeNavigStart();
+writeNavigItem("Main Menu", "window.location.href=\"mainmenu.html\"");
+writeNavigItem("{%string leftArrow} {%title -1}", "goBack()");
+writeNavigItemWithId("{%string rightArrow} {%title +1}", "onSave();goNext();", "savebtn");
+writeNavigEnd();
+</script>
+
+

@@ -1,24 +1,53 @@
 <html>
 <head><title></title>
-<script type="text/javascript" src="shh.js"></script>
+
+<script type="text/javascript" src="{%homedir}/shh.js"></script>
+<link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
+
+
+<script type="text/javascript">
+
+function onSave()
+{
+    setUserDefaultsInt('gen.caturmasya', lastId);
+}
+
+</script>
+
 </head>
 
 <body>
 
 <table style='border=0px' align=center cellspacing=0 cellpadding=4>
 
-<h1>Sort Core Events</h1>
+<h1>Caturmasya System Settings</h1>
 
 <script type="text/javascript">
-writeComboChoiceValue("N/A", "Caturmasya events not showed", "t0", 0);
-writeComboChoiceValue("Purnima System", "Caturmasya month starts on Purnima", "t1", 1);
-writeComboChoiceValue("Pratipat System", "Caturmasya month starts on Pratipat", "t2", 0);
-writeComboChoiceValue("Ekadasi System", "Caturmasya month starts on Ekadasi", "t3", 0);
+writeComboChoiceValue("{%getSelectionText gen.caturmasya 0}", "Caturmasya events not showed",        "0", {%isSelectedSetting gen.caturmasya 0});
+writeComboChoiceValue("{%getSelectionText gen.caturmasya 1}", "Caturmasya month starts on Purnima",  "1", {%isSelectedSetting gen.caturmasya 1});
+writeComboChoiceValue("{%getSelectionText gen.caturmasya 2}", "Caturmasya month starts on Pratipat", "2", {%isSelectedSetting gen.caturmasya 2});
+writeComboChoiceValue("{%getSelectionText gen.caturmasya 3}", "Caturmasya month starts on Ekadasi",  "3", {%isSelectedSetting gen.caturmasya 3});
 </script>
 
 
 
 </table>
+
+<script>
+setNewComboChoice(getUserDefaultsInt('gen.caturmasya'));
+</script>
+
+
+<div class="menuBarDiv">
+<table class="menuBar" align=center cellspacing=8 cellpadding=8>
+<tr>
+<td class="menuItem" onclick='onSave();window.location.href="mainmenu.html"'>Main Menu</td>
+<td class="menuItem" onclick='onSave();window.location.href="set-general.html"'>General Settings</td>
+</tr>
+</table>
+</div>
+
+
 
 </body>
 </html>

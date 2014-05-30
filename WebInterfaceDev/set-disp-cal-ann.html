@@ -1,6 +1,17 @@
 <html>
 <head><title></title>
-<script type="text/javascript" src="shh.js"></script>
+<script type="text/javascript" src="{%homedir}/shh.js"></script>
+<link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
+
+
+<script type="text/javascript">
+
+function onSave()
+{
+    setUserDefaultsInt('cal.anniversary', lastId);
+}
+
+</script>
 </head>
 
 <body>
@@ -10,14 +21,30 @@
 <h1>Anniversary Info Format</h1>
 
 <script type="text/javascript">
-writeComboChoiceValue("Long Info", "", "t0", 1);
-writeComboChoiceValue("Short Info", "", "t1", 0);
-writeComboChoiceValue("None", "", "t2", 0);
+writeComboChoiceValue("{%getSelectionText cal.headertype 0}", "", "0", 1);
+writeComboChoiceValue("{%getSelectionText cal.headertype 1}", "", "1", 0);
+writeComboChoiceValue("{%getSelectionText cal.headertype 2}", "", "2", 0);
 </script>
 
 
 
 </table>
+
+
+<script type="text/javascript">
+setNewComboChoice(getUserDefaultsInt('cal.anniversary'));
+</script>
+
+<div class="menuBarDiv">
+<table class="menuBar" align=center cellspacing=8 cellpadding=8>
+<tr>
+<td class="menuItem" onclick='onSave();window.location.href="mainmenu.html"'>Main Menu</td>
+<td class="menuItem" onclick='onSave();window.location.href="set-disp.html"'>Display Settings</td>
+<td class="menuItem" onclick='onSave();window.location.href="set-disp-cal.html"'>Calendar Display Settings</td>
+</tr>
+</table>
+</div>
+
 
 </body>
 </html>

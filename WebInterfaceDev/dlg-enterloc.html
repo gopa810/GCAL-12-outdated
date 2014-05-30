@@ -1,0 +1,46 @@
+<html>
+<head><title></title>
+<script type="text/javascript" src="{%homedir}/shh.js"></script>
+<link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
+</head>
+
+<body>
+
+<h1>Display Settings</h1>
+
+<table style='border:0px' width="100%" cellspacing=8 cellpadding=8>
+
+<script type="text/javascript">
+
+var actionForFindExisting = "saveString(\"locationtype{%string ppx}\", \"selected\");";
+actionForFindExisting += "insertFutureFile2(\"dlg-locsel.html\", \"Select Location\");";
+actionForFindExisting += "insertFutureFile2(\"dlg-loc.html\", \"Location Name\");";
+actionForFindExisting += "scriptObject.goNextExt(2);";
+
+var actionForEnterNew = "saveString(\"locationtype{%string ppx}\", \"entered\");";
+actionForEnterNew += "insertFutureFile2(\"dlg-selcoutz.html\", \"Select Timezone\");";
+actionForEnterNew += "insertFutureFile2(\"dlg-enterlatitude.html\", \"Enter Latitude\");";
+actionForEnterNew += "insertFutureFile2(\"dlg-enterlongitude.html\", \"Enter Longitude\");";
+actionForEnterNew += "insertFutureFile2(\"dlg-country.html\", \"Enter Country\");";
+actionForEnterNew += "insertFutureFile2(\"dlg-locfull.html\", \"Location Full Name\");";
+actionForEnterNew += "scriptObject.goNextExt(5);";
+
+var actionForMyLoc = "saveString(\"locationtype{%string ppx}\", \"mylocation\");";
+actionForMyLoc += "goNext();";
+
+writeChoiceWithAction("Find Existing", "t0", actionForFindExisting);
+writeChoiceWithAction("Enter Coordinates", "t1", actionForEnterNew);
+writeChoiceWithAction("Use \"My Location\"", "t2", actionForMyLoc);
+
+</script>
+
+</table>
+
+<script type="text/javascript">
+writeNavigStart();
+writeNavigItem("Main Menu", "window.location.href=\"mainmenu.html\"");
+writeNavigEnd();
+</script>
+
+</body>
+</html>

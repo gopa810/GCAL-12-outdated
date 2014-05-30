@@ -1,6 +1,47 @@
 <html>
 <head><title></title>
-<script type="text/javascript" src="shh.js"></script>
+<script type="text/javascript" src="{%homedir}/shh.js"></script>
+<link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
+
+<script type="text/javascript">
+
+function onSave()
+{
+	setUserDefaultsBool('cal.festivals.0', getSwitchValue('t0'));
+	setUserDefaultsBool('cal.festivals.1', getSwitchValue('t1'));
+	setUserDefaultsBool('cal.festivals.2', getSwitchValue('t2'));
+	setUserDefaultsBool('cal.festivals.3', getSwitchValue('t3'));
+	setUserDefaultsBool('cal.festivals.4', getSwitchValue('t4'));
+	setUserDefaultsBool('cal.festivals.5', getSwitchValue('t5'));
+	setUserDefaultsBool('cal.festivals.6', getSwitchValue('t6'));
+	setUserDefaultsBool('cal.festivals', getSwitchValue('t10'));
+	setUserDefaultsBool('cal.hide.empty', getSwitchValue('t11'));
+	setUserDefaultsBool('cal.dst.info', getSwitchValue('t12'));
+	setUserDefaultsBool('cal.masastart.info', getSwitchValue('t13'));
+	setUserDefaultsBool('cal.ekadasi.parana.details', getSwitchValue('t14'));
+	setUserDefaultsBool('cal.fastingekadasi.info', getSwitchValue('t15'));
+	setUserDefaultsBool('cal.sankranti.info', getSwitchValue('t16'));
+	setUserDefaultsBool('cal.sunrise.paksa', getSwitchValue('t17'));
+	setUserDefaultsBool('cal.sunrise.naksatra', getSwitchValue('t18'));
+	setUserDefaultsBool('cal.sunrise.yoga', getSwitchValue('t19'));
+	setUserDefaultsBool('cal.sunrise.fastingflag', getSwitchValue('t20'));
+	setUserDefaultsBool('cal.sunrise.moon.rasi', getSwitchValue('t21'));
+	setUserDefaultsBool('cal.arunodaya.tithi', getSwitchValue('t30'));
+	setUserDefaultsBool('cal.arunodaya.time', getSwitchValue('t31'));
+	setUserDefaultsBool('cal.sunrise.time', getSwitchValue('t32'));
+	setUserDefaultsBool('cal.sunset.time', getSwitchValue('t33'));
+	setUserDefaultsBool('cal.noon.time', getSwitchValue('t34'));
+	setUserDefaultsBool('cal.moonrise.time', getSwitchValue('t35'));
+	setUserDefaultsBool('cal.moonset.time', getSwitchValue('t36'));
+	setUserDefaultsBool('cal.ksaya', getSwitchValue('t37'));
+	setUserDefaultsBool('cal.vriddhi', getSwitchValue('t38'));
+	setUserDefaultsBool('cal.sunrise.sun.longitude', getSwitchValue('t39'));
+	setUserDefaultsBool('cal.sunrise.moon.longitude', getSwitchValue('t40'));
+	setUserDefaultsBool('cal.sunrise.ayanamsa', getSwitchValue('t41'));
+	setUserDefaultsBool('cal.sunrise.julianday', getSwitchValue('t42'));
+}
+
+</script>
 </head>
 
 <body>
@@ -12,13 +53,13 @@
 <table style='border=0px' align=center>
 
 <script type="text/javascript">
-writeCheckBox("Appearance Days of the Lord", "", "t0");
-writeCheckBox("Events in the Pastimes", "", "t1");
-writeCheckBox("App and DIsapp of Acaryas", "", "t2");
-writeCheckBox("App and disapp of mahaprabhu", "", "t3");
-writeCheckBox("Iskcon historical", "", "t4");
-writeCheckBox("Bengal", "", "t5");
-writeCheckBox("My Personal", "", "t6");
+writeCheckBox("{%gstr 920}", "", "t0");
+writeCheckBox("{%gstr 921}", "", "t1");
+writeCheckBox("{%gstr 922}", "", "t2");
+writeCheckBox("{%gstr 923}", "", "t3");
+writeCheckBox("{%gstr 924}", "", "t4");
+writeCheckBox("{%gstr 925}", "", "t5");
+writeCheckBox("{%gstr 926}", "", "t6");
 </script>
 
 </table>
@@ -67,6 +108,51 @@ writeCheckBox("Julian Day", "", "t42");
 </script>
 
 </table>
+
+
+<script type="text/javascript">
+	setSwitchValue('t0', getUserDefaultsBool('cal.festivals.0'));
+	setSwitchValue('t1', getUserDefaultsBool('cal.festivals.1'));
+	setSwitchValue('t2', getUserDefaultsBool('cal.festivals.2'));
+	setSwitchValue('t3', getUserDefaultsBool('cal.festivals.3'));
+	setSwitchValue('t4', getUserDefaultsBool('cal.festivals.4'));
+	setSwitchValue('t5', getUserDefaultsBool('cal.festivals.5'));
+	setSwitchValue('t6', getUserDefaultsBool('cal.festivals.6'));
+	setSwitchValue('t10', getUserDefaultsBool('cal.festivals'));
+	setSwitchValue('t11', getUserDefaultsBool('cal.hide.empty'));
+	setSwitchValue('t12', getUserDefaultsBool('cal.dst.info'));
+	setSwitchValue('t13', getUserDefaultsBool('cal.masastart.info'));
+	setSwitchValue('t14', getUserDefaultsBool('cal.ekadasi.parana.details'));
+	setSwitchValue('t15', getUserDefaultsBool('cal.fastingekadasi.info'));
+	setSwitchValue('t16', getUserDefaultsBool('cal.sankranti.info'));
+	setSwitchValue('t17', getUserDefaultsBool('cal.sunrise.paksa'));
+	setSwitchValue('t18', getUserDefaultsBool('cal.sunrise.naksatra'));
+	setSwitchValue('t19', getUserDefaultsBool('cal.sunrise.yoga'));
+	setSwitchValue('t20', getUserDefaultsBool('cal.sunrise.fastingflag'));
+	setSwitchValue('t21', getUserDefaultsBool('cal.sunrise.moon.rasi'));
+	setSwitchValue('t30', getUserDefaultsBool('cal.arunodaya.tithi'));
+	setSwitchValue('t31', getUserDefaultsBool('cal.arunodaya.time'));
+	setSwitchValue('t32', getUserDefaultsBool('cal.sunrise.time'));
+	setSwitchValue('t33', getUserDefaultsBool('cal.sunset.time'));
+	setSwitchValue('t34', getUserDefaultsBool('cal.noon.time'));
+	setSwitchValue('t35', getUserDefaultsBool('cal.moonrise.time'));
+	setSwitchValue('t36', getUserDefaultsBool('cal.moonset.time'));
+	setSwitchValue('t37', getUserDefaultsBool('cal.ksaya'));
+	setSwitchValue('t38', getUserDefaultsBool('cal.vriddhi'));
+	setSwitchValue('t39', getUserDefaultsBool('cal.sunrise.sun.longitude'));
+	setSwitchValue('t40', getUserDefaultsBool('cal.sunrise.moon.longitude'));
+	setSwitchValue('t41', getUserDefaultsBool('cal.sunrise.ayanamsa'));
+	setSwitchValue('t42', getUserDefaultsBool('cal.sunrise.julianday'));
+</script>
+
+<div class="menuBarDiv">
+<table class="menuBar" align=center cellspacing=8 cellpadding=8>
+<tr>
+<td class="menuItem" onclick='onSave();window.location.href="mainmenu.html"'>Main Menu</td>
+<td class="menuItem" onclick='onSave();window.location.href="set-disp.html"'>Display Settings</td>
+</tr>
+</table>
+</div>
 
 </body>
 </html>

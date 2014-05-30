@@ -1,0 +1,75 @@
+<html>
+<head><title></title>
+<script type="text/javascript" src="{%homedir}/shh.js"></script>
+<link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
+
+<script type="text/javascript">
+
+function onSave()
+{
+	setUserDefaultsBool('today.sunrise', getSwitchValue("t0"));
+	setUserDefaultsBool('today.noon', getSwitchValue("t1"));
+	setUserDefaultsBool('today.sunset', getSwitchValue("t2"));
+	setUserDefaultsBool('today.sandhyas', getSwitchValue("t3"));
+	setUserDefaultsBool('today.sunrise.info', getSwitchValue("t4"));
+	setUserDefaultsBool('today.muhurta.brahma', getSwitchValue("t5"));
+	setUserDefaultsBool('today.rasi.moon', getSwitchValue("t6"));
+	setUserDefaultsBool('today.naksatra.pada', getSwitchValue("t7"));
+	setUserDefaultsBool('today.tithi.list', getSwitchValue("t8"));
+	setUserDefaultsBool('today.naksatra.list', getSwitchValue("t9"));
+}
+
+</script>
+</head>
+
+<body>
+
+<h1>Today Screen Settings</h1>
+
+<table style='border=0px' align=center>
+
+<script type="text/javascript">
+	writeCheckBox("Show Sunrise Time", "Time of sunrise", "t0");
+	writeCheckBox("Show Noon Time", "Time of noon", "t1");
+	writeCheckBox("Show Sunset Time", "Time of sunset", "t2");
+	writeCheckBox("Show Sandhyas", "Show times for sandhya periods", "t3");
+	writeCheckBox("Show Other Info", "Other information present at sunrise", "t4");
+	writeCheckBox("Show Brahma Muhurta", "Show time of brahma muhurta", "t5");
+	writeCheckBox("Show Rasi of the Moon", "", "t6");
+	writeCheckBox("Show Naksatra Pada", "", "t7");
+	writeCheckBox("Show Tithi Listing", "", "t8");
+	writeCheckBox("Show Naksatra Listing", "", "t9");
+</script>
+
+
+
+</table>
+
+<script type="text/javascript">
+	setSwitchValue("t0", getUserDefaultsBool('today.sunrise'));
+	setSwitchValue("t1", getUserDefaultsBool('today.noon'));
+	setSwitchValue("t2", getUserDefaultsBool('today.sunset'));
+	setSwitchValue("t3", getUserDefaultsBool('today.sandhyas'));
+	setSwitchValue("t4", getUserDefaultsBool('today.sunrise.info'));
+	setSwitchValue("t5", getUserDefaultsBool('today.muhurta.brahma'));
+	setSwitchValue("t6", getUserDefaultsBool('today.rasi.moon'));
+	setSwitchValue("t7", getUserDefaultsBool('today.naksatra.pada'));
+	setSwitchValue("t8", getUserDefaultsBool('today.tithi.list'));
+	setSwitchValue("t9", getUserDefaultsBool('today.naksatra.list'));
+
+</script>
+
+<div class="menuBarDiv">
+<table class="menuBar" align=center cellspacing=8 cellpadding=8>
+<tr>
+<td class="menuItem" onclick='onSave();window.location.href="mainmenu.html"'>Main Menu</td>
+<td class="menuItem" onclick='onSave();window.location.href="set-disp.html"'>Display Settings</td>
+<td class="menuItem" onclick='onSave();resetToday();window.location.href="today.html"'>Today Screen</td>
+</tr>
+</table>
+</div>
+
+
+
+</body>
+</html>

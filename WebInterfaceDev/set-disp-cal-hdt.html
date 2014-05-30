@@ -1,6 +1,17 @@
 <html>
 <head><title></title>
-<script type="text/javascript" src="shh.js"></script>
+<script type="text/javascript" src="{%homedir}/shh.js"></script>
+<link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
+
+
+<script type="text/javascript">
+
+function onSave()
+{
+    setUserDefaultsInt('cal.headertype', lastId);
+}
+
+</script>
 </head>
 
 <body>
@@ -10,13 +21,30 @@
 <h1>Sort Core Events</h1>
 
 <script type="text/javascript">
-writeComboChoiceValue("Month Header", "Days are separated when month in Gregorian era is changed", "t0", 0);
-writeComboChoiceValue("Masa Header", "Days are separated when masa in Gaurabda era is changed", "t1", 1);
+writeComboChoiceValue("{%getSelectionText cal.headertype 0}", "", "0", 0);
+writeComboChoiceValue("{%getSelectionText cal.headertype 1}", "Days are separated when month in Gregorian era is changed", "1", 0);
+writeComboChoiceValue("{%getSelectionText cal.headertype 2}", "Days are separated when masa in Gaurabda era is changed", "2", 1);
 </script>
 
 
 
 </table>
+
+
+<script type="text/javascript">
+setNewComboChoice(getUserDefaultsInt('cal.headertype'));
+</script>
+
+<div class="menuBarDiv">
+<table class="menuBar" align=center cellspacing=8 cellpadding=8>
+<tr>
+<td class="menuItem" onclick='onSave();window.location.href="mainmenu.html"'>Main Menu</td>
+<td class="menuItem" onclick='onSave();window.location.href="set-disp.html"'>Display Settings</td>
+<td class="menuItem" onclick='onSave();window.location.href="set-disp-cal.html"'>Calendar Display Settings</td>
+</tr>
+</table>
+</div>
+
 
 </body>
 </html>

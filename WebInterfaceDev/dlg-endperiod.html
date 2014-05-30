@@ -1,0 +1,139 @@
+<html>
+<head>
+<title></title>
+
+<script type="text/javascript" src="{%homedir}/shh.js"></script>
+<link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
+
+<style>
+td.noselect
+{
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+}
+</style>
+
+<script>
+var lastRadio = '';
+var count = '{%string endperiodlength}';
+var countType = '{%string endperiodtype}';
+
+if (count == '')
+   count = '1';
+if (countType == '')
+    countType = '4';
+
+function onSave()
+{
+	saveString('endperiodlength', count.toString());
+	saveString('endperiodtype', countType.toString());
+}
+	
+function setRadioA(elemId, value) {
+
+    var elem = document.getElementById(elemId);
+	countType = elemId;
+	if (value == 0)
+	{
+		elem.style.background = 'transparent';
+	}
+	else
+	{
+		elem.style.backgroundColor = '#ffb';
+	}
+}
+
+function clearRadios() {
+
+   setRadioA('1', 0);
+   setRadioA('3', 0);
+   setRadioA('2', 0);
+   setRadioA('4', 0);
+
+}
+
+function setRadio(elemId)
+{
+   clearRadios();
+   setRadioA(elemId, 1);
+}
+
+function updateCounter()
+{
+	var elem = document.getElementById('counter');
+	elem.innerHTML = count;
+}
+
+function incr(dif)
+{
+    count = Number(count) + dif;
+	updateCounter();
+}
+
+function decr(dif)
+{
+    count = Number(count) - dif;
+	if (count < 1)
+		count = 1;
+	updateCounter();
+}
+
+</script>
+
+</head>
+
+<body>
+
+
+<h1 align=center>End Date</h1>
+
+<table width=240pt align=center>
+<tr>
+<td style='text-align:right;font-size:24pt' id='counter' rowspan=2>1</td>
+<td width=32pt class='noselect' style='text-align:center;cursor:pointer' onclick='incr(1);'>+1</td>
+<td width=32pt class='noselect' style='text-align:center;cursor:pointer' onclick='incr(10);'>+10</td>
+</tr><tr>
+<td width=32pt class='noselect' style='text-align:center;cursor:pointer' onclick='decr(1);'>-1</td>
+<td width=32pt class='noselect' style='text-align:center;cursor:pointer' onclick='decr(10);'>-10</td>
+</tr>
+</table>
+
+<div width=100%>
+<table style='font-family:Helvetica;' align=center cellspacing=8 cellpadding=8>
+<tr>
+<td id="1" style='text-align:center;width:50%;cursor:pointer' onclick='setRadio("1")'>Days</td>
+<td id="2" style='text-align:center;width:50%;cursor:pointer' onclick='setRadio("2")'>Weeks</td>
+</tr>
+<tr>
+<td id="3" style='text-align:center;width:50%;cursor:pointer' onclick='setRadio("3")'>Months</td>
+<td id="4" style='text-align:center;width:50%;cursor:pointer' onclick='setRadio("4")'>Years</td>
+</table>
+</div>
+
+<script>
+    setRadio(countType);
+	updateCounter();
+</script>
+
+
+
+<script type="text/javascript">
+writeNavigStart();
+writeNavigItem("Main Menu", "window.location.href=\"mainmenu.html\"");
+writeNavigItem("{%string leftArrow} {%title -1}", "onSave();goBack()");
+writeNavigItem("{%title +1} {%string rightArrow}", "onSave();goNext()");
+writeNavigEnd();
+</script>
+
+
+
+
+
+</body>
+</html>
+
+

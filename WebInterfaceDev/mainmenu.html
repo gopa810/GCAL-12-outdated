@@ -2,19 +2,9 @@
 <head>
 <title>
 </title>
-<style>
-.mainmenuicon {
-	float:left;
-	width:64;
-	border:0px;
-	margin:16px;
-	cursor:pointer;
-}
-h1 {
-   font-family:Helvetica;
-   font-size:12pt;
-}
-</style>
+<script type="text/javascript" src="{%homedir}/shh.js"></script>
+<link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
+
 
 <!-- element should not be selectable by using these:
 
@@ -28,6 +18,93 @@ user-select: none;
 http://stackoverflow.com/questions/826782/css-rule-to-disable-text-selection-highlighting
 
 -->
+<script type="text/javascript">
+
+function startCalendar()
+{
+    scriptObject.clearHistory();
+    setCurrTitle("Main menu");
+	addFutureFile2("dlg-enterloc.html?ppx=", "Enter<br>Location");
+	//addFutureFile2("dlg-locsel.html?ppx=", "Find Location");
+	addFutureFile2("dlg-startdate.html", "Start Date");
+	addFutureFile2("dlg-endperiod.html", "End Date");
+	addFutureFile2("calendar.html", "Calculate");
+	goNext();
+}
+
+function startCoreEvents()
+{
+    scriptObject.clearHistory();
+    setCurrTitle("Main menu");
+	addFutureFile2("dlg-enterloc.html?ppx=", "Enter Location");
+	//addFutureFile2("dlg-locsel.html?ppx=", "Find Location");
+	addFutureFile2("dlg-startdate.html", "Start Date");
+	addFutureFile2("dlg-endperiod.html", "End Date");
+	addFutureFile2("coreevents.html", "Calculate");
+	goNext();
+}
+
+function startAppDay()
+{
+    scriptObject.clearHistory();
+    setCurrTitle("Main menu");
+	addFutureFile2("dlg-enterloc.html?ppx=", "Enter Location");
+	//addFutureFile2("dlg-locsel.html?ppx=", "Find Location");
+	addFutureFile2("dlg-startdate.html", "Event Date");
+	addFutureFile2("dlg-time.html", "Event Time");
+	addFutureFile2("appday.html", "Calculate");
+	goNext();
+}
+
+
+function startMasaList()
+{
+    scriptObject.clearHistory();
+    setCurrTitle("Main menu");
+	addFutureFile2("dlg-enterloc.html?ppx=", "Enter Location");
+	//addFutureFile2("dlg-locsel.html?ppx=", "Find Location");
+	addFutureFile2("dlg-startyear.html", "Start Year");
+	addFutureFile2("dlg-yearcount.html", "Count of Years");
+	addFutureFile2("masalist.html", "Calculate");
+	goNext();
+}
+
+function startCalendarPlusCore()
+{
+    scriptObject.clearHistory();
+    setCurrTitle("Main menu");
+	addFutureFile2("dlg-enterloc.html?ppx=", "Enter Location");
+	//addFutureFile2("dlg-locsel.html?ppx=", "Find Location");
+	addFutureFile2("dlg-startdate.html", "Start Date");
+	addFutureFile2("dlg-endperiod.html", "End Date");
+	addFutureFile2("calcore.html", "Calculate");
+	goNext();
+}
+
+function startCalendar2Locs()
+{
+    scriptObject.clearHistory();
+    setCurrTitle("Main menu");
+	addFutureFile2("dlg-enterloc.html?ppx=a", "Enter Location A");
+	//addFutureFile2("dlg-locsel.html?ppx=a", "Find Location A");
+	addFutureFile2("dlg-enterloc.html?ppx=b", "Enter Location B");
+	//addFutureFile2("dlg-locsel.html?ppx=b", "Find Location B");
+	addFutureFile2("dlg-startdate.html?ppx=", "Start Date");
+	addFutureFile2("dlg-endperiod.html", "End Date");
+	addFutureFile2("cal2locs.html", "Calculate");
+	goNext();
+}
+
+function startSetMyLocation()
+{
+    scriptObject.clearHistory();
+    setCurrTitle("Main menu");
+	addFutureFile2("dlg-enterloc.html?ppx=", "Set My Location");
+	addFutureFile2("mainmenu.html?preaction=setmylocation", "OK");
+	goNext();
+}
+
+</script>
 
 </head>
 
@@ -39,13 +116,14 @@ http://stackoverflow.com/questions/826782/css-rule-to-disable-text-selection-hig
 </div>
 
 <div>
-<div class="mainmenuicon" onclick='window.location.href="cal-loc.html"'><img src="icon.png"><br>Calendar</div>
-<div class="mainmenuicon" onclick='window.location.href="cce-loc.html"'><img src="icon.png"><br>Calendar with Core Events</div>
-<div class="mainmenuicon" onclick='window.location.href="ca2-loc.html"'><img src="icon.png"><br>Calendar for 2 Locations</div>
-<div class="mainmenuicon" onclick='window.location.href="cev-loc.html"'><img src="icon.png"><br>Core Events</div>
-<div class="mainmenuicon" onclick='window.location.href="app-loc.html"'><img src="icon.png"><br>Appearance Day</div>
-<div class="mainmenuicon" onclick='window.location.href="mas-loc.html"'><img src="icon.png"><br>Masa List</div>
-<div class="mainmenuicon" onclick='window.location.href="today.html"'><img src="icon.png"><br>Today</div>
+<div class="mainmenuicon" onclick='startCalendar()'><img src="{%homedir}/icon.png"><br>Calendar<br>&nbsp;</div>
+<div class="mainmenuicon" onclick='startCoreEvents()'><img src="{%homedir}/icon.png"><br>Core&nbsp;Events</div>
+<div class="mainmenuicon" onclick='startAppDay()'><img src="{%homedir}/icon.png"><br>Appearance<br>Day</div>
+<div class="mainmenuicon" onclick='startMasaList()'><img src="{%homedir}/icon.png"><br>Masa&nbsp;List<br>&nbsp;</div>
+<div class="mainmenuicon" onclick='resetToday();window.location.href="today.html"'><img src="{%homedir}/icon.png"><br>Today<br>&nbsp;</div>
+<div class="mainmenuicon" onclick='startCalendar2Locs()'><img src="{%homedir}/icon.png"><br>Calendar<br>compare</div>
+<div class="mainmenuicon" onclick='startCalendarPlusCore()'><img src="{%homedir}/icon.png"><br>Calendar<br>+&nbsp;Core&nbsp;Events</div>
+<div class="mainmenuicon" onclick='window.location.href="nextfest.html"'><img src="{%homedir}/icon.png"><br>Next<br>Festivals</div>
 </div>
 
 <div style='clear:both'>
@@ -54,9 +132,10 @@ http://stackoverflow.com/questions/826782/css-rule-to-disable-text-selection-hig
 </div>
 
 <div>
-<div class="mainmenuicon" onclick='window.location.href="set-disp.html"'><img src="icon.png"><br>Display Settings</div>
-<div class="mainmenuicon" onclick='window.location.href="set-general.html"'><img src="icon.png"><br>General Settings</div>
-<div class="mainmenuicon" onclick='window.location.href="set-startpage.html"'><img src="icon.png"><br>Start Page</div>
+<div class="mainmenuicon" onclick='window.location.href="set-disp.html"'><img src="{%homedir}/icon.png"><br>Display<br>Settings</div>
+<div class="mainmenuicon" onclick='window.location.href="set-general.html"'><img src="{%homedir}/icon.png"><br>General<br>Settings</div>
+<div class="mainmenuicon" onclick='window.location.href="set-startpage.html"'><img src="{%homedir}/icon.png"><br>Start<br>Page</div>
+<div class="mainmenuicon" onclick='startSetMyLocation();'><img src="{%homedir}/icon.png"><br>My<br>Location</div>
 </div>
 
 <div style='clear:both'>
@@ -65,11 +144,11 @@ http://stackoverflow.com/questions/826782/css-rule-to-disable-text-selection-hig
 </div>
 
 <div>
-<div class="mainmenuicon" onclick='window.location.href="geo-cities.html"'><img src="icon.png"><br>Cities</div>
-<div class="mainmenuicon" onclick='window.location.href="geo-countries.html"'><img src="icon.png"><br>Countries</div>
-<div class="mainmenuicon" onclick='window.location.href="geo-events.html"'><img src="icon.png"><br>Calendar Events</div>
-<div class="mainmenuicon" onclick='window.location.href="geo-tzones.html"'><img src="icon.png"><br>Timezones</div>
-<div class="mainmenuicon" onclick='window.location.href="geo-lang.html"'><img src="icon.png"><br>Languages</div>
+<div class="mainmenuicon" onclick='window.location.href="geo-cities.html"'><img src="{%homedir}/icon.png"><br>Cities</div>
+<div class="mainmenuicon" onclick='window.location.href="geo-countries.html"'><img src="{%homedir}/icon.png"><br>Countries</div>
+<div class="mainmenuicon" onclick='window.location.href="geo-events.html"'><img src="{%homedir}/icon.png"><br>Calendar Events</div>
+<div class="mainmenuicon" onclick='window.location.href="geo-tzones.html"'><img src="{%homedir}/icon.png"><br>Timezones</div>
+<div class="mainmenuicon" onclick='window.location.href="geo-lang.html"'><img src="{%homedir}/icon.png"><br>Languages</div>
 </div>
 
 <div style='clear:both'>
@@ -78,8 +157,9 @@ http://stackoverflow.com/questions/826782/css-rule-to-disable-text-selection-hig
 
 </div>
 <div>
-<div class="mainmenuicon"><img src="icon.png"><br>Help</div>
+<div class="mainmenuicon"><img src="{%homedir}/icon.png"><br>Help</div>
 </div>
+
 
 </body>
 </html>

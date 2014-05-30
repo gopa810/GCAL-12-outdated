@@ -2,6 +2,8 @@
 <head>
 <title></title>
 
+<script type="text/javascript" src="{%homedir}/shh.js"></script>
+<link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
 
 <style>
 td.noselect
@@ -16,36 +18,18 @@ user-select: none;
 </style>
 
 <script>
+
+var date = new Date();
 var lastRadio = '';
-var count = 1;
+var count = '{%string startyear}';
 
-function setRadioA(elemId, value) {
+if (count == '')
+	count = date.getFullYear();
 
-    var elem = document.getElementById(elemId);
-	if (value == 0)
+	function onSave()
 	{
-		elem.style.background = 'transparent';
+		saveString('startyear', count);
 	}
-	else
-	{
-		elem.style.backgroundColor = '#ffb';
-	}
-}
-
-function clearRadios() {
-
-   setRadioA('d1', 0);
-   setRadioA('d2', 0);
-   setRadioA('d3', 0);
-   setRadioA('d4', 0);
-
-}
-
-function setRadio(elemId)
-{
-   clearRadios();
-   setRadioA(elemId, 1);
-}
 
 function updateCounter()
 {
@@ -74,7 +58,7 @@ function decr(dif)
 <body>
 
 
-<h1>Count of Years</h1>
+<h1>Start Year</h1>
 
 <table width=240pt align=center>
 <tr>
@@ -87,30 +71,25 @@ function decr(dif)
 </tr>
 </table>
 
-<div>
-<table style='font-family:Helvetica;' width=240pt align=center>
-<tr>
-<td id="d1" style='text-align:center;width:50%;cursor:pointer'>Days</td>
-<td id="d2" style='text-align:center;width:50%;cursor:pointer'>Weeks</td>
-</tr>
-<tr>
-<td id="d3" style='text-align:center;width:50%;cursor:pointer'>Months</td>
-<td id="d4" style='text-align:center;width:50%;cursor:pointer'>Years</td>
-</div>
 
 <script>
-    setRadio('d4');
 	updateCounter();
 </script>
 
-<div>
-<table align=center width=240pt>
-<tr>
-<td style='cursor:pointer;text-align:center' onclick='window.location.href="cal-start.html"'>&lt; Start Year</td>
-<td style='cursor:pointer;text-align:center' onclick='window.location.href="masalist.html"'>Calculate &gt;</td>
-</tr>
-</table>
-</div>
+
+<script type="text/javascript">
+writeNavigStart();
+writeNavigItem("Main Menu", "window.location.href=\"mainmenu.html\"");
+writeNavigItem("{%string leftArrow} {%title -1}", "onSave();goBack()");
+writeNavigItem("{%title +1} {%string rightArrow}", "onSave();goNext()");
+writeNavigEnd();
+</script>
+
+
+
+
+
+
 </body>
 </html>
 
