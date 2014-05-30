@@ -80,7 +80,57 @@ namespace GCAL.Base
         public GPCountryList()
         {
             InitializeFromResources();
+            loadTimezones();
         }
 
+        public void addTimezone(string countryCode, string timezoneName)
+        {
+            GPCountry country = GetCountryByCode(countryCode);
+            if (country != null)
+            {
+                country.addTimezone(timezoneName);
+            }
+        }
+
+        public void loadTimezones()
+        {
+            using (StringReader sr = new StringReader(GCAL.Base.Properties.Resources.CountryTimezones))
+            {
+                string line = sr.ReadLine();
+                while (line != null)
+                {
+                    string[] parts = line.Split('\t');
+                    if (parts.Length == 2)
+                    {
+                        addTimezone(parts[0], parts[1]);
+                    }
+                    line = sr.ReadLine();
+                }
+            }
+        }
+
+        public void saveTimezones(string filePath)
+        {
+            using (StreamWriter sw = new StreamWriter(filePath))
+            {
+                foreach (GPCountry country in countries)
+                {
+                    foreach (string timezoneName in country.Timezones)
+                    {
+                        sw.WriteLine("{0}\t{1}", country.getCode(), timezoneName);
+                    }
+                }
+            }
+        }
+
+        public GPCountry GetCountryByName(string cname)
+        {
+            foreach (GPCountry c in countries)
+            {
+                if (c.getName().Equals(cname))
+                    return c;
+            }
+            return null;
+        }
     }
 }

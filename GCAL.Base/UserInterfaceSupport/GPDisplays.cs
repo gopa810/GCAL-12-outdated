@@ -128,8 +128,10 @@ namespace GCAL.Base
             public static void SunEclipse(bool value) { GPUserDefaults.SetBoolForKey("core.suneclipse", value); }
             public static bool MoonEclipse() { return GPUserDefaults.BoolForKey("core.mooneclipse", true); }
             public static void MoonEclipse(bool value) { GPUserDefaults.SetBoolForKey("core.mooneclipse", value); }
-            public static bool Sort() { return GPUserDefaults.BoolForKey("core.sort", true); }
-            public static void Sort(bool value) { GPUserDefaults.SetBoolForKey("core.sort", value); }
+            public static bool Sort() { return SortType() == 0; }
+            public static void Sort(bool value) { SortType(value ? 0 : 1); }
+            public static int SortType() { return GPUserDefaults.IntForKey("core.sorttype", 0); }
+            public static void SortType(int value) { GPUserDefaults.SetIntForKey("core.sorttype", value); }
         }
 
         public class Calendar
@@ -148,7 +150,8 @@ namespace GCAL.Base
             public static void TimeMoonsetVisible(bool value) { GPUserDefaults.SetBoolForKey("cal.moonset.time", value); }
             public static bool FestivalsVisible() { return GPUserDefaults.BoolForKey("cal.festivals", true); }
             public static void FestivalsVisible(bool value) { GPUserDefaults.SetBoolForKey("cal.festivals", value); }
-
+            public static bool MonthHeader() { return GPUserDefaults.IntForKey("cal.headertype", 1) == 1; }
+            public static bool MasaHeader() { return GPUserDefaults.IntForKey("cal.headertype", 1) == 2; }
             public static bool KsayaTithiInfoVisible() { return GPUserDefaults.BoolForKey(Keys.CalendarKsaya, false); }
             public static void KsayaTithiInfoVisible(bool value) { GPUserDefaults.SetBoolForKey(Keys.CalendarKsaya, value); }
             public static bool VriddhiTithiInfoVisible() { return GPUserDefaults.BoolForKey(Keys.CalendarVriddhi, false); }
@@ -166,10 +169,6 @@ namespace GCAL.Base
             public static void SankrantiInfoVisible(bool value) { GPUserDefaults.SetBoolForKey(Keys.CalendarSankranti, value); }
             public static bool EkadasiInfoVisible() { return GPUserDefaults.BoolForKey("cal.fastingekadasi.info", true); }
             public static void EkadasiInfoVisible(bool value) { GPUserDefaults.SetBoolForKey("cal.fastingekadasi.info", value); }
-            public static bool MasaHeader() { return GPUserDefaults.BoolForKey("cal.header.masa", true); }
-            public static void MasaHeader(bool value) { GPUserDefaults.SetBoolForKey("cal.header.masa", value); }
-            public static bool MonthHeader() { return GPUserDefaults.BoolForKey("cal.header.month", true); }
-            public static void MonthHeader(bool value) { GPUserDefaults.SetBoolForKey("cal.header.month", value); }
             public static bool HideEmptyDays() { return GPUserDefaults.BoolForKey("cal.hide.empty", true); }
             public static void HideEmptyDays(bool value) { GPUserDefaults.SetBoolForKey("cal.hide.empty", value); }
             public static bool StartMasaVisible() { return GPUserDefaults.BoolForKey("cal.masastart.info", true); }
@@ -206,6 +205,8 @@ namespace GCAL.Base
             public static void EkadasiParanaDetails(bool value) { GPUserDefaults.SetBoolForKey("cal.ekadasi.parana.details", value); }
             public static int AnniversaryType() { return GPUserDefaults.IntForKey("cal.anniversary", 0); }
             public static void AnniversaryType(int value) { GPUserDefaults.SetIntForKey("cal.anniversary", value); }
+            public static int HeaderType() { return GPUserDefaults.IntForKey("cal.headertype", 0); }
+            public static void HeaderType(int value) { GPUserDefaults.SetIntForKey("cal.headertype", value); }
 
 
         }
@@ -225,39 +226,38 @@ namespace GCAL.Base
 
         public class General
         {
-            public static int CaturmasyaSystem() { if (CaturmasyaPratipat()) return 2; if (CaturmasyaEkadasi()) return 3; return 0; }
-            public static void CaturmasyaSystem(int value)
-            {
-                CaturmasyaEkadasi(false);
-                CaturmasyaPratipat(false);
-                CaturmasyaPurnima(false);
-                if (value == 1) CaturmasyaPurnima(true);
-                else if (value == 2) CaturmasyaPratipat(true);
-                else if (value == 3) CaturmasyaEkadasi(true);
-            }
-            public static bool CaturmasyaPurnima() { return GPUserDefaults.BoolForKey(Keys.CaturmasyaPurnima, true); }
-            public static void CaturmasyaPurnima(bool value) { GPUserDefaults.SetBoolForKey(Keys.CaturmasyaPurnima, value); }
-            public static bool CaturmasyaPratipat() { return GPUserDefaults.BoolForKey(Keys.CaturmasyaPratipat, false); }
-            public static void CaturmasyaPratipat(bool value) { GPUserDefaults.SetBoolForKey(Keys.CaturmasyaPratipat, value); }
-            public static bool CaturmasyaEkadasi() { return GPUserDefaults.BoolForKey(Keys.CaturmasyaEkadasi, false); }
-            public static void CaturmasyaEkadasi(bool value) { GPUserDefaults.SetBoolForKey(Keys.CaturmasyaEkadasi, value); }
+            public static int CaturmasyaSystem() { return GPUserDefaults.IntForKey("gen.caturmasya", 1); }
+            public static void CaturmasyaSystem(int value) { GPUserDefaults.SetIntForKey("gen.caturmasya", value); }
+            public static bool CaturmasyaPurnima() { return CaturmasyaSystem() == 1; }
+            public static bool CaturmasyaPratipat() { return CaturmasyaSystem() == 2; }
+            public static bool CaturmasyaEkadasi() { return CaturmasyaSystem() == 3; }
             public static int FirstDayOfWeek() { return GPUserDefaults.IntForKey("gen.week.firstday", 0); }
             public static void FirstDayOfWeek(int value) { GPUserDefaults.SetIntForKey("gen.week.firstday", value); }
             public static bool DefaultEventsEditable() { return GPUserDefaults.BoolForKey("gen.defevents.editable", false); }
             public static void DefaultEventsEditable(bool value) { GPUserDefaults.SetBoolForKey("gen.defevents.editable", value); }
             public static bool HighlightEvenLines() { return GPUserDefaults.BoolForKey("gen.highlight.oddlines", true); }
             public static void HighlightEvenLines(bool value) { GPUserDefaults.SetBoolForKey("gen.highlight.oddlines", value); }
-            public static bool TimeFormat24() { return GPGregorianTime.timeFormat24; }	//42																																																			
-            public static void TimeFormat24(bool value) { GPGregorianTime.timeFormat24 = value; GPUserDefaults.SetBoolForKey("gen.timeformat24", value); }	//42																																																				
-            public static bool OldStyleFasting() { return GPUserDefaults.BoolForKey("gen.oldstyle.fasting", false); }
-            public static void OldStyleFasting(bool value) { GPUserDefaults.SetBoolForKey("gen.oldstyle.fasting", value); }
-            public static int FastingNotation() { if (OldStyleFasting()) return 1; return 0; }
+            public static bool TimeFormat24() { 
+                GPGregorianTime.timeFormat24 = (GPUserDefaults.IntForKey("gen.timeformat", 1) == 1);
+                return GPGregorianTime.timeFormat24; 
+            }	//42
+            public static void TimeFormat24(bool value) { 
+                GPGregorianTime.timeFormat24 = value;
+                GPUserDefaults.SetIntForKey("gen.timeformat", (value ? 1 : 0));
+            }	//42
+            public static int TimeFormat()
+            {
+                return GPUserDefaults.IntForKey("gen.timeformat", 1);
+            }	//42
+            public static void TimeFormat(int value)
+            {
+                GPUserDefaults.SetIntForKey("gen.timeformat", value);
+            }	//42
+            public static bool OldStyleFasting() { return FastingNotation() == 1; }
+            public static int FastingNotation() { return GPUserDefaults.IntForKey("gen.fastingnotation", 0); }
             public static void FastingNotation(int value)
             {
-                if (value == 1)
-                    OldStyleFasting(true);
-                else
-                    OldStyleFasting(false);
+                GPUserDefaults.SetIntForKey("gen.fastingnotation", value);
             }
             public static int NameMasaFormat() { return GPUserDefaults.IntForKey("gen.masaname.format", 0); }
             public static void NameMasaFormat(int value) { GPUserDefaults.SetIntForKey("gen.masaname.format", value); }

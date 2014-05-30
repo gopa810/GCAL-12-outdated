@@ -224,9 +224,6 @@ namespace GCAL.Base
         /// <returns>Returns true, if conversion was successful, false if conversion failed.</returns>
         public static bool ConvertStringToCoordinate(string s, out double d)
         {
-            if (double.TryParse(s, out d))
-                return true;
-
             string a = "NESW";
             for (int i = 0; i < 4; i++)
             {
@@ -235,6 +232,9 @@ namespace GCAL.Base
                     return ConvertStringDegToCoordinate(s, a[i], out d, ((i < 2) ? 1 : -1));
                 }
             }
+
+            if (double.TryParse(s, out d))
+                return true;
 
             return false;
         }

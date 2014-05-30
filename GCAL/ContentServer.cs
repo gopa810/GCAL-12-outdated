@@ -44,9 +44,19 @@ namespace GCAL
         public string ContentDir { get; set; }
         public string CurrentContents;
         private List<HistoryEntry> history = new List<HistoryEntry>();
+        private List<int> lastIndices = new List<int>();
         private int historyIndex = 0;
         private string currentFile = string.Empty;
         private Dictionary<string, string> dictStrings = new Dictionary<string, string>();
+        private GPGregorianTime myDate = null;
+        private List<GPLocation> locationsList = new List<GPLocation>();
+        private int locationsEnumerator = 0;
+
+        public ContentServer()
+        {
+            dictStrings.Add("leftArrow", "<span style='font-size:200%'>&#8592;</span><br>");
+            dictStrings.Add("rightArrow", "<span style='font-size:200%'>&#8594;</span><br>");
+        }
 
         public string GetFilePath(string file)
         {
@@ -55,7 +65,8 @@ namespace GCAL
 
         public void LoadStartPage()
         {
-            LoadFile("mainmenu.html");
+            //LoadFile("mainmenu.html");
+            LoadFile("dlg-newcountry.html");
         }
 
         /// <summary>
@@ -67,6 +78,26 @@ namespace GCAL
         {
             Debugger.Log(0, "", "Navigation File Name: " + fileName + "\n");
             StringBuilder sb = new StringBuilder();
+
+            if (fileName.IndexOf('?') > 0)
+            {
+                string [] fp1 = fileName.Split('?');
+                fileName = fp1[0];
+                string[] fp2 = fp1[1].Split('&');
+                foreach (string par in fp2)
+                {
+                    string[] pardef = par.Split('=');
+                    if (pardef.Length == 2)
+                    {
+                        if (pardef[0] == "preaction")
+                            ExecuteCommand(pardef[1]);
+                        else
+                            saveString(pardef[0], pardef[1]);
+                    }
+                    else
+                        saveString(par, string.Empty);
+                }
+            }
 
             string filePath = GetFilePath(fileName);
             if (File.Exists(filePath))
@@ -118,83 +149,150 @@ namespace GCAL
             }
             else if (parts.Length == 2)
             {
-                if (parts[0] == "string")
-                {
-                    return getString(parts[1]);
-                }
-                else if (parts[0] == "title")
-                {
-                    int idx = 0;
-                    if (int.TryParse(parts[1], out idx))
-                    {
-                        if (isValidHistoryIndex(historyIndex + idx))
-                            return  history[historyIndex + idx].Title;
-                    }
-                    return string.Empty;
-                }
-                else if (parts[0] == "calculate")
-                {
-                    if (parts[1] == "calendar")
-                    {
-                        CELGenerateCalendar gc = new CELGenerateCalendar(this);
-                        return gc.HtmlText;
-                    }
-                    else if (parts[1] == "coreevents")
-                    {
-                        CELGenerateCoreEvents ge = new CELGenerateCoreEvents(this);
-                        return ge.HtmlText;
-                    }
-                    else if (parts[1] == "appday")
-                    {
-                        CELGenerateAppearanceDay ga = new CELGenerateAppearanceDay(this);
-                        return ga.HtmlText;
-                    }
-                    else if (parts[1] == "masalist")
-                    {
-                        CELGenerateMasaList gm = new CELGenerateMasaList(this);
-                        return gm.HtmlText;
-                    }
-                    else if (parts[1] == "calcore")
-                    {
-                        CELGenerateCalendarPlusCore gcc = new CELGenerateCalendarPlusCore(this);
-                        return gcc.HtmlText;
-                    }
-                    else if (parts[1] == "cal2locs")
-                    {
-                        CELGenerateCalendarTwoLocs gcc = new CELGenerateCalendarTwoLocs(this);
-                        return gcc.HtmlText;
-                    }
-                    else if (parts[1] == "today")
-                    {
-                        GPLocationProvider loc = GPAppHelper.getMyLocation();
-
-                        GPGregorianTime myDate = new GPGregorianTime(loc);
-                        myDate.Today();
-
-                        StringBuilder sb = new StringBuilder();
-                        FormaterHtml.WriteTodayInfoHTML(myDate, loc, sb, 10);
-                        return sb.ToString();
-                    }
-                }
+                return evaluate2params(parts[0], parts[1]);
             }
             else if (parts.Length == 3)
             {
-                if (parts[0] == "find")
+                return evaluate3params(parts[0], parts[1], parts[2]);
+            }
+            return String.Empty;
+        }
+
+
+        protected string evaluate2params(string p1, string p2)
+        {
+            if (p1 == "string")
+            {
+                return getString(p2);
+            }
+            else if (p1 == "title")
+            {
+                int idx = 0;
+                if (int.TryParse(p2, out idx))
                 {
-                    if (parts[1] == "locations")
-                    {
-                        StringBuilder sb = new StringBuilder();
-                        List<GPLocation> locs = FindCity(dictStrings[parts[2]]);
-                        foreach (GPLocation loc in locs)
-                        {
-                            if (sb.Length > 0)
-                                sb.Append(",\n");
-                            sb.AppendFormat("[\"{0}\", \"{1}\", \"{2}\"]", loc.getCity(), loc.getFullName(), loc.getId());
-                        }
-                        return sb.ToString();
-                    }
+                    if (isValidHistoryIndex(historyIndex + idx))
+                        return history[historyIndex + idx].Title;
+                }
+                return string.Empty;
+            }
+            else if (p1.Equals("gstr"))
+            {
+                int idx = 0;
+                if (int.TryParse(p2, out idx))
+                {
+                    return GPStrings.getSharedStrings().getString(idx);
+                }
+                return string.Empty;
+            }
+            else if (p1.Equals("calculate"))
+            {
+                if (p2 == "calendar")
+                {
+                    CELGenerateCalendar gc = new CELGenerateCalendar(this);
+                    return gc.HtmlText;
+                }
+                else if (p2 == "coreevents")
+                {
+                    CELGenerateCoreEvents ge = new CELGenerateCoreEvents(this);
+                    return ge.HtmlText;
+                }
+                else if (p2 == "appday")
+                {
+                    CELGenerateAppearanceDay ga = new CELGenerateAppearanceDay(this);
+                    return ga.HtmlText;
+                }
+                else if (p2 == "masalist")
+                {
+                    CELGenerateMasaList gm = new CELGenerateMasaList(this);
+                    return gm.HtmlText;
+                }
+                else if (p2 == "calcore")
+                {
+                    CELGenerateCalendarPlusCore gcc = new CELGenerateCalendarPlusCore(this);
+                    return gcc.HtmlText;
+                }
+                else if (p2 == "cal2locs")
+                {
+                    CELGenerateCalendarTwoLocs gcc = new CELGenerateCalendarTwoLocs(this);
+                    return gcc.HtmlText;
+                }
+                else if (p2 == "today")
+                {
+                    GPLocationProvider loc = GPAppHelper.getMyLocation();
+
+                    if (myDate == null)
+                        resetToday();
+
+                    StringBuilder sb = new StringBuilder();
+                    FormaterHtml.WriteTodayInfoHTML(myDate, loc, sb, 10);
+                    return sb.ToString();
+                }
+                else if (p2 == "nextfest")
+                {
+                    CELCheckNextWeeksCalendar nwc = new CELCheckNextWeeksCalendar();
+                    nwc.SyncExecute();
+                    return nwc.getNextFestDaysString();
                 }
             }
+            else if (p1.Equals("getCurrentSelectionText"))
+            {
+                int idx = GPUserDefaults.IntForKey(p2, 0);
+                return GPStrings.getSharedStrings().getStringValue(p2, idx);
+            }
+            else if (p1.Equals("proc"))
+            {
+                if (p2.Equals("getDateText"))
+                {
+                    if (myDate != null)
+                        return GPAppHelper.getDateText(myDate);
+                }
+                else if (p2.Equals("locationFullName"))
+                {
+                    if (myDate != null)
+                        return myDate.getLocation().getFullName();
+                }
+            }
+
+            return string.Empty;
+        }
+
+        protected string evaluate3params(string p1, string p2, string p3)
+        {
+            if (p1 == "find")
+            {
+                if (p2 == "locations")
+                {
+                    if (p3.StartsWith("$"))
+                        p3 = getString(p3.Substring(1));
+                    StringBuilder sb = new StringBuilder();
+                    List<GPLocation> locs = FindCity(dictStrings[p3]);
+                    foreach (GPLocation loc in locs)
+                    {
+                        if (sb.Length > 0)
+                            sb.Append(",\n");
+                        sb.AppendFormat("[\"{0}\", \"{1}\", \"{2}\"]", loc.getCity(), loc.getFullName(), loc.getId());
+                    }
+                    return sb.ToString();
+                }
+            }
+            else if (p1.Equals("getSelectionText"))
+            {
+                int idx = 0;
+                if (int.TryParse(p3, out idx))
+                {
+                    return GPStrings.getSharedStrings().getStringValue(p2, idx);
+                }
+            }
+            else if (p1.Equals("isSelectedSetting"))
+            {
+                int idx = 0;
+                if (int.TryParse(p3, out idx))
+                {
+                    int idx2 = GPUserDefaults.IntForKey(p2, 0);
+                    return idx == idx2 ? "1" : "0";
+                }
+            }
+
             return String.Empty;
         }
 
@@ -233,6 +331,33 @@ namespace GCAL
         /// </summary>
         #region functions for scripting
 
+        public void resetToday()
+        {
+            GPLocationProvider lp = GPAppHelper.getMyLocation();
+            myDate = new GPGregorianTime(lp);
+            myDate.Today();
+        }
+
+        public void todayToday()
+        {
+            resetToday();
+            LoadFile("today.html");
+        }
+
+        public void todayGoPrev()
+        {
+            if (myDate != null)
+                myDate.PreviousDay();
+            LoadFile("today.html");
+        }
+
+        public void todayGoNext()
+        {
+            if (myDate != null)
+                myDate.NextDay();
+            LoadFile("today.html");
+        }
+
         public string getDir()
         {
             return ContentDir;
@@ -261,22 +386,135 @@ namespace GCAL
             history.Add(new HistoryEntry(file, title));
         }
 
+        public void insertFutureFile2(string file, string title)
+        {
+            history.Insert(historyIndex + 1, new HistoryEntry(file, title));
+        }
+
+        public void delCurrFile()
+        {
+            if (isValidHistoryIndex(historyIndex))
+            {
+                history.RemoveAt(historyIndex);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public void goBack()
         {
-            if (isValidHistoryIndex(historyIndex - 1))
+            int top = lastIndices.Count - 1;
+            int count = 0;
+
+            // reading count of pages to remove
+            // count of pages was writen in some goNextExt command
+            if (top >= 0)
+                count = lastIndices[top];
+            while (count > 0)
+            {
+                if (isValidHistoryIndex(historyIndex))
+                    history.RemoveAt(historyIndex);
+                count--;
+            }
+
+            // remove #pages from stack
+            if (top >= 0)
+                lastIndices.RemoveAt(top);
+
+            // load previous page
+            while (isValidHistoryIndex(historyIndex - 1))
             {
                 historyIndex--;
-                LoadFile(history[historyIndex].File);
+                if (!history[historyIndex].File.StartsWith("#"))
+                {
+                    LoadFile(history[historyIndex].File);
+                    break;
+                }
             }
         }
 
         public void goNext()
         {
-            //Debugger.Log(0, "", WebBrowser.DocumentText);
+            goNextExt(0);
+        }
+
+        /// <summary>
+        /// Load next page
+        /// </summary>
+        /// <param name="b">Count of pages - this is count of pages to be removed, when 
+        /// BACK button is pressed on next page. Why is this needed? Because we can insert
+        /// a few new pages before calling goNext. When pressing BACK button on that new page,
+        /// we need to remove all those pages from history, because if not, it will
+        /// break succession of pages in history</param>
+        public void goNextExt(int b)
+        {
+            // inserting #pages into stack
+            lastIndices.Add(b);
+
+            // loading next page
             if (isValidHistoryIndex(historyIndex + 1))
             {
                 historyIndex++;
-                LoadFile(history[historyIndex].File);
+                if (history[historyIndex].File.StartsWith("#"))
+                    ExecuteCommand(history[historyIndex].File);
+                else
+                    LoadFile(history[historyIndex].File);
+            }
+        }
+
+        public void ExecuteCommand(string cmd)
+        {
+            if (cmd.StartsWith("#"))
+                cmd = cmd.Substring(1);
+            Dictionary<string, string> args = new Dictionary<string, string>();
+
+            if (cmd.IndexOf('?') > 0)
+            {
+                string[] fp1 = cmd.Split('?');
+                cmd = fp1[0];
+                string[] fp2 = fp1[1].Split('&');
+                foreach (string par in fp2)
+                {
+                    string[] pardef = par.Split('=');
+                    if (pardef.Length == 2)
+                        args.Add(pardef[0], pardef[1]);
+                    else
+                        args.Add(par, string.Empty);
+                }
+            }
+
+            if (cmd.Equals("setmylocation"))
+            {
+                GPLocationProvider lp = getLocationWithPostfix("");
+                GPAppHelper.setMyLocation(lp);
+                GPAppHelper.saveMyLocation();
+            }
+            else if (cmd.Equals("loadlocationid"))
+            {
+                int locId = 0;
+                string sLocId = getString("locationid");
+                if (int.TryParse(sLocId, out locId))
+                {
+                    GPLocation loc = GPLocationList.getShared().findLocationById(locId);
+                    if (loc != null)
+                    {
+                        saveString("locationname", loc.getCity());
+                        saveString("locationcountrycode", loc.getCountryCode());
+                        saveString("locationcountry", loc.getCountryName());
+                        saveString("locationlatitude", loc.getLatitudeString());
+                        saveString("locationlongitude", loc.getLongitudeString());
+                        saveString("locationtimezone", loc.getTimeZoneName());
+                    }
+                }
+            }
+            else if (cmd.Equals("savetzforcountry"))
+            {
+                GPCountry country = GPCountryList.getShared().GetCountryByName(getString("locationcountry"));
+                if (country != null)
+                {
+                    country.Timezones.Add(getString("locationtimezone"));
+                }
             }
         }
 
@@ -326,6 +564,157 @@ namespace GCAL
                 dictStrings.Add(key, value.ToString());
         }
 
+        public void setUserDefaultsInt(string key, string value)
+        {
+            int i = 0;
+            int.TryParse(value, out i);
+            GPUserDefaults.SetIntForKey(key, i);
+        }
+
+        public string getUserDefaultsInt(string key)
+        {
+            return GPUserDefaults.IntForKey(key, 0).ToString();
+        }
+
+        public void setUserDefaultsBool(string key, string value)
+        {
+            int i = 0;
+            int.TryParse(value, out i);
+            GPUserDefaults.SetBoolForKey(key, i != 0);
+        }
+
+        public string getUserDefaultsBool(string key)
+        {
+            return (GPUserDefaults.BoolForKey(key, false) ? 1 : 0).ToString();
+        }
+
+
+        public void findLocations(string s)
+        {
+            locationsList = new List<GPLocation>();
+            if (s == null)
+                s = string.Empty;
+
+            foreach (GPLocation loc in GPLocationList.getShared().locations)
+            {
+                if (s.Length == 0 || loc.getCity().IndexOf(s, StringComparison.CurrentCultureIgnoreCase) >= 0)
+                {
+                    locationsList.Add(loc);
+                    if (locationsList.Count > 100)
+                        break;
+                }
+            }
+            locationsEnumerator = 0;
+
+        }
+
+        public string getNextLocation()
+        {
+            if (locationsEnumerator >= 0 && locationsEnumerator < locationsList.Count)
+            {
+                GPLocation loc = locationsList[locationsEnumerator];
+                locationsEnumerator++;
+                return string.Format("{0}<br>{1}<br>{2}", loc.getCity(), loc.getFullName(), loc.getId());
+            }
+
+            return string.Empty;
+        }
+
+        public string getTimezoneOffsets()
+        {
+            return GPTimeZoneList.sharedTimeZones().getTimezonesOffsetListDesc();
+        }
+
+        public string getTimezonesByOffset(string off)
+        {
+            int i;
+            int.TryParse(off, out i);
+            GPSortedIntStringList so = new GPSortedIntStringList();
+            so.Flag = true;
+            foreach (GPTimeZone tz in GPTimeZoneList.sharedTimeZones().getTimeZones())
+            {
+                if (tz.OffsetSeconds == i)
+                {
+                    so.push((int)tz.OffsetSeconds, tz.Name);
+                }
+            }
+            return so.ToString();
+        }
+
+        public string getTimezonesByCountry(string off)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (GPCountry country in GPCountryList.getShared().countries)
+            {
+                if (country.getCode().Equals(off))
+                {
+                    foreach (string s in country.Timezones)
+                    {
+                        if (sb.Length > 0)
+                            sb.Append("<line>");
+                        GPTimeZone tz = GPTimeZoneList.sharedTimeZones().GetTimezoneByName(s);
+                        if (tz != null)
+                        {
+                            sb.AppendFormat("{0}<br>{1}<br>{2}", tz.Id, tz.Name, tz.getOffsetString());
+                        }
+                    }
+                }
+            }
+            return sb.ToString();
+        }
+
+        public string getTimezoneNameById(int id)
+        {
+            GPTimeZone tz = GPTimeZoneList.sharedTimeZones().GetTimezoneById(id);
+            if (tz != null)
+                return tz.Name;
+            return "";
+        }
+
+        public string getCountriesByText(string s)
+        {
+            StringBuilder sb = new StringBuilder();
+            StringBuilder sc = new StringBuilder();
+            foreach (GPCountry country in GPCountryList.getShared().countries)
+            {
+                if (country.getName().StartsWith(s, StringComparison.CurrentCultureIgnoreCase))
+                {
+                    if (sb.Length > 0)
+                        sb.Append("<line>");
+                    sb.AppendFormat("{0}<br>{1}", country.getCode(), country.getName());
+                }
+                else if (country.getName().IndexOf(s, StringComparison.CurrentCultureIgnoreCase) >= 0)
+                {
+                    if (sc.Length > 0)
+                        sc.Append("<line>");
+                    sc.AppendFormat("{0}<br>{1}", country.getCode(), country.getName());
+                }
+            }
+            if (sb.Length > 0)
+                sb.Append("<line>");
+            sb.Append(sc);
+            return sb.ToString();
+        }
+
+        public string getCountryName(string s)
+        {
+            GPCountry country = GPCountryList.getShared().GetCountryByCode(s);
+            if (country != null)
+                return country.getName();
+            return "";
+        }
+
+        public void removeLocation(int locId)
+        {
+            GPLocationList.getShared().DeleteLocationWithId(locId);
+        }
+
+        public void removeString(string key)
+        {
+            if (dictStrings.ContainsKey(key))
+                dictStrings.Remove(key);
+        }
+
         #endregion
 
 
@@ -346,6 +735,111 @@ namespace GCAL
             }
 
             return locs;
+        }
+
+        public GPLocationProvider getLocationWithPostfix(string postfix)
+        {
+            string type = getString("locationtype" + postfix);
+            if (type == "selected")
+            {
+                GPLocation loc = GPLocationList.getShared().findLocationById(getInt("locationid" + postfix));
+                if (loc != null)
+                    return new GPLocationProvider(loc);
+            }
+
+            if (type == "entered")
+            {
+                GPLocation loc = new GPLocation();
+                loc.setCity(getString("locationname" + postfix));
+                loc.setLongitudeString(getString("locationlongitude" + postfix));
+                loc.setLatitudeString(getString("locationlatitude" + postfix));
+                loc.setTimeZoneName(getString("locationtimezone" + postfix));
+                return new GPLocationProvider(loc);
+            }
+
+            if (type == "mylocation")
+                return GPAppHelper.getMyLocation();
+
+            return null;
+        }
+
+        public void saveNewLocation()
+        {
+            GPLocation loc = new GPLocation();
+
+            loc.setCity(getString("locationname"));
+            loc.setCountryCode(getString("locationcountrycode"));
+            loc.setLongitudeString(getString("locationlongitude"));
+            loc.setLatitudeString(getString("locationlatitude"));
+            loc.setTimeZoneName(getString("locationtimezone"));
+
+            GPLocationList.getShared().locations.Add(loc);
+        }
+
+        public void saveEditedLocation()
+        {
+            int i;
+            GPLocation loc;
+
+            if (int.TryParse(getString("locationid"), out i))
+            {
+                loc = GPLocationList.getShared().findLocationById(i);
+                if (loc != null)
+                {
+                    loc.setCity(getString("locationname"));
+                    loc.setCountryCode(getString("locationcountrycode"));
+                    loc.setLongitudeString(getString("locationlongitude"));
+                    loc.setLatitudeString(getString("locationlatitude"));
+                    loc.setTimeZoneName(getString("locationtimezone"));
+
+                    GPLocationList.getShared().Modified = true;
+                }
+            }
+        }
+
+        public void log(string s)
+        {
+            Debugger.Log(0, "", "Log from javascript: " + s + "\n");
+        }
+
+        public void createCountry(string ccode, string cname)
+        {
+            GPCountry nc = new GPCountry();
+            nc.setCode(ccode);
+            nc.setName(cname);
+            GPCountryList.getShared().countries.Add(nc);
+        }
+
+        public string existCountry(string ccode, string cname)
+        {
+            StringBuilder sb = new StringBuilder();
+            if (ccode == null)
+                sb.Append("err1;");
+            else if (ccode.Length == 0)
+                sb.Append("err1;");
+            if (cname == null)
+                sb.Append("err2;");
+            else if (cname.Length == 0)
+                sb.Append("err2;");
+            if (ccode != null && GPCountryList.getShared().GetCountryByCode(ccode) != null)
+                sb.Append("err3;");
+            if (cname != null && GPCountryList.getShared().GetCountryByName(cname) != null)
+                sb.Append("err4;");
+
+            return sb.ToString().Trim(';');
+        }
+
+        public void deleteTimezoneForCountry(string countryName, string timezoneName)
+        {
+            GPCountry country = GPCountryList.getShared().GetCountryByName(countryName);
+            if (country != null)
+            {
+                int i = country.Timezones.IndexOf(timezoneName);
+                if (i >= 0)
+                {
+                    country.Timezones.RemoveAt(i);
+                }
+            }
         }
     }
 }

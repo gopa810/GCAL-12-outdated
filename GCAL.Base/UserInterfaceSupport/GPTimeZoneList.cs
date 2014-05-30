@@ -15,6 +15,7 @@ namespace GCAL.Base
         private XmlDocument tzdoc = null;
         private XmlNode mainNode = null;
         private List<GPTimeZone> tzonesList = null;
+        private int LastId = 1;
 
         public XmlDocument getTimezonesXml()
         {
@@ -82,6 +83,7 @@ namespace GCAL.Base
                     if (item.Name == "timezone")
                     {
                         GPTimeZone tzone = new GPTimeZone();
+                        tzone.Id = LastId++;
                         foreach (XmlElement subs in item.ChildNodes)
                         {
                             if (subs.Name == "name")
@@ -187,6 +189,33 @@ namespace GCAL.Base
                 fileName = Path.Combine(dir, fileName);
                 saveXml(fileName);
             }
+        }
+
+        private class rec 
+        {
+            public int sec;
+            public string text;
+        }
+
+        public string getTimezonesOffsetListDesc()
+        {
+            GPSortedIntStringList sl = new GPSortedIntStringList();
+            foreach (GPTimeZone tz in getTimeZones())
+            {
+                sl.push(Convert.ToInt32(tz.OffsetSeconds), "UTC " + tz.getOffsetString());
+            }
+
+            return sl.ToString();
+        }
+
+        public GPTimeZone GetTimezoneById(int id)
+        {
+            foreach (GPTimeZone tz in getTimeZones())
+            {
+                if (tz.Id == id)
+                    return tz;
+            }
+            return null;
         }
     }
 }

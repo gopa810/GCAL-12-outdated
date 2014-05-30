@@ -115,5 +115,20 @@ namespace GCAL.Base
             }
             return null;
         }
+
+        public void DeleteLocationWithId(int locId)
+        {
+            for (int i = 0; i < locations.Count; i++)
+            {
+                if (locations[i].getId() == locId)
+                {
+                    locations.RemoveAt(i);
+                    Modified = true;
+                    return;
+                }
+            }
+
+            return;
+        }
     }
 }

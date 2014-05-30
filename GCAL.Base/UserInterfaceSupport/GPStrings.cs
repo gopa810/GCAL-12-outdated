@@ -131,6 +131,85 @@ namespace GCAL.Base
             }
         }
 
+        private Dictionary<string, string[]> mapPropertyTextValue = null;
+
+        private void initMapProperty()
+        {
+            mapPropertyTextValue = new Dictionary<string, string[]>();
+
+            mapPropertyTextValue.Add("cal.anniversary", new string[] {
+                getString(202),
+                getString(203),
+                getString(204)
+            });
+
+            mapPropertyTextValue.Add("cal.headertype", new string[] {
+                getString(198),
+                getString(199),
+                getString(200)
+            });
+
+            mapPropertyTextValue.Add("gen.caturmasya", new string[] {
+                getString(228),
+                getString(229),
+                getString(230),
+                getString(231)
+            });
+
+            mapPropertyTextValue.Add("gen.week.firstday", new string[] {
+                getString(0),
+                getString(1),
+                getString(2),
+                getString(3),
+                getString(4),
+                getString(5),
+                getString(6)
+            });
+
+            mapPropertyTextValue.Add("gen.fastingnotation", new string[] {
+                getString(223),
+                getString(224)
+            });
+
+            mapPropertyTextValue.Add("gen.masaname.format", new string[] {
+                getString(218),
+                getString(219),
+                getString(220),
+                getString(221)
+            });
+
+            mapPropertyTextValue.Add("gen.sankranti.name.format", new string[] {
+                getString(213),
+                getString(214),
+                getString(215),
+                getString(216)
+            });
+            
+            mapPropertyTextValue.Add("gen.timeformat", new string[] {
+                getString(233),
+                getString(234)
+            });
+
+            mapPropertyTextValue.Add("core.sorttype", new string[] {
+                "Sort by Event Type",
+                "Sort by Time"
+            });
+        }
+
+        public string getStringValue(string property, int value)
+        {
+            if (mapPropertyTextValue == null)
+                initMapProperty();
+
+            if (mapPropertyTextValue.ContainsKey(property))
+            {
+                string[] vals = mapPropertyTextValue[property];
+                if (value >= 0 && value < vals.Length)
+                    return vals[value];
+            }
+
+            return string.Empty;
+        }
 
     }
 }

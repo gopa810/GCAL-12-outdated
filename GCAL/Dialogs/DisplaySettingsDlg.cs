@@ -249,7 +249,7 @@ namespace GCAL.Dialogs
             checkBox48.Checked = GPDisplays.Calendar.RasiVisible();
             checkBox49.Checked = GPDisplays.Calendar.EkadasiParanaDetails();
             comboBox1.SelectedIndex = GPDisplays.Calendar.AnniversaryType();
-            comboBox2.SelectedIndex = GPDisplays.Calendar.MasaHeader() ? 1 : (GPDisplays.Calendar.MonthHeader() ? 2 : 0);
+            comboBox2.SelectedIndex = GPDisplays.Calendar.HeaderType();
 
             // general
             comboBox3.SelectedIndex = GPDisplays.General.CaturmasyaSystem();
@@ -257,7 +257,7 @@ namespace GCAL.Dialogs
             comboBox5.SelectedIndex = GPDisplays.General.FastingNotation();
             comboBox6.SelectedIndex = GPDisplays.General.NameMasaFormat();
             comboBox7.SelectedIndex = GPDisplays.General.SankrantiNameFormat();
-            comboBox8.SelectedIndex = (GPDisplays.General.TimeFormat24() ? 1 : 0);
+            comboBox8.SelectedIndex = GPDisplays.General.TimeFormat();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -302,8 +302,7 @@ namespace GCAL.Dialogs
             GPDisplays.Calendar.JulianDayVisible(checkBox28.Checked);
             GPDisplays.Calendar.SankrantiInfoVisible(checkBox29.Checked);
             GPDisplays.Calendar.EkadasiInfoVisible(checkBox30.Checked);
-            GPDisplays.Calendar.MasaHeader((comboBox2.SelectedIndex == 1));
-            GPDisplays.Calendar.MonthHeader((comboBox2.SelectedIndex == 2));
+            GPDisplays.Calendar.HeaderType(comboBox2.SelectedIndex);
             GPDisplays.Calendar.HideEmptyDays(checkBox33.Checked);
             GPDisplays.Calendar.StartMasaVisible(checkBox34.Checked);
             GPDisplays.Calendar.FestivalClass0(checkBox35.Checked);

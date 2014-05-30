@@ -317,10 +317,10 @@ namespace GCAL
         {
             if (GPDisplays.Today.WindowAutosize())
             {
-                HtmlElement elem = webBrowser1.Document.GetElementById("mainContentDiv");
+                //HtmlElement elem = webBrowser1.Document.GetElementById("mainContentDiv");
 
-                this.Size = new Size(elem.OffsetRectangle.Right + (Size.Width - ClientSize.Width + 16), 
-                    elem.OffsetRectangle.Bottom + (Size.Height - ClientSize.Height) + toolStrip1.Height + menuStrip1.Height + 24);
+                //this.Size = new Size(elem.OffsetRectangle.Right + (Size.Width - ClientSize.Width + 16), 
+                //    elem.OffsetRectangle.Bottom + (Size.Height - ClientSize.Height) + toolStrip1.Height + menuStrip1.Height + 24);
             }
         }
 

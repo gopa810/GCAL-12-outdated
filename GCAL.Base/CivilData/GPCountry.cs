@@ -9,6 +9,7 @@ namespace GCAL.Base
     {
         private string name = string.Empty;
         private string code = string.Empty;
+        public List<String> Timezones = new List<string>();
 
         public string getName()
         {
@@ -33,6 +34,12 @@ namespace GCAL.Base
         public override string ToString()
         {
             return name;
+        }
+
+        public void addTimezone(string tz)
+        {
+            if (Timezones.IndexOf(tz) < 0)
+                Timezones.Add(tz);
         }
     }
 }

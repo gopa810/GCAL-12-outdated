@@ -43,6 +43,7 @@
     <Compile Include="CivilData\GPLocationChange.cs" />
     <Compile Include="CivilData\GPLocationProvider.cs" />
     <Compile Include="Deprecated\GPAstroIterator.cs" />
+    <Compile Include="GPSortedIntStringList.cs" />
     <Compile Include="OutputFormatters\FormaterCSV.cs" />
     <Compile Include="OutputFormatters\FormaterHtml.cs" />
     <Compile Include="OutputFormatters\FormaterICAL.cs" />
@@ -148,6 +149,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Files\Strings.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Files\CountryTimezones.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -53,17 +53,21 @@ namespace GCAL.Base
             return "List.txt";
         }
 
+        public string getFullPathForFile(string fileName)
+        {
+            string dir = GPFileHelper.getAppDataDirectory();
+            if (!Directory.Exists(dir))
+            {
+                Directory.CreateDirectory(dir);
+            }
+            return Path.Combine(dir, fileName);
+        }
+
         ~GPObjectListBase()
         {
             if (Modified)
             {
-                string fileName = GetDefaultFileName();
-                string dir = GPFileHelper.getAppDataDirectory();
-                if (!Directory.Exists(dir))
-                {
-                    Directory.CreateDirectory(dir);
-                }
-                fileName = Path.Combine(dir, fileName);
+                string fileName = getFullPathForFile(GetDefaultFileName());
                 using (StreamWriter sw = new StreamWriter(fileName))
                 {
                     SaveData(sw);

@@ -13,10 +13,10 @@ namespace GCAL.Base
 
         public static bool timeFormat24 = true;
 
-        private int p_year;
-        private int p_month;
-        private int p_day;
-        private double p_shour;
+        private int p_year = 2000;
+        private int p_month = 1;
+        private int p_day = 1;
+        private double p_shour = 0.5;
 
         // Greenwich Julian day
         private double p_julian = -1;
@@ -265,8 +265,8 @@ namespace GCAL.Base
         /// <returns></returns>
         public double getJulianGreenwichTime()
         {
-            //if (p_julian < 0)
-            //recalculateJulianGreenwichTime();
+            if (p_julian < 0)
+               recalculateJulianGreenwichTime();
             return p_julian;
             //return getJulianLocalNoon() - 0.5 + getDayHours() - getTimeZoneOffsetHours() / 24.0;
         }
@@ -487,7 +487,7 @@ namespace GCAL.Base
             p_day = vc.getDay();
             setDayHours(vc.getDayHours());
             setLocationProvider(vc.getLocationProvider());
-            p_julian = vc.getJulianGreenwichTime();
+            recalculateJulianGreenwichTime();
         }
 
         public GPGregorianTime Copy()

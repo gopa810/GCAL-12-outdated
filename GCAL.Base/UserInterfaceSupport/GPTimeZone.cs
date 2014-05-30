@@ -73,6 +73,7 @@ namespace GCAL.Base
 
         }
 
+        public int Id = 0;
         public string Name = string.Empty;
         public long OffsetSeconds = 0;
         public List<Transition> Transitions = new List<Transition>();

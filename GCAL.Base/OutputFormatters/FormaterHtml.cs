@@ -1287,7 +1287,7 @@ span.GramE
             if (p == null)
                 return;
 
-            fprintf(f, "<html>\n<head>\n<title></title>");
+            /*fprintf(f, "<html>\n<head>\n<title></title>");
             f.AppendLine("<style>");
             f.AppendLine("<!--");
             f.AppendLine(FormattingStylesWithFontSize(string.Format("{0}pt", fontSize)));
@@ -1300,13 +1300,19 @@ span.GramE
             f.AppendLine(" }");
             f.AppendLine("</script>");
             fprintf(f, "</head>\n");
-            fprintf(f, "<body>\n");
+            fprintf(f, "<body>\n");*/
 
-            f.Append("<table id=\"mainContentDiv\" border=0><tr><td class=TodayCellBody>");
+            //f.Append("<table id=\"mainContentDiv\" border=0><tr><td class=TodayCellBody>");
+            /*fprintf(f, "<table><tr><td>");
             fprintf(f, "<p><span style='font-size:130%;font-weight:bold'>{0}</span>\n", GPAppHelper.getDateText(vc));
             fprintf(f, "<br><a href=\"{0}\">{1}</a>", "http://gcal.app/mylocation", vc.getLocation().getFullName());
             fprintf(f, "<br>{0}: {1}\n", GPStrings.getSharedStrings().getString(12), vc.getLocation().getTimeZoneString());
-            fprintf(f, "<p>  {0} Tithi, {1}, {2}, {3}</p>",
+            fprintf(f, "</td>");
+            fprintf(f, "<td style='cursor:pointer' onclick='todayGoPrev();'>&lt; Prev</td>");
+            fprintf(f, "<td style='cursor:pointer' onclick='todayToday();'>Today</td>");
+            fprintf(f, "<td style='cursor:pointer' onclick='todayGoNext();'>Next &gt;</td>");
+            fprintf(f, "</tr></table>");*/
+            fprintf(f, "<p align=left><b>  {0} Tithi</b>, {1},<br> {2},<br>{3}</p>",
                 GPTithi.getName(p.astrodata.nTithi), p.getPaksaName(), p.getMasaLongName(), p.getGaurabdaYearLongString());
 
             int prevCountFest = 0;
@@ -1314,18 +1320,21 @@ span.GramE
             List<GPCalendarDay.Festival> allFestivals = p.CompleteFestivalList(db.get(i - 1), db.get(i + 1));
             if (allFestivals.Count > 0)
             {
-                f.AppendFormat("<table class=TodayFestBorder><tr><td class=TodayFestCell style='background:{0}'>\n", GetTodayFestivalBackground(p));
+                StringBuilder sbt = new StringBuilder();
+                sbt.AppendFormat("<table align=left class=TodayFestBorder><tr><td class=TodayFestCell style='background:{0}'>\n", GetTodayFestivalBackground(p));
                 foreach (GPCalendarDay.Festival fest in allFestivals)
                 {
                     if (GPUserDefaults.BoolForKey(fest.ShowSettingItem, true))
                     {
                         if (prevCountFest > 0)
                             fprintf(f, "<br>");
-                        f.Append(fest.Text);
+                        sbt.Append(fest.Text);
                         prevCountFest++;
                     }
                 }
-                f.Append("</td></tr></table>\n");
+                sbt.Append("</td></tr></table>\n");
+                if (prevCountFest > 0)
+                    f.Append(sbt);
             }
 
 
@@ -1438,9 +1447,9 @@ span.GramE
 
             }
 
-            f.Append("</table>");
+            /*f.Append("</table>");
             fprintf(f, "</body>");
-            fprintf(f, "</html>");
+            fprintf(f, "</html>");*/
             /* END GCAL 1.4.3 */
         }
 

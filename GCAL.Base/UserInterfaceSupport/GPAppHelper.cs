@@ -167,23 +167,29 @@ namespace GCAL.Base
         {
             string str = string.Empty;
 
+            getShared().TodayDate = new GPGregorianTime(vc);
+            getShared().TodayDate.Today();
+
+            int input = Convert.ToInt32(vc.getJulianLocalNoon());
+            int today = Convert.ToInt32(getShared().TodayDate.getJulianLocalNoon());
+
             if ((vc.getDay() > 0) && (vc.getDay() < 32) && (vc.getMonth() > 0) && (vc.getMonth() < 13) && (vc.getYear() >= 1500) && (vc.getYear() < 4000))
             {
-                if (vc == getShared().TodayDate)
+                if (input - today == 0)
                 {
-                    str = string.Format("{0} ({1})", vc.ToString(), GPStrings.getSharedStrings().gstr[43]);
+                    str = string.Format("{0} ({1}) - {2}", vc.ToString(), GPStrings.getSharedStrings().gstr[43], GPStrings.getSharedStrings().gstr[vc.getDayOfWeek()]);
                 }
-                else if (vc == getShared().TomorrowDate)
+                else if (input - today == 1)
                 {
-                    str = string.Format("{0} ({1})", vc.ToString(), GPStrings.getSharedStrings().gstr[854]);
+                    str = string.Format("{0} ({1}) - {2}", vc.ToString(), GPStrings.getSharedStrings().gstr[854], GPStrings.getSharedStrings().gstr[vc.getDayOfWeek()]);
                 }
-                else if (vc == getShared().YesterdayDate)
+                else if (input - today == -1)
                 {
-                    str = string.Format("{0} ({1})", vc.ToString(), GPStrings.getSharedStrings().gstr[853]);
+                    str = string.Format("{0} ({1}) - {2}", vc.ToString(), GPStrings.getSharedStrings().gstr[853], GPStrings.getSharedStrings().gstr[vc.getDayOfWeek()]);
                 }
                 else
                 {
-                    str = vc.ToString();
+                    str = string.Format("{0} - {1}", vc.ToString(), GPStrings.getSharedStrings().gstr[vc.getDayOfWeek()]);
                 }
             }
 

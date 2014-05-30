@@ -16,10 +16,8 @@ namespace GCAL.Engine
 
         protected override void Execute()
         {
-            
-            GPLocationProvider loc = new GPLocationProvider();
-            GPLocation loc1 = GPLocationList.getShared().findLocation("Bratislava");
-            loc.setDefaultLocation(loc1);
+
+            GPLocationProvider loc = GPAppHelper.getMyLocation();
 
             //Testing.Report(loc, "gcal13");
 
@@ -27,8 +25,7 @@ namespace GCAL.Engine
             //loc1.setLongitudeEastPositive(17.09);
             //loc1.setTimeZoneName("Europe/Bratislava");
             p_today = new GPGregorianTime(loc);
-            p_today.setDate(2014, 2, 20);
-            p_today.setDayHours(0.5 + 1/24.0);
+            p_today.Today();
             /*
             Debugger.Log(0,"", String.Format("Location: {0} {1} {2}\n", loc.getFullName(), loc1.getLongitudeString(), loc1.getLatitudeString()));
 
@@ -102,7 +99,14 @@ namespace GCAL.Engine
 
             return;
             */
-            p_cal.CalculateCalendar(p_today, 16);
+            int maxCount = GPUserDefaults.IntForKey("nextfest.days", 16);
+            if (maxCount < 3)
+            {
+                maxCount = 16;
+                GPUserDefaults.SetIntForKey("nextfest.days", maxCount);
+            }
+            bool onlyFast = GPUserDefaults.BoolForKey("nextfest.onlyfast", true);
+            p_cal.CalculateCalendar(p_today, maxCount);
             List<string> temp = new List<string>();
             for (int i = 0; i < p_cal.getCount(); i++)
             {
@@ -119,7 +123,7 @@ namespace GCAL.Engine
 
                 foreach (GPCalendarDay.Festival fest in vd.Festivals)
                 {
-                    if (fest.getPreviousFastType() != GPConstants.FAST_NULL)
+                    if (onlyFast == false || fest.getPreviousFastType() != GPConstants.FAST_NULL)
                     {
                         temp.Add(fest.Text);
                     }
@@ -157,5 +161,24 @@ namespace GCAL.Engine
                 return sb.ToString();
             }
         }
+
+        public string getNextFestDaysString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("<table cellpadding=0 cellspacing=0 border=0 width=95%>");
+            int ic = 0;
+            foreach (GPStringPair dr in lines)
+            {
+                if (ic % 2 == 0)
+                    sb.Append("<tr style='background:#cceeee'>");
+                else
+                    sb.Append("<tr>");
+                sb.AppendFormat("<td><span style='font-weight:bold'>{0}</span><br>&nbsp;&nbsp;{1}</td></tr>", dr.Name, dr.Value);
+                ic++;
+            }
+            sb.Append("</table>");
+            return sb.ToString();
+        }
+
     }
 }
