@@ -1,0 +1,40 @@
+<html>
+<head>
+<title></title>
+<script type="text/javascript" src="{%homedir}/shh.js"></script>
+<link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
+<script type="text/javascript">
+function onSave()
+{
+	//var el = document.getElementById("textField0");
+	saveString("locationcountry", getElementValue("textField0"));
+	scriptObject.renameCountryByCode(loadString("locationcountrycode"), loadString("locationcountry"));
+}
+</script>
+</head>
+
+<body>
+
+<center>
+<h1>Rename country</h1>
+<p width=50%>Enter new name for country.</p>
+<table>
+	<tr>
+		<td><p>Old name:</td><td>{%string locationcountry}</td>
+	</tr>
+	<tr>
+		<td><p>New name:</td><td><input type="text" id="textField0" value="{%string locpart}"></td>
+	</tr>
+</table>
+</center>
+
+
+<script type="text/javascript">
+writeNavigStart();
+writeNavigItem("Main Menu", "window.location.href=\"mainmenu.html\"");
+writeNavigItem("{%string leftArrow} {%title -1}", "goBack()");
+writeNavigItem("{%title +1}", "onSave();goNext()");
+writeNavigEnd();
+</script>
+
+

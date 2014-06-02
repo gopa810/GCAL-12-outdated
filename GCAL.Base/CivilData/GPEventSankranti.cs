@@ -8,6 +8,10 @@ namespace GCAL.Base
     public class GPEventSankranti: GPEvent
     {
         public int nSankranti = 0;
-        public int nOffsetFromSankranti = 0;
+
+        public override string getShortDesc()
+        {
+            return "Event based on sankranti";
+        }
     }
 }

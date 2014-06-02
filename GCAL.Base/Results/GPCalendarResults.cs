@@ -1307,7 +1307,7 @@ namespace GCAL.Base
                 {
                     if (m_pData[i].sankranti_zodiac == eve.nSankranti)
                     {
-                        m_pData[i + eve.nOffsetFromSankranti].Festivals.Add(new GPCalendarDay.Festival(80, GPDisplays.Keys.FestivalClass(eve.nClass), eve.strText));
+                        m_pData[i + eve.nOffset].Festivals.Add(new GPCalendarDay.Festival(80, GPDisplays.Keys.FestivalClass(eve.nClass), eve.strText));
                     }
                 }
                 /*if (m_pData[i].sankranti_zodiac == GPSankranti.MAKARA_SANKRANTI)

@@ -66,7 +66,7 @@ namespace GCAL
         public void LoadStartPage()
         {
             //LoadFile("mainmenu.html");
-            LoadFile("dlg-newcountry.html");
+            LoadFile("dlg-editevent.html?preaction=initnewevent");
         }
 
         /// <summary>
@@ -158,8 +158,47 @@ namespace GCAL
             return String.Empty;
         }
 
+        public string getSpecEventsList()
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach(GPEventTithi ev in GPEventList.getShared().tithiEvents)
+            {
+                if (ev.nSpec > 0)
+                {
+                    if (sb.Length > 0)
+                        sb.Append("<line>");
+                    sb.AppendFormat("{0}<r>{1}", ev.nSpec, ev.strText);
+                }
+            }
+            return sb.ToString();
+        }
 
-        protected string evaluate2params(string p1, string p2)
+        public string getTithiName(int i)
+        {
+            return GPTithi.getFullName(i);
+        }
+
+        public string getSankrantiName(int i)
+        {
+            return GPSankranti.getName(i);
+        }
+
+        public string getMasaName(int i)
+        {
+            return GPMasa.GetName(i);
+        }
+
+        public string getFastName(int i)
+        {
+            return GPFastType.getName(i);
+        }
+
+        public string getEventClassName(int i)
+        {
+            return GPEventClass.getName(i);
+        }
+
+        public string evaluate2params(string p1, string p2)
         {
             if (p1 == "string")
             {
@@ -463,6 +502,44 @@ namespace GCAL
             }
         }
 
+        public GPEvent saveEventFromParameters()
+        {
+            GPEvent ev = null;
+            int evType = getInt("eventtype");
+            if (evType == 0)
+            {
+                GPEventTithi evx = new GPEventTithi();
+                evx.nMasa = getInt("eventmasa");
+                evx.nTithi = getInt("eventtithi");
+                ev = evx;
+            }
+            else if (evType == 1)
+            {
+                GPEventSankranti evx = new GPEventSankranti();
+                evx.nSankranti = getInt("eventsankranti");
+                evx.nOffset = getInt("eventoffset1");
+                ev = evx;
+            }
+            else if (evType == 2)
+            {
+                GPEventRelative evx = new GPEventRelative();
+                evx.nSpecRef = getInt("eventeventref");
+                evx.nOffset = getInt("eventoffset2");
+                ev = evx;
+            }
+            ev.strText = getString("eventtitle");
+            ev.strFastSubject = getString("eventfastsubject");
+            ev.nClass = getInt("eventclass");
+            ev.nStartYear = getInt("eventsinceyear");
+            ev.nUsed = 1;
+            ev.nVisible = getInt("eventvisibility");
+            ev.setRawFastType(getInt("eventfasttype"));
+
+            GPEventList.getShared().add(ev);
+
+            return ev;
+        }
+
         public void ExecuteCommand(string cmd)
         {
             if (cmd.StartsWith("#"))
@@ -516,6 +593,191 @@ namespace GCAL
                     country.Timezones.Add(getString("locationtimezone"));
                 }
             }
+            else if (cmd.Equals("newevent"))
+            {
+                GPEvent ev = saveEventFromParameters();
+                saveInt("eventid", ev.eventId);
+            }
+            else if (cmd.Equals("savechangedevent"))
+            {
+                ExecuteCommand("removeeventid");
+                GPEvent ev = saveEventFromParameters();
+                ev.eventId = getInt("eventid");
+            }
+            else if (cmd.Equals("removeeventid"))
+            {
+                GPEvent ev = GPEventList.getShared().find(getInt("eventid"));
+                if (ev != null)
+                {
+                    GPEventList.getShared().RemoveEvent(ev);
+                }
+            }
+            else if (cmd.Equals("loadeventid"))
+            {
+                GPEvent ev = GPEventList.getShared().find(getInt("eventid"));
+                if (ev != null)
+                {
+                    if (ev is GPEventTithi)
+                    {
+                        saveInt("eventtithi", ((GPEventTithi)ev).nTithi);
+                        saveInt("eventmasa", ((GPEventTithi)ev).nMasa);
+                    }
+                    else if (ev is GPEventSankranti)
+                    {
+                        saveInt("eventsankranti", ((GPEventSankranti)ev).nSankranti);
+                    }
+                    else if (ev is GPEventRelative)
+                    {
+                        saveInt("eventeventref", ((GPEventRelative)ev).nSpecRef);
+                    }
+                    saveInt("eventclass", ev.nClass);
+                    saveInt("eventoffset1", ev.nOffset);
+                    saveInt("eventoffset2", ev.nOffset);
+                    saveString("eventtitle", ev.strText);
+                    saveString("eventfastsubject", ev.strFastSubject);
+                    saveInt("eventsinceyear", ev.nStartYear);
+                    saveInt("eventvisibility", ev.nVisible);
+                    saveInt("eventfasttype", ev.getRawFastType());
+                }
+            }
+            else if (cmd.Equals("initnewevent"))
+            {
+                saveInt("eventtithi", 0);
+                saveInt("eventmasa", 0);
+                saveInt("eventsankranti", 0);
+                saveInt("eventeventref", 0);
+                saveInt("eventclass", 6);
+                saveInt("eventoffset1", 0);
+                saveInt("eventoffset2", 0);
+                saveString("eventtitle", "New Event");
+                saveInt("eventfasttype", 0);
+                saveString("eventfastsubject", "");
+                saveInt("eventsinceyear", -10000);
+                saveInt("eventvisibility", 1);
+            }
+        }
+
+        public string getEventsByName(string name)
+        {
+            List<GPEvent> events = new List<GPEvent>();
+            GPEventList list = GPEventList.getShared();
+            if (name != null && name.Length > 0)
+            {
+                foreach (GPEventTithi et in list.tithiEvents)
+                {
+                    if (et.strText.IndexOf(name, StringComparison.CurrentCultureIgnoreCase) >= 0)
+                    {
+                        events.Add(et);
+                    }
+                }
+                foreach (GPEventSankranti es in list.sankrantiEvents)
+                {
+                    if (es.strText.IndexOf(name, StringComparison.CurrentCultureIgnoreCase) >= 0)
+                    {
+                        events.Add(es);
+                    }
+                }
+                foreach (GPEventRelative er in list.relativeEvents)
+                {
+                    if (er.strText.IndexOf(name, StringComparison.CurrentCultureIgnoreCase) >= 0)
+                    {
+                        events.Add(er);
+                    }
+                }
+            }
+
+            StringBuilder sb = new StringBuilder();
+            foreach (GPEvent ev in events)
+            {
+                if (sb.Length > 0)
+                    sb.Append("<line>");
+                sb.AppendFormat("{0}<r>{1}<r>{2}", ev.eventId, ev.strText, ev.getShortDesc());
+            }
+
+            return sb.ToString();
+        }
+
+        public string getEventsByTithiMasa(int tithi, int masa)
+        {
+            List<GPEvent> events = new List<GPEvent>();
+            GPEventList list = GPEventList.getShared();
+            foreach (GPEventTithi et in list.tithiEvents)
+            {
+                if ((et.nTithi == tithi || tithi < 0) && (et.nMasa == masa || masa < 0))
+                {
+                    events.Add(et);
+                }
+            }
+
+            StringBuilder sb = new StringBuilder();
+            foreach (GPEvent ev in events)
+            {
+                if (sb.Length > 0)
+                    sb.Append("<line>");
+                sb.AppendFormat("{0}<r>{1}<r>{2}", ev.eventId, ev.strText, ev.getShortDesc());
+            }
+
+            return sb.ToString();
+        }
+
+        public string getEventsBySankranti(int sankranti)
+        {
+            List<GPEvent> events = new List<GPEvent>();
+            GPEventList list = GPEventList.getShared();
+            foreach (GPEventSankranti es in list.sankrantiEvents)
+            {
+                if (es.nSankranti == sankranti || sankranti < 0)
+                {
+                    events.Add(es);
+                }
+            }
+
+            StringBuilder sb = new StringBuilder();
+            foreach (GPEvent ev in events)
+            {
+                if (sb.Length > 0)
+                    sb.Append("<line>");
+                sb.AppendFormat("{0}<r>{1}<r>{2}", ev.eventId, ev.strText, ev.getShortDesc());
+            }
+
+            return sb.ToString();
+        }
+
+        public string getEventsByEventClass(int classId)
+        {
+            List<GPEvent> events = new List<GPEvent>();
+            GPEventList list = GPEventList.getShared();
+            foreach (GPEventTithi et in list.tithiEvents)
+            {
+                if (et.nClass == classId)
+                {
+                    events.Add(et);
+                }
+            }
+            foreach (GPEventSankranti es in list.sankrantiEvents)
+            {
+                if (es.nClass == classId)
+                {
+                    events.Add(es);
+                }
+            }
+            foreach (GPEventRelative er in list.relativeEvents)
+            {
+                if (er.nClass == classId)
+                {
+                    events.Add(er);
+                }
+            }
+
+            StringBuilder sb = new StringBuilder();
+            foreach (GPEvent ev in events)
+            {
+                if (sb.Length > 0)
+                    sb.Append("<line>");
+                sb.AppendFormat("{0}<r>{1}<r>{2}", ev.eventId, ev.strText, ev.getShortDesc());
+            }
+
+            return sb.ToString();
         }
 
         public void setCurrTitle(string t)
@@ -713,6 +975,16 @@ namespace GCAL
         {
             if (dictStrings.ContainsKey(key))
                 dictStrings.Remove(key);
+        }
+
+        public void renameCountryByCode(string countryCode, string newCountryName)
+        {
+            GPCountry country = GPCountryList.getShared().GetCountryByCode(countryCode);
+            if (country != null)
+            {
+                country.setName(newCountryName);
+                GPCountryList.getShared().Modified = true;
+            }
         }
 
         #endregion

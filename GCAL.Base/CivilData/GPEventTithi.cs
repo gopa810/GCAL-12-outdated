@@ -9,5 +9,10 @@ namespace GCAL.Base
     {
         public int nTithi;
         public int nMasa;
+
+        public override string getShortDesc()
+        {
+            return "Event based on tithi and masa";
+        }
     }
 }

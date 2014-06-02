@@ -80,7 +80,7 @@ namespace GCAL.Base
                 eve.nStartYear = int.Parse(parts[9]);
                 int.TryParse(parts[10], out eve.nSpec);
                 eve.nSpecRef = int.Parse(parts[11]);
-                eve.nOffsetFromEvent = int.Parse(parts[13]);
+                eve.nOffset = int.Parse(parts[13]);
                 relativeEvents.Add(eve);
             }
             else if (parts[0] == "S" && parts.Length >= 13)
@@ -95,7 +95,7 @@ namespace GCAL.Base
                 eve.nStartYear = int.Parse(parts[9]);
                 int.TryParse(parts[10], out eve.nSpec);
                 eve.nSankranti = int.Parse(parts[12]);
-                eve.nOffsetFromSankranti = int.Parse(parts[13]);
+                eve.nOffset = int.Parse(parts[13]);
                 sankrantiEvents.Add(eve);
             }
         }
@@ -112,13 +112,13 @@ namespace GCAL.Base
             {
                 writer.WriteLine("R\t{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}\t{8}\t{9}\t{10}\t{11}\t{12}",
                     eve.nClass, "", "", eve.nVisible, eve.strFastSubject, eve.strText, eve.getRawFastType(),
-                    eve.nUsed, eve.nStartYear, eve.nSpec, eve.nSpecRef, "", eve.nOffsetFromEvent);
+                    eve.nUsed, eve.nStartYear, eve.nSpec, eve.nSpecRef, "", eve.nOffset);
             }
             foreach (GPEventSankranti eve in sankrantiEvents)
             {
                 writer.WriteLine("S\t{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}\t{8}\t{9}\t{10}\t{11}",
                     eve.nClass, "", "", eve.nVisible, eve.strFastSubject, eve.strText, eve.getRawFastType(),
-                    eve.nUsed, eve.nStartYear, eve.nSpec, "", eve.nOffsetFromSankranti);
+                    eve.nUsed, eve.nStartYear, eve.nSpec, "", eve.nOffset);
             }
         }
 
@@ -157,6 +157,45 @@ namespace GCAL.Base
             {
                 tithiEvents.Remove(eve as GPEventTithi);
             }
+        }
+
+        public void add(object eve)
+        {
+            if (eve is GPEventRelative)
+            {
+                relativeEvents.Add(eve as GPEventRelative);
+            }
+            else if (eve is GPEventSankranti)
+            {
+                sankrantiEvents.Add(eve as GPEventSankranti);
+            }
+            else if (eve is GPEventTithi)
+            {
+                tithiEvents.Add(eve as GPEventTithi);
+            }
+        }
+
+        public GPEvent find(int id)
+        {
+            foreach (GPEventTithi ev1 in tithiEvents)
+            {
+                if (ev1.eventId == id)
+                    return ev1;
+            }
+
+            foreach (GPEventSankranti ev2 in sankrantiEvents)
+            {
+                if (ev2.eventId == id)
+                    return ev2;
+            }
+
+            foreach (GPEventRelative ev3 in relativeEvents)
+            {
+                if (ev3.eventId == id)
+                    return ev3;
+            }
+
+            return null;
         }
     }
 }

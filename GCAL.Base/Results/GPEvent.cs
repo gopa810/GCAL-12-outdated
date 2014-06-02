@@ -7,6 +7,9 @@ namespace GCAL.Base
 {
     public class GPEvent
     {
+        public static int globalEventId = 1;
+
+        public int eventId = 0;
         public int nClass = 0;
         private int nFastType = 0;
         public int nVisible = 0;
@@ -17,14 +20,30 @@ namespace GCAL.Base
         public string strFastSubject = string.Empty;
         public string strText = string.Empty;
         public List<GPEvent> childrenItems = null;
+        // offset in days
+        // event specification + nOffset is day of this celebration
+        public int nOffset = 0;
 
         public GPEvent()
         {
+            initEventId();
         }
 
         public GPEvent(string text)
         {
             strText = text;
+            initEventId();
+        }
+
+        private void initEventId()
+        {
+            eventId = globalEventId;
+            globalEventId++;
+        }
+
+        public virtual string getShortDesc()
+        {
+            return "Event";
         }
 
         public override string ToString()

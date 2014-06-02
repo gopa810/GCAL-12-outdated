@@ -25,6 +25,7 @@ function startRenameCountry()
 	saveString("locationtype", "entered");
 	addFutureFile2("dlg-country.html", "Choose Country");
 	addFutureFile2("dlg-renamecountry.html", "Enter New Name");
+	addFutureFile2("geo-countries.html", "Rename");
 	goNext();
 }
 
@@ -49,8 +50,8 @@ function startDeleteCountry()
 
 <script type="text/javascript">
 writeChoiceWithAction("Add New Country", "t0", "startAddCountry();");
-writeChoiceWithAction("Rename existing", "t1", "startRenameCountry");
-writeChoiceWithAction("Remove", "t2", "startDeleteCountry();");
+writeChoiceWithAction("Rename existing", "t1", "startRenameCountry();");
+//writeChoiceWithAction("Remove", "t2", "startDeleteCountry();");
 </script>
 
 </table>

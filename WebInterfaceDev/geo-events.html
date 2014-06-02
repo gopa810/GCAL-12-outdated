@@ -2,6 +2,35 @@
 <head><title></title>
 <script type="text/javascript" src="{%homedir}/shh.js"></script>
 <link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
+
+<script type="text/javascript">
+
+function startAddEvent()
+{
+    scriptObject.clearHistory();
+    setCurrTitle("Edit Countries");
+	saveString("ppx", "");
+	saveString("locationtype", "entered");
+	addFutureFile2("dlg-editevent.html?preaction=initnewevent", "New Event");
+	addFutureFile2("geo-events.html?preaction=newevent", "Save");
+	goNext();
+}
+
+function startEditEvent()
+{
+    scriptObject.clearHistory();
+    setCurrTitle("Edit Countries");
+	saveString("ppx", "");
+	saveString("locationtype", "entered");
+	addFutureFile2("dlg-findevent.html", "Find Event");
+	addFutureFile2("dlg-editevent.html?preaction=loadeventid&disableeventtype=1", "Edit Event");
+	addFutureFile2("geo-events.html?preaction=savechangedevent&disableeventtype=0", "Save");
+	goNext();
+}
+
+
+</script>
+
 </head>
 
 <body>
@@ -11,8 +40,8 @@
 <table style='border:0px' width="100%" cellspacing=8 cellpadding=8>
 
 <script type="text/javascript">
-writeChoice("New Event", "t0", "geo-events-add.html");
-writeChoice("Edit Selected", "t1", "geo-events-edit.html");
+writeChoiceWithAction("New Event", "t0", "startAddEvent();");
+writeChoiceWithAction("Edit Selected", "t1", "startEditEvent();");
 writeChoice("Remove", "t2", "geo-events-del.html");
 </script>
 

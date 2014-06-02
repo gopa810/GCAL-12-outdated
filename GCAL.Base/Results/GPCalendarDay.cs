@@ -513,7 +513,7 @@ namespace GCAL.Base
                     if (ev is GPEventRelative)
                     {
                         GPEventRelative relev = ev as GPEventRelative;
-                        GPCalendarDay vd = GetDayWithOffset(relev.nOffsetFromEvent);
+                        GPCalendarDay vd = GetDayWithOffset(relev.nOffset);
                         if (vd != null)
                         {
                             vd.AddFestivalCopy(relev);

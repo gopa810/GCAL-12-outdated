@@ -1,0 +1,205 @@
+<html>
+<head><title></title>
+<script type="text/javascript" src="{%homedir}/shh.js"></script>
+<link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
+
+<script type="text/javascript">
+
+function onSave()
+{
+     saveString("locationtimezone{%string ppx}", scriptObject.getTimezoneNameById(lastId));
+}
+
+function onCriteriaChanged()
+{
+   var selectedCriteria = document.getElementById('fldCriteria').value;
+   
+   var valName = 'none';
+   var valTithiMasa = 'none';
+   var valSankranti = 'none';
+   var valEventClass = 'none';
+
+   if (selectedCriteria == 0) {
+       valName = 'block';
+   } else if (selectedCriteria == 1) {
+       valTithiMasa = 'block';
+   } else if (selectedCriteria == 2) {
+       valSankranti = 'block';
+   } else if (selectedCriteria == 3) {
+       valEventClass = 'block';
+   }
+   
+   setDisplay('specName', valName);
+   setDisplay('specTithiMasa', valTithiMasa);
+   setDisplay('specSankranti', valSankranti);
+   setDisplay('specEventClass', valEventClass);
+   
+   onValueChanged();
+}
+
+function onValueChanged()
+{
+   var selectedCriteria = document.getElementById('fldCriteria').value;
+   
+   if (selectedCriteria == 0) {
+	   showList(scriptObject.getEventsByName(getElementValue('fldTitle')));
+   } else if (selectedCriteria == 1) {
+	   showList(scriptObject.getEventsByTithiMasa(getElementValue('fldTithi'), getElementValue('fldMasa')));
+   } else if (selectedCriteria == 2) {
+	   showList(scriptObject.getEventsBySankranti(getElementValue('fldSankranti')));
+   } else if (selectedCriteria == 3) {
+	   showList(scriptObject.getEventsByEventClass(getElementValue('fldEventClass')));
+   }
+}
+
+function showList(strList)
+{
+	var list = [];
+	var list = strList.split("<line>");
+
+	var i = 0;
+	var b = 1;
+	var str;
+	
+	if (strList.length > 0)
+	{
+		str = '<table cellspacing=0 cellpadding=8>';
+		for(i = 0; i < list.length; i++)
+		{
+			var tags = list[i].split('<r>');
+			str += getStringComboChoiceValue(tags[1], tags[2], tags[0], b);
+			b = 0;
+		}
+		str += "</table>";
+	}
+	else
+	{
+	   str = "<p align=center><i>No events selected</p>";
+	}
+
+
+
+    document.getElementById('contentx').innerHTML = str;
+
+}
+
+var lastName = '';
+
+function checkName()
+{
+    if (getElementValue('fldCriteria') != 0)
+		return;
+		
+    var b = document.getElementById('fldTitle').value;
+	if (b != lastName)
+	{
+	    onValueChanged();
+		lastName = b;
+	}
+}
+
+
+setInterval(checkName, 300);
+
+</script>
+
+</head>
+
+<body>
+
+<h1>Find Event</h1>
+
+<p>Select criteria for finding an event</p>
+
+<select id='fldCriteria' onchange='onCriteriaChanged();'>
+  <option value='0'>by name of event</option>
+  <option value='1'>by tithi or masa</option>
+  <option value='2'>by sankranti</option>
+  <option value='3'>by event class</option>
+</select>
+
+<div id='specName'>
+<h2>Event Title</h2>
+<p><input type="text" id="fldTitle" value="" onchange='onValueChanged();'>
+</div>
+
+<div id='specTithiMasa'>
+<h2>Tithi</h2>
+<select id='fldTithi' onchange='onValueChanged();'>
+  <option value='-1'>[All]</option>
+<script>
+  for(i= 0; i < 30; i++)
+  {
+     document.write("<option value='" + i + "'>");
+	 document.write(scriptObject.getTithiName(i));
+	 document.write("</option>");
+  }
+</script>
+</select>
+
+<h2>Masa</h2>
+<select id='fldMasa' onchange='onValueChanged();'>
+  <option value='-1'>[All]</option>
+<script>
+  for(i= 0; i < 12; i++)
+  {
+     document.write("<option value='" + i + "'>");
+	 document.write(scriptObject.getMasaName(i));
+	 document.write("</option>");
+  }
+</script>
+</select>
+
+</div>
+
+<div id='specSankranti'>
+<h2>Sankranti</h2>
+<select id='fldSankranti' onchange='onValueChanged();'>
+  <option value='-1'>[All]</option>
+<script>
+  for(i= 0; i < 12; i++)
+  {
+     document.write("<option value='" + i + "'>");
+	 document.write(scriptObject.getSankrantiName(i));
+	 document.write("</option>");
+  }
+</script>
+</select>
+</div>
+
+<div id='specEventClass'>
+
+<h2>Event class</h2>
+<select id='fldEventClass' onchange='onValueChanged();'>
+<script>
+  for(i = 0; i < 7; i++)
+  {
+     document.write('<option value=\'' + i + '\'>');
+	 document.write(scriptObject.getEventClassName(i));
+	 document.write('</option>');
+  }
+</script>
+</select>
+
+</div>
+
+<div id='contentx'>
+</div>
+
+
+<script type="text/javascript">
+
+onCriteriaChanged();
+
+writeNavigStart();
+writeNavigItem("Main Menu", "window.location.href=\"mainmenu.html\"");
+writeNavigItem("{%string leftArrow} {%title -1}", "goPrev();");
+writeNavigItem("{%string rightArrow} {%title +1}", "onSave();goNext();");
+writeNavigEnd();
+</script>
+
+
+
+
+</body>
+</html>

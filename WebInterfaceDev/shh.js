@@ -208,7 +208,8 @@ function getElementValue(elemId)
 function setElementValue(elemId, val)
 {
     var elc = document.getElementById(elemId);
-    elc.value = val;
+	if (val != null)
+		elc.value = val;
 }
 
 function getSwitchValue(switchId)
