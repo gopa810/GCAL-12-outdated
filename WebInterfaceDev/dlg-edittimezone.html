@@ -1,0 +1,339 @@
+<html>
+<head>
+<title></title>
+<script type="text/javascript" src="{%homedir}/shh.js"></script>
+<link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
+<script type="text/javascript">
+function onSave()
+{
+	//var el = document.getElementById("textField0");
+	saveString("eventtitle", getElementValue("fldTitle"));
+	saveString("eventtype", getElementValue("fldEventType"));
+	saveString("eventtithi", getElementValue("fldTithi"));
+	saveString("eventmasa", getElementValue("fldMasa"));
+	saveString("eventsankranti", getElementValue("fldSankranti"));
+	saveString("eventoffset1", getElementValue("fldOffset1"));
+	saveString("eventeventref", getElementValue("fldEventRef"));
+	saveString("eventoffset2", getElementValue("fldOffset2"));
+	saveString("eventfastsubject", getElementValue("fldFastSubject"));
+	saveString("eventfasttype", getElementValue("fldFastType"));
+	saveString("eventclass", getElementValue("fldEventClass"));
+	saveString("eventsinceyear", getElementValue("fldSinceYear"));
+	saveString("eventvisibility", getElementValue("fldVisibility"));
+}
+
+function onLoad()
+{
+	setElementValue("fldTitle", loadString("eventtitle"));
+	setElementValue("fldEventType", Number(loadString("eventtype")));
+	setElementValue("fldTithi", Number(loadString("eventtithi")));
+	setElementValue("fldMasa", Number(loadString("eventmasa")));
+	setElementValue("fldSankranti", Number(loadString("eventsankranti")));
+	setElementValue("fldOffset1", Number(loadString("eventoffset1")));
+	setElementValue("fldEventRef", Number(loadString("eventeventref")));
+	setElementValue("fldOffset2", Number(loadString("eventoffset2")));
+	setElementValue("fldFastSubject", loadString("eventfastsubject"));
+	setElementValue("fldFastType", Number(loadString("eventfasttype")));
+	setElementValue("fldEventClass", Number(loadString("eventclass")));
+	setElementValue("fldSinceYear", Number(loadString("eventsinceyear")));
+	setElementValue("fldVisibility", Number(loadString("eventvisibility")));
+}
+
+function onTypeChange()
+{
+    var el = document.getElementById('fldEventType').value;
+	if (el == 0)
+	{
+	    document.getElementById('specTithi').style.display = 'block';
+	    document.getElementById('specSank').style.display = 'none';
+	    document.getElementById('specRef').style.display = 'none';
+	}
+	if (el == 1)
+	{
+	    document.getElementById('specTithi').style.display = 'none';
+	    document.getElementById('specSank').style.display = 'block';
+	    document.getElementById('specRef').style.display = 'none';
+	}
+	if (el == 2)
+	{
+	    document.getElementById('specTithi').style.display = 'none';
+	    document.getElementById('specSank').style.display = 'none';
+	    document.getElementById('specRef').style.display = 'block';
+	}
+}
+
+function onChangeUsedDst()
+{
+    var v = document.getElementById('fldUsedDst').value;
+	if (v == 0)
+	    document.getElementById('divDst').style.display = 'none';
+	else
+	    document.getElementById('divDst').style.display = 'block';
+	   
+}
+
+function showElem3(elid,val)
+{
+	if (elid != '')
+		document.getElementById(elid).style.display=val;
+}
+
+
+var editTimezoneLastDlg = 'operList';
+
+function startDiv(elid)
+{
+	showElem3(editTimezoneLastDlg, 'none');
+	editTimezoneLastDlg = elid;
+	showElem3(editTimezoneLastDlg, 'block');
+}
+
+function onChangeAddType()
+{
+    if (document.getElementById('fldAddType').value == 0)
+	{
+	    showElem3('operAddDates', 'block');
+		showElem3('operAddRule', 'none');
+	}
+	else
+	{
+	    showElem3('operAddDates', 'none');
+		showElem3('operAddRule', 'block');
+	}
+}
+
+
+</script>
+</head>
+
+<body>
+
+<h1>{%title 0}</h1>
+
+<h2>Timezone Name</h2>
+<p width=50%>Enter title for timezone</p>
+<p><input type="text" id="fldTitle" value="">
+
+<h2>Offset to UTC [hours]</h2>
+<table>
+<tr><td>hours</td><td>minutes</td></tr>
+<tr><td>
+<select onchange='onTypeChange();' id='fldOffsetHours'>
+  <option value='-14'>-14</option>
+  <option value='-13'>-13</option>
+  <option value='-12'>-12</option>
+  <option value='-11'>-11</option>
+  <option value='-10'>-10</option>
+  <option value='-9'>-09</option>
+  <option value='-8'>-08</option>
+  <option value='-7'>-07</option>
+  <option value='-6'>-06</option>
+  <option value='-5'>-05</option>
+  <option value='-4'>-04</option>
+  <option value='-3'>-03</option>
+  <option value='-2'>-02</option>
+  <option value='-1'>-01</option>
+  <option value='0' selected>+00</option>
+  <option value='1'>+01</option>
+  <option value='2'>+02</option>
+  <option value='3'>+03</option>
+  <option value='4'>+04</option>
+  <option value='5'>+05</option>
+  <option value='6'>+06</option>
+  <option value='7'>+07</option>
+  <option value='8'>+08</option>
+  <option value='9'>+09</option>
+  <option value='10'>+10</option>
+  <option value='11'>+11</option>
+  <option value='12'>+12</option>
+  <option value='13'>+13</option>
+  <option value='14'>+14</option>
+</select>
+</td><td>
+<select id='fldOffsetMin'>
+  <option value='0'>00</option>
+  <option value='15'>15</option>
+  <option value='30'>30</option>
+  <option value='45'>45</option>
+</select>
+</td></tr>
+</table>
+
+<h2>Using Daylight Saving Time</h2>
+<select id='fldUsedDst' onchange='onChangeUsedDst();'>
+  <option value='0'>Not used</option>
+  <option value='1'>Used</option>
+</select>
+
+<div id='divDst'>
+
+	<div id='operList'>
+
+	<h2>Transitions</h2>
+		<p>Here are definitions of offset transitions. It is defined either by rule, or by exact start and end date of transition.
+		<div>
+		  <button type='button' onclick='startDiv("operAdd");'>Add</button>
+		  <button type='button' onclick='startDiv("operClear");'>Clear</button>
+		  <button type='button' onclick='startDiv("operClearAfter");'>Clear After</button>
+		</div>
+
+	</div>
+
+	<div id='operAdd' style='display:none'>
+
+		<h2>Add new transition</h2>
+
+
+		<select id='fldAddType' onchange='onChangeAddType();'>
+		  <option value='0'>Explicit dates</option>
+		  <option value='1'>Rule</option>
+		</select>
+		
+		<div id='operAddDates'>
+
+		<p>HERE SELECT DATE</p>
+		<input type=date id='fld200'>
+
+		<p>HERE SELECT DATE</p>
+		<input type=date id='fld201'>
+
+		<p>HERE SELECT DST BIAS 0 - 2 hours</p>
+		<select>
+		   <option id=0>+00 min</option>
+		   <option id=1800>+30 min</option>
+		   <option id=3600>+60 min</option>
+		</select>
+		</div>
+		
+<script>
+function ifdisp2(elemId,elem0,elem1)
+{
+   var v = document.getElementById(elemId).value;
+   //alert(v);
+   if (v == 0)
+   {
+        showElem3(elem0,'block');
+        showElem3(elem1,'none');
+   }
+   else
+   {
+        showElem3(elem0,'none');
+        showElem3(elem1,'block');
+   }
+}
+
+</script>
+
+		<div id='operAddRule' style='display:none'>
+			<p>Start date</p>
+
+			<select id='fldRuleTypeStart' onclick='ifdisp2("fldRuleTypeStart","operAddRuleStartWeek","operAddRuleStartDay")'>
+				<option value='0'>Week of month</option>
+				<option value='1'>Day of month</option>
+			</select>
+
+			<div id='operAddRuleStartDay' style='display:none'>
+				<h3>Day of month</h3>
+				<p> COMBOBOX: 1 - 31</p>
+
+				<h3>Month</h3>
+				<p>COMBOBOX: 1 - 12 month</p>
+			</div>
+
+			<div id='operAddRuleStartWeek'>
+				<h3>Day of week</h3>
+				<p>COMBOBOX: Sunday - Saturday</p>
+
+				<h3>Week of month</h3>
+				<p>COMBOBOX: 1, 2, 3, 4, 5 - last
+
+				<h3>Month</h3>
+				<p>COMBOBOX: 1 - 12 month</p>
+			</div>
+
+
+			<p>End date</p>
+
+			<select id='fldRuleTypeEnd' onclick='ifdisp2("fldRuleTypeEnd","operAddRuleEndWeek","operAddRuleEndDay")'>
+				<option value='0'>Week of month</option>
+				<option value='1'>Day of month</option>
+			</select>
+
+			<div id='operAddRuleEndDay' style='display:none'>
+				<h3>Day of month</h3>
+				<p> COMBOBOX: 1 - 31</p>
+
+				<h3>Month</h3>
+				<p>COMBOBOX: 1 - 12 month</p>
+			</div>
+
+			<div id='operAddRuleEndWeek'>
+				<h3>Day of week</h3>
+				<p>COMBOBOX: Sunday - Saturday</p>
+
+				<h3>Week of month</h3>
+				<p>COMBOBOX: 1, 2, 3, 4, 5 - last
+
+				<h3>Month</h3>
+				<p>COMBOBOX: 1 - 12 month</p>
+			</div>
+
+		</div>
+
+		<div>
+		  <button type='button' onclick='startDiv("operList");'>Back to List</button>
+		  <button type='button' onclick='startDiv("operList");'>Add Transition</button>
+		</div>
+
+	</div>
+
+	<div id='operClear' style='display:none'>
+		<h2>Clear all transitions</h2>
+		
+		<p>Do you want to clear all transitions></p>
+		
+		<div>
+		  <button type='button' onclick='startDiv("operList");'>Back to List</button>
+		  <button type='button' onclick=''>Yes, clear</button>
+		</div>
+
+	</div>
+
+
+	<div id='operClearAfter' style='display:none'>
+		<h2>Clear after date</h2>
+		
+		<p>HERE SELECT DATE</p>
+		
+		<div>
+		  <button type='button' onclick='startDiv("operList");'>Back to List</button>
+		  <button type='button' onclick=''>Yes, clear after date</button>
+		</div>
+
+	</div>
+
+
+
+
+</div>
+
+<script type="text/javascript">
+onTypeChange();
+onLoad();
+
+writeNavigStart();
+writeNavigItem("Main Menu", "window.location.href=\"mainmenu.html\"");
+writeNavigItem("{%string leftArrow} {%title -1}", "goBack()");
+writeNavigItem("{%title +1} {%string rightArrow}", "onSave();goNext()");
+writeNavigEnd();
+
+if (scriptObject.getInt('disableventtype') == 1)
+{
+   document.getElementById('fldEventType').disabled = 1;
+}
+
+</script>
+
+
+</body>
+</html>

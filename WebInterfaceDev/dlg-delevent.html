@@ -1,0 +1,60 @@
+<html>
+<head>
+<title></title>
+<script type="text/javascript" src="{%homedir}/shh.js"></script>
+<link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
+<script type="text/javascript">
+
+</script>
+</head>
+
+<body>
+
+<center>
+<h1>Remove Event ?</h1>
+
+<div id='branchYes'>
+<p width=50%>Confirm that you want to <b>remove</b> following event from the global list of events in GCAL application.</p>
+<table>
+	<tr>
+		<td>Name</td>
+		<td>{%string eventtitle}</td>
+	</tr>
+</table>
+
+</center>
+
+<script type="text/javascript">
+writeNavigStart();
+writeNavigItem("{%string leftArrow} {%title -1}", "goBack()");
+writeNavigItem("Don't delete", "window.location.href=\"mainmenu.html\"");
+writeNavigItem("Yes, delete", "goNext();");
+writeNavigEnd();
+</script>
+
+</div>
+
+<div id='branchNo'>
+<p align=center><i>Event cannot be removed, because it is special event.</i>
+
+
+<script type="text/javascript">
+writeNavigStart();
+writeNavigItem("{%string leftArrow} {%title -1}", "goBack()");
+writeNavigItem("Main menu", "window.location.href=\"mainmenu.html\"");
+writeNavigEnd();
+</script>
+
+</div>
+
+<script type="text/javascript">
+if (scriptObject.getInt("eventspec") > 0)
+{
+    setDisplay('branchYes', 'none');
+}
+else
+{
+    setDisplay('branchNo', 'none');
+}
+</script>
+

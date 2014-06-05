@@ -8,7 +8,7 @@
 function startAddEvent()
 {
     scriptObject.clearHistory();
-    setCurrTitle("Edit Countries");
+    setCurrTitle("Edit Events");
 	saveString("ppx", "");
 	saveString("locationtype", "entered");
 	addFutureFile2("dlg-editevent.html?preaction=initnewevent", "New Event");
@@ -19,7 +19,7 @@ function startAddEvent()
 function startEditEvent()
 {
     scriptObject.clearHistory();
-    setCurrTitle("Edit Countries");
+    setCurrTitle("Edit Events");
 	saveString("ppx", "");
 	saveString("locationtype", "entered");
 	addFutureFile2("dlg-findevent.html", "Find Event");
@@ -28,6 +28,17 @@ function startEditEvent()
 	goNext();
 }
 
+function startRemoveEvent()
+{
+    scriptObject.clearHistory();
+    setCurrTitle("Edit Events");
+	saveString("ppx", "");
+	saveString("locationtype", "entered");
+	addFutureFile2("dlg-findevent.html", "Find Event");
+	addFutureFile2("dlg-delevent.html?preaction=loadeventid", "Confirm Remove");
+	addFutureFile2("geo-events.html?preaction=removeeventid", "Remove");
+	goNext();
+}
 
 </script>
 
@@ -42,7 +53,7 @@ function startEditEvent()
 <script type="text/javascript">
 writeChoiceWithAction("New Event", "t0", "startAddEvent();");
 writeChoiceWithAction("Edit Selected", "t1", "startEditEvent();");
-writeChoice("Remove", "t2", "geo-events-del.html");
+writeChoiceWithAction("Remove", "t2", "startRemoveEvent();");
 </script>
 
 </table>

@@ -66,7 +66,7 @@ namespace GCAL
         public void LoadStartPage()
         {
             //LoadFile("mainmenu.html");
-            LoadFile("dlg-editevent.html?preaction=initnewevent");
+            LoadFile("dlg-findtz.html");
         }
 
         /// <summary>
@@ -638,6 +638,7 @@ namespace GCAL
                     saveInt("eventsinceyear", ev.nStartYear);
                     saveInt("eventvisibility", ev.nVisible);
                     saveInt("eventfasttype", ev.getRawFastType());
+                    saveInt("eventspec", ev.nSpec);
                 }
             }
             else if (cmd.Equals("initnewevent"))
@@ -887,20 +888,36 @@ namespace GCAL
             return GPTimeZoneList.sharedTimeZones().getTimezonesOffsetListDesc();
         }
 
+        public string getTimezonesByName(string partName)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (GPTimeZone tz in GPTimeZoneList.sharedTimeZones().getTimeZones())
+            {
+                if (partName != null && tz.Name.IndexOf(partName, StringComparison.CurrentCultureIgnoreCase) >= 0)
+                {
+                    if (sb.Length > 0)
+                        sb.Append("<line>");
+                    sb.AppendFormat("{0}<r>{1}<r>{2}", tz.Id, tz.Name, tz.getFullName());
+                }
+            }
+            return sb.ToString();
+        }
+
         public string getTimezonesByOffset(string off)
         {
             int i;
             int.TryParse(off, out i);
-            GPSortedIntStringList so = new GPSortedIntStringList();
-            so.Flag = true;
+            StringBuilder sb = new StringBuilder();
             foreach (GPTimeZone tz in GPTimeZoneList.sharedTimeZones().getTimeZones())
             {
                 if (tz.OffsetSeconds == i)
                 {
-                    so.push((int)tz.OffsetSeconds, tz.Name);
+                    if (sb.Length > 0)
+                        sb.Append("<line>");
+                    sb.AppendFormat("{0}<r>{1}<r>{2}", tz.Id, tz.Name, tz.getFullName());
                 }
             }
-            return so.ToString();
+            return sb.ToString();
         }
 
         public string getTimezonesByCountry(string off)
