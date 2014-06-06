@@ -102,6 +102,28 @@ function onChangeAddType()
 	}
 }
 
+function ifdisp2(elemId,elem0,elem1)
+{
+   var v = document.getElementById(elemId).value;
+   //alert(v);
+   if (v == 0)
+   {
+        showElem3(elem0,'block');
+        showElem3(elem1,'none');
+   }
+   else
+   {
+        showElem3(elem0,'none');
+        showElem3(elem1,'block');
+   }
+}
+
+
+function incr(elemId,dif)
+{
+    var nv = Number(document.getElementById(elemId).innerText) + dif;
+	document.getElementById(elemId).innerText = nv.toString();
+}
 
 </script>
 </head>
@@ -191,92 +213,253 @@ function onChangeAddType()
 		
 		<div id='operAddDates'>
 
-		<p>HERE SELECT DATE</p>
-		<input type=date id='fld200'>
+			<p>Start date</p>
+			<input type=date id='fld200' value='2014-03-02'>
 
-		<p>HERE SELECT DATE</p>
-		<input type=date id='fld201'>
+			<p>End date</p>
+			<input type=date id='fld201' value='2014-03-02'>
 
-		<p>HERE SELECT DST BIAS 0 - 2 hours</p>
-		<select>
-		   <option id=0>+00 min</option>
-		   <option id=1800>+30 min</option>
-		   <option id=3600>+60 min</option>
-		</select>
+			<p>DST offset</p>
+			<select>
+			   <option id=0>+00 min</option>
+			   <option id=1800>+30 min</option>
+			   <option id=3600>+60 min</option>
+			</select>
 		</div>
-		
-<script>
-function ifdisp2(elemId,elem0,elem1)
-{
-   var v = document.getElementById(elemId).value;
-   //alert(v);
-   if (v == 0)
-   {
-        showElem3(elem0,'block');
-        showElem3(elem1,'none');
-   }
-   else
-   {
-        showElem3(elem0,'none');
-        showElem3(elem1,'block');
-   }
-}
-
-</script>
 
 		<div id='operAddRule' style='display:none'>
-			<p>Start date</p>
+		    <h3>Start year</h3>
+			
+			<table width=240pt>
+				<tr>
+					<td style='text-align:right;font-size:24pt' id='startYear2' rowspan=2>1950</td>
+					<td width=32pt class='noselect' style='text-align:center;cursor:pointer' onclick='incr("startYear2", 1);'>+1</td>
+					<td width=32pt class='noselect' style='text-align:center;cursor:pointer' onclick='incr("startYear2", 10);'>+10</td>
+				</tr><tr>
+					<td width=32pt class='noselect' style='text-align:center;cursor:pointer' onclick='incr("startYear2", 1);'>-1</td>
+					<td width=32pt class='noselect' style='text-align:center;cursor:pointer' onclick='incr("startYear2", 10);'>-10</td>
+				</tr>
+			</table>
+
+			<h3>End year</h3>
+			<table width=240pt>
+				<tr>
+					<td style='text-align:right;font-size:24pt' id='endYear2' rowspan=2>2050</td>
+					<td width=32pt class='noselect' style='text-align:center;cursor:pointer' onclick='incr("endYear2", 1);'>+1</td>
+					<td width=32pt class='noselect' style='text-align:center;cursor:pointer' onclick='incr("endYear2", 10);'>+10</td>
+				</tr><tr>
+					<td width=32pt class='noselect' style='text-align:center;cursor:pointer' onclick='incr("endYear2", 1);'>-1</td>
+					<td width=32pt class='noselect' style='text-align:center;cursor:pointer' onclick='incr("endYear2", 10);'>-10</td>
+				</tr>
+			</table>
+			
+			<h3>Start day</h3>
 
 			<select id='fldRuleTypeStart' onclick='ifdisp2("fldRuleTypeStart","operAddRuleStartWeek","operAddRuleStartDay")'>
 				<option value='0'>Week of month</option>
 				<option value='1'>Day of month</option>
 			</select>
 
-			<div id='operAddRuleStartDay' style='display:none'>
-				<h3>Day of month</h3>
-				<p> COMBOBOX: 1 - 31</p>
+			<table id='operAddRuleStartDay' style='display:none'>
+			<tr>
+				<td><p>Day of month</p>
+				<td><select id=''>
+					<option id="1">1</option>
+					<option id="2">2</option>
+					<option id="3">3</option>
+					<option id="4">4</option>
+					<option id="5">5</option>
+					<option id="6">6</option>
+					<option id="7">7</option>
+					<option id="8">8</option>
+					<option id="9">9</option>
+					<option id="10">10</option>
+					<option id="11">11</option>
+					<option id="12">12</option>
+					<option id="13">13</option>
+					<option id="14">14</option>
+					<option id="15">15</option>
+					<option id="16">16</option>
+					<option id="17">17</option>
+					<option id="18">18</option>
+					<option id="19">19</option>
+					<option id="20">20</option>
+					<option id="21">21</option>
+					<option id="22">22</option>
+					<option id="23">23</option>
+					<option id="24">24</option>
+					<option id="25">25</option>
+					<option id="26">26</option>
+					<option id="27">27</option>
+					<option id="28">28</option>
+					<option id="29">29</option>
+					<option id="30">30</option>
+					<option id="31">31</option>
+				</select>
+			<tr>
+				<td><p>Month</p>
+				<td><select id=''>
+					<option id='1'>{%gstr 760}</option>
+					<option id='2'>{%gstr 761}</option>
+					<option id='3'>{%gstr 762}</option>
+					<option id='4'>{%gstr 763}</option>
+					<option id='5'>{%gstr 764}</option>
+					<option id='6'>{%gstr 765}</option>
+					<option id='7'>{%gstr 766}</option>
+					<option id='8'>{%gstr 767}</option>
+					<option id='9'>{%gstr 768}</option>
+					<option id='10'>{%gstr 769}</option>
+					<option id='11'>{%gstr 770}</option>
+					<option id='12'>{%gstr 771}</option>
+				</select>
+				</tr>
+			</table>
 
-				<h3>Month</h3>
-				<p>COMBOBOX: 1 - 12 month</p>
-			</div>
+			<table id='operAddRuleStartWeek'>
+			<tr>
+				<td><p>Day of week</p>
+				<td><select id=''>
+					<option id='0'>{%gstr 0}</option>
+					<option id='1'>{%gstr 1}</option>
+					<option id='2'>{%gstr 2}</option>
+					<option id='3'>{%gstr 3}</option>
+					<option id='4'>{%gstr 4}</option>
+					<option id='5'>{%gstr 5}</option>
+					<option id='6'>{%gstr 6}</option>
+				</select>
 
-			<div id='operAddRuleStartWeek'>
-				<h3>Day of week</h3>
-				<p>COMBOBOX: Sunday - Saturday</p>
+			<tr>
+				<td><p>Week of month</p>
+				<td><select id=''>
+					<option id='1'>{%gstr 782}</option>
+					<option id='2'>{%gstr 783}</option>
+					<option id='3'>{%gstr 784}</option>
+					<option id='4'>{%gstr 785}</option>
+					<option id='5'>{%gstr 786}</option>
+				</select>
+			<tr>
+				<td><p>Month</p>
+				<td><select id=''>
+					<option id='1'>{%gstr 760}</option>
+					<option id='2'>{%gstr 761}</option>
+					<option id='3'>{%gstr 762}</option>
+					<option id='4'>{%gstr 763}</option>
+					<option id='5'>{%gstr 764}</option>
+					<option id='6'>{%gstr 765}</option>
+					<option id='7'>{%gstr 766}</option>
+					<option id='8'>{%gstr 767}</option>
+					<option id='9'>{%gstr 768}</option>
+					<option id='10'>{%gstr 769}</option>
+					<option id='11'>{%gstr 770}</option>
+					<option id='12'>{%gstr 771}</option>
+				</select>
+				</tr>
+			</table>
 
-				<h3>Week of month</h3>
-				<p>COMBOBOX: 1, 2, 3, 4, 5 - last
 
-				<h3>Month</h3>
-				<p>COMBOBOX: 1 - 12 month</p>
-			</div>
-
-
-			<p>End date</p>
+			<h3>End day</h3>
 
 			<select id='fldRuleTypeEnd' onclick='ifdisp2("fldRuleTypeEnd","operAddRuleEndWeek","operAddRuleEndDay")'>
 				<option value='0'>Week of month</option>
 				<option value='1'>Day of month</option>
 			</select>
 
-			<div id='operAddRuleEndDay' style='display:none'>
-				<h3>Day of month</h3>
-				<p> COMBOBOX: 1 - 31</p>
+			<table  id='operAddRuleEndDay' style='display:none'>
+			<tr>
+				<td><p>Day of month</p>
+				<td><select id=''>
+					<option id="1">1</option>
+					<option id="2">2</option>
+					<option id="3">3</option>
+					<option id="4">4</option>
+					<option id="5">5</option>
+					<option id="6">6</option>
+					<option id="7">7</option>
+					<option id="8">8</option>
+					<option id="9">9</option>
+					<option id="10">10</option>
+					<option id="11">11</option>
+					<option id="12">12</option>
+					<option id="13">13</option>
+					<option id="14">14</option>
+					<option id="15">15</option>
+					<option id="16">16</option>
+					<option id="17">17</option>
+					<option id="18">18</option>
+					<option id="19">19</option>
+					<option id="20">20</option>
+					<option id="21">21</option>
+					<option id="22">22</option>
+					<option id="23">23</option>
+					<option id="24">24</option>
+					<option id="25">25</option>
+					<option id="26">26</option>
+					<option id="27">27</option>
+					<option id="28">28</option>
+					<option id="29">29</option>
+					<option id="30">30</option>
+					<option id="31">31</option>
+				</select>
+			<tr>
+				<td><p>Month</p>
+				<td><select id=''>
+					<option id='1'>{%gstr 760}</option>
+					<option id='2'>{%gstr 761}</option>
+					<option id='3'>{%gstr 762}</option>
+					<option id='4'>{%gstr 763}</option>
+					<option id='5'>{%gstr 764}</option>
+					<option id='6'>{%gstr 765}</option>
+					<option id='7'>{%gstr 766}</option>
+					<option id='8'>{%gstr 767}</option>
+					<option id='9'>{%gstr 768}</option>
+					<option id='10'>{%gstr 769}</option>
+					<option id='11'>{%gstr 770}</option>
+					<option id='12'>{%gstr 771}</option>
+				</select>
+				</tr>
+			</table>
 
-				<h3>Month</h3>
-				<p>COMBOBOX: 1 - 12 month</p>
-			</div>
+			<table id='operAddRuleEndWeek'>
+			<tr>
+				<td><p>Day of week</p>
+				<td><select id=''>
+					<option id='0'>{%gstr 0}</option>
+					<option id='1'>{%gstr 1}</option>
+					<option id='2'>{%gstr 2}</option>
+					<option id='3'>{%gstr 3}</option>
+					<option id='4'>{%gstr 4}</option>
+					<option id='5'>{%gstr 5}</option>
+					<option id='6'>{%gstr 6}</option>
+				</select>
 
-			<div id='operAddRuleEndWeek'>
-				<h3>Day of week</h3>
-				<p>COMBOBOX: Sunday - Saturday</p>
+			<tr>
+				<td><p>Week of month</p>
+				<td><select id=''>
+					<option id='1'>{%gstr 782}</option>
+					<option id='2'>{%gstr 783}</option>
+					<option id='3'>{%gstr 784}</option>
+					<option id='4'>{%gstr 785}</option>
+					<option id='5'>{%gstr 786}</option>
+				</select>
+			<tr>
+				<td><p>Month</p>
+				<td><select id=''>
+					<option id='1'>{%gstr 760}</option>
+					<option id='2'>{%gstr 761}</option>
+					<option id='3'>{%gstr 762}</option>
+					<option id='4'>{%gstr 763}</option>
+					<option id='5'>{%gstr 764}</option>
+					<option id='6'>{%gstr 765}</option>
+					<option id='7'>{%gstr 766}</option>
+					<option id='8'>{%gstr 767}</option>
+					<option id='9'>{%gstr 768}</option>
+					<option id='10'>{%gstr 769}</option>
+					<option id='11'>{%gstr 770}</option>
+					<option id='12'>{%gstr 771}</option>
+				</select>
+				</tr>
+			</table>
 
-				<h3>Week of month</h3>
-				<p>COMBOBOX: 1, 2, 3, 4, 5 - last
-
-				<h3>Month</h3>
-				<p>COMBOBOX: 1 - 12 month</p>
-			</div>
 
 		</div>
 
