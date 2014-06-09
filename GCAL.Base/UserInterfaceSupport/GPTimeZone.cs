@@ -7,6 +7,10 @@ namespace GCAL.Base
 {
     public class GPTimeZone
     {
+        public class Rule
+        {
+        }
+
         public class Transition
         {
             // this is UTC time in seconds converted to long integer by 
@@ -76,8 +80,13 @@ namespace GCAL.Base
         public int Id = 0;
         public string Name = string.Empty;
         public long OffsetSeconds = 0;
+        public string NormalAbbr = "";
+        public string DstAbbr = "";
+        public bool DstUsed = false;
         public List<Transition> Transitions = new List<Transition>();
+        public List<Rule> Rules = new List<Rule>();
         private Transition lastActiveTransition = null;
+        private Rule lastActiveRule = null;
         private int lastActiveTransitionIndex = -1;
 
 
