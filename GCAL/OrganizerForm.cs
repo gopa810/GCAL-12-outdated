@@ -929,12 +929,8 @@ namespace GCAL
 
                     if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                     {
-                        tz.Timestamp = dlg.Timestamp;
-                        tz.Abbreviation = dlg.TransAbbr;
                         tz.OffsetInSeconds = dlg.TransOffsetSeconds;
-                        tz.Dst = dlg.Dst;
                         tzone.AddTransition(tz);
-                        tzone.RefreshEnds();
 
                         RefreshTimezoneTransitionsListView();
                         GPTimeZoneList.sharedTimeZones().Modified = true;
@@ -964,7 +960,7 @@ namespace GCAL
                 {
                     GPTimeZone tzone = lvt.Tag as GPTimeZone;
                     GPTimeZone.Transition tz = lvi.Tag as GPTimeZone.Transition;
-                    GPTimestamp tstamp = new GPTimestamp(tz.Timestamp);
+                    GPTimestamp tstamp = new GPTimestamp(0);
                     string message = "Do you want to delete transition which occurs on " + tstamp.getDateTime().ToShortDateString() + " for timezone " + tzone.Name + "?";
                     if (MessageBox.Show(message, "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                     {
@@ -987,19 +983,11 @@ namespace GCAL
                     GPTimeZone.Transition tz = lvi.Tag as GPTimeZone.Transition;
                     EditTimezoneTransitionDlg dlg = new EditTimezoneTransitionDlg();
 
-                    dlg.SetTimestampAndOffset(tz.Timestamp, tz.OffsetInSeconds);
-                    dlg.TransAbbr = tz.Abbreviation;
-                    dlg.Dst = tz.Dst;
-
                     if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                     {
-                        tz.Timestamp = dlg.Timestamp;
-                        tz.Abbreviation = dlg.TransAbbr;
                         tz.OffsetInSeconds = dlg.TransOffsetSeconds;
-                        tz.Dst = dlg.Dst;
                         tzone.Transitions.Remove(tz);
                         tzone.AddTransition(tz);
-                        tzone.RefreshEnds();
 
                         RefreshTimezoneTransitionsListView();
                         GPTimeZoneList.sharedTimeZones().Modified = true;
@@ -1021,7 +1009,7 @@ namespace GCAL
                     foreach (GPTimeZone.Transition trans in tzone.Transitions)
                     {
                         long y, m, d, h, min, sec;
-                        sec = trans.Timestamp + tzone.OffsetSeconds;
+                        sec = tzone.OffsetSeconds;
                         min = sec / 60;
                         sec = sec - min * 60;
                         h = min / 60;
@@ -1035,8 +1023,6 @@ namespace GCAL
                         ListViewItem lvin = new ListViewItem(string.Format("{0}-{1:00}-{2:00}", y, m, d));
                         lvin.SubItems.Add(string.Format("{0:00}:{1:00}", h, min));
                         lvin.SubItems.Add(trans.getOffsetString());
-                        lvin.SubItems.Add(trans.Abbreviation);
-                        lvin.SubItems.Add(trans.Dst ? "Yes" : "No");
                         lvin.Tag = trans;
                         listView8.Items.Add(lvin);
                     }

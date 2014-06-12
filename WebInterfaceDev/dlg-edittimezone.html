@@ -6,60 +6,74 @@
 <script type="text/javascript">
 function onSave()
 {
-	//var el = document.getElementById("textField0");
-	saveString("eventtitle", getElementValue("fldTitle"));
-	saveString("eventtype", getElementValue("fldEventType"));
-	saveString("eventtithi", getElementValue("fldTithi"));
-	saveString("eventmasa", getElementValue("fldMasa"));
-	saveString("eventsankranti", getElementValue("fldSankranti"));
-	saveString("eventoffset1", getElementValue("fldOffset1"));
-	saveString("eventeventref", getElementValue("fldEventRef"));
-	saveString("eventoffset2", getElementValue("fldOffset2"));
-	saveString("eventfastsubject", getElementValue("fldFastSubject"));
-	saveString("eventfasttype", getElementValue("fldFastType"));
-	saveString("eventclass", getElementValue("fldEventClass"));
-	saveString("eventsinceyear", getElementValue("fldSinceYear"));
-	saveString("eventvisibility", getElementValue("fldVisibility"));
+	// document.getElementById('').value
+	var str = document.getElementById('fldTitle');
+	var secs = Number(document.getElementById('fldOffsetHours').value)*3600 + Number(document.getElementById('fldOffsetMin').value)*60;
+	str += '<sep>';
+	str += secs.toString();
+	str += '<sep>';
+	str += document.getElementById('fldNormalAbbr').value;
+	str += '<sep>';
+	str += document.getElementById('fldDstAbbr').value;
+	str += '<sep>';
+	str += document.getElementById('fldUsedDst').value.toString();
+	str += '<sep>';
+	str += getTransitions();
+	str += '<sep>';
+	str += getRules();
+
+	saveString("tzdata", str);
 }
 
 function onLoad()
 {
-	setElementValue("fldTitle", loadString("eventtitle"));
-	setElementValue("fldEventType", Number(loadString("eventtype")));
-	setElementValue("fldTithi", Number(loadString("eventtithi")));
-	setElementValue("fldMasa", Number(loadString("eventmasa")));
-	setElementValue("fldSankranti", Number(loadString("eventsankranti")));
-	setElementValue("fldOffset1", Number(loadString("eventoffset1")));
-	setElementValue("fldEventRef", Number(loadString("eventeventref")));
-	setElementValue("fldOffset2", Number(loadString("eventoffset2")));
-	setElementValue("fldFastSubject", loadString("eventfastsubject"));
-	setElementValue("fldFastType", Number(loadString("eventfasttype")));
-	setElementValue("fldEventClass", Number(loadString("eventclass")));
-	setElementValue("fldSinceYear", Number(loadString("eventsinceyear")));
-	setElementValue("fldVisibility", Number(loadString("eventvisibility")));
+	var str = loadString("tzdata");
+	if (str == '')
+		return;
+	var parts = str.split('<sep>');
+	document.getElementById('fldTitle').value = parts[0];
+	var n = Number(parts[1]);
+	var sign = 1;
+	if (n < 0)
+	{
+		sign = -1;
+		n = -n;
+	}
+	var mins;
+	n = (n - (n%60)) / 60;
+	mins = n % 60;
+	mins = (mins - (mins % 15));
+	document.getElementById('fldOffsetMin').value = mins;
+	n = (n - (n%60)) / 60;
+	n *= sign;
+	document.getElementById('fldOffsetHours').value = n;
+	document.getElementById('fldNormalAbbr').value = parts[2];
+	document.getElementById('fldDstAbbr').value = parts[3];
+	document.getElementById('fldUsedDst').value = parts[4];
+	setTransitions(parts[5]);
+	setRules(parts[6]);
+	
+	globId = 100;
 }
 
-function onTypeChange()
+function getTransitions()
 {
-    var el = document.getElementById('fldEventType').value;
-	if (el == 0)
+	var list = [];
+	for(i = 0; i < currentTransitions.length; i++)
 	{
-	    document.getElementById('specTithi').style.display = 'block';
-	    document.getElementById('specSank').style.display = 'none';
-	    document.getElementById('specRef').style.display = 'none';
+		list.push(currentTransitions[i].join('<r>'));
 	}
-	if (el == 1)
+	return list.join('<tr>');
+}
+
+function getRules()
+{
+	var list = [];
+	for(i = 0; i < currentRules.length; i++)
 	{
-	    document.getElementById('specTithi').style.display = 'none';
-	    document.getElementById('specSank').style.display = 'block';
-	    document.getElementById('specRef').style.display = 'none';
+		list.push(currentRules[i].join('<r>'));
 	}
-	if (el == 2)
-	{
-	    document.getElementById('specTithi').style.display = 'none';
-	    document.getElementById('specSank').style.display = 'none';
-	    document.getElementById('specRef').style.display = 'block';
-	}
+	return list.join('<tr>');
 }
 
 function onChangeUsedDst()
@@ -78,28 +92,233 @@ function showElem3(elid,val)
 		document.getElementById(elid).style.display=val;
 }
 
-
+var globId = 100;
 var editTimezoneLastDlg = 'operList';
+var currentRules = [];
+var currentTransitions = [];
+
+
+// current transition data
+var ctId = '';
+
+// current rule data
+var crId = '';
+
+function getFormatedDateString(y, m, d)
+{
+	var b = Number(m);
+	var c = Number(d);
+	
+	return y + '-' + (b < 10 ? '0' : '') + b.toString() + '-' + (c < 10 ? '0' : '') + c.toString();	
+}
+
+function loadTransition(transId)
+{
+	var i = indexOfTransition(transId);
+	if (i >= 0)
+	{
+		var parts = currentTransitions[i];
+		ctId = parts[0];
+		document.getElementById('fld200').value = getFormatedDateString(parts[1], parts[2], parts[3]);
+		document.getElementById('fld201').value = getFormatedDateString(parts[5], parts[6], parts[7]);
+		document.getElementById('fld202').value = parts[9];
+		document.getElementById('fld205').value = parts[4];
+		document.getElementById('fld206').value = parts[8];
+	}
+}
+
+function deleteTransition(transId)
+{
+    var i = indexOfTransition(transId);
+	
+	if (i >= 0) {
+		currentTransitions.splice(i, 1);
+	}
+}
+
+function setTransitions(strTrans)
+{
+	var transListEnc = strTrans.split('<tr>');
+	currentTransitions = [];
+	
+	for(i = 0; i < transListEnc.length; i++)
+	{
+		var parts = transListEnc[i].split('<r>');
+		if (parts.length == 10)
+		{
+			currentTransitions.push(parts);
+		}
+	}
+}
+
+function setRules(strRules)
+{
+	var ruleListEnc = strRules.split('<tr>');
+	currentRules = [];
+	
+	for(i = 0; i < ruleListEnc.length; i++)
+	{
+		var parts = ruleListEnc[i].split('<r>');
+		if (parts.length == 12)
+		{
+			currentRules.push(parts);
+		}
+	}
+}
+
+function loadRule(ruleId)
+{
+	for(i = 0; i < currentRules.length; i++)
+	{
+		var parts = currentRules[i];
+		if (parts[0] == ruleId)
+		{
+			crId = parts[0];
+			document.getElementById('startYear2').innerText = parts[1];
+			document.getElementById('fldMonthStart').value = parts[2];
+			document.getElementById('fldWomStart').value = parts[3];
+			document.getElementById('fldDowStart').value = parts[4];
+			document.getElementById('fldDayHourStart').value = parts[5];
+			document.getElementById('endYear2').innerText = parts[6];
+			document.getElementById('fldMonthEnd').value = parts[7];
+			document.getElementById('fldWomEnd').value = parts[8];
+			document.getElementById('fldDowEnd').value = parts[9];
+			document.getElementById('fldDayHourEnd').value = parts[10];
+			document.getElementById('fld301').value = parts[11];
+			break;
+		}
+	}
+}
+
+function saveRule()
+{
+	globId++;
+	crId = globId;
+	
+	var b = [];
+	
+	b.push(globId);
+	b.push(document.getElementById('startYear2').innerText);
+	b.push(document.getElementById('fldMonthStart').value);
+	b.push(document.getElementById('fldWomStart').value);
+	b.push(document.getElementById('fldDowStart').value);
+	b.push(document.getElementById('fldDayHourStart').value);
+	b.push(document.getElementById('endYear2').innerText);
+	b.push(document.getElementById('fldMonthEnd').value);
+	b.push(document.getElementById('fldWomEnd').value);
+	b.push(document.getElementById('fldDowEnd').value);
+	b.push(document.getElementById('fldDayHourEnd').value);
+	b.push(document.getElementById('fld301').value);
+
+	currentRules.push(b);
+}
+
+function updateCurrentRule()
+{
+	var i = indexOfRule(crId);
+	if (i >= 0)
+	{
+		var parts = currentRules[i];
+		parts[1] = document.getElementById('startYear2').innerText ;
+		parts[2] = document.getElementById('fldMonthStart').value ;
+		parts[3] = document.getElementById('fldWomStart').value ;
+		parts[4] = document.getElementById('fldDowStart').value ;
+		parts[5] = document.getElementById('fldDayHourStart').value ;
+		parts[6] = document.getElementById('endYear2').innerText ;
+		parts[7] = document.getElementById('fldMonthEnd').value ;
+		parts[8] = document.getElementById('fldWomEnd').value ;
+		parts[9] = document.getElementById('fldDowEnd').value ;
+		parts[10] = document.getElementById('fldDayHourEnd').value ;
+		parts[11] = document.getElementById('fld301').value ;
+	}
+}
+
+function indexOfTransition(transId)
+{
+	for(i = 0; i < currentTransitions.length; i++)
+	{
+		var parts = currentTransitions[i];
+		if (parts[0] == transId)
+		{
+			return i;
+		}
+	}
+
+	return -1;
+}
+
+function indexOfRule(ruleId)
+{
+	for(i = 0; i < currentRules.length; i++)
+	{
+		var parts = currentRules[i];
+		if (parts[0] == ruleId)
+		{
+			return i;
+		}
+	}
+
+	return -1;
+}
+
+function deleteRule(ruleId)
+{
+    var i = indexOfRule(ruleId);
+	alert(i);
+	if (i >= 0) {
+		currentRules.splice(i, 1);
+	}
+}
+
+function saveTransition()
+{
+	globId++;
+	ctId = globId;
+	
+	var b = [];
+	
+	b.push(globId);
+	var time = document.getElementById('fld200').value.split('-');
+	b.push(time[0]);
+	b.push(time[1]);
+	b.push(time[2]);
+	b.push(document.getElementById('fld205').value);
+	time = document.getElementById('fld201').value.split('-');
+	b.push(time[0]);
+	b.push(time[1]);
+	b.push(time[2]);
+	b.push(document.getElementById('fld206').value);
+	b.push(document.getElementById('fld202').value);
+
+	currentTransitions.push(b);
+}
+
+function updateCurrentTransition()
+{
+	var i = indexOfTransition(ctId);
+	if (i >= 0)
+	{
+		var parts = currentTransitions[i];
+		var time = document.getElementById('fld200').value.split('-');
+		parts[1] = time[0];
+		parts[2] = time[1];
+		parts[3] = time[2];
+		parts[4] = document.getElementById('fld205').value ;
+		time = document.getElementById('fld201').value.split('-');
+		parts[5] = time[0];
+		parts[6] = time[1];
+		parts[7] = time[2];
+		parts[8] = document.getElementById('fld206').value ;
+		parts[9] = document.getElementById('fld202').value ;
+	}
+}
+
 
 function startDiv(elid)
 {
 	showElem3(editTimezoneLastDlg, 'none');
 	editTimezoneLastDlg = elid;
 	showElem3(editTimezoneLastDlg, 'block');
-}
-
-function onChangeAddType()
-{
-    if (document.getElementById('fldAddType').value == 0)
-	{
-	    showElem3('operAddDates', 'block');
-		showElem3('operAddRule', 'none');
-	}
-	else
-	{
-	    showElem3('operAddDates', 'none');
-		showElem3('operAddRule', 'block');
-	}
 }
 
 function ifdisp2(elemId,elem0,elem1)
@@ -125,385 +344,586 @@ function incr(elemId,dif)
 	document.getElementById(elemId).innerText = nv.toString();
 }
 
+function getRulesHtmlText(encodedText)
+{
+	var ruleListEnc = [];
+	var html = '<table>';
+	
+	for(i = 0; i < currentRules.length; i++)
+	{
+		var parts = currentRules[i];
+
+		html += "<tr><td>";
+		html += "Years " + parts[1] + " - " + parts[6] + "<br>";
+		html += "Offset: " + parts[11];
+		html += "<div id='confRR" + parts[0] + "' style='display:none'>"
+		html += "Remove this rule?";
+		html += "<br><button type=button onclick=\"deleteRule('" + parts[0] + "');showElem3('confRR" + parts[0] + "', 'none');showElem3('confInitRR" + parts[0] + "', 'inline');refreshTransitionList();\">Yes, remove</button>";
+		html += "<button type=button onclick=\"showElem3('confRR" + parts[0] + "', 'none');showElem3('confInitRR" + parts[0] + "', 'inline')\">No</button>";
+		html += "</div>";
+		html += "<td>";
+		html += "<button type=button onclick=\"";
+		html += "onAddRule('" + parts[0] + "');"; // script for editing this transition
+		html += "\">Edit</button>";
+		html += "<br>";
+		html += "<button id='confInitRR" + parts[0] + "' type=button onclick=\"";
+		html += "showElem3('confRR" + parts[0] + "', 'block');showElem3('confInitRR" + parts[0] + "', 'none')"; // script for removing this rule
+		html += "\">Remove</button>";
+		html += "</tr>";
+	}
+	
+	return html + '</table>';
+}
+
+function getTransitionsHtmlText(encodedText)
+{
+	var html = '<table>';
+	
+	for(i = 0; i < currentTransitions.length; i++)
+	{
+		var parts = currentTransitions[i];
+		if (parts.length == 10)
+		{
+			html += "<tr><td>";
+			html += "Start date: " + parts[1] + "/" + parts[2] + "/" + parts[3] + "<br>";
+			html += "End date: " + parts[5] + "/" + parts[6] + "/" + parts[7] + "<br>";
+			html += "Offset: " + parts[9] + " minutes";
+			html += "<div id='confRT" + parts[0] + "' style='display:none'>"
+			html += "Remove this transition?";
+			html += "<br><button type=button onclick=\"deleteTransition('" + parts[0] + "');showElem3('confRT" + parts[0] + "', 'none');showElem3('confInitRT" + parts[0] + "', 'inline');refreshTransitionList();\">Yes, remove</button>";
+			html += "<button type=button onclick=\"showElem3('confRT" + parts[0] + "', 'none');showElem3('confInitRT" + parts[0] + "', 'inline')\">No</button>";
+			html += "</div>";
+			html += "<td>";
+			html += "<button type=button onclick=\"";
+			html += "onAddTransition('" + parts[0] + "');"; // script for editing this transition
+			html += "\">Edit</button>";
+			html += "<br>";
+			html += "<button id='confInitRT" + parts[0] + "' type=button onclick=\"";
+			html += "showElem3('confRT" + parts[0] + "', 'block');showElem3('confInitRT" + parts[0] + "', 'none')"; // script for removing this transition
+			html += "\">Remove</button>";
+			html += "</tr>";
+		}
+	}
+	
+	html += "</table>";
+	
+	return html;
+}
+
+function refreshTransitionList()
+{
+	document.getElementById('listOfTransitions').innerHTML = getTransitionsHtmlText(currentTransitions);
+	document.getElementById('listOfRules').innerHTML = getRulesHtmlText(currentRules);
+}
+
+function updateBtnInRuleDlg()
+{
+	if (crId == '')
+	{
+		document.getElementById('btn303').style.display = 'inline';
+		document.getElementById('btn304').style.display = 'none';
+		document.getElementById('h303').style.display = 'block';
+		document.getElementById('h304').style.display = 'none';
+	}
+	else
+	{
+		document.getElementById('btn303').style.display = 'none';
+		document.getElementById('btn304').style.display = 'inline';
+		document.getElementById('h303').style.display = 'none';
+		document.getElementById('h304').style.display = 'block';
+	}
+}
+
+function updateBtnInTransDlg()
+{
+	if (ctId == '')
+	{
+		document.getElementById('btn403').style.display = 'inline';
+		document.getElementById('btn404').style.display = 'none';
+		document.getElementById('h403').style.display = 'block';
+		document.getElementById('h404').style.display = 'none';
+	}
+	else
+	{
+		document.getElementById('btn403').style.display = 'none';
+		document.getElementById('btn404').style.display = 'inline';
+		document.getElementById('h403').style.display = 'none';
+		document.getElementById('h404').style.display = 'block';
+	}
+}
+
+function onAddRule(nid)
+{
+	crId=nid;
+	loadRule(nid);
+	showElem3('main', 'none');
+	showElem3('operAddRule', 'block');
+	updateBtnInRuleDlg();
+}
+
+function onRemoveAllRules()
+{
+	showElem3('main', 'none');
+	showElem3('operClearRule', 'block');
+}
+
+function onAddTransition(nid)
+{
+	ctId=nid;
+	loadTransition(nid);
+	showElem3('main', 'none');
+	showElem3('operAddTrans', 'block');
+	updateBtnInTransDlg();
+}
+
+function onRemoveAllTransitions()
+{
+	showElem3('main', 'none');
+	showElem3('operClearTrans', 'block');
+}
+
+function onBackToList()
+{
+	showElem3('main', 'block');
+	showElem3('operAddRule', 'none');
+	showElem3('operAddTrans', 'none');
+	showElem3('operClearTrans', 'none');
+	showElem3('operClearRule', 'none');
+}
+
+function onCreateRule()
+{
+	saveRule();
+	showElem3('main', 'block');
+	refreshTransitionList();
+	showElem3('operAddRule', 'none');
+}
+
+function onUpdateRule()
+{
+	updateCurrentRule();
+	showElem3('main', 'block');
+	refreshTransitionList();
+	showElem3('operAddRule', 'none');
+}
+
+function onCreateTransition()
+{
+	saveTransition();
+	showElem3('main', 'block');
+	refreshTransitionList();
+	showElem3('operAddTrans', 'none');
+}
+
+function onUpdateTransition()
+{
+	updateCurrentTransition();
+	showElem3('main', 'block');
+	refreshTransitionList();
+	showElem3('operAddTrans', 'none');
+}
+
+setRules('1<r>1979<r>3<r>5<r>6<r>2<r>2200<r>10<r>5<r>6<r>2<r>60');
+setTransitions('1<r>1979<r>10<r>9<r>1<r>2200<r>10<r>9<r>1<r>60');
+
 </script>
 </head>
 
 <body>
 
-<h1>{%title 0}</h1>
+<div id='main'>
+	<h1>{%title 0}</h1>
 
-<h2>Timezone Name</h2>
-<p width=50%>Enter title for timezone</p>
-<p><input type="text" id="fldTitle" value="">
+	<h2>Timezone Name</h2>
+	<p width=50%>Enter title for timezone</p>
+	<p><input type="text" id="fldTitle" value="">
 
-<h2>Offset to UTC [hours]</h2>
-<table>
-<tr><td>hours</td><td>minutes</td></tr>
-<tr><td>
-<select onchange='onTypeChange();' id='fldOffsetHours'>
-  <option value='-14'>-14</option>
-  <option value='-13'>-13</option>
-  <option value='-12'>-12</option>
-  <option value='-11'>-11</option>
-  <option value='-10'>-10</option>
-  <option value='-9'>-09</option>
-  <option value='-8'>-08</option>
-  <option value='-7'>-07</option>
-  <option value='-6'>-06</option>
-  <option value='-5'>-05</option>
-  <option value='-4'>-04</option>
-  <option value='-3'>-03</option>
-  <option value='-2'>-02</option>
-  <option value='-1'>-01</option>
-  <option value='0' selected>+00</option>
-  <option value='1'>+01</option>
-  <option value='2'>+02</option>
-  <option value='3'>+03</option>
-  <option value='4'>+04</option>
-  <option value='5'>+05</option>
-  <option value='6'>+06</option>
-  <option value='7'>+07</option>
-  <option value='8'>+08</option>
-  <option value='9'>+09</option>
-  <option value='10'>+10</option>
-  <option value='11'>+11</option>
-  <option value='12'>+12</option>
-  <option value='13'>+13</option>
-  <option value='14'>+14</option>
-</select>
-</td><td>
-<select id='fldOffsetMin'>
-  <option value='0'>00</option>
-  <option value='15'>15</option>
-  <option value='30'>30</option>
-  <option value='45'>45</option>
-</select>
-</td></tr>
-</table>
+	<h2>Offset to UTC [hours]</h2>
+	<table>
+	<tr><td>hours</td><td>minutes</td></tr>
+	<tr><td>
+	<select id='fldOffsetHours'>
+	  <option value='-14'>-14</option>
+	  <option value='-13'>-13</option>
+	  <option value='-12'>-12</option>
+	  <option value='-11'>-11</option>
+	  <option value='-10'>-10</option>
+	  <option value='-9'>-09</option>
+	  <option value='-8'>-08</option>
+	  <option value='-7'>-07</option>
+	  <option value='-6'>-06</option>
+	  <option value='-5'>-05</option>
+	  <option value='-4'>-04</option>
+	  <option value='-3'>-03</option>
+	  <option value='-2'>-02</option>
+	  <option value='-1'>-01</option>
+	  <option value='0' selected>+00</option>
+	  <option value='1'>+01</option>
+	  <option value='2'>+02</option>
+	  <option value='3'>+03</option>
+	  <option value='4'>+04</option>
+	  <option value='5'>+05</option>
+	  <option value='6'>+06</option>
+	  <option value='7'>+07</option>
+	  <option value='8'>+08</option>
+	  <option value='9'>+09</option>
+	  <option value='10'>+10</option>
+	  <option value='11'>+11</option>
+	  <option value='12'>+12</option>
+	  <option value='13'>+13</option>
+	  <option value='14'>+14</option>
+	</select>
+	</td><td>
+	<select id='fldOffsetMin'>
+	  <option value='0'>00</option>
+	  <option value='15'>15</option>
+	  <option value='30'>30</option>
+	  <option value='45'>45</option>
+	</select>
+	</td></tr>
+	</table>
 
-<h2>Using Daylight Saving Time</h2>
-<select id='fldUsedDst' onchange='onChangeUsedDst();'>
-  <option value='0'>Not used</option>
-  <option value='1'>Used</option>
-</select>
+	<h2>Normal Abbreviation</h2>
+	<p width=50%>Enter abbreviation of this timezone</p>
+	<p><input type="text" id="fldNormalAbbr" value="">
 
-<div id='divDst'>
 
-	<div id='operList'>
+	<h2>Using Daylight Saving Time</h2>
+	<select id='fldUsedDst' onchange='onChangeUsedDst();'>
+	  <option value='0'>Not used</option>
+	  <option value='1'>Used</option>
+	</select>
 
-	<h2>Transitions</h2>
-		<p>Here are definitions of offset transitions. It is defined either by rule, or by exact start and end date of transition.
+	<div id='divDst'>
+
+		<h2>DST Abbreviation</h2>
+		<p width=50%>Enter abbreviation of this timezone when DST is in effect.</p>
+		<p><input type="text" id="fldDstAbbr" value="">
+
+		<h2>Rules</h2>
+		<p>Here are definitions of rules for offset transitions. Rule specifies day of week, week of month and month for both starting and ending day of DST.</p>
+		<div id='listOfRules'>
+		</div>
 		<div>
-		  <button type='button' onclick='startDiv("operAdd");'>Add</button>
-		  <button type='button' onclick='startDiv("operClear");'>Clear</button>
-		  <button type='button' onclick='startDiv("operClearAfter");'>Clear After</button>
+			<button type='button' onclick="onAddRule('');">Add</button>
+			<button type='button' onclick="onRemoveAllRules();">Remove All</button>
+		</div>
+
+		<h2>Transitions</h2>
+		<p>Here are definitions of offset transitions. Transition is defined by exact start and end dates.
+		<div id='listOfTransitions'>
+		</div>
+		<div>
+			<button type='button' onclick="onAddTransition('');">Add</button>
+			<button type='button' onclick="onRemoveAllTransitions();">Remove All</button>
 		</div>
 
 	</div>
+</div>
 
-	<div id='operAdd' style='display:none'>
+<div id='operAddTrans' style='display:none'>
+	<h2 id='h403'>Add new transition</h2>
+	<h2 id='h404'>Edit transition</h2>
 
-		<h2>Add new transition</h2>
+	<p>Start date</p>
+	<input type=date id='fld200' value='2014-03-02'>
+	
+	<p>DayHour of change</p>
+	<select id='fld205'>
+			<option value='0'>00:00</option>
+			<option value='1'>01:00</option>
+			<option value='2'>02:00</option>
+			<option value='3'>03:00</option>
+			<option value='4'>04:00</option>
+			<option value='5'>05:00</option>
+			<option value='6'>06:00</option>
+			<option value='7'>07:00</option>
+			<option value='8'>08:00</option>
+			<option value='9'>09:00</option>
+			<option value='10'>10:00</option>
+			<option value='11'>11:00</option>
+			<option value='12'>12:00</option>
+			<option value='13'>13:00</option>
+			<option value='14'>14:00</option>
+			<option value='15'>15:00</option>
+			<option value='16'>16:00</option>
+			<option value='17'>17:00</option>
+			<option value='18'>18:00</option>
+			<option value='19'>19:00</option>
+			<option value='20'>20:00</option>
+			<option value='21'>21:00</option>
+			<option value='22'>22:00</option>
+			<option value='23'>23:00</option>
+	</select>
 
+	<p>End date</p>
+	<input type=date id='fld201' value='2014-03-02'>
 
-		<select id='fldAddType' onchange='onChangeAddType();'>
-		  <option value='0'>Explicit dates</option>
-		  <option value='1'>Rule</option>
+	<p>DayHour of change</p>
+	<select id='fld206'>
+			<option value='0'>00:00</option>
+			<option value='1'>01:00</option>
+			<option value='2'>02:00</option>
+			<option value='3'>03:00</option>
+			<option value='4'>04:00</option>
+			<option value='5'>05:00</option>
+			<option value='6'>06:00</option>
+			<option value='7'>07:00</option>
+			<option value='8'>08:00</option>
+			<option value='9'>09:00</option>
+			<option value='10'>10:00</option>
+			<option value='11'>11:00</option>
+			<option value='12'>12:00</option>
+			<option value='13'>13:00</option>
+			<option value='14'>14:00</option>
+			<option value='15'>15:00</option>
+			<option value='16'>16:00</option>
+			<option value='17'>17:00</option>
+			<option value='18'>18:00</option>
+			<option value='19'>19:00</option>
+			<option value='20'>20:00</option>
+			<option value='21'>21:00</option>
+			<option value='22'>22:00</option>
+			<option value='23'>23:00</option>
+	</select>
+
+	<p>DST Bias</p>
+	<select id='fld202'>
+	   <option value=0>+00 min</option>
+	   <option value=15>+15 min</option>
+	   <option value=30>+30 min</option>
+	   <option value=45>+45 min</option>
+	   <option value=60>+60 min</option>
+	</select>
+
+	<div>
+	  <button type='button' onclick="onBackToList();">Back to List</button>
+	  <button id='btn403' type='button' onclick="onCreateTransition();">Create</button>
+	  <button id='btn404' type='button' onclick="onUpdateTransition();">Update</button>
+	</div>
+	
+</div>
+
+<div id='operAddRule' style='display:none'>
+	<h2 id='h303'>Add new rule</h2>
+	<h2 id='h304'>Edit rule</h2>
+	
+	<p>DST Bias</p>
+	<select id='fld301'>
+	   <option value=0>+00 min</option>
+	   <option value=15>+15 min</option>
+	   <option value=30>+30 min</option>
+	   <option value=45>+45 min</option>
+	   <option value=60>+60 min</option>
+	</select>
+	
+	
+	<p>Start year</p>
+	
+	<table width=240pt>
+		<tr>
+			<td style='text-align:right;font-size:24pt' id='startYear2' rowspan=2>1950</td>
+			<td width=32pt class='noselect' style='text-align:center;cursor:pointer' onclick='incr("startYear2", 1);'>+1</td>
+			<td width=32pt class='noselect' style='text-align:center;cursor:pointer' onclick='incr("startYear2", 10);'>+10</td>
+		</tr><tr>
+			<td width=32pt class='noselect' style='text-align:center;cursor:pointer' onclick='incr("startYear2", -1);'>-1</td>
+			<td width=32pt class='noselect' style='text-align:center;cursor:pointer' onclick='incr("startYear2", -10);'>-10</td>
+		</tr>
+	</table>
+
+	<p>End year</p>
+	<table width=240pt>
+		<tr>
+			<td style='text-align:right;font-size:24pt' id='endYear2' rowspan=2>2050</td>
+			<td width=32pt class='noselect' style='text-align:center;cursor:pointer' onclick='incr("endYear2", 1);'>+1</td>
+			<td width=32pt class='noselect' style='text-align:center;cursor:pointer' onclick='incr("endYear2", 10);'>+10</td>
+		</tr><tr>
+			<td width=32pt class='noselect' style='text-align:center;cursor:pointer' onclick='incr("endYear2", -1);'>-1</td>
+			<td width=32pt class='noselect' style='text-align:center;cursor:pointer' onclick='incr("endYear2", -10);'>-10</td>
+		</tr>
+	</table>
+	
+	<p>Start day</p>
+
+	<table id='operAddRuleStartWeek'>
+	<tr>
+		<td><p>Day of week</p>
+		<td><select id='fldDowStart'>
+			<option value='0'>{%gstr 0}</option>
+			<option value='1'>{%gstr 1}</option>
+			<option value='2'>{%gstr 2}</option>
+			<option value='3'>{%gstr 3}</option>
+			<option value='4'>{%gstr 4}</option>
+			<option value='5'>{%gstr 5}</option>
+			<option value='6'>{%gstr 6}</option>
 		</select>
-		
-		<div id='operAddDates'>
 
-			<p>Start date</p>
-			<input type=date id='fld200' value='2014-03-02'>
-
-			<p>End date</p>
-			<input type=date id='fld201' value='2014-03-02'>
-
-			<p>DST offset</p>
-			<select>
-			   <option id=0>+00 min</option>
-			   <option id=1800>+30 min</option>
-			   <option id=3600>+60 min</option>
-			</select>
-		</div>
-
-		<div id='operAddRule' style='display:none'>
-		    <h3>Start year</h3>
-			
-			<table width=240pt>
-				<tr>
-					<td style='text-align:right;font-size:24pt' id='startYear2' rowspan=2>1950</td>
-					<td width=32pt class='noselect' style='text-align:center;cursor:pointer' onclick='incr("startYear2", 1);'>+1</td>
-					<td width=32pt class='noselect' style='text-align:center;cursor:pointer' onclick='incr("startYear2", 10);'>+10</td>
-				</tr><tr>
-					<td width=32pt class='noselect' style='text-align:center;cursor:pointer' onclick='incr("startYear2", 1);'>-1</td>
-					<td width=32pt class='noselect' style='text-align:center;cursor:pointer' onclick='incr("startYear2", 10);'>-10</td>
-				</tr>
-			</table>
-
-			<h3>End year</h3>
-			<table width=240pt>
-				<tr>
-					<td style='text-align:right;font-size:24pt' id='endYear2' rowspan=2>2050</td>
-					<td width=32pt class='noselect' style='text-align:center;cursor:pointer' onclick='incr("endYear2", 1);'>+1</td>
-					<td width=32pt class='noselect' style='text-align:center;cursor:pointer' onclick='incr("endYear2", 10);'>+10</td>
-				</tr><tr>
-					<td width=32pt class='noselect' style='text-align:center;cursor:pointer' onclick='incr("endYear2", 1);'>-1</td>
-					<td width=32pt class='noselect' style='text-align:center;cursor:pointer' onclick='incr("endYear2", 10);'>-10</td>
-				</tr>
-			</table>
-			
-			<h3>Start day</h3>
-
-			<select id='fldRuleTypeStart' onclick='ifdisp2("fldRuleTypeStart","operAddRuleStartWeek","operAddRuleStartDay")'>
-				<option value='0'>Week of month</option>
-				<option value='1'>Day of month</option>
-			</select>
-
-			<table id='operAddRuleStartDay' style='display:none'>
-			<tr>
-				<td><p>Day of month</p>
-				<td><select id=''>
-					<option id="1">1</option>
-					<option id="2">2</option>
-					<option id="3">3</option>
-					<option id="4">4</option>
-					<option id="5">5</option>
-					<option id="6">6</option>
-					<option id="7">7</option>
-					<option id="8">8</option>
-					<option id="9">9</option>
-					<option id="10">10</option>
-					<option id="11">11</option>
-					<option id="12">12</option>
-					<option id="13">13</option>
-					<option id="14">14</option>
-					<option id="15">15</option>
-					<option id="16">16</option>
-					<option id="17">17</option>
-					<option id="18">18</option>
-					<option id="19">19</option>
-					<option id="20">20</option>
-					<option id="21">21</option>
-					<option id="22">22</option>
-					<option id="23">23</option>
-					<option id="24">24</option>
-					<option id="25">25</option>
-					<option id="26">26</option>
-					<option id="27">27</option>
-					<option id="28">28</option>
-					<option id="29">29</option>
-					<option id="30">30</option>
-					<option id="31">31</option>
-				</select>
-			<tr>
-				<td><p>Month</p>
-				<td><select id=''>
-					<option id='1'>{%gstr 760}</option>
-					<option id='2'>{%gstr 761}</option>
-					<option id='3'>{%gstr 762}</option>
-					<option id='4'>{%gstr 763}</option>
-					<option id='5'>{%gstr 764}</option>
-					<option id='6'>{%gstr 765}</option>
-					<option id='7'>{%gstr 766}</option>
-					<option id='8'>{%gstr 767}</option>
-					<option id='9'>{%gstr 768}</option>
-					<option id='10'>{%gstr 769}</option>
-					<option id='11'>{%gstr 770}</option>
-					<option id='12'>{%gstr 771}</option>
-				</select>
-				</tr>
-			</table>
-
-			<table id='operAddRuleStartWeek'>
-			<tr>
-				<td><p>Day of week</p>
-				<td><select id=''>
-					<option id='0'>{%gstr 0}</option>
-					<option id='1'>{%gstr 1}</option>
-					<option id='2'>{%gstr 2}</option>
-					<option id='3'>{%gstr 3}</option>
-					<option id='4'>{%gstr 4}</option>
-					<option id='5'>{%gstr 5}</option>
-					<option id='6'>{%gstr 6}</option>
-				</select>
-
-			<tr>
-				<td><p>Week of month</p>
-				<td><select id=''>
-					<option id='1'>{%gstr 782}</option>
-					<option id='2'>{%gstr 783}</option>
-					<option id='3'>{%gstr 784}</option>
-					<option id='4'>{%gstr 785}</option>
-					<option id='5'>{%gstr 786}</option>
-				</select>
-			<tr>
-				<td><p>Month</p>
-				<td><select id=''>
-					<option id='1'>{%gstr 760}</option>
-					<option id='2'>{%gstr 761}</option>
-					<option id='3'>{%gstr 762}</option>
-					<option id='4'>{%gstr 763}</option>
-					<option id='5'>{%gstr 764}</option>
-					<option id='6'>{%gstr 765}</option>
-					<option id='7'>{%gstr 766}</option>
-					<option id='8'>{%gstr 767}</option>
-					<option id='9'>{%gstr 768}</option>
-					<option id='10'>{%gstr 769}</option>
-					<option id='11'>{%gstr 770}</option>
-					<option id='12'>{%gstr 771}</option>
-				</select>
-				</tr>
-			</table>
+	<tr>
+		<td><p>Week of month</p>
+		<td><select id='fldWomStart'>
+			<option value='1'>{%gstr 782}</option>
+			<option value='2'>{%gstr 783}</option>
+			<option value='3'>{%gstr 784}</option>
+			<option value='4'>{%gstr 785}</option>
+			<option value='5'>{%gstr 786}</option>
+		</select>
+	<tr>
+		<td><p>Month</p>
+		<td><select id='fldMonthStart'>
+			<option value='1'>{%gstr 760}</option>
+			<option value='2'>{%gstr 761}</option>
+			<option value='3'>{%gstr 762}</option>
+			<option value='4'>{%gstr 763}</option>
+			<option value='5'>{%gstr 764}</option>
+			<option value='6'>{%gstr 765}</option>
+			<option value='7'>{%gstr 766}</option>
+			<option value='8'>{%gstr 767}</option>
+			<option value='9'>{%gstr 768}</option>
+			<option value='10'>{%gstr 769}</option>
+			<option value='11'>{%gstr 770}</option>
+			<option value='12'>{%gstr 771}</option>
+		</select>
+		</tr>
+	<tr>
+		<td><p>DayHour of change</p>
+		<td><select id='fldDayHourStart'>
+			<option value='0'>00:00</option>
+			<option value='1'>01:00</option>
+			<option value='2'>02:00</option>
+			<option value='3'>03:00</option>
+			<option value='4'>04:00</option>
+			<option value='5'>05:00</option>
+			<option value='6'>06:00</option>
+			<option value='7'>07:00</option>
+			<option value='8'>08:00</option>
+			<option value='9'>09:00</option>
+			<option value='10'>10:00</option>
+			<option value='11'>11:00</option>
+			<option value='12'>12:00</option>
+			<option value='13'>13:00</option>
+			<option value='14'>14:00</option>
+			<option value='15'>15:00</option>
+			<option value='16'>16:00</option>
+			<option value='17'>17:00</option>
+			<option value='18'>18:00</option>
+			<option value='19'>19:00</option>
+			<option value='20'>20:00</option>
+			<option value='21'>21:00</option>
+			<option value='22'>22:00</option>
+			<option value='23'>23:00</option>
+		</select>
+	</table>
 
 
-			<h3>End day</h3>
+	<p>End day</p>
 
-			<select id='fldRuleTypeEnd' onclick='ifdisp2("fldRuleTypeEnd","operAddRuleEndWeek","operAddRuleEndDay")'>
-				<option value='0'>Week of month</option>
-				<option value='1'>Day of month</option>
-			</select>
+	<table id='operAddRuleEndWeek'>
+	<tr>
+		<td><p>Day of week</p>
+		<td><select id='fldDowEnd'>
+			<option value='0'>{%gstr 0}</option>
+			<option value='1'>{%gstr 1}</option>
+			<option value='2'>{%gstr 2}</option>
+			<option value='3'>{%gstr 3}</option>
+			<option value='4'>{%gstr 4}</option>
+			<option value='5'>{%gstr 5}</option>
+			<option value='6'>{%gstr 6}</option>
+		</select>
 
-			<table  id='operAddRuleEndDay' style='display:none'>
-			<tr>
-				<td><p>Day of month</p>
-				<td><select id=''>
-					<option id="1">1</option>
-					<option id="2">2</option>
-					<option id="3">3</option>
-					<option id="4">4</option>
-					<option id="5">5</option>
-					<option id="6">6</option>
-					<option id="7">7</option>
-					<option id="8">8</option>
-					<option id="9">9</option>
-					<option id="10">10</option>
-					<option id="11">11</option>
-					<option id="12">12</option>
-					<option id="13">13</option>
-					<option id="14">14</option>
-					<option id="15">15</option>
-					<option id="16">16</option>
-					<option id="17">17</option>
-					<option id="18">18</option>
-					<option id="19">19</option>
-					<option id="20">20</option>
-					<option id="21">21</option>
-					<option id="22">22</option>
-					<option id="23">23</option>
-					<option id="24">24</option>
-					<option id="25">25</option>
-					<option id="26">26</option>
-					<option id="27">27</option>
-					<option id="28">28</option>
-					<option id="29">29</option>
-					<option id="30">30</option>
-					<option id="31">31</option>
-				</select>
-			<tr>
-				<td><p>Month</p>
-				<td><select id=''>
-					<option id='1'>{%gstr 760}</option>
-					<option id='2'>{%gstr 761}</option>
-					<option id='3'>{%gstr 762}</option>
-					<option id='4'>{%gstr 763}</option>
-					<option id='5'>{%gstr 764}</option>
-					<option id='6'>{%gstr 765}</option>
-					<option id='7'>{%gstr 766}</option>
-					<option id='8'>{%gstr 767}</option>
-					<option id='9'>{%gstr 768}</option>
-					<option id='10'>{%gstr 769}</option>
-					<option id='11'>{%gstr 770}</option>
-					<option id='12'>{%gstr 771}</option>
-				</select>
-				</tr>
-			</table>
-
-			<table id='operAddRuleEndWeek'>
-			<tr>
-				<td><p>Day of week</p>
-				<td><select id=''>
-					<option id='0'>{%gstr 0}</option>
-					<option id='1'>{%gstr 1}</option>
-					<option id='2'>{%gstr 2}</option>
-					<option id='3'>{%gstr 3}</option>
-					<option id='4'>{%gstr 4}</option>
-					<option id='5'>{%gstr 5}</option>
-					<option id='6'>{%gstr 6}</option>
-				</select>
-
-			<tr>
-				<td><p>Week of month</p>
-				<td><select id=''>
-					<option id='1'>{%gstr 782}</option>
-					<option id='2'>{%gstr 783}</option>
-					<option id='3'>{%gstr 784}</option>
-					<option id='4'>{%gstr 785}</option>
-					<option id='5'>{%gstr 786}</option>
-				</select>
-			<tr>
-				<td><p>Month</p>
-				<td><select id=''>
-					<option id='1'>{%gstr 760}</option>
-					<option id='2'>{%gstr 761}</option>
-					<option id='3'>{%gstr 762}</option>
-					<option id='4'>{%gstr 763}</option>
-					<option id='5'>{%gstr 764}</option>
-					<option id='6'>{%gstr 765}</option>
-					<option id='7'>{%gstr 766}</option>
-					<option id='8'>{%gstr 767}</option>
-					<option id='9'>{%gstr 768}</option>
-					<option id='10'>{%gstr 769}</option>
-					<option id='11'>{%gstr 770}</option>
-					<option id='12'>{%gstr 771}</option>
-				</select>
-				</tr>
-			</table>
+	<tr>
+		<td><p>Week of month</p>
+		<td><select id='fldWomEnd'>
+			<option value='1'>{%gstr 782}</option>
+			<option value='2'>{%gstr 783}</option>
+			<option value='3'>{%gstr 784}</option>
+			<option value='4'>{%gstr 785}</option>
+			<option value='5'>{%gstr 786}</option>
+		</select>
+	<tr>
+		<td><p>Month</p>
+		<td><select id='fldMonthEnd'>
+			<option value='1'>{%gstr 760}</option>
+			<option value='2'>{%gstr 761}</option>
+			<option value='3'>{%gstr 762}</option>
+			<option value='4'>{%gstr 763}</option>
+			<option value='5'>{%gstr 764}</option>
+			<option value='6'>{%gstr 765}</option>
+			<option value='7'>{%gstr 766}</option>
+			<option value='8'>{%gstr 767}</option>
+			<option value='9'>{%gstr 768}</option>
+			<option value='10'>{%gstr 769}</option>
+			<option value='11'>{%gstr 770}</option>
+			<option value='12'>{%gstr 771}</option>
+		</select>
+		</tr>
+	<tr>
+		<td><p>DayHour of change</p>
+		<td><select id='fldDayHourEnd'>
+			<option value='0'>00:00</option>
+			<option value='1'>01:00</option>
+			<option value='2'>02:00</option>
+			<option value='3'>03:00</option>
+			<option value='4'>04:00</option>
+			<option value='5'>05:00</option>
+			<option value='6'>06:00</option>
+			<option value='7'>07:00</option>
+			<option value='8'>08:00</option>
+			<option value='9'>09:00</option>
+			<option value='10'>10:00</option>
+			<option value='11'>11:00</option>
+			<option value='12'>12:00</option>
+			<option value='13'>13:00</option>
+			<option value='14'>14:00</option>
+			<option value='15'>15:00</option>
+			<option value='16'>16:00</option>
+			<option value='17'>17:00</option>
+			<option value='18'>18:00</option>
+			<option value='19'>19:00</option>
+			<option value='20'>20:00</option>
+			<option value='21'>21:00</option>
+			<option value='22'>22:00</option>
+			<option value='23'>23:00</option>
+		</select>
+	</table>
 
 
-		</div>
-
-		<div>
-		  <button type='button' onclick='startDiv("operList");'>Back to List</button>
-		  <button type='button' onclick='startDiv("operList");'>Add Transition</button>
-		</div>
-
+	<div>
+	  <button type='button' onclick="onBackToList();">Back to List</button>
+	  <button id='btn303' type='button' onclick="onCreateRule();">Create</button>
+	  <button id='btn304' type='button' onclick="onUpdateRule();">Update</button>
 	</div>
-
-	<div id='operClear' style='display:none'>
-		<h2>Clear all transitions</h2>
-		
-		<p>Do you want to clear all transitions></p>
-		
-		<div>
-		  <button type='button' onclick='startDiv("operList");'>Back to List</button>
-		  <button type='button' onclick=''>Yes, clear</button>
-		</div>
-
-	</div>
-
-
-	<div id='operClearAfter' style='display:none'>
-		<h2>Clear after date</h2>
-		
-		<p>HERE SELECT DATE</p>
-		
-		<div>
-		  <button type='button' onclick='startDiv("operList");'>Back to List</button>
-		  <button type='button' onclick=''>Yes, clear after date</button>
-		</div>
-
-	</div>
-
-
-
 
 </div>
 
-<script type="text/javascript">
-onTypeChange();
-onLoad();
+<div id='operClearTrans' style='display:none'>
+	<h2>Remove all transitions</h2>
+	
+	<p>Do you want to remove all transitions</p>
+	
+	<div>
+	  <button type='button' onclick="onBackToList();">Back to List</button>
+	  <button type='button' onclick="showElem3('main', 'block');currentTransitions=[];refreshTransitionList();showElem3('operClearTrans', 'none');">Yes, remove</button>
+	</div>
 
+</div>
+
+<div id='operClearRule' style='display:none'>
+	<h2>Remove all rules</h2>
+	
+	<p>Do you want to remove all rules</p>
+	
+	<div>
+	  <button type='button' onclick="showElem3('main', 'block');showElem3('operClearRule', 'none');">Back to List</button>
+	  <button type='button' onclick="showElem3('main', 'block');currentRules=[];refreshTransitionList();showElem3('operClearRule', 'none');">Yes, remove</button>
+	</div>
+
+</div>
+
+
+<script type="text/javascript">
+onChangeUsedDst();
+//onLoad();
+refreshTransitionList();
 writeNavigStart();
 writeNavigItem("Main Menu", "window.location.href=\"mainmenu.html\"");
 writeNavigItem("{%string leftArrow} {%title -1}", "goBack()");

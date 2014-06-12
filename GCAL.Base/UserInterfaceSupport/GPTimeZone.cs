@@ -7,34 +7,129 @@ namespace GCAL.Base
 {
     public class GPTimeZone
     {
-        public class Rule
+        /// <summary>
+        /// Rule specification for one day (start or end day)
+        /// of period with Daylight Saving Time
+        /// </summary>
+        public class RuleSpec
         {
+            public int Month;
+            public int WeekOfMonth;
+            public int DayOfWeek;
+            public int Hour;
+
+            public static int IntegerFromWeekday(System.DayOfWeek dow)
+            {
+                if (dow == System.DayOfWeek.Friday) return 5;
+                if (dow == System.DayOfWeek.Monday) return 1;
+                if (dow == System.DayOfWeek.Saturday) return 6;
+                if (dow == System.DayOfWeek.Sunday) return 0;
+                if (dow == System.DayOfWeek.Thursday) return 4;
+                if (dow == System.DayOfWeek.Tuesday) return 2;
+                return 3;
+            }
+
+            public void getDate(int year, out DateTime startDate)
+            {
+                DateTime tmp;
+                startDate = new DateTime(year, Month, 1);
+                int dow = IntegerFromWeekday(startDate.DayOfWeek);
+                startDate = startDate.AddDays((7 - dow + DayOfWeek) % 7);
+                if (WeekOfMonth == 5)
+                {
+                    while (true)
+                    {
+                        tmp = startDate.AddDays(7);
+                        if (tmp.Month != startDate.Month)
+                            break;
+                        startDate = tmp;
+                    }
+                }
+                else
+                {
+                    for (int i = 1; i < WeekOfMonth; i++)
+                    {
+                        startDate = startDate.AddDays(7);
+                    }
+                }
+            }
         }
 
+        /// <summary>
+        /// Complete rule for DST periods valid for range of years.
+        /// </summary>
+        public class Rule
+        {
+            public int startYear;
+            public int endYear;
+            public int OffsetSeconds;
+            public RuleSpec startDay = new RuleSpec();
+            public RuleSpec endDay = new RuleSpec();
+
+            public static RuleSpec recognizeDaySpec(string p)
+            {
+                RuleSpec rs = null;
+                string[] sp = p.Split('-');
+                if (sp.Length == 4)
+                {
+                    rs = new RuleSpec();
+                    int.TryParse(sp[0], out rs.Month);
+                    int.TryParse(sp[1], out rs.WeekOfMonth);
+                    int.TryParse(sp[2], out rs.DayOfWeek);
+                    int.TryParse(sp[3], out rs.Hour);
+                }
+                return rs;
+            }
+
+            public void getStartEndDates(int year, out DateTime startDate, out DateTime endDate)
+            {
+                startDay.getDate(year, out startDate);
+                endDay.getDate(year, out endDate);
+            }
+
+            public bool Contains(int nYear)
+            {
+                return (startYear >= nYear && endYear <= nYear);
+            }
+
+            public bool Contains(DateTime ut)
+            {
+                if (!Contains(ut.Year))
+                    return false;
+                DateTime s, e;
+                startDay.getDate(ut.Year, out s);
+                endDay.getDate(ut.Year, out e);
+
+                if (startDay.Month < endDay.Month)
+                {
+                    // dst during summer
+                    return (s <= ut && ut <= e);
+                }
+                else
+                {
+                    // dst during winter
+                    return (s >= ut || ut >= e); 
+                }
+            }
+        }
+
+        /// <summary>
+        /// Explicit transition for DST period based on exact dates.
+        /// </summary>
         public class Transition
         {
-            // this is UTC time in seconds converted to long integer by 
-            // using formulas:
-            // 1 hour = 60 min
-            // 1 day  = 24 hours
-            // 1 month = 32 days
-            // 1 year = 12 months
-            public long Timestamp = 0;
-            public long TimestampEnd = 0;
+            // starting date and time
+            public DateTime startDate;
 
+            // ending date and time
+            public DateTime endDate;
 
             // new timezone offset relative to UTC in seconds
             public int OffsetInSeconds = 0;
 
-            // abbreviation of timezone
-            public string Abbreviation = string.Empty;
-
-            // is DST in effect?
-            public bool Dst = false;
-
-            public bool Contains(long time)
+            public bool Contains(DateTime time)
             {
-                return Timestamp <= time && TimestampEnd > time;
+                return startDate <= time && endDate > time;
             }
 
             // textual representation of timezone base offset
@@ -43,51 +138,29 @@ namespace GCAL.Base
                 return GPTimeZone.SecondsToString(OffsetInSeconds, 2);
             }
 
-            public string getDateString()
+            public static DateTime recognizeDateTime(string str)
             {
-                //1971-04-25 23:00:00 +0000
-                GPTimestamp ts = new GPTimestamp(Timestamp);
-                return string.Format("{0:0000}-{1:00}-{2:00} {3:00}:{4:00}:{5:00} +0000", ts.year, ts.month, ts.day, ts.hour, 0, 0);
+                string[] sp = str.Split('-');
+                if (sp.Length == 6)
+                {
+                    return new DateTime(int.Parse(sp[0]), int.Parse(sp[1]), int.Parse(sp[2]), int.Parse(sp[3]),
+                        int.Parse(sp[4]), int.Parse(sp[5]));
+                }
+                return DateTime.Now;
             }
-            public void setDateString(string value)
-            {
-                    long y, m, d, h, mn, sc, offm, offs;
-                    long.TryParse(value.Substring(0, 4), out y);
-                    long.TryParse(value.Substring(5, 2), out m);
-                    long.TryParse(value.Substring(8, 2), out d);
-                    long.TryParse(value.Substring(11, 2), out h);
-                    long.TryParse(value.Substring(14, 2), out mn);
-                    long.TryParse(value.Substring(17, 2), out sc);
-                    long.TryParse(value.Substring(21, 2), out offm);
-                    long.TryParse(value.Substring(23, 2), out offs);
-                    if (value[20] == '-')
-                        offm = -offm;
-
-                    long result = sc + 60 * (mn + 60 * (h + 24 * (d + 32 * (m + 12 * y))));
-                    result += ((offm * 60) + offs) * 60;
-                    Timestamp = result;
-            }
-
-            public DateTime getDateTime()
-            {
-                GPTimestamp ts = new GPTimestamp(Timestamp);
-                return new DateTime(ts.year, ts.month, ts.day, ts.hour,
-                    ts.minute, ts.second);
-            }
-
         }
 
         public int Id = 0;
         public string Name = string.Empty;
-        public long OffsetSeconds = 0;
+        public int OffsetSeconds = 0;
         public string NormalAbbr = "";
         public string DstAbbr = "";
         public bool DstUsed = false;
+
         public List<Transition> Transitions = new List<Transition>();
         public List<Rule> Rules = new List<Rule>();
         private Transition lastActiveTransition = null;
         private Rule lastActiveRule = null;
-        private int lastActiveTransitionIndex = -1;
 
 
         public double getOffsetHours()
@@ -106,24 +179,28 @@ namespace GCAL.Base
             return GPTimeZone.SecondsToString(OffsetSeconds, 2);
         }
 
-        public long getMaximumOffsetSeconds()
+        public int getMaximumOffsetSeconds()
         {
-            long max = OffsetSeconds;
+            int max = OffsetSeconds;
             foreach (Transition tr in Transitions)
             {
                 max = Math.Max(max, tr.OffsetInSeconds);
             }
-            return max;
+            return max + OffsetSeconds;
         }
 
         public bool hasDstInYear(int year)
         {
             foreach (Transition tr in Transitions)
             {
-                if (GPTimestamp.Year(tr.Timestamp) == year)
-                {
+                if (tr.startDate.Year >= year && tr.endDate.Year <= year)
                     return true;
-                }
+            }
+
+            foreach (Rule rule in Rules)
+            {
+                if (rule.startYear >= year && rule.endYear <= year)
+                    return true;
             }
 
             return false;
@@ -131,34 +208,41 @@ namespace GCAL.Base
 
         public DateTime StartDateInYear(int year)
         {
-            Transition selected = null;
-            foreach (Transition tr in Transitions)
+            foreach (Rule rule in Rules)
             {
-                if (GPTimestamp.Year(tr.Timestamp) == year && tr.Dst == true)
+                if (rule.Contains(year))
                 {
-                    selected = tr;
-                    break;
+                    DateTime startDate;
+                    rule.startDay.getDate(year, out startDate);
+                    return startDate;
                 }
             }
-            if (selected == null)
-                return new DateTime();
-            return (new GPTimestamp(selected.Timestamp)).getDateTime();
+
+            foreach (Transition tr in Transitions)
+            {
+                if (tr.startDate.Year == year)
+                    return tr.startDate;
+            }
+            return new DateTime();
         }
 
         public DateTime EndDateInYear(int year)
         {
-            Transition selected = null;
-            foreach (Transition tr in Transitions)
+            foreach (Rule rule in Rules)
             {
-                if (GPTimestamp.Year(tr.Timestamp) == year && tr.Dst == false)
+                if (rule.Contains(year))
                 {
-                    selected = tr;
-                    break;
+                    DateTime endDate;
+                    rule.endDay.getDate(year, out endDate);
+                    return endDate;
                 }
             }
-            if (selected == null)
-                return new DateTime();
-            return (new GPTimestamp(selected.Timestamp)).getDateTime();
+            foreach (Transition tr in Transitions)
+            {
+                if (tr.endDate.Year == year)
+                    return tr.endDate;
+            }
+            return new DateTime();
         }
 
         public static string SecondsToString(long secs, int parts)
@@ -198,105 +282,74 @@ namespace GCAL.Base
             return string.Format("{0} {1}", GPAppHelper.GetTextTimeZone(OffsetSeconds), Name);
         }
 
-        public void RefreshEnds()
-        {
-            for (int i = 1; i < Transitions.Count; i++)
-            {
-                Transitions[i - 1].TimestampEnd = Transitions[i].Timestamp;
-            }
-        }
-
         public void AddTransition(Transition trans)
         {
-            Transition t = null;
-
-            for (int i = 0; i < Transitions.Count; i++ )
-            {
-                t = Transitions[i];
-                if (t.Timestamp > trans.Timestamp)
-                {
-                    Transitions.Insert(i, trans);
-                    return;
-                }
-            }
-
-            if (Transitions.Count > 0)
-            {
-                Transition tr = Transitions[Transitions.Count - 1];
-                tr.TimestampEnd = tr.Timestamp + (86400L * 32L * 12L);
-            }
-
             Transitions.Add(trans);
         }
 
         public bool isSupportDaylightSaving()
         {
-            return Transitions.Count > 1;
+            return DstUsed;
         }
 
         public double BiasHoursForDate(GPGregorianTime vc)
         {
-            Transition trans = FindActiveTransition(vc.getTimestamp());
+            Rule rule = FindActiveRule(vc.getLocalTime());
+            if (rule != null)
+                return Convert.ToDouble(rule.OffsetSeconds) / 3600.0;
 
+            Transition trans = FindActiveTransition(vc.getLocalTime());
             if (trans != null)
                 return Convert.ToDouble(trans.OffsetInSeconds - OffsetSeconds) / 3600.0;
+
+
             return 0.0;
         }
 
-        public Transition FindActiveTransition(long ut)
+        public bool DaylightSavingInEFfect(GPGregorianTime vc)
         {
-            if (lastActiveTransition != null && lastActiveTransition.Timestamp < ut && lastActiveTransition.TimestampEnd > ut)
-                return lastActiveTransition;
+            Rule rule = FindActiveRule(vc.getLocalTime());
+            if (rule != null)
+                return true;
 
-            if (Transitions.Count == 0)
-                return null;
+            Transition trans = FindActiveTransition(vc.getLocalTime());
+            if (trans != null)
+                return true;
 
-            if (Transitions.Count == 1)
-                return Transitions[0];
-
-            int a, b, c;
-            bool found = true;
-            a = 0;
-            b = Transitions.Count - 1;
-            c = (a + b) / 2;
-            if (Transitions[b].Contains(ut))
-            {
-                lastActiveTransition = Transitions[b];
-                lastActiveTransitionIndex = b;
-                return lastActiveTransition;
-            }
-            while (!Transitions[c].Contains(ut))
-            {
-                if (a == c)
-                {
-                    found = false;
-                    break;
-                }
-                if (Transitions[c].Timestamp > ut)
-                {
-                    b = c;
-                }
-                else
-                {
-                    a = c;
-                }
-                c = (a + b) / 2;
-            }
-            if (found)
-            {
-                lastActiveTransition = Transitions[c];
-                lastActiveTransitionIndex = c;
-            }
-            return lastActiveTransition;
+            return false;
         }
 
-        public Transition GetNextTransition(GPTimestamp ts)
+        public Rule FindActiveRule(DateTime ut)
         {
-            foreach (Transition trans in Transitions)
+            if (lastActiveRule != null && lastActiveRule.Contains(ut))
+                return lastActiveRule;
+
+            foreach (Rule rule in Rules)
             {
-                if (trans.Timestamp > ts.getValue())
-                    return trans;
+                if (rule.Contains(ut))
+                {
+                    lastActiveRule = rule;
+                    return rule;
+                }
             }
+
+            return null;
+        }
+
+        public Transition FindActiveTransition(DateTime ut)
+        {
+            if (lastActiveTransition != null && lastActiveTransition.Contains(ut))
+                return lastActiveTransition;
+
+            foreach (Transition tr in Transitions)
+            {
+                if (tr.Contains(ut))
+                {
+                    lastActiveTransition = tr;
+                    return tr;
+                }
+            }
+
             return null;
         }
 
@@ -305,30 +358,15 @@ namespace GCAL.Base
         // 1 - DST is on, yesterday was off
         // 2 - DST is on, yesterday was on
         // 3 - DST is off, yesterday was on
-        public int GetDaylightChangeType(GPGregorianTime vc2)
+        public int GetDaylightChangeType(GPGregorianTime vcDay)
         {
-            long uToday = vc2.getTimestamp();
-            long uYesterday = uToday - 86400;
+            GPGregorianTime vcPrevDay = new GPGregorianTime(vcDay);
+            vcPrevDay.PreviousDay();
 
-            Transition tzToday = FindActiveTransition(uToday);
-            Transition tzYesterday = FindActiveTransition(uYesterday);
+            bool t1 = DaylightSavingInEFfect(vcDay);
+            bool t2 = DaylightSavingInEFfect(vcPrevDay);
 
-            bool t1 = tzToday != null ? tzToday.Dst : false;
-            bool t2 = tzYesterday != null ? tzYesterday.Dst : false;
-
-            if (t1)
-            {
-                if (t2)
-                    return 2;
-                else
-                    return 1;
-            }
-            else if (t2)
-            {
-                return 3;
-            }
-            else
-                return 0;
+            return (t1 ? (t2 ? 2 : 1) : (t2 ? 3 : 0));
         }
     }
 }

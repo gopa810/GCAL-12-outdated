@@ -387,7 +387,7 @@ namespace GCAL.Controls
                 return;
             }
 
-            GPTimestamp ts = new GPTimestamp(DateTime.Now);
+            /*GPTimestamp ts = new GPTimestamp(DateTime.Now);
             GPTimeZone.Transition trans = tzone.GetNextTransition(ts);
             if (trans == null)
             {
@@ -396,7 +396,7 @@ namespace GCAL.Controls
             }
 
             DateTime dt = trans.getDateTime();
-            label8.Text = dt.ToLongDateString() + " - " + dt.ToShortTimeString();
+            label8.Text = dt.ToLongDateString() + " - " + dt.ToShortTimeString();*/
 
             if (comboBox1.SelectedItem != null && comboBox8.SelectedItem != null && tabControl1.SelectedIndex == 1)
                 OnSelectedLocationChanged(this, e);
