@@ -11,13 +11,13 @@
 <body>
 
 <center>
-<h1>Remove Event ?</h1>
+<h1>{%gstr 1071}</h1>
 
 <div id='branchYes'>
-<p width=50%>Confirm that you want to <b>remove</b> following event from the global list of events in GCAL application.</p>
+<p width=50%>{%gstr 1070}</p>
 <table>
 	<tr>
-		<td>Name</td>
+		<td>{%gstr 315}</td>
 		<td>{%string eventtitle}</td>
 	</tr>
 </table>
@@ -27,15 +27,15 @@
 <script type="text/javascript">
 writeNavigStart();
 writeNavigItem("{%string leftArrow} {%title -1}", "goBack()");
-writeNavigItem("Don't delete", "window.location.href=\"mainmenu.html\"");
-writeNavigItem("Yes, delete", "goNext();");
+writeNavigItem("{%gstr 1072}", "window.location.href=\"mainmenu.html\"");
+writeNavigItem("{%gstr 1073}", "goNext();");
 writeNavigEnd();
 </script>
 
 </div>
 
 <div id='branchNo'>
-<p align=center><i>Event cannot be removed, because it is special event.</i>
+<p align=center><i>{%gstr 1074}</i>
 
 
 <script type="text/javascript">

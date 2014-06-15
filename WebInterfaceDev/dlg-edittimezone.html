@@ -7,7 +7,7 @@
 function onSave()
 {
 	// document.getElementById('').value
-	var str = document.getElementById('fldTitle');
+	var str = document.getElementById('fldTitle').value;
 	var secs = Number(document.getElementById('fldOffsetHours').value)*3600 + Number(document.getElementById('fldOffsetMin').value)*60;
 	str += '<sep>';
 	str += secs.toString();
@@ -354,21 +354,21 @@ function getRulesHtmlText(encodedText)
 		var parts = currentRules[i];
 
 		html += "<tr><td>";
-		html += "Years " + parts[1] + " - " + parts[6] + "<br>";
-		html += "Offset: " + parts[11];
+		html += "{%gstr 1098} " + parts[1] + " - " + parts[6] + "<br>";
+		html += "{%gstr 281}: " + parts[11];
 		html += "<div id='confRR" + parts[0] + "' style='display:none'>"
-		html += "Remove this rule?";
-		html += "<br><button type=button onclick=\"deleteRule('" + parts[0] + "');showElem3('confRR" + parts[0] + "', 'none');showElem3('confInitRR" + parts[0] + "', 'inline');refreshTransitionList();\">Yes, remove</button>";
-		html += "<button type=button onclick=\"showElem3('confRR" + parts[0] + "', 'none');showElem3('confInitRR" + parts[0] + "', 'inline')\">No</button>";
+		html += "{%gstr 1099}";
+		html += "<br><button type=button onclick=\"deleteRule('" + parts[0] + "');showElem3('confRR" + parts[0] + "', 'none');showElem3('confInitRR" + parts[0] + "', 'inline');refreshTransitionList();\">{%gstr 1073}</button>";
+		html += "<button type=button onclick=\"showElem3('confRR" + parts[0] + "', 'none');showElem3('confInitRR" + parts[0] + "', 'inline')\">{%gstr 1072}</button>";
 		html += "</div>";
 		html += "<td>";
 		html += "<button type=button onclick=\"";
 		html += "onAddRule('" + parts[0] + "');"; // script for editing this transition
-		html += "\">Edit</button>";
+		html += "\">{%gstr 338}</button>";
 		html += "<br>";
 		html += "<button id='confInitRR" + parts[0] + "' type=button onclick=\"";
 		html += "showElem3('confRR" + parts[0] + "', 'block');showElem3('confInitRR" + parts[0] + "', 'none')"; // script for removing this rule
-		html += "\">Remove</button>";
+		html += "\">{%gstr 351}</button>";
 		html += "</tr>";
 	}
 	
@@ -385,22 +385,22 @@ function getTransitionsHtmlText(encodedText)
 		if (parts.length == 10)
 		{
 			html += "<tr><td>";
-			html += "Start date: " + parts[1] + "/" + parts[2] + "/" + parts[3] + "<br>";
-			html += "End date: " + parts[5] + "/" + parts[6] + "/" + parts[7] + "<br>";
-			html += "Offset: " + parts[9] + " minutes";
+			html += "{%gstr 261}: " + parts[1] + "/" + parts[2] + "/" + parts[3] + "<br>";
+			html += "{%gstr 262}: " + parts[5] + "/" + parts[6] + "/" + parts[7] + "<br>";
+			html += "{%gstr 281}: " + parts[9] + " {%gstr 328}";
 			html += "<div id='confRT" + parts[0] + "' style='display:none'>"
-			html += "Remove this transition?";
-			html += "<br><button type=button onclick=\"deleteTransition('" + parts[0] + "');showElem3('confRT" + parts[0] + "', 'none');showElem3('confInitRT" + parts[0] + "', 'inline');refreshTransitionList();\">Yes, remove</button>";
-			html += "<button type=button onclick=\"showElem3('confRT" + parts[0] + "', 'none');showElem3('confInitRT" + parts[0] + "', 'inline')\">No</button>";
+			html += "{%gstr 1100}";
+			html += "<br><button type=button onclick=\"deleteTransition('" + parts[0] + "');showElem3('confRT" + parts[0] + "', 'none');showElem3('confInitRT" + parts[0] + "', 'inline');refreshTransitionList();\">{%gstr 1073}</button>";
+			html += "<button type=button onclick=\"showElem3('confRT" + parts[0] + "', 'none');showElem3('confInitRT" + parts[0] + "', 'inline')\">{%gstr 1072}</button>";
 			html += "</div>";
 			html += "<td>";
 			html += "<button type=button onclick=\"";
 			html += "onAddTransition('" + parts[0] + "');"; // script for editing this transition
-			html += "\">Edit</button>";
+			html += "\">{%gstr 338}</button>";
 			html += "<br>";
 			html += "<button id='confInitRT" + parts[0] + "' type=button onclick=\"";
 			html += "showElem3('confRT" + parts[0] + "', 'block');showElem3('confInitRT" + parts[0] + "', 'none')"; // script for removing this transition
-			html += "\">Remove</button>";
+			html += "\">{%gstr 351}</button>";
 			html += "</tr>";
 		}
 	}
@@ -523,8 +523,8 @@ function onUpdateTransition()
 	showElem3('operAddTrans', 'none');
 }
 
-setRules('1<r>1979<r>3<r>5<r>6<r>2<r>2200<r>10<r>5<r>6<r>2<r>60');
-setTransitions('1<r>1979<r>10<r>9<r>1<r>2200<r>10<r>9<r>1<r>60');
+//setRules('1<r>1979<r>3<r>5<r>6<r>2<r>2200<r>10<r>5<r>6<r>2<r>60');
+//setTransitions('1<r>1979<r>10<r>9<r>1<r>2200<r>10<r>9<r>1<r>60');
 
 </script>
 </head>
@@ -534,13 +534,13 @@ setTransitions('1<r>1979<r>10<r>9<r>1<r>2200<r>10<r>9<r>1<r>60');
 <div id='main'>
 	<h1>{%title 0}</h1>
 
-	<h2>Timezone Name</h2>
-	<p width=50%>Enter title for timezone</p>
+	<h2>{%gstr 283}</h2>
+	<p width=50%>{%gstr 1101}</p>
 	<p><input type="text" id="fldTitle" value="">
 
-	<h2>Offset to UTC [hours]</h2>
+	<h2>{%gstr 281}</h2>
 	<table>
-	<tr><td>hours</td><td>minutes</td></tr>
+	<tr><td>{%gstr 326}</td><td>{%gstr 328}</td></tr>
 	<tr><td>
 	<select id='fldOffsetHours'>
 	  <option value='-14'>-14</option>
@@ -583,52 +583,52 @@ setTransitions('1<r>1979<r>10<r>9<r>1<r>2200<r>10<r>9<r>1<r>60');
 	</td></tr>
 	</table>
 
-	<h2>Normal Abbreviation</h2>
-	<p width=50%>Enter abbreviation of this timezone</p>
+	<h2>{%gstr 1102}</h2>
+	<p width=50%>{%gstr 1103}</p>
 	<p><input type="text" id="fldNormalAbbr" value="">
 
 
-	<h2>Using Daylight Saving Time</h2>
+	<h2>{%gstr 1104}</h2>
 	<select id='fldUsedDst' onchange='onChangeUsedDst();'>
-	  <option value='0'>Not used</option>
-	  <option value='1'>Used</option>
+	  <option value='0'>{%gstr 1105}</option>
+	  <option value='1'>{%gstr 1106}</option>
 	</select>
 
 	<div id='divDst'>
 
-		<h2>DST Abbreviation</h2>
-		<p width=50%>Enter abbreviation of this timezone when DST is in effect.</p>
+		<h2>{%gstr 1107}</h2>
+		<p width=50%>{%gstr 1108}</p>
 		<p><input type="text" id="fldDstAbbr" value="">
 
-		<h2>Rules</h2>
-		<p>Here are definitions of rules for offset transitions. Rule specifies day of week, week of month and month for both starting and ending day of DST.</p>
+		<h2>{%gstr 1109}</h2>
+		<p>{%gstr 1110}</p>
 		<div id='listOfRules'>
 		</div>
 		<div>
-			<button type='button' onclick="onAddRule('');">Add</button>
-			<button type='button' onclick="onRemoveAllRules();">Remove All</button>
+			<button type='button' onclick="onAddRule('');">{%gstr 1111}</button>
+			<button type='button' onclick="onRemoveAllRules();">{%gstr 1112}</button>
 		</div>
 
-		<h2>Transitions</h2>
-		<p>Here are definitions of offset transitions. Transition is defined by exact start and end dates.
+		<h2>{%gstr 322}</h2>
+		<p>{%gstr 1113}
 		<div id='listOfTransitions'>
 		</div>
 		<div>
-			<button type='button' onclick="onAddTransition('');">Add</button>
-			<button type='button' onclick="onRemoveAllTransitions();">Remove All</button>
+			<button type='button' onclick="onAddTransition('');">{%gstr 1111}</button>
+			<button type='button' onclick="onRemoveAllTransitions();">{%gstr 1112}</button>
 		</div>
 
 	</div>
 </div>
 
 <div id='operAddTrans' style='display:none'>
-	<h2 id='h403'>Add new transition</h2>
-	<h2 id='h404'>Edit transition</h2>
+	<h2 id='h403'>{%gstr 1114}</h2>
+	<h2 id='h404'>{%gstr 1115}</h2>
 
-	<p>Start date</p>
+	<p>{%gstr 261}</p>
 	<input type=date id='fld200' value='2014-03-02'>
 	
-	<p>DayHour of change</p>
+	<p>{%gstr 1116}</p>
 	<select id='fld205'>
 			<option value='0'>00:00</option>
 			<option value='1'>01:00</option>
@@ -656,10 +656,10 @@ setTransitions('1<r>1979<r>10<r>9<r>1<r>2200<r>10<r>9<r>1<r>60');
 			<option value='23'>23:00</option>
 	</select>
 
-	<p>End date</p>
+	<p>{%gstr 262}</p>
 	<input type=date id='fld201' value='2014-03-02'>
 
-	<p>DayHour of change</p>
+	<p>{%gstr 1116}</p>
 	<select id='fld206'>
 			<option value='0'>00:00</option>
 			<option value='1'>01:00</option>
@@ -687,38 +687,38 @@ setTransitions('1<r>1979<r>10<r>9<r>1<r>2200<r>10<r>9<r>1<r>60');
 			<option value='23'>23:00</option>
 	</select>
 
-	<p>DST Bias</p>
+	<p>{%gstr 1117}</p>
 	<select id='fld202'>
-	   <option value=0>+00 min</option>
-	   <option value=15>+15 min</option>
-	   <option value=30>+30 min</option>
-	   <option value=45>+45 min</option>
-	   <option value=60>+60 min</option>
+	   <option value=0>+00 {%gstr 328}</option>
+	   <option value=15>+15 {%gstr 328}</option>
+	   <option value=30>+30 {%gstr 328}</option>
+	   <option value=45>+45 {%gstr 328}</option>
+	   <option value=60>+60 {%gstr 328}</option>
 	</select>
 
 	<div>
-	  <button type='button' onclick="onBackToList();">Back to List</button>
-	  <button id='btn403' type='button' onclick="onCreateTransition();">Create</button>
-	  <button id='btn404' type='button' onclick="onUpdateTransition();">Update</button>
+	  <button type='button' onclick="onBackToList();">{%gstr 1118}</button>
+	  <button id='btn403' type='button' onclick="onCreateTransition();">{%gstr 1119}</button>
+	  <button id='btn404' type='button' onclick="onUpdateTransition();">{%gstr 1120}</button>
 	</div>
 	
 </div>
 
 <div id='operAddRule' style='display:none'>
-	<h2 id='h303'>Add new rule</h2>
-	<h2 id='h304'>Edit rule</h2>
+	<h2 id='h303'>{%gstr 1121}</h2>
+	<h2 id='h304'>{%gstr 1122}</h2>
 	
-	<p>DST Bias</p>
+	<p>{%gstr 1117}</p>
 	<select id='fld301'>
-	   <option value=0>+00 min</option>
-	   <option value=15>+15 min</option>
-	   <option value=30>+30 min</option>
-	   <option value=45>+45 min</option>
-	   <option value=60>+60 min</option>
+	   <option value=0>+00 {%gstr 328}</option>
+	   <option value=15>+15 {%gstr 328}</option>
+	   <option value=30>+30 {%gstr 328}</option>
+	   <option value=45>+45 {%gstr 328}</option>
+	   <option value=60>+60 {%gstr 328}</option>
 	</select>
 	
 	
-	<p>Start year</p>
+	<p>{%gstr 1123}</p>
 	
 	<table width=240pt>
 		<tr>
@@ -731,7 +731,7 @@ setTransitions('1<r>1979<r>10<r>9<r>1<r>2200<r>10<r>9<r>1<r>60');
 		</tr>
 	</table>
 
-	<p>End year</p>
+	<p>{%gstr 1124}</p>
 	<table width=240pt>
 		<tr>
 			<td style='text-align:right;font-size:24pt' id='endYear2' rowspan=2>2050</td>
@@ -743,11 +743,11 @@ setTransitions('1<r>1979<r>10<r>9<r>1<r>2200<r>10<r>9<r>1<r>60');
 		</tr>
 	</table>
 	
-	<p>Start day</p>
+	<p>{%gstr 1125}</p>
 
 	<table id='operAddRuleStartWeek'>
 	<tr>
-		<td><p>Day of week</p>
+		<td><p>{%gstr 1127}</p>
 		<td><select id='fldDowStart'>
 			<option value='0'>{%gstr 0}</option>
 			<option value='1'>{%gstr 1}</option>
@@ -759,7 +759,7 @@ setTransitions('1<r>1979<r>10<r>9<r>1<r>2200<r>10<r>9<r>1<r>60');
 		</select>
 
 	<tr>
-		<td><p>Week of month</p>
+		<td><p>{%gstr 1128}</p>
 		<td><select id='fldWomStart'>
 			<option value='1'>{%gstr 782}</option>
 			<option value='2'>{%gstr 783}</option>
@@ -768,7 +768,7 @@ setTransitions('1<r>1979<r>10<r>9<r>1<r>2200<r>10<r>9<r>1<r>60');
 			<option value='5'>{%gstr 786}</option>
 		</select>
 	<tr>
-		<td><p>Month</p>
+		<td><p>{%gstr 248}</p>
 		<td><select id='fldMonthStart'>
 			<option value='1'>{%gstr 760}</option>
 			<option value='2'>{%gstr 761}</option>
@@ -785,7 +785,7 @@ setTransitions('1<r>1979<r>10<r>9<r>1<r>2200<r>10<r>9<r>1<r>60');
 		</select>
 		</tr>
 	<tr>
-		<td><p>DayHour of change</p>
+		<td><p>{%gstr 1116}</p>
 		<td><select id='fldDayHourStart'>
 			<option value='0'>00:00</option>
 			<option value='1'>01:00</option>
@@ -815,11 +815,11 @@ setTransitions('1<r>1979<r>10<r>9<r>1<r>2200<r>10<r>9<r>1<r>60');
 	</table>
 
 
-	<p>End day</p>
+	<p>{%gstr 1126}</p>
 
 	<table id='operAddRuleEndWeek'>
 	<tr>
-		<td><p>Day of week</p>
+		<td><p>{%gstr 1127}</p>
 		<td><select id='fldDowEnd'>
 			<option value='0'>{%gstr 0}</option>
 			<option value='1'>{%gstr 1}</option>
@@ -831,7 +831,7 @@ setTransitions('1<r>1979<r>10<r>9<r>1<r>2200<r>10<r>9<r>1<r>60');
 		</select>
 
 	<tr>
-		<td><p>Week of month</p>
+		<td><p>{%gstr 1128}</p>
 		<td><select id='fldWomEnd'>
 			<option value='1'>{%gstr 782}</option>
 			<option value='2'>{%gstr 783}</option>
@@ -840,7 +840,7 @@ setTransitions('1<r>1979<r>10<r>9<r>1<r>2200<r>10<r>9<r>1<r>60');
 			<option value='5'>{%gstr 786}</option>
 		</select>
 	<tr>
-		<td><p>Month</p>
+		<td><p>{%gstr 248}</p>
 		<td><select id='fldMonthEnd'>
 			<option value='1'>{%gstr 760}</option>
 			<option value='2'>{%gstr 761}</option>
@@ -857,7 +857,7 @@ setTransitions('1<r>1979<r>10<r>9<r>1<r>2200<r>10<r>9<r>1<r>60');
 		</select>
 		</tr>
 	<tr>
-		<td><p>DayHour of change</p>
+		<td><p>{%gstr 1116}</p>
 		<td><select id='fldDayHourEnd'>
 			<option value='0'>00:00</option>
 			<option value='1'>01:00</option>
@@ -888,52 +888,48 @@ setTransitions('1<r>1979<r>10<r>9<r>1<r>2200<r>10<r>9<r>1<r>60');
 
 
 	<div>
-	  <button type='button' onclick="onBackToList();">Back to List</button>
-	  <button id='btn303' type='button' onclick="onCreateRule();">Create</button>
-	  <button id='btn304' type='button' onclick="onUpdateRule();">Update</button>
+	  <button type='button' onclick="onBackToList();">{%gstr 1118}</button>
+	  <button id='btn303' type='button' onclick="onCreateRule();">{%gstr 1119}</button>
+	  <button id='btn304' type='button' onclick="onUpdateRule();">{%gstr 1120}</button>
 	</div>
 
 </div>
 
 <div id='operClearTrans' style='display:none'>
-	<h2>Remove all transitions</h2>
+	<h2>{%gstr 1129}</h2>
 	
-	<p>Do you want to remove all transitions</p>
+	<p>{%gstr 1130}</p>
 	
 	<div>
-	  <button type='button' onclick="onBackToList();">Back to List</button>
-	  <button type='button' onclick="showElem3('main', 'block');currentTransitions=[];refreshTransitionList();showElem3('operClearTrans', 'none');">Yes, remove</button>
+	  <button type='button' onclick="onBackToList();">{%gstr 1118}</button>
+	  <button type='button' onclick="showElem3('main', 'block');currentTransitions=[];refreshTransitionList();showElem3('operClearTrans', 'none');">{%gstr 1073}</button>
 	</div>
 
 </div>
 
 <div id='operClearRule' style='display:none'>
-	<h2>Remove all rules</h2>
+	<h2>{%gstr 1131}</h2>
 	
-	<p>Do you want to remove all rules</p>
+	<p>{%gstr 1132}</p>
 	
 	<div>
-	  <button type='button' onclick="showElem3('main', 'block');showElem3('operClearRule', 'none');">Back to List</button>
-	  <button type='button' onclick="showElem3('main', 'block');currentRules=[];refreshTransitionList();showElem3('operClearRule', 'none');">Yes, remove</button>
+	  <button type='button' onclick="showElem3('main', 'block');showElem3('operClearRule', 'none');">{%gstr 1118}</button>
+	  <button type='button' onclick="showElem3('main', 'block');currentRules=[];refreshTransitionList();showElem3('operClearRule', 'none');">{%gstr 1073}</button>
 	</div>
 
 </div>
 
 
 <script type="text/javascript">
-onChangeUsedDst();
-//onLoad();
+onLoad();
 refreshTransitionList();
+onChangeUsedDst();
+
 writeNavigStart();
-writeNavigItem("Main Menu", "window.location.href=\"mainmenu.html\"");
-writeNavigItem("{%string leftArrow} {%title -1}", "goBack()");
+writeNavigItem("{%gstr 1054}", "window.location.href=\"mainmenu.html\"");
+writeNavigItem("{%string leftArrow} {%title -1}", "goBack();");
 writeNavigItem("{%title +1} {%string rightArrow}", "onSave();goNext()");
 writeNavigEnd();
-
-if (scriptObject.getInt('disableventtype') == 1)
-{
-   document.getElementById('fldEventType').disabled = 1;
-}
 
 </script>
 

@@ -16,7 +16,7 @@ function onSave()
 
 <center>
 <h1>{%title 0}</h1>
-<p>Enter full name of location.</p>
+<p>{%gstr 1145}</p>
 <input type="text" id="textField0" value="">
 </center>
 
@@ -27,9 +27,11 @@ setElementValue("textField0", "{%string locationname}");
 
 <script type="text/javascript">
 writeNavigStart();
-writeNavigItem("Main Menu", "window.location.href=\"mainmenu.html\"");
+writeNavigItem("{%gstr 1054}", "window.location.href=\"mainmenu.html\"");
 writeNavigItem("{%string leftArrow} {%title -1}", "onSave();goBack()");
 writeNavigItem("{%title +1} {%string rightArrow}", "onSave();goNext()");
 writeNavigEnd();
 </script>
 
+</body>
+</html>

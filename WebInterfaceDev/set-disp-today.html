@@ -29,16 +29,16 @@ function onSave()
 <table style='border=0px' align=center>
 
 <script type="text/javascript">
-	writeCheckBox("Show Sunrise Time", "Time of sunrise", "t0");
-	writeCheckBox("Show Noon Time", "Time of noon", "t1");
-	writeCheckBox("Show Sunset Time", "Time of sunset", "t2");
-	writeCheckBox("Show Sandhyas", "Show times for sandhya periods", "t3");
-	writeCheckBox("Show Other Info", "Other information present at sunrise", "t4");
-	writeCheckBox("Show Brahma Muhurta", "Show time of brahma muhurta", "t5");
-	writeCheckBox("Show Rasi of the Moon", "", "t6");
-	writeCheckBox("Show Naksatra Pada", "", "t7");
-	writeCheckBox("Show Tithi Listing", "", "t8");
-	writeCheckBox("Show Naksatra Listing", "", "t9");
+	writeCheckBox("{%gstr 180}", "{%gstr 1181}", "t0");
+	writeCheckBox("{%gstr 181}", "{%gstr 1182}", "t1");
+	writeCheckBox("{%gstr 182}", "{%gstr 1183}", "t2");
+	writeCheckBox("{%gstr 179}", "{%gstr 1184}", "t3");
+	writeCheckBox("{%gstr 1178}", "{%gstr 1185}", "t4");
+	writeCheckBox("{%gstr 177}", "{%gstr 1186}", "t5");
+	writeCheckBox("{%gstr 991}", "", "t6");
+	writeCheckBox("{%gstr 1006}", "", "t7");
+	writeCheckBox("{%gstr 1179}", "", "t8");
+	writeCheckBox("{%gstr 1180}", "", "t9");
 </script>
 
 
@@ -62,9 +62,9 @@ function onSave()
 <div class="menuBarDiv">
 <table class="menuBar" align=center cellspacing=8 cellpadding=8>
 <tr>
-<td class="menuItem" onclick='onSave();window.location.href="mainmenu.html"'>Main Menu</td>
-<td class="menuItem" onclick='onSave();window.location.href="set-disp.html"'>Display Settings</td>
-<td class="menuItem" onclick='onSave();resetToday();window.location.href="today.html"'>Today Screen</td>
+<td class="menuItem" onclick='onSave();window.location.href="mainmenu.html"'>{%gstr 1054}</td>
+<td class="menuItem" onclick='onSave();window.location.href="set-disp.html"'>{%gstr 235}</td>
+<td class="menuItem" onclick='onSave();resetToday();window.location.href="today.html"'>{%gstr 174}</td>
 </tr>
 </table>
 </div>

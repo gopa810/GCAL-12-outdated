@@ -43,7 +43,7 @@ function loadCountries(countryText)
        tags = list[i].split("<br>");
 	   if (tags.length == 2)
 	   {
-	       text += getStringComboChoiceValue(tags[1], "Country code: " + tags[0], tags[0], b);
+	       text += getStringComboChoiceValue(tags[1], "{%gstr 253}: " + tags[0], tags[0], b);
            b = 0;
 
 	   }
@@ -59,12 +59,12 @@ function loadCountries(countryText)
 <body>
 
 <center>
-<h1>Choose Country</h1>
-<p width=50%>Enter text which is part of country name. Text is not case sensitive.</p>
+<h1>{%gstr 1063}</h1>
+<p width=50%>{%gstr 1068}</p>
 <input type="text" id="textField0" value="" onpaste='return false;'>
 <p>&nbsp;</p>
 <div id='ctlist'>
-<i>List is empty</i>
+<i>{%gstr 1069}</i>
 </div>
 </center>
 
@@ -75,7 +75,7 @@ setElementValue("textField0", "");
 
 <script type="text/javascript">
 writeNavigStart();
-writeNavigItem("Main Menu", "window.location.href=\"mainmenu.html\"");
+writeNavigItem("{%gstr 1054}", "window.location.href=\"mainmenu.html\"");
 writeNavigItem("{%string leftArrow} {%title -1}", "onSave();goBack()");
 writeNavigItem("{%title +1} {%string rightArrow}", "onSave();goNext()");
 writeNavigEnd();

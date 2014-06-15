@@ -17,6 +17,7 @@ namespace GCAL.Engine
             public string Title = string.Empty;
             public string Type = string.Empty;
             public string SearchText = string.Empty;
+            public string ActionScript = string.Empty;
             public List<ResultsLine> Lines = new List<ResultsLine>();
             public GPCalculationOperation Operation = GPCalculationOperation.None;
             public Dictionary<GPCalculationParameters, object> Parameters = new Dictionary<GPCalculationParameters,object>();
@@ -55,6 +56,24 @@ namespace GCAL.Engine
                     }
                 }
             }
+
+            internal string getDataString()
+            {
+                StringBuilder sb = new StringBuilder();
+
+                sb.Append(Title);
+                sb.Append("<part>");
+                sb.Append(Type);
+                sb.Append("<part>");
+                foreach (ResultsLine rl in Lines)
+                {
+                    sb.AppendFormat("{0}<r>{1}<r>{2}<tr>", rl.Prefix, rl.Term, rl.Postfix);
+                }
+                sb.Append("<part>");
+                sb.Append(ActionScript);
+
+                return sb.ToString();
+            }
         }
 
         public class ResultsLine
@@ -69,6 +88,7 @@ namespace GCAL.Engine
         public SearchResultsList listControl = null;
         private string p_text = string.Empty;
         public List<Results> ResultsList = new List<Results>();
+        public bool finished = false;
 
 
         public CELSearch(string txt)
@@ -87,7 +107,7 @@ namespace GCAL.Engine
         protected override void Execute()
         {
             ResultsList.Clear();
-            ClearControlList();
+            //ClearControlList();
 
             if (Location == null || p_text == null || p_text.Length == 0)
             {
@@ -116,6 +136,8 @@ namespace GCAL.Engine
                     res.Operation = GPCalculationOperation.Today;
                     res.Parameters.Add(GPCalculationParameters.LocationProvider, Location);
                     res.Parameters.Add(GPCalculationParameters.StartWesternDate, vc.Copy());
+                    res.ActionScript += string.Format("scriptObject.setMyDate({0},{1},{2});", vc.getYear(), vc.getMonth(), vc.getDay());
+                    res.ActionScript += "window.location.href='today.html'";
                     ResultsList.Add(res);
                     res = new Results(this, p_text);
                 }
@@ -149,6 +171,13 @@ namespace GCAL.Engine
                     GPGregorianTime vc2 = vc.Copy();
                     vc2.AddMonths(1);
                     res.Parameters.Add(GPCalculationParameters.EndWesternDate, vc2);
+                    res.ActionScript += "saveString('locationtype', 'mylocation');";
+                    res.ActionScript += "saveString('startyear', '" + vc.getYear() + "');";
+                    res.ActionScript += "saveString('startmonth', '" + vc.getMonth() + "');";
+                    res.ActionScript += "saveString('startday', '" + vc.getDay() + "');";
+                    res.ActionScript += "saveString('endperiodtype', '3');";
+                    res.ActionScript += "saveString('endperiodlength', '1');";
+                    res.ActionScript += "window.location.href='calendar.html'";
                     ResultsList.Add(res);
                     res = new Results(this, p_text);
                 }
@@ -183,6 +212,13 @@ namespace GCAL.Engine
                     res.Parameters.Add(GPCalculationParameters.LocationProvider, Location);
                     res.Parameters.Add(GPCalculationParameters.StartWesternDate, vc.Copy());
                     res.Parameters.Add(GPCalculationParameters.EndWesternDate, vcEnd);
+                    res.ActionScript += "saveString('locationtype', 'mylocation');";
+                    res.ActionScript += "saveString('startyear', '" + vc.getYear() + "');";
+                    res.ActionScript += "saveString('startmonth', '" + vc.getMonth() + "');";
+                    res.ActionScript += "saveString('startday', '" + vc.getDay() + "');";
+                    res.ActionScript += "saveString('endperiodtype', '3');";
+                    res.ActionScript += "saveString('endperiodlength', '1');";
+                    res.ActionScript += "window.location.href='coreevents.html'";
                     ResultsList.Add(res);
                     res = new Results(this, p_text);
                 }
@@ -214,6 +250,10 @@ namespace GCAL.Engine
                     res.Parameters.Add(GPCalculationParameters.LocationProvider, Location);
                     res.Parameters.Add(GPCalculationParameters.StartYear, vc.getYear());
                     res.Parameters.Add(GPCalculationParameters.CountYear, 1);
+                    res.ActionScript += "saveString('locationtype', 'mylocation');";
+                    res.ActionScript += "saveString('startyear', '" + vc.getYear() + "');";
+                    res.ActionScript += "saveString('yearcount', '1');";
+                    res.ActionScript += "window.location.href='masalist.html'";
                     ResultsList.Add(res);
                     res = new Results(this, p_text);
                 }
@@ -226,7 +266,7 @@ namespace GCAL.Engine
 
             #endregion
 
-
+            finished = true;
         }
 
         /// <summary>
@@ -234,7 +274,7 @@ namespace GCAL.Engine
         /// </summary>
         public void FlushResultsToControl()
         {
-            listControl.Invoke(new CELAsyncResultReceiverTaskMethod(FlushResultsToControlSync), this);
+            //listControl.Invoke(new CELAsyncResultReceiverTaskMethod(FlushResultsToControlSync), this);
         }
 
         /// <summary>
@@ -242,7 +282,7 @@ namespace GCAL.Engine
         /// </summary>
         public void ClearControlList()
         {
-            listControl.Invoke(new CELAsyncResultReceiverTaskMethod(ClearControlListSync), this);
+            //listControl.Invoke(new CELAsyncResultReceiverTaskMethod(ClearControlListSync), this);
         }
 
         /// <summary>
@@ -251,7 +291,7 @@ namespace GCAL.Engine
         /// <param name="task"></param>
         public void ClearControlListSync(CELBase task)
         {
-            listControl.Items.Clear();
+            //listControl.Items.Clear();
         }
 
         /// <summary>
@@ -260,14 +300,14 @@ namespace GCAL.Engine
         /// <param name="task"></param>
         public void FlushResultsToControlSync(CELBase task)
         {
-            listControl.BeginUpdate();
+            /*listControl.BeginUpdate();
 
             foreach (Results res in ResultsList)
             {
                 listControl.Items.Add(res);
             }
             ResultsList.Clear();
-            listControl.EndUpdate();
+            listControl.EndUpdate();*/
         }
 
     }

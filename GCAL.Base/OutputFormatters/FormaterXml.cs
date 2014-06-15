@@ -87,7 +87,7 @@ namespace GCAL.Base
                 );
 
             strText.Append(str); ;
-            string prefix = string.Format("{0} ", getSharedString(994));
+            string prefix = string.Format("{0} ", getSharedStringHtml(994));
             strText.Append("\t\t<celebrations>\n");
             foreach(GPStringPair rec in app.output)
             {
@@ -113,7 +113,7 @@ namespace GCAL.Base
             doc.Append("\t</request>\n");
             doc.Append("\t<result name=\"FirstDay_of_GaurabdaYear\">\n");
             doc.Append("\t\t<firstday date=\"" + vcStart
-                + "\" dayweekid = \"" + vcStart.getDayOfWeek() + "\" dayweek=\"" + getSharedString(vcStart.getDayOfWeek()) + "\" />\n");
+                + "\" dayweekid = \"" + vcStart.getDayOfWeek() + "\" dayweek=\"" + getSharedStringHtml(vcStart.getDayOfWeek()) + "\" />\n");
             doc.Append("\t</result>\n");
             doc.Append("</xml>\n");
 
@@ -142,7 +142,7 @@ namespace GCAL.Base
             {
                 d = GPSankranti.GetNextSankranti(d, out zodiac);
                 doc.Append("\t\t<sank date=\"" + d + "\" ");
-                doc.Append("dayweekid=\"" + d.getDayOfWeek() + "\" dayweek=\"" + getSharedString(d.getDayOfWeek()) + "\" ");
+                doc.Append("dayweekid=\"" + d.getDayOfWeek() + "\" dayweek=\"" + getSharedStringHtml(d.getDayOfWeek()) + "\" ");
                 doc.Append(" time=\"" + d.getShortTimeString() + "\" >\n");
                 doc.Append("\t\t<zodiac sans=\"" + GPSankranti.GetNameSan(zodiac));
                 doc.Append("\" eng=\"" + GPSankranti.GetNameEng(zodiac) + "\" id=\"" + zodiac + "\" />\n");
@@ -189,7 +189,7 @@ namespace GCAL.Base
                             doc.Append("\t</masa>\n");
                         doc.Append("\t<masa name=\"" + GPMasa.GetName(pvd.astrodata.nMasa) + " Masa");
                         if (nPrevMasa == GPMasa.ADHIKA_MASA)
-                            doc.Append(" " + getSharedString(109));
+                            doc.Append(" " + getSharedStringHtml(109));
                         doc.Append("\"");
                         doc.Append(" gyear=\"Gaurabda " + pvd.getGaurabdaYearLongString() + "\"");
                         doc.Append(">\n");
@@ -200,7 +200,7 @@ namespace GCAL.Base
                     // date data
                     doc.Append("\t<day date=\"" + pvd.date + "\" dayweekid=\"" + pvd.date.getDayOfWeek());
                     doc.Append("\" dayweek=\"");
-                    st = getSharedString(pvd.date.getDayOfWeek()).Substring(0, 2);
+                    st = getSharedStringHtml(pvd.date.getDayOfWeek()).Substring(0, 2);
                     doc.Append(st + "\">\n");
 
                     // sunrise data
@@ -215,11 +215,11 @@ namespace GCAL.Base
                         {
                             if (pvd.nMahadvadasiType == GPConstants.EV_NULL)
                             {
-                                doc.Append(" " + getSharedString(58));
+                                doc.Append(" " + getSharedStringHtml(58));
                             }
                             else
                             {
-                                doc.Append(" " + getSharedString(59));
+                                doc.Append(" " + getSharedStringHtml(59));
                             }
                         }
                     }

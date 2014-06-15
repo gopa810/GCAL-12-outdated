@@ -18,11 +18,11 @@ function onSave()
 
 <table style='border=0px' align=center cellspacing=0 cellpadding=4>
 
-<h1>Fasting Notation Settings</h1>
+<h1>{%gstr 225}</h1>
 
 <script type="text/javascript">
-writeComboChoiceValue("{%getSelectionText gen.fastingnotation 0}", "Fast today on Vishnu tattva appearance, other days no fast", "0", 1);
-writeComboChoiceValue("{%getSelectionText gen.fastingnotation 2}", "Fast till noon, sunset, dusk, etc according old program", "1", 0);
+writeComboChoiceValue("{%getSelectionText gen.fastingnotation 0}", "{%gstr 1192}", "0", 1);
+writeComboChoiceValue("{%getSelectionText gen.fastingnotation 2}", "{%gstr 1193}", "1", 0);
 </script>
 
 
@@ -37,8 +37,8 @@ setNewComboChoice(getUserDefaultsInt('gen.fastingnotation'));
 <div class="menuBarDiv">
 <table class="menuBar" align=center cellspacing=8 cellpadding=8>
 <tr>
-<td class="menuItem" onclick='onSave();window.location.href="mainmenu.html"'>Main Menu</td>
-<td class="menuItem" onclick='onSave();window.location.href="set-general.html"'>General Settings</td>
+<td class="menuItem" onclick='onSave();window.location.href="mainmenu.html"'>{%gstr 1054}</td>
+<td class="menuItem" onclick='onSave();window.location.href="set-general.html"'>{%gstr 390}</td>
 </tr>
 </table>
 </div>

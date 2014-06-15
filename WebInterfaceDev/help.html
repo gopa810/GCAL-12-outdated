@@ -1,0 +1,53 @@
+<html>
+<head><title></title>
+<script type="text/javascript" src="{%homedir}/shh.js"></script>
+<link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
+</head>
+
+<script type="text/javascript">
+
+function getNextTip()
+{
+	var str = scriptObject.nextTip();
+	
+	document.getElementById('tip0').innerHTML = str;
+}
+
+</script>
+
+<body>
+
+<h1>{%gstr 395} {%version}</h1>
+
+<p>{%gstr 463}
+
+<p>{%gstr 464}
+
+<p><b>{%gstr 465}</b></p>
+
+<p>Gopalapriya Das gopalapriya.bvs@gmail.com
+
+<p><b>{%gstr 466}</b></p>
+
+<p>Bhanu Swami bhanu.swami@pamho.net<br>
+Bhaktarupa Das bhaktarupa.acbsp@pamho.net<br>
+Sadasivananda Das sadasivananda.jps@pamho.net<br>
+
+<div style='border:1px solid black;width=75%;padding:16pt;margin:16pt'>
+<div id='tip0'></div>
+<p align=right><span class=menuitem onclick='getNextTip();'>{%gstr 239}&nbsp;&#9002;</span>
+</div>
+
+
+<script type="text/javascript">
+
+getNextTip();
+
+writeNavigStart();
+writeNavigItem("{%gstr 1054}", "window.location.href=\"mainmenu.html\"");
+writeNavigEnd();
+</script>
+
+
+</body>
+</html>

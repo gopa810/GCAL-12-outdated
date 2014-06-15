@@ -8,35 +8,35 @@
 function startAddCountry()
 {
     scriptObject.clearHistory();
-    setCurrTitle("Edit Countries");
+    setCurrTitle("{%gstr 1161}");
 	saveString("ppx", "");
 	saveString("locationtype", "entered");
-	addFutureFile2("dlg-newcountry.html", "Enter Country Data");
-	addFutureFile2("dlg-editcoutz.html", "Edit Timezones");
-	addFutureFile2("geo-countries.html", "Countries");
+	addFutureFile2("dlg-newcountry.html", "{%gstr 1160}");
+	addFutureFile2("dlg-editcoutz.html", "{%gstr 1079}");
+	addFutureFile2("geo-countries.html", "{%gstr 312}");
 	goNext();
 }
 
 function startRenameCountry()
 {
     scriptObject.clearHistory();
-    setCurrTitle("Edit Countries");
+    setCurrTitle("{%gstr 1161}");
 	saveString("ppx", "");
 	saveString("locationtype", "entered");
-	addFutureFile2("dlg-country.html", "Choose Country");
-	addFutureFile2("dlg-renamecountry.html", "Enter New Name");
-	addFutureFile2("geo-countries.html", "Rename");
+	addFutureFile2("dlg-country.html", "{%gstr 1063}");
+	addFutureFile2("dlg-renamecountry.html", "{%gstr 1154}");
+	addFutureFile2("geo-countries.html", "{%gstr 1151}");
 	goNext();
 }
 
 function startDeleteCountry()
 {
     scriptObject.clearHistory();
-    setCurrTitle("Edit Countries");
+    setCurrTitle("{%gstr 1161}");
 	saveString("ppx", "");
 	saveString("locationtype", "entered");
-	addFutureFile2("dlg-country.html", "Choose Country");
-	addFutureFile2("dlg-confirm-del-country.html", "Confirm Delete");
+	addFutureFile2("dlg-country.html", "{%gstr 1063}");
+	addFutureFile2("dlg-confirm-del-country.html", "{%gstr 1064}");
 	goNext();
 }
 
@@ -44,13 +44,13 @@ function startDeleteCountry()
 
 <body>
 
-<h1>Countries</h1>
+<h1>{%gstr 312}</h1>
 
 <table style='border:0px' width="100%" cellspacing=8 cellpadding=8>
 
 <script type="text/javascript">
-writeChoiceWithAction("Add New Country", "t0", "startAddCountry();");
-writeChoiceWithAction("Rename existing", "t1", "startRenameCountry();");
+writeChoiceWithAction("{%gstr 1162}", "t0", "startAddCountry();");
+writeChoiceWithAction("{%gstr 1151}", "t1", "startRenameCountry();");
 //writeChoiceWithAction("Remove", "t2", "startDeleteCountry();");
 </script>
 
@@ -58,7 +58,7 @@ writeChoiceWithAction("Rename existing", "t1", "startRenameCountry();");
 
 <script type="text/javascript">
 writeNavigStart();
-writeNavigItem("Main Menu", "window.location.href=\"mainmenu.html\"");
+writeNavigItem("{%gstr 1054}", "window.location.href=\"mainmenu.html\"");
 writeNavigEnd();
 </script>
 

@@ -95,22 +95,23 @@ setInterval(checkName, 300);
 
 <body>
 
-<h1>Find Timezone</h1>
+<h1>{%gstr 1048}</h1>
 
-<p>Select criteria for finding a timezone</p>
+<p>{%gstr 1048}</p>
 
 <select id='fldCriteria' onchange='onCriteriaChanged();'>
-  <option value='0'>by name of timezone</option>
-  <option value='1'>by offset from UTC</option>
+  <option value='0'>{%gstr 1050}</option>
+  <option value='1'>{%gstr 1051}</option>
 </select>
 
 <div id='specName'>
-<h2>Timezone name (part)</h2>
+<h2>{%gstr 283} ({%gstr 1052})</h2>
+<p>{%gstr 1053}</p>
 <p><input type="text" id="fldTitle" value="" onchange='onValueChanged();'>
 </div>
 
 <div id='specOffset'>
-<h2>Tithi</h2>
+<h2>{%gstr 281}</h2>
 <select id='fldOffset' onchange='onValueChanged();'>
 <script>
 	var list = scriptObject.getTimezoneOffsets().split("<line>");
@@ -135,8 +136,8 @@ setInterval(checkName, 300);
 onCriteriaChanged();
 
 writeNavigStart();
-writeNavigItem("Main Menu", "window.location.href=\"mainmenu.html\"");
-writeNavigItem("{%string leftArrow} {%title -1}", "goPrev();");
+writeNavigItem("{%gstr 1054}", "window.location.href=\"mainmenu.html\"");
+writeNavigItem("{%string leftArrow} {%title -1}", "goBack();");
 writeNavigItem("{%string rightArrow} {%title +1}", "onSave();goNext();");
 writeNavigEnd();
 </script>

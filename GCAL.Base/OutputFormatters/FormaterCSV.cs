@@ -54,11 +54,11 @@ namespace GCAL.Base
                             dayText.Append(" ");
                             if (pvd.nMahadvadasiType == GPConstants.EV_NULL)
                             {
-                                dayText.Append(getSharedString(58));
+                                dayText.Append(getSharedStringHtml(58));
                             }
                             else
                             {
-                                dayText.Append(getSharedString(59));
+                                dayText.Append(getSharedStringHtml(59));
                             }
                         }
                     }
@@ -98,7 +98,7 @@ namespace GCAL.Base
 
                     if (/*GetShowSetVal(16) == 1 &&*/ pvd.sankranti_zodiac >= 0)
                     {
-                        str = string.Format("{0} {1}; ", GPSankranti.getName(pvd.sankranti_zodiac), getSharedString(56));
+                        str = string.Format("{0} {1}; ", GPSankranti.getName(pvd.sankranti_zodiac), getSharedStringHtml(56));
                         dayText.Append(str);
                     }
 
@@ -122,7 +122,7 @@ namespace GCAL.Base
                         {
                             if (prevd.astrodata.nMasa != pvd.astrodata.nMasa)
                             {
-                                str = string.Format("{0} {1} {2}", getSharedString(780), GPMasa.GetName(pvd.astrodata.nMasa), getSharedString(22));
+                                str = string.Format("{0} {1} {2}", getSharedStringHtml(780), GPMasa.GetName(pvd.astrodata.nMasa), getSharedStringHtml(22));
                                 dayText.Append(str);
                                 dayText.Append("; ");
                             }
@@ -131,7 +131,7 @@ namespace GCAL.Base
                         {
                             if (nextd.astrodata.nMasa != pvd.astrodata.nMasa)
                             {
-                                str = string.Format("{0} {1} {2}", getSharedString(781), GPMasa.GetName(pvd.astrodata.nMasa), getSharedString(22));
+                                str = string.Format("{0} {1} {2}", getSharedStringHtml(781), GPMasa.GetName(pvd.astrodata.nMasa), getSharedStringHtml(22));
                                 dayText.Append(str);
                                 dayText.Append("; ");
                             }

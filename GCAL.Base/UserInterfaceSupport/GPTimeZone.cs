@@ -63,6 +63,14 @@ namespace GCAL.Base
             public int startYear;
             public int endYear;
             public int OffsetSeconds;
+
+            public int OffsetInMinutes
+            {
+                get { return OffsetSeconds / 60; }
+                set { OffsetSeconds = value * 60; }
+            }
+
+
             public RuleSpec startDay = new RuleSpec();
             public RuleSpec endDay = new RuleSpec();
 
@@ -89,7 +97,7 @@ namespace GCAL.Base
 
             public bool Contains(int nYear)
             {
-                return (startYear >= nYear && endYear <= nYear);
+                return (startYear <= nYear && endYear >= nYear);
             }
 
             public bool Contains(DateTime ut)
@@ -127,6 +135,12 @@ namespace GCAL.Base
             // new timezone offset relative to UTC in seconds
             public int OffsetInSeconds = 0;
 
+            public int OffsetInMinutes
+            {
+                get { return OffsetInSeconds / 60; }
+                set { OffsetInSeconds = value * 60; }
+            }
+
             public bool Contains(DateTime time)
             {
                 return startDate <= time && endDate > time;
@@ -162,6 +176,12 @@ namespace GCAL.Base
         private Transition lastActiveTransition = null;
         private Rule lastActiveRule = null;
 
+
+        public int OffsetInMinutes
+        {
+            get { return OffsetSeconds / 60; }
+            set { OffsetSeconds = value * 60; }
+        }
 
         public double getOffsetHours()
         {
@@ -292,18 +312,17 @@ namespace GCAL.Base
             return DstUsed;
         }
 
-        public double BiasHoursForDate(GPGregorianTime vc)
+        public int BiasSecondsForDate(GPGregorianTime vc)
         {
-            Rule rule = FindActiveRule(vc.getLocalTime());
+            Rule rule = FindActiveRule(vc.getLocalTimeRaw());
             if (rule != null)
-                return Convert.ToDouble(rule.OffsetSeconds) / 3600.0;
+                return rule.OffsetSeconds - OffsetSeconds;
 
-            Transition trans = FindActiveTransition(vc.getLocalTime());
+            Transition trans = FindActiveTransition(vc.getLocalTimeRaw());
             if (trans != null)
-                return Convert.ToDouble(trans.OffsetInSeconds - OffsetSeconds) / 3600.0;
+                return trans.OffsetInSeconds - OffsetSeconds;
 
-
-            return 0.0;
+            return 0;
         }
 
         public bool DaylightSavingInEFfect(GPGregorianTime vc)
@@ -367,6 +386,175 @@ namespace GCAL.Base
             bool t2 = DaylightSavingInEFfect(vcPrevDay);
 
             return (t1 ? (t2 ? 2 : 1) : (t2 ? 3 : 0));
+        }
+
+        public DateTime dateFromParts(string a, string b, string c, string d)
+        {
+            try
+            {
+                return new DateTime(int.Parse(a), int.Parse(b), int.Parse(c), int.Parse(d), 0, 0);
+            }
+            catch
+            {
+                return DateTime.Now;
+            }
+        }
+
+        /// <summary>
+        /// Reading data of time zone into this object
+        /// </summary>
+        /// <param name="tzdata"></param>
+        public void initWithData(string tzdata)
+        {
+            string[] sepSep = new string[] { "<sep>" };
+            string[] sepTr = new string[] { "<tr>" };
+            string[] sepR = new string[] { "<r>" };
+            string[] data = tzdata.Split(sepSep, StringSplitOptions.None);
+
+            if (data.Length > 4)
+            {
+                Name = data[0];
+                int.TryParse(data[1], out OffsetSeconds);
+                NormalAbbr = data[2];
+                DstAbbr = data[3];
+                DstUsed = data[4].Equals("1");
+            }
+
+            if (DstUsed)
+            {
+                if (data.Length > 5)
+                {
+                    Transitions.Clear();
+                    string[] transListStr = data[5].Split(sepTr, StringSplitOptions.None);
+                    foreach (string line in transListStr)
+                    {
+                        string[] p = line.Split(sepR, StringSplitOptions.None);
+                        if (p.Length == 10)
+                        {
+                            Transition trans = new Transition();
+                            trans.startDate = dateFromParts(p[1], p[2], p[3], p[4]);
+                            trans.endDate = dateFromParts(p[5], p[6], p[7], p[8]);
+                            trans.OffsetInSeconds = 0;
+                            int.TryParse(p[9], out trans.OffsetInSeconds);
+                            trans.OffsetInSeconds *= 60; // because input data has offset in minutes
+                            trans.OffsetInSeconds += OffsetSeconds;
+                            Transitions.Add(trans);
+                        }
+                    }
+                }
+
+                if (data.Length > 6)
+                {
+                    Rules.Clear();
+                    string[] rulesListStr = data[6].Split(sepTr, StringSplitOptions.None);
+                    foreach (string line in rulesListStr)
+                    {
+                        string[] p = line.Split(sepR, StringSplitOptions.None);
+                        if (p.Length == 12)
+                        {
+                            Rule rule = new Rule();
+                            rule.startYear = int.Parse(p[1]);
+                            rule.startDay.Month = int.Parse(p[2]);
+                            rule.startDay.WeekOfMonth = int.Parse(p[3]);
+                            rule.startDay.DayOfWeek = int.Parse(p[4]);
+                            rule.startDay.Hour = int.Parse(p[5]);
+                            rule.endYear = int.Parse(p[6]);
+                            rule.endDay.Month = int.Parse(p[7]);
+                            rule.endDay.WeekOfMonth = int.Parse(p[8]);
+                            rule.endDay.DayOfWeek = int.Parse(p[9]);
+                            rule.endDay.Hour = int.Parse(p[10]);
+                            rule.OffsetSeconds = int.Parse(p[11]) * 60 + OffsetSeconds;
+                            Rules.Add(rule);
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Joining list of strings with given separator string.
+        /// </summary>
+        /// <param name="list">List of strings, can be empty or null.</param>
+        /// <param name="sep"></param>
+        /// <returns></returns>
+        public string joinList(List<string> list, string sep)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            if (list != null)
+            {
+                if (list.Count > 0)
+                    sb.Append(list[0]);
+                for (int i = 1; i < list.Count; i++)
+                {
+                    sb.Append(sep);
+                    sb.Append(list[i]);
+                }
+            }
+
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// Generates string representation of time zone data for easy transition between Javascript and this object.
+        /// </summary>
+        /// <returns></returns>
+        public string getStringData()
+        {
+            int ids = 1;
+            List<string> data = new List<string>();
+            List<string> tr = new List<string>();
+            List<string> rul = new List<string>();
+            List<string> tmp = new List<string>();
+
+
+            foreach (Transition trans in Transitions)
+            {
+                tmp.Clear();
+                tmp.Add(ids.ToString());
+                ids++;
+                tmp.Add(trans.startDate.Year.ToString());
+                tmp.Add(trans.startDate.Month.ToString());
+                tmp.Add(trans.startDate.Day.ToString());
+                tmp.Add(trans.startDate.Hour.ToString());
+                tmp.Add(trans.endDate.Year.ToString());
+                tmp.Add(trans.endDate.Month.ToString());
+                tmp.Add(trans.endDate.Day.ToString());
+                tmp.Add(trans.endDate.Hour.ToString());
+                // BIAS for this transition in minutes
+                tmp.Add((trans.OffsetInMinutes - OffsetInMinutes).ToString());
+                tr.Add(joinList(tmp, "<r>"));
+            }
+
+            foreach (Rule rule in Rules)
+            {
+                tmp.Clear();
+                tmp.Add(ids.ToString());
+                ids++;
+                tmp.Add(rule.startYear.ToString());
+                tmp.Add(rule.startDay.Month.ToString());
+                tmp.Add(rule.startDay.WeekOfMonth.ToString());
+                tmp.Add(rule.startDay.DayOfWeek.ToString());
+                tmp.Add(rule.startDay.Hour.ToString());
+                tmp.Add(rule.endYear.ToString());
+                tmp.Add(rule.endDay.Month.ToString());
+                tmp.Add(rule.endDay.WeekOfMonth.ToString());
+                tmp.Add(rule.endDay.DayOfWeek.ToString());
+                tmp.Add(rule.endDay.Hour.ToString());
+                // BIAS for this rule in minutes
+                tmp.Add((rule.OffsetInMinutes - OffsetInMinutes).ToString());
+                rul.Add(joinList(tmp, "<r>"));
+            }
+
+            data.Add(Name);
+            data.Add(OffsetSeconds.ToString());
+            data.Add(NormalAbbr);
+            data.Add(DstAbbr);
+            data.Add(DstUsed ? "1" : "0");
+            data.Add(joinList(tr, "<tr>"));
+            data.Add(joinList(rul, "<tr>"));
+
+            return joinList(data, "<sep>");
         }
     }
 }

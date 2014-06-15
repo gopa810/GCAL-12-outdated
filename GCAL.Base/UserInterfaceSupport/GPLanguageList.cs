@@ -10,6 +10,8 @@ namespace GCAL.Base
     public class GPLanguageList
     {
         public List<GPLanguage> languages = new List<GPLanguage>();
+        public int currentLanguageId = -1;
+
         private static GPLanguage currLang = null;
         private static GPLanguage defLang = null;
         private static GPLanguageList _sharedList = null;
@@ -41,6 +43,18 @@ namespace GCAL.Base
             currLang = value;
         }
 
+        public void setCurrentLanguageId(int id)
+        {
+            GPUserDefaults.SetIntForKey("gcal.current.language", id);
+            currentLanguageId = id;
+            GPLanguage lan = findLanguageWithId(id);
+            if (lan != null)
+            {
+                lan.loadFile(lan.LanguageFile);
+                GPStrings.setSharedStrings(lan.getStrings());
+            }
+        }
+
         public static GPLanguage getDefaultLanguage()
         {
             if (defLang == null)
@@ -50,10 +64,20 @@ namespace GCAL.Base
             return defLang;
         }
 
+
+        public GPLanguage findLanguageWithId(int wid)
+        {
+            foreach (GPLanguage lan in languages)
+            {
+                if (lan.LanguageId == wid)
+                    return lan;
+            }
+            return null;
+        }
+
         private void initialize()
         {
-            languages.Add(new GPLanguage("<default>", ""));
-
+            currentLanguageId = GPUserDefaults.IntForKey("gcal.current.language", -1);
             string langFileStart = "lang\t";
             string[] files = GPFileHelper.EnumerateLanguageFiles();
             foreach (string s in files)
@@ -63,7 +87,18 @@ namespace GCAL.Base
                     string line = reader.ReadLine();
                     if (line != null && line.StartsWith(langFileStart))
                     {
-                        languages.Add(new GPLanguage(line.Substring(langFileStart.Length), s));
+                        GPLanguage nlang = new GPLanguage();
+                        nlang.LanguageName = line.Substring(langFileStart.Length);
+                        nlang.LanguageFile = s;
+                        line = reader.ReadLine();
+                        if (line != null && line.StartsWith("langid\t"))
+                        {
+                            if (int.TryParse(line.Substring(7), out nlang.LanguageId))
+                            {
+                                languages.Add(nlang);
+                            }
+                        }
+
                     }
                 }
             }

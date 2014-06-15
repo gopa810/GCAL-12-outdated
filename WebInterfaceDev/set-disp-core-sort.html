@@ -18,7 +18,7 @@ function onSave()
 
 <table style='border=0px' align=center cellspacing=0 cellpadding=4>
 
-<h1>Sort Core Events</h1>
+<h1>{%gstr 211}</h1>
 
 <script type="text/javascript">
 writeComboChoiceValue("{%getSelectionText core.sorttype 0}", "", "0", 0);
@@ -37,9 +37,9 @@ setNewComboChoice(getUserDefaultsInt('core.sorttype'));
 <div class="menuBarDiv">
 <table class="menuBar" align=center cellspacing=8 cellpadding=8>
 <tr>
-<td class="menuItem" onclick='onSave();window.location.href="mainmenu.html"'>Main Menu</td>
-<td class="menuItem" onclick='onSave();window.location.href="set-disp.html"'>Display Settings</td>
-<td class="menuItem" onclick='onSave();window.location.href="set-disp-core.html"'>Core Events Settings</td>
+<td class="menuItem" onclick='onSave();window.location.href="mainmenu.html"'>{%gstr 1054}</td>
+<td class="menuItem" onclick='onSave();window.location.href="set-disp.html"'>{%gstr 235}</td>
+<td class="menuItem" onclick='onSave();window.location.href="set-disp-core.html"'>{%gstr 972}</td>
 </tr>
 </table>
 </div>

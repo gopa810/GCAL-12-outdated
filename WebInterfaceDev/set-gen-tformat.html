@@ -19,7 +19,7 @@ function onSave()
 
 <table style='border=0px' align=center cellspacing=0 cellpadding=4>
 
-<h1>Time Format</h1>
+<h1>{%gstr 232}</h1>
 
 <script type="text/javascript">
 writeComboChoiceValue("{%getSelectionText gen.timeformat 0}", "09:33 AM, 01:45 PM, ...", "0", 0);
@@ -38,8 +38,8 @@ setNewComboChoice(getUserDefaultsInt('gen.timeformat'));
 <div class="menuBarDiv">
 <table class="menuBar" align=center cellspacing=8 cellpadding=8>
 <tr>
-<td class="menuItem" onclick='onSave();window.location.href="mainmenu.html"'>Main Menu</td>
-<td class="menuItem" onclick='onSave();window.location.href="set-general.html"'>General Settings</td>
+<td class="menuItem" onclick='onSave();window.location.href="mainmenu.html"'>{%gstr 1054}</td>
+<td class="menuItem" onclick='onSave();window.location.href="set-general.html"'>{%gstr 390}</td>
 </tr>
 </table>
 </div>

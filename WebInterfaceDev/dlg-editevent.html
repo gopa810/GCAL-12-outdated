@@ -69,19 +69,19 @@ function onTypeChange()
 
 <h1>{%title 0}</h1>
 
-<h2>Event Title</h2>
-<p width=50%>Enter title for event (mandatory)</p>
+<h2>{%gstr 315}</h2>
+<p width=50%>{%gstr 1083}</p>
 <p><input type="text" id="fldTitle" value="">
 
-<h2>Event Type</h2>
+<h2>{%gstr 1082}</h2>
 <select onchange='onTypeChange();' id='fldEventType'>
-  <option value='0'>Based on Tithi</option>
-  <option value='1'>Based on Sankranti</option>
-  <option value='2'>Based on other Event</option>
+  <option value='0'>{%gstr 314}</option>
+  <option value='1'>{%gstr 316}</option>
+  <option value='2'>{%gstr 317}</option>
 </select>
 
 <div id='specTithi'>
-<h2>Tithi</h2>
+<h2>{%gstr 13}</h2>
 <select id='fldTithi'>
 <script>
   for(i= 0; i < 30; i++)
@@ -93,7 +93,7 @@ function onTypeChange()
 </script>
 </select>
 
-<h2>Masa</h2>
+<h2>{%gstr 22}</h2>
 <select id='fldMasa'>
 <script>
   for(i= 0; i < 12; i++)
@@ -108,7 +108,7 @@ function onTypeChange()
 </div>
 
 <div id='specSank'>
-<h2>Sankranti</h2>
+<h2>{%gstr 56}</h2>
 <select id='fldSankranti'>
 <script>
   for(i= 0; i < 12; i++)
@@ -120,7 +120,7 @@ function onTypeChange()
 </script>
 </select>
 
-<h2>Offset</h2>
+<h2>{%gstr 281}</h2>
 <select id='fldOffset1'>
 <script>
   for(i= -4; i < 5; i++)
@@ -136,7 +136,7 @@ function onTypeChange()
 </div>
 
 <div id='specRef'>
-<h2>Event</h2>
+<h2>{%gstr 1084}</h2>
 <select id='fldEventRef'>
 <script>
 var events = scriptObject.getSpecEventsList();
@@ -156,7 +156,7 @@ var line = [];
 </script>
 </select>
 
-<h2>Offset</h2>
+<h2>{%gstr 281}</h2>
 <select id='fldOffset2'>
 <script>
   for(i= -4; i < 5; i++)
@@ -170,13 +170,13 @@ var line = [];
 
 </div>
 
-<h2>Fast Subject</h2>
-<p>The name of person or subject this event is relevant for.
+<h2>{%gstr 275}</h2>
+<p>{%gstr 1085}
 <p><input type="text" id="fldFastSubject">
 
-<h2>Fast Type</h2>
+<h2>{%gstr 276}</h2>
 <select id='fldFastType'>
-  <option id='0'>None</option>
+  <option id='0'>{%gstr 204}</option>
 <script>
   
   for(i = 1; i < 7; i++)
@@ -188,7 +188,7 @@ var line = [];
 </script>
 </select>
 
-<h2>Event class</h2>
+<h2>{%gstr 277}</h2>
 <select id='fldEventClass'>
 <script>
   for(i = 0; i < 7; i++)
@@ -200,15 +200,15 @@ var line = [];
 </script>
 </select>
 
-<h2>Since the year...</h2>
-<p>Gregorian year of the first occurence of this event. Put here -10000 if you want to disable the calculation of anniversary.
+<h2>{%gstr 280}</h2>
+<p>{%gstr 1086}</p>
 <p><input type="number" id="fldSinceYear">
 
-<h2>Visibility</h2>
-<p>Select <b>visible</b> if this event should be visible in calendar results.
+<h2>{%gstr 1087}</h2>
+<p>{%gstr 1088}
 <select id='fldVisibility'>
-  <option value='0'>Not visible</option>
-  <option value='1'>Visible</option>
+  <option value='0'>{%gstr 1089}</option>
+  <option value='1'>{%gstr 1090}</option>
 </select>
 
 
@@ -218,7 +218,7 @@ onTypeChange();
 onLoad();
 
 writeNavigStart();
-writeNavigItem("Main Menu", "window.location.href=\"mainmenu.html\"");
+writeNavigItem("{%gstr 1054}", "window.location.href=\"mainmenu.html\"");
 writeNavigItem("{%string leftArrow} {%title -1}", "goBack()");
 writeNavigItem("{%title +1} {%string rightArrow}", "onSave();goNext()");
 writeNavigEnd();

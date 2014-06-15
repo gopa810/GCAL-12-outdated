@@ -16,14 +16,14 @@ function onSave()
 <body>
 
 <center>
-<h1>Rename country</h1>
-<p width=50%>Enter new name for country.</p>
+<h1>{%gstr 1151}</h1>
+<p width=50%>{%gstr 1152}</p>
 <table>
 	<tr>
-		<td><p>Old name:</td><td>{%string locationcountry}</td>
+		<td><p>{%gstr 1153}:</td><td>{%string locationcountry}</td>
 	</tr>
 	<tr>
-		<td><p>New name:</td><td><input type="text" id="textField0" value="{%string locpart}"></td>
+		<td><p>{%gstr 1154}:</td><td><input type="text" id="textField0" value="{%string locpart}"></td>
 	</tr>
 </table>
 </center>
@@ -31,10 +31,11 @@ function onSave()
 
 <script type="text/javascript">
 writeNavigStart();
-writeNavigItem("Main Menu", "window.location.href=\"mainmenu.html\"");
+writeNavigItem("{%gstr 1054}", "window.location.href=\"mainmenu.html\"");
 writeNavigItem("{%string leftArrow} {%title -1}", "goBack()");
 writeNavigItem("{%title +1}", "onSave();goNext()");
 writeNavigEnd();
 </script>
 
-
+</body>
+</html>

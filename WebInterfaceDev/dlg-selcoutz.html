@@ -6,7 +6,7 @@
 
 <body>
 
-<h1>Select Timezone</h1>
+<h1>{%gstr 1061}</h1>
 
 <h2>{%string locationcountry}</h2>
 
@@ -46,7 +46,7 @@ document.write(str);
 
 <script type="text/javascript">
 writeNavigStart();
-writeNavigItem("Main Menu", "window.location.href=\"mainmenu.html\"");
+writeNavigItem("{%gstr 1054}", "window.location.href=\"mainmenu.html\"");
 writeNavigItem("{%string leftArrow} {%title -1}", "goPrev();");
 writeNavigItem("{%string rightArrow} {%title +1}", "onSave();goNext();");
 writeNavigEnd();

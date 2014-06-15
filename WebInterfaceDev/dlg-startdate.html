@@ -9,10 +9,14 @@
 var selectedDate = new Date();
 
  var sd = '{%string startday}';
- var sm = '{%string startmonth}';
+ var sm = Number('{%string startmonth}');
  var sy = '{%string startyear}';
  
- if (sd != '' && sm != '' && sy != '')
+ if (sm > 0) {
+    sm--;
+ }
+ 
+ if (sd != '' && sy != '')
  {
      selectedDate.setFullYear(sy);
 	 selectedDate.setMonth(sm);
@@ -22,7 +26,7 @@ var selectedDate = new Date();
 function onSave()
 {
     saveString("startday", selectedDate.getDate());
-	saveString("startmonth", selectedDate.getMonth());
+	saveString("startmonth", selectedDate.getMonth() + 1);
 	saveString("startyear", selectedDate.getFullYear());
 }
 
@@ -30,7 +34,7 @@ function onSave()
 </head>
 
 <body>
-  <h1>Start Date</h1>
+  <h1>{%gstr 261}</h1>
 
   <div id='thiscal' style='text-align:center'>
   </div>
@@ -39,14 +43,14 @@ function onSave()
   <center>
   <table class="navigCal" cellpadding=8 cellspacing=8>
   <tr>
-      <td class="menuItem" onclick="setPrevMonth();calendar();">&lt; Previous month</td>
-	  <td class="menuItem" onclick="selectedDate.setDate(1);calendar();">Start Month</td>
-	  <td class="menuItem" onclick="setNextMonth();calendar();">Next month &gt;</td>
+      <td class="menuItem" onclick="setPrevMonth();calendar();">{%string leftArrow} {%gstr 1055}</td>
+	  <td class="menuItem" onclick="selectedDate.setDate(1);calendar();">{%gstr 1059}</td>
+	  <td class="menuItem" onclick="setNextMonth();calendar();">{%gstr 1056} {%string rightArrow}</td>
   </tr>
   <tr>
-	  <td class="menuItem" onclick="setPrevYear();calendar();">&lt; Previous year</td>
-	  <td class="menuItem" onclick="selectedDate.setDate(1);selectedDate.setMonth(0);calendar();">Start Year</td>
-	  <td class="menuItem" onclick="setNextYear();calendar();">Next year &gt;</td>
+	  <td class="menuItem" onclick="setPrevYear();calendar();">{%string leftArrow} {%gstr 1057}</td>
+	  <td class="menuItem" onclick="selectedDate.setDate(1);selectedDate.setMonth(0);calendar();">{%gstr 1060}</td>
+	  <td class="menuItem" onclick="setNextYear();calendar();">{%gstr 1058} {%string rightArrow}</td>
   </tr>
   </table>
   
@@ -56,7 +60,7 @@ function onSave()
   
 <script type="text/javascript">
 writeNavigStart();
-writeNavigItem("Main Menu", "window.location.href=\"mainmenu.html\"");
+writeNavigItem("{%gstr 1054}", "window.location.href=\"mainmenu.html\"");
 writeNavigItem("{%string leftArrow} {%title -1}", "onSave();goBack()");
 writeNavigItem("{%title +1} {%string rightArrow}", "onSave();goNext()");
 writeNavigEnd();

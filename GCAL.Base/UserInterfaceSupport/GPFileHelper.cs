@@ -12,6 +12,11 @@ namespace GCAL.Base
     {
         private static string VersionString = string.Empty;
 
+        public static string getAppExecutableDirectory()
+        {
+            return Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+        }
+
         public static string getAppDataDirectory()
         {
             return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "GCAL");
@@ -30,18 +35,20 @@ namespace GCAL.Base
         public static string[] EnumerateLanguageFiles()
         {
             string languageFilesDirectory = getLanguageDirectory();
-            List<String> list = new List<string>();
+            string myDir = Path.Combine(getAppExecutableDirectory(), "languages");
+            List<string> languages = new List<string>();
 
             if (Directory.Exists(languageFilesDirectory))
             {
-                return Directory.GetFiles(languageFilesDirectory);
-            }
-            else
-            {
-                Directory.CreateDirectory(languageFilesDirectory);
+                languages.AddRange(Directory.GetFiles(languageFilesDirectory));
             }
 
-            return new string[] {};
+            if (Directory.Exists(myDir))
+            {
+                languages.AddRange(Directory.GetFiles(myDir));
+            }
+
+            return languages.ToArray();
         }
 
         public static string UniqueFile(string dir, string filePrefix, string fileSuffix)

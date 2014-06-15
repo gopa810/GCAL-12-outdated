@@ -6,31 +6,31 @@
 
 <body>
 
-<h1>Display Settings</h1>
+<h1>{%gstr 1033}</h1>
 
 <table style='border:0px' width="100%" cellspacing=8 cellpadding=8>
 
 <script type="text/javascript">
 
 var actionForFindExisting = "saveString(\"locationtype{%string ppx}\", \"selected\");";
-actionForFindExisting += "insertFutureFile2(\"dlg-locsel.html\", \"Select Location\");";
-actionForFindExisting += "insertFutureFile2(\"dlg-loc.html\", \"Location Name\");";
+//actionForFindExisting += "insertFutureFile2(\"dlg-locsel.html\", \"Select Location\");";
+actionForFindExisting += "insertFutureFile2(\"dlg-selloc.html\", \"{%gstr 1039}\");";
 actionForFindExisting += "scriptObject.goNextExt(2);";
 
 var actionForEnterNew = "saveString(\"locationtype{%string ppx}\", \"entered\");";
-actionForEnterNew += "insertFutureFile2(\"dlg-selcoutz.html\", \"Select Timezone\");";
-actionForEnterNew += "insertFutureFile2(\"dlg-enterlatitude.html\", \"Enter Latitude\");";
-actionForEnterNew += "insertFutureFile2(\"dlg-enterlongitude.html\", \"Enter Longitude\");";
-actionForEnterNew += "insertFutureFile2(\"dlg-country.html\", \"Enter Country\");";
-actionForEnterNew += "insertFutureFile2(\"dlg-locfull.html\", \"Location Full Name\");";
+actionForEnterNew += "insertFutureFile2(\"dlg-selcoutz.html\", \"{%gstr 1040}\");";
+actionForEnterNew += "insertFutureFile2(\"dlg-enterlatitude.html\", \"{%gstr 1041}\");";
+actionForEnterNew += "insertFutureFile2(\"dlg-enterlongitude.html\", \"{%gstr 1042}\");";
+actionForEnterNew += "insertFutureFile2(\"dlg-country.html\", \"{%gstr 1043}\");";
+actionForEnterNew += "insertFutureFile2(\"dlg-locfull.html\", \"{%gstr 1044}\");";
 actionForEnterNew += "scriptObject.goNextExt(5);";
 
 var actionForMyLoc = "saveString(\"locationtype{%string ppx}\", \"mylocation\");";
 actionForMyLoc += "goNext();";
 
-writeChoiceWithAction("Find Existing", "t0", actionForFindExisting);
-writeChoiceWithAction("Enter Coordinates", "t1", actionForEnterNew);
-writeChoiceWithAction("Use \"My Location\"", "t2", actionForMyLoc);
+writeChoiceWithAction("{%gstr 1045}", "t0", actionForFindExisting);
+writeChoiceWithAction("{%gstr 1046}", "t1", actionForEnterNew);
+writeChoiceWithAction("{%gstr 1047}", "t2", actionForMyLoc);
 
 </script>
 
@@ -38,7 +38,7 @@ writeChoiceWithAction("Use \"My Location\"", "t2", actionForMyLoc);
 
 <script type="text/javascript">
 writeNavigStart();
-writeNavigItem("Main Menu", "window.location.href=\"mainmenu.html\"");
+writeNavigItem("{%gstr 1054}", "window.location.href=\"mainmenu.html\"");
 writeNavigEnd();
 </script>
 

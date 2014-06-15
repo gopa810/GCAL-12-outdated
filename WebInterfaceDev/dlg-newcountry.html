@@ -49,29 +49,29 @@ setInterval(checkValues, 300);
 
 <center>
 <h1>{%title 0}</h1>
-<p width=50%>Enter new unique country code and name of the country.</p>
+<p width=50%>{%gstr 1146}</p>
 <table>
 	<tr>
-		<td>Country Code:</td>
+		<td>{%gstr 253}:</td>
 		<td><input type="text" id="textField0" value=""></td>
 	</tr>
 	<tr>
-		<td>Country Name:</td>
+		<td>{%gstr 254}:</td>
 		<td><input type="text" id="textField1" value=""></td>
 	</tr>
 </table>
 <ul>
-<li id='err1' style='display:none'><span style='color:red'>Country code may not be empty.</span></p>
-<li id='err2' style='display:none'><span style='color:red'>Country name may not be empty.</span></p>
-<li id='err3' style='display:none'><span style='color:red'>Country code already in use.</span></p>
-<li id='err4' style='display:none'><span style='color:red'>Country name already in use.</span></p>
+<li id='err1' style='display:none'><span style='color:red'>{%gstr 1147}</span></p>
+<li id='err2' style='display:none'><span style='color:red'>{%gstr 1148}</span></p>
+<li id='err3' style='display:none'><span style='color:red'>{%gstr 1149}</span></p>
+<li id='err4' style='display:none'><span style='color:red'>{%gstr 1150}</span></p>
 </ul>
 </center>
 
 
 <script type="text/javascript">
 writeNavigStart();
-writeNavigItem("Main Menu", "window.location.href=\"mainmenu.html\"");
+writeNavigItem("{%gstr 1054}", "window.location.href=\"mainmenu.html\"");
 writeNavigItem("{%string leftArrow} {%title -1}", "goBack()");
 writeNavigItemWithId("{%string rightArrow} {%title +1}", "onSave();goNext();", "savebtn");
 writeNavigEnd();

@@ -77,8 +77,18 @@ function calendar() {
   var year = date.getFullYear();
   
  
-  var months = new Array('January','February','March','April','May','June','July','August','September','October','November','December');
-  var weekDay = new Array('Mo','Tu','We','Th','Fr','Sa','Su');
+  var months = [];
+  
+  for (i = 0; i < 12; i++) {
+    months.push(scriptObject.gstr(i + 760));
+  }
+//  new Array('January','February','March','April','May','June','July','August','September','October','November','December');
+  var weekDay = [];
+  //new Array('Mo','Tu','We','Th','Fr','Sa','Su');
+  for (i = 0; i < 6; i++) {
+    weekDay.push(scriptObject.gstr(i + 151));
+  }
+  weekDay.push(scriptObject.gstr(150));
   var days_in_this_month = getMonthDays(year,month);
 
   // Create the basic Calendar structure.

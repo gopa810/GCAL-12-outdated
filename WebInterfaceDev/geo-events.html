@@ -8,35 +8,35 @@
 function startAddEvent()
 {
     scriptObject.clearHistory();
-    setCurrTitle("Edit Events");
+    setCurrTitle("{%gstr 1163}");
 	saveString("ppx", "");
 	saveString("locationtype", "entered");
-	addFutureFile2("dlg-editevent.html?preaction=initnewevent", "New Event");
-	addFutureFile2("geo-events.html?preaction=newevent", "Save");
+	addFutureFile2("dlg-editevent.html?preaction=initnewevent", "{%gstr 1164}");
+	addFutureFile2("geo-events.html?preaction=newevent", "{%gstr 1062}");
 	goNext();
 }
 
 function startEditEvent()
 {
     scriptObject.clearHistory();
-    setCurrTitle("Edit Events");
+    setCurrTitle("{%gstr 1163}");
 	saveString("ppx", "");
 	saveString("locationtype", "entered");
-	addFutureFile2("dlg-findevent.html", "Find Event");
-	addFutureFile2("dlg-editevent.html?preaction=loadeventid&disableeventtype=1", "Edit Event");
-	addFutureFile2("geo-events.html?preaction=savechangedevent&disableeventtype=0", "Save");
+	addFutureFile2("dlg-findevent.html", "{%gstr 110}");
+	addFutureFile2("dlg-editevent.html?preaction=loadeventid&disableeventtype=1", "{%gstr 1165}");
+	addFutureFile2("geo-events.html?preaction=savechangedevent&disableeventtype=0", "{%gstr 1062}");
 	goNext();
 }
 
 function startRemoveEvent()
 {
     scriptObject.clearHistory();
-    setCurrTitle("Edit Events");
+    setCurrTitle("{%gstr 1163}");
 	saveString("ppx", "");
 	saveString("locationtype", "entered");
-	addFutureFile2("dlg-findevent.html", "Find Event");
-	addFutureFile2("dlg-delevent.html?preaction=loadeventid", "Confirm Remove");
-	addFutureFile2("geo-events.html?preaction=removeeventid", "Remove");
+	addFutureFile2("dlg-findevent.html", "{%gstr 110}");
+	addFutureFile2("dlg-delevent.html?preaction=loadeventid", "{%gstr 1064}");
+	addFutureFile2("geo-events.html?preaction=removeeventid", "{%gstr 343}");
 	goNext();
 }
 
@@ -46,21 +46,21 @@ function startRemoveEvent()
 
 <body>
 
-<h1>Calendar Events</h1>
+<h1>{%gstr 1163}</h1>
 
 <table style='border:0px' width="100%" cellspacing=8 cellpadding=8>
 
 <script type="text/javascript">
-writeChoiceWithAction("New Event", "t0", "startAddEvent();");
-writeChoiceWithAction("Edit Selected", "t1", "startEditEvent();");
-writeChoiceWithAction("Remove", "t2", "startRemoveEvent();");
+writeChoiceWithAction("{%gstr 1164}", "t0", "startAddEvent();");
+writeChoiceWithAction("{%gstr 1165}", "t1", "startEditEvent();");
+writeChoiceWithAction("{%gstr 351}", "t2", "startRemoveEvent();");
 </script>
 
 </table>
 
 <script type="text/javascript">
 writeNavigStart();
-writeNavigItem("Main Menu", "window.location.href=\"mainmenu.html\"");
+writeNavigItem("{%gstr 1054}", "window.location.href=\"mainmenu.html\"");
 writeNavigEnd();
 </script>
 

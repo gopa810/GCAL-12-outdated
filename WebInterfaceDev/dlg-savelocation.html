@@ -15,13 +15,13 @@ function onSave()
 <body>
 
 <center>
-<h1>Save Location ?</h1>
-<p width=50%>Confirm that you want to save following location to the global list of locations in GCAl application.</p>
+<h1>{%gstr 1155}</h1>
+<p width=50%>{%gstr 1156}</p>
 <table>
-<tr><td>Name</td><td>{%string locationname}</td></tr>
-<tr><td>Longitude</td><td>{%string locationlongitude}</td></tr>
-<tr><td>Latitude</td><td>{%string locationlatitude}</td></tr>
-<tr><td>Timezone</td><td>{%string locationtimezone}</td></tr>
+<tr><td>{%gstr 1039}</td><td>{%string locationname}</td></tr>
+<tr><td>{%gstr 11}</td><td>{%string locationlongitude}</td></tr>
+<tr><td>{%gstr 10}</td><td>{%string locationlatitude}</td></tr>
+<tr><td>{%gstr 12}</td><td>{%string locationtimezone}</td></tr>
 </table>
 
 </center>
@@ -30,8 +30,9 @@ function onSave()
 <script type="text/javascript">
 writeNavigStart();
 writeNavigItem("{%string leftArrow} {%title -1}", "goBack()");
-writeNavigItem("Main Menu", "onSave();window.location.href=\"mainmenu.html\"");
+writeNavigItem("{%gstr 1054}", "onSave();window.location.href=\"mainmenu.html\"");
 writeNavigEnd();
 </script>
 
-
+</body>
+</html>

@@ -24,11 +24,11 @@ function startCalendar()
 {
     scriptObject.clearHistory();
     setCurrTitle("Main menu");
-	addFutureFile2("dlg-enterloc.html?ppx=", "Enter<br>Location");
+	addFutureFile2("dlg-enterloc.html?ppx=", "{%gstr 1033}");
 	//addFutureFile2("dlg-locsel.html?ppx=", "Find Location");
-	addFutureFile2("dlg-startdate.html", "Start Date");
-	addFutureFile2("dlg-endperiod.html", "End Date");
-	addFutureFile2("calendar.html", "Calculate");
+	addFutureFile2("dlg-startdate.html", "{%gstr 261}");
+	addFutureFile2("dlg-endperiod.html", "{%gstr 262}");
+	addFutureFile2("calendar.html", "{%gstr 387}");
 	goNext();
 }
 
@@ -36,11 +36,11 @@ function startCoreEvents()
 {
     scriptObject.clearHistory();
     setCurrTitle("Main menu");
-	addFutureFile2("dlg-enterloc.html?ppx=", "Enter Location");
+	addFutureFile2("dlg-enterloc.html?ppx=", "{%gstr 1033}");
 	//addFutureFile2("dlg-locsel.html?ppx=", "Find Location");
-	addFutureFile2("dlg-startdate.html", "Start Date");
-	addFutureFile2("dlg-endperiod.html", "End Date");
-	addFutureFile2("coreevents.html", "Calculate");
+	addFutureFile2("dlg-startdate.html", "{%gstr 261}");
+	addFutureFile2("dlg-endperiod.html", "{%gstr 262}");
+	addFutureFile2("coreevents.html", "{%gstr 387}");
 	goNext();
 }
 
@@ -48,11 +48,11 @@ function startAppDay()
 {
     scriptObject.clearHistory();
     setCurrTitle("Main menu");
-	addFutureFile2("dlg-enterloc.html?ppx=", "Enter Location");
+	addFutureFile2("dlg-enterloc.html?ppx=", "{%gstr 1033}");
 	//addFutureFile2("dlg-locsel.html?ppx=", "Find Location");
-	addFutureFile2("dlg-startdate.html", "Event Date");
-	addFutureFile2("dlg-time.html", "Event Time");
-	addFutureFile2("appday.html", "Calculate");
+	addFutureFile2("dlg-startdate.html", "{%gstr 1036}");
+	addFutureFile2("dlg-time.html", "{%gstr 1034}");
+	addFutureFile2("appday.html", "{%gstr 387}");
 	goNext();
 }
 
@@ -61,11 +61,11 @@ function startMasaList()
 {
     scriptObject.clearHistory();
     setCurrTitle("Main menu");
-	addFutureFile2("dlg-enterloc.html?ppx=", "Enter Location");
+	addFutureFile2("dlg-enterloc.html?ppx=", "{%gstr 1033}");
 	//addFutureFile2("dlg-locsel.html?ppx=", "Find Location");
-	addFutureFile2("dlg-startyear.html", "Start Year");
-	addFutureFile2("dlg-yearcount.html", "Count of Years");
-	addFutureFile2("masalist.html", "Calculate");
+	addFutureFile2("dlg-startyear.html", "{%gstr 305}");
+	addFutureFile2("dlg-yearcount.html", "{%gstr 1035}");
+	addFutureFile2("masalist.html", "{%gstr 387}");
 	goNext();
 }
 
@@ -73,11 +73,11 @@ function startCalendarPlusCore()
 {
     scriptObject.clearHistory();
     setCurrTitle("Main menu");
-	addFutureFile2("dlg-enterloc.html?ppx=", "Enter Location");
+	addFutureFile2("dlg-enterloc.html?ppx=", "{%gstr 1033}");
 	//addFutureFile2("dlg-locsel.html?ppx=", "Find Location");
-	addFutureFile2("dlg-startdate.html", "Start Date");
-	addFutureFile2("dlg-endperiod.html", "End Date");
-	addFutureFile2("calcore.html", "Calculate");
+	addFutureFile2("dlg-startdate.html", "{%gstr 261}");
+	addFutureFile2("dlg-endperiod.html", "{%gstr 262}");
+	addFutureFile2("calcore.html", "{%gstr 1033}");
 	goNext();
 }
 
@@ -85,13 +85,13 @@ function startCalendar2Locs()
 {
     scriptObject.clearHistory();
     setCurrTitle("Main menu");
-	addFutureFile2("dlg-enterloc.html?ppx=a", "Enter Location A");
+	addFutureFile2("dlg-enterloc.html?ppx=a", "{%gstr 1033} A");
 	//addFutureFile2("dlg-locsel.html?ppx=a", "Find Location A");
-	addFutureFile2("dlg-enterloc.html?ppx=b", "Enter Location B");
+	addFutureFile2("dlg-enterloc.html?ppx=b", "{%gstr 1033} B");
 	//addFutureFile2("dlg-locsel.html?ppx=b", "Find Location B");
-	addFutureFile2("dlg-startdate.html?ppx=", "Start Date");
-	addFutureFile2("dlg-endperiod.html", "End Date");
-	addFutureFile2("cal2locs.html", "Calculate");
+	addFutureFile2("dlg-startdate.html?ppx=", "{%gstr 261}");
+	addFutureFile2("dlg-endperiod.html", "{%gstr 262}");
+	addFutureFile2("cal2locs.html", "{%gstr 387}");
 	goNext();
 }
 
@@ -99,8 +99,8 @@ function startSetMyLocation()
 {
     scriptObject.clearHistory();
     setCurrTitle("Main menu");
-	addFutureFile2("dlg-enterloc.html?ppx=", "Set My Location");
-	addFutureFile2("mainmenu.html?preaction=setmylocation", "OK");
+	addFutureFile2("dlg-enterloc.html?ppx=", "{%gstr 1037}");
+	addFutureFile2("mainmenu.html?preaction=setmylocation", "{%gstr 236}");
 	goNext();
 }
 
@@ -112,52 +112,53 @@ function startSetMyLocation()
 
 <div style='clear:both'>
 <hr>
-<h1>Calculate...</h1>
+<h1>{%gstr 387}...</h1>
 </div>
 
 <div>
-<div class="mainmenuicon" onclick='startCalendar()'><img src="{%homedir}/icon.png"><br>Calendar<br>&nbsp;</div>
-<div class="mainmenuicon" onclick='startCoreEvents()'><img src="{%homedir}/icon.png"><br>Core&nbsp;Events</div>
-<div class="mainmenuicon" onclick='startAppDay()'><img src="{%homedir}/icon.png"><br>Appearance<br>Day</div>
-<div class="mainmenuicon" onclick='startMasaList()'><img src="{%homedir}/icon.png"><br>Masa&nbsp;List<br>&nbsp;</div>
-<div class="mainmenuicon" onclick='resetToday();window.location.href="today.html"'><img src="{%homedir}/icon.png"><br>Today<br>&nbsp;</div>
-<div class="mainmenuicon" onclick='startCalendar2Locs()'><img src="{%homedir}/icon.png"><br>Calendar<br>compare</div>
-<div class="mainmenuicon" onclick='startCalendarPlusCore()'><img src="{%homedir}/icon.png"><br>Calendar<br>+&nbsp;Core&nbsp;Events</div>
-<div class="mainmenuicon" onclick='window.location.href="nextfest.html"'><img src="{%homedir}/icon.png"><br>Next<br>Festivals</div>
+<div class="mainmenuicon" onclick='startCalendar()'><img src="{%homedir}/icon.png"><br>{%gstr 44}</div>
+<div class="mainmenuicon" onclick='startCoreEvents()'><img src="{%homedir}/icon.png"><br>{%gstr 46}</div>
+<div class="mainmenuicon" onclick='startAppDay()'><img src="{%homedir}/icon.png"><br>{%gstr 45}</div>
+<div class="mainmenuicon" onclick='startMasaList()'><img src="{%homedir}/icon.png"><br>{%gstr 48}</div>
+<div class="mainmenuicon" onclick='resetToday();window.location.href="today.html"'><img src="{%homedir}/icon.png"><br>{%gstr 43}</div>
+<div class="mainmenuicon" onclick='startCalendar2Locs()'><img src="{%homedir}/icon.png"><br>{%gstr 389}</div>
+<div class="mainmenuicon" onclick='startCalendarPlusCore()'><img src="{%homedir}/icon.png"><br>{%gstr 388}</div>
+<div class="mainmenuicon" onclick='window.location.href="nextfest.html"'><img src="{%homedir}/icon.png"><br>{%gstr 452}</div>
+<div class="mainmenuicon" onclick='window.location.href="dlg-find.html"'><img src="{%homedir}/icon.png"><br>{%gstr 170}</div>
 </div>
 
 <div style='clear:both'>
 <hr>
-<h1>Settings</h1>
+<h1>{%gstr 372}</h1>
 </div>
 
 <div>
-<div class="mainmenuicon" onclick='window.location.href="set-disp.html"'><img src="{%homedir}/icon.png"><br>Display<br>Settings</div>
-<div class="mainmenuicon" onclick='window.location.href="set-general.html"'><img src="{%homedir}/icon.png"><br>General<br>Settings</div>
-<div class="mainmenuicon" onclick='window.location.href="set-startpage.html"'><img src="{%homedir}/icon.png"><br>Start<br>Page</div>
-<div class="mainmenuicon" onclick='startSetMyLocation();'><img src="{%homedir}/icon.png"><br>My<br>Location</div>
+<div class="mainmenuicon" onclick='window.location.href="set-disp.html"'><img src="{%homedir}/icon.png"><br>{%gstr 235}</div>
+<div class="mainmenuicon" onclick='window.location.href="set-general.html"'><img src="{%homedir}/icon.png"><br>{%gstr 390}</div>
+<div class="mainmenuicon" onclick='window.location.href="set-startpage.html"'><img src="{%homedir}/icon.png"><br>{%gstr 1038}</div>
+<div class="mainmenuicon" onclick='startSetMyLocation();'><img src="{%homedir}/icon.png"><br>{%gstr 373}</div>
+<div class="mainmenuicon" onclick='window.location.href="languages.html"'><img src="{%homedir}/icon.png"><br>{%gstr 336}</div>
 </div>
 
 <div style='clear:both'>
 <hr>
-<h1>Geodata</h1>
+<h1>{%gstr 360}</h1>
 </div>
 
 <div>
-<div class="mainmenuicon" onclick='window.location.href="geo-cities.html"'><img src="{%homedir}/icon.png"><br>Cities</div>
-<div class="mainmenuicon" onclick='window.location.href="geo-countries.html"'><img src="{%homedir}/icon.png"><br>Countries</div>
-<div class="mainmenuicon" onclick='window.location.href="geo-events.html"'><img src="{%homedir}/icon.png"><br>Calendar Events</div>
-<div class="mainmenuicon" onclick='window.location.href="geo-tzones.html"'><img src="{%homedir}/icon.png"><br>Timezones</div>
-<div class="mainmenuicon" onclick='window.location.href="geo-lang.html"'><img src="{%homedir}/icon.png"><br>Languages</div>
+<div class="mainmenuicon" onclick='window.location.href="geo-cities.html"'><img src="{%homedir}/icon.png"><br>{%gstr 311}</div>
+<div class="mainmenuicon" onclick='window.location.href="geo-countries.html"'><img src="{%homedir}/icon.png"><br>{%gstr 312}</div>
+<div class="mainmenuicon" onclick='window.location.href="geo-events.html"'><img src="{%homedir}/icon.png"><br>{%gstr 984}</div>
+<div class="mainmenuicon" onclick='window.location.href="geo-tzones.html"'><img src="{%homedir}/icon.png"><br>{%gstr 321}</div>
 </div>
 
 <div style='clear:both'>
 <hr>
-<h1>Other</h1>
+<h1>{%gstr 394}</h1>
 
 </div>
 <div>
-<div class="mainmenuicon"><img src="{%homedir}/icon.png"><br>Help</div>
+<div class="mainmenuicon" onclick='window.location.href="help.html"'><img src="{%homedir}/icon.png"><br>{%gstr 395}</div>
 </div>
 
 

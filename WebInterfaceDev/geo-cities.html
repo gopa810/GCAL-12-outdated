@@ -1,5 +1,5 @@
 <html>
-<head><title></title>
+<head><title>{%gstr 1067}</title>
 <script type="text/javascript" src="{%homedir}/shh.js"></script>
 <link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
 </head>
@@ -10,35 +10,35 @@
 function startGeoAdd()
 {
     scriptObject.clearHistory();
-    setCurrTitle("Edit Cities");
+    setCurrTitle("{%gstr 1067}");
 	saveString("ppx", "");
 	saveString("locationtype", "entered");
-	addFutureFile2("dlg-locfull.html", "Location Full Name");
-	addFutureFile2("dlg-country.html", "Choose Country");
-	addFutureFile2("dlg-enterlongitude.html", "Enter Longitude");
-	addFutureFile2("dlg-enterlatitude.html", "Enter Latitude");
-	addFutureFile2("dlg-selcoutz.html", "Enter Timezone");
-	addFutureFile2("dlg-savelocation.html", "Save");
+	addFutureFile2("dlg-locfull.html", "{%gstr 1044}");
+	addFutureFile2("dlg-country.html", "{%gstr 1063}");
+	addFutureFile2("dlg-enterlongitude.html", "{%gstr 1042}");
+	addFutureFile2("dlg-enterlatitude.html", "{%gstr 1041}");
+	addFutureFile2("dlg-selcoutz.html", "{%gstr 1061}");
+	addFutureFile2("dlg-savelocation.html", "{%gstr 1062}");
 	goNext();
 }
 
 function startGeoEdit()
 {
     scriptObject.clearHistory();
-    setCurrTitle("Edit Cities");
-	addFutureFile2("dlg-loc.html?ppx=&locationtype=selected", "Location Name");
-	addFutureFile2("dlg-locsel.html", "Select Location");
-	addFutureFile2("dlg-editlocation.html?preaction=loadlocationid", "Edit");
+    setCurrTitle("{%gstr 1067}");
+	addFutureFile2("dlg-selloc.html?ppx=&locationtype=selected", "{%gstr 249}");
+	//addFutureFile2("dlg-locsel.html", "Select Location");
+	addFutureFile2("dlg-editlocation.html?preaction=loadlocationid", "{%gstr 338}");
 	goNext();
 }
 
 function startGeoDelete()
 {
     scriptObject.clearHistory();
-    setCurrTitle("Edit Cities");
-	addFutureFile2("dlg-loc.html?ppx=&locationtype=selected", "Location Name");
-	addFutureFile2("dlg-locsel.html", "Select Location");
-	addFutureFile2("dlg-dellocation.html?preaction=loadlocationid", "Confirm Delete");
+    setCurrTitle("{%gstr 1067}");
+	addFutureFile2("dlg-selloc.html?ppx=&locationtype=selected", "{%gstr 249}");
+	//addFutureFile2("dlg-locsel.html", "Select Location");
+	addFutureFile2("dlg-dellocation.html?preaction=loadlocationid", "{%gstr 1064}");
 	goNext();
 }
 
@@ -47,21 +47,21 @@ function startGeoDelete()
 
 <body>
 
-<h1>Cities</h1>
+<h1>{%gstr 311}</h1>
 
 <table style='border:0px' width="100%" cellspacing=8 cellpadding=8>
 
 <script type="text/javascript">
-writeChoiceWithAction("Add New Location", "t0", "startGeoAdd();");
-writeChoiceWithAction("Edit existing", "t1", "startGeoEdit();");
-writeChoiceWithAction("Remove", "t2", "startGeoDelete();");
+writeChoiceWithAction("{%gstr 1066}", "t0", "startGeoAdd();");
+writeChoiceWithAction("{%gstr 1065}", "t1", "startGeoEdit();");
+writeChoiceWithAction("{%gstr 351}", "t2", "startGeoDelete();");
 </script>
 
 </table>
 
 <script type="text/javascript">
 writeNavigStart();
-writeNavigItem("Main Menu", "window.location.href=\"mainmenu.html\"");
+writeNavigItem("{%gstr 1054}", "window.location.href=\"mainmenu.html\"");
 writeNavigEnd();
 </script>
 

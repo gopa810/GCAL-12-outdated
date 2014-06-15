@@ -53,7 +53,7 @@ namespace GCAL.Base
                         {
                             if (dayText.Length > 0)
                                 dayText.Append(SPACE_BEFORE_LINE);
-                            dayText.Append(getSharedString(128));
+                            dayText.Append(getSharedStringHtml(128));
                             dayText.AppendLine();
                         }
 
@@ -76,11 +76,11 @@ namespace GCAL.Base
                             dayText.Append(" ");
                             if (pvd.nMahadvadasiType == GPConstants.EV_NULL)
                             {
-                                dayText.Append(getSharedString(58));
+                                dayText.Append(getSharedStringHtml(58));
                             }
                             else
                             {
-                                dayText.Append(getSharedString(59));
+                                dayText.Append(getSharedStringHtml(59));
                             }
                         }
                     }
@@ -112,7 +112,7 @@ namespace GCAL.Base
                             }
                             m_text.AppendLine(str2);
                             m_text.Append("SUMMARY:");
-                            m_text.Append(getSharedString(60));
+                            m_text.Append(getSharedStringHtml(60));
                             m_text.Append("\nSEQUENCE:1\nEND:VEVENT\n");
 
                         }

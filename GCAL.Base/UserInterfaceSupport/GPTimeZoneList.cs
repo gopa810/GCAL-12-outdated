@@ -99,7 +99,7 @@ namespace GCAL.Base
                         if (item.HasAttribute("dst"))
                             tzone.DstUsed = item.GetAttribute("dst").Equals("True");
 
-                        tzone.Id = LastId++;
+                        tzone.Id = getNextId();
                         foreach (XmlElement subs in item.ChildNodes)
                         {
                             if (subs.Name == "name")
@@ -152,6 +152,11 @@ namespace GCAL.Base
             return tzonesList;
         }
 
+        public int getNextId()
+        {
+            return LastId++;
+        }
+
 
         /// <summary>
         /// Create XML document as representation of complete timezone data
@@ -188,7 +193,7 @@ namespace GCAL.Base
 
                     tzoneTransNode.SetAttribute("date", trans.startDate.ToString("yyyy-MM-dd-HH-mm-ss"));
                     tzoneTransNode.SetAttribute("datend", trans.endDate.ToString("yyyy-MM-dd-HH-mm-ss"));
-                    tzoneTransNode.SetAttribute("offset", (trans.OffsetInSeconds / 60).ToString());
+                    tzoneTransNode.SetAttribute("offset", trans.OffsetInMinutes.ToString());
                 }
 
                 foreach (GPTimeZone.Rule rule in tzone.Rules)
@@ -200,7 +205,7 @@ namespace GCAL.Base
                     elem.SetAttribute("ruleEnd", String.Format("{0}-{1}-{2}-{3}", rule.endDay.Month, rule.endDay.WeekOfMonth, rule.endDay.DayOfWeek, rule.endDay.Hour));
                     elem.SetAttribute("yearStart", rule.startYear.ToString());
                     elem.SetAttribute("yearEnd", rule.endYear.ToString());
-                    elem.SetAttribute("offset", (rule.OffsetSeconds / 60).ToString());
+                    elem.SetAttribute("offset", rule.OffsetInMinutes.ToString());
                 }
             }
 
@@ -252,6 +257,24 @@ namespace GCAL.Base
                     return tz;
             }
             return null;
+        }
+
+        public void DeleteTimezone(int timezoneId)
+        {
+            List<GPTimeZone> tzones = getTimeZones();
+            for (int i = 0; i < tzones.Count; i++)
+            {
+                if (tzones[i].Id == timezoneId)
+                {
+                    tzones.RemoveAt(i);
+                    i--;
+                }
+            }
+        }
+
+        public void addTimezone(GPTimeZone ntz)
+        {
+            getTimeZones().Add(ntz);
         }
     }
 }

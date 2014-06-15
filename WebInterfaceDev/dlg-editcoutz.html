@@ -37,7 +37,7 @@ function getTimezonesList()
 			str += "<tr>";
 			str += "<td>" + tags[2] + "</td>";
 			str += "<td>" + tags[1] + "</td>";
-			str += "<td><button type=\"button\" onclick=\"deleteItem('" + tags[1] + "')\">Remove</button></td>";
+			str += "<td><button type=\"button\" onclick=\"deleteItem('" + tags[1] + "')\">{%gstr 351}</button></td>";
 			str += "</tr>";
 		}
 	}
@@ -67,11 +67,11 @@ function initList()
 function startAddTimezone()
 {
     scriptObject.clearHistory();
-    setCurrTitle("Edit Countries");
+    setCurrTitle("{%gstr 1079}");
 	saveString("ppx", "");
-	addFutureFile2("dlg-seltzoff.html", "Select Timezone Offset");
-	addFutureFile2("dlg-seltimezone.html", "Choose Timezone");
-	addFutureFile2("dlg-editcoutz.html?preaction=savetzforcountry", "Save");
+	addFutureFile2("dlg-seltzoff.html", "{%gstr 1078}");
+	addFutureFile2("dlg-seltimezone.html", "{%gstr 1061}");
+	addFutureFile2("dlg-editcoutz.html?preaction=savetzforcountry", "{%gstr 1062}");
 	goNext();
 }
 
@@ -79,20 +79,20 @@ function startAddTimezone()
 
 <body>
 
-<h1>Edit Timezones for {%string locationcountry}</h1>
+<h1>{%gstr 1080} {%string locationcountry}</h1>
 
 <div id='list0'>
 </div>
 
 <center>
-<button type="button" onclick="startAddTimezone();">Add Timezone</button>
+<button type="button" onclick="startAddTimezone();">{%gstr 1081}</button>
 </center>
 
 <div id='bar0' style='display:block'>
 <script type="text/javascript">
 writeNavigStart();
-writeNavigItem("Main Menu", "window.location.href=\"mainmenu.html\"");
-writeNavigItem("Countries", "window.location.href=\"geo-countries.html\"");
+writeNavigItem("{%gstr 1054}", "window.location.href=\"mainmenu.html\"");
+writeNavigItem("{%gstr 312}", "window.location.href=\"geo-countries.html\"");
 writeNavigEnd();
 </script>
 </div>

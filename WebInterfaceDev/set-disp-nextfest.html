@@ -22,8 +22,8 @@ function onSave()
 <table style='border=0px' align=center>
 
 <script type="text/javascript">
-writeCounterChoice("Days in Advance", "Length of the period for calculation", "t0");
-writeCheckBox("Only Fasting Days", "Check this on, if you want to show only days with some type of fast", "t1");
+writeCounterChoice("{%gstr 1174}", "{%gstr 1175}", "t0");
+writeCheckBox("{%gstr 1176}", "{%gstr 1177}", "t1");
 </script>
 </table>
 
@@ -36,9 +36,9 @@ setSwitchValue("t1", getUserDefaultsBool('nextfast.onlyfast'));
 <div class="menuBarDiv">
 <table class="menuBar" align=center cellspacing=8 cellpadding=8>
 <tr>
-<td class="menuItem" onclick='onSave();window.location.href="mainmenu.html"'>Main Menu</td>
-<td class="menuItem" onclick='onSave();window.location.href="set-disp.html"'>Display Settings</td>
-<td class="menuItem" onclick='onSave();window.location.href="nextfest.html"'>Next Festivals</td>
+<td class="menuItem" onclick='onSave();window.location.href="mainmenu.html"'>{%gstr 1054}</td>
+<td class="menuItem" onclick='onSave();window.location.href="set-disp.html"'>{%gstr 235}</td>
+<td class="menuItem" onclick='onSave();window.location.href="nextfest.html"'>{%gstr 452}</td>
 
 </tr>
 </table>

@@ -130,15 +130,15 @@ function decr(type, dif)
 <body>
 
 
-<h1>Enter Longitude</h1>
+<h1>{%gstr 1042}</h1>
 
 <table width=240pt align=center>
 <tr>
 <td style='text-align:center;font-size:24pt' id='counter' colspan=4>00:00</td>
 </tr>
 <tr>
-<td colspan=2 class='centerb'>To the West</td>
-<td colspan=2 class='centerb'>To the East</td>
+<td colspan=2 class='centerb'>{%gstr 1133}</td>
+<td colspan=2 class='centerb'>(%gstr 1134)</td>
 </tr>
 <tr>
 <td class='buttonw' ><input type="button" value="-10 Deg" onclick='decr(0, 10);'></td>
@@ -161,7 +161,7 @@ function decr(type, dif)
 
 <script type="text/javascript">
 writeNavigStart();
-writeNavigItem("Main Menu", "window.location.href=\"mainmenu.html\"");
+writeNavigItem("{%gstr 1054}", "window.location.href=\"mainmenu.html\"");
 writeNavigItem("{%string leftArrow} {%title -1}", "onSave();goBack()");
 writeNavigItem("{%title +1} {%string rightArrow}", "onSave();goNext()");
 writeNavigEnd();

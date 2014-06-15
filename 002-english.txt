@@ -1,0 +1,955 @@
+lang	English
+langid	2
+0	Sunday	Weekday.0.Full		Sunday
+1	Monday			Monday
+2	Tuesday			Tuesday
+3	Wednesday			Wednesday
+4	Thursday			Thursday
+5	Friday			Friday
+6	Saturday			Saturday
+7	Date			Date
+8	Time			Time
+9	Location			Location
+10	Latitude			Latitude
+11	Longitude			Longitude
+12	Timezone			Timezone
+13	Tithi			Tithi
+14	Tithi Elaps.			Tithi Elaps.
+15	Naksatra			Naksatra
+16	Naksatra Elaps.			Naksatra Elaps.
+17	Child Name Suggestions			Child Name Suggestions
+18	(according naksatra)			(according naksatra)
+19	(according rasi)			(according rasi)
+20	Paksa			Paksa
+21	(during Purusottama Adhika Masa)			(during Purusottama Adhika Masa)
+22	Masa			Masa
+23	Gaurabda Year			Gaurabda Year
+24	Celebrations			Celebrations
+25	Appearance Day Calculation			Appearance Day Calculation
+26	Day can be only from 1 to 31			Day can be only from 1 to 31
+27	Month can be only from 1 to 12			Month can be only from 1 to 12
+28	Year can be only from 1500 to 3999			Year can be only from 1500 to 3999
+29	Given date was corrected, since date given by you was nonexisting.			Given date was corrected, since date given by you was nonexisting.
+30	days			days
+31	months			months
+32	years			years
+33	exactly given date			exactly given date
+34	from begining of the month			from begining of the month
+35	align to the start of the Masa			align to the start of the Masa
+36	from begining of the year			from begining of the year
+37	start from first day of the Gaurabda Year			start from first day of the Gaurabda Year
+38	&lt;all mahadvadasis&gt;			&lt;all mahadvadasis&gt;
+39	Masa Listing			Masa Listing
+40	Location			Location
+41	From {0} to {1}			From {0} to {1}
+42	Arunodaya			Arunodaya
+43	Today			Today
+44	Calendar			Calendar
+45	Appearance Day			Appearance Day
+46	Core Events			Core Events
+48	Masa List			Masa List
+50	Could not create new window.			Could not create new window.
+51	Sunrise			Sunrise
+52	Sunset			Sunset
+53	Moonrise			Moonrise
+54	Moonset			Moonset
+55	Year			Year
+56	Sankranti			Sankranti
+57	Please update GCAL to the latest version from http://www.krishnadays.com			Please update GCAL to the latest version from http://www.krishnadays.com
+58	(not suitable for fasting)			(not suitable for fasting)
+59	(suitable for fasting)			(suitable for fasting)
+60	Break fast			Break fast
+61	Break fast after			Break fast after
+62	Break fast not calculated			Break fast not calculated
+63	(DST not considered)			(DST not considered)
+65	Jan			Jan
+66	Feb			Feb
+67	Mar			Mar
+68	Apr			Apr
+69	May			May
+70	Jun			Jun
+71	Jul			Jul
+72	Aug			Aug
+73	Sep			Sep
+74	Oct			Oct
+75	Nov			Nov
+76	Dec			Dec
+78	Ganga Sagara Mela			Ganga Sagara Mela
+79	Tulasi Jala Dan begins.			Tulasi Jala Dan begins.
+80	Tulasi Jala Dan ends.			Tulasi Jala Dan ends.
+81	First day of Bhisma Pancaka			First day of Bhisma Pancaka
+82	Last day of Bhisma Pancaka			Last day of Bhisma Pancaka
+83	Looking for			Looking for
+84	Start			Start
+85	End			End
+86	Not found in this year.			Not found in this year.
+87	Fasting for {0}			Fasting for {0}
+88	(Fasting is done yesterday, today is feast)			(Fasting is done yesterday, today is feast)
+89	Ksaya tithi			Ksaya tithi
+90	[Second day of Tithi]			[Second day of Tithi]
+91	First day			First day
+92	Last day			Last day
+93	of the first month			of the first month
+94	of the second month			of the second month
+95	of the third month			of the third month
+96	of the fourth month			of the fourth month
+97	of Caturmasya-vrata			of Caturmasya-vrata
+98	Arunodaya Tithi			Arunodaya Tithi
+99	Arunodaya at {0}			Arunodaya at {0}
+100	Sun Longitude			Sun Longitude
+101	Moon Longitude			Moon Longitude
+102	Ayanamsa			Ayanamsa
+103	Julian day			Julian day
+104	Yoga			Yoga
+105	Rasi			Rasi
+106	(Daylight Saving Time not considered)			(Daylight Saving Time not considered)
+107	(Winter Time)			(Winter Time)
+108	(Summer Time)			(Summer Time)
+109	(Second half)			(Second half)
+110	Find Event			Event Finder
+111	Sun enters			Sun enters
+112	First month of Caturmasya begins			First month of Caturmasya begins
+113	Last day of the first Caturmasya month			Last day of the first Caturmasya month
+114	(green leafy vegetable fast for one month)			(green leafy vegetable fast for one month)
+115	First month of Caturmasya continues			First month of Caturmasya continues
+116	Second month of Caturmasya begins			Second month of Caturmasya begins
+117	Last day of the second Caturmasya month			Last day of the second Caturmasya month
+118	(yogurt fast for one month)			(yogurt fast for one month)
+119	Second month of Caturmasya continues			Second month of Caturmasya continues
+120	Third month of Caturmasya begins			Third month of Caturmasya begins
+121	Last day of the third Caturmasya month			Last day of the third Caturmasya month
+122	(milk fast for one month)			(milk fast for one month)
+123	Third month of Caturmasya continues			Third month of Caturmasya continues
+124	Fourth month of Caturmasya begins			Fourth month of Caturmasya begins
+125	Last day of the fourth Caturmasya month			Last day of the fourth Caturmasya month
+126	(urad dal fast for one month)			(urad dal fast for one month)
+127	Fourth month of Caturmasya continues			Fourth month of Caturmasya continues
+128	(Caturmasya is not observed during Purusottama Adhika Masa.)			(Caturmasya is not observed during Purusottama Adhika Masa.)
+129				
+130	GCal			GCal
+131	Gaurabda Calendar			Gaurabda Calendar
+132	&lt;all sankrantis&gt;			&lt;all sankrantis&gt;
+133	&lt;all tithis&gt;			&lt;all tithis&gt;
+134	&lt;all fasting days&gt;			&lt;all fasting days&gt;
+135	(Fasting for Ekadasi)			(Fasting for Ekadasi)
+136	No Moonrise			No Moonrise
+137	No Moonset			No Moonset
+138	No Sunrise			No Sunrise
+139	No Sunset			No Sunset
+140	SUN - MOON CONJUNCTIONS			SUN - MOON CONJUNCTIONS
+150	Su			Su
+151	Mo			Mo
+152	Tu			Tu
+153	We			We
+154	Th			Th
+155	Fr			Fr
+156	Sa			Sa
+157	DATE			DATE
+158	SUNRISE			SUNRISE
+159	MASA			MASA
+160	TITHI START			TITHI START
+161	NAKSATRA START			NAKSATRA START
+162	Page			Page
+165	1/3 of daylight			1/3 of daylight
+166	1/4 of tithi			1/4 of tithi
+167	end of tithi			end of tithi
+168	end of naksatra			end of naksatra
+169	sunrise			sunrise
+170	Search			Search
+171	in all items			in all items
+172	in the first item			in the first item
+173	(Total fast, even from water, if you have broken Ekadasi)			(Total fast, even from water, if you have broken Ekadasi)
+174	Today Screen			Today Screen
+175	Previous, Current and Next Naksatra Times			Previous, Current and Next Naksatra Times
+176	Previous, Current and Next Tithi Times			Previous, Current and Next Tithi Times
+177	Brahma Muhurta Time			Brahma Muhurta Time
+178	Sunrise Details			Sunrise Details
+179	Sandhya Times			Sandhya Times
+180	Sunrise Time			Sunrise Time
+181	Noon Time			Noon Time
+182	Sunset Time			Sunset Time
+183	Number of celebrations listed			Number of celebrations listed
+184	Show Child Name Suggestions			Show Child Name Suggestions
+185	Event Groups			Event Groups
+186	Format			Format
+187	Festivals			Festivals
+188	Header Type			Header Type
+189	Paksa Info			Paksa Info
+190	Yoga Info			Yoga Info
+191	DST Change Info			DST Change Info
+192	Naksatra Info			Naksatra Info
+193	Masa Start Info			Masa Start Info
+194	Ekadasi Info			Ekadasi Info
+195	Sankranti Info			Sankranti Info
+196	Anniversary Info			Anniversary Info
+197	Fasting Flag			Fasting Flag
+198	No Header			No Header
+199	Masa Header			Masa Header
+200	Month Header			Month Header
+201	Hide Empty Days			Hide Empty Days
+202	Long Info			Long Info
+203	Short Info			Short Info
+204	None			None
+205	Ekadasi Parana Details			Ekadasi Parana Details
+206	Astro			Astro
+207	Tithi at Arunodaya			Tithi at Arunodaya
+208	Arunodaya Time			Arunodaya Time
+209	Ksaya Tithi Info			Ksaya Tithi Info
+210	Vriddhi Tithi Info			Vriddhi Tithi Info
+211	Sort Core Events			Sort Results by Time
+212	General			General
+213	Simha			Simha
+214	Leo			Leo
+215	Simha (Leo)			Simha (Leo)
+216	Leo (Simha)			Leo (Simha)
+217	Sankranti (Rasi) Name Format			Sankranti (Rasi) Name Format
+218	Damodara			Damodara
+219	Damodara (Kartik)			Damodara (Kartik)
+220	Kartik			Kartik
+221	Kartik (Damodara)			Kartik (Damodara)
+222	Masa Name Format			Masa Name Format
+223	Hari-bhakti-vilasa Style			Hari-bhakti-vilasa Style
+224	Old Styles			Old Styles
+225	Fasting Notation			Fasting Notation
+226	First Day of the Week			First Day of the Week
+227	Caturmasya System			Caturmasya System
+228	N/A			N/A
+229	Purnima System			Purnima System
+230	Pratipat System			Pratipat System
+231	Ekadasi System			Ekadasi System
+232	Time Format			Time Format
+233	12 Hour Format (ex. 10:00 PM)			12 Hour Format (ex. 10:00 PM)
+234	24 Hour Format (ex. 22:00)			24 Hour Format (ex. 22:00)
+235	Display Settings			Display Settings
+236	OK			OK
+237	Cancel			Cancel
+238	Back			Back
+239	Next			Next
+240	Western Time			Western Time
+241	Vedic Time			Vedic Time
+242	Set specific date			Set specific date
+243	This Gaurabda Year			This Gaurabda Year
+244	Next Gaurabda Year			Next Gaurabda Year
+245	This Year			This Year
+246	Next Year			Next Year
+247	Day			Day
+248	Month			Month
+249	Choose Location			Choose Location
+250	Insert some text to search:			Insert some text to search:
+251	City			City
+252	Country			Country
+253	Country Code			Country Code
+254	Country Name			Country Name
+255	Edit Country Properties			Edit Country Properties
+256	Specify Coordinates			Specify Coordinates
+257	Next transition of time:			Next transition of time:
+258	Unit			Unit
+259	Count			Count
+260	Info			Info
+261	Start Date			Start Date
+262	End Date			End Date
+263	weeks			weeks
+264	tithis			tithis
+265	masas			masas
+266	g.years			g.years
+267	Language Name			Language Name
+268	Edit Language Name			Edit Language Name
+269	Location Properties			Location Properties
+270	Message			Message
+271	Edit Relative Event			Edit Relative Event
+272	Edit Tithi-based Event			Edit Tithi-based Event
+273	Edit Sankranti-based Event			Edit Sankranti-based Event
+274	Tithi-based Event			Tithi-based Event
+275	Fast Subject			Fast Subject
+276	Fast Type			Fast Type
+277	Event Class			Event Class
+278	Title			Title
+279	Event is visible in the calendar			Event is visible in the calendar
+280	Since the year...			Since the year...
+281	Offset			Offset
+282	Ref Event			Ref Event
+283	Time Zone Name			Timezone Name
+284	Offset from UTC in minutes			Offset from UTC in minutes
+285	Code must not be empty.			Code must not be empty.
+286	Code already exists.			Code already exists.
+287	Name must not be empty			Name must not be empty
+288	Correct			Correct
+289	Format of longitude is not correct. Use decimal value (e.g. +22.25) or standard form (e.g. 22E15)			Format of longitude is not correct. Use decimal value (e.g. +22.25) or standard form (e.g. 22E15)
+290	Format of latitude is not correct. Use decimal value (e.g. -50.20) or standard form (e.g. 50S12)			Format of latitude is not correct. Use decimal value (e.g. -50.20) or standard form (e.g. 50S12)
+291	Missing timezone			Missing timezone
+292	Missing country			Missing country
+293	Missing longitude			Missing longitude
+294	Missing latitude			Missing latitude
+295	Missing name of the location			Missing name of the location
+296	Date of transition			Date of transition
+297	Time for transition			Time for transition
+298	New timezone offset (in minutes)			New timezone offset (in minutes)
+299	Abbreviation for given timezone offset			Abbreviation for given timezone offset
+300	DST is in effect after this transition			DST is in effect after this transition
+301	Timezone Transition Details			Timezone Transition Details
+302	Get Date and Time			Get Date and Time
+303	Get Location			Get Location
+304	Get Period Length			Get Period Length
+305	Starting year			Starting year
+306	Get Years Period			Get Years Period
+307	Get Start Date			Get Start Date
+308	Location A			Location A
+309	Location B			Location B
+310	Get Two Locations			Get Two Locations
+311	Cities			Cities
+312	Countries			Countries
+313	Code			Code
+314	Tithi-based Events			Tithi-based Events
+315	Event Title			Event Title
+316	Sankranti-based Events			Sankranti-based Events
+317	Event-based Events			Event-based Events
+318	Reference			Reference
+319	Filter Class			Filter Class
+320	Filter Masa			Filter Masa
+321	Timezones			Timezones
+322	Transitions			Transitions
+323	Abbr			Abbr
+324	IsDST			IsDST
+325	Hour			Hour
+326	Hours			Hours
+327	Minute			Minute
+328	Minutes			Minutes
+329	Second			Second
+330	Seconds			Seconds
+331	Language			Language
+332	Default Text			Default Text
+333	Text			Text
+334	Id			Id
+335	Reset			Reset
+336	Languages			Languages
+337	File			File
+338	Edit			Edit
+339	View			View
+340	New			New
+341	Import			Import
+342	Export			Export
+343	Delete			Delete
+344	New Location			New Location
+345	New Country			New Country
+346	New Tithi-based Event			New Tithi-based Event
+347	New Event-based Event			New Event-based Event
+348	New Sankranti-based Event			New Sankranti-based Event
+349	New Timezone			New Timezone
+350	New Timezone Transition			New Timezone Transition
+351	Remove			Remove
+352	Edit Selected			Edit Selected
+353	Remove Selected			Remove Selected
+354	Edit Timezone Name			Edit Timezone Name
+355	Delete Timezone			Delete Timezone
+356	Edit Timezone Transition			Edit Timezone Transition
+357	Delete Timezone Transition			Delete Timezone Transition
+360	Organizer			Organizer
+361	Locations			Locations
+362	Save As			Save As
+363	Print			Print
+364	Select All			Select All
+365	Copy			Copy
+366	Increase Text Size			Increase Text Size
+367	Decrease Text Size			Decrease Text Size
+368	Navigate			Navigate
+369	Previous Day			Previous Day
+370	Next Day			Next Day
+371	Set Today			Set Today
+372	Settings			Settings
+373	My Location			My Location
+374	Display Settings			Display Settings
+375	Window Autosize			Window Autosize
+376	Visible At Launch			Visible At Launch
+377	Top Most Window			Top Most Window
+378	Exit			Exit
+379	Clear Selection			Clear Selection
+380	Plain Text			Plain Text
+381	Rich Text			Rich Text
+382	Text Size 10			Text Size 10
+383	Text Size 11			Text Size 11
+384	Text Size 12			Text Size 12
+385	Text Size 13			Text Size 13
+386	Text Size 14			Text Size 14
+387	Calculate			menu item
+388	Calendar + Core Events			menu item
+389	Calendar for 2 locations			menu item
+390	General Settings			menu item
+391	Window			menu item
+392	New Window			menu item
+393	Close			menu item
+394	Help			menu item
+395	About			menu item
+396	Show Startup Tips			menu item
+397	Search terms			placeholder text in search field
+398	Progress			progress label in status bar
+399	Gaurabda Calendar			application title
+400	Plain Text			file format
+401	Rich Text			file format
+402	Html File			file format
+403	Html File - Table			file format
+404	XML File			file format
+405	CSV File			file format
+406	VCAL file			file format
+407	ICAL File			file format
+450	Table			menu item in View
+451	GCAL Updates			GCAL Updates
+452	Next Festivals			Next fasting days
+453	Connecting...			Connecting...
+454	Calculating...			Calculating...
+455	Download only			Download only
+456	Download &amp; Install			Download &amp; Install
+457	Install			Install
+458	New version {0} available			New version {0} available
+459	New version is being downloaded...			New version is being downloaded...
+460	Error during downloading file. Try again.			Error during downloading file. Try again.
+461	Quit this application and install new version?			Quit this application and install new version?
+462	About			About
+463	Copyright (c) 2013, ISKCON Governing Body Commission Society			Copyright (c) 2013, ISKCON Governing Body Commission Society
+464	Program for calculation of the calendar for vaisnavas, according Gaudiya-Vaisnava tradition. Updates to this program, when available, may be downloaded from http://www.krishnadays.com			Program for calculation of the calendar for vaisnavas, according Gaudiya-Vaisnava tradition. Updates to this program, when available, may be downloaded from http://www.krishnadays.com
+465	Author			Author
+466	Consultants			Consultants
+467	Startup Tips			Startup Tips
+560	Varuthini Ekadasi			Varuthini Ekadasi
+561	Mohini Ekadasi			Mohini Ekadasi
+562	Apara Ekadasi			Apara Ekadasi
+563	Pandava Nirjala Ekadasi			Pandava Nirjala Ekadasi
+564	Yogini Ekadasi			Yogini Ekadasi
+565	Sayana Ekadasi			Sayana Ekadasi
+566	Kamika Ekadasi			Kamika Ekadasi
+567	Pavitraropana Ekadasi			Pavitraropana Ekadasi
+568	Annada Ekadasi			Annada Ekadasi
+569	Parsva Ekadasi			Parsva Ekadasi
+570	Indira Ekadasi			Indira Ekadasi
+571	Pasankusa Ekadasi			Pasankusa Ekadasi
+572	Rama Ekadasi			Rama Ekadasi
+573	Utthana Ekadasi			Utthana Ekadasi
+574	Utpanna Ekadasi			Utpanna Ekadasi
+575	Moksada Ekadasi			Moksada Ekadasi
+576	Saphala Ekadasi			Saphala Ekadasi
+577	Putrada Ekadasi			Putrada Ekadasi
+578	Sat-tila Ekadasi			Sat-tila Ekadasi
+579	Bhaimi Ekadasi			Bhaimi Ekadasi
+580	Vijaya Ekadasi			Vijaya Ekadasi
+581	Amalaki vrata Ekadasi			Amalaki vrata Ekadasi
+582	Papamocani Ekadasi			Papamocani Ekadasi
+583	Kamada Ekadasi			Kamada Ekadasi
+584	Parama Ekadasi			Parama Ekadasi
+585	Padmini Ekadasi			Padmini Ekadasi
+600	Pratipat			Pratipat
+601	Dvitiya			Dvitiya
+602	Tritiya			Tritiya
+603	Caturthi			Caturthi
+604	Pancami			Pancami
+605	Sasti			Sasti
+606	Saptami			Saptami
+607	Astami			Astami
+608	Navami			Navami
+609	Dasami			Dasami
+610	Ekadasi			Ekadasi
+611	Dvadasi			Dvadasi
+612	Trayodasi			Trayodasi
+613	Caturdasi			Caturdasi
+614	Amavasya			Amavasya
+615	Pratipat			Pratipat
+616	Dvitiya			Dvitiya
+617	Tritiya			Tritiya
+618	Caturthi			Caturthi
+619	Pancami			Pancami
+620	Sasti			Sasti
+621	Saptami			Saptami
+622	Astami			Astami
+623	Navami			Navami
+624	Dasami			Dasami
+625	Ekadasi			Ekadasi
+626	Dvadasi			Dvadasi
+627	Trayodasi			Trayodasi
+628	Caturdasi			Caturdasi
+629	Purnima			Purnima
+630	Asvini			Asvini
+631	Bharani			Bharani
+632	Krittika			Krittika
+633	Rohini			Rohini
+634	Mrigasira			Mrigasira
+635	Ardra			Ardra
+636	Punarvasu			Punarvasu
+637	Pusyami			Pusyami
+638	Aslesa			Aslesa
+639	Magha			Magha
+640	Purva-phalguni			Purva-phalguni
+641	Uttara-phalguni			Uttara-phalguni
+642	Hasta			Hasta
+643	Citra			Citra
+644	Swati			Swati
+645	Visakha			Visakha
+646	Anuradha			Anuradha
+647	Jyestha			Jyestha
+648	Mula			Mula
+649	Purva-asadha			Purva-asadha
+650	Uttara-asadha  			Uttara-asadha  
+651	Sravana			Sravana
+652	Dhanista			Dhanista
+653	Satabhisa			Satabhisa
+654	Purva-bhadra			Purva-bhadra
+655	Uttara-bhadra			Uttara-bhadra
+656	Revati			Revati
+660	Viskumba			Viskumba
+661	Priti 			Priti 
+662	Ayusmana			Ayusmana
+663	Saubhagya			Saubhagya
+664	Sobana			Sobana
+665	Atiganda			Atiganda
+666	Sukarma			Sukarma
+667	Dhriti			Dhriti
+668	Sula			Sula
+669	Ganda			Ganda
+670	Vriddhi			Vriddhi
+671	Dhruva			Dhruva
+672	Vyagata 			Vyagata 
+673	Harsana 			Harsana 
+674	Vajra 			Vajra 
+675	Siddhi 			Siddhi 
+676	Vyatipata 			Vyatipata 
+677	Variyana 			Variyana 
+678	Parigha 			Parigha 
+679	Siva 			Siva 
+680	Siddha 			Siddha 
+681	Sadhya 			Sadhya 
+682	Subha			Subha
+683	Sukla 			Sukla 
+684	Brahma			Brahma
+685	Indra 			Indra 
+686	Vaidhriti			Vaidhriti
+688	Mesa			Mesa
+689	Vrsabha			Vrsabha
+690	Mithuna			Mithuna
+691	Karka			Karka
+692	Simha			Simha
+693	Kanya			Kanya
+694	Tula			Tula
+695	Vrscika			Vrscika
+696	Dhanus			Dhanus
+697	Makara			Makara
+698	Kumbha			Kumbha
+699	Mina			Mina
+700	Aries			Aries
+701	Taurus			Taurus
+702	Gemini			Gemini
+703	Cancer			Cancer
+704	Leo			Leo
+705	Virgo			Virgo
+706	Libra			Libra
+707	Scorpio			Scorpio
+708	Sagittarius			Sagittarius
+709	Capricorn			Capricorn
+710	Aquarius			Aquarius
+711	Pisces			Pisces
+712	Gaura			Gaura
+713	Krsna			Krsna
+714	G			G
+715	K			K
+720	Madhusudana			Madhusudana
+721	Trivikrama			Trivikrama
+722	Vamana			Vamana
+723	Sridhara			Sridhara
+724	Hrsikesa			Hrsikesa
+725	Padmanabha			Padmanabha
+726	Damodara			Damodara
+727	Kesava			Kesava
+728	Narayana			Narayana
+729	Madhava			Madhava
+730	Govinda			Govinda
+731	Visnu			Visnu
+732	Purusottama-adhika			Purusottama-adhika
+733	Unmilani Mahadvadasi			Unmilani Mahadvadasi
+734	Trisprsa Mahadvadasi			Trisprsa Mahadvadasi
+735	Paksa vardhini Mahadvadasi			Paksa vardhini Mahadvadasi
+736	Jaya Mahadvadasi			Jaya Mahadvadasi
+737	Vijaya Mahadvadasi			Vijaya Mahadvadasi
+738	Papa Nasini Mahadvadasi			Papa Nasini Mahadvadasi
+739	Jayanti Mahadvadasi			Jayanti Mahadvadasi
+740	Vyanjuli Mahadvadasi			Vyanjuli Mahadvadasi
+741	Sri Krsna Janmastami: Appearance of Lord Sri Krsna			Sri Krsna Janmastami: Appearance of Lord Sri Krsna
+742	Gaura Purnima: Appearance of Sri Caitanya Mahaprabhu			Gaura Purnima: Appearance of Sri Caitanya Mahaprabhu
+743	Return Ratha (8 days after Ratha Yatra)			Return Ratha (8 days after Ratha Yatra)
+744	Hera Pancami (4 days after Ratha Yatra)			Hera Pancami (4 days after Ratha Yatra)
+745	Gundica Marjana			Gundica Marjana
+746	Go Puja. Go Krda. Govardhana Puja.			Go Puja. Go Krda. Govardhana Puja.
+747	Rama Navami: Appearance of Lord Sri Ramacandra			Rama Navami: Appearance of Lord Sri Ramacandra
+748	Ratha Yatra			Ratha Yatra
+749	Nandotsava			Nandotsava
+750	Festival of Jagannatha Misra			Festival of Jagannatha Misra
+759	Srila Prabhupada -- Appearance			Srila Prabhupada -- Appearance
+760	January	Month.1.Full		January
+761	February	Month.2.Full		February
+762	March	Month.3.Full		March
+763	April	Month.4.Full		April
+764	May	Month.5.Full		May
+765	June	Month.6.Full		June
+766	July	Month.7.Full		July
+767	August	Month.8.Full		August
+768	September	Month.9.Full		September
+769	October	Month.10.Full		October
+770	November	Month.11.Full		November
+771	December	Month.12.Full		December
+780	First day of			First day of
+781	Last day of			Last day of
+782	first		2. pad cislovky	first
+783	second			second
+784	third			third
+785	fourth			fourth
+786	last			last
+787	Sunday	Weekday.0.Full2		Sunday
+788	Monday	Weekday.1.Full2		Monday
+789	Tuesday	Weekday.2.Full2		Tuesday
+790	Wednesday	Weekday.3.Full2		Wednesday
+791	Thursday	Weekday.4.Full2		Thursday
+792	Friday	Weekday.5.Full2		Friday
+793	Saturday	Weekday.6.Full2		Saturday
+795	of January	Month.1.Full2		of January
+796	of February	Month.2.Full2		of February
+797	of March	Month.3.Full2		of March
+798	of April	Month.4.Full2		of April
+799	of May	Month.5.Full2		of May
+800	of June	Month.6.Full2		of June
+801	of July	Month.7.Full2		of July
+802	of August	Month.8.Full2		of August
+803	of September	Month.9.Full2		of September
+804	of October	Month.10.Full2		of October
+805	of November	Month.11.Full2		of November
+806	of December	Month.12.Full2		of December
+807	For this location is Daylight Saving Time not observed.			For this location is Daylight Saving Time not observed.
+808	Daylight saving time is observed 			Daylight saving time is observed 
+810	0th			0th
+811	1st Pada			1st Pada
+812	2nd Pada			2nd Pada
+813	3rd Pada			3rd Pada
+814	4th Pada			4th Pada
+815	5th			5th
+816	6th			6th
+817	7th			7th
+818	8th			8th
+819	9th			9th
+820	10th			10th
+821	11th			11th
+822	12th			12th
+823	13th			13th
+824	14th			14th
+825	15th			15th
+826	16th			16th
+827	17th			17th
+828	18th			18th
+829	19th			19th
+830	20th			20th
+831	21st			21st
+832	22nd			22nd
+833	23rd			23rd
+834	24th			24th
+835	25th			25th
+836	26th			26th
+837	27th			27th
+838	28th			28th
+839	29th			29th
+840	30th			30th
+841	31st			31st
+850	since			since
+851	to			to
+852	on			on
+853	Yesterday			Yesterday
+854	Tomorrow			Tomorrow
+855	First day of Daylight Saving Time			First day of Daylight Saving Time
+856	Last day of Daylight Saving Time			Last day of Daylight Saving Time
+857	Noon			Noon
+860	(Fasting is done yesterday)			(Fasting is done yesterday)
+861	(Fasting is done yesterday, today is feast)			(Fasting is done yesterday, today is feast)
+862	(Fasting till noon, with feast tomorrow)			(Fasting till noon, with feast tomorrow)
+871	Vaisakha			Vaisakha
+872	Jyestha			Jyestha
+873	Asadha			Asadha
+874	Sravana			Sravana
+875	Bhadra			Bhadra
+876	Asvina			Asvina
+877	Kartika			Kartika
+878	Margasirsa			Margasirsa
+879	Pausa			Pausa
+880	Magha			Magha
+881	Phalguna			Phalguna
+882	Caitra			Caitra
+883	Purusottama-adhika			Purusottama-adhika
+884	Vaisakha (Madhusudana)			Vaisakha (Madhusudana)
+885	Jyestha (Trivikrama)			Jyestha (Trivikrama)
+886	Asadha (Vamana)			Asadha (Vamana)
+887	Sravana (Sridhara)			Sravana (Sridhara)
+888	Bhadra (Hrsikesa)			Bhadra (Hrsikesa)
+889	Asvina (Padmanabha)			Asvina (Padmanabha)
+890	Kartika (Damodara)			Kartika (Damodara)
+891	Margasirsa (Kesava)			Margasirsa (Kesava)
+892	Pausa (Narayana)			Pausa (Narayana)
+893	Magha (Madhava)			Magha (Madhava)
+894	Phalguna (Govinda)			Phalguna (Govinda)
+895	Caitra (Visnu)			Caitra (Visnu)
+896	Purusottama-adhika			Purusottama-adhika
+897	Madhusudana (Vaisakha)			Madhusudana (Vaisakha)
+898	Trivikrama (Jyestha)			Trivikrama (Jyestha)
+899	Vamana (Asadha)			Vamana (Asadha)
+900	Sridhara (Sravana)			Sridhara (Sravana)
+901	Hrsikesa (Bhadra)			Hrsikesa (Bhadra)
+902	Padmanabha (Asvina)			Padmanabha (Asvina)
+903	Damodara (Kartika)			Damodara (Kartika)
+904	Kesava (Margasirsa)			Kesava (Margasirsa)
+905	Narayana (Pausa)			Narayana (Pausa)
+906	Madhava (Magha)			Madhava (Magha)
+907	Govinda (Phalguna)			Govinda (Phalguna)
+908	Visnu (Caitra)			Visnu (Caitra)
+909	Purusottama-adhika			Purusottama-adhika
+915	&lt;all events&gt;			&lt;all events&gt;
+920	Appearance Days of the Lord and His Incarnations			Appearance Days of the Lord and His Incarnations
+921	Events in the Pastimes of the Lord and His Associates			Events in the Pastimes of the Lord and His Associates
+922	Appearance and Disappearance Days of Recent Acaryas			Appearance and Disappearance Days of Recent Acaryas
+923	Appearance and Disappearance Days of Mahaprabhu's Associates and Other Acaryas			Appearance and Disappearance Days of Mahaprabhu's Associates and Other Acaryas
+924	ISKCON's Historical Events			ISKCON's Historical Events
+925	Bengal-specific Holidays			Bengal-specific Holidays
+926	My Personal Events			My Personal Events
+930		FastType.None		
+931	(Fast till noon)	FastType.Noon		(Fast till noon)
+932	(Fast till sunset)	FastType.Sunset		(Fast till sunset)
+933	(Fast till moonrise)	FastType.Moonrise		(Fast till moonrise)
+934	(Fast till dusk)	FastType.Dusk		(Fast till dusk)
+935	(Fast till midnight)	FastType.Midnight		(Fast till midnight)
+936	(Fast today)	FastType.Today		(Fast today)
+940	Fagan/Bradley			Fagan/Bradley
+941	Lahiri			Lahiri
+942	Krishnamurti			Krishnamurti
+943	Raman			Raman
+950	midnight to midnight			midnight to midnight
+951	sunrise to sunrise			sunrise to sunrise
+952	noon to noon			noon to noon
+953	sunset to sunset			sunset to sunset
+960	(Fast today for {0})			(Fast today for {0})
+961	(Fast till noon for {0}, with feast tomorrow)			(Fast till noon for {0}, with feast tomorrow)
+962	({0}. anniversary)			({0}. anniversary)
+963	({0}.)			({0}.)
+965	[PURNIMA SYSTEM]			[PURNIMA SYSTEM]
+966	[PRATIPAT SYSTEM]			[PRATIPAT SYSTEM]
+967	[EKADASI SYSTEM]			[EKADASI SYSTEM]
+968	DST			DST
+969	LT			LT
+970	Appearance Day Settings			Appearance Day Settings
+971	Calendar Settings			Calendar Settings
+972	Core Events Settings			Core Events Settings
+973	Masa List Settings			Masa List Settings
+974	No rise and no set of the sun. No calendar information.			No rise and no set of the sun. No calendar information.
+975	{0} Sankranti ({1}  {2})			{0} Sankranti ({1}  {2})
+976	{0} tithi is ksaya from {1} to {2}			{0} tithi is ksaya from {1} to {2}
+977	Second day of vriddhi tithi			Second day of vriddhi tithi
+978	Notes:			Notes:
+979	DST - Time is in 'Daylight Saving Time'			DST - Time is in 'Daylight Saving Time'
+980	LT  - Time is in 'Local Time'			LT  - Time is in 'Local Time'
+981	(*) - value at the moment of sunrise			(*) - value at the moment of sunrise
+982	Generated by 			Generated by {0}
+983	Events from {0} to {1}.			Events from {0} to {1}.
+984	Events			Events
+985	Date			Date
+986	Tithi			Tithi
+987	Fast			Fast
+988	Brahma Muhurta			Brahma Muhurta
+989	sandhya			sandhya
+990	Sunrise info			Sunrise info
+991	Rasi of the Moon			Rasi of the Moon
+992	Rasi of the Sun			Rasi of the Sun
+993	passed			passed
+994	Gaurabda			Gaurabda
+995	Conjunction in {0} rasi			Conjunction in {0} rasi
+996	Sunrise, Noon, Sunset			Sunrise, Noon, Sunset
+997	Tithis			Tithis
+998	Naksatras			Naksatras
+999	Conjunctions			Conjunctions
+1000	Sankrantis			Sankrantis
+1001	DST			DST
+1002	Masa Name			Masa Name
+1003	Start			Start
+1004	End			End
+1005	Tithi Details			Tithi Details
+1006	Naksatra Details			Naksatra Details
+1007	Moonrise, Moonset			Moonrise, Moonset
+1008	Sun Eclipse			Sun Eclipse
+1009	Moon Eclipse			Moon Eclipse
+1010	Greatest solar eclipse			Greatest solar eclipse
+1011	End of full solar eclipse			End of full solar eclipse
+1012	Beginning of full solar eclipse			Beginning of full solar eclipse
+1013	End of partial solar eclipse			End of partial solar eclipse
+1014	Beginning of partial solar eclipse			Beginning of partial solar eclipse
+1015	Greatest moon eclipse			Greatest moon eclipse
+1016	End of total moon eclipse			End of total moon eclipse
+1017	Beginning of total moon eclipse			Beginning of total moon eclipse
+1018	End of partial moon eclipse			End of partial moon eclipse
+1019	Beginning of partial moon eclipse			Beginning of partial moon eclipse
+1020	End of full penumbral eclipse			End of full penumbral eclipse
+1021	Beginning of full penumbral			Beginning of full penumbral
+1022	End of penumbral moon eclipse			End of penumbral moon eclipse
+1023	Beginning of penumbral moon eclipse			Beginning of penumbral moon eclipse
+1030	Travelling			Travelling
+1031	Travelling starts			Travelling starts
+1032	Travelling ends			Travelling ends
+1033	Enter Location			Enter Location
+1034	Event Time			Event Time
+1035	Count of years			Count of years
+1036	Event Date			Event Date
+1037	Set My Location			Set My Location
+1038	Start Page			Start Page
+1039	Location Name			Location Name
+1040	Select Timezone			Select Timezone
+1041	Enter Latitude			Enter Latitude
+1042	Enter Longitude			Enter Longitude
+1043	Enter Country			Enter Country
+1044	Location Full Name			Location Full Name
+1045	Find Existing			Find Existing
+1046	Enter Coordinates			Enter Coordinates
+1047	Use 'My Location'			Use "My Location"
+1048	Find Timezone			Find Timezone
+1049	Select criteria for finding a timezone			Select criteria for finding a timezone
+1050	by name of timezone			by name of timezone
+1051	by offset from UTC			by offset from UTC
+1052	part			part
+1053	Write here some text which is part of time zone name. Searching is case insensitive.			Write here some text which is part of time zone name. Searching is case insensitive.
+1054	Main Menu			Main Menu
+1055	Previous Month			Previous Month
+1056	Next Month			Next Month
+1057	Previous Year			Previous year
+1058	Next Year			Next Year
+1059	Start of the Month			Start of the Month
+1060	Start of the Year			Start of the Year
+1061	Choose Timezone			Choose Timezone
+1062	Save			Save
+1063	Choose Country			Choose Country
+1064	Confirm Delete			Confirm Delete
+1065	Edit Existing			Edit Existing
+1066	Add New Location			Add New Location
+1067	Edit Cities			Edit Cities
+1068	Enter text which is part of country name. Text is not case sensitive.			Enter text which is part of country name. Text is not case sensitive.
+1069	No countries found.			No countries found.
+1070	Confirm that you want to remove following event from the global list of events in GCAL application.			Confirm that you want to remove following event from the global list of events in GCAL application.
+1071	No events found.			No events found.
+1072	Don't delete			Don't delete
+1073	Yes, delete			Yes, delete
+1074	Event cannot be removed, because it is special event.			Event cannot be removed, because it is special event.
+1075	Confirm that you want to remove following location from the global list of locations in GCAL application.			Confirm that you want to remove following location from the global list of locations in GCAL application.
+1076	Confirm that you want to remove following time zone from the global list of time zones in GCAL application.			Confirm that you want to remove following time zone from the global list of time zones in GCAL application.
+1077	Timezone cannot be removed, because it is used by locations.			Timezone cannot be removed, because it is used by locations.
+1078	Select Time Zone Offset			Select Time Zone Offset
+1079	Edit Time Zones			Edit Time Zones
+1080	Edit Time Zones for			Edit Time Zones for
+1081	Add Time Zone			Add Time Zone
+1082	Event Type			Event Type
+1083	Enter title for event (mandatory):			Enter title for event (mandatory):
+1084	Event			Event
+1085	The name of person or subject this event is relevant for.			The name of person or subject this event is relevant for.
+1086	Gregorian year of the first occurence of this event. Put here -10000 if you want to disable the calculation of anniversary.			Gregorian year of the first occurence of this event. Put here -10000 if you want to disable the calculation of anniversary.
+1087	Visibility			Visibility
+1088	Select visible if this event should be visible in calendar results.			Select visible if this event should be visible in calendar results.
+1089	Not Visible			Not Visible
+1090	Visible			Visible
+1091	Edit Location			Edit Location
+1092	Edit name, coordinates, country or timezone for selected location. Then press "Save" to save edited values and return to the Cities menu.			Edit name, coordinates, country or timezone for selected location. Then press "Save" to save edited values and return to the Cities menu.
+1093	Edit Name			Edit Name
+1094	Edit Country			Edit Country
+1095	Edit Longitude			Edit Longitude
+1096	Edit Latitude			Edit Latitude
+1097	Edit Time Zone			Edit Time Zone
+1098	Years			Years
+1099	Remove this rule?			Remove this rule?
+1100	Remove this transition?			Remove this transition?
+1101	Enter title for timezone. Correct Notation should be &lt;continent&gt;/&lt;city&gt;			Enter title for timezone
+1102	Normal Abbreviation			Normal Abbreviation
+1103	Enter abbreviation for this timezone. This string will be used to indicate that time is not affected by DST.			Enter abbreviation for this timezone. This string will be used to indicate that time is not affected by DST.
+1104	Using Daylight Saving Time			Using Daylight Saving Time
+1105	Not Used			Not Used
+1106	Used			Used
+1107	DST Abbreviation			DST Abbreviation
+1108	Enter abbreviation of this timezone when DST is in effect.			Enter abbreviation of this timezone when DST is in effect.
+1109	Rules			Rules
+1110	Here are definitions of rules for offset transitions. Rule specifies day of week, week of month and month for both starting and ending day of DST.			Here are definitions of rules for offset transitions. Rule specifies day of week, week of month and month for both starting and ending day of DST.
+1111	Add			Add
+1112	Remove All			Remove All
+1113	Here are definitions of offset transitions. Transition is defined by exact start and end dates.			Here are definitions of offset transitions. Transition is defined by exact start and end dates.
+1114	Add New Transition			Add New Transition
+1115	Edit Transition			Edit Transition
+1116	Day Hour of Change			Day Hour of change
+1117	DST Bias			DST Bias
+1118	Back to List			Back to List
+1119	Create			Create
+1120	Update			Update
+1121	Add New Rule			Add New Rule
+1122	Edit Rule			Edit Rule
+1123	Start Year			Start year
+1124	End Year			Last Year
+1125	Start Day			Start Day
+1126	End Day			End Day
+1127	Day of Week			Day of Week
+1128	Week of Month			Week of Month
+1129	Remove all transitions			Remove all transitions
+1130	Do you want to remove all transitions			Do you want to remove all transitions
+1131	Remove all rules			Remove all rules
+1132	Do you want to remove all rules			Do you want to remove all rules
+1133	To the West			To the West
+1134	To the East			To the East
+1135	Show			Show
+1136	Searching...			Searching...
+1137	No Results			No Results
+1138	Enter some text you want to find in results for today screen, calendar, core events and list of masas.			Enter some text you want to find in results for today screen, calendar, core events and list of masas.
+1139	Select criteria for finding an event			Select criteria for finding an event
+1140	by name of event			by name of event
+1141	by tithi or masa			by tithi or masa
+1142	by sankranti			by sankranti
+1143	by event class			by event class
+1144	[All]			[All]
+1145	Enter full name of location.			Enter full name of location.
+1146	Enter new unique country code and name of the country.			Enter new unique country code and name of the country.
+1147	Country code may not be empty.			Country code may not be empty.
+1148	Country name may not be empty.			Country name may not be empty.
+1149	Country code already in use.			Country code already in use.
+1150	Country name already in use.			Country name already in use.
+1151	Rename country			Rename country
+1152	Enter new name for country.			Enter new name for country.
+1153	Old Name			Old Name
+1154	New Name			New Name
+1155	Confirm Save			Confirm Save
+1156	Confirm that you want to save following location to the global list of locations in GCAL application.			Confirm that you want to save following location to the global list of locations in GCAL application.
+1157	Enter text which is part of location name. Text is not case sensitive, but text is searched as it is (also with spaces).			Enter text which is part of location name. Text is not case sensitive, but text is searched as it is (also with spaces).
+1158	Hr		this is abbreviation for Hour	Hr
+1159	Min		this is abbreviation for Minute (or Minutes)	Min
+1160	Enter Country data			Enter Country data
+1161	Manage Countries			Manage Countries
+1162	Add New Country			Add New Country
+1163	Manage Events			Manage Events
+1164	New Event			New Event
+1165	Edit Event			Edit Event
+1166	Manage Time Zones			Manage Time Zones
+1167	Days are separated when month in Gregorian era is changed			Days are separated when month in Gregorian era is changed
+1168	Days are separated when masa in Gaurabda era is changed			Days are separated when masa in Gaurabda era is changed
+1169	Start of tithi			Start of tithi
+1170	Start of naksatra			Start of naksatra
+1171	Occurs when sun enter new zodiac sign			Occurs when sun enter new zodiac sign
+1172	Occurs when sun and moon has the same longitude			Occurs when sun and moon has the same longitude
+1173	Show this month in the results			Show this month in the results
+1174	Days in advance			Days in advance
+1175	Length of the period for calculation			Length of the period for calculation
+1176	Only Fasting Days			Only Fasting Days
+1177	Check this on, if you want to show only days with some type of fast			Check this on, if you want to show only days with some type of fast
+1178	Other Info			Other Info
+1179	Show Tithi Listing			Show Tithi Listing
+1180	Show Naksatra Listing			Show Naksatra Listing
+1181	Time of sunrise			Time of sunrise
+1182	Time of noon			Time of noon
+1183	Time of sunset			Time of sunset
+1184	Show times for sandhya periods			Show times for sandhya periods
+1185	Other information present at sunrise			Other information present at sunrise
+1186	Show time of brahma muhurta			Show time of brahma muhurta
+1187	Nest Festivals Screen			Nest Festivals Screen
+1188	Caturmasya events not showed			Caturmasya events not showed
+1189	Caturmasya month starts on Purnima			Caturmasya month starts on Purnima
+1190	Caturmasya month starts on Pratipat			Caturmasya month starts on Pratipat
+1191	Caturmasya month starts on Ekadasi			Caturmasya month starts on Ekadasi
+1192	Fast today on Vishnu tattva appearance, other days no fast			Fast today on Vishnu tattva appearance, other days no fast
+1193	Fast till noon, sunset, dusk, etc according old program			Fast till noon, sunset, dusk, etc according old program
+1194	Set Start Page			Set Start Page
+1195	No tips			No tips

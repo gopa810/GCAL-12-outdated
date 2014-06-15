@@ -7,9 +7,13 @@
 	cursor:pointer;
 }
 
+.highred {
+	color:red;
+	font-size:9pt;
+}
 body {
    font-family:Helvetica;
-   font-size:11pt;
+   font-size:10pt;
 }
 
 h1 {
@@ -20,6 +24,16 @@ h1 {
 h2 {
    font-family:Helvetica;
    font-size:12pt;
+}
+
+.head2 {
+   font-family:Helvetica;
+   font-size:12pt;
+   font-weight: bold;
+}
+
+td {
+    font-size:10pt;
 }
 
 .calendarTable {
@@ -50,10 +64,14 @@ h2 {
     border: 0px solid #aaa;
 }
 .menuItem {
-    padding-left:8px;
+	padding-left:8px;
 	padding-right:8px;
 	padding-top:8px;
 	padding-bottom:8px;
+	border:0;
+	background-color: transparent;
+	color: blue;
+	cursor: pointer;
 }
 .navigCal {
 }
@@ -84,4 +102,146 @@ h2 {
 .menuBar td.menuItem {
     cursor:pointer;
 	border:1px solid black;	
+}
+
+.shadowSubtitle {
+	color: rgb(128,128,128);
+}
+.highlightFinding {
+	background-color: rgb(255,255,128);
+}
+.Header1 {
+    text-align:center;
+    font-size:125%;
+    font-weight:bold;
+}
+.Header2 {
+    text-align:center;
+    font-size:125%;
+    font-weight:normal;
+    padding:10pt;
+}
+tr.evenLine {
+    background-color:#ddddff;
+}
+td.hed {
+    font-family:Verdana;
+    font-size:10pt;
+    font-weight:bold;
+    background:#aaaaaa;
+    color:white;
+    text-align:left;
+    vertical-align:center;
+    padding-left:5pt;
+    padding-right:5pt;
+    padding-top:4pt;
+    padding-bottom:4pt;
+}
+td.hed2 {
+   font-family:Helvetica;
+   font-size:10pt;
+   background:#999999;
+   color:white;
+   text-align:center;
+   vertical-align:center;
+   padding-left:2pt;
+   padding-right:2pt;
+   padding-top:3pt;
+   padding-bottom:3pt;
+}
+table.TodayFestBorder {
+    border-width:1pt;
+    border-color:#555555;
+    border-style:solid 
+}
+td.TodayCellBody {
+    font-size:10pt;
+}
+td.TodayFestCell {
+    font-size:10pt;
+    padding-left:7pt;
+    padding-right:7pt;
+    padding-top:7pt;
+    padding-bottom:7pt;
+    vertical-align:center; 
+}
+.MasaHeader {
+    padding:10pt;
+    text-align:center;
+    font-weight:bold;
+}
+.HeaderTitle {
+    font-size:125%;
+}
+.HeaderTimezone {
+    text-align:center;
+    font-size:10pt;
+    font-weight:normal;
+}
+.HeaderLocation {
+    text-align:center;
+    font-size:10pt;
+    font-weight:bold;
+}
+.SankrantiInfo {
+    color:blue;
+}
+.CompareCalDate {
+    background:#dddddd;
+    text-align:right;
+}
+.CoreInCalHeader {
+    font-weight:bold;
+    font-size:80%;
+}
+
+p.MsoNormal, li.MsoNormal, div.MsoNormal {
+    margin:0in;
+    font-size:80%;
+    font-family:Arial;
+}
+
+p.month
+{
+    margin-right:0in;
+    margin-left:0in;
+    font-size:170%;
+    font-family:Arial;
+}
+
+.text
+{
+    margin-right:0in;
+    margin-left:0in;
+    font-size:60%;
+    font-family:Arial;
+}
+
+.tnote
+{
+    margin-right:0in;
+    margin-left:0in;
+    font-size:70%;
+    font-family:Arial;
+}
+
+.tithiname
+{
+    margin-right:0in;
+    margin-left:0in;
+    font-size:80%;
+    font-family:Arial;
+}
+
+.dayt
+{
+    vertical-align:top;
+    font-size:200%;
+    font-family:Arial;
+    font-weight:bold;
+}
+td.CalTabCell
+{
+    border:solid windowtext 1.0pt;
+    padding:3.0pt 3.0pt 3.0pt 3.0pt;
 }

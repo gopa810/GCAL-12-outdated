@@ -53,7 +53,7 @@ function onSave()
 <body>
 
 
-<h1>Count of Years</h1>
+<h1>{%gstr 1035}</h1>
 
 <table width=240pt align=center>
 <tr>
@@ -74,7 +74,7 @@ function onSave()
 
 <script type="text/javascript">
 writeNavigStart();
-writeNavigItem("Main Menu", "window.location.href=\"mainmenu.html\"");
+writeNavigItem("{%gstr 1054}", "window.location.href=\"mainmenu.html\"");
 writeNavigItem("{%string leftArrow} {%title -1}", "onSave();goBack()");
 writeNavigItem("{%title +1} {%string rightArrow}", "onSave();goNext()");
 writeNavigEnd();

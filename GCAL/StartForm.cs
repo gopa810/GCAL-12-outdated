@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
+using GCAL.Base;
 
 namespace GCAL
 {
@@ -18,7 +19,7 @@ namespace GCAL
         {
             InitializeComponent();
 
-            content.ContentDir = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "Content");
+            content.ContentDir = Path.Combine(GPFileHelper.getAppExecutableDirectory(), "Content");
             content.WebBrowser = webBrowser1;
             webBrowser1.ObjectForScripting = content;
             content.LoadStartPage();

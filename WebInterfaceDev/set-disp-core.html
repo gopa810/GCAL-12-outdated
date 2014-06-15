@@ -25,15 +25,15 @@ function onSave()
 <table style='border=0px' align=center>
 
 <script type="text/javascript">
-writeCheckBox("Sunrise, Noon, Sunset", "", "t0");
-writeCheckBox("Moonrise, Moonset", "", "t1");
-writeCheckBox("Tithis", "Start of tithi", "t2");
-writeCheckBox("Naksatras", "Start of naksatra", "t3");
-writeCheckBox("Sankrantis", "Occurs when sun enter new zodiac sign", "t4");
-writeCheckBox("Conjunctions", "Occurs when sun and moon has the same longitude", "t5");
-writeCheckBox("Sun Eclipse", "", "t6");
-writeCheckBox("Moon Eclipse", "", "t7");
-writeComboChoice("Sort Results", "Sort by Time", "t20", "set-disp-core-sort.html");
+writeCheckBox("{%gstr 996}", "", "t0");
+writeCheckBox("{%gstr 1007}", "", "t1");
+writeCheckBox("{%gstr 997}", "{%gstr 1169}", "t2");
+writeCheckBox("{%gstr 998}", "{%gstr 1170}", "t3");
+writeCheckBox("{%gstr 1000}", "{%gstr 1171}", "t4");
+writeCheckBox("{%gstr 999}", "{%gstr 1172}", "t5");
+writeCheckBox("{%gstr 1008}", "", "t6");
+writeCheckBox("{%gstr 1009}", "", "t7");
+writeComboChoice("{%gstr 211}", "Sort by Time", "t20", "set-disp-core-sort.html");
 </script>
 
 
@@ -55,8 +55,8 @@ setSwitchValue("t7", getUserDefaultsBool('core.mooneclipse'));
 <div class="menuBarDiv">
 <table class="menuBar" align=center cellspacing=8 cellpadding=8>
 <tr>
-<td class="menuItem" onclick='onSave();window.location.href="mainmenu.html"'>Main Menu</td>
-<td class="menuItem" onclick='onSave();window.location.href="set-disp.html"'>Display Settings</td>
+<td class="menuItem" onclick='onSave();window.location.href="mainmenu.html"'>{%gstr 1054}</td>
+<td class="menuItem" onclick='onSave();window.location.href="set-disp.html"'>{%gstr 235}</td>
 </tr>
 </table>
 </div>

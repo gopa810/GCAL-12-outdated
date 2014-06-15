@@ -524,7 +524,7 @@ namespace GCAL.Base
                 GPLocation loc = getLocation();
                 if (loc != null && loc.getTimeZone() != null)
                 {
-                    p_dst_bias = Convert.ToInt32(loc.getTimeZone().BiasHoursForDate(this) * 3600);
+                    p_dst_bias = loc.getTimeZone().BiasSecondsForDate(this);
                     p_dst_on = (p_dst_bias > 0);
                 }
                 dstValid = true;
@@ -542,13 +542,14 @@ namespace GCAL.Base
                 GPLocation loc = getLocation();
                 if (loc != null && loc.getTimeZone() != null)
                 {
-                    p_dst_bias = Convert.ToInt32(loc.getTimeZone().BiasHoursForDate(this) * 3600);
+                    p_dst_bias = loc.getTimeZone().BiasSecondsForDate(this);
                     p_dst_on = (p_dst_bias > 0);
                 }
                 dstValid = true;
             }
             return p_dst_bias;
         }
+
         public int getSecond()
         {
             return Convert.ToInt32(Math.Floor((getDayHours() * 1440 - Math.Floor(getDayHours() * 1440)) * 60));
@@ -572,6 +573,11 @@ namespace GCAL.Base
         public int getHour()
         {
             return Convert.ToInt32(Math.Floor(getDayHours() * 24));
+        }
+
+        public DateTime getLocalTimeRaw()
+        {
+            return new DateTime(getYear(), getMonth(), getDay(), getHour(), getMinute(), getSecond());
         }
 
         public DateTime getLocalTime()

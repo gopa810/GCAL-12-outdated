@@ -10,6 +10,7 @@ namespace GCAL.Base
     {
         public string LanguageName = string.Empty;
         public string LanguageFile = string.Empty;
+        public int LanguageId = 1;
         public bool modified_this = false;
         private GPStrings _strs = null;
 
@@ -70,6 +71,7 @@ namespace GCAL.Base
             using (StreamWriter sw = new StreamWriter(fileName))
             {
                 sw.WriteLine("lang\t{0}", LanguageName);
+                sw.WriteLine("langid\t{1}", LanguageId);
                 for (int i = 0; i < getStrings().gstr.Count; i++)
                 {
                     if (getStrings().gstr[i].Length > 0)

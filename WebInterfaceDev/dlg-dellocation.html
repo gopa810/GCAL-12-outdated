@@ -15,14 +15,14 @@ function onSave()
 <body>
 
 <center>
-<h1>Remove Location ?</h1>
-<p width=50%>Confirm that you want to <b>remove</b> following location from the global list of locations in GCAL application.</p>
+<h1>{%gstr 1064}</h1>
+<p width=50%>{%gstr 1075}</p>
 <table>
-<tr><td>Name</td><td>{%string locationname}</td></tr>
-<tr><td>Country</td><td>{%string locationcountry}</td></tr>
-<tr><td>Longitude</td><td>{%string locationlongitude}</td></tr>
-<tr><td>Latitude</td><td>{%string locationlatitude}</td></tr>
-<tr><td>Timezone</td><td>{%string locationtimezone}</td></tr>
+<tr><td>{%gstr 9}</td><td>{%string locationname}</td></tr>
+<tr><td>{%gstr 252}</td><td>{%string locationcountry}</td></tr>
+<tr><td>{%gstr 11}</td><td>{%string locationlongitude}</td></tr>
+<tr><td>{%gstr 10}</td><td>{%string locationlatitude}</td></tr>
+<tr><td>{%gstr 12}</td><td>{%string locationtimezone}</td></tr>
 </table>
 
 </center>
@@ -31,8 +31,8 @@ function onSave()
 <script type="text/javascript">
 writeNavigStart();
 writeNavigItem("{%string leftArrow} {%title -1}", "goBack()");
-writeNavigItem("Don't delete", "window.location.href=\"mainmenu.html\"");
-writeNavigItem("Yes, delete", "onSave();window.location.href=\"geo-cities.html\";");
+writeNavigItem("{%gstr 1072}", "window.location.href=\"mainmenu.html\"");
+writeNavigItem("{%gstr 1073}", "onSave();window.location.href=\"geo-cities.html\";");
 writeNavigEnd();
 </script>
 

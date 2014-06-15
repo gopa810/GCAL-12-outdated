@@ -13,51 +13,51 @@ function onSave()
 function startEditName()
 {
     scriptObject.clearHistory();
-    setCurrTitle("Edit Location");
+    setCurrTitle("{%gstr 1091}");
 	saveString("ppx", "");
-	addFutureFile2("dlg-locfull.html", "Location Full Name");
-	addFutureFile2("dlg-editlocation.html", "Save");
+	addFutureFile2("dlg-locfull.html", "{%gstr 1044}");
+	addFutureFile2("dlg-editlocation.html", "{%gstr 1062}");
 	goNext();
 }
 
 function startEditCountry()
 {
     scriptObject.clearHistory();
-    setCurrTitle("Edit Location");
+    setCurrTitle("{%gstr 1091}");
 	saveString("ppx", "");
-	addFutureFile2("dlg-country.html", "Location Full Name");
-	addFutureFile2("dlg-selcoutz.html", "Select Timezone");
-	addFutureFile2("dlg-editlocation.html", "Save");
+	addFutureFile2("dlg-country.html", "{%gstr 1044}");
+	addFutureFile2("dlg-selcoutz.html", "{%gstr 1040}");
+	addFutureFile2("dlg-editlocation.html", "{%gstr 1062}");
 	goNext();
 }
 
 function startEditLatitude()
 {
     scriptObject.clearHistory();
-    setCurrTitle("Edit Location");
+    setCurrTitle("{%gstr 1091}");
 	saveString("ppx", "");
-	addFutureFile2("dlg-enterlatitude.html", "Enter Latitude");
-	addFutureFile2("dlg-editlocation.html", "Save");
+	addFutureFile2("dlg-enterlatitude.html", "{%gstr 1041}");
+	addFutureFile2("dlg-editlocation.html", "{%gstr 1062}");
 	goNext();
 }
 
 function startEditLongitude()
 {
     scriptObject.clearHistory();
-    setCurrTitle("Edit Location");
+    setCurrTitle("{%gstr 1091}");
 	saveString("ppx", "");
-	addFutureFile2("dlg-enterlongitude.html", "Enter Longitude");
-	addFutureFile2("dlg-editlocation.html", "Save");
+	addFutureFile2("dlg-enterlongitude.html", "{%gstr 1042}");
+	addFutureFile2("dlg-editlocation.html", "{%gstr 1062}");
 	goNext();
 }
 
 function startEditTimezone()
 {
     scriptObject.clearHistory();
-    setCurrTitle("Edit Location");
+    setCurrTitle("{%gstr 1091}");
 	saveString("ppx", "");
-	addFutureFile2("dlg-selcoutz.html", "Select Timezone");
-	addFutureFile2("dlg-editlocation.html", "Save");
+	addFutureFile2("dlg-selcoutz.html", "{%gstr 1040}");
+	addFutureFile2("dlg-editlocation.html", "{%gstr 1062}");
 	goNext();
 }
 
@@ -67,14 +67,14 @@ function startEditTimezone()
 <body>
 
 <center>
-<h1>Edit Location</h1>
-<p width=50%>Edit name, coordinates, country or timezone for selected location. Then press "Save" to save edited values and return to the Cities menu.</p>
+<h1>{%gstr 1091}</h1>
+<p width=50%>{%gstr 1092}</p>
 <table>
-<tr><td><button style='width:100%' type="button" onclick='startEditName()'>Edit Name</button></td><td>{%string locationname}</td></tr>
-<tr><td><button style='width:100%' type="button" onclick='startEditCountry()'>Edit Country</button></td><td>{%string locationcountrycode} {%string locationcountry}</td></tr>
-<tr><td><button style='width:100%' type="button" onclick='startEditLongitude()'>Edit Longitude</button></td><td>{%string locationlongitude}</td></tr>
-<tr><td><button style='width:100%' type="button" onclick='startEditLatitude()'>Edit Latitude</button></td><td>{%string locationlatitude}</td></tr>
-<tr><td><button style='width:100%' type="button" onclick='startEditTimezone()'>Edit Timezone</button></td><td>{%string locationtimezone}</td></tr>
+<tr><td><button style='width:100%' type="button" onclick='startEditName()'>{%gstr 1093}</button></td><td>{%string locationname}</td></tr>
+<tr><td><button style='width:100%' type="button" onclick='startEditCountry()'>{%gstr 1094}</button></td><td>{%string locationcountrycode} {%string locationcountry}</td></tr>
+<tr><td><button style='width:100%' type="button" onclick='startEditLongitude()'>{%gstr 1095}</button></td><td>{%string locationlongitude}</td></tr>
+<tr><td><button style='width:100%' type="button" onclick='startEditLatitude()'>{%gstr 1096}</button></td><td>{%string locationlatitude}</td></tr>
+<tr><td><button style='width:100%' type="button" onclick='startEditTimezone()'>{%gstr 1097}</button></td><td>{%string locationtimezone}</td></tr>
 </table>
 
 </center>
@@ -82,8 +82,8 @@ function startEditTimezone()
 
 <script type="text/javascript">
 writeNavigStart();
-writeNavigItem("Main Menu", "onSave();window.location.href=\"mainmenu.html\"");
-writeNavigItem("Cities", "onSave();window.location.href=\"geo-cities.html\"");
+writeNavigItem("{%gstr 1054}", "onSave();window.location.href=\"mainmenu.html\"");
+writeNavigItem("{%gstr 311}", "onSave();window.location.href=\"geo-cities.html\"");
 writeNavigEnd();
 </script>
 

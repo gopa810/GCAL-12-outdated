@@ -4,23 +4,59 @@
 <link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
 </head>
 
+<script type="text/javascript">
+
+function startNewTimezone()
+{
+    scriptObject.clearHistory();
+    setCurrTitle("{%gstr 1166}");
+	saveString("tzdata", "");
+	addFutureFile2("dlg-edittimezone.html", "{%gstr 349}");
+	addFutureFile2("geo-tzones.html?preaction=savetzone", "{%gstr 1062}");
+	goNext();
+}
+
+function startEditTimezone()
+{
+    scriptObject.clearHistory();
+    setCurrTitle("{%gstr 1166}");
+	saveString("tzdata", "");
+	addFutureFile2("dlg-findtz.html", "{%gstr 1061}");
+	addFutureFile2("dlg-edittimezone.html?preaction=loadtzone", "{%gstr 1097}");
+	addFutureFile2("geo-tzones.html?preaction=updatetzone", "{%gstr 1120}");
+	goNext();
+}
+
+function startRemoveTimezone()
+{
+    scriptObject.clearHistory();
+    setCurrTitle("{%gstr 1166}");
+	saveString("tzdata", "");
+	addFutureFile2("dlg-findtz.html", "{%gstr 1061}");
+	addFutureFile2("dlg-deltzone.html?preaction=loadtzone", "{%gstr 355}");
+	addFutureFile2("geo-tzones.html?preaction=deltzone", "{%gstr 343}");
+	goNext();
+}
+
+</script>
+
 <body>
 
-<h1>Timezones</h1>
+<h1>{%gstr 1166}</h1>
 
 <table style='border:0px' width="100%" cellspacing=8 cellpadding=8>
 
 <script type="text/javascript">
-writeChoice("New Timezone", "t0", "geo-events-add.html");
-writeChoice("Edit Timezone", "t1", "geo-events-edit.html");
-writeChoice("Remove Timezone", "t2", "geo-events-del.html");
+writeChoiceWithAction("{%gstr 349}", "t0", "startNewTimezone();");
+writeChoiceWithAction("{%gstr 1097}", "t1", "startEditTimezone();");
+writeChoiceWithAction("{%gstr 355}", "t2", "startRemoveTimezone();");
 </script>
 
 </table>
 
 <script type="text/javascript">
 writeNavigStart();
-writeNavigItem("Main Menu", "window.location.href=\"mainmenu.html\"");
+writeNavigItem("{%gstr 1054}", "window.location.href=\"mainmenu.html\"");
 writeNavigEnd();
 </script>
 

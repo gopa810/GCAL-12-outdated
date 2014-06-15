@@ -51,11 +51,14 @@ namespace GCAL
         private GPGregorianTime myDate = null;
         private List<GPLocation> locationsList = new List<GPLocation>();
         private int locationsEnumerator = 0;
+        private CELSearch searchTask = null;
+        public object CurrentCalculatedObject = null;
+
 
         public ContentServer()
         {
-            dictStrings.Add("leftArrow", "<span style='font-size:200%'>&#8592;</span><br>");
-            dictStrings.Add("rightArrow", "<span style='font-size:200%'>&#8594;</span><br>");
+            dictStrings.Add("leftArrow", "&nbsp;&#9001;&nbsp;");
+            dictStrings.Add("rightArrow", "&nbsp;&#9002;&nbsp;");
         }
 
         public string GetFilePath(string file)
@@ -65,8 +68,11 @@ namespace GCAL
 
         public void LoadStartPage()
         {
-            //LoadFile("mainmenu.html");
-            LoadFile("dlg-findtz.html");
+            if (getCurrentLanguageId() < 0)
+                LoadFile("languages.html");
+            else
+                LoadFile("mainmenu.html");
+            //LoadFile("dlg-findtz.html");
         }
 
         /// <summary>
@@ -109,6 +115,8 @@ namespace GCAL
 
             ModifyFileVariables(sb);
 
+            Debugger.Log(0, "", "----------------------------------------\n");
+            Debugger.Log(0, "", sb.ToString());
             currentFile = fileName;
             WebBrowser.DocumentText = sb.ToString();
         }
@@ -146,6 +154,8 @@ namespace GCAL
             string[] parts = s.Split(' ');
             if (parts.Length == 1)
             {
+                if (parts[0] == "version")
+                    return GPAppHelper.getShortVersionText();
             }
             else if (parts.Length == 2)
             {
@@ -219,6 +229,7 @@ namespace GCAL
                 int idx = 0;
                 if (int.TryParse(p2, out idx))
                 {
+                    //return string.Format("<span style='color:red;font-size:9pt;'>STR-{0}</span> {1}", idx, GPStrings.getSharedStrings().getString(idx));
                     return GPStrings.getSharedStrings().getString(idx);
                 }
                 return string.Empty;
@@ -228,31 +239,37 @@ namespace GCAL
                 if (p2 == "calendar")
                 {
                     CELGenerateCalendar gc = new CELGenerateCalendar(this);
+                    CurrentCalculatedObject = gc.CalculatedObject;
                     return gc.HtmlText;
                 }
                 else if (p2 == "coreevents")
                 {
                     CELGenerateCoreEvents ge = new CELGenerateCoreEvents(this);
+                    CurrentCalculatedObject = ge.CalculatedObject;
                     return ge.HtmlText;
                 }
                 else if (p2 == "appday")
                 {
                     CELGenerateAppearanceDay ga = new CELGenerateAppearanceDay(this);
+                    CurrentCalculatedObject = ga.CalculatedObject;
                     return ga.HtmlText;
                 }
                 else if (p2 == "masalist")
                 {
                     CELGenerateMasaList gm = new CELGenerateMasaList(this);
+                    CurrentCalculatedObject = gm.CalculatedObject;
                     return gm.HtmlText;
                 }
                 else if (p2 == "calcore")
                 {
                     CELGenerateCalendarPlusCore gcc = new CELGenerateCalendarPlusCore(this);
+                    CurrentCalculatedObject = gcc.CalculatedObject;
                     return gcc.HtmlText;
                 }
                 else if (p2 == "cal2locs")
                 {
                     CELGenerateCalendarTwoLocs gcc = new CELGenerateCalendarTwoLocs(this);
+                    CurrentCalculatedObject = gcc.CalculatedObject;
                     return gcc.HtmlText;
                 }
                 else if (p2 == "today")
@@ -656,6 +673,53 @@ namespace GCAL
                 saveInt("eventsinceyear", -10000);
                 saveInt("eventvisibility", 1);
             }
+            else if (cmd.Equals("savetzone"))
+            {
+                string tzdata = getString("tzdata");
+                GPTimeZone ntz = new GPTimeZone();
+                ntz.Id = GPTimeZoneList.sharedTimeZones().getNextId();
+                ntz.initWithData(tzdata);
+                saveInt("timezoneid", ntz.Id);
+                GPTimeZoneList.sharedTimeZones().addTimezone(ntz);
+            }
+            else if (cmd.Equals("loadtzone"))
+            {
+                GPTimeZone tz = GPTimeZoneList.sharedTimeZones().GetTimezoneById(getInt("timezoneid"));
+                if (tz != null)
+                {
+                    saveString("tzdata", tz.getStringData());
+                    saveString("timezonename", tz.Name);
+                    saveString("timezoneoffset", tz.getOffsetString());
+                }
+            }
+            else if (cmd.Equals("updatetzone"))
+            {
+                GPTimeZone tz = GPTimeZoneList.sharedTimeZones().GetTimezoneById(getInt("timezoneid"));
+                if (tz != null)
+                {
+                    tz.initWithData(getString("tzdata"));
+                }
+            }
+            else if (cmd.Equals("deltzone"))
+            {
+                GPTimeZoneList.sharedTimeZones().DeleteTimezone(getInt("timezoneid"));
+            }
+        }
+
+        public int getTimezoneUsage(int tzoneid)
+        {
+            int count = 0;
+            GPTimeZone tz = GPTimeZoneList.sharedTimeZones().GetTimezoneById(tzoneid);
+            if (tz != null)
+            {
+                foreach (GPLocation loc in GPLocationList.getShared().locations)
+                {
+                    if (loc.getTimeZoneName().Equals(tz.Name))
+                        count++;
+                }
+            }
+
+            return count;
         }
 
         public string getEventsByName(string name)
@@ -794,6 +858,11 @@ namespace GCAL
             }
         }
 
+        public string gstr(int i)
+        {
+            return GPStrings.getSharedStrings().getString(i);
+        }
+
         public string getString(string key)
         {
             if (dictStrings.ContainsKey(key))
@@ -817,6 +886,7 @@ namespace GCAL
                 dictStrings[key] = value;
             else
                 dictStrings.Add(key, value);
+            Debugger.Log(0,"","saveString(" + key + "," + value + ")\n");
         }
 
         public void saveInt(string key, int value)
@@ -1130,5 +1200,277 @@ namespace GCAL
                 }
             }
         }
+
+        public void searchResultString(string str)
+        {
+            if (searchTask != null)
+                searchTask.ShouldCancel = true;
+
+            searchTask = new CELSearch(str);
+            searchTask.Location = GPAppHelper.getMyLocation();
+            searchTask.Invoke();
+        }
+
+        public int isSearchFinished()
+        {
+            return (searchTask != null && searchTask.finished) ? 1 : 0;
+        }
+
+        public int isSearching()
+        {
+            return searchTask != null ? 1 : 0;
+        }
+
+        public int searchResultsCount()
+        {
+            if (searchTask != null)
+                return searchTask.ResultsList.Count;
+            return 0;
+        }
+
+        public string getSearchResult(int i)
+        {
+            if (searchTask != null && searchTask.ResultsList.Count > i)
+                return searchTask.ResultsList[i].getDataString();
+            return "";
+        }
+
+        public void setMyDate(int y, int m, int d)
+        {
+            if (myDate == null)
+                resetToday();
+            myDate.setDate(y, m, d);
+        }
+
+        public string nextTip()
+        {
+            string s = GPAppHelper.NextStartupTip();
+            return s != null ? s : "<i>" + GPStrings.getSharedStrings().getString(1195) + "</i>";
+        }
+
+        public int getLanguagesCount()
+        {
+            return GPLanguageList.getShared().languages.Count;
+        }
+
+        public string getLanguageName(int i)
+        {
+            List<GPLanguage> ll = GPLanguageList.getShared().languages;
+            return ll[i].LanguageId.ToString() + "<r>" + ll[i].LanguageName;
+        }
+
+        public int getCurrentLanguageId()
+        {
+            return GPLanguageList.getShared().currentLanguageId;
+        }
+
+        public void setCurrentLanguageId(int id)
+        {
+            GPLanguageList.getShared().setCurrentLanguageId(id);
+        }
+
+        public void saveContent()
+        {
+            if (CurrentCalculatedObject is GPCalendarResults)
+            {
+                OnSaveCalendar();
+            }
+            else if (CurrentCalculatedObject is GPCoreEventResults)
+            {
+                OnSaveEvents();
+            }
+            else if (CurrentCalculatedObject is GPAppDayResults)
+            {
+                OnSaveAppday();
+            }
+            else if (CurrentCalculatedObject is GPMasaListResults)
+            {
+                OnSaveMasaList();
+            }
+            else if (CurrentCalculatedObject is GPCalendarPlusEventsResults)
+            {
+                OnSaveCalendarPlusEvents();
+            }
+            else if (CurrentCalculatedObject is GPCalendarTwoLocResults)
+            {
+                OnSaveTwoCalendars();
+            }
+        }
+
+
+
+        private void OnSaveCalendar()
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = GPAppHelper.MakeFilterString(FileFormatType.PlainText, FileFormatType.RichText,
+                FileFormatType.HtmlText, FileFormatType.HtmlTable, FileFormatType.Csv,
+                FileFormatType.Ical, FileFormatType.Vcal, FileFormatType.Xml);
+            if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                if (CurrentCalculatedObject is GPCalendarResults)
+                {
+                    StringBuilder sb = new StringBuilder();
+                    if (sfd.FilterIndex == 1)
+                    {
+                        FormaterPlain.FormatCalendarOld((CurrentCalculatedObject as GPCalendarResults), sb);
+                    }
+                    else if (sfd.FilterIndex == 2)
+                    {
+                        FormaterRtf.FormatCalendarRtf((CurrentCalculatedObject as GPCalendarResults), sb);
+                    }
+                    else if (sfd.FilterIndex == 3)
+                    {
+                        FormaterHtml.WriteCalendarHTML((CurrentCalculatedObject as GPCalendarResults), sb);
+                    }
+                    else if (sfd.FilterIndex == 4)
+                    {
+                        FormaterHtml.WriteCalendarHtmlTable((CurrentCalculatedObject as GPCalendarResults), sb);
+                    }
+                    else if (sfd.FilterIndex == 5)
+                    {
+                        FormaterCSV.FormatCalendarCSV((CurrentCalculatedObject as GPCalendarResults), sb);
+                    }
+                    else if (sfd.FilterIndex == 6)
+                    {
+                        FormaterICAL.FormatCalendarICAL((CurrentCalculatedObject as GPCalendarResults), sb);
+                    }
+                    else if (sfd.FilterIndex == 7)
+                    {
+                        FormaterVCAL.FormatCalendarVCAL((CurrentCalculatedObject as GPCalendarResults), sb);
+                    }
+                    else if (sfd.FilterIndex == 8)
+                    {
+                        FormaterXml.WriteCalendarXml((CurrentCalculatedObject as GPCalendarResults), sb);
+                    }
+                    File.WriteAllText(sfd.FileName, sb.ToString());
+                }
+            }
+        }
+
+        private void OnSaveCalendarPlusEvents()
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = GPAppHelper.MakeFilterString(FileFormatType.PlainText, FileFormatType.HtmlText);
+            if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                if (CurrentCalculatedObject is GPCalendarPlusEventsResults)
+                {
+                    StringBuilder sb = new StringBuilder();
+                    if (sfd.FilterIndex == 1)
+                    {
+                        FormaterPlain.FormatCalendarPlusCorePlain((CurrentCalculatedObject as GPCalendarPlusEventsResults), sb);
+                    }
+                    else if (sfd.FilterIndex == 2)
+                    {
+                        FormaterHtml.WriteCalendarPlusCoreHTML((CurrentCalculatedObject as GPCalendarPlusEventsResults), sb);
+                    }
+                    File.WriteAllText(sfd.FileName, sb.ToString());
+                }
+            }
+        }
+        private void OnSaveEvents()
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = GPAppHelper.MakeFilterString(FileFormatType.PlainText, FileFormatType.RichText,
+                FileFormatType.HtmlText, FileFormatType.Xml);
+            if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                if (CurrentCalculatedObject is GPCoreEventResults)
+                {
+                    StringBuilder sb = new StringBuilder();
+                    if (sfd.FilterIndex == 1)
+                    {
+                        FormaterPlain.FormatEventsText((CurrentCalculatedObject as GPCoreEventResults), sb);
+                    }
+                    else if (sfd.FilterIndex == 2)
+                    {
+                        FormaterRtf.FormatEventsRtf((CurrentCalculatedObject as GPCoreEventResults), sb);
+                    }
+                    else if (sfd.FilterIndex == 3)
+                    {
+                        FormaterHtml.WriteEventsHTML((CurrentCalculatedObject as GPCoreEventResults), sb);
+                    }
+                    else if (sfd.FilterIndex == 4)
+                    {
+                        FormaterXml.FormatEventsXML((CurrentCalculatedObject as GPCoreEventResults), sb);
+                    }
+                    File.WriteAllText(sfd.FileName, sb.ToString());
+                }
+            }
+        }
+        private void OnSaveTwoCalendars()
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = GPAppHelper.MakeFilterString(FileFormatType.HtmlText);
+            if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                if (CurrentCalculatedObject is GPCalendarTwoLocResults)
+                {
+                    if (sfd.FilterIndex == 1)
+                    {
+                        StringBuilder sb = new StringBuilder();
+                        FormaterHtml.WriteCompareCalendarHTML((CurrentCalculatedObject as GPCalendarTwoLocResults), sb);
+                        File.WriteAllText(sfd.FileName, sb.ToString());
+                    }
+                }
+            }
+        }
+        private void OnSaveMasaList()
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = GPAppHelper.MakeFilterString(FileFormatType.PlainText, FileFormatType.RichText, FileFormatType.HtmlText);
+            if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                if (CurrentCalculatedObject is GPMasaListResults)
+                {
+                    StringBuilder sb = new StringBuilder();
+                    if (sfd.FilterIndex == 1)
+                    {
+                        FormaterPlain.FormatMasaListText((CurrentCalculatedObject as GPMasaListResults), sb);
+                    }
+                    else if (sfd.FilterIndex == 2)
+                    {
+                        FormaterRtf.FormatMasaListRtf((CurrentCalculatedObject as GPMasaListResults), sb);
+                    }
+                    else if (sfd.FilterIndex == 3)
+                    {
+                        FormaterHtml.WriteMasaListHTML((CurrentCalculatedObject as GPMasaListResults), sb);
+                    }
+
+                    File.WriteAllText(sfd.FileName, sb.ToString());
+                }
+            }
+        }
+
+        private void OnSaveAppday()
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = GPAppHelper.MakeFilterString(FileFormatType.PlainText, FileFormatType.RichText, FileFormatType.HtmlText, FileFormatType.Xml);
+            if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                if (CurrentCalculatedObject is GPAppDayResults)
+                {
+                    StringBuilder sb = new StringBuilder();
+                    if (sfd.FilterIndex == 1)
+                    {
+                        FormaterPlain.FormatAppDayText((CurrentCalculatedObject as GPAppDayResults), sb);
+                    }
+                    else if (sfd.FilterIndex == 2)
+                    {
+                        FormaterRtf.FormatAppDayRtf((CurrentCalculatedObject as GPAppDayResults), sb);
+                    }
+                    else if (sfd.FilterIndex == 3)
+                    {
+                        FormaterHtml.WriteAppDayHTML((CurrentCalculatedObject as GPAppDayResults), sb);
+                    }
+                    else if (sfd.FilterIndex == 4)
+                    {
+                        FormaterXml.FormatAppDayXML((CurrentCalculatedObject as GPAppDayResults), sb);
+                    }
+                    File.WriteAllText(sfd.FileName, sb.ToString());
+                }
+            }
+        }
+
     }
 }

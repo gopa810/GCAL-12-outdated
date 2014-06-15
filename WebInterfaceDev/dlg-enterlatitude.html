@@ -139,7 +139,7 @@ function decr(type, dif)
 <body>
 
 
-<h1>Enter Latitude</h1>
+<h1>{%gstr 1041}</h1>
 
 <table width=240pt align=center>
 <tr>
@@ -165,7 +165,7 @@ function decr(type, dif)
 
 <script type="text/javascript">
 writeNavigStart();
-writeNavigItem("Main Menu", "window.location.href=\"mainmenu.html\"");
+writeNavigItem("{%gstr 1054}", "window.location.href=\"mainmenu.html\"");
 writeNavigItem("{%string leftArrow} {%title -1}", "onSave();goBack()");
 writeNavigItem("{%title +1} {%string rightArrow}", "onSave();goNext()");
 writeNavigEnd();

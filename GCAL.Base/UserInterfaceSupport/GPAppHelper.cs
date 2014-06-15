@@ -503,27 +503,30 @@ namespace GCAL.Base
             bool startupTips = GPUserDefaults.BoolForKey("app.startup.tips", true);
             if (startupTips)
             {
+                GPStrings gstr = GPStrings.getSharedStrings();
                 int startupTipsCounter = GPUserDefaults.IntForKey("app.startup.tips.counter", 0);
-                string tipsFile = Path.Combine(GPFileHelper.getAppDataDirectory(), "Tips.txt");
-                if (File.Exists(tipsFile))
+                int count;
+                for (count = 1200; count <= 1228; count++)
                 {
-                    string[] lines = File.ReadAllLines(tipsFile);
-                    if (lines.Length > 0)
-                    {
-                        if (startupTipsCounter > lines.Length)
-                            startupTipsCounter = 0;
-                        string ret = string.Format("{0}<p align=right><a href=\"http://gcal.app/nexttip\">{1}</a></p>"
-                            , lines[startupTipsCounter]
-                            , StringToHtmlString(GPStrings.getSharedStrings().getString(239)));
-                        startupTipsCounter = (startupTipsCounter + 1) % lines.Length;
-                        GPUserDefaults.SetIntForKey("app.startup.tips.counter", startupTipsCounter);
-                        return ret;
-                    }
+                    if (gstr.getString(count).Length == 0)
+                        break;
                 }
+                count -= 1200;
+
+                startupTipsCounter = startupTipsCounter % count;
+                string ret = gstr.getString(1200 + startupTipsCounter);
+                startupTipsCounter = (startupTipsCounter + 1) % count;
+                GPUserDefaults.SetIntForKey("app.startup.tips.counter", startupTipsCounter);
+                return ret;
             }
             return null;
         }
 
+        /// <summary>
+        /// Maybe better to use function Formatter.getHtmlStringFromUnicode()
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
         public static string StringToHtmlString(string s)
         {
             return s.Replace("&", "&amp;").Replace(">", "&gt;").Replace("<", "&lt;");

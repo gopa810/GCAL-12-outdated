@@ -499,7 +499,7 @@ namespace GCAL.Base
         {
             fprintf(fout, "<hr align=center width=\"65%\">\n");
             fprintf(fout, "<p align=center>");
-            fprintf(fout, getSharedString(982), GPAppHelper.getShortVersionText());
+            fprintf(fout, "{0} {1}", getSharedStringHtml(982), GPAppHelper.getShortVersionText());
             fprintf(fout, "</p>\n");
         }
 
@@ -522,34 +522,34 @@ namespace GCAL.Base
             int i = 0;
             StringBuilder fout = new StringBuilder();
 
-            fprintf(fout, "<td class=hed colspan=2>{0}</td>", getSharedString(986).ToUpper());
+            fprintf(fout, "<td class=hed colspan=2>{0}</td>", getSharedStringHtml(986).ToUpper());
             i += 2;
-            fprintf(fout, "<td class=hed>{0}</td>", getSharedString(986).ToUpper());
+            fprintf(fout, "<td class=hed>{0}</td>", getSharedStringHtml(986).ToUpper());
             i++;
 
             if (GPDisplays.Calendar.PaksaInfoVisible())
             {
-                fprintf(fout, "<td class=hed>{0}</td>", getSharedString(20).ToUpper());
+                fprintf(fout, "<td class=hed>{0}</td>", getSharedStringHtml(20).ToUpper());
                 i++;
             }
             if (GPDisplays.Calendar.NaksatraVisible())
             {
-                fprintf(fout, "<td class=hed>{0}</td>", getSharedString(15).ToUpper());
+                fprintf(fout, "<td class=hed>{0}</td>", getSharedStringHtml(15).ToUpper());
                 i++;
             }
             if (GPDisplays.Calendar.YogaVisible())
             {
-                fprintf(fout, "<td class=hed>{0}</td>", getSharedString(104).ToUpper());
+                fprintf(fout, "<td class=hed>{0}</td>", getSharedStringHtml(104).ToUpper());
                 i++;
             }
             if (GPDisplays.Calendar.FastingFlagVisible())
             {
-                fprintf(fout, "<td class=hed>{0}</td>", getSharedString(987).ToUpper());
+                fprintf(fout, "<td class=hed>{0}</td>", getSharedStringHtml(987).ToUpper());
                 i++;
             }
             if (GPDisplays.Calendar.RasiVisible())
             {
-                fprintf(fout, "<td class=hed>{0}</td>", getSharedString(105).ToUpper());
+                fprintf(fout, "<td class=hed>{0}</td>", getSharedStringHtml(105).ToUpper());
                 i++;
             }
 

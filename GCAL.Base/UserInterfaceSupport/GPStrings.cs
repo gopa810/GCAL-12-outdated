@@ -8,6 +8,7 @@ namespace GCAL.Base
     public class GPStrings: GPObjectListBase
     {
         public string Language = "English";
+        public int LanguageId = 2;
         public List<string> gstr = new List<string>();
         public List<string> keys = new List<string>();
         public Dictionary<string, int> map = new Dictionary<string, int>();
@@ -71,6 +72,10 @@ namespace GCAL.Base
                 {
                     Language = parts[1];
                 }
+                else if (parts[0].Equals("langid"))
+                {
+                    int.TryParse(parts[1], out LanguageId);
+                }
                 else if (int.TryParse(parts[0], out index))
                 {
                     if (parts.Length > 2)
@@ -107,7 +112,8 @@ namespace GCAL.Base
         {
             if (index < 0 || index >= gstr.Count)
                 return string.Empty;
-            return gstr[index];
+            return string.Format("<span class=highred>[{0}]</span> {1}", index, gstr[index]);
+//            return gstr[index];
         }
 
         public string getString(string key)

@@ -222,8 +222,8 @@
 235	Display Settings			
 236	OK			
 237	Cancel			
-238	<< Back			
-239	Next >>			
+238	Back			
+239	Next			
 240	Western Time			
 241	Vedic Time			
 242	Set specific date			

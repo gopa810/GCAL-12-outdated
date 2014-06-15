@@ -21,25 +21,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_495D4AA50EC74135A3E37699F6F8930D"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_580D2E82BF1049ABAE64D86F42EFB602"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_6DF3A800A26F4DCABE5A2ECE75FCA823"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_ED20053C653DA26EA1AC2403DDFF706A"
+        "MsmKey" = "8:_C6B82C8A923DD21DB45B8E8C2A47A93F"
         "OwnerKey" = "8:_35BFE56E38BC4C7AA4DFA661BA2D58EE"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -52,7 +40,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_ED20053C653DA26EA1AC2403DDFF706A"
+        "OwnerKey" = "8:_C6B82C8A923DD21DB45B8E8C2A47A93F"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -160,26 +148,6 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_495D4AA50EC74135A3E37699F6F8930D"
-            {
-            "SourcePath" = "8:..\\..\\Tips.txt"
-            "TargetName" = "8:Tips.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_499667D7B8AA425086CE2EB322E3F319"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_580D2E82BF1049ABAE64D86F42EFB602"
             {
             "SourcePath" = "8:..\\..\\VersionInfo.txt"
@@ -200,34 +168,14 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6DF3A800A26F4DCABE5A2ECE75FCA823"
-            {
-            "SourcePath" = "8:..\\..\\help\\gcal.chm"
-            "TargetName" = "8:gcal.chm"
-            "Tag" = "8:"
-            "Folder" = "8:_499667D7B8AA425086CE2EB322E3F319"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_ED20053C653DA26EA1AC2403DDFF706A"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C6B82C8A923DD21DB45B8E8C2A47A93F"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:GCAL.Base, Version=13.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_ED20053C653DA26EA1AC2403DDFF706A"
+                    "_C6B82C8A923DD21DB45B8E8C2A47A93F"
                     {
                     "Name" = "8:GCAL.Base.dll"
                     "Attributes" = "3:512"
@@ -287,6 +235,28 @@
                     "Property" = "8:_3C85625018F34E2D9E3223D46F700E4C"
                         "Folders"
                         {
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_320C789E03024EE5B9DB01B0F5A4B50A"
+                            {
+                            "Name" = "8:Content"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_AAA204E3C66E45BBBF65083C2D1B224B"
+                                "Folders"
+                                {
+                                }
+                            }
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_E9A23AEC23164BB18323A2DBE2B560DC"
+                            {
+                            "Name" = "8:Languages"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_6D95F3B77C85436499EB29CC397BD783"
+                                "Folders"
+                                {
+                                }
+                            }
                         }
                     }
                 }
