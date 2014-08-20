@@ -1133,6 +1133,7 @@ namespace GCAL
             loc.setTimeZoneName(getString("locationtimezone"));
 
             GPLocationList.getShared().locations.Add(loc);
+            GPLocationList.getShared().Modified = true;
         }
 
         public void saveEditedLocation()
@@ -1167,6 +1168,7 @@ namespace GCAL
             nc.setCode(ccode);
             nc.setName(cname);
             GPCountryList.getShared().countries.Add(nc);
+            GPCountryList.getShared().Modified = true;
         }
 
         public string existCountry(string ccode, string cname)
@@ -1197,6 +1199,7 @@ namespace GCAL
                 if (i >= 0)
                 {
                     country.Timezones.RemoveAt(i);
+                    GPCountryList.getShared().Modified = true;
                 }
             }
         }

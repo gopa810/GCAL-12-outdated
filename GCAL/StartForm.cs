@@ -36,5 +36,14 @@ namespace GCAL
             }
         }
 
+        private void StartForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            GPStrings.getSharedStrings().Save();
+            GPLocationList.getShared().Save();
+            GPEventList.getShared().Save();
+            GPCountryList.getShared().Save();
+            GPTimeZoneList.sharedTimeZones().Save();
+        }
+
     }
 }

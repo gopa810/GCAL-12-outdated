@@ -907,6 +907,7 @@ namespace GCAL
                         if (MessageBox.Show("Do you want to delete timezone '" + tz.Name + "' ?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                         {
                             GPTimeZoneList.sharedTimeZones().getTimeZones().Remove(tz);
+                            GPTimeZoneList.sharedTimeZones().Modified = true;
                             listView4.Items.Remove(lvi);
                             listView5.Items.Clear();
                         }

@@ -275,6 +275,31 @@ namespace GCAL.Base
         public void addTimezone(GPTimeZone ntz)
         {
             getTimeZones().Add(ntz);
+            Modified = true;
+        }
+
+        public string GetDefaultFileName()
+        {
+            return "Timezones.xml";
+        }
+
+        public string getFullPathForFile(string fileName)
+        {
+            string dir = GPFileHelper.getAppDataDirectory();
+            if (!Directory.Exists(dir))
+            {
+                Directory.CreateDirectory(dir);
+            }
+            return Path.Combine(dir, fileName);
+        }
+
+        public void Save()
+        {
+            if (Modified)
+            {
+                string fileName = getFullPathForFile(GetDefaultFileName());
+                saveXml(fileName);
+            }
         }
     }
 }

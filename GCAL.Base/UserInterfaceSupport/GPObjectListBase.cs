@@ -35,11 +35,25 @@ namespace GCAL.Base
             }
         }
 
+        /// <summary>
+        /// Reads data for object list from file on permanent storage
+        /// </summary>
         public void InitializeFromResources()
         {
-            using (StringReader reader = new StringReader(GetDefaultResourceName()))
+            string fileName = getFullPathForFile(GetDefaultFileName());
+            if (File.Exists(fileName))
             {
-                ReadStream(reader);
+                using (StreamReader reader = new StreamReader(fileName))
+                {
+                    ReadStream(reader);
+                }
+            }
+            else
+            {
+                using (StringReader reader = new StringReader(GetDefaultResourceName()))
+                {
+                    ReadStream(reader);
+                }
             }
         }
 
@@ -63,7 +77,7 @@ namespace GCAL.Base
             return Path.Combine(dir, fileName);
         }
 
-        ~GPObjectListBase()
+        public virtual void Save()
         {
             if (Modified)
             {

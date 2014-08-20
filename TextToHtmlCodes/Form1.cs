@@ -42,5 +42,6 @@ namespace TextToHtmlCodes
 
             richTextBox2.Text = sb.ToString();
         }
+
     }
 }
