@@ -53,17 +53,17 @@ namespace GCAL.Base
             _sharedStrings = value;
         }
 
-        public override string GetDefaultResourceName()
+        public override string GetDefaultResourceForKey(FileKey fk)
         {
             return GCAL.Base.Properties.Resources.Strings;
         }
 
-        public override string GetDefaultFileName()
+        public override string GetDefaultFileNameForKey(FileKey fk)
         {
             return "Strings.txt";
         }
 
-        public override void InsertNewObjectFromStrings(string[] parts)
+        public override void InsertNewObjectFromStrings(string[] parts, FileKey fk)
         {
             if (parts.Length >= 2)
             {
@@ -128,7 +128,7 @@ namespace GCAL.Base
             return getSharedStrings().gstr.Count;
         }
 
-        public override void SaveData(System.IO.StreamWriter writer)
+        public override void SaveData(System.IO.StreamWriter writer, FileKey fk)
         {
             writer.WriteLine("lang\t{0}", Language);
             for (int i = 0; i < gstr.Count; i++)

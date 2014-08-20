@@ -25,32 +25,67 @@ namespace GCAL.Base
             return _sharedList;
         }
 
-        public override string GetDefaultResourceName()
+        public override GPObjectListBase.FileKey[] GetFileKeys()
         {
-            return GCAL.Base.Properties.Resources.Countries;
+            return new FileKey[] { FileKey.Primary, FileKey.Secondary};
+        }
+        public override string GetDefaultResourceForKey(FileKey fk)
+        {
+            if (fk == FileKey.Primary)
+                return GCAL.Base.Properties.Resources.Countries;
+            if (fk == FileKey.Secondary)
+                return GCAL.Base.Properties.Resources.CountryTimezones;
+            return string.Empty;
         }
 
-        public override string GetDefaultFileName()
+        public override string GetDefaultFileNameForKey(FileKey fk)
         {
-            return "Countries.txt";
+            if (fk == FileKey.Primary)
+                return "Countries.txt";
+            if (fk == FileKey.Secondary)
+                return "CountryTimezones.txt";
+            return string.Empty;
         }
 
-        public override void InsertNewObjectFromStrings(string[] parts)
+        public override void InsertNewObjectFromStrings(string[] parts, FileKey fk)
         {
-            if (parts.Length >= 2 && parts[0].Length > 0)
+            if (fk == FileKey.Primary)
             {
-                GPCountry location = new GPCountry();
-                location.setCode(parts[0]);
-                location.setName(parts[1]);
-                countries.Add(location);
+                if (parts.Length >= 2 && parts[0].Length > 0)
+                {
+                    GPCountry location = new GPCountry();
+                    location.setCode(parts[0]);
+                    location.setName(parts[1]);
+                    countries.Add(location);
+                }
+            }
+            else
+            {
+                if (parts.Length == 2)
+                {
+                    addTimezone(parts[0], parts[1]);
+                }
             }
         }
 
-        public override void SaveData(StreamWriter writer)
+        public override void SaveData(StreamWriter writer, FileKey fk)
         {
-            foreach (GPCountry country in countries)
+            if (fk == FileKey.Primary)
             {
-                writer.WriteLine("{0}\t{1}", country.getCode(), country.getName());
+                foreach (GPCountry country in countries)
+                {
+                    writer.WriteLine("{0}\t{1}", country.getCode(), country.getName());
+                }
+            }
+            else
+            {
+                foreach (GPCountry country in countries)
+                {
+                    foreach (string timezoneName in country.Timezones)
+                    {
+                        writer.WriteLine("{0}\t{1}", country.getCode(), timezoneName);
+                    }
+                }
             }
         }
 
@@ -80,7 +115,7 @@ namespace GCAL.Base
         public GPCountryList()
         {
             InitializeFromResources();
-            loadTimezones();
+            //loadTimezones();
         }
 
         public void addTimezone(string countryCode, string timezoneName)
@@ -92,7 +127,7 @@ namespace GCAL.Base
             }
         }
 
-        public void loadTimezones()
+        /*public void loadTimezones()
         {
             using (StringReader sr = new StringReader(GCAL.Base.Properties.Resources.CountryTimezones))
             {
@@ -121,7 +156,7 @@ namespace GCAL.Base
                     }
                 }
             }
-        }
+        }*/
 
         public GPCountry GetCountryByName(string cname)
         {

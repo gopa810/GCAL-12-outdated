@@ -1594,7 +1594,7 @@ namespace GCAL.Base
             GPJulianTime[] times = new GPJulianTime[2];
             GPJulianTime result = null;
             GPCelestialBodyCoordinates c;
-            double time = 0;
+            //double time = 0;
             int i = 0;
 
             for (i = 0; i < 2; i++)
@@ -1823,7 +1823,7 @@ namespace GCAL.Base
         {
             double dStart = startDate - 0.5;
             double dEnd = startDate + 0.5;
-            double jd = 0;
+            //double jd = 0;
             double deltaT = GPDynamicTime.GetDeltaT(startDate);
             double sunMoonPartialDist;
             double sunMoonFullDist;

@@ -232,11 +232,11 @@ namespace GCAL.Base
             }
         }
 
-        private class rec 
+        /*private class rec 
         {
             public int sec;
             public string text;
-        }
+        }*/
 
         public string getTimezonesOffsetListDesc()
         {

@@ -94,7 +94,6 @@ namespace GCAL.Base
         public static int WriteEventsHTML(GPCoreEventResults inEvents, StringBuilder f)
         {
             List<string> gstr = GPStrings.getSharedStrings().gstr;
-            int i;
 
             fprintf(f, "<html>\n<head>\n<title>{0}</title>\n\n", gstr[46]);
             fprintf(f, "<style>\n<!--\n");
@@ -272,13 +271,13 @@ namespace GCAL.Base
             GPCoreEventResults events = calev.theEvents;
 
             List<string> gstr = GPStrings.getSharedStrings().gstr;
-            int k;
-            string str;
+            //int k;
+            //string str;
             GPGregorianTime date = new GPGregorianTime(daybuff.m_Location);
-            GPCalendarDay pvd;
-            int nPrevMasa = -1;
-            int nPrevMonth = -1;
-            bool evline = false;
+            //GPCalendarDay pvd;
+            //int nPrevMasa = -1;
+            //int nPrevMonth = -1;
+            //bool evline = false;
 
             if (events.b_sorted == false)
             {
@@ -563,7 +562,7 @@ namespace GCAL.Base
             GPCalendarResults daybuffB = cals.CalendarB;
 
             List<string> gstr = GPStrings.getSharedStrings().gstr;
-            int k;
+            //int k;
             GPGregorianTime date = new GPGregorianTime(daybuffA.m_Location);
 
             fprintf(fout, "<html><head><title>\n");

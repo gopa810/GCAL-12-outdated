@@ -38,16 +38,16 @@ namespace GCAL.Base
             }
         }
 
-        public override string GetDefaultResourceName()
+        public override string GetDefaultResourceForKey(FileKey fk)
         {
             return GCAL.Base.Properties.Resources.Events;
         }
 
-        public override string GetDefaultFileName()
+        public override string GetDefaultFileNameForKey(FileKey fk)
         {
             return "Events.txt";
         }
-        public override void InsertNewObjectFromStrings(string[] parts)
+        public override void InsertNewObjectFromStrings(string[] parts, FileKey fk)
         {
             if (parts.Length < 1)
                 return;
@@ -100,7 +100,7 @@ namespace GCAL.Base
             }
         }
 
-        public override void SaveData(StreamWriter writer)
+        public override void SaveData(StreamWriter writer, FileKey fk)
         {
             foreach (GPEventTithi eve in tithiEvents)
             {

@@ -144,7 +144,6 @@ namespace GCAL.Base
             res.AppendLine();
 
             DateTime prevd = new DateTime(1970, 1, 1);
-            int prevt = -1;
 
             for (i = 0; i < inEvents.getCount(); i++)
             {

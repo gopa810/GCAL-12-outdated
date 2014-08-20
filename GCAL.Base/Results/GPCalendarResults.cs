@@ -547,7 +547,6 @@ namespace GCAL.Base
             GPCalendarDay t = m_pData[nIndex];
             GPCalendarDay u = m_pData[nIndex + 1];
             GPCalendarDay v = m_pData[nIndex + 2];
-            GPCalendarDay.Festival newFestival = null;
 
             // test for Govardhan-puja
             if (t.astrodata.nMasa == GPMasa.DAMODARA_MASA)

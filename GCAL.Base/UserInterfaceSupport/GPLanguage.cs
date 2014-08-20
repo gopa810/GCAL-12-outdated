@@ -39,7 +39,7 @@ namespace GCAL.Base
                 {
                     using (StreamReader reader = File.OpenText(LanguageFile))
                     {
-                        _strs.ReadStream(reader);
+                        _strs.ReadStream(reader, GPObjectListBase.FileKey.Primary);
                     }
                     LanguageName = _strs.Language;
                 }
@@ -60,7 +60,7 @@ namespace GCAL.Base
             using (StreamReader reader = File.OpenText(LanguageFile))
             {
                 _strs = new GPStrings();
-                _strs.ReadStream(reader);
+                _strs.ReadStream(reader, GPObjectListBase.FileKey.Primary);
                 LanguageName = _strs.Language;
             }
             return (LanguageName.Length > 0);

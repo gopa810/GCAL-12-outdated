@@ -17,17 +17,17 @@ namespace GCAL.Base
             InitializeFromResources();
         }
 
-        public override string GetDefaultResourceName()
+        public override string GetDefaultResourceForKey(FileKey fk)
         {
             return GCAL.Base.Properties.Resources.Locations;
         }
 
-        public override string GetDefaultFileName()
+        public override string GetDefaultFileNameForKey(FileKey fk)
         {
             return "Locations.txt";
         }
 
-        public override void InsertNewObjectFromStrings(string[] parts)
+        public override void InsertNewObjectFromStrings(string[] parts, FileKey fk)
         {
             if (parts.Length >= 5 && parts[0].Length > 0)
             {
@@ -41,7 +41,7 @@ namespace GCAL.Base
             }
         }
 
-        public override void SaveData(StreamWriter writer)
+        public override void SaveData(StreamWriter writer, FileKey fk)
         {
             foreach (GPLocation loc in locations)
             {
