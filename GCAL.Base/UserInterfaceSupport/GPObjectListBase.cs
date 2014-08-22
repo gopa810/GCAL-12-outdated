@@ -13,7 +13,14 @@ namespace GCAL.Base
         {
             Primary,
             Secondary,
-            Tertial
+            Tertiary,
+            Quaternary,
+            Quinary,
+            Senary,
+            Septenary,
+            Octonary,
+            Nonary,
+            Denary
         }
 
         public bool Modified = false;
@@ -28,6 +35,14 @@ namespace GCAL.Base
             throw new Exception("New object from strings has to be overriden in child class.");
         }
 
+        /// <summary>
+        /// File Keys is list of keys relevant for this objects list.
+        /// It is allowed to have more than one storage file for one object list.
+        /// List of keys serves for identification of required files and determining
+        /// the count of storage files.
+        /// It is list of predefined general identifiers: Primary, Secondary, Tertial
+        /// </summary>
+        /// <returns></returns>
         public virtual FileKey[] GetFileKeys()
         {
             return new FileKey[] { FileKey.Primary };
