@@ -230,7 +230,7 @@ namespace GCAL
                 if (int.TryParse(p2, out idx))
                 {
                     //return string.Format("<span style='color:red;font-size:9pt;'>STR-{0}</span> {1}", idx, GPStrings.getSharedStrings().getString(idx));
-                    return GPStrings.getSharedStrings().getString(idx);
+                    return GPStrings.getString(idx);
                 }
                 return string.Empty;
             }
@@ -860,7 +860,7 @@ namespace GCAL
 
         public string gstr(int i)
         {
-            return GPStrings.getSharedStrings().getString(i);
+            return GPStrings.getString(i);
         }
 
         public string getString(string key)
@@ -1248,7 +1248,7 @@ namespace GCAL
         public string nextTip()
         {
             string s = GPAppHelper.NextStartupTip();
-            return s != null ? s : "<i>" + GPStrings.getSharedStrings().getString(1195) + "</i>";
+            return s != null ? s : "<i>" + GPStrings.getString(1195) + "</i>";
         }
 
         public int getLanguagesCount()

@@ -30,91 +30,91 @@ namespace GCAL
 
         public void SetUserInterfaceStrings()
         {
-            this.toolStripLabel1.Text = GPStrings.getSharedStrings().getString(170);
+            this.toolStripLabel1.Text = GPStrings.getString(170);
             this.toolStripComboBox1.Items.AddRange(new object[] {
-            GPStrings.getSharedStrings().getString(171),
-            GPStrings.getSharedStrings().getString(172)});
-            this.tabPageCity.Text = GPStrings.getSharedStrings().getString(311);
-            this.columnHeader1.Text = GPStrings.getSharedStrings().getString(251);
-            this.columnHeader2.Text = GPStrings.getSharedStrings().getString(252);
-            this.columnHeader3.Text = GPStrings.getSharedStrings().getString(10);
-            this.columnHeader4.Text = GPStrings.getSharedStrings().getString(11);
-            this.columnHeader5.Text = GPStrings.getSharedStrings().getString(12);
-            this.tabPageCountry.Text = GPStrings.getSharedStrings().getString(312);
-            this.columnHeader6.Text = GPStrings.getSharedStrings().getString(313);
-            this.columnHeader7.Text = GPStrings.getSharedStrings().getString(252);
-            this.tabPageEvent.Text = GPStrings.getSharedStrings().getString(984);
-            this.tabPageTithi.Text = GPStrings.getSharedStrings().getString(314);
-            this.columnHeader8.Text = GPStrings.getSharedStrings().getString(315);
-            this.columnHeader9.Text = GPStrings.getSharedStrings().getString(13);
-            this.columnHeader10.Text = GPStrings.getSharedStrings().getString(22);
-            this.columnHeader11.Text = GPStrings.getSharedStrings().getString(20);
-            this.columnHeader12.Text = GPStrings.getSharedStrings().getString(276);
-            this.columnHeader13.Text = GPStrings.getSharedStrings().getString(275);
-            this.columnHeader14.Text = GPStrings.getSharedStrings().getString(277);
-            this.columnHeader15.Text = GPStrings.getSharedStrings().getString(305);
-            this.label1.Text = GPStrings.getSharedStrings().getString(319);
-            this.label2.Text = GPStrings.getSharedStrings().getString(320);
-            this.tabPageRelative.Text = GPStrings.getSharedStrings().getString(317);
-            this.columnHeader21.Text = GPStrings.getSharedStrings().getString(315);
-            this.columnHeader23.Text = GPStrings.getSharedStrings().getString(282);
-            this.columnHeader24.Text = GPStrings.getSharedStrings().getString(281);
-            this.columnHeader25.Text = GPStrings.getSharedStrings().getString(276);
-            this.columnHeader26.Text = GPStrings.getSharedStrings().getString(275);
-            this.columnHeader27.Text = GPStrings.getSharedStrings().getString(277);
-            this.columnHeader28.Text = GPStrings.getSharedStrings().getString(305);
-            this.tabPageSankranti.Text = GPStrings.getSharedStrings().getString(316);
-            this.columnHeader29.Text = GPStrings.getSharedStrings().getString(315);
-            this.columnHeader30.Text = GPStrings.getSharedStrings().getString(318);
-            this.columnHeader31.Text = GPStrings.getSharedStrings().getString(281);
-            this.columnHeader33.Text = GPStrings.getSharedStrings().getString(276);
-            this.columnHeader34.Text = GPStrings.getSharedStrings().getString(275);
-            this.columnHeader35.Text = GPStrings.getSharedStrings().getString(277);
-            this.columnHeader36.Text = GPStrings.getSharedStrings().getString(305);
-            this.tabPageTimeZone.Text = GPStrings.getSharedStrings().getString(321);
-            this.label4.Text = GPStrings.getSharedStrings().getString(322);
-            this.columnHeader22.Text = GPStrings.getSharedStrings().getString(7);
-            this.columnHeader32.Text = GPStrings.getSharedStrings().getString(325);
-            this.columnHeader37.Text = GPStrings.getSharedStrings().getString(281);
-            this.columnHeader38.Text = GPStrings.getSharedStrings().getString(323);
-            this.columnHeader39.Text = GPStrings.getSharedStrings().getString(324);
-            this.columnHeader16.Text = GPStrings.getSharedStrings().getString(12);
-            this.columnHeader17.Text = GPStrings.getSharedStrings().getString(281);
-            this.tabPageString.Text = GPStrings.getSharedStrings().getString(331);
-            this.button1.Text = GPStrings.getSharedStrings().getString(335);
-            this.label6.Text = GPStrings.getSharedStrings().getString(332);
-            this.label5.Text = GPStrings.getSharedStrings().getString(333);
-            this.columnHeader18.Text = GPStrings.getSharedStrings().getString(334);
-            this.columnHeader19.Text = GPStrings.getSharedStrings().getString(333);
-            this.label3.Text = GPStrings.getSharedStrings().getString(331);
-            this.fileToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(337);
-            this.toolStripMenuItem1.Text = GPStrings.getSharedStrings().getString(361);
-            this.newLocationToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(344);
-            this.editToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(338);
-            this.removeToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(351);
-            this.countriesToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(312);
-            this.newCountryToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(345);
-            this.editSelectedToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(352);
-            this.deleteSelectedToolStripMenuItem1.Text = GPStrings.getSharedStrings().getString(353);
-            this.eventsToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(984);
-            this.newEventBasedOnTithiToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(346);
-            this.newEventBasedOnOtherEventToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(347);
-            this.newEventBasedOnSankrantiToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(348);
-            this.editToolStripMenuItem1.Text = GPStrings.getSharedStrings().getString(352);
-            this.deleteSelectedToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(353);
-            this.timezonesToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(321);
-            this.newTimezoneToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(349);
-            this.editTimezoneNameToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(354);
-            this.deleteTimezoneToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(355);
-            this.newTimezoneTransitionToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(350);
-            this.editTimezoneTransitionToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(356);
-            this.deleteTimezoneTransitionToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(357);
-            this.languagesToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(336);
-            this.newToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(340);
-            this.importToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(341);
-            this.exportToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(342);
-            this.deleteToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(343);
-            this.Text = GPStrings.getSharedStrings().getString(360);
+            GPStrings.getString(171),
+            GPStrings.getString(172)});
+            this.tabPageCity.Text = GPStrings.getString(311);
+            this.columnHeader1.Text = GPStrings.getString(251);
+            this.columnHeader2.Text = GPStrings.getString(252);
+            this.columnHeader3.Text = GPStrings.getString(10);
+            this.columnHeader4.Text = GPStrings.getString(11);
+            this.columnHeader5.Text = GPStrings.getString(12);
+            this.tabPageCountry.Text = GPStrings.getString(312);
+            this.columnHeader6.Text = GPStrings.getString(313);
+            this.columnHeader7.Text = GPStrings.getString(252);
+            this.tabPageEvent.Text = GPStrings.getString(984);
+            this.tabPageTithi.Text = GPStrings.getString(314);
+            this.columnHeader8.Text = GPStrings.getString(315);
+            this.columnHeader9.Text = GPStrings.getString(13);
+            this.columnHeader10.Text = GPStrings.getString(22);
+            this.columnHeader11.Text = GPStrings.getString(20);
+            this.columnHeader12.Text = GPStrings.getString(276);
+            this.columnHeader13.Text = GPStrings.getString(275);
+            this.columnHeader14.Text = GPStrings.getString(277);
+            this.columnHeader15.Text = GPStrings.getString(305);
+            this.label1.Text = GPStrings.getString(319);
+            this.label2.Text = GPStrings.getString(320);
+            this.tabPageRelative.Text = GPStrings.getString(317);
+            this.columnHeader21.Text = GPStrings.getString(315);
+            this.columnHeader23.Text = GPStrings.getString(282);
+            this.columnHeader24.Text = GPStrings.getString(281);
+            this.columnHeader25.Text = GPStrings.getString(276);
+            this.columnHeader26.Text = GPStrings.getString(275);
+            this.columnHeader27.Text = GPStrings.getString(277);
+            this.columnHeader28.Text = GPStrings.getString(305);
+            this.tabPageSankranti.Text = GPStrings.getString(316);
+            this.columnHeader29.Text = GPStrings.getString(315);
+            this.columnHeader30.Text = GPStrings.getString(318);
+            this.columnHeader31.Text = GPStrings.getString(281);
+            this.columnHeader33.Text = GPStrings.getString(276);
+            this.columnHeader34.Text = GPStrings.getString(275);
+            this.columnHeader35.Text = GPStrings.getString(277);
+            this.columnHeader36.Text = GPStrings.getString(305);
+            this.tabPageTimeZone.Text = GPStrings.getString(321);
+            this.label4.Text = GPStrings.getString(322);
+            this.columnHeader22.Text = GPStrings.getString(7);
+            this.columnHeader32.Text = GPStrings.getString(325);
+            this.columnHeader37.Text = GPStrings.getString(281);
+            this.columnHeader38.Text = GPStrings.getString(323);
+            this.columnHeader39.Text = GPStrings.getString(324);
+            this.columnHeader16.Text = GPStrings.getString(12);
+            this.columnHeader17.Text = GPStrings.getString(281);
+            this.tabPageString.Text = GPStrings.getString(331);
+            this.button1.Text = GPStrings.getString(335);
+            this.label6.Text = GPStrings.getString(332);
+            this.label5.Text = GPStrings.getString(333);
+            this.columnHeader18.Text = GPStrings.getString(334);
+            this.columnHeader19.Text = GPStrings.getString(333);
+            this.label3.Text = GPStrings.getString(331);
+            this.fileToolStripMenuItem.Text = GPStrings.getString(337);
+            this.toolStripMenuItem1.Text = GPStrings.getString(361);
+            this.newLocationToolStripMenuItem.Text = GPStrings.getString(344);
+            this.editToolStripMenuItem.Text = GPStrings.getString(338);
+            this.removeToolStripMenuItem.Text = GPStrings.getString(351);
+            this.countriesToolStripMenuItem.Text = GPStrings.getString(312);
+            this.newCountryToolStripMenuItem.Text = GPStrings.getString(345);
+            this.editSelectedToolStripMenuItem.Text = GPStrings.getString(352);
+            this.deleteSelectedToolStripMenuItem1.Text = GPStrings.getString(353);
+            this.eventsToolStripMenuItem.Text = GPStrings.getString(984);
+            this.newEventBasedOnTithiToolStripMenuItem.Text = GPStrings.getString(346);
+            this.newEventBasedOnOtherEventToolStripMenuItem.Text = GPStrings.getString(347);
+            this.newEventBasedOnSankrantiToolStripMenuItem.Text = GPStrings.getString(348);
+            this.editToolStripMenuItem1.Text = GPStrings.getString(352);
+            this.deleteSelectedToolStripMenuItem.Text = GPStrings.getString(353);
+            this.timezonesToolStripMenuItem.Text = GPStrings.getString(321);
+            this.newTimezoneToolStripMenuItem.Text = GPStrings.getString(349);
+            this.editTimezoneNameToolStripMenuItem.Text = GPStrings.getString(354);
+            this.deleteTimezoneToolStripMenuItem.Text = GPStrings.getString(355);
+            this.newTimezoneTransitionToolStripMenuItem.Text = GPStrings.getString(350);
+            this.editTimezoneTransitionToolStripMenuItem.Text = GPStrings.getString(356);
+            this.deleteTimezoneTransitionToolStripMenuItem.Text = GPStrings.getString(357);
+            this.languagesToolStripMenuItem.Text = GPStrings.getString(336);
+            this.newToolStripMenuItem.Text = GPStrings.getString(340);
+            this.importToolStripMenuItem.Text = GPStrings.getString(341);
+            this.exportToolStripMenuItem.Text = GPStrings.getString(342);
+            this.deleteToolStripMenuItem.Text = GPStrings.getString(343);
+            this.Text = GPStrings.getString(360);
             
         }
 
@@ -180,13 +180,13 @@ namespace GCAL
             comboBox3.SelectedIndex = 0;
 
             // comboboxes of filter
-            comboBox1.Items.Add(GPStrings.getSharedStrings().getString(915));
+            comboBox1.Items.Add(GPStrings.getString(915));
             for (int i = 0; i < GPEventClass.count(); i++)
             {
                 comboBox1.Items.Add(new GPEventClass(i));
             }
 
-            comboBox2.Items.Add(GPStrings.getSharedStrings().getString(915));
+            comboBox2.Items.Add(GPStrings.getString(915));
             for (int i = 0; i < GPMasa.getCount(); i++)
             {
                 comboBox2.Items.Add(new GPMasa(i));
@@ -1057,7 +1057,7 @@ namespace GCAL
             List<string> gstr = GPStrings.getSharedStrings().gstr;
             for (int i = 0; i < gstr.Count; i++)
             {
-                string s = GPStrings.getSharedStrings().getString(i);
+                string s = GPStrings.getString(i);
                 if (s.Length > 0)
                 {
                     ListViewItem lvi = new ListViewItem(i.ToString());
@@ -1096,8 +1096,8 @@ namespace GCAL
 
             if (editedStringIndex >= 0)
             {
-                textBox1.Text = GPStrings.getSharedStrings().getString(editedStringIndex);
-                textBox2.Text = GPLanguageList.getDefaultLanguage().getStrings().getString(editedStringIndex);
+                textBox1.Text = GPStrings.getString(editedStringIndex);
+                textBox2.Text = GPLanguageList.getDefaultLanguage().getStrings().getStringValue(editedStringIndex);
             }
         }
 

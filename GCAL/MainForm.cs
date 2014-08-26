@@ -49,48 +49,48 @@ namespace GCAL
 
         public void SetUserInterfaceStrings()
         {
-            this.fileToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(337);
-            this.saveContentToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(362);
-            this.printToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(363);
-            this.exitToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(378);
-            this.editToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(338);
-            this.copyToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(365);
-            this.selectAllToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(364);
-            this.clearSelectionToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(379);
-            this.viewToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(339);
-            this.organizerToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(360);
-            this.todayScreenToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(174);
-            this.plainTextToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(380);
-            this.richTextToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(381);
-            this.textSize10ToolStripMenuItem1.Text = GPStrings.getSharedStrings().getString(382);
-            this.textSize11ToolStripMenuItem1.Text = GPStrings.getSharedStrings().getString(383);
-            this.textSize12ToolStripMenuItem1.Text = GPStrings.getSharedStrings().getString(384);
-            this.textSize13ToolStripMenuItem1.Text = GPStrings.getSharedStrings().getString(385);
-            this.textSize14ToolStripMenuItem1.Text = GPStrings.getSharedStrings().getString(386);
-            this.calculateToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(387);
-            this.calendarToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(44);
-            this.calendarCoreEventsToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(388);
-            this.calendarFor2LocationsToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(389);
-            this.appearanceDayToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(45);
-            this.coreEventsToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(46);
-            this.masaListToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(48);
-            this.settingsToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(372);
-            this.appearanceDaySettingsToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(970);
-            this.calendarDisplayToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(971);
-            this.coreEventsSettingsToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(972);
-            this.masaListSettingsToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(973);
-            this.generalSettingsToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(390);
-            this.windowToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(391);
-            this.newWindowToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(392);
-            this.closeToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(393);
-            this.helpToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(394);
-            this.aboutToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(395);
-            this.showStartupTipsToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(396);
-            this.helpToolStripMenuItem1.Text = GPStrings.getSharedStrings().getString(394);
-            this.toolStripTextBox1.Text = GPStrings.getSharedStrings().getString(397);
-            this.toolStripStatusLabel1.Text = GPStrings.getSharedStrings().getString(398);
-            this.tableToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(450);
-            this.Text = GPStrings.getSharedStrings().getString(399);
+            this.fileToolStripMenuItem.Text = GPStrings.getString(337);
+            this.saveContentToolStripMenuItem.Text = GPStrings.getString(362);
+            this.printToolStripMenuItem.Text = GPStrings.getString(363);
+            this.exitToolStripMenuItem.Text = GPStrings.getString(378);
+            this.editToolStripMenuItem.Text = GPStrings.getString(338);
+            this.copyToolStripMenuItem.Text = GPStrings.getString(365);
+            this.selectAllToolStripMenuItem.Text = GPStrings.getString(364);
+            this.clearSelectionToolStripMenuItem.Text = GPStrings.getString(379);
+            this.viewToolStripMenuItem.Text = GPStrings.getString(339);
+            this.organizerToolStripMenuItem.Text = GPStrings.getString(360);
+            this.todayScreenToolStripMenuItem.Text = GPStrings.getString(174);
+            this.plainTextToolStripMenuItem.Text = GPStrings.getString(380);
+            this.richTextToolStripMenuItem.Text = GPStrings.getString(381);
+            this.textSize10ToolStripMenuItem1.Text = GPStrings.getString(382);
+            this.textSize11ToolStripMenuItem1.Text = GPStrings.getString(383);
+            this.textSize12ToolStripMenuItem1.Text = GPStrings.getString(384);
+            this.textSize13ToolStripMenuItem1.Text = GPStrings.getString(385);
+            this.textSize14ToolStripMenuItem1.Text = GPStrings.getString(386);
+            this.calculateToolStripMenuItem.Text = GPStrings.getString(387);
+            this.calendarToolStripMenuItem.Text = GPStrings.getString(44);
+            this.calendarCoreEventsToolStripMenuItem.Text = GPStrings.getString(388);
+            this.calendarFor2LocationsToolStripMenuItem.Text = GPStrings.getString(389);
+            this.appearanceDayToolStripMenuItem.Text = GPStrings.getString(45);
+            this.coreEventsToolStripMenuItem.Text = GPStrings.getString(46);
+            this.masaListToolStripMenuItem.Text = GPStrings.getString(48);
+            this.settingsToolStripMenuItem.Text = GPStrings.getString(372);
+            this.appearanceDaySettingsToolStripMenuItem.Text = GPStrings.getString(970);
+            this.calendarDisplayToolStripMenuItem.Text = GPStrings.getString(971);
+            this.coreEventsSettingsToolStripMenuItem.Text = GPStrings.getString(972);
+            this.masaListSettingsToolStripMenuItem.Text = GPStrings.getString(973);
+            this.generalSettingsToolStripMenuItem.Text = GPStrings.getString(390);
+            this.windowToolStripMenuItem.Text = GPStrings.getString(391);
+            this.newWindowToolStripMenuItem.Text = GPStrings.getString(392);
+            this.closeToolStripMenuItem.Text = GPStrings.getString(393);
+            this.helpToolStripMenuItem.Text = GPStrings.getString(394);
+            this.aboutToolStripMenuItem.Text = GPStrings.getString(395);
+            this.showStartupTipsToolStripMenuItem.Text = GPStrings.getString(396);
+            this.helpToolStripMenuItem1.Text = GPStrings.getString(394);
+            this.toolStripTextBox1.Text = GPStrings.getString(397);
+            this.toolStripStatusLabel1.Text = GPStrings.getString(398);
+            this.tableToolStripMenuItem.Text = GPStrings.getString(450);
+            this.Text = GPStrings.getString(399);
         }
 
         //public void SetUserInterfaceStrings()
@@ -501,13 +501,13 @@ namespace GCAL
                         newVersion = cup.Version;
                         newVersionLink = cup.VersionLink;
                         StringBuilder sb = new StringBuilder();
-                        sb.AppendFormat(GPStrings.getSharedStrings().getString(458), cup.Version);
+                        sb.AppendFormat(GPStrings.getString(458), cup.Version);
                         sb.AppendFormat("<ul>");
-                        sb.AppendFormat("<li id='nvdown' style='display:block'><a href=\"http://gcal.app/download\">{0}</a>", GPStrings.getSharedStrings().getString(455));
-                        sb.AppendFormat("<li id='nvdowninst' style='display:block'><a href=\"http://gcal.app/downinst\">{0}</a>", GPStrings.getSharedStrings().getString(456));
-                        sb.AppendFormat("<li id='nvinst' style='display:none'><a href=\"http://gcal.app/install\">{0}</a>", GPStrings.getSharedStrings().getString(457));
-                        sb.AppendFormat("<li id='nvdownprog' style='display:none'>{0}", GPStrings.getSharedStrings().getString(459));
-                        sb.AppendFormat("<li id='nvdownerr' style='display:none'>{0}", GPStrings.getSharedStrings().getString(460));
+                        sb.AppendFormat("<li id='nvdown' style='display:block'><a href=\"http://gcal.app/download\">{0}</a>", GPStrings.getString(455));
+                        sb.AppendFormat("<li id='nvdowninst' style='display:block'><a href=\"http://gcal.app/downinst\">{0}</a>", GPStrings.getString(456));
+                        sb.AppendFormat("<li id='nvinst' style='display:none'><a href=\"http://gcal.app/install\">{0}</a>", GPStrings.getString(457));
+                        sb.AppendFormat("<li id='nvdownprog' style='display:none'>{0}", GPStrings.getString(459));
+                        sb.AppendFormat("<li id='nvdownerr' style='display:none'>{0}", GPStrings.getString(460));
                         sb.Append("</ul>");
                         htme.InnerHtml = sb.ToString();
                         SetDisplayProperty("nvidMain", "block");
@@ -794,7 +794,7 @@ namespace GCAL
 
         private void toolStripTextBox1_GotFocus(object sender, EventArgs e)
         {
-            if (toolStripTextBox1.Text == GPStrings.getSharedStrings().getString(397))
+            if (toolStripTextBox1.Text == GPStrings.getString(397))
             {
                 toolStripTextBox1.Text = "";
                 toolStripTextBox1.BackColor = SystemColors.Window;
@@ -809,7 +809,7 @@ namespace GCAL
         {
             if (toolStripTextBox1.Text == "")
             {
-                toolStripTextBox1.Text = GPStrings.getSharedStrings().getString(397);
+                toolStripTextBox1.Text = GPStrings.getString(397);
                 toolStripTextBox1.BackColor = Color.LightYellow;
                 splitContainer1.Panel2Collapsed = true;
             }
@@ -817,7 +817,7 @@ namespace GCAL
 
         private void toolStripTextBox1_TextChanged(object sender, EventArgs e)
         {
-            if (toolStripTextBox1.Text.Length > 1 && toolStripTextBox1.Text != GPStrings.getSharedStrings().getString(397))
+            if (toolStripTextBox1.Text.Length > 1 && toolStripTextBox1.Text != GPStrings.getString(397))
             {
                 splitContainer1.Panel2Collapsed = false;
 
@@ -1179,7 +1179,7 @@ namespace GCAL
         {
             if (File.Exists(newVersionFile))
             {
-                if (MessageBox.Show(GPStrings.getSharedStrings().getString(461), GPAppHelper.getShortVersionText(), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                if (MessageBox.Show(GPStrings.getString(461), GPAppHelper.getShortVersionText(), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     System.Diagnostics.Process.Start(newVersionFile);
                     Application.Exit();

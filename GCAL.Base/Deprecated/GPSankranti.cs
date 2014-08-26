@@ -26,7 +26,7 @@ namespace GCAL.Base
 
         public static string getMethodName(int i)
         {
-            return GPStrings.getSharedStrings().getString(950 + i);
+            return GPStrings.getString(950 + i);
         }
 
         public static int getCount()
@@ -39,26 +39,26 @@ namespace GCAL.Base
             switch (GPDisplays.General.SankrantiNameFormat())
             {
                 case 0:
-                    return GPStrings.getSharedStrings().getString(688 + i);
+                    return GPStrings.getString(688 + i);
                 case 1:
-                    return GPStrings.getSharedStrings().getString(700 + i);
+                    return GPStrings.getString(700 + i);
                 case 2:
-                    return string.Format("{0} ({1})", GPStrings.getSharedStrings().getString(688 + i), GPStrings.getSharedStrings().getString(700 + i));
+                    return string.Format("{0} ({1})", GPStrings.getString(688 + i), GPStrings.getString(700 + i));
                 case 3:
-                    return string.Format("{0} ({1})", GPStrings.getSharedStrings().getString(700 + i), GPStrings.getSharedStrings().getString(688 + i));
+                    return string.Format("{0} ({1})", GPStrings.getString(700 + i), GPStrings.getString(688 + i));
                 default:
-                    return GPStrings.getSharedStrings().getString(688 + i);
+                    return GPStrings.getString(688 + i);
             }
         }
 
         public static string GetNameSan(int i)
         {
-            return GPStrings.getSharedStrings().getString(688 + i);
+            return GPStrings.getString(688 + i);
         }
 
         public static string GetNameEng(int i)
         {
-            return GPStrings.getSharedStrings().getString(700 + i);
+            return GPStrings.getString(700 + i);
         }
 
         public const int MESHA_SANKRANTI = 0;

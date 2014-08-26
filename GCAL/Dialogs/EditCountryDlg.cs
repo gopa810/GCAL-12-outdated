@@ -24,11 +24,11 @@ namespace GCAL.Dialogs
 
         public void SetUserInterfaceStrings()
         {
-            this.label1.Text = GPStrings.getSharedStrings().getString(253);
-            this.label2.Text = GPStrings.getSharedStrings().getString(254);
-            this.button1.Text = GPStrings.getSharedStrings().getString(236);
-            this.button2.Text = GPStrings.getSharedStrings().getString(237);
-            this.Text = GPStrings.getSharedStrings().getString(255);
+            this.label1.Text = GPStrings.getString(253);
+            this.label2.Text = GPStrings.getString(254);
+            this.button1.Text = GPStrings.getString(236);
+            this.button2.Text = GPStrings.getString(237);
+            this.Text = GPStrings.getString(255);
         }
 
 
@@ -55,31 +55,31 @@ namespace GCAL.Dialogs
             if (textBox1.Text.Length == 0)
             {
                 button1.Enabled = false;
-                label3.Text = GPStrings.getSharedStrings().getString(285);
+                label3.Text = GPStrings.getString(285);
                 label3.ForeColor = Color.Red;
             }
             else if (GPCountryList.getShared().ExistsCode(textBox1.Text) && textBox1.Text != ValidCode)
             {
                 button1.Enabled = false;
-                label3.Text = GPStrings.getSharedStrings().getString(286);
+                label3.Text = GPStrings.getString(286);
                 label3.ForeColor = Color.Red;
             }
             else
             {
                 button1.Enabled = true;
-                label3.Text = GPStrings.getSharedStrings().getString(288);
+                label3.Text = GPStrings.getString(288);
                 label3.ForeColor = Color.Green;
             }
 
             if (textBox2.Text.Length == 0)
             {
                 button1.Enabled = false;
-                label4.Text = GPStrings.getSharedStrings().getString(287);
+                label4.Text = GPStrings.getString(287);
                 label4.ForeColor = Color.Red;
             }
             else
             {
-                label4.Text = GPStrings.getSharedStrings().getString(288);
+                label4.Text = GPStrings.getString(288);
                 label4.ForeColor = Color.Green;
             }
         }

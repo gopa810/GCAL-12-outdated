@@ -15,15 +15,15 @@ namespace GCAL.Base
         public static string getName(int i)
         {
             return (i > 0 
-                ? GPStrings.getSharedStrings().getString(712)
-                : GPStrings.getSharedStrings().getString(713));
+                ? GPStrings.getString(712)
+                : GPStrings.getString(713));
         }
 
         public static string getAbbreviation(int i)
         {
             return (i > 0
-                ? GPStrings.getSharedStrings().getString(714)
-                : GPStrings.getSharedStrings().getString(715));
+                ? GPStrings.getString(714)
+                : GPStrings.getString(715));
         }
 
 

@@ -27,7 +27,7 @@ namespace GCAL.Base
 
         public static string GetName(int i)
         {
-            return GPStrings.getSharedStrings().getString(940 + i);
+            return GPStrings.getString(940 + i);
         }
 
         /*********************************************************************/

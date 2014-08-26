@@ -108,7 +108,12 @@ namespace GCAL.Base
 
         }
 
-        public string getString(int index)
+        public static string getString(int index)
+        {
+            return getSharedStrings().getStringValue(index);
+        }
+
+        public string getStringValue(int index)
         {
             if (index < 0 || index >= gstr.Count)
                 return string.Empty;
@@ -119,7 +124,7 @@ namespace GCAL.Base
         public string getString(string key)
         {
             if (map.ContainsKey(key))
-                return getString(map[key]);
+                return getStringValue(map[key]);
             return string.Empty;
         }
 
@@ -144,56 +149,56 @@ namespace GCAL.Base
             mapPropertyTextValue = new Dictionary<string, string[]>();
 
             mapPropertyTextValue.Add("cal.anniversary", new string[] {
-                getString(202),
-                getString(203),
-                getString(204)
+                getStringValue(202),
+                getStringValue(203),
+                getStringValue(204)
             });
 
             mapPropertyTextValue.Add("cal.headertype", new string[] {
-                getString(198),
-                getString(199),
-                getString(200)
+                getStringValue(198),
+                getStringValue(199),
+                getStringValue(200)
             });
 
             mapPropertyTextValue.Add("gen.caturmasya", new string[] {
-                getString(228),
-                getString(229),
-                getString(230),
-                getString(231)
+                getStringValue(228),
+                getStringValue(229),
+                getStringValue(230),
+                getStringValue(231)
             });
 
             mapPropertyTextValue.Add("gen.week.firstday", new string[] {
-                getString(0),
-                getString(1),
-                getString(2),
-                getString(3),
-                getString(4),
-                getString(5),
-                getString(6)
+                getStringValue(0),
+                getStringValue(1),
+                getStringValue(2),
+                getStringValue(3),
+                getStringValue(4),
+                getStringValue(5),
+                getStringValue(6)
             });
 
             mapPropertyTextValue.Add("gen.fastingnotation", new string[] {
-                getString(223),
-                getString(224)
+                getStringValue(223),
+                getStringValue(224)
             });
 
             mapPropertyTextValue.Add("gen.masaname.format", new string[] {
-                getString(218),
-                getString(219),
-                getString(220),
-                getString(221)
+                getStringValue(218),
+                getStringValue(219),
+                getStringValue(220),
+                getStringValue(221)
             });
 
             mapPropertyTextValue.Add("gen.sankranti.name.format", new string[] {
-                getString(213),
-                getString(214),
-                getString(215),
-                getString(216)
+                getStringValue(213),
+                getStringValue(214),
+                getStringValue(215),
+                getStringValue(216)
             });
             
             mapPropertyTextValue.Add("gen.timeformat", new string[] {
-                getString(233),
-                getString(234)
+                getStringValue(233),
+                getStringValue(234)
             });
 
             mapPropertyTextValue.Add("core.sorttype", new string[] {

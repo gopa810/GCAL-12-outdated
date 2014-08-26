@@ -67,10 +67,10 @@ namespace GCAL.Base
 
         public override string ToString()
         {
-            return string.Format("{0} {1}, {2} {3}, {4} {5}, {6} {7}", GPTithi.getName(tithi), GPStrings.getSharedStrings().getString(13),
-                GPPaksa.getName(tithi/15), GPStrings.getSharedStrings().getString(20),
-                GPMasa.GetName(masa), GPStrings.getSharedStrings().getString(22),
-                GPStrings.getSharedStrings().getString(994), gyear);
+            return string.Format("{0} {1}, {2} {3}, {4} {5}, {6} {7}", GPTithi.getName(tithi), GPStrings.getString(13),
+                GPPaksa.getName(tithi/15), GPStrings.getString(20),
+                GPMasa.GetName(masa), GPStrings.getString(22),
+                GPStrings.getString(994), gyear);
         }
     }
 }

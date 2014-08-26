@@ -20,20 +20,20 @@ namespace GCAL.Controls
 
         public void SetUserInterfaceStrings()
         {
-            this.label1.Text = GPStrings.getSharedStrings().getString(240);
-            this.label2.Text = GPStrings.getSharedStrings().getString(241);
-            this.groupBox1.Text = GPStrings.getSharedStrings().getString(242);
-            this.linkLabel5.Text = GPStrings.getSharedStrings().getString(243);
-            this.linkLabel4.Text = GPStrings.getSharedStrings().getString(244);
-            this.linkLabel3.Text = GPStrings.getSharedStrings().getString(245);
-            this.linkLabel2.Text = GPStrings.getSharedStrings().getString(246);
-            this.linkLabel1.Text = GPStrings.getSharedStrings().getString(43);
-            this.label3.Text = string.Format("{0} / {1}", GPStrings.getSharedStrings().getString(13), GPStrings.getSharedStrings().getString(20));
-            this.label4.Text = GPStrings.getSharedStrings().getString(22);
-            this.label5.Text = GPStrings.getSharedStrings().getString(55);
-            this.label6.Text = GPStrings.getSharedStrings().getString(247);
-            this.label7.Text = GPStrings.getSharedStrings().getString(248);
-            this.label8.Text = GPStrings.getSharedStrings().getString(55);
+            this.label1.Text = GPStrings.getString(240);
+            this.label2.Text = GPStrings.getString(241);
+            this.groupBox1.Text = GPStrings.getString(242);
+            this.linkLabel5.Text = GPStrings.getString(243);
+            this.linkLabel4.Text = GPStrings.getString(244);
+            this.linkLabel3.Text = GPStrings.getString(245);
+            this.linkLabel2.Text = GPStrings.getString(246);
+            this.linkLabel1.Text = GPStrings.getString(43);
+            this.label3.Text = string.Format("{0} / {1}", GPStrings.getString(13), GPStrings.getString(20));
+            this.label4.Text = GPStrings.getString(22);
+            this.label5.Text = GPStrings.getString(55);
+            this.label6.Text = GPStrings.getString(247);
+            this.label7.Text = GPStrings.getString(248);
+            this.label8.Text = GPStrings.getString(55);
         }
 
 

@@ -20,7 +20,7 @@ namespace GCAL.Base
 
         public static string getName(int i)
         {
-            return GPStrings.getSharedStrings().getString(930 + i);
+            return GPStrings.getString(930 + i);
         }
 
         public static int count()

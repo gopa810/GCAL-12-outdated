@@ -661,7 +661,7 @@ namespace GCAL.Base
                     break;
             }
 
-            return GPStrings.getSharedStrings().getString(idx);
+            return GPStrings.getString(idx);
         }
 
 

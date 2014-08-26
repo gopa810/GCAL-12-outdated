@@ -364,7 +364,7 @@ namespace GCAL.Base
                         fout.Append("<tr>");
                         fout.AppendFormat("<td colspan={0}>", columnHeaderCount);
                         fout.Append("<p class=MasaHeader>");
-                        fout.AppendFormat("<span class=HeaderTitle>{0} {1}</span><br>", GPStrings.getSharedStrings().getString(759 + pvd.date.getMonth()), pvd.date.getYear());
+                        fout.AppendFormat("<span class=HeaderTitle>{0} {1}</span><br>", GPStrings.getString(759 + pvd.date.getMonth()), pvd.date.getYear());
                         fout.AppendFormat("<span class=HeaderLocation>{0}</span><br>", pvd.date.getLocation().getFullName());
                         //fout.AppendFormat("<span class=HeaderTimezone>{0}: {1}</span>", gstr[12], pvd.date.getLocation().getTimeZone().getFullName());
                         fout.Append("</p>");
@@ -379,7 +379,7 @@ namespace GCAL.Base
                         fout.Append("<tr>");
                         fout.AppendFormat("<td colspan={0}>", columnHeaderCount);
                         fout.Append("<p class=MasaHeader>");
-                        fout.AppendFormat("<span class=HeaderTitle>{0}</span><br>", GPStrings.getSharedStrings().getString(1030));
+                        fout.AppendFormat("<span class=HeaderTitle>{0}</span><br>", GPStrings.getString(1030));
                         GPLocationChange lastLocChange = null;
                         foreach (GPLocationChange lc in pvd.Travelling)
                         {
@@ -400,7 +400,7 @@ namespace GCAL.Base
                         fout.Append("<tr>");
                         fout.AppendFormat("<td colspan={0}>", columnHeaderCount);
                         fout.Append("<p class=MasaHeader>");
-                        fout.AppendFormat("<span class=HeaderTitle>{0}</span><br>", GPStrings.getSharedStrings().getString(9));
+                        fout.AppendFormat("<span class=HeaderTitle>{0}</span><br>", GPStrings.getString(9));
                         fout.AppendFormat("<span class=HeaderLocation>{0}</span><br>", pvd.date.getLocation().getFullName());
                         //fout.AppendFormat("<span class=HeaderTimezone>Timezone: {0}</span>", pvd.date.getLocation().getTimeZone().getFullName());
                         fout.Append("</p>");
@@ -978,7 +978,7 @@ span.GramE
                         fout.Append("<tr>");
                         fout.AppendFormat("<td colspan={0}>", columnHeaderCount);
                         fout.Append("<p class=MasaHeader>");
-                        fout.AppendFormat("<span class=HeaderTitle>{0} {1}</span><br>", GPStrings.getSharedStrings().getString(759 + pvd.date.getMonth()), pvd.date.getYear());
+                        fout.AppendFormat("<span class=HeaderTitle>{0} {1}</span><br>", GPStrings.getString(759 + pvd.date.getMonth()), pvd.date.getYear());
                         fout.AppendFormat("<span class=HeaderLocation>{0}</span><br>", pvd.date.getLocation().getFullName());
                         //fout.AppendFormat("<span class=HeaderTimezone>Timezone: {0}</span>", pvd.date.getLocation().getTimeZone().getFullName());
                         fout.Append("</p>");
@@ -993,7 +993,7 @@ span.GramE
                         fout.Append("<tr>");
                         fout.AppendFormat("<td colspan={0}>", columnHeaderCount);
                         fout.Append("<p class=MasaHeader>");
-                        fout.AppendFormat("<span class=HeaderTitle>{0}</span><br>", GPStrings.getSharedStrings().getString(1030));
+                        fout.AppendFormat("<span class=HeaderTitle>{0}</span><br>", GPStrings.getString(1030));
                         GPLocationChange lastLocChange = null;
                         foreach (GPLocationChange lc in pvd.Travelling)
                         {
@@ -1014,7 +1014,7 @@ span.GramE
                         fout.Append("<tr>");
                         fout.AppendFormat("<td colspan={0}>", columnHeaderCount);
                         fout.Append("<p class=MasaHeader>");
-                        fout.AppendFormat("<span class=HeaderTitle>{0}</span><br>", GPStrings.getSharedStrings().getString(9));
+                        fout.AppendFormat("<span class=HeaderTitle>{0}</span><br>", GPStrings.getString(9));
                         fout.AppendFormat("<span class=HeaderLocation>{0}</span><br>", pvd.date.getLocation().getFullName());
                         //fout.AppendFormat("<span class=HeaderTimezone>Timezone: {0}</span>", pvd.date.getLocation().getTimeZone().getFullName());
                         fout.Append("</p>");

@@ -208,7 +208,7 @@ namespace GCAL.Base
 
                     else if (pvd.Travelling != null)
                     {
-                        m_text.AppendLine(GPAppHelper.CenterString(GPStrings.getSharedStrings().getString(1030), 80));
+                        m_text.AppendLine(GPAppHelper.CenterString(GPStrings.getString(1030), 80));
                         GPLocationChange lastLocChange = null;
                         foreach (GPLocationChange lc in pvd.Travelling)
                         {
@@ -224,7 +224,7 @@ namespace GCAL.Base
                     }
                     else if (pvd.FlagNewLocation)
                     {
-                        m_text.AppendLine(GPAppHelper.CenterString(GPStrings.getSharedStrings().getString(9), 80));
+                        m_text.AppendLine(GPAppHelper.CenterString(GPStrings.getString(9), 80));
                         m_text.AppendLine(GPAppHelper.CenterString(daybuff.m_Location.getLocation(pvd.date.getJulianGreenwichTime()).getFullName(), 80));
                         m_text.AppendLine();
 
@@ -353,7 +353,7 @@ namespace GCAL.Base
                     }
                     else if (nPrevMonth != pvd.date.getMonth() && GPDisplays.Calendar.MonthHeader())
                     {
-                        fout.AppendLine(GPAppHelper.CenterString(string.Format("{0} {1}", GPStrings.getSharedStrings().getString(759 + pvd.date.getMonth()), pvd.date.getYear()), 80));
+                        fout.AppendLine(GPAppHelper.CenterString(string.Format("{0} {1}", GPStrings.getString(759 + pvd.date.getMonth()), pvd.date.getYear()), 80));
                         fout.AppendLine(GPAppHelper.CenterString(pvd.date.getLocation().getFullName(), 80));
                         fout.AppendLine(GPAppHelper.CenterString(string.Format("{0}: {1}", gstr[12], pvd.date.getLocation().getTimeZone().getFullName()), 80));
                         fout.AppendLine();

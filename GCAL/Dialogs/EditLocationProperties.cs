@@ -39,15 +39,15 @@ namespace GCAL.Dialogs
 
         public void SetUserInterfaceStrings()
         {
-            this.button1.Text = GPStrings.getSharedStrings().getString(236);
-            this.button2.Text = GPStrings.getSharedStrings().getString(237);
-            this.label1.Text = GPStrings.getSharedStrings().getString(9);
-            this.label2.Text = GPStrings.getSharedStrings().getString(10);
-            this.label3.Text = GPStrings.getSharedStrings().getString(11);
-            this.label4.Text = GPStrings.getSharedStrings().getString(252);
-            this.labelMessage.Text = GPStrings.getSharedStrings().getString(270);
-            this.label5.Text = GPStrings.getSharedStrings().getString(12);
-            this.Text = GPStrings.getSharedStrings().getString(269);
+            this.button1.Text = GPStrings.getString(236);
+            this.button2.Text = GPStrings.getString(237);
+            this.label1.Text = GPStrings.getString(9);
+            this.label2.Text = GPStrings.getString(10);
+            this.label3.Text = GPStrings.getString(11);
+            this.label4.Text = GPStrings.getString(252);
+            this.labelMessage.Text = GPStrings.getString(270);
+            this.label5.Text = GPStrings.getString(12);
+            this.Text = GPStrings.getString(269);
         }
 
 
@@ -62,49 +62,49 @@ namespace GCAL.Dialogs
             double d;
             if (LocationName.Length == 0)
             {
-                labelMessage.Text = GPStrings.getSharedStrings().getString(295);
+                labelMessage.Text = GPStrings.getString(295);
                 labelMessage.ForeColor = Color.Red;
                 button1.Enabled = false;
             }
             else if (Latitude.Length == 0)
             {
-                labelMessage.Text = GPStrings.getSharedStrings().getString(294);
+                labelMessage.Text = GPStrings.getString(294);
                 labelMessage.ForeColor = Color.Red;
                 button1.Enabled = false;
             }
             else if (Longitude.Length == 0)
             {
-                labelMessage.Text = GPStrings.getSharedStrings().getString(293);
+                labelMessage.Text = GPStrings.getString(293);
                 labelMessage.ForeColor = Color.Red;
                 button1.Enabled = false;
             }
             else if (Country == null)
             {
-                labelMessage.Text = GPStrings.getSharedStrings().getString(292);
+                labelMessage.Text = GPStrings.getString(292);
                 labelMessage.ForeColor = Color.Red;
                 button1.Enabled = false;
             }
             else if (TimeZone == null)
             {
-                labelMessage.Text = GPStrings.getSharedStrings().getString(291);
+                labelMessage.Text = GPStrings.getString(291);
                 labelMessage.ForeColor = Color.Red;
                 button1.Enabled = false;
             }
             else if (!GPLocation.ConvertStringToCoordinate(Latitude, out d))
             {
-                labelMessage.Text = GPStrings.getSharedStrings().getString(290);
+                labelMessage.Text = GPStrings.getString(290);
                 labelMessage.ForeColor = Color.Orange;
                 button1.Enabled = false;
             }
             else if (!GPLocation.ConvertStringToCoordinate(Longitude, out d))
             {
-                labelMessage.Text = GPStrings.getSharedStrings().getString(289);
+                labelMessage.Text = GPStrings.getString(289);
                 labelMessage.ForeColor = Color.Orange;
                 button1.Enabled = false;
             }
             else
             {
-                labelMessage.Text = GPStrings.getSharedStrings().getString(288);
+                labelMessage.Text = GPStrings.getString(288);
                 labelMessage.ForeColor = Color.Green;
                 button1.Enabled = true;
             }

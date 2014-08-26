@@ -129,7 +129,7 @@ namespace GCAL.Engine
                 sb.Remove(0, sb.Length);
                 FormaterPlain.AvcGetTodayInfo(vc, Location, sb);
                 res.Title = GPAppHelper.getDateText(vc);
-                res.Type = GPStrings.getSharedStrings().getString(174);
+                res.Type = GPStrings.getString(174);
                 res.ScanText(p_text, sb);
                 if (res.Lines.Count > 0)
                 {
@@ -161,7 +161,7 @@ namespace GCAL.Engine
                 rcal.CalculateCalendar(vc, GPGregorianTime.GetMonthMaxDays(vc.getYear(), vc.getMonth()));
                 FormaterPlain.FormatCalendarOld(rcal, sb);
                 res.Title = string.Format("{0} {1}", GPStrings.getSharedStrings().gstr[759 + vc.getMonth()], vc.getYear());
-                res.Type = GPStrings.getSharedStrings().getString(44);
+                res.Type = GPStrings.getString(44);
                 res.ScanText(p_text, sb);
                 if (res.Lines.Count > 0)
                 {
@@ -204,7 +204,7 @@ namespace GCAL.Engine
                 reve.CalculateEvents(Location, vc, vcEnd);
                 FormaterPlain.FormatEventsText(reve, sb);
                 res.Title = string.Format("{0} {1}", GPStrings.getSharedStrings().gstr[759 + vc.getMonth()], vc.getYear());
-                res.Type = GPStrings.getSharedStrings().getString(46);
+                res.Type = GPStrings.getString(46);
                 res.ScanText(p_text, sb);
                 if (res.Lines.Count > 0)
                 {
@@ -242,7 +242,7 @@ namespace GCAL.Engine
                 rmas.CalcMasaList(Location, vc.getYear(), 1);
                 FormaterPlain.FormatMasaListText(rmas, sb);
                 res.Title = string.Format("{0}", vc.getYear());
-                res.Type = GPStrings.getSharedStrings().getString(48);
+                res.Type = GPStrings.getString(48);
                 res.ScanText(p_text, sb);
                 if (res.Lines.Count > 0)
                 {

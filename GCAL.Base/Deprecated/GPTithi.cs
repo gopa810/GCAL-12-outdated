@@ -18,13 +18,13 @@ namespace GCAL.Base
 
         public static string getName(int i)
         {
-            return GPStrings.getSharedStrings().getString(i + 600);
+            return GPStrings.getString(i + 600);
         }
 
         public static string getFullName(int i)
         {
             GPStrings gstr = GPStrings.getSharedStrings();
-            return string.Format("{0} {1} / {2} {3}", gstr.getString(i + 600), gstr.getString(13), gstr.getString(i / 15 + 712), gstr.getString(20));
+            return string.Format("{0} {1} / {2} {3}", gstr.getStringValue(i + 600), gstr.getStringValue(13), gstr.getStringValue(i / 15 + 712), gstr.getStringValue(20));
         }
 
         public GPTithi()

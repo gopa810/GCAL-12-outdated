@@ -205,29 +205,29 @@ namespace GCAL.Base
 
             if (sankranti_zodiac >= 0)
             {
-                fests.Add(new Festival(300, GPDisplays.Keys.CalendarSankranti, string.Format(GPStrings.getSharedStrings().getString(975), GPSankranti.getName(sankranti_zodiac), sankranti_day.ToString(), sankranti_day.getLongTimeString())));
+                fests.Add(new Festival(300, GPDisplays.Keys.CalendarSankranti, string.Format(GPStrings.getString(975), GPSankranti.getName(sankranti_zodiac), sankranti_day.ToString(), sankranti_day.getLongTimeString())));
             }
 
             if (hasKsayaTithi())
             {
-                fests.Add(new Festival(301, GPDisplays.Keys.CalendarKsaya, string.Format(GPStrings.getSharedStrings().getString(976), ksayaTithi.getName(), getKsayaTimeString(0), getKsayaTimeString(1))));
+                fests.Add(new Festival(301, GPDisplays.Keys.CalendarKsaya, string.Format(GPStrings.getString(976), ksayaTithi.getName(), getKsayaTimeString(0), getKsayaTimeString(1))));
             }
 
             if (IsSecondDayTithi)
             {
-                fests.Add(new Festival(302, GPDisplays.Keys.CalendarVriddhi, GPStrings.getSharedStrings().getString(977)));
+                fests.Add(new Festival(302, GPDisplays.Keys.CalendarVriddhi, GPStrings.getString(977)));
             }
 
             // tithi at arunodaya
             if (GPDisplays.Calendar.TithiArunodayaVisible())
             {
-                fests.Add(new Festival(303, GPDisplays.Keys.CalArunodayaTithi, string.Format("{0}: {1}", GPStrings.getSharedStrings().getString(98), GPTithi.getName(astrodata.getTithiAtArunodaya()))));
+                fests.Add(new Festival(303, GPDisplays.Keys.CalArunodayaTithi, string.Format("{0}: {1}", GPStrings.getString(98), GPTithi.getName(astrodata.getTithiAtArunodaya()))));
             }
 
             //"Arunodaya Time",//1
             if (GPDisplays.Calendar.TimeArunodayaVisible())
             {
-                fests.Add(new Festival(304, GPDisplays.Keys.CalArunodayaTime, string.Format(GPStrings.getSharedStrings().getString(99), astrodata.sun.arunodaya.getShortTimeString())));
+                fests.Add(new Festival(304, GPDisplays.Keys.CalArunodayaTime, string.Format(GPStrings.getString(99), astrodata.sun.arunodaya.getShortTimeString())));
             }
 
             List<string> gstr = GPStrings.getSharedStrings().gstr;
@@ -314,12 +314,12 @@ namespace GCAL.Base
 
         public string getGaurabdaYearLongString()
         {
-            return string.Format("{0} {1}", GPStrings.getSharedStrings().getString(994), astrodata.nGaurabdaYear);
+            return string.Format("{0} {1}", GPStrings.getString(994), astrodata.nGaurabdaYear);
         }
 
         public string getMasaLongName()
         {
-            return string.Format("{0} {1}", GPMasa.GetName(astrodata.nMasa), GPStrings.getSharedStrings().getString(22));
+            return string.Format("{0} {1}", GPMasa.GetName(astrodata.nMasa), GPStrings.getString(22));
         }
 
         public string getNaksatraElapsedString()
@@ -344,7 +344,7 @@ namespace GCAL.Base
 
         public string getPaksaName()
         {
-            return string.Format("{0} {1}", GPPaksa.getName(astrodata.nPaksa), GPStrings.getSharedStrings().getString(20));
+            return string.Format("{0} {1}", GPPaksa.getName(astrodata.nPaksa), GPStrings.getString(20));
         }
 
         public string getPaksaAbbreviation()
@@ -359,7 +359,7 @@ namespace GCAL.Base
 
         public string getFastingFlag()
         {
-                return ((nFastType != GPConstants.FAST_NULL) ? GPStrings.getSharedStrings().getString(987).ToUpper() : string.Empty);
+                return ((nFastType != GPConstants.FAST_NULL) ? GPStrings.getString(987).ToUpper() : string.Empty);
         }
 
         public string getYogaName()
@@ -497,11 +497,11 @@ namespace GCAL.Base
                 fest.Text += " ";
                 if (GPDisplays.Calendar.AnniversaryType() == 0)
                 {
-                    fest.Text += string.Format(GPStrings.getSharedStrings().getString(962), years);
+                    fest.Text += string.Format(GPStrings.getString(962), years);
                 }
                 else
                 {
-                    fest.Text += string.Format(GPStrings.getSharedStrings().getString(963), years);
+                    fest.Text += string.Format(GPStrings.getString(963), years);
                 }
 
             }

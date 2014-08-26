@@ -21,7 +21,7 @@ namespace GCAL.Base
 
         public static string getName(int i)
         {
-            return GPStrings.getSharedStrings().getString(i + 920);
+            return GPStrings.getString(i + 920);
         }
 
         public static int count()

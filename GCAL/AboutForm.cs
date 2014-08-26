@@ -17,12 +17,12 @@ namespace GCAL
         {
             InitializeComponent();
 
-            this.Text = GPStrings.getSharedStrings().getString(462);
+            this.Text = GPStrings.getString(462);
             label6.Text = GPAppHelper.getLongVersionText();
-            label1.Text = GPStrings.getSharedStrings().getString(463);
-            label2.Text = GPStrings.getSharedStrings().getString(464);
-            label3.Text = GPStrings.getSharedStrings().getString(465);
-            label4.Text = GPStrings.getSharedStrings().getString(466);
+            label1.Text = GPStrings.getString(463);
+            label2.Text = GPStrings.getString(464);
+            label3.Text = GPStrings.getString(465);
+            label4.Text = GPStrings.getString(466);
         }
     }
 }

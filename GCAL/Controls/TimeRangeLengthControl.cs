@@ -30,18 +30,18 @@ namespace GCAL.Controls
 
         public void SetUserInterfaceStrings()
         {
-            this.groupBox1.Text = GPStrings.getSharedStrings().getString(258);
-            this.radioButton7.Text = GPStrings.getSharedStrings().getString(266);
-            this.radioButton6.Text = GPStrings.getSharedStrings().getString(265);
-            this.radioButton5.Text = GPStrings.getSharedStrings().getString(264);
-            this.radioButton4.Text = GPStrings.getSharedStrings().getString(32);
-            this.radioButton3.Text = GPStrings.getSharedStrings().getString(31);
-            this.radioButton2.Text = GPStrings.getSharedStrings().getString(263);
-            this.radioButton1.Text = GPStrings.getSharedStrings().getString(30);
-            this.label1.Text = GPStrings.getSharedStrings().getString(259);
-            this.groupBox2.Text = GPStrings.getSharedStrings().getString(260);
-            this.label5.Text = GPStrings.getSharedStrings().getString(262);
-            this.label2.Text = GPStrings.getSharedStrings().getString(261);
+            this.groupBox1.Text = GPStrings.getString(258);
+            this.radioButton7.Text = GPStrings.getString(266);
+            this.radioButton6.Text = GPStrings.getString(265);
+            this.radioButton5.Text = GPStrings.getString(264);
+            this.radioButton4.Text = GPStrings.getString(32);
+            this.radioButton3.Text = GPStrings.getString(31);
+            this.radioButton2.Text = GPStrings.getString(263);
+            this.radioButton1.Text = GPStrings.getString(30);
+            this.label1.Text = GPStrings.getString(259);
+            this.groupBox2.Text = GPStrings.getString(260);
+            this.label5.Text = GPStrings.getString(262);
+            this.label2.Text = GPStrings.getString(261);
 
         }
 

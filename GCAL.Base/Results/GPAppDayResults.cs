@@ -113,7 +113,7 @@ namespace GCAL.Base
                 {
                     if (m < countC)
                     {
-                        output.Add(new GPStringPair(string.Format("{0} {1}", GPStrings.getSharedStrings().getString(994), va.gyear), vctemp.ToString()));
+                        output.Add(new GPStringPair(string.Format("{0} {1}", GPStrings.getString(994), va.gyear), vctemp.ToString()));
                         m++;
                     }
                 }

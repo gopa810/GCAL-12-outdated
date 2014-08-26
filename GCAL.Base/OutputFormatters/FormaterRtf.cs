@@ -443,7 +443,7 @@ namespace GCAL.Base
                     if (pvd.FlagNewLocation)
                     {
                         m_text.AppendFormat("\\par\\pard\\f2\\qc\\fs{0}\r\n", g_Header2Size);
-                        m_text.Append(GPStrings.getSharedStrings().getString(9));
+                        m_text.Append(GPStrings.getString(9));
                         m_text.Append("\\par\\pard\\qc\\cf2\\fs22 ");
                         m_text.Append(pvd.date.getLocation().getFullName());
                     }
@@ -636,7 +636,7 @@ namespace GCAL.Base
             if (pvd.astrodata.sun.eclipticalLongitude < 0.0)
             {
                 dayText.Append("\\par\\tab ");
-                dayText.Append(GPStrings.getSharedStrings().getString(974));
+                dayText.Append(GPStrings.getString(974));
                 return 1;
             }
             dayText.Append(str);

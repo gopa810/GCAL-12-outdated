@@ -29,31 +29,31 @@ namespace GCAL
 
         public void SetUserInterfaceStrings()
         {
-            this.toolStripMenuItem1.Text = GPStrings.getSharedStrings().getString(337);
-            this.saveAsToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(362);
-            this.printToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(363);
-            this.editToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(338);
-            this.selectAllToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(364);
-            this.copyToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(365);
-            this.viewToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(339);
-            this.increaseTextSizeToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(366);
-            this.toolStripButton4.Text = GPStrings.getSharedStrings().getString(366);
-            this.decreaseTextSizeToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(367);
-            this.toolStripButton5.Text = GPStrings.getSharedStrings().getString(367);
-            this.navigateToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(368);
-            this.previousDayToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(369);
-            this.toolStripButton1.ToolTipText = GPStrings.getSharedStrings().getString(369);
-            this.todayToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(43);
-            this.toolStripButton3.ToolTipText = GPStrings.getSharedStrings().getString(371);
-            this.nextDayToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(370);
-            this.toolStripButton2.ToolTipText = GPStrings.getSharedStrings().getString(370);
-            this.settingsToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(372);
-            this.myLocationToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(373);
-            this.displaySettingsToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(374);
-            this.windowAutosizeToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(375);
-            this.visibleAtLaunchToolStripMenuItem.Text = GPStrings.getSharedStrings().getString(376);
-            this.toolStripMenuItem3.Text = GPStrings.getSharedStrings().getString(377);
-            this.Text = GPStrings.getSharedStrings().getString(43);
+            this.toolStripMenuItem1.Text = GPStrings.getString(337);
+            this.saveAsToolStripMenuItem.Text = GPStrings.getString(362);
+            this.printToolStripMenuItem.Text = GPStrings.getString(363);
+            this.editToolStripMenuItem.Text = GPStrings.getString(338);
+            this.selectAllToolStripMenuItem.Text = GPStrings.getString(364);
+            this.copyToolStripMenuItem.Text = GPStrings.getString(365);
+            this.viewToolStripMenuItem.Text = GPStrings.getString(339);
+            this.increaseTextSizeToolStripMenuItem.Text = GPStrings.getString(366);
+            this.toolStripButton4.Text = GPStrings.getString(366);
+            this.decreaseTextSizeToolStripMenuItem.Text = GPStrings.getString(367);
+            this.toolStripButton5.Text = GPStrings.getString(367);
+            this.navigateToolStripMenuItem.Text = GPStrings.getString(368);
+            this.previousDayToolStripMenuItem.Text = GPStrings.getString(369);
+            this.toolStripButton1.ToolTipText = GPStrings.getString(369);
+            this.todayToolStripMenuItem.Text = GPStrings.getString(43);
+            this.toolStripButton3.ToolTipText = GPStrings.getString(371);
+            this.nextDayToolStripMenuItem.Text = GPStrings.getString(370);
+            this.toolStripButton2.ToolTipText = GPStrings.getString(370);
+            this.settingsToolStripMenuItem.Text = GPStrings.getString(372);
+            this.myLocationToolStripMenuItem.Text = GPStrings.getString(373);
+            this.displaySettingsToolStripMenuItem.Text = GPStrings.getString(374);
+            this.windowAutosizeToolStripMenuItem.Text = GPStrings.getString(375);
+            this.visibleAtLaunchToolStripMenuItem.Text = GPStrings.getString(376);
+            this.toolStripMenuItem3.Text = GPStrings.getString(377);
+            this.Text = GPStrings.getString(43);
         }
 
         /// <summary>

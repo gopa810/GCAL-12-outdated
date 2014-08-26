@@ -37,98 +37,98 @@ namespace GCAL.Dialogs
 
         public void SetUserInterfaceStrings()
         {
-            this.tabPage5.Text = GPStrings.getSharedStrings().getString(174);
-            this.checkBox32.Text = GPStrings.getSharedStrings().getString(175);
-            this.checkBox31.Text = GPStrings.getSharedStrings().getString(176);
-            this.checkBox9.Text = GPStrings.getSharedStrings().getString(1006);
-            this.checkBox8.Text = GPStrings.getSharedStrings().getString(991);
-            this.checkBox7.Text = GPStrings.getSharedStrings().getString(177);
-            this.checkBox6.Text = GPStrings.getSharedStrings().getString(178);
-            this.checkBox5.Text = GPStrings.getSharedStrings().getString(179);
-            this.checkBox4.Text = GPStrings.getSharedStrings().getString(180);
-            this.checkBox3.Text = GPStrings.getSharedStrings().getString(181);
-            this.checkBox2.Text = GPStrings.getSharedStrings().getString(182);
-            this.tabPage1.Text = GPStrings.getSharedStrings().getString(45);
-            this.label1.Text = GPStrings.getSharedStrings().getString(183);
-            this.checkBox1.Text = GPStrings.getSharedStrings().getString(184);
-            this.tabPage2.Text = GPStrings.getSharedStrings().getString(44);
-            this.tabPage7.Text = GPStrings.getSharedStrings().getString(185);
-            this.tabPage8.Text = GPStrings.getSharedStrings().getString(186);
-            this.checkBox22.Text = GPStrings.getSharedStrings().getString(187);
-            this.checkBox48.Text = GPStrings.getSharedStrings().getString(991);
-            this.label2.Text = GPStrings.getSharedStrings().getString(188);// "Header Type";
-            this.checkBox47.Text = GPStrings.getSharedStrings().getString(189);// "Paksa Info";
-            this.label3.Text = GPStrings.getSharedStrings().getString(196);// "Anniversary Info";
-            this.checkBox46.Text = GPStrings.getSharedStrings().getString(197);// "Fasting Flag";
+            this.tabPage5.Text = GPStrings.getString(174);
+            this.checkBox32.Text = GPStrings.getString(175);
+            this.checkBox31.Text = GPStrings.getString(176);
+            this.checkBox9.Text = GPStrings.getString(1006);
+            this.checkBox8.Text = GPStrings.getString(991);
+            this.checkBox7.Text = GPStrings.getString(177);
+            this.checkBox6.Text = GPStrings.getString(178);
+            this.checkBox5.Text = GPStrings.getString(179);
+            this.checkBox4.Text = GPStrings.getString(180);
+            this.checkBox3.Text = GPStrings.getString(181);
+            this.checkBox2.Text = GPStrings.getString(182);
+            this.tabPage1.Text = GPStrings.getString(45);
+            this.label1.Text = GPStrings.getString(183);
+            this.checkBox1.Text = GPStrings.getString(184);
+            this.tabPage2.Text = GPStrings.getString(44);
+            this.tabPage7.Text = GPStrings.getString(185);
+            this.tabPage8.Text = GPStrings.getString(186);
+            this.checkBox22.Text = GPStrings.getString(187);
+            this.checkBox48.Text = GPStrings.getString(991);
+            this.label2.Text = GPStrings.getString(188);// "Header Type";
+            this.checkBox47.Text = GPStrings.getString(189);// "Paksa Info";
+            this.label3.Text = GPStrings.getString(196);// "Anniversary Info";
+            this.checkBox46.Text = GPStrings.getString(197);// "Fasting Flag";
             this.comboBox2.Items.AddRange(new object[] {
-            GPStrings.getSharedStrings().getString(198),
-            GPStrings.getSharedStrings().getString(199),
-            GPStrings.getSharedStrings().getString(200)});
-            this.checkBox45.Text = GPStrings.getSharedStrings().getString(190);// "Yoga Info";
-            this.checkBox43.Text = GPStrings.getSharedStrings().getString(191);// "DST Change Info";
-            this.checkBox44.Text = GPStrings.getSharedStrings().getString(192);//"Naksatra Info";
-            this.checkBox34.Text = GPStrings.getSharedStrings().getString(193);// "Masa Start Info";
-            this.checkBox30.Text = GPStrings.getSharedStrings().getString(194);// "Ekadashi Info";
-            this.checkBox29.Text = GPStrings.getSharedStrings().getString(195);// "Sankranti Info";
-            this.checkBox33.Text = GPStrings.getSharedStrings().getString(201);
+            GPStrings.getString(198),
+            GPStrings.getString(199),
+            GPStrings.getString(200)});
+            this.checkBox45.Text = GPStrings.getString(190);// "Yoga Info";
+            this.checkBox43.Text = GPStrings.getString(191);// "DST Change Info";
+            this.checkBox44.Text = GPStrings.getString(192);//"Naksatra Info";
+            this.checkBox34.Text = GPStrings.getString(193);// "Masa Start Info";
+            this.checkBox30.Text = GPStrings.getString(194);// "Ekadashi Info";
+            this.checkBox29.Text = GPStrings.getString(195);// "Sankranti Info";
+            this.checkBox33.Text = GPStrings.getString(201);
             this.comboBox1.Items.AddRange(new object[] {
-            GPStrings.getSharedStrings().getString(202),
-            GPStrings.getSharedStrings().getString(203),
-            GPStrings.getSharedStrings().getString(204)});
-            this.checkBox49.Text = GPStrings.getSharedStrings().getString(205);
-            this.tabPage9.Text = GPStrings.getSharedStrings().getString(206);
-            this.checkBox16.Text = GPStrings.getSharedStrings().getString(207);
-            this.checkBox17.Text = GPStrings.getSharedStrings().getString(208);
-            this.checkBox18.Text = GPStrings.getSharedStrings().getString(51);
-            this.checkBox19.Text = GPStrings.getSharedStrings().getString(52);
-            this.checkBox20.Text = GPStrings.getSharedStrings().getString(53);
-            this.checkBox21.Text = GPStrings.getSharedStrings().getString(54);
-            this.checkBox23.Text = GPStrings.getSharedStrings().getString(209);
-            this.checkBox24.Text = GPStrings.getSharedStrings().getString(210);
-            this.checkBox25.Text = GPStrings.getSharedStrings().getString(100);
-            this.checkBox26.Text = GPStrings.getSharedStrings().getString(101);
-            this.checkBox27.Text = GPStrings.getSharedStrings().getString(102);
-            this.checkBox42.Text = GPStrings.getSharedStrings().getString(181);
-            this.checkBox28.Text = GPStrings.getSharedStrings().getString(103);
-            this.tabPage3.Text = GPStrings.getSharedStrings().getString(46);
-            this.checkBox15.Text = GPStrings.getSharedStrings().getString(211);
-            this.checkBox14.Text = GPStrings.getSharedStrings().getString(999);
-            this.checkBox13.Text = GPStrings.getSharedStrings().getString(1000);
-            this.checkBox12.Text = GPStrings.getSharedStrings().getString(998);
-            this.checkBox11.Text = GPStrings.getSharedStrings().getString(997);
-            this.checkBox10.Text = GPStrings.getSharedStrings().getString(996);
-            this.tabPage4.Text = GPStrings.getSharedStrings().getString(48);
-            this.tabPage6.Text = GPStrings.getSharedStrings().getString(212);
+            GPStrings.getString(202),
+            GPStrings.getString(203),
+            GPStrings.getString(204)});
+            this.checkBox49.Text = GPStrings.getString(205);
+            this.tabPage9.Text = GPStrings.getString(206);
+            this.checkBox16.Text = GPStrings.getString(207);
+            this.checkBox17.Text = GPStrings.getString(208);
+            this.checkBox18.Text = GPStrings.getString(51);
+            this.checkBox19.Text = GPStrings.getString(52);
+            this.checkBox20.Text = GPStrings.getString(53);
+            this.checkBox21.Text = GPStrings.getString(54);
+            this.checkBox23.Text = GPStrings.getString(209);
+            this.checkBox24.Text = GPStrings.getString(210);
+            this.checkBox25.Text = GPStrings.getString(100);
+            this.checkBox26.Text = GPStrings.getString(101);
+            this.checkBox27.Text = GPStrings.getString(102);
+            this.checkBox42.Text = GPStrings.getString(181);
+            this.checkBox28.Text = GPStrings.getString(103);
+            this.tabPage3.Text = GPStrings.getString(46);
+            this.checkBox15.Text = GPStrings.getString(211);
+            this.checkBox14.Text = GPStrings.getString(999);
+            this.checkBox13.Text = GPStrings.getString(1000);
+            this.checkBox12.Text = GPStrings.getString(998);
+            this.checkBox11.Text = GPStrings.getString(997);
+            this.checkBox10.Text = GPStrings.getString(996);
+            this.tabPage4.Text = GPStrings.getString(48);
+            this.tabPage6.Text = GPStrings.getString(212);
             this.comboBox7.Items.AddRange(new object[] {
-            GPStrings.getSharedStrings().getString(213),
-            GPStrings.getSharedStrings().getString(214),
-            GPStrings.getSharedStrings().getString(215),
-            GPStrings.getSharedStrings().getString(216)});
-            this.label8.Text = GPStrings.getSharedStrings().getString(217);
+            GPStrings.getString(213),
+            GPStrings.getString(214),
+            GPStrings.getString(215),
+            GPStrings.getString(216)});
+            this.label8.Text = GPStrings.getString(217);
             this.comboBox6.Items.AddRange(new object[] {
-            GPStrings.getSharedStrings().getString(218),
-            GPStrings.getSharedStrings().getString(219),
-            GPStrings.getSharedStrings().getString(220),
-            GPStrings.getSharedStrings().getString(221)});
-            this.label7.Text = GPStrings.getSharedStrings().getString(222);
+            GPStrings.getString(218),
+            GPStrings.getString(219),
+            GPStrings.getString(220),
+            GPStrings.getString(221)});
+            this.label7.Text = GPStrings.getString(222);
             this.comboBox5.Items.AddRange(new object[] {
-            GPStrings.getSharedStrings().getString(223),
-            GPStrings.getSharedStrings().getString(224)});
-            this.label6.Text = GPStrings.getSharedStrings().getString(225);
-            this.label5.Text = GPStrings.getSharedStrings().getString(226);
-            this.label4.Text = GPStrings.getSharedStrings().getString(227);
+            GPStrings.getString(223),
+            GPStrings.getString(224)});
+            this.label6.Text = GPStrings.getString(225);
+            this.label5.Text = GPStrings.getString(226);
+            this.label4.Text = GPStrings.getString(227);
             this.comboBox3.Items.AddRange(new object[] {
-            GPStrings.getSharedStrings().getString(228),
-            GPStrings.getSharedStrings().getString(229),
-            GPStrings.getSharedStrings().getString(230),
-            GPStrings.getSharedStrings().getString(231)});
-            this.button1.Text = GPStrings.getSharedStrings().getString(236);
-            this.button2.Text = GPStrings.getSharedStrings().getString(237);
-            this.label9.Text = GPStrings.getSharedStrings().getString(232);
+            GPStrings.getString(228),
+            GPStrings.getString(229),
+            GPStrings.getString(230),
+            GPStrings.getString(231)});
+            this.button1.Text = GPStrings.getString(236);
+            this.button2.Text = GPStrings.getString(237);
+            this.label9.Text = GPStrings.getString(232);
             this.comboBox8.Items.AddRange(new object[] {
-            GPStrings.getSharedStrings().getString(233),
-            GPStrings.getSharedStrings().getString(234)});
-            this.Text = GPStrings.getSharedStrings().getString(235);
+            GPStrings.getString(233),
+            GPStrings.getString(234)});
+            this.Text = GPStrings.getString(235);
     
         }
 
@@ -185,7 +185,7 @@ namespace GCAL.Dialogs
 
             for (int i = 0; i < 7; i++)
             {
-                comboBox4.Items.Add(GPStrings.getSharedStrings().getString(i));
+                comboBox4.Items.Add(GPStrings.getString(i));
             }
         }
 

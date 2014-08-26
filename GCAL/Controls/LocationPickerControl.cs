@@ -33,20 +33,20 @@ namespace GCAL.Controls
 
         public void SetUserInterfaceStrings()
         {
-            this.tabPage1.Text = GPStrings.getSharedStrings().getString(249);
-            this.label1.Text = GPStrings.getSharedStrings().getString(250);
-            this.columnHeader1.Text = GPStrings.getSharedStrings().getString(251);
-            this.columnHeader2.Text = GPStrings.getSharedStrings().getString(253);
-            this.columnHeader3.Text = GPStrings.getSharedStrings().getString(10);
-            this.columnHeader4.Text = GPStrings.getSharedStrings().getString(11);
-            this.columnHeader5.Text = GPStrings.getSharedStrings().getString(12);
-            this.tabPage2.Text = GPStrings.getSharedStrings().getString(256);
-            this.label7.Text = GPStrings.getSharedStrings().getString(257);
-            this.label6.Text = GPStrings.getSharedStrings().getString(12);
-            this.label5.Text = GPStrings.getSharedStrings().getString(10);
-            this.label4.Text = GPStrings.getSharedStrings().getString(11);
-            this.label3.Text = GPStrings.getSharedStrings().getString(253);
-            this.label2.Text = GPStrings.getSharedStrings().getString(9);
+            this.tabPage1.Text = GPStrings.getString(249);
+            this.label1.Text = GPStrings.getString(250);
+            this.columnHeader1.Text = GPStrings.getString(251);
+            this.columnHeader2.Text = GPStrings.getString(253);
+            this.columnHeader3.Text = GPStrings.getString(10);
+            this.columnHeader4.Text = GPStrings.getString(11);
+            this.columnHeader5.Text = GPStrings.getString(12);
+            this.tabPage2.Text = GPStrings.getString(256);
+            this.label7.Text = GPStrings.getString(257);
+            this.label6.Text = GPStrings.getString(12);
+            this.label5.Text = GPStrings.getString(10);
+            this.label4.Text = GPStrings.getString(11);
+            this.label3.Text = GPStrings.getString(253);
+            this.label2.Text = GPStrings.getString(9);
 
             if (wizardDelegate != null)
                 wizardDelegate.EnableNext(false);

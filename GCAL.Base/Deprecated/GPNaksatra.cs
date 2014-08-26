@@ -37,7 +37,7 @@ namespace GCAL.Base
 
         public static string getName(int i)
         {
-            return GPStrings.getSharedStrings().getString(i + 630);
+            return GPStrings.getString(i + 630);
         }
 
         public int getCurrentNaksatra()

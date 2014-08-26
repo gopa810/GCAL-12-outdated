@@ -20,14 +20,14 @@ namespace GCAL.Dialogs
 
         public void SetUserInterfaceStrings()
         {
-            this.button1.Text = GPStrings.getSharedStrings().getString(236);
-            this.button2.Text = GPStrings.getSharedStrings().getString(237);
-            this.label1.Text = GPStrings.getSharedStrings().getString(296);// "Date of transition";
-            this.label2.Text = GPStrings.getSharedStrings().getString(297);// "Time for transition";
-            this.label3.Text = GPStrings.getSharedStrings().getString(298);// "New timezone offset (in minutes)";
-            this.label4.Text = GPStrings.getSharedStrings().getString(299);// "Abbreviation for given timezone offset";
-            this.checkBox1.Text = GPStrings.getSharedStrings().getString(300);// "DST is in effect after this transition";
-            this.Text = GPStrings.getSharedStrings().getString(301);// "Timezone Transition Details";
+            this.button1.Text = GPStrings.getString(236);
+            this.button2.Text = GPStrings.getString(237);
+            this.label1.Text = GPStrings.getString(296);// "Date of transition";
+            this.label2.Text = GPStrings.getString(297);// "Time for transition";
+            this.label3.Text = GPStrings.getString(298);// "New timezone offset (in minutes)";
+            this.label4.Text = GPStrings.getString(299);// "Abbreviation for given timezone offset";
+            this.checkBox1.Text = GPStrings.getString(300);// "DST is in effect after this transition";
+            this.Text = GPStrings.getString(301);// "Timezone Transition Details";
         }
 
 

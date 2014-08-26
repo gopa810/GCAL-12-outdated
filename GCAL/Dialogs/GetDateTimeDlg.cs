@@ -26,13 +26,13 @@ namespace GCAL.Dialogs
 
         public void SetUserInterfaceStrings()
         {
-            this.button3.Text = GPStrings.getSharedStrings().getString(237);
-            this.button2.Text = GPStrings.getSharedStrings().getString(239);
-            this.button1.Text = GPStrings.getSharedStrings().getString(238);
-            this.label1.Text = GPStrings.getSharedStrings().getString(302);
-            this.label2.Text = GPStrings.getSharedStrings().getString(7);
-            this.label3.Text = GPStrings.getSharedStrings().getString(8);
-            this.Text = GPStrings.getSharedStrings().getString(302);
+            this.button3.Text = GPStrings.getString(237);
+            this.button2.Text = GPStrings.getString(239);
+            this.button1.Text = GPStrings.getString(238);
+            this.label1.Text = GPStrings.getString(302);
+            this.label2.Text = GPStrings.getString(7);
+            this.label3.Text = GPStrings.getString(8);
+            this.Text = GPStrings.getString(302);
 
         }
 

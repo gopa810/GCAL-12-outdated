@@ -149,7 +149,7 @@ namespace GCAL.Base
 
         public static string getMonthAbr(int i)
         {
-            return GPStrings.getSharedStrings().getString(64 + i);
+            return GPStrings.getString(64 + i);
         }
 
         public static void hoursToParts(double aHours, out int h1, out int m1)
@@ -275,7 +275,7 @@ namespace GCAL.Base
 
         public static string GetDSTSignature(int nDST)
         {
-            return (nDST != 0) ? GPStrings.getSharedStrings().getString(968) : GPStrings.getSharedStrings().getString(969);
+            return (nDST != 0) ? GPStrings.getString(968) : GPStrings.getString(969);
         }
 
         public static string GetParanaReasonText(int eparana_type)
@@ -363,12 +363,12 @@ namespace GCAL.Base
 
         public static string getShortVersionText()
         {
-            return string.Format("{0} {1}", GPStrings.getSharedStrings().getString(130), GPFileHelper.FileVersion);
+            return string.Format("{0} {1}", GPStrings.getString(130), GPFileHelper.FileVersion);
         }
 
         public static string getLongVersionText()
         {
-            return string.Format("{0} {1}", GPStrings.getSharedStrings().getString(131), GPFileHelper.FileVersion);
+            return string.Format("{0} {1}", GPStrings.getString(131), GPFileHelper.FileVersion);
         }
 
         public static string CenterString(string s, int width)
@@ -395,35 +395,35 @@ namespace GCAL.Base
                 s = string.Empty;
                 if (ft == FileFormatType.PlainText)
                 {
-                    sb.AppendFormat("{0} (*.txt)|*.txt|", GPStrings.getSharedStrings().getString(400));
+                    sb.AppendFormat("{0} (*.txt)|*.txt|", GPStrings.getString(400));
                 }
                 else if (ft == FileFormatType.RichText)
                 {
-                    sb.AppendFormat("{0} (*.rtf)|*.rtf|", GPStrings.getSharedStrings().getString(401));
+                    sb.AppendFormat("{0} (*.rtf)|*.rtf|", GPStrings.getString(401));
                 }
                 else if (ft == FileFormatType.Xml)
                 {
-                    sb.AppendFormat("{0} (*.xml)|*.xml|", GPStrings.getSharedStrings().getString(404));
+                    sb.AppendFormat("{0} (*.xml)|*.xml|", GPStrings.getString(404));
                 }
                 else if (ft == FileFormatType.Vcal)
                 {
-                    sb.AppendFormat("{0} (*.vcal)|*.vcal|", GPStrings.getSharedStrings().getString(406));
+                    sb.AppendFormat("{0} (*.vcal)|*.vcal|", GPStrings.getString(406));
                 }
                 else if (ft == FileFormatType.Ical)
                 {
-                    sb.AppendFormat("{0} (*.ical)|*.ical|", GPStrings.getSharedStrings().getString(407));
+                    sb.AppendFormat("{0} (*.ical)|*.ical|", GPStrings.getString(407));
                 }
                 else if (ft == FileFormatType.Csv)
                 {
-                    sb.AppendFormat("{0} (*.csv)|*.csv|", GPStrings.getSharedStrings().getString(405));
+                    sb.AppendFormat("{0} (*.csv)|*.csv|", GPStrings.getString(405));
                 }
                 else if (ft == FileFormatType.HtmlTable)
                 {
-                    sb.AppendFormat("{0} (*.htm)|*.htm|", GPStrings.getSharedStrings().getString(403));
+                    sb.AppendFormat("{0} (*.htm)|*.htm|", GPStrings.getString(403));
                 }
                 else if (ft == FileFormatType.HtmlText)
                 {
-                    sb.AppendFormat("{0} (*.htm)|*.htm|", GPStrings.getSharedStrings().getString(402));
+                    sb.AppendFormat("{0} (*.htm)|*.htm|", GPStrings.getString(402));
                 }
             }
             sb.Append("|");
@@ -471,23 +471,23 @@ namespace GCAL.Base
             sb.AppendLine("<table align=center><tr><td valign=top width=33%>");
 
             
-            sb.AppendLine(GenerateAnnouncementHtmlString(GPStrings.getSharedStrings().getString(451), GPStrings.getSharedStrings().getString(453), "nvid", false));
+            sb.AppendLine(GenerateAnnouncementHtmlString(GPStrings.getString(451), GPStrings.getString(453), "nvid", false));
 
 
             string tip = NextStartupTip();
             if (tip != null)
             {
-                sb.AppendLine(GenerateAnnouncementHtmlString(GPStrings.getSharedStrings().getString(467), tip, "startuptip", true));
+                sb.AppendLine(GenerateAnnouncementHtmlString(GPStrings.getString(467), tip, "startuptip", true));
             }
             else
             {
-                sb.AppendLine(GenerateAnnouncementHtmlString(GPStrings.getSharedStrings().getString(467), "Chant Hare Krishna and be happy.", "startuptip", false));
+                sb.AppendLine(GenerateAnnouncementHtmlString(GPStrings.getString(467), "Chant Hare Krishna and be happy.", "startuptip", false));
             }
 
             sb.AppendLine("</td><td valign=top>");
 
-            sb.AppendLine(GenerateAnnouncementHtmlString(GPStrings.getSharedStrings().getString(452), GPStrings.getSharedStrings().getString(454), "nefid", false));
-            sb.AppendLine(GenerateAnnouncementHtmlString(null, GPStrings.getSharedStrings().getString(454), "todaypart", false));
+            sb.AppendLine(GenerateAnnouncementHtmlString(GPStrings.getString(452), GPStrings.getString(454), "nefid", false));
+            sb.AppendLine(GenerateAnnouncementHtmlString(null, GPStrings.getString(454), "todaypart", false));
 
 
             sb.AppendLine("</td></tr></table>");
@@ -508,13 +508,13 @@ namespace GCAL.Base
                 int count;
                 for (count = 1200; count <= 1228; count++)
                 {
-                    if (gstr.getString(count).Length == 0)
+                    if (gstr.getStringValue(count).Length == 0)
                         break;
                 }
                 count -= 1200;
 
                 startupTipsCounter = startupTipsCounter % count;
-                string ret = gstr.getString(1200 + startupTipsCounter);
+                string ret = gstr.getStringValue(1200 + startupTipsCounter);
                 startupTipsCounter = (startupTipsCounter + 1) % count;
                 GPUserDefaults.SetIntForKey("app.startup.tips.counter", startupTipsCounter);
                 return ret;
