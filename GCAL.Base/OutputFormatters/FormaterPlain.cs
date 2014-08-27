@@ -119,7 +119,7 @@ namespace GCAL.Base
 
             s1 = pvd.getTithiNameExtended();
 
-            s2 = GPStrings.getSharedStrings().gstr[pvd.date.getDayOfWeek()].Substring(0, 2);
+            s2 = GPStrings.getString(150 + pvd.date.getDayOfWeek());
             str = string.Format("{0} {1} {2} {3}  {4}{5} ", pvd.date.getDay().ToString().PadLeft(2), GPAppHelper.getMonthAbr(pvd.date.getMonth()), pvd.date.getYear()
                 , s2, s1.PadRight(34), (GPDisplays.Calendar.PaksaInfoVisible() ? GPPaksa.getAbbreviation(pvd.astrodata.nPaksa) : " "));
 
@@ -310,7 +310,7 @@ namespace GCAL.Base
             GPCalendarResults daybuff = calev.theCalendar;
             GPCoreEventResults events = calev.theEvents;
 
-            List<string> gstr = GPStrings.getSharedStrings().gstr;
+            //List<string> gstr = GPStrings.getSharedStrings().gstr;
             int k;
             string str;
             GPGregorianTime date = new GPGregorianTime(daybuff.m_Location);
@@ -341,11 +341,11 @@ namespace GCAL.Base
 
                     if (nPrevMasa != pvd.astrodata.nMasa && GPDisplays.Calendar.MasaHeader())
                     {
-                        str = string.Format("{0} {1}", pvd.getMasaLongName(), ((nPrevMasa == GPMasa.ADHIKA_MASA) ?  gstr[109] : ""));
+                        str = string.Format("{0} {1}", pvd.getMasaLongName(), ((nPrevMasa == GPMasa.ADHIKA_MASA) ?  GPStrings.getString(109) : ""));
                         fout.AppendLine(GPAppHelper.CenterString(str, 80));
                         fout.AppendLine(GPAppHelper.CenterString(pvd.getGaurabdaYearLongString(), 80));
                         fout.AppendLine(GPAppHelper.CenterString(pvd.date.getLocation().getFullName(), 80));
-                        fout.AppendLine(GPAppHelper.CenterString(string.Format("{0}: {1}", gstr[12], pvd.date.getLocation().getTimeZone().getFullName()), 80));
+                        fout.AppendLine(GPAppHelper.CenterString(string.Format("{0}: {1}", GPStrings.getString(12), pvd.date.getLocation().getTimeZone().getFullName()), 80));
                         fout.AppendLine();
 
                         nPrevMasa = pvd.astrodata.nMasa;
@@ -355,7 +355,7 @@ namespace GCAL.Base
                     {
                         fout.AppendLine(GPAppHelper.CenterString(string.Format("{0} {1}", GPStrings.getString(759 + pvd.date.getMonth()), pvd.date.getYear()), 80));
                         fout.AppendLine(GPAppHelper.CenterString(pvd.date.getLocation().getFullName(), 80));
-                        fout.AppendLine(GPAppHelper.CenterString(string.Format("{0}: {1}", gstr[12], pvd.date.getLocation().getTimeZone().getFullName()), 80));
+                        fout.AppendLine(GPAppHelper.CenterString(string.Format("{0}: {1}", GPStrings.getString(12), pvd.date.getLocation().getTimeZone().getFullName()), 80));
                         fout.AppendLine();
 
                         nPrevMonth = pvd.date.getMonth();
@@ -368,14 +368,14 @@ namespace GCAL.Base
                         int len = fout.Length;
 
                         fout.Append(" ");
-                        fout.Append(gstr[985].PadRight(16));
-                        fout.Append(gstr[986].ToUpper().PadRight(30));
-                        if (GPDisplays.Calendar.PaksaInfoVisible()) fout.Append(gstr[20].ToUpper().PadRight(6));
+                        fout.Append(GPStrings.getString(985).PadRight(16));
+                        fout.Append(GPStrings.getString(986).ToUpper().PadRight(30));
+                        if (GPDisplays.Calendar.PaksaInfoVisible()) fout.Append(GPStrings.getString(20).ToUpper().PadRight(6));
                         else fout.Append(string.Empty.PadRight(6));
-                        if (GPDisplays.Calendar.YogaVisible()) fout.Append(gstr[104].ToUpper().PadRight(10));
-                        if (GPDisplays.Calendar.NaksatraVisible()) fout.Append(gstr[15].ToUpper().PadRight(15));
-                        if (GPDisplays.Calendar.FastingFlagVisible()) fout.Append(gstr[987].ToUpper().PadRight(5));
-                        if (GPDisplays.Calendar.RasiVisible()) fout.Append(gstr[105].ToUpper().PadRight(15)); 
+                        if (GPDisplays.Calendar.YogaVisible()) fout.Append(GPStrings.getString(104).ToUpper().PadRight(10));
+                        if (GPDisplays.Calendar.NaksatraVisible()) fout.Append(GPStrings.getString(15).ToUpper().PadRight(15));
+                        if (GPDisplays.Calendar.FastingFlagVisible()) fout.Append(GPStrings.getString(987).ToUpper().PadRight(5));
+                        if (GPDisplays.Calendar.RasiVisible()) fout.Append(GPStrings.getString(105).ToUpper().PadRight(15)); 
                         
                         fout.AppendLine();
                         len = fout.Length - len;

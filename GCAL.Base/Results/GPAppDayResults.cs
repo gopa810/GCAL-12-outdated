@@ -59,35 +59,35 @@ namespace GCAL.Base
                 b_adhika = true;
             }
             string dstApplicable = "";
-            List<string> gstr = GPStrings.getSharedStrings().gstr;
-            output.Add(new GPStringPair(gstr[25], "", true));
-            output.Add(new GPStringPair(gstr[7], vc.ToString()));
-            output.Add(new GPStringPair(gstr[8], vc.getShortTimeString(true, ref dstApplicable)));
-            output.Add(new GPStringPair(gstr[9], vc.getLocation().getFullName()));
+            //List<string> gstr = GPStrings.getSharedStrings().gstr;
+            output.Add(new GPStringPair(GPStrings.getString(25), "", true));
+            output.Add(new GPStringPair(GPStrings.getString(7), vc.ToString()));
+            output.Add(new GPStringPair(GPStrings.getString(8), vc.getShortTimeString(true, ref dstApplicable)));
+            output.Add(new GPStringPair(GPStrings.getString(9), vc.getLocation().getFullName()));
             //output.Add(new GPStringPair(gstr[10], vc.getLocation().getLatitudeString()));
             //output.Add(new GPStringPair(gstr[11], vc.getLocation().getLongitudeString()));
             //output.Add(new GPStringPair(gstr[12], vc.getLocation().getTimeZoneName()));
             //output.Add(new GPStringPair(gstr[1001], dstApplicable));
-            output.Add(new GPStringPair(gstr[13], GPTithi.getName(d.nTithi)));
-            output.Add(new GPStringPair(gstr[14], string.Format("{0:0.###} %", d.nTithiElapse)));
-            output.Add(new GPStringPair(gstr[15], GPNaksatra.getName(d.nNaksatra)));
-            output.Add(new GPStringPair(gstr[16], string.Format("{0:0.###} % ({1})", d.nNaksatraElapse, gstr[811 + Convert.ToInt32(d.nNaksatraElapse / 25.0)])));
-            output.Add(new GPStringPair(gstr[991], GPSankranti.getName(d.nMoonRasi)));
-            output.Add(new GPStringPair(gstr[992],  GPSankranti.getName(d.nSunRasi)));
-            output.Add(new GPStringPair(gstr[20], GPPaksa.getName(d.nPaksa)));
+            output.Add(new GPStringPair(GPStrings.getString(13), GPTithi.getName(d.nTithi)));
+            output.Add(new GPStringPair(GPStrings.getString(14), string.Format("{0:0.###} %", d.nTithiElapse)));
+            output.Add(new GPStringPair(GPStrings.getString(15), GPNaksatra.getName(d.nNaksatra)));
+            output.Add(new GPStringPair(GPStrings.getString(16), string.Format("{0:0.###} % ({1})", d.nNaksatraElapse, GPStrings.getString(811 + Convert.ToInt32(d.nNaksatraElapse / 25.0)))));
+            output.Add(new GPStringPair(GPStrings.getString(991), GPSankranti.getName(d.nMoonRasi)));
+            output.Add(new GPStringPair(GPStrings.getString(992),  GPSankranti.getName(d.nSunRasi)));
+            output.Add(new GPStringPair(GPStrings.getString(20), GPPaksa.getName(d.nPaksa)));
             if (b_adhika == true)
-                output.Add(new GPStringPair(gstr[22], string.Format("{0} {1}", GPMasa.GetName(d.nMasa), gstr[21])));
+                output.Add(new GPStringPair(GPStrings.getString(22), string.Format("{0} {1}", GPMasa.GetName(d.nMasa), GPStrings.getString(21))));
             else
-                output.Add(new GPStringPair(gstr[22], GPMasa.GetName(d.nMasa)));
-            output.Add(new GPStringPair(gstr[23], d.nGaurabdaYear.ToString()));
+                output.Add(new GPStringPair(GPStrings.getString(22), GPMasa.GetName(d.nMasa)));
+            output.Add(new GPStringPair(GPStrings.getString(23), d.nGaurabdaYear.ToString()));
 
             if (GPDisplays.AppDay.childNameSuggestions())
             {
                 output.Add(new GPStringPair());
-                output.Add(new GPStringPair(gstr[17], "", true));
+                output.Add(new GPStringPair(GPStrings.getString(17), "", true));
                 output.Add(new GPStringPair());
-                output.Add(new GPStringPair(gstr[18], string.Format("{0}...", GPAppHelper.GetNaksatraChildSylable(d.nNaksatra, Convert.ToInt32(d.nNaksatraElapse / 25.0)))));
-                output.Add(new GPStringPair(gstr[19], string.Format("{0}...", GPAppHelper.GetRasiChildSylable(d.nMoonRasi))));
+                output.Add(new GPStringPair(GPStrings.getString(18), string.Format("{0}...", GPAppHelper.GetNaksatraChildSylable(d.nNaksatra, Convert.ToInt32(d.nNaksatraElapse / 25.0)))));
+                output.Add(new GPStringPair(GPStrings.getString(19), string.Format("{0}...", GPAppHelper.GetRasiChildSylable(d.nMoonRasi))));
             }
 
             vc.Today();
@@ -101,7 +101,7 @@ namespace GCAL.Base
                 va.gyear = d.nGaurabdaYear;
 
             output.Add(new GPStringPair());
-            output.Add(new GPStringPair(gstr[24], "", true));
+            output.Add(new GPStringPair(GPStrings.getString(24), "", true));
             output.Add(new GPStringPair());
 
             int countC = GPUserDefaults.IntForKey("appday.celebs", 3);

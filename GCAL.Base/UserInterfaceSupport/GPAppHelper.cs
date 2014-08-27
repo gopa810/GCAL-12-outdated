@@ -177,19 +177,19 @@ namespace GCAL.Base
             {
                 if (input - today == 0)
                 {
-                    str = string.Format("{0} ({1}) - {2}", vc.ToString(), GPStrings.getSharedStrings().gstr[43], GPStrings.getSharedStrings().gstr[vc.getDayOfWeek()]);
+                    str = string.Format("{0} ({1}) - {2}", vc.ToString(), GPStrings.getString(43), GPStrings.getString(vc.getDayOfWeek()));
                 }
                 else if (input - today == 1)
                 {
-                    str = string.Format("{0} ({1}) - {2}", vc.ToString(), GPStrings.getSharedStrings().gstr[854], GPStrings.getSharedStrings().gstr[vc.getDayOfWeek()]);
+                    str = string.Format("{0} ({1}) - {2}", vc.ToString(), GPStrings.getString(854), GPStrings.getString(vc.getDayOfWeek()));
                 }
                 else if (input - today == -1)
                 {
-                    str = string.Format("{0} ({1}) - {2}", vc.ToString(), GPStrings.getSharedStrings().gstr[853], GPStrings.getSharedStrings().gstr[vc.getDayOfWeek()]);
+                    str = string.Format("{0} ({1}) - {2}", vc.ToString(), GPStrings.getString(853), GPStrings.getString(vc.getDayOfWeek()));
                 }
                 else
                 {
-                    str = string.Format("{0} - {1}", vc.ToString(), GPStrings.getSharedStrings().gstr[vc.getDayOfWeek()]);
+                    str = string.Format("{0} - {1}", vc.ToString(), GPStrings.getString(vc.getDayOfWeek()]);
                 }
             }
 
@@ -225,22 +225,22 @@ namespace GCAL.Base
                 case GPConstants.EV_SUDDHA:
                     return null;
                 case GPConstants.EV_UNMILANI:
-                    return GPStrings.getSharedStrings().gstr[733];
+                    return GPStrings.getString(733);
                 case GPConstants.EV_TRISPRSA:
                 case GPConstants.EV_UNMILANI_TRISPRSA:
-                    return GPStrings.getSharedStrings().gstr[734];
+                    return GPStrings.getString(734);
                 case GPConstants.EV_PAKSAVARDHINI:
-                    return GPStrings.getSharedStrings().gstr[735];
+                    return GPStrings.getString(735);
                 case GPConstants.EV_JAYA:
-                    return GPStrings.getSharedStrings().gstr[736];
+                    return GPStrings.getString(736);
                 case GPConstants.EV_VIJAYA:
-                    return GPStrings.getSharedStrings().gstr[737];
+                    return GPStrings.getString(737);
                 case GPConstants.EV_PAPA_NASINI:
-                    return GPStrings.getSharedStrings().gstr[738];
+                    return GPStrings.getString(738);
                 case GPConstants.EV_JAYANTI:
-                    return GPStrings.getSharedStrings().gstr[739];
+                    return GPStrings.getString(739);
                 case GPConstants.EV_VYANJULI:
-                    return GPStrings.getSharedStrings().gstr[740];
+                    return GPStrings.getString(740);
                 default:
                     return null;
             }
@@ -251,17 +251,17 @@ namespace GCAL.Base
             switch (i)
             {
                 case GPConstants.FAST_NOON:
-                    return GPStrings.getSharedStrings().gstr[931];
+                    return GPStrings.getString(931);
                 case GPConstants.FAST_SUNSET:
-                    return GPStrings.getSharedStrings().gstr[932];
+                    return GPStrings.getString(932);
                 case GPConstants.FAST_MOONRISE:
-                    return GPStrings.getSharedStrings().gstr[933];
+                    return GPStrings.getString(933);
                 case GPConstants.FAST_DUSK:
-                    return GPStrings.getSharedStrings().gstr[934];
+                    return GPStrings.getString(934);
                 case GPConstants.FAST_MIDNIGHT:
-                    return GPStrings.getSharedStrings().gstr[935];
+                    return GPStrings.getString(935);
                 case GPConstants.FAST_DAY:
-                    return GPStrings.getSharedStrings().gstr[936];
+                    return GPStrings.getString(936);
                 default:
                     return null;
             }
@@ -270,7 +270,7 @@ namespace GCAL.Base
 
         public static string GetEkadasiName(int nMasa, int nPaksa)
         {
-            return GPStrings.getSharedStrings().gstr[560 + nMasa * 2 + nPaksa];
+            return GPStrings.getString(560 + nMasa * 2 + nPaksa);
         }
 
         public static string GetDSTSignature(int nDST)
@@ -283,15 +283,15 @@ namespace GCAL.Base
             switch (eparana_type)
             {
                 case GPConstants.EP_TYPE_3DAY:
-                    return GPStrings.getSharedStrings().gstr[165];
+                    return GPStrings.getString(165);
                 case GPConstants.EP_TYPE_4TITHI:
-                    return GPStrings.getSharedStrings().gstr[166];
+                    return GPStrings.getString(166);
                 case GPConstants.EP_TYPE_SUNRISE:
-                    return GPStrings.getSharedStrings().gstr[169];
+                    return GPStrings.getString(169);
                 case GPConstants.EP_TYPE_TEND:
-                    return GPStrings.getSharedStrings().gstr[167];
+                    return GPStrings.getString(167);
                 case GPConstants.EP_TYPE_NAKEND:
-                    return GPStrings.getSharedStrings().gstr[168];
+                    return GPStrings.getString(168);
                 default:
                     break;
             }
@@ -503,18 +503,18 @@ namespace GCAL.Base
             bool startupTips = GPUserDefaults.BoolForKey("app.startup.tips", true);
             if (startupTips)
             {
-                GPStrings gstr = GPStrings.getSharedStrings();
+                //GPStrings gstr = GPStrings.getSharedStrings();
                 int startupTipsCounter = GPUserDefaults.IntForKey("app.startup.tips.counter", 0);
                 int count;
                 for (count = 1200; count <= 1228; count++)
                 {
-                    if (gstr.getStringValue(count).Length == 0)
+                    if (GPStrings.getString(count).Length == 0)
                         break;
                 }
                 count -= 1200;
 
                 startupTipsCounter = startupTipsCounter % count;
-                string ret = gstr.getStringValue(1200 + startupTipsCounter);
+                string ret = GPStrings.getString(1200 + startupTipsCounter);
                 startupTipsCounter = (startupTipsCounter + 1) % count;
                 GPUserDefaults.SetIntForKey("app.startup.tips.counter", startupTipsCounter);
                 return ret;

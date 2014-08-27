@@ -200,7 +200,7 @@ namespace GCAL.Base
                     // date data
                     doc.Append("\t<day date=\"" + pvd.date + "\" dayweekid=\"" + pvd.date.getDayOfWeek());
                     doc.Append("\" dayweek=\"");
-                    st = getSharedStringHtml(pvd.date.getDayOfWeek()).Substring(0, 2);
+                    st = getSharedStringHtml(150 + pvd.date.getDayOfWeek());
                     doc.Append(st + "\">\n");
 
                     // sunrise data

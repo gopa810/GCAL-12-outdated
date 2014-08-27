@@ -160,7 +160,7 @@ namespace GCAL.Engine
             {
                 rcal.CalculateCalendar(vc, GPGregorianTime.GetMonthMaxDays(vc.getYear(), vc.getMonth()));
                 FormaterPlain.FormatCalendarOld(rcal, sb);
-                res.Title = string.Format("{0} {1}", GPStrings.getSharedStrings().gstr[759 + vc.getMonth()], vc.getYear());
+                res.Title = string.Format("{0} {1}", GPStrings.getString(759 + vc.getMonth()), vc.getYear());
                 res.Type = GPStrings.getString(44);
                 res.ScanText(p_text, sb);
                 if (res.Lines.Count > 0)
@@ -203,7 +203,7 @@ namespace GCAL.Engine
                 vcEnd.AddDays(31);
                 reve.CalculateEvents(Location, vc, vcEnd);
                 FormaterPlain.FormatEventsText(reve, sb);
-                res.Title = string.Format("{0} {1}", GPStrings.getSharedStrings().gstr[759 + vc.getMonth()], vc.getYear());
+                res.Title = string.Format("{0} {1}", GPStrings.getString(759 + vc.getMonth()), vc.getYear());
                 res.Type = GPStrings.getString(46);
                 res.ScanText(p_text, sb);
                 if (res.Lines.Count > 0)

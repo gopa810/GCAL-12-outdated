@@ -36,10 +36,10 @@ namespace GCAL.Base
 
         public static void WriteAppDayHTML(GPAppDayResults app, StringBuilder builder)
         {
-            List<string> gstr = GPStrings.getSharedStrings().gstr;
+            //List<string> gstr = GPStrings.getSharedStrings().gstr;
             GPAstroData d = app.details;
             GPGregorianTime vc = app.evente;
-            builder.AppendFormat("<html><head><title>{0}</title>", gstr[45]);
+            builder.AppendFormat("<html><head><title>{0}</title>", GPStrings.getString(45));
             builder.Append("<style>\n<!--\n");
             builder.AppendLine(CurrentFormattingStyles);
             builder.Append("-->\n</style>\n");
@@ -54,12 +54,12 @@ namespace GCAL.Base
 
         public static void WriteAppDayHTML_BodyTable(GPAppDayResults app, StringBuilder builder)
         {
-            List<string> gstr = GPStrings.getSharedStrings().gstr;
+            //List<string> gstr = GPStrings.getSharedStrings().gstr;
             GPAstroData d = app.details;
             GPGregorianTime vc = app.evente;
             bool evline = false;
 
-            builder.AppendFormat("<p class=Header1>{0}</p>", gstr[45]);
+            builder.AppendFormat("<p class=Header1>{0}</p>", GPStrings.getString(45));
             builder.AppendFormat("<table align=center cellpadding=4 cellspacing=0>");
 
             foreach (GPStringPair rec in app.output)
@@ -93,9 +93,9 @@ namespace GCAL.Base
 
         public static int WriteEventsHTML(GPCoreEventResults inEvents, StringBuilder f)
         {
-            List<string> gstr = GPStrings.getSharedStrings().gstr;
+            //List<string> gstr = GPStrings.getSharedStrings().gstr;
 
-            fprintf(f, "<html>\n<head>\n<title>{0}</title>\n\n", gstr[46]);
+            fprintf(f, "<html>\n<head>\n<title>{0}</title>\n\n", GPStrings.getString(46));
             fprintf(f, "<style>\n<!--\n");
             f.AppendLine(CurrentFormattingStyles);
             fprintf(f, "-->\n</style>\n");
@@ -118,11 +118,11 @@ namespace GCAL.Base
         /// <returns></returns>
         public static int WriteEventsHTML_BodyTable(GPCoreEventResults inEvents, StringBuilder f)
         {
-            List<string> gstr = GPStrings.getSharedStrings().gstr;
+            //List<string> gstr = GPStrings.getSharedStrings().gstr;
             int i;
 
-            fprintf(f, "<p class=Header1>{0}</p>\n<p class=Header2>", gstr[46]);
-            fprintf(f, gstr[983], inEvents.m_vcStart.ToString(), inEvents.m_vcEnd.ToString());
+            fprintf(f, "<p class=Header1>{0}</p>\n<p class=Header2>", GPStrings.getString(46));
+            fprintf(f, GPStrings.getString(983), inEvents.m_vcStart.ToString(), inEvents.m_vcEnd.ToString());
             fprintf(f, "</p>");
 
             List<GPLocation> locList = inEvents.getLocationList();
@@ -151,7 +151,7 @@ namespace GCAL.Base
                     {
 //                        int wd = dnr.Time.getDayOfWeek();
 //                        Debugger.Log(0, "", string.Format("Date: {0}, Julian: {1}, Weekday: {2}\n", dnr.Time.getLongDateString(), dnr.Time.getJulianLocalNoon(), wd));
-                        fprintf(f, "<td class=hed colspan=2>{0}</td><td class=hed>{1}</td><td class=hed>{2}</td></tr>", dnr.Time.getCompleteLongDateString(), gstr[12], gstr[9]);
+                        fprintf(f, "<td class=hed colspan=2>{0}</td><td class=hed>{1}</td><td class=hed>{2}</td></tr>", dnr.Time.getCompleteLongDateString(), GPStrings.getString(12), GPStrings.getString(9));
                     }
                     prevd = dt;
                 }
@@ -159,7 +159,7 @@ namespace GCAL.Base
                 {
                     if (prevt != dnr.getTypeTitle())
                     {
-                        fprintf(f, "<td class=hed colspan=2>{0}</td><td class=hed>{1}</td><td class=hed>{2}</td></tr>\n", dnr.getTypeTitle(), gstr[12], gstr[9]);
+                        fprintf(f, "<td class=hed colspan=2>{0}</td><td class=hed>{1}</td><td class=hed>{2}</td></tr>\n", dnr.getTypeTitle(), GPStrings.getString(12), GPStrings.getString(9));
                     }
                     prevt = dnr.getTypeTitle();
                 }
@@ -210,9 +210,9 @@ namespace GCAL.Base
 
         public static int WriteMasaListHTML(GPMasaListResults mlist, StringBuilder f)
         {
-            List<string> gstr = GPStrings.getSharedStrings().gstr;
+            //List<string> gstr = GPStrings.getSharedStrings().gstr;
 
-            fprintf(f, "<html>\n<head>\n<title>{0}</title>\n\n", gstr[48]);
+            fprintf(f, "<html>\n<head>\n<title>{0}</title>\n\n", GPStrings.getString(48));
             fprintf(f, "<style>\n<!--\n");
             f.AppendLine(CurrentFormattingStyles);
             fprintf(f, "-->\n</style>\n");
@@ -229,19 +229,19 @@ namespace GCAL.Base
 
         public static int WriteMasaListHTML_BodyTable(GPMasaListResults mlist, StringBuilder f)
         {
-            List<string> gstr = GPStrings.getSharedStrings().gstr;
+            //List<string> gstr = GPStrings.getSharedStrings().gstr;
 
-            fprintf(f, "<p class=Header1>{0}</p>\n", gstr[48]);
+            fprintf(f, "<p class=Header1>{0}</p>\n", GPStrings.getString(48));
             fprintf(f, "<p class=HeaderLocation>{0}</p>", mlist.m_location.getLocation(0).getFullName());
             fprintf(f, "<p class=HeaderTimezone>{0}</p>", mlist.m_location.getLocation(0).getTimeZone().getFullName());
             fprintf(f, "<p class=HeaderTimezone>");
-            fprintf(f, gstr[41], mlist.vc_start, mlist.vc_end);
+            fprintf(f, GPStrings.getString(41), mlist.vc_start, mlist.vc_end);
             fprintf(f, "</p>\n");
             fprintf(f, "<hr width=\"50%\">");
 
             fprintf(f, "<table align=center cellpadding=4 cellspacing=0>");
             fprintf(f, "<tr><td class=\"hed\" style=\'text-align:left\'>{0}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td class=\"hed\">{1}</td><td class=\"hed\">{2}</td></tr>",
-                gstr[1002].ToUpper(), gstr[1003].ToUpper(), gstr[1004].ToUpper());
+                GPStrings.getString(1002).ToUpper(), GPStrings.getString(1003).ToUpper(), GPStrings.getString(1004).ToUpper());
             int i;
             bool evline = false;
             for (i = 0; i < mlist.n_countMasa; i++)
@@ -270,7 +270,7 @@ namespace GCAL.Base
             GPCalendarResults daybuff = calev.theCalendar;
             GPCoreEventResults events = calev.theEvents;
 
-            List<string> gstr = GPStrings.getSharedStrings().gstr;
+            //List<string> gstr = GPStrings.getSharedStrings().gstr;
             //int k;
             //string str;
             GPGregorianTime date = new GPGregorianTime(daybuff.m_Location);
@@ -314,7 +314,7 @@ namespace GCAL.Base
             GPCalendarResults daybuff = calev.theCalendar;
             GPCoreEventResults events = calev.theEvents;
 
-            List<string> gstr = GPStrings.getSharedStrings().gstr;
+            //List<string> gstr = GPStrings.getSharedStrings().gstr;
             int k;
             string str;
             GPGregorianTime date = new GPGregorianTime(daybuff.m_Location);
@@ -348,7 +348,7 @@ namespace GCAL.Base
                         fprintf(fout, "<td colspan={0}>", columnHeaderCount);
                         fprintf(fout, "<p class=MasaHeader><span class=HeaderTitle>" + GPMasa.GetName(pvd.astrodata.nMasa) + " Masa");
                         if (nPrevMasa == GPMasa.ADHIKA_MASA)
-                            fprintf(fout, " " + gstr[109]);
+                            fprintf(fout, " " + GPStrings.getString(109));
                         fprintf(fout, "</span>");
                         fprintf(fout, "<br><span class=HeaderLocation>{0}</span>", pvd.getGaurabdaYearLongString());
                         fprintf(fout, "<br><span class=HeaderLocation>{0}</span>", pvd.date.getLocation().getFullName());
@@ -428,7 +428,7 @@ namespace GCAL.Base
                     {
                         fprintf(fout, "<tr>");
                     }
-                    fprintf(fout, "<td align=right>{0}</td><td>&nbsp;{1}</td>\n", pvd.date.ToString().Replace(" ", "&nbsp;"), gstr[pvd.date.getDayOfWeek()].Substring(0, 2));
+                    fprintf(fout, "<td align=right>{0}</td><td>&nbsp;{1}</td>\n", pvd.date.ToString().Replace(" ", "&nbsp;"), GPStrings.getString(150 + pvd.date.getDayOfWeek()));
                     fprintf(fout, "<td>{0}</td>\n", pvd.getTithiNameExtended());
                     if (GPDisplays.Calendar.PaksaInfoVisible())
                         fprintf(fout, "<td>{0}</td>\n", pvd.getPaksaAbbreviation());
@@ -561,7 +561,7 @@ namespace GCAL.Base
             GPCalendarResults daybuffA = cals.CalendarA;
             GPCalendarResults daybuffB = cals.CalendarB;
 
-            List<string> gstr = GPStrings.getSharedStrings().gstr;
+            //List<string> gstr = GPStrings.getSharedStrings().gstr;
             //int k;
             GPGregorianTime date = new GPGregorianTime(daybuffA.m_Location);
 
@@ -589,7 +589,7 @@ namespace GCAL.Base
             GPCalendarResults daybuffA = cals.CalendarA;
             GPCalendarResults daybuffB = cals.CalendarB;
 
-            List<string> gstr = GPStrings.getSharedStrings().gstr;
+            //List<string> gstr = GPStrings.getSharedStrings().gstr;
             int k;
             GPGregorianTime date = new GPGregorianTime(daybuffA.m_Location);
             GPCalendarDay pvd;
@@ -624,7 +624,7 @@ namespace GCAL.Base
                         fprintf(colA, "<td colspan={0} style=\'text-align:center;font-weight:bold\'><span style =\'font-size:14pt\'>{1}", columnHeadersCount,
                             pvd.getMasaLongName());
                         if (nPrevMasaA == GPMasa.ADHIKA_MASA)
-                            fprintf(colA, " " + gstr[109]);
+                            fprintf(colA, " " + GPStrings.getString(109));
                         fprintf(colA, "</span>");
                         fprintf(colA, "<br><span style=\'font-size:10pt;\'>{0}", pvd.getGaurabdaYearLongString());
                         fprintf(colA, "<br>" + pvd.date.getLocation().getFullName() + "</font>");
@@ -637,7 +637,7 @@ namespace GCAL.Base
                         fprintf(colB, "<td colspan={0} style=\'text-align:center;font-weight:bold\'><span style =\'font-size:14pt\'>{1}",
                             columnHeadersCount, pve.getMasaLongName());
                         if (nPrevMasaB == GPMasa.ADHIKA_MASA)
-                            fprintf(colB, " " + gstr[109]);
+                            fprintf(colB, " " + GPStrings.getString(109));
                         fprintf(colB, "</span>");
                         fprintf(colB, "<br><span style=\'font-size:10pt;\'>{0}", pve.getGaurabdaYearLongString());
                         fprintf(colB, "<br>" + pvd.date.getLocation().getFullName() + "</font>");
@@ -678,9 +678,9 @@ namespace GCAL.Base
                     }
                     evline = !evline;
                     fprintf(colA, "<td class=CompareCalDate>{0}</td>", pvd.date.ToString().Replace(" ", "&nbsp;"));
-                    fprintf(colA, "<td>&nbsp;{0}</td>\n", gstr[pvd.date.getDayOfWeek()].Substring(0, 2));
+                    fprintf(colA, "<td>&nbsp;{0}</td>\n", GPStrings.getString(150 + pvd.date.getDayOfWeek()));
                     fprintf(colB, "<td class=CompareCalDate>{0}</td>", pve.date.ToString().Replace(" ", "&nbsp;"));
-                    fprintf(colB, "<td>&nbsp;{0}</td>\n", gstr[pve.date.getDayOfWeek()].Substring(0, 2));
+                    fprintf(colB, "<td>&nbsp;{0}</td>\n", GPStrings.getString(150 + pve.date.getDayOfWeek()));
 
                     WriteCalendarTwoLocItem2(pvd.getTithiNameExtended(), pve.getTithiNameExtended(), colA, colB);
 
@@ -942,7 +942,7 @@ span.GramE
             int columnHeaderCount;
             GPGregorianTime date = new GPGregorianTime(daybuff.m_Location);
             StringBuilder tempBuilder = new StringBuilder();
-            List<string> gstr = GPStrings.getSharedStrings().gstr;
+            //List<string> gstr = GPStrings.getSharedStrings().gstr;
 
 
             PrepareHtmlCalendarColumnHeader(out columnHeader, out columnHeaderCount);
@@ -962,7 +962,7 @@ span.GramE
                         fprintf(fout, "<td colspan={0}>", columnHeaderCount);
                         fprintf(fout, "<p class=MasaHeader><span class=HeaderTitle>{0}", pvd.getMasaLongName());
                         if (nPrevMasa == GPMasa.ADHIKA_MASA)
-                            fprintf(fout, " " + gstr[109]);
+                            fprintf(fout, " " + GPStrings.getString(109));
                         fprintf(fout, "</span>");
                         fprintf(fout, "<br><span class=HeaderLocation>{0}</span>", pvd.getGaurabdaYearLongString());
                         fprintf(fout, "<br><span class=HeaderLocation>{0}</span>", pvd.date.getLocation().getFullName());
@@ -1040,7 +1040,7 @@ span.GramE
                         fprintf(fout, "<tr class=evenLine>");
 
                     fprintf(fout, "<td align=right>{0}</td>", pvd.date.ToString().Replace(" ", "&nbsp;"));
-                    fprintf(fout, "<td>&nbsp;{0}</td>\n", gstr[pvd.date.getDayOfWeek()].Substring(0, 2));
+                    fprintf(fout, "<td>&nbsp;{0}</td>\n", GPStrings.getString(150 + pvd.date.getDayOfWeek()));
                     fprintf(fout, "<td>{0}</td>\n", pvd.getTithiNameExtended());
                     if (GPDisplays.Calendar.PaksaInfoVisible())
                         fprintf(fout, "<td>{0}</td>\n", pvd.getPaksaAbbreviation());
@@ -1109,8 +1109,6 @@ span.GramE
 
         public static int WriteCalendarHTML(GPCalendarResults daybuff, StringBuilder fout)
         {
-            List<string> gstr = GPStrings.getSharedStrings().gstr;
-
 	        fout.Append("<html><head>");
 
             fout.AppendFormat("<title>Calendar {0}</title>", daybuff.m_vcStart.getYear());
@@ -1151,7 +1149,7 @@ span.GramE
 
         public static int WriteCalendarHtmlTable(GPCalendarResults daybuff, StringBuilder fout)
         {
-            List<string> gstr = GPStrings.getSharedStrings().gstr;
+            //List<string> gstr = GPStrings.getSharedStrings().gstr;
             int g_firstday_in_week = GPDisplays.General.FirstDayOfWeek();
             int k, y, lwd = 0;
             //VCTIME date;
@@ -1185,7 +1183,7 @@ span.GramE
                             }
                             fprintf(fout, "</tr></table>\n<p>&nbsp;</p>");
                         }
-                        fprintf(fout, "\n<table width=\"100%\" border=0 frame=bottom cellspacing=0 cellpadding=0><tr><td width=\"60%\"><p class=month>" + gstr[pvd.date.getMonth() + 759] + " " + pvd.date.getYear());
+                        fprintf(fout, "\n<table width=\"100%\" border=0 frame=bottom cellspacing=0 cellpadding=0><tr><td width=\"60%\"><p class=month>" + GPStrings.getString(pvd.date.getMonth() + 759) + " " + pvd.date.getYear());
                         fprintf(fout, "</p></td><td><p class=tnote align=right>");
                         fprintf(fout, pvd.date.getLocation().getFullName());
                         fprintf(fout, "<br>Timezone: ");
@@ -1196,7 +1194,7 @@ span.GramE
                         fprintf(fout, "\n<table width=\"100%\" bordercolor=black cellpadding=0 cellspacing=0>\n<tr>\n");
                         for (y = 0; y < 7; y++)
                         {
-                            fprintf(fout, "<td width=\"14%\" align=center style=\'font-size:10.0pt;border:none\'>" + gstr[DAY_INDEX(y)] + "</td>\n");
+                            fprintf(fout, "<td width=\"14%\" align=center style=\'font-size:10.0pt;border:none\'>" + GPStrings.getString(DAY_INDEX(y)) + "</td>\n");
                         }
                         fprintf(fout, "<tr>\n");
                         if (DAYS_FROM_BEGINWEEK(pvd.date.getDayOfWeek()) > 0)
@@ -1340,21 +1338,21 @@ span.GramE
             f.Append("<p></p>");
 
             /*BEGIN GCAL 1.4.3*/
-            List<string> gstr = GPStrings.getSharedStrings().gstr;
+            //List<string> gstr = GPStrings.getSharedStrings().gstr;
 
             f.Append("<table border=0 cellpadding=0 width=100%><tr>");
             if (GPDisplays.Today.SunriseVisible())
             {
                 f.AppendFormat("<td class=hed style='text-align:center'><p>{0}<br> <span style='font-size:110%'>{1}</span></td>",
-                    gstr[51], p.astrodata.sun.rise.getShortTimeString());
+                    GPStrings.getString(51), p.astrodata.sun.rise.getShortTimeString());
             }
             if (GPDisplays.Today.NoonVisible())
             {
-                fprintf(f, "<td class=hed style='text-align:center'><p>{0}<br> <span style='font-size:110%'>{1}</span></td>", gstr[857], p.astrodata.sun.noon.getShortTimeString());
+                fprintf(f, "<td class=hed style='text-align:center'><p>{0}<br> <span style='font-size:110%'>{1}</span></td>", GPStrings.getString(857), p.astrodata.sun.noon.getShortTimeString());
             }
             if (GPDisplays.Today.SunsetVisible())
             {
-                fprintf(f, "<td class=hed style='text-align:center'><p>{0}<br> <span style='font-size:110%'>{1}</span></td>", gstr[52], p.astrodata.sun.set.getShortTimeString());
+                fprintf(f, "<td class=hed style='text-align:center'><p>{0}<br> <span style='font-size:110%'>{1}</span></td>", GPStrings.getString(52), p.astrodata.sun.set.getShortTimeString());
             }
 
             if (GPDisplays.Today.SandhyaTimesVisible())
@@ -1362,30 +1360,30 @@ span.GramE
                 f.Append("<tr>");
                 if (GPDisplays.Today.SunriseVisible())
                 {
-                    fprintf(f, "<td class=hed2>{0}<br><b>{1}</b></td>", gstr[989], p.astrodata.sun.rise.getShortSandhyaRange());
+                    fprintf(f, "<td class=hed2>{0}<br><b>{1}</b></td>", GPStrings.getString(989), p.astrodata.sun.rise.getShortSandhyaRange());
                 }
                 if (GPDisplays.Today.NoonVisible())
                 {
-                    fprintf(f, "<td class=hed2>{0}<br><b>{1}</b></td>", gstr[989], p.astrodata.sun.noon.getShortSandhyaRange());
+                    fprintf(f, "<td class=hed2>{0}<br><b>{1}</b></td>", GPStrings.getString(989), p.astrodata.sun.noon.getShortSandhyaRange());
                 }
                 if (GPDisplays.Today.SunsetVisible())
                 {
-                    fprintf(f, "<td class=hed2>{0}<br><b>{1}</b></td>", gstr[989], p.astrodata.sun.set.getShortSandhyaRange());
+                    fprintf(f, "<td class=hed2>{0}<br><b>{1}</b></td>", GPStrings.getString(989), p.astrodata.sun.set.getShortSandhyaRange());
                 }
             }
             f.AppendLine("</table>");
 
             if (GPDisplays.Today.SunriseInfo())
             {
-                fprintf(f, "<p><b>{0}</b><p>", gstr[990]);
+                fprintf(f, "<p><b>{0}</b><p>", GPStrings.getString(990));
 
                 f.Append("<table border=0 cellpadding=3 cellspacing=0 width=100%>");
-                f.AppendFormat("<tr><td class=hed>{0} <td class=hed2> {1}", gstr[15], GPNaksatra.getName(p.astrodata.nNaksatra));
+                f.AppendFormat("<tr><td class=hed>{0} <td class=hed2> {1}", GPStrings.getString(15), GPNaksatra.getName(p.astrodata.nNaksatra));
                 if (GPDisplays.Today.NaksatraPadaVisible())
                 {
-                    fprintf(f, "<br>{0} {1} ({2})", p.getNaksatraElapsedString(), gstr[993], gstr[811 + p.getNaksatraPada()]);
+                    fprintf(f, "<br>{0} {1} ({2})", p.getNaksatraElapsedString(), GPStrings.getString(993), GPStrings.getString(811 + p.getNaksatraPada()));
                 }
-                f.AppendFormat("<tr><td class=hed>{0} <td class=hed2> {1}", gstr[104], GPYoga.getName(p.astrodata.nYoga));
+                f.AppendFormat("<tr><td class=hed>{0} <td class=hed2> {1}", GPStrings.getString(104), GPYoga.getName(p.astrodata.nYoga));
                 if (GPDisplays.Today.RasiOfMoonVisible())
                 {
                     fprintf(f, "<tr><td class=hed>Rasi of the Moon <td class=hed2> {0}", GPSankranti.getName(p.astrodata.nMoonRasi));
@@ -1398,21 +1396,21 @@ span.GramE
 
             if (GPDisplays.Today.TithiList())
             {
-                f.AppendFormat("<p><b>{0}</b></p>", gstr[1005]);
+                f.AppendFormat("<p><b>{0}</b></p>", GPStrings.getString(1005));
                 GPLocalizedTithi current = p.getCurrentTithi();
                 GPLocalizedTithi previous = current.getPreviousTithi();
                 GPLocalizedTithi next = current.getNextTithi();
 
                 f.Append("<table border=0 cellpadding=3 cellspacing=0 width=100%>");
                 f.AppendFormat("<tr><td class=hed>{0}</td><td class=hed>{1}</td><td class=hed>{2}</td><td class=hed>{3}</td></tr>",
-                    gstr[13], previous.getName(), current.getName(), next.getName());
+                    GPStrings.getString(13), previous.getName(), current.getName(), next.getName());
 
-                f.AppendFormat("<tr><td class=hed>{0}</td><td class=hed2>{1}<br>{2}</td><td class=hed2>{3}<br>{4}</td><td class=hed2>{5}<br>{6}</td></tr>", gstr[84],
+                f.AppendFormat("<tr><td class=hed>{0}</td><td class=hed2>{1}<br>{2}</td><td class=hed2>{3}<br>{4}</td><td class=hed2>{5}<br>{6}</td></tr>", GPStrings.getString(84),
                     previous.getStartTime().getShortDateString(), previous.getStartTime().getShortTimeString(),
                     current.getStartTime().getShortDateString(), current.getStartTime().getShortTimeString(),
                     next.getStartTime().getShortDateString(), next.getStartTime().getShortTimeString());
 
-                f.AppendFormat("<tr><td class=hed>{0}</td><td class=hed2>{1}<br>{2}</td><td class=hed2>{3}<br>{4}</td><td class=hed2>{5}<br>{6}</td></tr>", gstr[85],
+                f.AppendFormat("<tr><td class=hed>{0}</td><td class=hed2>{1}<br>{2}</td><td class=hed2>{3}<br>{4}</td><td class=hed2>{5}<br>{6}</td></tr>", GPStrings.getString(85),
                     previous.getEndTime().getShortDateString(), previous.getEndTime().getShortTimeString(),
                     current.getEndTime().getShortDateString(), current.getEndTime().getShortTimeString(),
                     next.getEndTime().getShortDateString(), next.getEndTime().getShortTimeString());
@@ -1422,22 +1420,22 @@ span.GramE
 
             if (GPDisplays.Today.NaksatraList())
             {
-                f.AppendFormat("<p><b>{0}</b></p>", gstr[1006]);
+                f.AppendFormat("<p><b>{0}</b></p>", GPStrings.getString(1006);
 
                 GPLocalizedNaksatra current = p.getCurrentNaksatra();
                 GPLocalizedNaksatra previous = current.getPreviousNaksatra();
                 GPLocalizedNaksatra next = current.getNextNaksatra();
 
                 f.Append("<table border=0 cellpadding=3 cellspacing=0 width=100%>");
-                f.AppendFormat("<tr><td class=hed>{0}</td><td class=hed>{1}</td><td class=hed>{2}</td><td class=hed>{3}</td></tr>", gstr[15],
+                f.AppendFormat("<tr><td class=hed>{0}</td><td class=hed>{1}</td><td class=hed>{2}</td><td class=hed>{3}</td></tr>", GPStrings.getString(15),
                     previous.getName(), current.getName(), next.getName());
 
-                f.AppendFormat("<tr><td class=hed>{0}</td><td class=hed2>{1}<br>{2}</td><td class=hed2>{3}<br>{4}</td><td class=hed2>{5}<br>{6}</td></tr>", gstr[84],
+                f.AppendFormat("<tr><td class=hed>{0}</td><td class=hed2>{1}<br>{2}</td><td class=hed2>{3}<br>{4}</td><td class=hed2>{5}<br>{6}</td></tr>", GPStrings.getString(84),
                     previous.getStartTime().getShortDateString(), previous.getStartTime().getShortTimeString(),
                     current.getStartTime().getShortDateString(), current.getStartTime().getShortTimeString(),
                     next.getStartTime().getShortDateString(), next.getStartTime().getShortTimeString());
 
-                f.AppendFormat("<tr><td class=hed>{0}</td><td class=hed2>{1}<br>{2}</td><td class=hed2>{3}<br>{4}</td><td class=hed2>{5}<br>{6}</td></tr>", gstr[85],
+                f.AppendFormat("<tr><td class=hed>{0}</td><td class=hed2>{1}<br>{2}</td><td class=hed2>{3}<br>{4}</td><td class=hed2>{5}<br>{6}</td></tr>", GPStrings.getString(85),
                     previous.getEndTime().getShortDateString(), previous.getEndTime().getShortTimeString(),
                     current.getEndTime().getShortDateString(), current.getEndTime().getShortTimeString(),
                     next.getEndTime().getShortDateString(), next.getEndTime().getShortTimeString());

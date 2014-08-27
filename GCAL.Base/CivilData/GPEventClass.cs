@@ -21,7 +21,7 @@ namespace GCAL.Base
 
         public static string getName(int i)
         {
-            return GPStrings.getString(i + 920);
+            return GPStrings.getString(920 + i);
         }
 
         public static int count()

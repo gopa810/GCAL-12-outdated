@@ -9,7 +9,7 @@ namespace GCAL.Base
     {
         public static string getName(int i)
         {
-            return GPStrings.getString(i + 660);
+            return GPStrings.getString(660 + i);
         }
     }
 }

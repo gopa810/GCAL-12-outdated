@@ -15,7 +15,7 @@ namespace GCAL.Base
 
         public static string getSharedStringHtml(int index)
         {
-            return GPStrings.getSharedStrings().gstr[index];
+            return GPStrings.getString(index);
         }
 
         public static string getSharedStringRtf(int index)
@@ -53,7 +53,7 @@ namespace GCAL.Base
 
         public static string getSharedStringPlain(int index)
         {
-            return getUnicodeFromHtml(GPStrings.getSharedStrings().gstr[index]);
+            return getUnicodeFromHtml(GPStrings.getString(index));
         }
 
 

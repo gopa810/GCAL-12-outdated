@@ -34,18 +34,18 @@ namespace GCAL.Base
             {
                 case 0:
                     // vaisnava
-                    return GPStrings.getString(i + 720);
+                    return GPStrings.getString(720 + i);
                 case 1:
                     // vaisnava (common)
-                    return string.Format("{0} ({1})", GPStrings.getString(i + 720), GPStrings.getString(i + 871));
+                    return string.Format("{0} ({1})", GPStrings.getString(720 + i), GPStrings.getString(871 + i));
                 case 2:
                     // common
-                    return GPStrings.getString(i + 871);
+                    return GPStrings.getString(871 + i);
                 case 3:
                     // common (vaisnava)
-                    return string.Format("{0} ({1})", GPStrings.getString(i + 871), GPStrings.getString(i + 720));
+                    return string.Format("{0} ({1})", GPStrings.getString(871 + i), GPStrings.getString(720 + i));
             }
-            return GPStrings.getString(i + 720);
+            return GPStrings.getString(720 + i);
         }
 
         public GPMasa()

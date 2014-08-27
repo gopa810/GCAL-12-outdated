@@ -176,11 +176,11 @@ namespace GCAL.Base
                 {
                     if (nMahadvadasiType == GPConstants.EV_NULL)
                     {
-                        return GPTithi.getName(astrodata.nTithi) + " " + GPStrings.getSharedStrings().gstr[58];
+                        return string.Format("{0} {1}", GPTithi.getName(astrodata.nTithi), GPStrings.getString(58));
                     }
                     else
                     {
-                        return GPTithi.getName(astrodata.nTithi) + " " + GPStrings.getSharedStrings().gstr[59];
+                        return string.Format("{0} {1}", GPTithi.getName(astrodata.nTithi), GPStrings.getString(59));
                     }
                 }
             }
@@ -230,28 +230,28 @@ namespace GCAL.Base
                 fests.Add(new Festival(304, GPDisplays.Keys.CalArunodayaTime, string.Format(GPStrings.getString(99), astrodata.sun.arunodaya.getShortTimeString())));
             }
 
-            List<string> gstr = GPStrings.getSharedStrings().gstr;
+            //List<string> gstr = GPStrings.getSharedStrings().gstr;
 
             if (GPDisplays.Calendar.TimeSunriseVisible())
             {
-                fests.Add(new Festival(305, GPDisplays.Keys.CalSunriseTime, string.Format("{0} {1}", gstr[51], astrodata.sun.rise.getShortTimeString())));
+                fests.Add(new Festival(305, GPDisplays.Keys.CalSunriseTime, string.Format("{0} {1}", GPStrings.getString(51), astrodata.sun.rise.getShortTimeString())));
             }
 
             if (GPDisplays.Calendar.NoonTime())
             {
-                fests.Add(new Festival(306, GPDisplays.Keys.CalNoonTime, string.Format("{0} {1}", gstr[857], astrodata.sun.noon.getShortTimeString())));
+                fests.Add(new Festival(306, GPDisplays.Keys.CalNoonTime, string.Format("{0} {1}", GPStrings.getString(857), astrodata.sun.noon.getShortTimeString())));
             }
 
             if (GPDisplays.Calendar.TimeSunsetVisible())
             {
-                fests.Add(new Festival(307, GPDisplays.Keys.CalSunsetTime, string.Format("{0} {1}", gstr[52], astrodata.sun.set.getShortTimeString())));
+                fests.Add(new Festival(307, GPDisplays.Keys.CalSunsetTime, string.Format("{0} {1}", GPStrings.getString(52), astrodata.sun.set.getShortTimeString())));
             }
 
             if (GPDisplays.Calendar.TimeMoonriseVisible())
             {
                 if (moonrise != null)
                 {
-                    fests.Add(new Festival(308, GPDisplays.Keys.CalMoonriseTime, string.Format("{0} {1}", gstr[53], moonrise.getShortTimeString())));
+                    fests.Add(new Festival(308, GPDisplays.Keys.CalMoonriseTime, string.Format("{0} {1}", GPStrings.getString(53), moonrise.getShortTimeString())));
                 }
             }
 
@@ -259,28 +259,28 @@ namespace GCAL.Base
             {
                 if (moonset != null)
                 {
-                    fests.Add(new Festival(309, GPDisplays.Keys.CalMoonsetTime, string.Format("{0} {1}", gstr[54], moonset.getShortTimeString())));
+                    fests.Add(new Festival(309, GPDisplays.Keys.CalMoonsetTime, string.Format("{0} {1}", GPStrings.getString(54), moonset.getShortTimeString())));
                 }
             }
 
             if (GPDisplays.Calendar.SunLongitudeVisible())
             {
-                fests.Add(new Festival(310, GPDisplays.Keys.CalSunLong, string.Format("{0}: {1} (*)", gstr[100], astrodata.sun.eclipticalLongitude)));
+                fests.Add(new Festival(310, GPDisplays.Keys.CalSunLong, string.Format("{0}: {1} (*)", GPStrings.getString(100), astrodata.sun.eclipticalLongitude)));
             }
 
             if (GPDisplays.Calendar.MoonLongitudeVisible())
             {
-                fests.Add(new Festival(311, GPDisplays.Keys.CalMoonLong, string.Format("{0}: {1} (*)", gstr[101], astrodata.moon.longitude_deg)));
+                fests.Add(new Festival(311, GPDisplays.Keys.CalMoonLong, string.Format("{0}: {1} (*)", GPStrings.getString(101), astrodata.moon.longitude_deg)));
             }
 
             if (GPDisplays.Calendar.AyanamsaValueVisible())
             {
-                fests.Add(new Festival(312, GPDisplays.Keys.CalAyanamsa, string.Format("{0} {1} ({2}) (*)", gstr[102], astrodata.msAyanamsa, GPAyanamsa.CurrentName)));
+                fests.Add(new Festival(312, GPDisplays.Keys.CalAyanamsa, string.Format("{0} {1} ({2}) (*)", GPStrings.getString(102), astrodata.msAyanamsa, GPAyanamsa.CurrentName)));
             }
 
             if (GPDisplays.Calendar.JulianDayVisible())
             {
-                fests.Add(new Festival(313, GPDisplays.Keys.CalJulian, string.Format("{0} {1} (*)", gstr[103], astrodata.jdate)));
+                fests.Add(new Festival(313, GPDisplays.Keys.CalJulian, string.Format("{0} {1} (*)", GPStrings.getString(103), astrodata.jdate)));
             }
 
             if (GPDisplays.Calendar.StartMasaVisible())
@@ -289,14 +289,14 @@ namespace GCAL.Base
                 {
                     if (prevDay.astrodata.nMasa != this.astrodata.nMasa)
                     {
-                        fests.Add(new Festival(314, GPDisplays.Keys.CalMasaChange, string.Format("{0} {1} {2}", gstr[780], GPMasa.GetName(astrodata.nMasa), gstr[22])));
+                        fests.Add(new Festival(314, GPDisplays.Keys.CalMasaChange, string.Format("{0} {1} {2}", GPStrings.getString(780), GPMasa.GetName(astrodata.nMasa), GPStrings.getString(22))));
                     }
                 }
                 if (nextDay != null)
                 {
                     if (nextDay.astrodata.nMasa != this.astrodata.nMasa)
                     {
-                        fests.Add(new Festival(315, GPDisplays.Keys.CalDstChange, string.Format("{0} {1} {2}", gstr[781], GPMasa.GetName(astrodata.nMasa), gstr[22])));
+                        fests.Add(new Festival(315, GPDisplays.Keys.CalDstChange, string.Format("{0} {1} {2}", GPStrings.getString(781), GPMasa.GetName(astrodata.nMasa), GPStrings.getString(22))));
                     }
                 }
             }
@@ -304,10 +304,10 @@ namespace GCAL.Base
             if (GPDisplays.Calendar.DSTNotice())
             {
                 if (prevDay != null && prevDay.isDaylightInEffect() == 0 && this.isDaylightInEffect() == 1)
-                    fests.Add(new Festival(316, GPDisplays.Keys.CalDstChange, gstr[855]));
+                    fests.Add(new Festival(316, GPDisplays.Keys.CalDstChange, GPStrings.getString(855)));
 
                 if (nextDay != null && this.isDaylightInEffect() == 1 && nextDay.isDaylightInEffect() == 0)
-                    fests.Add(new Festival(316, GPDisplays.Keys.CalDstChange, gstr[856]));
+                    fests.Add(new Festival(316, GPDisplays.Keys.CalDstChange, GPStrings.getString(856)));
             }
             return fests;
         }
@@ -379,29 +379,29 @@ namespace GCAL.Base
                 if (GPDisplays.Calendar.EkadasiParanaDetails())
                 {
                     shortTime = ekadasiParanaStart.getShortTimeString(false, ref dstIndicator);
-                    str = string.Format("{0} {1} ({2}) - {3} ({4}) {5}", GPStrings.getSharedStrings().gstr[60],
+                    str = string.Format("{0} {1} ({2}) - {3} ({4}) {5}", GPStrings.getString(60),
                         shortTime, GPAppHelper.GetParanaReasonText(EkadasiParanaReasonStart),
                         ekadasiParanaEnd.getShortTimeString(false, ref dstIndicator2), GPAppHelper.GetParanaReasonText(EkadasiParanaReasonEnd), dstIndicator);
                 }
                 else
                 {
                     shortTime = ekadasiParanaStart.getShortTimeString(false, ref dstIndicator);
-                    str = string.Format("{0} {1} - {2} {3}", GPStrings.getSharedStrings().gstr[60],
+                    str = string.Format("{0} {1} - {2} {3}", GPStrings.getString(60),
                         shortTime, ekadasiParanaEnd.getShortTimeString(false, ref dstIndicator2), dstIndicator);
                 }
             }
             else if (ekadasiParanaStart != null)
             {
                 if (GPDisplays.Calendar.EkadasiParanaDetails())
-                    str = string.Format("{0} {1} ({2})", GPStrings.getSharedStrings().gstr[61],
+                    str = string.Format("{0} {1} ({2})", GPStrings.getString(61),
                         ekadasiParanaStart.getShortTimeString(), GPAppHelper.GetParanaReasonText(EkadasiParanaReasonStart));
                 else
-                    str = string.Format("{0} {1}", GPStrings.getSharedStrings().gstr[61],
+                    str = string.Format("{0} {1}", GPStrings.getString(61),
                         ekadasiParanaStart.getShortTimeString());
             }
             else
             {
-                str = GPStrings.getSharedStrings().gstr[62];
+                str = GPStrings.getString(62);
             }
 
             return str;
@@ -409,7 +409,7 @@ namespace GCAL.Base
 
         public string getWeekdayAbbr()
         {
-            return GPStrings.getSharedStrings().gstr[date.getDayOfWeek()].Substring(2);
+            return GPStrings.getString(date.getDayOfWeek()).Substring(2);
         }
 
         public int isDaylightInEffect()
