@@ -1054,8 +1054,8 @@ namespace GCAL
         {
             listView5.BeginUpdate();
             listView5.Items.Clear();
-            List<string> gstr = GPStrings.getSharedStrings().gstr;
-            for (int i = 0; i < gstr.Count; i++)
+            //List<string> gstr = GPStrings.getSharedStrings().gstr;
+            for (int i = 0; i < GPStrings.getCount(); i++)
             {
                 string s = GPStrings.getString(i);
                 if (s.Length > 0)

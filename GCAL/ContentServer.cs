@@ -57,8 +57,8 @@ namespace GCAL
 
         public ContentServer()
         {
-            dictStrings.Add("leftArrow", "&nbsp;&#9001;&nbsp;");
-            dictStrings.Add("rightArrow", "&nbsp;&#9002;&nbsp;");
+            dictStrings.Add("leftArrow", "&nbsp;&#9001;&#9001;&nbsp;<b>BACK</b><br>");
+            dictStrings.Add("rightArrow", "&nbsp;NEXT&nbsp;&#9002;&#9002;&nbsp;<br>");
         }
 
         public string GetFilePath(string file)

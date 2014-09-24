@@ -189,7 +189,7 @@ namespace GCAL.Base
                 }
                 else
                 {
-                    str = string.Format("{0} - {1}", vc.ToString(), GPStrings.getString(vc.getDayOfWeek()]);
+                    str = string.Format("{0} - {1}", vc.ToString(), GPStrings.getString(vc.getDayOfWeek()));
                 }
             }
 
@@ -513,11 +513,14 @@ namespace GCAL.Base
                 }
                 count -= 1200;
 
-                startupTipsCounter = startupTipsCounter % count;
-                string ret = GPStrings.getString(1200 + startupTipsCounter);
-                startupTipsCounter = (startupTipsCounter + 1) % count;
-                GPUserDefaults.SetIntForKey("app.startup.tips.counter", startupTipsCounter);
-                return ret;
+                if (count > 0)
+                {
+                    startupTipsCounter = startupTipsCounter % count;
+                    string ret = GPStrings.getString(1200 + startupTipsCounter);
+                    startupTipsCounter = (startupTipsCounter + 1) % count;
+                    GPUserDefaults.SetIntForKey("app.startup.tips.counter", startupTipsCounter);
+                    return ret;
+                }
             }
             return null;
         }

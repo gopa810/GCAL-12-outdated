@@ -1420,7 +1420,7 @@ span.GramE
 
             if (GPDisplays.Today.NaksatraList())
             {
-                f.AppendFormat("<p><b>{0}</b></p>", GPStrings.getString(1006);
+                f.AppendFormat("<p><b>{0}</b></p>", GPStrings.getString(1006));
 
                 GPLocalizedNaksatra current = p.getCurrentNaksatra();
                 GPLocalizedNaksatra previous = current.getPreviousNaksatra();
