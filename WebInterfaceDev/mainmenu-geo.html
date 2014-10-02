@@ -22,16 +22,24 @@ http://stackoverflow.com/questions/826782/css-rule-to-disable-text-selection-hig
 </head>
 
 <body style='padding-left:32px;padding-right:32px'>
+
+<h1>{%gstr 360}...</h1>
+
 <table width=100%>
 <script>
-writeChoiceWithAction("{%gstr 387}...", "t0", 'window.location.href="mainmenu-calc.html"');
-writeChoiceWithAction("{%gstr 372}...", "t1", 'window.location.href="mainmenu-set.html"');
-writeChoiceWithAction("{%gstr 360}...", "t2", 'window.location.href="mainmenu-geo.html"');
-writeChoiceWithAction("{%gstr 394}...", "t3", 'window.location.href="help.html"');
+writeChoiceWithAction("{%gstr 311}", "t0", 'window.location.href="geo-cities.html"');
+writeChoiceWithAction("{%gstr 312}", "t1", 'window.location.href="geo-countries.html"');
+writeChoiceWithAction("{%gstr 984}", "t2", 'window.location.href="geo-events.html"');
+writeChoiceWithAction("{%gstr 321}", "t3", 'window.location.href="geo-tzones.html"');
 </script>
 </table>
 
 
+<script type="text/javascript">
+writeNavigStart();
+writeNavigItem("{%gstr 1054}", "window.location.href=\"mainmenu.html\"");
+writeNavigEnd();
+</script>
 
 </body>
 </html>

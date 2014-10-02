@@ -1,0 +1,57 @@
+<html>
+<head>
+<title>
+</title>
+<script type="text/javascript" src="{%homedir}/shh.js"></script>
+<link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
+
+
+<!-- element should not be selectable by using these:
+
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+
+http://stackoverflow.com/questions/826782/css-rule-to-disable-text-selection-highlighting
+
+-->
+<script type="text/javascript">
+
+function startSetMyLocation()
+{
+    scriptObject.clearHistory();
+    setCurrTitle("Main menu");
+	addFutureFile2("dlg-enterloc.html?ppx=", "{%gstr 1037}");
+	addFutureFile2("mainmenu.html?preaction=setmylocation", "{%gstr 236}");
+	goNext();
+}
+
+</script>
+
+</head>
+
+<body style='padding-left:32px;padding-right:32px'>
+
+<h1>{%gstr 372}...</h1>
+<table width=100%>
+<script>
+writeChoiceWithAction("{%gstr 235}", "t0", 'window.location.href="set-disp.html"');
+writeChoiceWithAction("{%gstr 390}", "t1", 'window.location.href="set-general.html"');
+writeChoiceWithAction("{%gstr 1038}", "t2", 'window.location.href="set-startpage.html"');
+writeChoiceWithAction("{%gstr 373}", "t3", 'startSetMyLocation();');
+writeChoiceWithAction("{%gstr 336}", "t4", 'window.location.href="languages.html"');
+</script>
+</table>
+
+
+<script type="text/javascript">
+writeNavigStart();
+writeNavigItem("{%gstr 1054}", "window.location.href=\"mainmenu.html\"");
+writeNavigEnd();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,127 @@
+<html>
+<head>
+<title>
+</title>
+<script type="text/javascript" src="{%homedir}/shh.js"></script>
+<link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
+
+
+<!-- element should not be selectable by using these:
+
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+
+http://stackoverflow.com/questions/826782/css-rule-to-disable-text-selection-highlighting
+
+-->
+<script type="text/javascript">
+
+
+var lastMainItem = '';
+
+function startCalendar()
+{
+    scriptObject.clearHistory();
+    setCurrTitle("Main menu");
+	addFutureFile2("dlg-enterloc.html?ppx=", "{%gstr 1033}");
+	//addFutureFile2("dlg-locsel.html?ppx=", "Find Location");
+	addFutureFile2("dlg-startdate.html", "{%gstr 261}");
+	addFutureFile2("dlg-endperiod.html", "{%gstr 262}");
+	addFutureFile2("calendar.html", "{%gstr 387}");
+	goNext();
+}
+
+function startCoreEvents()
+{
+    scriptObject.clearHistory();
+    setCurrTitle("Main menu");
+	addFutureFile2("dlg-enterloc.html?ppx=", "{%gstr 1033}");
+	//addFutureFile2("dlg-locsel.html?ppx=", "Find Location");
+	addFutureFile2("dlg-startdate.html", "{%gstr 261}");
+	addFutureFile2("dlg-endperiod.html", "{%gstr 262}");
+	addFutureFile2("coreevents.html", "{%gstr 387}");
+	goNext();
+}
+
+function startAppDay()
+{
+    scriptObject.clearHistory();
+    setCurrTitle("Main menu");
+	addFutureFile2("dlg-enterloc.html?ppx=", "{%gstr 1033}");
+	//addFutureFile2("dlg-locsel.html?ppx=", "Find Location");
+	addFutureFile2("dlg-startdate.html", "{%gstr 1036}");
+	addFutureFile2("dlg-time.html", "{%gstr 1034}");
+	addFutureFile2("appday.html", "{%gstr 387}");
+	goNext();
+}
+
+
+function startMasaList()
+{
+    scriptObject.clearHistory();
+    setCurrTitle("Main menu");
+	addFutureFile2("dlg-enterloc.html?ppx=", "{%gstr 1033}");
+	//addFutureFile2("dlg-locsel.html?ppx=", "Find Location");
+	addFutureFile2("dlg-startyear.html", "{%gstr 305}");
+	addFutureFile2("dlg-yearcount.html", "{%gstr 1035}");
+	addFutureFile2("masalist.html", "{%gstr 387}");
+	goNext();
+}
+
+function startCalendarPlusCore()
+{
+    scriptObject.clearHistory();
+    setCurrTitle("Main menu");
+	addFutureFile2("dlg-enterloc.html?ppx=", "{%gstr 1033}");
+	//addFutureFile2("dlg-locsel.html?ppx=", "Find Location");
+	addFutureFile2("dlg-startdate.html", "{%gstr 261}");
+	addFutureFile2("dlg-endperiod.html", "{%gstr 262}");
+	addFutureFile2("calcore.html", "{%gstr 1033}");
+	goNext();
+}
+
+function startCalendar2Locs()
+{
+    scriptObject.clearHistory();
+    setCurrTitle("Main menu");
+	addFutureFile2("dlg-enterloc.html?ppx=a", "{%gstr 1033} A");
+	addFutureFile2("dlg-enterloc.html?ppx=b", "{%gstr 1033} B");
+	addFutureFile2("dlg-startdate.html?ppx=", "{%gstr 261}");
+	addFutureFile2("dlg-endperiod.html", "{%gstr 262}");
+	addFutureFile2("cal2locs.html", "{%gstr 387}");
+	goNext();
+}
+
+</script>
+
+</head>
+
+<body style='padding-left:32px;padding-right:32px'>
+
+<h1>{%gstr 387}...</h1>
+<table width=100%>
+<script>
+writeChoiceWithAction("{%gstr 44}", "t0", "startCalendar()");
+writeChoiceWithAction("{%gstr 46}", "t1", "startCoreEvents()");
+writeChoiceWithAction("{%gstr 45}", "t2", "startAppDay()");
+writeChoiceWithAction("{%gstr 48}", "t3", "startMasaList()");
+writeChoiceWithAction("{%gstr 43}", "t4", 'resetToday();window.location.href="today.html"');
+writeChoiceWithAction("{%gstr 389}", "t5", "startCalendar2Locs()");
+writeChoiceWithAction("{%gstr 388}", "t6", "startCalendarPlusCore()");
+writeChoiceWithAction("{%gstr 452}", "t7", 'window.location.href="nextfest.html"');
+writeChoiceWithAction("{%gstr 170}", "t8", 'window.location.href="dlg-find.html"');
+</script>
+</table>
+
+<script type="text/javascript">
+writeNavigStart();
+writeNavigItem("{%gstr 1054}", 'window.location.href="mainmenu.html"');
+writeNavigEnd();
+</script>
+
+</body>
+</html>
