@@ -224,6 +224,7 @@
     <Compile Include="Engine\CELGenerateMasaList.cs" />
     <Compile Include="Engine\CELSearch.cs" />
     <Compile Include="Engine\CELStatupTask.cs" />
+    <Compile Include="HtmlBuildInstructions.cs" />
     <Compile Include="OrganizerForm.cs">
       <SubType>Form</SubType>
     </Compile>

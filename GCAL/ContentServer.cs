@@ -17,6 +17,11 @@ namespace GCAL
     [ComVisibleAttribute(true)]
     public class ContentServer
     {
+        public class PageHistoryEntry
+        {
+            public string Page { get; set; }
+        }
+
         public class HistoryEntry
         {
             public string File { get; set; }
@@ -40,9 +45,51 @@ namespace GCAL
             }
         }
 
+        public class FlowPage
+        {
+            public string Name;
+            public string Source;
+            public Dictionary<string, FlowAction> Actions = new Dictionary<string, FlowAction>();
+        }
+
+        public class FlowAction
+        {
+            public string Name;
+            public List<FlowCommand> Commands = new List<FlowCommand>();
+        }
+
+        public class FlowCommand
+        {
+            public string Command;
+            public string[] Args;
+            public FlowCommand()
+            {
+            }
+
+            public FlowCommand(string[] strs)
+            {
+                if (strs.Length > 0)
+                {
+                    Command = strs[0];
+                    Args = new string[strs.Length - 1];
+                    Array.Copy(strs, 1, Args, 0, strs.Length - 1);
+                }
+            }
+            public string getArg(int i)
+            {
+                if (i < 0 || i >= Args.Length)
+                    return string.Empty;
+                return Args[i];
+            }
+        }
+
+        public FlowPage CurrentPage { get; set; }
         public WebBrowser WebBrowser { get; set; }
         public string ContentDir { get; set; }
         public string CurrentContents;
+        private List<PageHistoryEntry> pageHistory = new List<PageHistoryEntry>();
+        private int pageHistoryIndex = 0;
+
         private List<HistoryEntry> history = new List<HistoryEntry>();
         private List<int> lastIndices = new List<int>();
         private int historyIndex = 0;
@@ -53,12 +100,12 @@ namespace GCAL
         private int locationsEnumerator = 0;
         private CELSearch searchTask = null;
         public object CurrentCalculatedObject = null;
-
+        public Dictionary<string, FlowPage> Pages = new Dictionary<string, FlowPage>();
 
         public ContentServer()
         {
-            dictStrings.Add("leftArrow", "&nbsp;&#9001;&#9001;&nbsp;<b>BACK</b><br>");
-            dictStrings.Add("rightArrow", "&nbsp;NEXT&nbsp;&#9002;&#9002;&nbsp;<br>");
+            dictStrings.Add("leftArrow", "&nbsp;&#9001;&#9001;&nbsp;");
+            dictStrings.Add("rightArrow", "&nbsp;&#9002;&#9002;&nbsp;");
         }
 
         public string GetFilePath(string file)
@@ -66,13 +113,349 @@ namespace GCAL
             return Path.Combine(ContentDir, file);
         }
 
+        public void LoadFlows()
+        {
+            string fileName = GetFilePath("flows.g");
+            List<object> stack = new List<object>();
+            using (StreamReader sr = new StreamReader(fileName))
+            {
+                object target = this;
+                string[] line = null;
+                stack.Add(target);
+
+                while ((line = ReadFlowLine(sr)) != null)
+                {
+                    if (target is ContentServer)
+                    {
+                        if (line.Length > 1 && line[0].Equals("page"))
+                        {
+                            FlowPage fp = new FlowPage();
+                            fp.Name = line[1];
+                            fp.Source = line[1];
+                            stack.Add(target);
+                            target = fp;
+                        }
+                    }
+                    else if (target is FlowPage)
+                    {
+                        FlowPage fp = target as FlowPage;
+                        if (line.Length > 1 && line[0].Equals("source"))
+                        {
+                            fp.Source = line[1];
+                        }
+                        else if (line.Length > 1 && line[0].Equals("action"))
+                        {
+                            FlowAction fa = new FlowAction();
+                            fa.Name = line[1];
+                            stack.Add(target);
+                            target = fa;
+                        }
+                        else if (line.Length > 0 && line[0].Equals("end"))
+                        {
+                            target = stack[stack.Count - 1];
+                            stack.RemoveAt(stack.Count - 1);
+                            if (target is ContentServer)
+                            {
+                                Pages.Add(fp.Name, fp);
+                            }
+                        }
+                    }
+                    else if (target is FlowAction)
+                    {
+                        FlowAction fa = target as FlowAction;
+                        if (line.Length > 0 && line[0].Equals("end"))
+                        {
+                            target = stack[stack.Count - 1];
+                            stack.RemoveAt(stack.Count - 1);
+                            if (target is FlowPage)
+                            {
+                                FlowPage fp = target as FlowPage;
+                                fp.Actions.Add(fa.Name, fa);
+                            }
+                        }
+                        else
+                        {
+                            FlowCommand cmd = new FlowCommand(line);
+                            fa.Commands.Add(cmd);
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Reads array of strings as line from given stream
+        /// It is similar for splitting string by spaces, but this
+        /// functions is evaluating also ' and " characters, so
+        /// characters enclosed in pair of ' or pair of " are considered
+        /// as one string.
+        /// </summary>
+        /// <param name="sr">Input stream</param>
+        /// <returns>Array of strings</returns>
+        public string[] ReadFlowLine(StreamReader sr)
+        {
+            List<StringBuilder> sbs = new List<StringBuilder>();
+            StringBuilder curr = new StringBuilder();
+            sbs.Add(curr);
+            int mode = 0;
+            string line = sr.ReadLine();
+            
+            if (line == null)
+                return null;
+
+            foreach (char c in line)
+            {
+                if (mode == 0)
+                {
+                    if (c == '\'')
+                    {
+                        mode = 2;
+                    }
+                    else if (c == '\"')
+                    {
+                        mode = 4;
+                    }
+                    else if (c == '#')
+                    {
+                        mode = 7;
+                    }
+                    else if (!char.IsWhiteSpace(c))
+                    {
+                        curr.Append(c);
+                        mode = 1;
+                    }
+                }
+                else if (mode == 1)
+                {
+                    if (char.IsWhiteSpace(c))
+                    {
+                        curr = new StringBuilder();
+                        sbs.Add(curr);
+                        mode = 0;
+                    }
+                    else
+                    {
+                        curr.Append(c);
+                    }
+                }
+                else if (mode == 2)
+                {
+                    if (c == '\\')
+                    {
+                        mode = 3;
+                    }
+                    else if (c == '\'')
+                    {
+                        curr = new StringBuilder();
+                        sbs.Add(curr);
+                        mode = 0;
+                    }
+                    else
+                    {
+                        curr.Append(c);
+                    }
+                }
+                else if (mode == 3)
+                {
+                    if (c == 'n')
+                    {
+                        curr.Append('\n');
+                    }
+                    else if (c == 't')
+                    {
+                        curr.Append('\t');
+                    }
+                    else if (c == 'r')
+                    {
+                        curr.Append('\r');
+                    }
+                    else
+                    {
+                        curr.Append(c);
+                    }
+                    mode = 2;
+                }
+                else if (mode == 4)
+                {
+                    if (c == '\\')
+                    {
+                        mode = 5;
+                    }
+                    else if (c == '\"')
+                    {
+                        curr = new StringBuilder();
+                        sbs.Add(curr);
+                        mode = 0;
+                    }
+                    else
+                    {
+                        curr.Append(c);
+                    }
+                }
+                else if (mode == 5)
+                {
+                    if (c == 'n')
+                    {
+                        curr.Append('\n');
+                    }
+                    else if (c == 't')
+                    {
+                        curr.Append('\t');
+                    }
+                    else if (c == 'r')
+                    {
+                        curr.Append('\r');
+                    }
+                    else
+                    {
+                        curr.Append(c);
+                    }
+                    mode = 4;
+                }
+                else if (mode == 7)
+                {
+                }
+            }
+
+            if (sbs.Count > 0 && curr.Length == 0)
+            {
+                sbs.RemoveAt(sbs.Count - 1);
+            }
+
+            string [] array = new string[sbs.Count];
+            for(int i = 0; i < sbs.Count; i++)
+            {
+                array[i] = sbs[i].ToString();
+            }
+
+            return array;
+        }
+
         public void LoadStartPage()
         {
             if (getCurrentLanguageId() < 0)
-                LoadFile("languages.html");
+                LoadPage("languages", true);
             else
-                LoadFile("mainmenu.html");
+                LoadPage("mainmenu", true);
             //LoadFile("dlg-findtz.html");
+        }
+
+        /// <summary>
+        /// Loading definition of page. Here we can decide if we will build
+        /// some html page based on definition in file, or we if we will
+        /// show some special control for this type of page.
+        /// </summary>
+        /// <param name="pageFile">Name of page. There should be filel on disk with
+        /// name either {name}.p or {name}.html
+        /// </param>
+        public void LoadPage(string pageId, bool bInsertHistory)
+        {
+            if (pageId.StartsWith("$"))
+            {
+                pageId = pageId.Substring(1);
+                if (dictStrings.ContainsKey(pageId))
+                    pageId = dictStrings[pageId];
+            }
+
+            if (!Pages.ContainsKey(pageId))
+            {
+                CurrentPage = null;
+                return;
+            }
+
+            if (bInsertHistory)
+            {
+                while (pageHistoryIndex+1 >= 0 && pageHistoryIndex+1 < pageHistory.Count)
+                {
+                    pageHistory.RemoveAt(pageHistoryIndex+1);
+                }
+                PageHistoryEntry pageEntry = new PageHistoryEntry();
+                pageEntry.Page = pageId;
+                pageHistory.Add(pageEntry);
+                pageHistoryIndex = pageHistory.Count - 1;
+            }
+
+            string fileName;
+            List<FlowCommand> fileInstructions = new List<FlowCommand>();
+            CurrentPage = Pages[pageId];
+            Debugger.Log(0,"","$$$ CurrentPage is now: " + CurrentPage.Name + "\n");
+            string pageFile = CurrentPage.Source;
+           
+            fileName = GetFilePath(string.Format("{0}.p", pageFile));
+            if (File.Exists(fileName))
+            {
+                using (StreamReader sr = new StreamReader(fileName))
+                {
+                    string[] lp = ReadFlowLine(sr);
+                    while (lp != null)
+                    {
+                        FlowCommand cmd = new FlowCommand(lp);
+                        if (cmd.Command != null && cmd.Command.Length > 0)
+                        {
+                            fileInstructions.Add(cmd);
+                        }
+                        lp = ReadFlowLine(sr);
+                    }
+                }
+            }
+            else
+            {
+                LoadFile(string.Format("{0}.html", pageFile));
+            }
+
+            if (fileInstructions.Count == 0)
+                return;
+
+            bool handled = false;
+
+            // here we should do something for showing new page
+            // either build a new HTML document
+            // or show some special control class
+            if (pageFile.Equals("special_case_view"))
+            {
+                // add some code here for initialization of new controll class
+                // which is specific to this page
+
+                // mark as handled
+                handled = true;
+            }
+
+            if (handled)
+                return;
+
+            // here check for class
+            // class should be mentioned somewhere in the content of file
+            string classOfFile = "";
+
+            if (classOfFile.Equals("choice_case_view"))
+            {
+                // add some code here for initialization of new controll class
+                // which is specific to this page
+
+                // mark as handled
+                handled = true;
+            }
+
+            if (handled)
+                return;
+
+            // here do some general stuff
+            // converting page intructions into HTML code
+            // and load HTML text into webView
+            HtmlBuildInstructions builder = new HtmlBuildInstructions();
+
+            builder.Build(fileInstructions);
+
+            currentFile = fileName;
+            ModifyFileVariables(builder.Builder);
+            WebBrowser.DocumentText = builder.getHtmlText();
+        }
+
+        public string BuildHtmlFromInstructions(List<FlowCommand> pageInstructions)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            return sb.ToString();
         }
 
         /// <summary>
@@ -453,6 +836,11 @@ namespace GCAL
             {
                 history.RemoveAt(historyIndex);
             }
+        }
+
+        public void goPage(string pageId)
+        {
+            LoadPage(pageId, true);
         }
 
         /// <summary>
@@ -1270,6 +1658,44 @@ namespace GCAL
         public void setCurrentLanguageId(int id)
         {
             GPLanguageList.getShared().setCurrentLanguageId(id);
+        }
+
+
+        public void runAction(string s)
+        {
+            if (CurrentPage == null)
+                return;
+
+            FlowAction action = null;
+
+            if (CurrentPage.Actions.ContainsKey(s))
+            {
+                action = CurrentPage.Actions[s];
+            }
+
+            if (action == null)
+                return;
+
+            foreach (FlowCommand command in action.Commands)
+            {
+                executeFlowCommand(command);
+            }
+        }
+
+        public void executeFlowCommand(FlowCommand cmd)
+        {
+            if (cmd.Command.Equals("goto"))
+            {
+                LoadPage(cmd.getArg(0), true);
+                return;
+            }
+            else if (cmd.Command.Equals("set"))
+            {
+                string var = cmd.getArg(0);
+                if (var.StartsWith("$"))
+                    var = var.Substring(1);
+                dictStrings[var] = cmd.getArg(1);
+            }
         }
 
         public void saveContent()

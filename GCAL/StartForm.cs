@@ -20,6 +20,7 @@ namespace GCAL
             InitializeComponent();
 
             content.ContentDir = Path.Combine(GPFileHelper.getAppExecutableDirectory(), "Content");
+            content.LoadFlows();
             content.WebBrowser = webBrowser1;
             webBrowser1.ObjectForScripting = content;
             content.LoadStartPage();
@@ -32,7 +33,9 @@ namespace GCAL
             if (!url.Equals("blank"))
             {
                 e.Cancel = true;
-                content.LoadFile(e.Url.AbsolutePath);
+                string filePath = e.Url.AbsolutePath;
+                string file = Path.GetFileNameWithoutExtension(filePath);
+                content.LoadPage(file, true);
             }
         }
 
