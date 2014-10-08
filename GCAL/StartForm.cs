@@ -22,6 +22,19 @@ namespace GCAL
             content.ContentDir = Path.Combine(GPFileHelper.getAppExecutableDirectory(), "Content");
             content.LoadFlows();
             content.WebBrowser = webBrowser1;
+            content.TopButtons.Add(button1);
+            content.TopButtons.Add(button2);
+            content.TopButtons.Add(button3);
+            content.TopButtons.Add(button4);
+            content.TopButtons.Add(button5);
+            content.TopButtons.Add(button6);
+            content.BottomButtons.Add(buttonBottom1);
+            content.BottomButtons.Add(buttonBottom2);
+            content.BottomButtons.Add(buttonBottom3);
+            content.BottomButtons.Add(buttonBottom4);
+            content.MainForm = this;
+            content.TopBar = flowLayoutPanel1;
+            content.BottomBar = flowLayoutPanel2;
             webBrowser1.ObjectForScripting = content;
             content.LoadStartPage();
         }
@@ -46,6 +59,18 @@ namespace GCAL
             GPEventList.getShared().Save();
             GPCountryList.getShared().Save();
             GPTimeZoneList.sharedTimeZones().Save();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (sender is Button)
+            {
+                Button b = sender as Button;
+                if (b.Tag != null)
+                {
+                    content.ExecuteCommand(b.Tag.ToString());
+                }
+            }
         }
 
     }

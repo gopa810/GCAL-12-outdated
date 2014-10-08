@@ -112,20 +112,36 @@ namespace GCAL.Engine
             {
                 temp.Clear();
                 GPCalendarDay vd = p_cal.get(i);
-                if (vd.sEkadasiVrataName.Length > 0)
+                if (onlyFast)
                 {
-                    temp.Add(string.Format(GPStrings.getString(87), vd.sEkadasiVrataName));
-                }
-                else if (vd.hasEkadasiParana())
-                {
-                    temp.Add(vd.getEkadasiParanaString());
-                }
-
-                foreach (GPCalendarDay.Festival fest in vd.Festivals)
-                {
-                    if (onlyFast == false || fest.getPreviousFastType() != GPConstants.FAST_NULL)
+                    if (vd.sEkadasiVrataName.Length > 0)
                     {
-                        temp.Add(fest.Text);
+                        temp.Add(string.Format(GPStrings.getString(87), vd.sEkadasiVrataName));
+                    }
+                    else if (vd.hasEkadasiParana())
+                    {
+                        temp.Add(vd.getEkadasiParanaString());
+                    }
+                }
+                else
+                {
+                    if (vd.hasEkadasiParana())
+                    {
+                        temp.Add(vd.getEkadasiParanaString());
+                    }
+                    /*foreach (GPCalendarDay.Festival fest in vd.Festivals)
+                    {
+                        //if (onlyFast == false || fest.getPreviousFastType() != GPConstants.FAST_NULL)
+                        {
+                            temp.Add(fest.Text);
+                        }
+                    }*/
+                    foreach (GPCalendarDay.Festival fest in vd.Festivals)
+                    {
+                        if (GPUserDefaults.BoolForKey(fest.ShowSettingItem, true))
+                        {
+                            temp.Add(fest.Text);
+                        }
                     }
                 }
 
@@ -135,7 +151,7 @@ namespace GCAL.Engine
                     {
                         GPStringPair dr = new GPStringPair();
                         if (j == 0)
-                            dr.Name = vd.date.ToString();
+                            dr.Name = vd.date.ToString() + " " + GPStrings.getString(150 + vd.date.getDayOfWeek());
                         dr.Value = temp[j];
                         lines.Add(dr);
                     }
@@ -167,15 +183,26 @@ namespace GCAL.Engine
             StringBuilder sb = new StringBuilder();
             sb.Append("<table cellpadding=0 cellspacing=0 border=0 width=95%>");
             int ic = 0;
+            bool rowStarted = false;
             foreach (GPStringPair dr in lines)
             {
-                if (ic % 2 == 0)
-                    sb.Append("<tr style='background:#cceeee'>");
-                else
-                    sb.Append("<tr>");
-                sb.AppendFormat("<td><span style='font-weight:bold'>{0}</span><br>&nbsp;&nbsp;{1}</td></tr>", dr.Name, dr.Value);
-                ic++;
+                if (dr.Name.Length > 0)
+                {
+                    if (rowStarted)
+                        sb.AppendLine("</td></tr>");
+
+                    if (ic % 2 == 0)
+                        sb.Append("<tr style='background:#cceeee'>");
+                    else
+                        sb.Append("<tr>");
+                    ic++;
+                    sb.AppendFormat("<td><span style='font-weight:bold'>{0}</span><br>", dr.Name);
+                    rowStarted = true;
+                }
+                sb.AppendFormat(" &nbsp;&nbsp;{0}<br>", dr.Value);
             }
+            if (rowStarted)
+                sb.AppendLine("</td></tr>");
             sb.Append("</table>");
             return sb.ToString();
         }

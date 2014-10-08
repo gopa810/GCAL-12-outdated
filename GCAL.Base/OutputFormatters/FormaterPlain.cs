@@ -199,7 +199,9 @@ namespace GCAL.Base
                         tp1 = (80 - str.Length) / 2;
                         m_text.Append(string.Empty.PadLeft(tp1));
                         m_text.Append(str);
-                        m_text.Append(string.Empty.PadLeft(tp1 - GPAppHelper.getShortVersionText().Length));
+                        string tmpString  = GPAppHelper.getShortVersionText();
+                        if (tmpString.Length < tp1)
+                            m_text.Append(string.Empty.PadLeft(tp1 - tmpString.Length));
                         m_text.AppendLine(GPAppHelper.getShortVersionText());
                         m_text.AppendLine(GPAppHelper.CenterString(daybuff.m_Location.getLocation(pvd.date.getJulianGreenwichTime()).getFullName(), 80));
                         m_text.AppendLine();

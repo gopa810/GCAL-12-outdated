@@ -81,12 +81,14 @@ namespace GCAL.Engine
             GPGregorianTime startWesternTime = null;
             GPGregorianTime endWesternTime = null;
 
-            if (content.getString("locationtype") == "selected")
+            /*if (content.getString("locationtype") == "selected")
             {
                 GPLocation loc = GPLocationList.getShared().findLocationById(content.getInt("locationid"));
                 if (loc != null)
                     locProv = new GPLocationProvider(loc);
-            }
+            }*/
+
+            locProv = content.getLocationWithPostfix("");
 
             if (locProv == null)
             {

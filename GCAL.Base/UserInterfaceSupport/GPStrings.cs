@@ -12,7 +12,7 @@ namespace GCAL.Base
         public List<string> gstr = new List<string>();
         public List<string> keys = new List<string>();
         public Dictionary<string, int> map = new Dictionary<string, int>();
-
+        public static bool showNumberOfString = false;
 
         public GPStrings()
         {
@@ -117,8 +117,14 @@ namespace GCAL.Base
         {
             if (index < 0 || index >= gstr.Count)
                 return string.Empty;
-            return string.Format("<span class=highred>[{0}]</span> {1}", index, gstr[index]);
-//            return gstr[index];
+            if (showNumberOfString)
+            {
+                return string.Format("<span class=highred>[{0}]</span> {1}", index, gstr[index]);
+            }
+            else
+            {
+                return gstr[index];
+            }
         }
 
         public string getString(string key)

@@ -640,7 +640,7 @@ namespace GCAL.Base
                             fprintf(colB, " " + GPStrings.getString(109));
                         fprintf(colB, "</span>");
                         fprintf(colB, "<br><span style=\'font-size:10pt;\'>{0}", pve.getGaurabdaYearLongString());
-                        fprintf(colB, "<br>" + pvd.date.getLocation().getFullName() + "</font>");
+                        fprintf(colB, "<br>" + pve.date.getLocation().getFullName() + "</font>");
                         fprintf(colB, "</span></td>\n");
                     }
                     nPrevMasaB = pve.astrodata.nMasa;
@@ -1300,16 +1300,16 @@ span.GramE
             fprintf(f, "<body>\n");*/
 
             //f.Append("<table id=\"mainContentDiv\" border=0><tr><td class=TodayCellBody>");
-            /*fprintf(f, "<table><tr><td>");
-            fprintf(f, "<p><span style='font-size:130%;font-weight:bold'>{0}</span>\n", GPAppHelper.getDateText(vc));
-            fprintf(f, "<br><a href=\"{0}\">{1}</a>", "http://gcal.app/mylocation", vc.getLocation().getFullName());
-            fprintf(f, "<br>{0}: {1}\n", GPStrings.getSharedStrings().getString(12), vc.getLocation().getTimeZoneString());
-            fprintf(f, "</td>");
-            fprintf(f, "<td style='cursor:pointer' onclick='todayGoPrev();'>&lt; Prev</td>");
+            fprintf(f, "<table><tr><td>");
+            f.AppendFormat("<p><span style='font-size:130%;font-weight:bold'>{0}</span>\n", GPAppHelper.getDateText(vc));
+            f.AppendFormat("<br>{0}", vc.getLocation().getFullName());
+            f.AppendFormat("<br>{0}: {1}\n", GPStrings.getString(12), vc.getLocation().getTimeZoneString());
+            f.Append("</td>");
+            /*fprintf(f, "<td style='cursor:pointer' onclick='todayGoPrev();'>&lt; Prev</td>");
             fprintf(f, "<td style='cursor:pointer' onclick='todayToday();'>Today</td>");
-            fprintf(f, "<td style='cursor:pointer' onclick='todayGoNext();'>Next &gt;</td>");
-            fprintf(f, "</tr></table>");*/
-            fprintf(f, "<p align=left><b>  {0} Tithi</b>, {1},<br> {2},<br>{3}</p>",
+            fprintf(f, "<td style='cursor:pointer' onclick='todayGoNext();'>Next &gt;</td>");*/
+            fprintf(f, "</tr></table>");
+            f.AppendFormat("<p align=left><b>  {0} Tithi</b>, {1},<br> {2},<br>{3}</p>",
                 GPTithi.getName(p.astrodata.nTithi), p.getPaksaName(), p.getMasaLongName(), p.getGaurabdaYearLongString());
 
             int prevCountFest = 0;
@@ -1324,7 +1324,7 @@ span.GramE
                     if (GPUserDefaults.BoolForKey(fest.ShowSettingItem, true))
                     {
                         if (prevCountFest > 0)
-                            fprintf(f, "<br>");
+                            sbt.Append("<br>");
                         sbt.Append(fest.Text);
                         prevCountFest++;
                     }
@@ -1348,11 +1348,11 @@ span.GramE
             }
             if (GPDisplays.Today.NoonVisible())
             {
-                fprintf(f, "<td class=hed style='text-align:center'><p>{0}<br> <span style='font-size:110%'>{1}</span></td>", GPStrings.getString(857), p.astrodata.sun.noon.getShortTimeString());
+                f.AppendFormat("<td class=hed style='text-align:center'><p>{0}<br> <span style='font-size:110%'>{1}</span></td>", GPStrings.getString(857), p.astrodata.sun.noon.getShortTimeString());
             }
             if (GPDisplays.Today.SunsetVisible())
             {
-                fprintf(f, "<td class=hed style='text-align:center'><p>{0}<br> <span style='font-size:110%'>{1}</span></td>", GPStrings.getString(52), p.astrodata.sun.set.getShortTimeString());
+                f.AppendFormat("<td class=hed style='text-align:center'><p>{0}<br> <span style='font-size:110%'>{1}</span></td>", GPStrings.getString(52), p.astrodata.sun.set.getShortTimeString());
             }
 
             if (GPDisplays.Today.SandhyaTimesVisible())
@@ -1360,33 +1360,33 @@ span.GramE
                 f.Append("<tr>");
                 if (GPDisplays.Today.SunriseVisible())
                 {
-                    fprintf(f, "<td class=hed2>{0}<br><b>{1}</b></td>", GPStrings.getString(989), p.astrodata.sun.rise.getShortSandhyaRange());
+                    f.AppendFormat("<td class=hed2>{0}<br><b>{1}</b></td>", GPStrings.getString(989), p.astrodata.sun.rise.getShortSandhyaRange());
                 }
                 if (GPDisplays.Today.NoonVisible())
                 {
-                    fprintf(f, "<td class=hed2>{0}<br><b>{1}</b></td>", GPStrings.getString(989), p.astrodata.sun.noon.getShortSandhyaRange());
+                    f.AppendFormat("<td class=hed2>{0}<br><b>{1}</b></td>", GPStrings.getString(989), p.astrodata.sun.noon.getShortSandhyaRange());
                 }
                 if (GPDisplays.Today.SunsetVisible())
                 {
-                    fprintf(f, "<td class=hed2>{0}<br><b>{1}</b></td>", GPStrings.getString(989), p.astrodata.sun.set.getShortSandhyaRange());
+                    f.AppendFormat("<td class=hed2>{0}<br><b>{1}</b></td>", GPStrings.getString(989), p.astrodata.sun.set.getShortSandhyaRange());
                 }
             }
             f.AppendLine("</table>");
 
             if (GPDisplays.Today.SunriseInfo())
             {
-                fprintf(f, "<p><b>{0}</b><p>", GPStrings.getString(990));
+                f.AppendFormat("<p><b>{0}</b><p>", GPStrings.getString(990));
 
                 f.Append("<table border=0 cellpadding=3 cellspacing=0 width=100%>");
                 f.AppendFormat("<tr><td class=hed>{0} <td class=hed2> {1}", GPStrings.getString(15), GPNaksatra.getName(p.astrodata.nNaksatra));
                 if (GPDisplays.Today.NaksatraPadaVisible())
                 {
-                    fprintf(f, "<br>{0} {1} ({2})", p.getNaksatraElapsedString(), GPStrings.getString(993), GPStrings.getString(811 + p.getNaksatraPada()));
+                    f.AppendFormat("<br>{0} {1} ({2})", p.getNaksatraElapsedString(), GPStrings.getString(993), GPStrings.getString(811 + p.getNaksatraPada()));
                 }
                 f.AppendFormat("<tr><td class=hed>{0} <td class=hed2> {1}", GPStrings.getString(104), GPYoga.getName(p.astrodata.nYoga));
                 if (GPDisplays.Today.RasiOfMoonVisible())
                 {
-                    fprintf(f, "<tr><td class=hed>Rasi of the Moon <td class=hed2> {0}", GPSankranti.getName(p.astrodata.nMoonRasi));
+                    f.AppendFormat("<tr><td class=hed>Rasi of the Moon <td class=hed2> {0}", GPSankranti.getName(p.astrodata.nMoonRasi));
                 }
                 f.AppendFormat("<tr><td class=hed>Rasi of the Sun <td class=hed2>{0}", GPSankranti.getName(p.astrodata.nSunRasi));
                 f.Append("</table>");

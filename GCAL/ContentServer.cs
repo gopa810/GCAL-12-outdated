@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.Security.Permissions;
 using System.Runtime.InteropServices;
+using System.Drawing;
 
 using GCAL.Base;
 using GCAL.Engine;
@@ -49,6 +50,7 @@ namespace GCAL
         {
             public string Name;
             public string Source;
+            public List<FlowCommand> Commands = new List<FlowCommand>();
             public Dictionary<string, FlowAction> Actions = new Dictionary<string, FlowAction>();
         }
 
@@ -81,6 +83,25 @@ namespace GCAL
                     return string.Empty;
                 return Args[i];
             }
+            public string getArgSubst(int i, Dictionary<string, string> dict)
+            {
+                string s = getArg(i);
+                if (s.StartsWith("$"))
+                {
+                    int ik = 0;
+                    string sq = s.Substring(1);
+                    if (dict.ContainsKey(sq))
+                    {
+                        return dict[sq];
+                    }
+                    else if (int.TryParse(sq, out ik))
+                    {
+                        return GPStrings.getString(ik);
+                    }
+                }
+
+                return s;
+            }
         }
 
         public FlowPage CurrentPage { get; set; }
@@ -101,6 +122,13 @@ namespace GCAL
         private CELSearch searchTask = null;
         public object CurrentCalculatedObject = null;
         public Dictionary<string, FlowPage> Pages = new Dictionary<string, FlowPage>();
+
+        // user interface controls
+        public Form MainForm { get; set; }
+        public Control TopBar { get; set; }
+        public Control BottomBar { get; set; }
+        public List<Button> TopButtons = new List<Button>();
+        public List<Button> BottomButtons = new List<Button>();
 
         public ContentServer()
         {
@@ -142,6 +170,11 @@ namespace GCAL
                         if (line.Length > 1 && line[0].Equals("source"))
                         {
                             fp.Source = line[1];
+                        }
+                        else if (line.Length > 1 && line[0].Equals("set"))
+                        {
+                            FlowCommand fc = new FlowCommand(line);
+                            fp.Commands.Add(fc);
                         }
                         else if (line.Length > 1 && line[0].Equals("action"))
                         {
@@ -350,12 +383,17 @@ namespace GCAL
         /// </param>
         public void LoadPage(string pageId, bool bInsertHistory)
         {
-            if (pageId.StartsWith("$"))
+            clearTopButtons();
+            if (pageHistoryIndex > 0)
             {
-                pageId = pageId.Substring(1);
-                if (dictStrings.ContainsKey(pageId))
-                    pageId = dictStrings[pageId];
+                addTopButton("< " + GPStrings.getString(238), "goBack");
             }
+            if (!pageId.Equals("mainmenu"))
+            {
+                addTopButton(GPStrings.getString(1054), "mainmenu");
+            }
+
+            recalculateLayout();
 
             if (!Pages.ContainsKey(pageId))
             {
@@ -380,7 +418,20 @@ namespace GCAL
             CurrentPage = Pages[pageId];
             Debugger.Log(0,"","$$$ CurrentPage is now: " + CurrentPage.Name + "\n");
             string pageFile = CurrentPage.Source;
+
+            // executing page commands
+            foreach (FlowCommand cmd in CurrentPage.Commands)
+            {
+                if (cmd.Command.Equals("set"))
+                {
+                    string var = cmd.getArg(0);
+                    if (var.StartsWith("$"))
+                        var = var.Substring(1);
+                    dictStrings[var] = cmd.getArgSubst(1, dictStrings);
+                }
+            }
            
+            // loading page from source file
             fileName = GetFilePath(string.Format("{0}.p", pageFile));
             if (File.Exists(fileName))
             {
@@ -1092,6 +1143,22 @@ namespace GCAL
             {
                 GPTimeZoneList.sharedTimeZones().DeleteTimezone(getInt("timezoneid"));
             }
+            else if (cmd.Equals("mainmenu"))
+            {
+                goPage(cmd);
+            }
+            else if (cmd.Equals("goBack"))
+            {
+                if (pageHistoryIndex >= 0)
+                {
+                    PageHistoryEntry phe = pageHistory[pageHistoryIndex];
+                    goPage(phe.Page);
+                }
+            }
+            else if (cmd.StartsWith("action:"))
+            {
+                runAction(cmd.Substring(7));
+            }
         }
 
         public int getTimezoneUsage(int tzoneid)
@@ -1678,6 +1745,7 @@ namespace GCAL
 
             foreach (FlowCommand command in action.Commands)
             {
+                // executing command
                 executeFlowCommand(command);
             }
         }
@@ -1686,7 +1754,7 @@ namespace GCAL
         {
             if (cmd.Command.Equals("goto"))
             {
-                LoadPage(cmd.getArg(0), true);
+                LoadPage(cmd.getArgSubst(0, dictStrings), true);
                 return;
             }
             else if (cmd.Command.Equals("set"))
@@ -1694,7 +1762,15 @@ namespace GCAL
                 string var = cmd.getArg(0);
                 if (var.StartsWith("$"))
                     var = var.Substring(1);
-                dictStrings[var] = cmd.getArg(1);
+                dictStrings[var] = cmd.getArgSubst(1, dictStrings);
+            }
+            else if (cmd.Command.Equals("exec"))
+            {
+                ExecuteCommand(cmd.getArgSubst(0, dictStrings));
+            }
+            else if (cmd.Command.Equals("script"))
+            {
+                WebBrowser.Document.InvokeScript(cmd.getArg(0));
             }
         }
 
@@ -1901,5 +1977,115 @@ namespace GCAL
             }
         }
 
+        public void clearTopButtons()
+        {
+            foreach (Button btn in TopButtons)
+            {
+                btn.Visible = false;
+                btn.Tag = null;
+            }
+
+            foreach (Button btm in BottomButtons)
+            {
+                btm.Visible = false;
+                btm.Tag = null;
+            }
+        }
+
+        public int getTopButtonsCount()
+        {
+            int index = 0;
+            for (int i = 0; i < TopButtons.Count; i++)
+            {
+                if (TopButtons[i].Tag != null)
+                {
+                    index++;
+                }
+            }
+            return index;
+        }
+
+        public int getBottomButtonsCount()
+        {
+            int index = 0;
+            foreach (Button b in BottomButtons)
+            {
+                if (b.Tag != null)
+                {
+                    index++;
+                }
+            }
+            return index;
+        }
+
+        public void addTopButton(string buttonTitle, string buttonTag)
+        {
+            int index = -1;
+            for (int i = 0; i < TopButtons.Count; i++)
+            {
+                if (TopButtons[i].Visible == false)
+                {
+                    index = i;
+                    break;
+                }
+            }
+
+            if (index >= 0)
+            {
+                Button btn = TopButtons[index];
+                btn.Text = buttonTitle;
+                btn.Tag = buttonTag;
+                btn.Visible = true;
+            }
+        }
+        
+        public void addBottomButton(string buttonTitle, string buttonTag)
+        {
+            int index = -1;
+            for (int i = 0; i < BottomButtons.Count; i++)
+            {
+                if (BottomButtons[i].Visible == false)
+                {
+                    index = i;
+                    break;
+                }
+            }
+
+            if (index >= 0)
+            {
+                Button btn = BottomButtons[index];
+                btn.Text = buttonTitle;
+                btn.Tag = buttonTag;
+                btn.Visible = true;
+            }
+        }
+        public void recalculateLayout()
+        {
+            int top = getTopButtonsCount();
+            int bottom = getBottomButtonsCount();
+
+            Rectangle rect = MainForm.ClientRectangle;
+            Point origin = new Point(rect.X, rect.Y);
+            Size size = new Size(rect.Width, rect.Height);
+
+            if (TopBar != null)
+                TopBar.Visible = (top > 0);
+            if (BottomBar != null)
+                BottomBar.Visible = (bottom > 0);
+
+            if (top > 0)
+            {
+                origin.Y += 34;
+                size.Height -= 34;
+            }
+
+            if (bottom > 0)
+            {
+                size.Height -= 34;
+            }
+
+            WebBrowser.Location = origin;
+            WebBrowser.Size = size;
+        }
     }
 }

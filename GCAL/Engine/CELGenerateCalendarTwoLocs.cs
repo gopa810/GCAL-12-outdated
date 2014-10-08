@@ -60,12 +60,7 @@ namespace GCAL.Engine
             GPGregorianTime startWesternTime = null;
             GPGregorianTime endWesternTime = null;
 
-            if (content.getString("locationtypea") == "selected")
-            {
-                GPLocation loc = GPLocationList.getShared().findLocationById(content.getInt("locationida"));
-                if (loc != null)
-                    locProvA = new GPLocationProvider(loc);
-            }
+            locProvA = content.getLocationWithPostfix("a");
 
             if (locProvA == null)
             {
@@ -73,12 +68,7 @@ namespace GCAL.Engine
                 return;
             }
 
-            if (content.getString("locationtypeb") == "selected")
-            {
-                GPLocation loc = GPLocationList.getShared().findLocationById(content.getInt("locationidb"));
-                if (loc != null)
-                    locProvB = new GPLocationProvider(loc);
-            }
+            locProvB = content.getLocationWithPostfix("b");
 
             if (locProvB == null)
             {

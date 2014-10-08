@@ -100,11 +100,16 @@ namespace GCAL.Base
             if (va.gyear < d.nGaurabdaYear)
                 va.gyear = d.nGaurabdaYear;
 
-            output.Add(new GPStringPair());
-            output.Add(new GPStringPair(GPStrings.getString(24), "", true));
-            output.Add(new GPStringPair());
 
             int countC = GPUserDefaults.IntForKey("appday.celebs", 3);
+
+            if (countC > 0)
+            {
+                output.Add(new GPStringPair());
+                output.Add(new GPStringPair(GPStrings.getString(24), "", true));
+                output.Add(new GPStringPair());
+            }
+
             int m = 0;
             for (int i = 0; i < 6; i++)
             {

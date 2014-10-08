@@ -99,7 +99,11 @@ namespace GCAL.Base
                 char u = s[i];
                 if (mode == 0)
                 {
-                    if (u == '&')
+                    if (u == '<')
+                    {
+                        mode = 1;
+                    }
+                    else if (u == '&')
                     {
                         int end = s.IndexOf(';', i);
                         if (end >= 0)
@@ -133,6 +137,13 @@ namespace GCAL.Base
                     else
                     {
                         sb.Append(u);
+                    }
+                }
+                else if (mode == 1)
+                {
+                    if (u == '>')
+                    {
+                        mode = 0;
                     }
                 }
             }
