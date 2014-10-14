@@ -95,7 +95,7 @@ setInterval(checkName, 300);
 
 <body>
 
-<h1>{%gstr 1048}</h1>
+<h1>{%gstr 1061}</h1>
 
 <p>{%gstr 1048}</p>
 
@@ -136,9 +136,9 @@ setInterval(checkName, 300);
 onCriteriaChanged();
 
 writeNavigStart();
-writeNavigItem("{%gstr 1054}", "window.location.href=\"mainmenu.html\"");
-writeNavigItem("{%string leftArrow} {%title -1}", "goBack();");
-writeNavigItem("{%string rightArrow} {%title +1}", "onSave();goNext();");
+writeNavigItem("{%gstr 1054}", 'goPage("mainmenu")');
+writeNavigItem("{%string leftArrow} {%gstr 238}", "goBack();");
+writeNavigItem("{%gstr 239} {%string rightArrow}", 'onSave();runAction("next");');
 writeNavigEnd();
 </script>
 

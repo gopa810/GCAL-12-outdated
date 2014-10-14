@@ -23,10 +23,10 @@ function onSave()
 <h1>{%gstr 227}</h1>
 
 <script type="text/javascript">
-writeComboChoiceValue("{%getSelectionText gen.caturmasya 0}", "{%gstr 1188}",        "0", {%isSelectedSetting gen.caturmasya 0});
-writeComboChoiceValue("{%getSelectionText gen.caturmasya 1}", "{%gstr 1189}",  "1", {%isSelectedSetting gen.caturmasya 1});
+writeComboChoiceValue("{%getSelectionText gen.caturmasya 0}", "{%gstr 1188}", "0", {%isSelectedSetting gen.caturmasya 0});
+writeComboChoiceValue("{%getSelectionText gen.caturmasya 1}", "{%gstr 1189}", "1", {%isSelectedSetting gen.caturmasya 1});
 writeComboChoiceValue("{%getSelectionText gen.caturmasya 2}", "{%gstr 1190}", "2", {%isSelectedSetting gen.caturmasya 2});
-writeComboChoiceValue("{%getSelectionText gen.caturmasya 3}", "{%gstr 1191}",  "3", {%isSelectedSetting gen.caturmasya 3});
+writeComboChoiceValue("{%getSelectionText gen.caturmasya 3}", "{%gstr 1191}", "3", {%isSelectedSetting gen.caturmasya 3});
 </script>
 
 
@@ -41,8 +41,8 @@ setNewComboChoice(getUserDefaultsInt('gen.caturmasya'));
 <div class="menuBarDiv">
 <table class="menuBar" align=center cellspacing=8 cellpadding=8>
 <tr>
-<td class="menuItem" onclick='onSave();window.location.href="mainmenu.html"'>{%gstr 1054}</td>
-<td class="menuItem" onclick='onSave();window.location.href="set-general.html"'>{%gstr 390}</td>
+<td class="menuItem" onclick='onSave();goPage("mainmenu")'>{%gstr 1054}</td>
+<td class="menuItem" onclick='onSave();goPage("set-general")'>{%gstr 390}</td>
 </tr>
 </table>
 </div>

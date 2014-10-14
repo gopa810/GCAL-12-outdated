@@ -7,10 +7,8 @@
 
 function onSave()
 {
-    setUserDefaultsInt('nextfest.days', getElementValue("t0"));
-	setUserDefaultsBool('nextfest.onlyfast', getSwitchValue("t1"));
-	
-	
+    setUserDefaultsInt('nextfest.days', getElementInnerText("t0"));
+    setUserDefaultsBool('nextfest.onlyfast', getSwitchValue("t1"));
 }
 
 </script>
@@ -28,7 +26,7 @@ writeCheckBox("{%gstr 1176}", "{%gstr 1177}", "t1");
 </table>
 
 <script type="text/javascript">
-setElementValue("t0", getUserDefaultsInt('nextfest.days'));
+setElementInnerText("t0", getUserDefaultsInt('nextfest.days'));
 setSwitchValue("t1", getUserDefaultsBool('nextfast.onlyfast'));
 
 </script>
@@ -36,9 +34,9 @@ setSwitchValue("t1", getUserDefaultsBool('nextfast.onlyfast'));
 <div class="menuBarDiv">
 <table class="menuBar" align=center cellspacing=8 cellpadding=8>
 <tr>
-<td class="menuItem" onclick='onSave();window.location.href="mainmenu.html"'>{%gstr 1054}</td>
-<td class="menuItem" onclick='onSave();window.location.href="set-disp.html"'>{%gstr 235}</td>
-<td class="menuItem" onclick='onSave();window.location.href="nextfest.html"'>{%gstr 452}</td>
+<td class="menuItem" onclick='onSave();goPage("mainmenu")'>{%gstr 1054}</td>
+<td class="menuItem" onclick='onSave();goPage("set-disp")'>{%gstr 235}</td>
+<td class="menuItem" onclick='onSave();goPage("nextfest")'>{%gstr 452}</td>
 
 </tr>
 </table>

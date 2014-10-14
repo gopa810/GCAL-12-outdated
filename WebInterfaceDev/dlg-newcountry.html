@@ -71,7 +71,7 @@ setInterval(checkValues, 300);
 
 <script type="text/javascript">
 writeNavigStart();
-writeNavigItem("{%gstr 1054}", "window.location.href=\"mainmenu.html\"");
+writeNavigItem("{%gstr 1054}", "goPage(\"mainmenu\")");
 writeNavigItem("{%string leftArrow} {%title -1}", "goBack()");
 writeNavigItemWithId("{%string rightArrow} {%title +1}", "onSave();goNext();", "savebtn");
 writeNavigEnd();

@@ -30,9 +30,9 @@
 
 <script type="text/javascript">
 writeNavigStart();
-writeNavigItem("{%string leftArrow} {%title -1}", "goBack();");
-writeNavigItem("{%gstr 1072}", "window.location.href=\"geo-tzones.html\"");
-writeNavigItem("{%gstr 1073}", "goNext();");
+writeNavigItem("{%string leftArrow} {%gstr 238}", 'goBack()');
+writeNavigItem("{%gstr 1072}", 'runAction("cancel")');
+writeNavigItem("{%gstr 1073}", 'runAction("next")');
 writeNavigEnd();
 </script>
 
@@ -44,8 +44,8 @@ writeNavigEnd();
 
 <script type="text/javascript">
 writeNavigStart();
-writeNavigItem("{%string leftArrow} {%title -1}", "goBack()");
-writeNavigItem("{%gstr 1054}", "window.location.href=\"mainmenu.html\"");
+writeNavigItem("{%string leftArrow} {%gstr 238}", "goBack()");
+writeNavigItem("{%gstr 1054}", 'runAction("next")');
 writeNavigEnd();
 </script>
 
@@ -62,3 +62,5 @@ else
 }
 </script>
 
+</body>
+</html>

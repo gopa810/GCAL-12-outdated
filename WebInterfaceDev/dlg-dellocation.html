@@ -31,8 +31,8 @@ function onSave()
 <script type="text/javascript">
 writeNavigStart();
 writeNavigItem("{%string leftArrow} {%title -1}", "goBack()");
-writeNavigItem("{%gstr 1072}", "window.location.href=\"mainmenu.html\"");
-writeNavigItem("{%gstr 1073}", "onSave();window.location.href=\"geo-cities.html\";");
+writeNavigItem("{%gstr 1072}", "goPage(\"mainmenu\")");
+writeNavigItem("{%gstr 1073}", "onSave();goPage(\"geo-cities\");");
 writeNavigEnd();
 </script>
 

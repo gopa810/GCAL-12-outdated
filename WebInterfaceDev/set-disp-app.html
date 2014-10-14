@@ -7,10 +7,8 @@
 
 function onSave()
 {
-    setUserDefaultsInt('appday.celebs', getElementValue("t0"));
-	setUserDefaultsBool('appday.childn', getSwitchValue("t1"));
-	
-	
+    setUserDefaultsInt('appday.celebs', getElementInnerText("t0"));
+    setUserDefaultsBool('appday.childn', getSwitchValue("t1"));
 }
 
 </script>
@@ -28,7 +26,7 @@ writeCheckBox("{%gstr 17}", "{%gstr 184}", "t1");
 </table>
 
 <script type="text/javascript">
-setElementValue("t0", getUserDefaultsInt('appday.celebs'));
+setElementInnerText("t0", getUserDefaultsInt('appday.celebs'));
 setSwitchValue("t1", getUserDefaultsBool('appday.childn'));
 
 </script>
@@ -36,8 +34,8 @@ setSwitchValue("t1", getUserDefaultsBool('appday.childn'));
 <div class="menuBarDiv">
 <table class="menuBar" align=center cellspacing=8 cellpadding=8>
 <tr>
-<td class="menuItem" onclick='onSave();window.location.href="mainmenu.html"'>{%gstr 1054}</td>
-<td class="menuItem" onclick='onSave();window.location.href="set-disp.html"'>{%gstr 235}</td>
+<td class="menuItem" onclick='onSave();goPage("mainmenu")'>{%gstr 1054}</td>
+<td class="menuItem" onclick='onSave();goPage("set-disp")'>{%gstr 235}</td>
 </tr>
 </table>
 </div>

@@ -69,7 +69,7 @@ function updateLocationList()
 <body>
 
 <center>
-<h1>{%title 0}</h1>
+<h1>{%string currTitle}</h1>
 <p width=50%>{%gstr 1157}</p>
 <input type="text" id="textField0" value="">
 </center>
@@ -81,14 +81,6 @@ function updateLocationList()
 <script>
 setElementValue("textField0", "{%string locpart}");
 updateLocationList();
-</script>
-
-<script type="text/javascript">
-writeNavigStart();
-writeNavigItem("{%gstr 1054}", "window.location.href=\"mainmenu.html\"");
-writeNavigItem("{%string leftArrow} {%title -1}", "onSave();goBack()");
-writeNavigItem("{%title +1} {%string rightArrow}", "onSave();goNext()");
-writeNavigEnd();
 </script>
 
 </body></html>

@@ -9,33 +9,33 @@
 function startNewTimezone()
 {
     scriptObject.clearHistory();
-    setCurrTitle("{%gstr 1166}");
-	saveString("tzdata", "");
-	addFutureFile2("dlg-edittimezone.html", "{%gstr 349}");
-	addFutureFile2("geo-tzones.html?preaction=savetzone", "{%gstr 1062}");
-	goNext();
+    //setCurrTitle("{%gstr 1166}");
+    //saveString("tzdata", "");
+    //addFutureFile2("dlg-edittimezone.html", "{%gstr 349}");
+    //addFutureFile2("geo-tzones.html", "{%gstr 1062}");
+    //goNext();
 }
 
 function startEditTimezone()
 {
     scriptObject.clearHistory();
-    setCurrTitle("{%gstr 1166}");
-	saveString("tzdata", "");
-	addFutureFile2("dlg-findtz.html", "{%gstr 1061}");
-	addFutureFile2("dlg-edittimezone.html?preaction=loadtzone", "{%gstr 1097}");
-	addFutureFile2("geo-tzones.html?preaction=updatetzone", "{%gstr 1120}");
-	goNext();
+    //setCurrTitle("{%gstr 1166}");
+    //saveString("tzdata", "");
+    //addFutureFile2("dlg-findtz.html", "{%gstr 1061}");
+    //addFutureFile2("dlg-edittimezone.html", "{%gstr 1097}");
+    //addFutureFile2("geo-tzones.html", "{%gstr 1120}");
+    //goNext();
 }
 
 function startRemoveTimezone()
 {
     scriptObject.clearHistory();
-    setCurrTitle("{%gstr 1166}");
-	saveString("tzdata", "");
-	addFutureFile2("dlg-findtz.html", "{%gstr 1061}");
-	addFutureFile2("dlg-deltzone.html?preaction=loadtzone", "{%gstr 355}");
-	addFutureFile2("geo-tzones.html?preaction=deltzone", "{%gstr 343}");
-	goNext();
+    //setCurrTitle("{%gstr 1166}");
+    //saveString("tzdata", "");
+    //addFutureFile2("dlg-findtz.html", "{%gstr 1061}");
+    //addFutureFile2("dlg-deltzone.html", "{%gstr 355}");
+    //addFutureFile2("geo-tzones.html?preaction=deltzone", "{%gstr 343}");
+    //goNext();
 }
 
 </script>
@@ -47,16 +47,16 @@ function startRemoveTimezone()
 <table style='border:0px' width="100%" cellspacing=8 cellpadding=8>
 
 <script type="text/javascript">
-writeChoiceWithAction("{%gstr 349}", "t0", "startNewTimezone();");
-writeChoiceWithAction("{%gstr 1097}", "t1", "startEditTimezone();");
-writeChoiceWithAction("{%gstr 355}", "t2", "startRemoveTimezone();");
+writeChoiceWithAction("{%gstr 349}", "t0", 'runAction("add")');
+writeChoiceWithAction("{%gstr 1097}", "t1", 'runAction("edit")');
+writeChoiceWithAction("{%gstr 355}", "t2", 'runAction("delete")');
 </script>
 
 </table>
 
 <script type="text/javascript">
 writeNavigStart();
-writeNavigItem("{%gstr 1054}", "window.location.href=\"mainmenu.html\"");
+writeNavigItem("{%gstr 1054}", 'goPage("mainmenu")');
 writeNavigEnd();
 </script>
 

@@ -7,34 +7,8 @@
 
 </head>
 <body>
-
-    <div class="menuBarTop">
-            <table class="menuBar" align=center cellspacing=8 cellpadding=8>
-                    <tr>
-                            <td class="menuItem" onclick='window.location.href="mainmenu.html"'>{%gstr 1054}</td>
-                            <td class="menuItem" onclick='window.location.href="set-disp-today.html"'>{%gstr 372}</td>
-                    </tr>
-            </table>
-    </div>
-
-
-    <table width="100%">
-            <tr>
-                    <td>
-                            <p><span style='font-size:130%;font-weight:bold'>{%proc getDateText}</span>
-                            <br><span class="graytext">{%proc locationFullName}</span>
-                    </td>
-                    <td style='cursor:pointer' onclick='todayGoPrev();'>{%string leftArrow} {%gstr 369}</td>
-                    <td style='cursor:pointer' onclick='todayToday();'>{%gstr 43}</td>
-                    <td style='cursor:pointer' onclick='todayGoNext();'>{%gstr 370} {%string rightArrow}</td>
-            </tr>
-    </table>
-
-
-    <div align=center>
-
-            {%calculate today}
-
-    </div>
-
-</body></html>
+<div align=center>
+{%calculate today}
+</div>
+</body>
+</html>

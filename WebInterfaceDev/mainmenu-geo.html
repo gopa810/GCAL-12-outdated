@@ -27,17 +27,17 @@ http://stackoverflow.com/questions/826782/css-rule-to-disable-text-selection-hig
 
 <table width=100%>
 <script>
-writeChoiceWithAction("{%gstr 311}", "t0", 'window.location.href="geo-cities.html"');
-writeChoiceWithAction("{%gstr 312}", "t1", 'window.location.href="geo-countries.html"');
-writeChoiceWithAction("{%gstr 984}", "t2", 'window.location.href="geo-events.html"');
-writeChoiceWithAction("{%gstr 321}", "t3", 'window.location.href="geo-tzones.html"');
+writeChoiceWithAction("{%gstr 311}", "t0", 'goPage("geo-cities")');
+writeChoiceWithAction("{%gstr 312}", "t1", 'goPage("geo-countries")');
+writeChoiceWithAction("{%gstr 984}", "t2", 'goPage("geo-events")');
+writeChoiceWithAction("{%gstr 321}", "t3", 'goPage("geo-tzones")');
 </script>
 </table>
 
 
 <script type="text/javascript">
 writeNavigStart();
-writeNavigItem("{%gstr 1054}", "window.location.href=\"mainmenu.html\"");
+writeNavigItem("{%gstr 1054}", "goPage(\"mainmenu\")");
 writeNavigEnd();
 </script>
 

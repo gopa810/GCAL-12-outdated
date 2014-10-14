@@ -33,7 +33,7 @@ writeCheckBox("{%gstr 1000}", "{%gstr 1171}", "t4");
 writeCheckBox("{%gstr 999}", "{%gstr 1172}", "t5");
 writeCheckBox("{%gstr 1008}", "", "t6");
 writeCheckBox("{%gstr 1009}", "", "t7");
-writeComboChoice("{%gstr 211}", "Sort by Time", "t20", "set-disp-core-sort.html");
+writeComboChoice("{%gstr 211}", "Sort by Time", "t20", "set-disp-core-sort");
 </script>
 
 
@@ -55,8 +55,8 @@ setSwitchValue("t7", getUserDefaultsBool('core.mooneclipse'));
 <div class="menuBarDiv">
 <table class="menuBar" align=center cellspacing=8 cellpadding=8>
 <tr>
-<td class="menuItem" onclick='onSave();window.location.href="mainmenu.html"'>{%gstr 1054}</td>
-<td class="menuItem" onclick='onSave();window.location.href="set-disp.html"'>{%gstr 235}</td>
+<td class="menuItem" onclick='onSave();goPage("mainmenu")'>{%gstr 1054}</td>
+<td class="menuItem" onclick='onSave();goPage("set-disp")'>{%gstr 235}</td>
 </tr>
 </table>
 </div>

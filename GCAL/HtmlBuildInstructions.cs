@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Diagnostics;
 
 namespace GCAL
 {
@@ -34,7 +35,7 @@ namespace GCAL
 
             foreach (ContentServer.FlowCommand cmd in pageInstructions)
             {
-                if (cmd.Equals("h1"))
+                if (cmd.Command.Equals("h1"))
                 {
                     stopScript();
                     stopTable();
@@ -53,8 +54,6 @@ namespace GCAL
                     sb.AppendFormat(" onclick='runAction(\"{0}\")' id='t{1}'>", cmd.getArg(1), cid);
                     sb.AppendLine(cmd.getArg(0));
                     sb.AppendLine("</td></tr>");
-//                    sb.AppendFormat("writeChoiceWithAction(\"{0}\", \"t{1}\", 'runAction({2})')", cmd.getArg(0), cid, cmd.getArg(2));
-//                    sb.AppendLine(";");
                     cid++;
                 }
             }
@@ -65,7 +64,7 @@ namespace GCAL
             sb.AppendLine("</body>");
             sb.AppendLine("</html>");
 
-
+            //Debugger.Log(0, "", sb.ToString());
         }
 
         public void stopTable()

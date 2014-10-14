@@ -81,8 +81,8 @@ writeCheckBox("{%gstr 192}", "", "t18");
 writeCheckBox("{%gstr 190}", "", "t19");
 writeCheckBox("{%gstr 197}", "", "t20");
 writeCheckBox("{%gstr 991}", "", "t21");
-writeComboChoice("{%gstr 196}", "Long Info", "t22", "set-disp-cal-ann.html");
-writeComboChoice("{%gstr 188}", "Masa Header", "t23", "set-disp-cal-hdt.html");
+writeComboChoice("{%gstr 196}", "Long Info", "t22", "set-disp-cal-ann");
+writeComboChoice("{%gstr 188}", "Masa Header", "t23", "set-disp-cal-hdt");
 </script>
 
 </table>
@@ -144,15 +144,6 @@ writeCheckBox("{%gstr 103}", "", "t42");
 	setSwitchValue('t41', getUserDefaultsBool('cal.sunrise.ayanamsa'));
 	setSwitchValue('t42', getUserDefaultsBool('cal.sunrise.julianday'));
 </script>
-
-<div class="menuBarDiv">
-<table class="menuBar" align=center cellspacing=8 cellpadding=8>
-<tr>
-<td class="menuItem" onclick='onSave();window.location.href="mainmenu.html"'>{%gstr 1054}</td>
-<td class="menuItem" onclick='onSave();window.location.href="set-disp.html"'>{%gstr 235}</td>
-</tr>
-</table>
-</div>
 
 </body>
 </html>

@@ -62,9 +62,9 @@ function onSave()
 <div class="menuBarDiv">
 <table class="menuBar" align=center cellspacing=8 cellpadding=8>
 <tr>
-<td class="menuItem" onclick='onSave();window.location.href="mainmenu.html"'>{%gstr 1054}</td>
-<td class="menuItem" onclick='onSave();window.location.href="set-disp.html"'>{%gstr 235}</td>
-<td class="menuItem" onclick='onSave();resetToday();window.location.href="today.html"'>{%gstr 174}</td>
+<td class="menuItem" onclick='onSave();goPage("mainmenu")'>{%gstr 1054}</td>
+<td class="menuItem" onclick='onSave();goPage("set-disp")'>{%gstr 235}</td>
+<td class="menuItem" onclick='onSave();resetToday();goPage("today")'>{%gstr 174}</td>
 </tr>
 </table>
 </div>

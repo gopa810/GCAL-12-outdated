@@ -54,7 +54,7 @@
             this.webBrowser1.Location = new System.Drawing.Point(0, 45);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(505, 264);
+            this.webBrowser1.Size = new System.Drawing.Size(628, 312);
             this.webBrowser1.TabIndex = 0;
             this.webBrowser1.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.webBrowser1_Navigating);
             // 
@@ -70,7 +70,7 @@
             this.flowLayoutPanel1.Controls.Add(this.button6);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(505, 39);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(628, 39);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
             // button1
@@ -177,14 +177,16 @@
             // 
             // flowLayoutPanel2
             // 
+            this.flowLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.flowLayoutPanel2.Controls.Add(this.buttonBottom4);
             this.flowLayoutPanel2.Controls.Add(this.buttonBottom3);
             this.flowLayoutPanel2.Controls.Add(this.buttonBottom2);
             this.flowLayoutPanel2.Controls.Add(this.buttonBottom1);
             this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 315);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 363);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(505, 39);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(628, 39);
             this.flowLayoutPanel2.TabIndex = 2;
             // 
             // buttonBottom4
@@ -195,7 +197,7 @@
             this.buttonBottom4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.buttonBottom4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonBottom4.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.buttonBottom4.Location = new System.Drawing.Point(432, 3);
+            this.buttonBottom4.Location = new System.Drawing.Point(555, 3);
             this.buttonBottom4.MinimumSize = new System.Drawing.Size(20, 32);
             this.buttonBottom4.Name = "buttonBottom4";
             this.buttonBottom4.Size = new System.Drawing.Size(70, 32);
@@ -212,7 +214,7 @@
             this.buttonBottom3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.buttonBottom3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonBottom3.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.buttonBottom3.Location = new System.Drawing.Point(356, 3);
+            this.buttonBottom3.Location = new System.Drawing.Point(479, 3);
             this.buttonBottom3.MinimumSize = new System.Drawing.Size(20, 32);
             this.buttonBottom3.Name = "buttonBottom3";
             this.buttonBottom3.Size = new System.Drawing.Size(70, 32);
@@ -229,7 +231,7 @@
             this.buttonBottom2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.buttonBottom2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonBottom2.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.buttonBottom2.Location = new System.Drawing.Point(280, 3);
+            this.buttonBottom2.Location = new System.Drawing.Point(403, 3);
             this.buttonBottom2.MinimumSize = new System.Drawing.Size(20, 32);
             this.buttonBottom2.Name = "buttonBottom2";
             this.buttonBottom2.Size = new System.Drawing.Size(70, 32);
@@ -246,7 +248,7 @@
             this.buttonBottom1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.buttonBottom1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonBottom1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.buttonBottom1.Location = new System.Drawing.Point(204, 3);
+            this.buttonBottom1.Location = new System.Drawing.Point(327, 3);
             this.buttonBottom1.MinimumSize = new System.Drawing.Size(20, 32);
             this.buttonBottom1.Name = "buttonBottom1";
             this.buttonBottom1.Size = new System.Drawing.Size(70, 32);
@@ -259,7 +261,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(505, 357);
+            this.ClientSize = new System.Drawing.Size(628, 405);
             this.Controls.Add(this.flowLayoutPanel2);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.webBrowser1);

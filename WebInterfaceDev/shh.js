@@ -46,7 +46,7 @@ function writeChoice(text,myId,targetUrl)
    var str = '<tr height=32px><td style=\'cursor:pointer;border:1px solid black\'';
    str += ' onmouseover=\'shh(1,"' + myId + '")\'';
    str += ' onmouseout=\'shh(0,"' + myId + '")\'';
-   str += ' onclick=\'window.location.href="' + targetUrl + '"\'';
+   str += ' onclick=\'goPage("' + targetUrl + '")\'';
    str += ' id=\'' + myId + '\'>';
    str += text;
    str += '</td></tr>';
@@ -72,11 +72,11 @@ function writeComboChoice(title, valText, myId, targetUrl)
 	var str;
 	
 	str = '<tr height=32px>\n';
-	str += '<td style=\'cursor:pointer;\' onclick=\'window.location.href="' + targetUrl + '"\' id=\'' + myId + '\'>\n';
+	str += '<td style=\'cursor:pointer;\' onclick=\'goPage("' + targetUrl + '")\' id=\'' + myId + '\'>\n';
 	str += '<p><span style=\'font-weight:bold;font-size:120%\'>' + title + '</span>\n';
 	str += '<br><span style=\'color:#aaa\'>' + valText + '</span>\n';
 	str += '</td>\n';
-	str += '<td  style=\'cursor:pointer;\' onclick=\'window.location.href="' + targetUrl + '"\' id=\'' + myId + '\' width=24pt><img src="' + getDir() + '/sarrow-to-right.png"></td>\n';
+	str += '<td  style=\'cursor:pointer;\' onclick=\'goPage("' + targetUrl + '")\' id=\'' + myId + '\' width=24pt><img src="' + getDir() + '/sarrow-to-right.png"></td>\n';
 	str += '</tr>\n';
 
 	document.write(str);
@@ -190,7 +190,7 @@ function writeCheckBox(title, subtitle, myId)
   
   str = '<tr height=32px>\n';
   str += '<td style=\'cursor:pointer;\' onclick=\'toogleSwitch("' + myId + '")\'>\n';
-  str += '<p><span style=\'font-weight:bold;font-size:120%\'>' + title + '</span>';
+  str += '<p><span style=\'font-size:120%\'>' + title + '</span>';
   str += '<br><span style=\'color:#aaa\'>' + subtitle + '</span>';
   str += '</td>\n';
   str += '<td style=\'cursor:pointer;\' width=24pt  onclick=\'toogleSwitch("' + myId + '")\'><img id=\'' + myId + '\' src="'  + getDir() + '/switch-off.png"></td>\n';
@@ -211,6 +211,20 @@ function setElementValue(elemId, val)
 	if (val != null)
 		elc.value = val;
 }
+
+function getElementInnerText(elemId)
+{
+    var elc = document.getElementById(elemId);
+    return elc.innerText;
+}
+
+function setElementInnerText(elemId, val)
+{
+    var elc = document.getElementById(elemId);
+	if (val != null)
+		elc.innerText = val;
+}
+
 
 function getSwitchValue(switchId)
 {
@@ -262,6 +276,11 @@ function writeNavigItemWithId(name, action, myid)
 function writeNavigEnd()
 {
     document.write("</tr></table></div>");
+}
+
+function goPage(page)
+{
+    window.external.goPage(page);
 }
 
 function goNext()
@@ -351,15 +370,21 @@ function resetToday()
 
 function todayGoPrev()
 {
-	window.external.todayGoPrev();
+    window.external.todayGoPrev();
 }
 
 function todayGoNext()
 {
-	window.external.todayGoNext();
+    window.external.todayGoNext();
 }
 
 function todayToday()
 {
-	window.external.todayToday();
+    window.external.todayToday();
 }
+
+function runAction(action)
+{
+    window.external.runAction(action);
+}
+

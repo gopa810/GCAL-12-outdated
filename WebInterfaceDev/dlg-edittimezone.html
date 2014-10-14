@@ -532,7 +532,7 @@ function onUpdateTransition()
 <body>
 
 <div id='main'>
-	<h1>{%title 0}</h1>
+	<h1>{%gstr 1166}</h1>
 
 	<h2>{%gstr 283}</h2>
 	<p width=50%>{%gstr 1101}</p>
@@ -926,9 +926,9 @@ refreshTransitionList();
 onChangeUsedDst();
 
 writeNavigStart();
-writeNavigItem("{%gstr 1054}", "window.location.href=\"mainmenu.html\"");
-writeNavigItem("{%string leftArrow} {%title -1}", "goBack();");
-writeNavigItem("{%title +1} {%string rightArrow}", "onSave();goNext()");
+writeNavigItem("{%gstr 1054}", 'goPage("mainmenu")');
+writeNavigItem("{%string leftArrow} {%gstr 238}", 'goBack()');
+writeNavigItem("{%string nextTitle} {%string rightArrow}", 'onSave();runAction("next")');
 writeNavigEnd();
 
 </script>

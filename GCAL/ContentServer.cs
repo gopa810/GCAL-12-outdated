@@ -85,22 +85,50 @@ namespace GCAL
             }
             public string getArgSubst(int i, Dictionary<string, string> dict)
             {
-                string s = getArg(i);
-                if (s.StartsWith("$"))
+                string sa = getArg(i);
+                if (sa.IndexOf("$") >= 0)
                 {
-                    int ik = 0;
-                    string sq = s.Substring(1);
-                    if (dict.ContainsKey(sq))
+                    string[] sas = sa.Split(' ');
+                    string[] nas = new string[sas.Length];
+                    for(int im = 0; im < sas.Length; im++)
                     {
-                        return dict[sq];
+                        string s = sas[im];
+                        if (s.StartsWith("$"))
+                        {
+                            int ik = 0;
+                            string sq = s.Substring(1);
+                            if (dict.ContainsKey(sq))
+                            {
+                                nas[im] = dict[sq];
+                            }
+                            else if (int.TryParse(sq, out ik))
+                            {
+                                nas[im] = GPStrings.getString(ik);
+                            }
+                            else
+                            {
+                                nas[im] = s;
+                            }
+                        }
+                        else
+                        {
+                            nas[im] = s;
+                        }
+
                     }
-                    else if (int.TryParse(sq, out ik))
-                    {
-                        return GPStrings.getString(ik);
-                    }
+
+                    sa = String.Join(" ", nas);
                 }
 
-                return s;
+                return sa;
+            }
+            public override bool Equals(object obj)
+            {
+                if (obj is string)
+                {
+                    return Command.Equals(obj as string);
+                }
+                return base.Equals(obj);
             }
         }
 
@@ -172,6 +200,11 @@ namespace GCAL
                             fp.Source = line[1];
                         }
                         else if (line.Length > 1 && line[0].Equals("set"))
+                        {
+                            FlowCommand fc = new FlowCommand(line);
+                            fp.Commands.Add(fc);
+                        }
+                        else if (line.Length > 1 && line[0].Equals("button"))
                         {
                             FlowCommand fc = new FlowCommand(line);
                             fp.Commands.Add(fc);
@@ -429,8 +462,21 @@ namespace GCAL
                         var = var.Substring(1);
                     dictStrings[var] = cmd.getArgSubst(1, dictStrings);
                 }
+                else if (cmd.Equals("button"))
+                {
+                    if (cmd.getArg(0).Equals("top"))
+                    {
+                        addTopButton(cmd.getArgSubst(1, dictStrings), cmd.getArgSubst(2, dictStrings));
+                    }
+                    else if (cmd.getArg(0).Equals("bottom"))
+                    {
+                        addBottomButton(cmd.getArgSubst(1, dictStrings), cmd.getArgSubst(2, dictStrings));
+                    }
+                }
             }
-           
+
+            recalculateLayout();
+
             // loading page from source file
             fileName = GetFilePath(string.Format("{0}.p", pageFile));
             if (File.Exists(fileName))
@@ -1159,6 +1205,29 @@ namespace GCAL
             {
                 runAction(cmd.Substring(7));
             }
+            else if (cmd.Equals("saveContent"))
+            {
+                saveContent();
+            }
+            else if (cmd.Equals("settings"))
+            {
+            }
+            else if (cmd.StartsWith("today:"))
+            {
+                string specific = cmd.Substring(6);
+                if (specific.Equals("prev"))
+                {
+                    todayGoPrev();
+                }
+                else if (specific.Equals("today"))
+                {
+                    todayToday();
+                }
+                else if (specific.Equals("next"))
+                {
+                    todayGoNext();
+                }
+            }
         }
 
         public int getTimezoneUsage(int tzoneid)
@@ -1335,6 +1404,16 @@ namespace GCAL
             return i;
         }
 
+        public int getInt(string key, int defaultValue)
+        {
+            int i = defaultValue;
+            if (dictStrings.ContainsKey(key))
+            {
+                if (!int.TryParse(dictStrings[key], out i))
+                    i = defaultValue;
+            }
+            return i;
+        }
         public void saveString(string key, string value)
         {
             if (dictStrings.ContainsKey(key))
@@ -2044,7 +2123,7 @@ namespace GCAL
             int index = -1;
             for (int i = 0; i < BottomButtons.Count; i++)
             {
-                if (BottomButtons[i].Visible == false)
+                if (BottomButtons[i].Tag == null)
                 {
                     index = i;
                     break;

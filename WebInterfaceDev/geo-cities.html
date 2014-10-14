@@ -4,47 +4,6 @@
 <link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
 </head>
 
-<script type="text/javascript">
-
-
-function startGeoAdd()
-{
-    scriptObject.clearHistory();
-    setCurrTitle("{%gstr 1067}");
-	saveString("ppx", "");
-	saveString("locationtype", "entered");
-	addFutureFile2("dlg-locfull.html", "{%gstr 1044}");
-	addFutureFile2("dlg-country.html", "{%gstr 1063}");
-	addFutureFile2("dlg-enterlongitude.html", "{%gstr 1042}");
-	addFutureFile2("dlg-enterlatitude.html", "{%gstr 1041}");
-	addFutureFile2("dlg-selcoutz.html", "{%gstr 1061}");
-	addFutureFile2("dlg-savelocation.html", "{%gstr 1062}");
-	goNext();
-}
-
-function startGeoEdit()
-{
-    scriptObject.clearHistory();
-    setCurrTitle("{%gstr 1067}");
-	addFutureFile2("dlg-selloc.html?ppx=&locationtype=selected", "{%gstr 249}");
-	//addFutureFile2("dlg-locsel.html", "Select Location");
-	addFutureFile2("dlg-editlocation.html?preaction=loadlocationid", "{%gstr 338}");
-	goNext();
-}
-
-function startGeoDelete()
-{
-    scriptObject.clearHistory();
-    setCurrTitle("{%gstr 1067}");
-	addFutureFile2("dlg-selloc.html?ppx=&locationtype=selected", "{%gstr 249}");
-	//addFutureFile2("dlg-locsel.html", "Select Location");
-	addFutureFile2("dlg-dellocation.html?preaction=loadlocationid", "{%gstr 1064}");
-	goNext();
-}
-
-</script>
-
-
 <body>
 
 <h1>{%gstr 311}</h1>
@@ -52,16 +11,16 @@ function startGeoDelete()
 <table style='border:0px' width="100%" cellspacing=8 cellpadding=8>
 
 <script type="text/javascript">
-writeChoiceWithAction("{%gstr 1066}", "t0", "startGeoAdd();");
-writeChoiceWithAction("{%gstr 1065}", "t1", "startGeoEdit();");
-writeChoiceWithAction("{%gstr 351}", "t2", "startGeoDelete();");
+writeChoiceWithAction("{%gstr 1066}", "t0", 'runAction("add")');
+writeChoiceWithAction("{%gstr 1065}", "t1", 'runAction("edit")');
+writeChoiceWithAction("{%gstr 351}", "t2", 'runAction("delete")');
 </script>
 
 </table>
 
 <script type="text/javascript">
 writeNavigStart();
-writeNavigItem("{%gstr 1054}", "window.location.href=\"mainmenu.html\"");
+writeNavigItem("{%gstr 1054}", 'goPage("mainmenu")');
 writeNavigEnd();
 </script>
 

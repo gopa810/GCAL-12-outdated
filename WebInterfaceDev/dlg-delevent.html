@@ -27,7 +27,7 @@
 <script type="text/javascript">
 writeNavigStart();
 writeNavigItem("{%string leftArrow} {%title -1}", "goBack()");
-writeNavigItem("{%gstr 1072}", "window.location.href=\"mainmenu.html\"");
+writeNavigItem("{%gstr 1072}", "goPage(\"mainmenu\")");
 writeNavigItem("{%gstr 1073}", "goNext();");
 writeNavigEnd();
 </script>
@@ -41,7 +41,7 @@ writeNavigEnd();
 <script type="text/javascript">
 writeNavigStart();
 writeNavigItem("{%string leftArrow} {%title -1}", "goBack()");
-writeNavigItem("Main menu", "window.location.href=\"mainmenu.html\"");
+writeNavigItem("Main menu", "goPage(\"mainmenu\")");
 writeNavigEnd();
 </script>
 

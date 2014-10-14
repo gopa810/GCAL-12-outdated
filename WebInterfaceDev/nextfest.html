@@ -8,20 +8,9 @@
 </head>
 <body>
 
-	<div class="menuBarTop">
-		<table class="menuBar" align=center cellspacing=8 cellpadding=8>
-			<tr>
-				<td class="menuItem" onclick='window.location.href="mainmenu.html"'>{%gstr 1054}</td>
-				<td class="menuItem" onclick='window.location.href="set-disp-nextfest.html"'>{%gstr 372}</td>
-			</tr>
-		</table>
-	</div>
+<div align=center>
+{%calculate nextfest}
+</div>
 
-
-	<div align=center>
-
-		{%calculate nextfest}
-
-	</div>
-
-</body></html>
+</body>
+</html>
