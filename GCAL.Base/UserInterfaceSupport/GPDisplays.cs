@@ -128,9 +128,9 @@ namespace GCAL.Base
             public static void SunEclipse(bool value) { GPUserDefaults.SetBoolForKey("core.suneclipse", value); }
             public static bool MoonEclipse() { return GPUserDefaults.BoolForKey("core.mooneclipse", true); }
             public static void MoonEclipse(bool value) { GPUserDefaults.SetBoolForKey("core.mooneclipse", value); }
-            public static bool Sort() { return SortType() == 0; }
-            public static void Sort(bool value) { SortType(value ? 0 : 1); }
-            public static int SortType() { return GPUserDefaults.IntForKey("core.sorttype", 0); }
+            public static bool Sort() { return SortType() == 1; }
+            public static void Sort(bool value) { SortType(value ? 1 : 0); }
+            public static int SortType() { return GPUserDefaults.IntForKey("core.sorttype", 1); }
             public static void SortType(int value) { GPUserDefaults.SetIntForKey("core.sorttype", value); }
         }
 

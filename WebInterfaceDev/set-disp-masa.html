@@ -7,19 +7,19 @@
 
 function onSave()
 {
-	setUserDefaultsBool('masa.visible.0', getSwitchValue("t0"));
-	setUserDefaultsBool('masa.visible.1', getSwitchValue("t1"));
-	setUserDefaultsBool('masa.visible.2', getSwitchValue("t2"));
-	setUserDefaultsBool('masa.visible.3', getSwitchValue("t3"));
-	setUserDefaultsBool('masa.visible.4', getSwitchValue("t4"));
-	setUserDefaultsBool('masa.visible.5', getSwitchValue("t5"));
-	setUserDefaultsBool('masa.visible.6', getSwitchValue("t6"));
-	setUserDefaultsBool('masa.visible.7', getSwitchValue("t7"));
-	setUserDefaultsBool('masa.visible.8', getSwitchValue("t8"));
-	setUserDefaultsBool('masa.visible.9', getSwitchValue("t9"));
-	setUserDefaultsBool('masa.visible.10', getSwitchValue("t10"));
-	setUserDefaultsBool('masa.visible.11', getSwitchValue("t11"));
-	setUserDefaultsBool('masa.visible.12', getSwitchValue("t12"));
+	setUserDefaultsBool('masa.visible.0', getSwitchValue("t12"));
+	setUserDefaultsBool('masa.visible.1', getSwitchValue("t0"));
+	setUserDefaultsBool('masa.visible.2', getSwitchValue("t1"));
+	setUserDefaultsBool('masa.visible.3', getSwitchValue("t2"));
+	setUserDefaultsBool('masa.visible.4', getSwitchValue("t3"));
+	setUserDefaultsBool('masa.visible.5', getSwitchValue("t4"));
+	setUserDefaultsBool('masa.visible.6', getSwitchValue("t5"));
+	setUserDefaultsBool('masa.visible.7', getSwitchValue("t6"));
+	setUserDefaultsBool('masa.visible.8', getSwitchValue("t7"));
+	setUserDefaultsBool('masa.visible.9', getSwitchValue("t8"));
+	setUserDefaultsBool('masa.visible.10', getSwitchValue("t9"));
+	setUserDefaultsBool('masa.visible.11', getSwitchValue("t10"));
+	setUserDefaultsBool('masa.visible.12', getSwitchValue("t11"));
 	
 }
 
@@ -31,6 +31,7 @@ function onSave()
 <table style='border=0px' align=center>
 
 <script type="text/javascript">
+writeCheckBox("{%gstr 897}","{%gstr 1173}", "t12");
 writeCheckBox("{%gstr 898}","{%gstr 1173}", "t0");
 writeCheckBox("{%gstr 899}","{%gstr 1173}", "t1");
 writeCheckBox("{%gstr 900}","{%gstr 1173}", "t2");
@@ -51,31 +52,20 @@ writeCheckBox("{%gstr 909}","{%gstr 1173}", "t11");
 </table>
 
 <script type="text/javascript">
-setSwitchValue("t0", getUserDefaultsBool('masa.visible.0'));
-setSwitchValue("t1", getUserDefaultsBool('masa.visible.1'));
-setSwitchValue("t2", getUserDefaultsBool('masa.visible.2'));
-setSwitchValue("t3", getUserDefaultsBool('masa.visible.3'));
-setSwitchValue("t4", getUserDefaultsBool('masa.visible.4'));
-setSwitchValue("t5", getUserDefaultsBool('masa.visible.5'));
-setSwitchValue("t6", getUserDefaultsBool('masa.visible.6'));
-setSwitchValue("t7", getUserDefaultsBool('masa.visible.7'));
-setSwitchValue("t8", getUserDefaultsBool('masa.visible.8'));
-setSwitchValue("t9", getUserDefaultsBool('masa.visible.9'));
-setSwitchValue("t10", getUserDefaultsBool('masa.visible.10'));
-setSwitchValue("t11", getUserDefaultsBool('masa.visible.11'));
-setSwitchValue("t12", getUserDefaultsBool('masa.visible.12'));
-
+setSwitchValue("t12", getUserDefaultsBool('masa.visible.0'));
+setSwitchValue("t0", getUserDefaultsBool('masa.visible.1'));
+setSwitchValue("t1", getUserDefaultsBool('masa.visible.2'));
+setSwitchValue("t2", getUserDefaultsBool('masa.visible.3'));
+setSwitchValue("t3", getUserDefaultsBool('masa.visible.4'));
+setSwitchValue("t4", getUserDefaultsBool('masa.visible.5'));
+setSwitchValue("t5", getUserDefaultsBool('masa.visible.6'));
+setSwitchValue("t6", getUserDefaultsBool('masa.visible.7'));
+setSwitchValue("t7", getUserDefaultsBool('masa.visible.8'));
+setSwitchValue("t8", getUserDefaultsBool('masa.visible.9'));
+setSwitchValue("t9", getUserDefaultsBool('masa.visible.10'));
+setSwitchValue("t10", getUserDefaultsBool('masa.visible.11'));
+setSwitchValue("t11", getUserDefaultsBool('masa.visible.12'));
 </script>
-
-
-<div class="menuBarDiv">
-<table class="menuBar" align=center cellspacing=8 cellpadding=8>
-<tr>
-<td class="menuItem" onclick='onSave();goPage("mainmenu")'>{%gstr 1054}</td>
-<td class="menuItem" onclick='onSave();goPage("set-disp")'>{%gstr 235}</td>
-</tr>
-</table>
-</div>
 
 
 </body>

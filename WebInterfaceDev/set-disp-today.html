@@ -24,7 +24,7 @@ function onSave()
 
 <body>
 
-<h1>Today Screen Settings</h1>
+<h1>{%gstr 372} - {%gstr 174}</h1>
 
 <table style='border=0px' align=center>
 
@@ -58,17 +58,6 @@ function onSave()
 	setSwitchValue("t9", getUserDefaultsBool('today.naksatra.list'));
 
 </script>
-
-<div class="menuBarDiv">
-<table class="menuBar" align=center cellspacing=8 cellpadding=8>
-<tr>
-<td class="menuItem" onclick='onSave();goPage("mainmenu")'>{%gstr 1054}</td>
-<td class="menuItem" onclick='onSave();goPage("set-disp")'>{%gstr 235}</td>
-<td class="menuItem" onclick='onSave();resetToday();goPage("today")'>{%gstr 174}</td>
-</tr>
-</table>
-</div>
-
 
 
 </body>

@@ -64,24 +64,24 @@ namespace GCAL.Engine
 
             if (locProvA == null)
             {
-                HtmlText = "<p>Error: location provider A is null";
-                return;
+                locProvA = GPAppHelper.getMyLocation();
             }
 
             locProvB = content.getLocationWithPostfix("b");
 
             if (locProvB == null)
             {
-                HtmlText = "<p>Error: location provider B is null";
-                return;
+                locProvB = GPAppHelper.getMyLocation();
             }
 
             startWesternTime = new GPGregorianTime(locProvA);
-            startWesternTime.setDate(content.getInt("startyear"), content.getInt("startmonth"), content.getInt("startday"));
+            startWesternTime.setDate(content.getInt("startyear", startWesternTime.getYear()),
+                content.getInt("startmonth", startWesternTime.getMonth()),
+                content.getInt("startday", startWesternTime.getDay()));
 
             GPVedicTime startVedicTime, endVedicTime;
-            int unitType = content.getInt("endperiodtype");
-            int nCount = content.getInt("endperiodlength");
+            int unitType = content.getInt("endperiodtype", 3);
+            int nCount = content.getInt("endperiodlength", 1);
 
             GPEngine.VCTIMEtoVATIME(startWesternTime, out startVedicTime, locProvA);
 

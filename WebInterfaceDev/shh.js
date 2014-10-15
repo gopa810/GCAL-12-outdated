@@ -73,7 +73,7 @@ function writeComboChoice(title, valText, myId, targetUrl)
 	
 	str = '<tr height=32px>\n';
 	str += '<td style=\'cursor:pointer;\' onclick=\'goPage("' + targetUrl + '")\' id=\'' + myId + '\'>\n';
-	str += '<p><span style=\'font-weight:bold;font-size:120%\'>' + title + '</span>\n';
+	str += '<p><span style=\'font-size:120%\'>' + title + '</span>\n';
 	str += '<br><span style=\'color:#aaa\'>' + valText + '</span>\n';
 	str += '</td>\n';
 	str += '<td  style=\'cursor:pointer;\' onclick=\'goPage("' + targetUrl + '")\' id=\'' + myId + '\' width=24pt><img src="' + getDir() + '/sarrow-to-right.png"></td>\n';
@@ -111,7 +111,7 @@ function getStringComboChoiceValue(title, valText, myId, val)
 	str += (val != 0 ? "checked-yes.png" : "checked-no.png");
 	str += '"></td>\n';
 	str += '<td style=\'cursor:pointer;\' onclick=\'setNewComboChoice("' + myId + '")\'>\n';
-	str += '<p><span style=\'font-weight:bold;font-size:120%\'>' + title + '</span>\n';
+	str += '<p><span style=\'font-size:120%\'>' + title + '</span>\n';
 	str += '<br><span style=\'color:#aaa\'>' + valText + '</span>\n';
 	str += '</td>\n';
 	str += '</tr>\n';

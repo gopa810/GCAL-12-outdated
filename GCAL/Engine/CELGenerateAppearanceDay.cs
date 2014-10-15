@@ -77,24 +77,14 @@ namespace GCAL.Engine
 
             if (locProv == null)
             {
-                HtmlText = "<p>Error: location provider is null";
-                return;
+                locProv = GPAppHelper.getMyLocation();
             }
 
             startWesternTime = new GPGregorianTime(locProv);
-            startWesternTime.setDate(content.getInt("startyear"), content.getInt("startmonth"), content.getInt("startday"));
-            startWesternTime.setDayHours(content.getInt("starthour") / 24.0 + content.getInt("startmin") / 1440.0);
-
-
-            GPVedicTime startVedicTime, endVedicTime;
-            int unitType = content.getInt("endperiodtype");
-            int nCount = content.getInt("endperiodlength");
-
-            GPEngine.VCTIMEtoVATIME(startWesternTime, out startVedicTime, locProv);
-
-            GPEngine.CalcEndDate(locProv, startWesternTime, startVedicTime, out endWesternTime, out endVedicTime, unitType, GPEngine.CorrectedCount(unitType, nCount));
-
-            nCount = Convert.ToInt32(endWesternTime.getJulianGreenwichNoon() - startWesternTime.getJulianGreenwichNoon());
+            startWesternTime.setDate(content.getInt("startyear", startWesternTime.getYear()),
+                content.getInt("startmonth", startWesternTime.getMonth()),
+                content.getInt("startday", startWesternTime.getDay()));
+            startWesternTime.setDayHours(content.getInt("starthour", startWesternTime.getHour()) / 24.0 + content.getInt("startmin", startWesternTime.getMinuteRound()) / 1440.0);
 
             SetData(locProv, startWesternTime);
             SyncExecute();

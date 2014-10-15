@@ -421,34 +421,60 @@ end page
 
 page set-disp-core
   source set-disp-core
+  button bottom "$46" "action:coreevents"
   action sort
     goto set-disp-core-sort
+  end action
+  action coreevents
+    script "onSave"
+    goto coreevents
   end action
 end page
 
 
 page set-disp-core-sort
   source set-disp-core-sort
+  button bottom "$46" "action:coreevents"
   action set-disp-core
    goto set-disp-core
+  end action
+  action coreevents
+    script "onSave"
+    goto coreevents
   end action
 end page
 
 page set-disp-app
   source set-disp-app
+  button bottom "$45" "action:calculate"
+  action calculate
+    goto appday
+  end action
 end page
 
 page set-disp-masa
   source set-disp-masa
+  button bottom "$48" "action:calculate"
+  action calculate
+    goto masalist
+  end action
 end page
 
 page set-disp-today
   source set-disp-today
+  button bottom "$43" "action:calculate"
+  action calculate
+    goto today
+  end action
 end page
 
 
 page set-disp-nextfest
   source set-disp-nextfest
+  button bottom "$452" "action:calculate"
+  action calculate
+    goto nextfest
+  end action
 end page
 
 page set-startpage

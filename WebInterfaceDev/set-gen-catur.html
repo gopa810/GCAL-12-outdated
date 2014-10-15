@@ -18,7 +18,8 @@ function onSave()
 
 <body>
 
-<table style='border=0px' align=center cellspacing=0 cellpadding=4>
+<table style='border:0px' align=center width='66%' cellpadding=4 cellspacing=0>
+
 
 <h1>{%gstr 227}</h1>
 
@@ -37,16 +38,9 @@ writeComboChoiceValue("{%getSelectionText gen.caturmasya 3}", "{%gstr 1191}", "3
 setNewComboChoice(getUserDefaultsInt('gen.caturmasya'));
 </script>
 
-
-<div class="menuBarDiv">
-<table class="menuBar" align=center cellspacing=8 cellpadding=8>
-<tr>
-<td class="menuItem" onclick='onSave();goPage("mainmenu")'>{%gstr 1054}</td>
-<td class="menuItem" onclick='onSave();goPage("set-general")'>{%gstr 390}</td>
-</tr>
-</table>
-</div>
-
+clicking on value will cause:
+set this value as value of property
+return to parent page
 
 
 </body>

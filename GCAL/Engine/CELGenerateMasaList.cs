@@ -81,11 +81,10 @@ namespace GCAL.Engine
 
             if (locProv == null)
             {
-                HtmlText = "<p>Error: location provider is null";
-                return;
+                locProv = GPAppHelper.getMyLocation();
             }
 
-            SetData(locProv, content.getInt("startyear"), content.getInt("yearcount"));
+            SetData(locProv, content.getInt("startyear", 2015), content.getInt("yearcount", 1));
             SyncExecute();
 
             StringBuilder sb = new StringBuilder();

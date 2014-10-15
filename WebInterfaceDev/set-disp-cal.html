@@ -50,7 +50,7 @@ function onSave()
 
 <h2>{%gstr 185}</h2>
 <hr>
-<table style='border=0px' align=center>
+<table style='border:0px' align=center width='66%' cellpadding=4 cellspacing=0>
 
 <script type="text/javascript">
 writeCheckBox("{%gstr 920}", "", "t0");
@@ -66,7 +66,7 @@ writeCheckBox("{%gstr 926}", "", "t6");
 
 <h2>{%gstr 186}</h2>
 <hr>
-<table style='border=0px' align=center>
+<table style='border:0px' align=center width='66%' cellpadding=4 cellspacing=0>
 
 <script type="text/javascript">
 writeCheckBox("{%gstr 187}", "", "t10");
@@ -81,15 +81,15 @@ writeCheckBox("{%gstr 192}", "", "t18");
 writeCheckBox("{%gstr 190}", "", "t19");
 writeCheckBox("{%gstr 197}", "", "t20");
 writeCheckBox("{%gstr 991}", "", "t21");
-writeComboChoice("{%gstr 196}", "Long Info", "t22", "set-disp-cal-ann");
-writeComboChoice("{%gstr 188}", "Masa Header", "t23", "set-disp-cal-hdt");
+writeComboChoice("{%gstr 196}", "{%getCurrentSelectionText cal.anniversary}", "t22", "set-disp-cal-ann");
+writeComboChoice("{%gstr 188}", "{%getCurrentSelectionText cal.headertype}", "t23", "set-disp-cal-hdt");
 </script>
 
 </table>
 
 <h2>{%gstr 206}</h2>
 <hr>
-<table style='border=0px' align=center>
+<table style='border:0px' align=center width='66%' cellpadding=4 cellspacing=0>
 
 <script type="text/javascript">
 writeCheckBox("{%gstr 207}", "", "t30");

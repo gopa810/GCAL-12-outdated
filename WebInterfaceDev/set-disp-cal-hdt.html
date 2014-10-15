@@ -16,14 +16,14 @@ function onSave()
 
 <body>
 
-<table style='border=0px' align=center cellspacing=0 cellpadding=4>
+<table style='border:0px' align=center width='66%' cellpadding=4 cellspacing=0>
 
-<h1>{%gstr 211}</h1>
+<h1>{%gstr 188}</h1>
 
 <script type="text/javascript">
 writeComboChoiceValue("{%getSelectionText cal.headertype 0}", "", "0", 0);
-writeComboChoiceValue("{%getSelectionText cal.headertype 1}", "{%gstr 1167}", "1", 0);
-writeComboChoiceValue("{%getSelectionText cal.headertype 2}", "{%gstr 1168}", "2", 1);
+writeComboChoiceValue("{%getSelectionText cal.headertype 1}", "", "1", 0);
+writeComboChoiceValue("{%getSelectionText cal.headertype 2}", "", "2", 1);
 </script>
 
 
@@ -35,15 +35,6 @@ writeComboChoiceValue("{%getSelectionText cal.headertype 2}", "{%gstr 1168}", "2
 setNewComboChoice(getUserDefaultsInt('cal.headertype'));
 </script>
 
-<div class="menuBarDiv">
-<table class="menuBar" align=center cellspacing=8 cellpadding=8>
-<tr>
-<td class="menuItem" onclick='onSave();goPage("mainmenu")'>{%gstr 1054}</td>
-<td class="menuItem" onclick='onSave();goPage("set-disp")'>{%gstr 235}</td>
-<td class="menuItem" onclick='onSave();goPage("set-disp-cal")'>{%gstr 971}</td>
-</tr>
-</table>
-</div>
 
 
 </body>

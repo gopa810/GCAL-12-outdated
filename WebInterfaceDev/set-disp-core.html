@@ -22,7 +22,7 @@ function onSave()
 
 <body>
 
-<table style='border=0px' align=center>
+<table style='border:0px' align=center width='66%' cellpadding=4 cellspacing=0>
 
 <script type="text/javascript">
 writeCheckBox("{%gstr 996}", "", "t0");
@@ -33,7 +33,7 @@ writeCheckBox("{%gstr 1000}", "{%gstr 1171}", "t4");
 writeCheckBox("{%gstr 999}", "{%gstr 1172}", "t5");
 writeCheckBox("{%gstr 1008}", "", "t6");
 writeCheckBox("{%gstr 1009}", "", "t7");
-writeComboChoice("{%gstr 211}", "Sort by Time", "t20", "set-disp-core-sort");
+writeComboChoice("{%gstr 211}", "{%getCurrentSelectionText core.sorttype}", "t20", "set-disp-core-sort");
 </script>
 
 
@@ -51,16 +51,6 @@ setSwitchValue("t6", getUserDefaultsBool('core.suneclipse'));
 setSwitchValue("t7", getUserDefaultsBool('core.mooneclipse'));
 
 </script>
-
-<div class="menuBarDiv">
-<table class="menuBar" align=center cellspacing=8 cellpadding=8>
-<tr>
-<td class="menuItem" onclick='onSave();goPage("mainmenu")'>{%gstr 1054}</td>
-<td class="menuItem" onclick='onSave();goPage("set-disp")'>{%gstr 235}</td>
-</tr>
-</table>
-</div>
-
 
 
 </body>
