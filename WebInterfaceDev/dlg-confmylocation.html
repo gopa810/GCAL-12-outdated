@@ -3,19 +3,14 @@
 <title></title>
 <script type="text/javascript" src="{%homedir}/shh.js"></script>
 <link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
-<script type="text/javascript">
-function onSave()
-{
-    scriptObject.removeLocation(Number(scriptObject.getString("locationid")));
-}
-</script>
 </head>
 
 <body>
 
 <center>
-<h1>{%gstr 1064}</h1>
-<p width=50%>{%gstr 1075}</p>
+<h1>{%gstr 1037}</h1>
+<p width=50%>Save this location as default?</p>
+
 <table cellpadding=8 cellspacing=0>
 <tr><td>{%gstr 9}</td><td>{%string locationname}</td></tr>
 <tr><td>{%gstr 252}</td><td>{%string locationcountry}</td></tr>
@@ -25,5 +20,4 @@ function onSave()
 </table>
 
 </center>
-</body>
-</html>
+

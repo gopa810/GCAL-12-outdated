@@ -217,11 +217,6 @@ var line = [];
 onTypeChange();
 onLoad();
 
-writeNavigStart();
-writeNavigItem("{%gstr 1054}", 'goPage("mainmenu")');
-writeNavigItem("{%string leftArrow} {%gstr 238}", 'goBack()');
-writeNavigItem("{%gstr 239} {%string rightArrow}", 'onSave();runAction("next")');
-writeNavigEnd();
 
 if (scriptObject.getInt('disableventtype') == 1)
 {

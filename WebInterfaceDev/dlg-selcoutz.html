@@ -20,23 +20,24 @@ function onSave()
 
 var list = [];
 var storedOffset = loadString("locationcountrycode{%string ppx}");
+var currentTimezoneId = loadString("locationtimezone{%string ppx}");
 var tzoff = scriptObject.getTimezonesByCountry(storedOffset);
 var list = tzoff.split("<line>");
 
 var i = 0;
 var b = 1;
+
 var str = '<table cellspacing=0 cellpadding=8>';
 for(i = 0; i < list.length; i++)
 {
     var tags = list[i].split('<br>');
+    if (currentTimezoneId != null && currentTimezoneId != "")
+    {
+        b = (currentTimezoneId == tags[1]);
+    }
     str += getStringComboChoiceValue(tags[1], "Offset: " + tags[2], tags[0], b);
     b = 0;
-    /*var line = list[i].split("<br>");
-	str += "<input style='padding-top:8pt;padding-bottom:8pt;padding-left:24pt;padding-right:24pt;width:100%' type=\"button\" onclick='saveString(\"locationtimezone{%string ppx}\", \"" + line[1] + "\");goNext();' value=\"" + line[1] + "\">";
-	str += "<br>";*/
 }
-
-//str += "</table>";
 
 document.write(str);
 

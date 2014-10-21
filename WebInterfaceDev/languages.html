@@ -10,7 +10,29 @@ function onSave()
     scriptObject.setCurrentLanguageId(Number(lastId));
 }
 
-function getLangList()
+function getLanguageChoiceValue(title, valText, myId, val, action)
+{
+    var str;
+    
+    str = '<tr height=32px id=\'row' + myId + '\'';
+    str += ' onmouseover=\'shh(1,"row' + myId + '")\'';
+    str += ' onmouseout=\'shh(0,"row' + myId + '")\'';
+    str += '>\n';
+    str += '<td style=\'cursor:pointer;\' onclick=\'scriptObject.setCurrentLanguageId(' + myId + ');runAction("' + action + '");\' width=24pt>';
+    str += '<img id = "' + myId + '" src="';
+    str += getDir() + "/";
+    str += (val != 0 ? "checked-yes.png" : "checked-no.png");
+    str += '"></td>\n';
+    str += '<td style=\'cursor:pointer;\' onclick=\'scriptObject.setCurrentLanguageId(' + myId + ');runAction("' + action + '");\'>\n';
+    str += '<p><span style=\'font-size:120%\'>' + title + '</span>\n';
+    str += '<br><span style=\'color:#aaa\'>' + valText + '</span>\n';
+    str += '</td>\n';
+    str += '</tr>\n';
+
+    return str;
+}
+
+function getLangList(retpage)
 {
 	var m = scriptObject.getLanguagesCount();
 	var current = scriptObject.getCurrentLanguageId();
@@ -29,7 +51,7 @@ function getLangList()
 		{
 			b = 1;
 		}
-		str += getStringComboChoiceValue(tags[1], "", tags[0], b);
+		str += getLanguageChoiceValue(tags[1], "", tags[0], b, retpage);
 		b = 0;
 	}
 
@@ -51,16 +73,11 @@ function getLangList()
 <table style='border:0px;' align=center cellspacing=0 cellpadding=8>
 <script type="text/javascript">
 
-document.write(getLangList());
+document.write(getLangList("select"));
 
 </script>
 </table>
 </center>
-<script type="text/javascript">
-writeNavigStart();
-writeNavigItem("{%gstr 1054} {%string rightArrow}", 'onSave();goPage("mainmenu")');
-writeNavigEnd();
-</script>
 
 
 

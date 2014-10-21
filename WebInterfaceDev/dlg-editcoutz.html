@@ -63,18 +63,6 @@ function initList()
 	}
 }
 
-
-function startAddTimezone()
-{
-    scriptObject.clearHistory();
-    setCurrTitle("{%gstr 1079}");
-	saveString("ppx", "");
-	addFutureFile2("dlg-seltzoff.html", "{%gstr 1078}");
-	addFutureFile2("dlg-seltimezone.html", "{%gstr 1061}");
-	addFutureFile2("dlg-editcoutz.html?preaction=savetzforcountry", "{%gstr 1062}");
-	goNext();
-}
-
 </script>
 
 <body>
@@ -85,17 +73,8 @@ function startAddTimezone()
 </div>
 
 <center>
-<button type="button" onclick="startAddTimezone();">{%gstr 1081}</button>
+<button type="button" onclick='runAction("add");'>{%gstr 1081}</button>
 </center>
-
-<div id='bar0' style='display:block'>
-<script type="text/javascript">
-writeNavigStart();
-writeNavigItem("{%gstr 1054}", 'goPage("mainmenu")');
-writeNavigItem("{%gstr 312}", 'goPage("geo-countries")');
-writeNavigEnd();
-</script>
-</div>
 
 <script>
 initList();

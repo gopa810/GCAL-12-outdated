@@ -9,6 +9,8 @@ namespace GCAL
     public class HtmlBuildInstructions
     {
         private StringBuilder sb = new StringBuilder();
+        private Dictionary<string,string> properties = new Dictionary<string,string>();
+        public ContentServer contentServer = null;
 
         bool bTableStarted = false;
         bool bScriptStarted = false;
@@ -56,6 +58,48 @@ namespace GCAL
                     sb.AppendLine("</td></tr>");
                     cid++;
                 }
+                else if (cmd.Command.Equals("list"))
+                {
+                    if (cmd.getArg(0).Equals("start"))
+                    {
+                        sb.AppendFormat("<table style='border:0px' align=center width='66%' cellpadding=4 cellspacing=0>");
+                        bTableStarted = true;
+                    }
+                    else if (cmd.getArg(0).Equals("end"))
+                    {
+                        stopScript();
+                        sb.AppendFormat("</table>\n");
+                    }
+                }
+                else if (cmd.Command.Equals("set"))
+                {
+                    string a = cmd.getArg(0);
+                    string b = cmd.getArg(1);
+
+                    if (a.Length > 0)
+                        properties[a] = b;
+                }
+                else if (cmd.Command.Equals("clickchoice"))
+                {
+                    string myText = cmd.getArg(0);
+                    string myId = cmd.getArg(1);
+
+                    if (!bScriptStarted)
+                    {
+                        sb.AppendLine("<script>");
+                        bScriptStarted = true;
+                    }
+                    sb.AppendFormat("writeClickChoiceValue(\"");
+                    sb.Append(contentServer.evaluate3params("getSelectionText", properties["property"], myId));
+                    sb.AppendFormat("\", \"{0}\", \"{1}\", ", myText, myId);
+                    sb.Append(contentServer.evaluate3params("isSelectedSetting", properties["property"], myId));
+                    sb.Append(", \"");
+                    sb.Append(properties["returnpage"]);
+                    sb.Append("\", \"");
+                    sb.Append(properties["property"]);
+                    sb.AppendLine("\");");
+
+                }
             }
 
             stopScript();
@@ -64,7 +108,7 @@ namespace GCAL
             sb.AppendLine("</body>");
             sb.AppendLine("</html>");
 
-            //Debugger.Log(0, "", sb.ToString());
+            Debugger.Log(0, "", sb.ToString());
         }
 
         public void stopTable()

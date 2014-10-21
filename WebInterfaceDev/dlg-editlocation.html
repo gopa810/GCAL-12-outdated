@@ -6,59 +6,7 @@
 <script type="text/javascript">
 function onSave()
 {
-	//var el = document.getElementById("textField0");
-	scriptObject.saveEditedLocation();
-}
-
-function startEditName()
-{
-    scriptObject.clearHistory();
-    setCurrTitle("{%gstr 1091}");
-	saveString("ppx", "");
-	addFutureFile2("dlg-locfull.html", "{%gstr 1044}");
-	addFutureFile2("dlg-editlocation.html", "{%gstr 1062}");
-	goNext();
-}
-
-function startEditCountry()
-{
-    scriptObject.clearHistory();
-    setCurrTitle("{%gstr 1091}");
-	saveString("ppx", "");
-	addFutureFile2("dlg-country.html", "{%gstr 1044}");
-	addFutureFile2("dlg-selcoutz.html", "{%gstr 1040}");
-	addFutureFile2("dlg-editlocation.html", "{%gstr 1062}");
-	goNext();
-}
-
-function startEditLatitude()
-{
-    scriptObject.clearHistory();
-    setCurrTitle("{%gstr 1091}");
-	saveString("ppx", "");
-	addFutureFile2("dlg-enterlatitude.html", "{%gstr 1041}");
-	addFutureFile2("dlg-editlocation.html", "{%gstr 1062}");
-	goNext();
-}
-
-function startEditLongitude()
-{
-    scriptObject.clearHistory();
-    setCurrTitle("{%gstr 1091}");
-	saveString("ppx", "");
-	addFutureFile2("dlg-enterlongitude.html", "{%gstr 1042}");
-	addFutureFile2("dlg-editlocation.html", "{%gstr 1062}");
-	goNext();
-}
-
-function startEditTimezone()
-{
-    scriptObject.clearHistory();
-    setCurrTitle("{%gstr 1091}");
-	saveString("ppx", "");
-	addFutureFile2("dlg-selcoutz.html", "{%gstr 1040}");
-	addFutureFile2("dlg-editlocation.html", "{%gstr 1062}");
-	goNext();
+    scriptObject.saveEditedLocation();
 }
 
 </script>
@@ -70,22 +18,14 @@ function startEditTimezone()
 <h1>{%gstr 1091}</h1>
 <p width=50%>{%gstr 1092}</p>
 <table>
-<tr><td><button style='width:100%' type="button" onclick='startEditName()'>{%gstr 1093}</button></td><td>{%string locationname}</td></tr>
-<tr><td><button style='width:100%' type="button" onclick='startEditCountry()'>{%gstr 1094}</button></td><td>{%string locationcountrycode} {%string locationcountry}</td></tr>
-<tr><td><button style='width:100%' type="button" onclick='startEditLongitude()'>{%gstr 1095}</button></td><td>{%string locationlongitude}</td></tr>
-<tr><td><button style='width:100%' type="button" onclick='startEditLatitude()'>{%gstr 1096}</button></td><td>{%string locationlatitude}</td></tr>
-<tr><td><button style='width:100%' type="button" onclick='startEditTimezone()'>{%gstr 1097}</button></td><td>{%string locationtimezone}</td></tr>
+<tr><td><button style='width:100%' type="button" onclick='runAction("editlocname")'>{%gstr 1093}</button></td><td>{%string locationname}</td></tr>
+<tr><td><button style='width:100%' type="button" onclick='runAction("editcountry")'>{%gstr 1094}</button></td><td>{%string locationcountrycode} {%string locationcountry}</td></tr>
+<tr><td><button style='width:100%' type="button" onclick='runAction("editlongitude")'>{%gstr 1095}</button></td><td>{%string locationlongitude}</td></tr>
+<tr><td><button style='width:100%' type="button" onclick='runAction("editlatitude")'>{%gstr 1096}</button></td><td>{%string locationlatitude}</td></tr>
+<tr><td><button style='width:100%' type="button" onclick='runAction("edittimezone")'>{%gstr 1097}</button></td><td>{%string locationtimezone}</td></tr>
 </table>
 
 </center>
-
-
-<script type="text/javascript">
-writeNavigStart();
-writeNavigItem("{%gstr 1054}", "onSave();goPage(\"mainmenu\")");
-writeNavigItem("{%gstr 311}", "onSave();goPage(\"geo-cities\")");
-writeNavigEnd();
-</script>
 
 
 </body>

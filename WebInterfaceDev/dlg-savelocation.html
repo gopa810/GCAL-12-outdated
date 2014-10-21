@@ -6,8 +6,7 @@
 <script type="text/javascript">
 function onSave()
 {
-	//var el = document.getElementById("textField0");
-	scriptObject.saveNewLocation();
+    scriptObject.saveNewLocation();
 }
 </script>
 </head>
@@ -17,8 +16,9 @@ function onSave()
 <center>
 <h1>{%gstr 1155}</h1>
 <p width=50%>{%gstr 1156}</p>
-<table>
+<table cellpadding=8 cellspacing=0>
 <tr><td>{%gstr 1039}</td><td>{%string locationname}</td></tr>
+<tr><td>{%gstr 252}</td><td>{%string locationcountry}</td></tr>
 <tr><td>{%gstr 11}</td><td>{%string locationlongitude}</td></tr>
 <tr><td>{%gstr 10}</td><td>{%string locationlatitude}</td></tr>
 <tr><td>{%gstr 12}</td><td>{%string locationtimezone}</td></tr>
@@ -26,13 +26,6 @@ function onSave()
 
 </center>
 
-
-<script type="text/javascript">
-writeNavigStart();
-writeNavigItem("{%string leftArrow} {%title -1}", "goBack()");
-writeNavigItem("{%gstr 1054}", "onSave();goPage(\"mainmenu\")");
-writeNavigEnd();
-</script>
 
 </body>
 </html>

@@ -143,6 +143,19 @@ page dlg-enterloc-b
   end action
 end page
 
+page dlg-entermyloc
+  source dlg-entermyloc
+  set $currTitle $1033
+  action full
+    set $locationtype entered
+    goto dlg-locfull
+  end action
+  action select
+    set $locationtype selected
+    goto dlg-selloc
+  end action
+end page
+
 page dlg-selloc
   source dlg-selloc
   button bottom "$239 >" 'action:next'
@@ -344,8 +357,8 @@ page mainmenu-set
     goto set-startpage
   end action
   action mylocation
-    set $nextpage mainmenu-set
-	goto dlg-enterloc
+    set $nextpage dlg-confmylocation
+    goto dlg-entermyloc
   end action
   action languages
     goto languages
@@ -530,6 +543,9 @@ end page
 
 page languages
   source languages
+  action select
+    goto mainmenu-set
+  end action
 end page
 
 page mainmenu-geo
@@ -550,21 +566,20 @@ end page
 
 page geo-cities
   source geo-cities
+  set $ppx ""
   action add
-    set $ppx ""
     set $locationtype entered
     set $nextpage dlg-savelocation
     set $currTitle $1044
     goto dlg-locfull-c
   end action
   action edit
-    set $ppx ""
     set $locationtype selected
     set $currTitle $249
     set $nextpage dlg-editlocation-ce
     goto dlg-selloc-x
   end action
-  action remove
+  action delete
     set $nextpage dlg-dellocation-ce
     goto dlg-selloc-x
   end action
@@ -574,6 +589,7 @@ page dlg-selloc-x
   source dlg-selloc
   button bottom "$239 >" 'action:next'
   action next
+    script "onSave"
     exec loadlocationid
     goto $nextpage
   end action
@@ -583,6 +599,7 @@ page dlg-locfull-c
   source dlg-locfull
   button bottom "$239 >" 'action:next'
   action next
+    script "onSave"
     goto dlg-country-c
   end action
 end page
@@ -591,6 +608,7 @@ page dlg-country-c
   source dlg-country
   button bottom "$239 >" 'action:next'
   action next
+    script "onSave"
     goto dlg-enterlongitude-c
   end action
 end page
@@ -599,6 +617,7 @@ page dlg-enterlongitude-c
   source dlg-enterlongitude
   button bottom "$239 >" 'action:next'
   action next
+    script "onSave"
     goto dlg-enterlatitude-c
   end action
 end page
@@ -607,6 +626,7 @@ page dlg-enterlatitude-c
   source dlg-enterlatitude
   button bottom "$239 >" 'action:next'
   action next
+    script "onSave"
     goto dlg-selcoutz-c
   end action
 end page
@@ -615,25 +635,120 @@ page dlg-selcoutz-c
   source dlg-selcoutz
   button bottom "$239 >" 'action:next'
   action next
+    script "onSave"
     goto dlg-savelocation-c
   end action
 end page
 
 page dlg-savelocation-c
   source dlg-savelocation
+  button bottom "$1062" 'action:save'
   action save
+    script "onSave"
+    goto geo-cities
   end action
 end page
 
 page dlg-editlocation-ce
   source dlg-editlocation
+  button bottom "$1062" 'action:save'
   action save
+    script "onSave"
+    goto geo-cities
+  end action
+  action editlocname
+    goto dlg-editloc-locfull
+  end action
+  action editcountry
+    goto dlg-editloc-country
+  end action
+  action edittimezone
+    goto dlg-editloc-selcoutz
+  end action
+  action editlongitude
+    goto dlg-editloc-enterlongitude
+  end action
+  action editlatitude
+    goto dlg-editloc-enterlatitude
+  end action
+end page
+
+page dlg-editloc-locfull
+  source dlg-locfull
+  set $ppx ""
+  button bottom "$239 >" 'action:next'
+  action next
+    script "onSave"
+    goto dlg-editlocation-ce
+  end action
+end page
+
+# edit country for location
+
+page dlg-editloc-country
+  source dlg-country
+  button bottom "$239 >" 'action:next'
+  action next
+    script "onSave"
+    set locationtimezone ""
+    goto dlg-editloc-selcoutz
+  end action
+end page
+
+page dlg-editloc-selcoutz
+  source dlg-selcoutz
+  button bottom "$239 >" 'action:next'
+  action next
+    script "onSave"
+    goto dlg-editlocation-ce
+  end action
+end page
+
+#end edit country for location
+
+page dlg-editloc-enterlongitude
+  source dlg-enterlongitude
+  button bottom "$239 >" 'action:next'
+  action next
+    script "onSave"
+    goto dlg-editlocation-ce
+  end action
+end page
+
+page dlg-editloc-enterlatitude
+  source dlg-enterlatitude
+  button bottom "$239 >" 'action:next'
+  action next
+    script "onSave"
+    goto dlg-editlocation-ce
   end action
 end page
 
 page dlg-dellocation-ce
   source dlg-dellocation
+  button bottom "$1072" 'action:dontdelete'
+  button bottom "$1073" 'action:delete'
   action delete
+    script "onSave"
+    set $locationid ""
+    goto geo-cities
+  end action
+  action dontdelete
+    goto geo-cities
+  end action
+end page
+
+page dlg-confmylocation
+  source dlg-confmylocation
+  exec loadlocationid
+  button bottom "$237" 'action:cancel'
+  button bottom "$1062" 'action:next'
+  action next
+     exec setmylocation
+     goto mainmenu-set
+  end action
+  action cancel
+    goto mainmenu-set
   end action
 end page
 
@@ -646,13 +761,15 @@ page geo-countries
     goto dlg-country-coe
   end action
   action delete
-	goto dlg-country-cod
+    goto dlg-country-cod
   end action
 end page
 
 page dlg-country-coe
   source dlg-country
+  button bottom "$1151" 'action:next'
   action next
+    script "onSave"
     goto dlg-renamecountry
   end action
 end page
@@ -666,22 +783,55 @@ end page
 
 page dlg-newcountry
   source dlg-newcountry
+  button bottom "$1062" 'action:next'
   action next
+    script "onSave"
     goto dlg-editcoutz
   end action
 end page
 
 page dlg-editcoutz
   source dlg-editcoutz
+  button bottom "$1062" 'action:parent'
+  action add
+    goto dlg-editctz-seltzoff
+  end action
+  action parent
+    goto geo-countries
+  end action
+end page
+
+page dlg-editctz-seltzoff
+  source dlg-seltzoff
+  action next
+    goto dlg-editctz-seltimezone
+  end action
+end page
+
+page dlg-editctz-seltimezone
+  source dlg-seltimezone
+  action next
+    exec savetzforcountry
+    goto dlg-editcoutz
+  end action
 end page
 
 page dlg-renamecountry
   source dlg-renamecountry
+  button bottom "$1062" 'action:next'
+  action next
+    script "onSave"
+    goto geo-countries
+  end action
 end page
 
 page dlg-confirm-del-country
   source dlg-confirm-del-country
 end page
+
+######################################
+#          EDIT EVENTS
+######################################
 
 page geo-events
   source geo-events
@@ -718,7 +868,9 @@ end page
 
 page dlg-editevent-add
   source dlg-editevent
+  button bottom "$1062" 'action:next'
   action next
+    script "onSave"
     exec newevent
     goto geo-events
   end action
@@ -727,6 +879,7 @@ end page
 page dlg-editevent-edit
   source dlg-editevent
   action next
+    script "onSave"
     exec savechangedevent
     set $disableeventtype 0
     goto geo-events

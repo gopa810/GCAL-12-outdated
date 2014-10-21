@@ -29,8 +29,8 @@ var i = 0;
 var str = '';
 for(i = 0; i < list.length; i++)
 {
-    var line = list[i].split("<br>");
-	str += "<input style='padding-top:8pt;padding-bottom:8pt;padding-left:24pt;padding-right:24pt;width:100%' type=\"button\" onclick='saveString(\"locationtimezone{%string ppx}\", \"" + line[1] + "\");goNext();' value=\"" + line[1] + "\">";
+    var line = list[i].split("<r>");
+	str += "<input style='padding-top:8pt;padding-bottom:8pt;padding-left:24pt;padding-right:24pt;width:100%' type=\"button\" onclick='saveString(\"locationtimezone{%string ppx}\", \"" + line[1] + "\");runAction(\"next\");' value=\"" + line[1] + "\">";
 	str += "<br>";
 }
 
@@ -39,14 +39,6 @@ document.write(str);
 </script>
 </td></tr>
 </table>
-
-<script type="text/javascript">
-writeNavigStart();
-writeNavigItem("{%gstr 1054}", "goPage(\"mainmenu\")");
-writeNavigEnd();
-</script>
-
-
 
 
 </body>

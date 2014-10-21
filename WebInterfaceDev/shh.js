@@ -121,6 +121,28 @@ function getStringComboChoiceValue(title, valText, myId, val)
 	return str;
 }
 
+function getStringClickChoiceValue(title, valText, myId, val, retpage, property)
+{
+    var str;
+    
+    str = '<tr height=32px id=\'row' + myId + '\'';
+    str += ' onmouseover=\'shh(1,"row' + myId + '")\'';
+    str += ' onmouseout=\'shh(0,"row' + myId + '")\'';
+    str += '>\n';
+    str += '<td  style=\'cursor:pointer;\' onclick=\'setUserDefaultsInt("' + property + '", ' + myId + ');goPage("' + retpage + '");\' width=24pt>';
+    str += '<img id = "' + myId + '" src="';
+    str += getDir() + "/";
+    str += (val != 0 ? "checked-yes.png" : "checked-no.png");
+    str += '"></td>\n';
+    str += '<td style=\'cursor:pointer;\' onclick=\'setUserDefaultsInt("' + property + '", ' + myId + ');goPage("' + retpage + '");\'>\n';
+    str += '<p><span style=\'font-size:120%\'>' + title + '</span>\n';
+    str += '<br><span style=\'color:#aaa\'>' + valText + '</span>\n';
+    str += '</td>\n';
+    str += '</tr>\n';
+
+    return str;
+}
+
 function setDisplay(elemId, dispValue)
 {
 	var elem = document.getElementById(elemId);
@@ -142,45 +164,50 @@ function setVisibility(elemId, dispValue)
 
 function writeComboChoiceValue(title, valText, myId, val)
 {
-	document.write(getStringComboChoiceValue(title, valText, myId, val));
+    document.write(getStringComboChoiceValue(title, valText, myId, val));
+}
+
+function writeClickChoiceValue(title, valText, myId, val, retpage, property)
+{
+    document.write(getStringClickChoiceValue(title, valText, myId, val, retpage, property));
 }
 
 
 function incrementCounterChoice(myId, valDif)
 {
-	var elem = document.getElementById(myId);
-	var val = valDif;
-	val += Number(elem.innerText);
-	if (val < 0)
-		val = 0;
-	elem.innerText = val;
+    var elem = document.getElementById(myId);
+    var val = valDif;
+    val += Number(elem.innerText);
+    if (val < 0)
+	val = 0;
+    elem.innerText = val;
 }
 
 function writeCounterChoice(title, valText, myId)
 {
-	var str;
-	
-	str = '<tr height=32px>\n';
-	str += '<td style=\'cursor:pointer;\'>\n';
-	str += '<p><span style=\'font-weight:bold;font-size:120%\'>' + title + '</span>\n';
-	str += '<br><span style=\'color:#aaa\'>' + valText + '</span>\n';
-	str += '</td>\n';
-	str += '<td width=24pt>';
-	
-	
-	str += '<table>';
-	str += '<tr>';
-	str += '<td style=\'text-align:right;font-size:24pt\' id=\'' + myId + '\'>1</td>';
-	str += '<td width=32pt class=\'noselect\' style=\'text-align:center;cursor:pointer\'';
-	str += ' onclick=\'incrementCounterChoice("' + myId + '", 1);\'>+1</td>';
-	str += '<td width=32pt class=\'noselect\' style=\'text-align:center;cursor:pointer\'';
-	str += ' onclick=\'incrementCounterChoice("' + myId + '", -1);\'>-1</td>';
-	str += '</tr></table>';
+    var str;
+    
+    str = '<tr height=32px>\n';
+    str += '<td style=\'cursor:pointer;\'>\n';
+    str += '<p><span style=\'font-weight:bold;font-size:120%\'>' + title + '</span>\n';
+    str += '<br><span style=\'color:#aaa\'>' + valText + '</span>\n';
+    str += '</td>\n';
+    str += '<td width=24pt>';
+    
+    
+    str += '<table>';
+    str += '<tr>';
+    str += '<td style=\'text-align:right;font-size:24pt\' id=\'' + myId + '\'>1</td>';
+    str += '<td width=32pt class=\'noselect\' style=\'text-align:center;cursor:pointer\'';
+    str += ' onclick=\'incrementCounterChoice("' + myId + '", 1);\'>+1</td>';
+    str += '<td width=32pt class=\'noselect\' style=\'text-align:center;cursor:pointer\'';
+    str += ' onclick=\'incrementCounterChoice("' + myId + '", -1);\'>-1</td>';
+    str += '</tr></table>';
 
 
-	str += '</tr>\n';
+    str += '</tr>\n';
 
-	document.write(str);
+    document.write(str);
 }
 
 

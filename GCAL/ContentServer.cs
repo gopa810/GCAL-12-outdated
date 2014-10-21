@@ -204,10 +204,9 @@ namespace GCAL
                             FlowCommand fc = new FlowCommand(line);
                             fp.Commands.Add(fc);
                         }
-                        else if (line.Length > 1 && line[0].Equals("button"))
+                        else if (line.Length > 1 && line[0].Equals("exec"))
                         {
-                            FlowCommand fc = new FlowCommand(line);
-                            fp.Commands.Add(fc);
+                            fp.Commands.Add(new FlowCommand(line));
                         }
                         else if (line.Length > 1 && line[0].Equals("action"))
                         {
@@ -224,6 +223,11 @@ namespace GCAL
                             {
                                 Pages.Add(fp.Name, fp);
                             }
+                        }
+                        else
+                        {
+                            FlowCommand fc = new FlowCommand(line);
+                            fp.Commands.Add(fc);
                         }
                     }
                     else if (target is FlowAction)
@@ -416,6 +420,18 @@ namespace GCAL
         /// </param>
         public void LoadPage(string pageId, bool bInsertHistory)
         {
+            if (bInsertHistory)
+            {
+                while (pageHistoryIndex + 1 >= 0 && pageHistoryIndex + 1 < pageHistory.Count)
+                {
+                    pageHistory.RemoveAt(pageHistoryIndex + 1);
+                }
+                PageHistoryEntry pageEntry = new PageHistoryEntry();
+                pageEntry.Page = pageId;
+                pageHistory.Add(pageEntry);
+                pageHistoryIndex = pageHistory.Count - 1;
+            }
+
             clearTopButtons();
             if (pageHistoryIndex > 0)
             {
@@ -432,18 +448,6 @@ namespace GCAL
             {
                 CurrentPage = null;
                 return;
-            }
-
-            if (bInsertHistory)
-            {
-                while (pageHistoryIndex+1 >= 0 && pageHistoryIndex+1 < pageHistory.Count)
-                {
-                    pageHistory.RemoveAt(pageHistoryIndex+1);
-                }
-                PageHistoryEntry pageEntry = new PageHistoryEntry();
-                pageEntry.Page = pageId;
-                pageHistory.Add(pageEntry);
-                pageHistoryIndex = pageHistory.Count - 1;
             }
 
             string fileName;
@@ -472,6 +476,10 @@ namespace GCAL
                     {
                         addBottomButton(cmd.getArgSubst(1, dictStrings), cmd.getArgSubst(2, dictStrings));
                     }
+                }
+                else if (cmd.Equals("exec"))
+                {
+                    executeFlowCommand(cmd);
                 }
             }
 
@@ -540,7 +548,7 @@ namespace GCAL
             // converting page intructions into HTML code
             // and load HTML text into webView
             HtmlBuildInstructions builder = new HtmlBuildInstructions();
-
+            builder.contentServer = this;
             builder.Build(fileInstructions);
 
             currentFile = fileName;
@@ -792,7 +800,7 @@ namespace GCAL
             return string.Empty;
         }
 
-        protected string evaluate3params(string p1, string p2, string p3)
+        public string evaluate3params(string p1, string p2, string p3)
         {
             if (p1 == "find")
             {
@@ -1195,10 +1203,11 @@ namespace GCAL
             }
             else if (cmd.Equals("goBack"))
             {
-                if (pageHistoryIndex >= 0)
+                if (pageHistoryIndex > 0)
                 {
+                    pageHistoryIndex--;
                     PageHistoryEntry phe = pageHistory[pageHistoryIndex];
-                    goPage(phe.Page);
+                    LoadPage(phe.Page, false);
                 }
             }
             else if (cmd.StartsWith("action:"))
@@ -2102,7 +2111,7 @@ namespace GCAL
             int index = -1;
             for (int i = 0; i < TopButtons.Count; i++)
             {
-                if (TopButtons[i].Visible == false)
+                if (TopButtons[i].Tag == null)
                 {
                     index = i;
                     break;
