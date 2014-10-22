@@ -17,42 +17,25 @@
 <p width=50%>{%gstr 1076}</p>
 <table>
 	<tr>
-		<td>{%gstr 12}</td>
+		<td><b>{%gstr 12}</b></td>
 		<td>{%string timezonename}</td>
 	</tr>
 	<tr>
-		<td>{%gstr 281}</td>
+		<td><b>{%gstr 281}</b></td>
 		<td>{%string timezoneoffset}</td>
 	</tr>
 </table>
 
 </center>
 
-<script type="text/javascript">
-writeNavigStart();
-writeNavigItem("{%string leftArrow} {%gstr 238}", 'goBack()');
-writeNavigItem("{%gstr 1072}", 'runAction("cancel")');
-writeNavigItem("{%gstr 1073}", 'runAction("next")');
-writeNavigEnd();
-</script>
-
 </div>
 
 <div id='branchNo'>
 <p align=center><i>{%gstr 1077}</i>
-
-
-<script type="text/javascript">
-writeNavigStart();
-writeNavigItem("{%string leftArrow} {%gstr 238}", "goBack()");
-writeNavigItem("{%gstr 1054}", 'runAction("next")');
-writeNavigEnd();
-</script>
-
 </div>
 
 <script type="text/javascript">
-if (scriptObject.getInt("eventspec") > 0)
+if (scriptObject.getInt("tzusedcount") > 0)
 {
     setDisplay('branchYes', 'none');
 }

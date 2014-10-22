@@ -924,13 +924,6 @@ function onUpdateTransition()
 onLoad();
 refreshTransitionList();
 onChangeUsedDst();
-
-writeNavigStart();
-writeNavigItem("{%gstr 1054}", 'goPage("mainmenu")');
-writeNavigItem("{%string leftArrow} {%gstr 238}", 'goBack()');
-writeNavigItem("{%string nextTitle} {%string rightArrow}", 'onSave();runAction("next")');
-writeNavigEnd();
-
 </script>
 
 

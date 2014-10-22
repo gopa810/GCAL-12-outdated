@@ -16,7 +16,13 @@
 
 td.buttonw {
     text-align:center;
-	cursor:pointer
+	cursor:pointer;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 td.centerb {
@@ -138,7 +144,7 @@ function decr(type, dif)
 </tr>
 <tr>
 <td colspan=2 class='centerb'>{%gstr 1133}</td>
-<td colspan=2 class='centerb'>(%gstr 1134)</td>
+<td colspan=2 class='centerb'>{%gstr 1134}</td>
 </tr>
 <tr>
 <td class='buttonw' ><input type="button" value="-10 Deg" onclick='decr(0, 10);'></td>

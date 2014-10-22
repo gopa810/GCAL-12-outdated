@@ -75,7 +75,7 @@ namespace GCAL.Base
             int count = 0;
             foreach (GPLocation location in locations)
             {
-                if (location.getCountryCode() == code)
+                if (location.getCountryCode().Equals(code))
                     count++;
             }
             return count;
@@ -86,7 +86,7 @@ namespace GCAL.Base
             int count = 0;
             foreach (GPLocation location in locations)
             {
-                if (location.getTimeZoneName() == tzone)
+                if (location.getTimeZoneName().Equals(tzone))
                     count++;
             }
             return count;

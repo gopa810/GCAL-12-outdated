@@ -114,14 +114,14 @@ setInterval(checkName, 300);
 <h2>{%gstr 281}</h2>
 <select id='fldOffset' onchange='onValueChanged();'>
 <script>
-	var list = scriptObject.getTimezoneOffsets().split("<line>");
-	for(i= 0; i < list.length; i++)
-	{
-		var line = list[i].split("<br>");
-		document.write("<option value='" + line[0] + "'>");
-		document.write(line[1]);
-		document.write("</option>");
-	}
+     var list = scriptObject.getTimezoneOffsets().split("<line>");
+     for(i= 0; i < list.length; i++)
+     {
+	  var line = list[i].split("<br>");
+	  document.write("<option value='" + line[0] + "'>");
+	  document.write(line[1]);
+	  document.write("</option>");
+     }
 </script>
 </select>
 
@@ -133,13 +133,8 @@ setInterval(checkName, 300);
 
 <script type="text/javascript">
 
-onCriteriaChanged();
+     onCriteriaChanged();
 
-writeNavigStart();
-writeNavigItem("{%gstr 1054}", 'goPage("mainmenu")');
-writeNavigItem("{%string leftArrow} {%gstr 238}", "goBack();");
-writeNavigItem("{%gstr 239} {%string rightArrow}", 'onSave();runAction("next");');
-writeNavigEnd();
 </script>
 
 

@@ -63,6 +63,7 @@ namespace GCAL
         public class FlowCommand
         {
             public string Command;
+            public List<FlowCommand> Commands = new List<FlowCommand>();
             public string[] Args;
             public FlowCommand()
             {
@@ -192,6 +193,27 @@ namespace GCAL
                             target = fp;
                         }
                     }
+                    else if (target is FlowCommand)
+                    {
+                        FlowCommand flowCmd = target as FlowCommand;
+                        if (line.Length > 1 && line[0].Equals("if"))
+                        {
+                            FlowCommand fc = new FlowCommand(line);
+                            flowCmd.Commands.Add(fc);
+                            stack.Add(fc);
+                            target = fc;
+                        }
+                        else if (line.Length > 0 && line[0].Equals("end"))
+                        {
+                            target = stack[stack.Count - 1];
+                            stack.RemoveAt(stack.Count - 1);
+                        }
+                        else
+                        {
+                            FlowCommand fc = new FlowCommand(line);
+                            flowCmd.Commands.Add(fc);
+                        }
+                    }
                     else if (target is FlowPage)
                     {
                         FlowPage fp = target as FlowPage;
@@ -207,6 +229,13 @@ namespace GCAL
                         else if (line.Length > 1 && line[0].Equals("exec"))
                         {
                             fp.Commands.Add(new FlowCommand(line));
+                        }
+                        else if (line.Length > 1 && line[0].Equals("if"))
+                        {
+                            FlowCommand fc = new FlowCommand(line);
+                            stack.Add(target);
+                            target = fc;
+                            fp.Commands.Add(fc);
                         }
                         else if (line.Length > 1 && line[0].Equals("action"))
                         {
@@ -242,6 +271,13 @@ namespace GCAL
                                 FlowPage fp = target as FlowPage;
                                 fp.Actions.Add(fa.Name, fa);
                             }
+                        }
+                        else if (line.Length > 1 && line[0].Equals("if"))
+                        {
+                            FlowCommand fc = new FlowCommand(line);
+                            stack.Add(fc);
+                            target = fc;
+                            fa.Commands.Add(fc);
                         }
                         else
                         {
@@ -459,28 +495,7 @@ namespace GCAL
             // executing page commands
             foreach (FlowCommand cmd in CurrentPage.Commands)
             {
-                if (cmd.Command.Equals("set"))
-                {
-                    string var = cmd.getArg(0);
-                    if (var.StartsWith("$"))
-                        var = var.Substring(1);
-                    dictStrings[var] = cmd.getArgSubst(1, dictStrings);
-                }
-                else if (cmd.Equals("button"))
-                {
-                    if (cmd.getArg(0).Equals("top"))
-                    {
-                        addTopButton(cmd.getArgSubst(1, dictStrings), cmd.getArgSubst(2, dictStrings));
-                    }
-                    else if (cmd.getArg(0).Equals("bottom"))
-                    {
-                        addBottomButton(cmd.getArgSubst(1, dictStrings), cmd.getArgSubst(2, dictStrings));
-                    }
-                }
-                else if (cmd.Equals("exec"))
-                {
-                    executeFlowCommand(cmd);
-                }
+                executeFlowCommand(cmd);
             }
 
             recalculateLayout();
@@ -1117,7 +1132,7 @@ namespace GCAL
             else if (cmd.Equals("removeeventid"))
             {
                 GPEvent ev = GPEventList.getShared().find(getInt("eventid"));
-                if (ev != null)
+                if (ev != null && ev.nUsed > 0)
                 {
                     GPEventList.getShared().RemoveEvent(ev);
                 }
@@ -1149,6 +1164,7 @@ namespace GCAL
                     saveInt("eventvisibility", ev.nVisible);
                     saveInt("eventfasttype", ev.getRawFastType());
                     saveInt("eventspec", ev.nSpec);
+                    saveInt("eventused", ev.nUsed);
                 }
             }
             else if (cmd.Equals("initnewevent"))
@@ -1183,6 +1199,7 @@ namespace GCAL
                     saveString("tzdata", tz.getStringData());
                     saveString("timezonename", tz.Name);
                     saveString("timezoneoffset", tz.getOffsetString());
+                    saveInt("tzusedcount", GPLocationList.getShared().GetLocationCountForTimezone(tz.Name));
                 }
             }
             else if (cmd.Equals("updatetzone"))
@@ -1852,6 +1869,17 @@ namespace GCAL
                     var = var.Substring(1);
                 dictStrings[var] = cmd.getArgSubst(1, dictStrings);
             }
+            else if (cmd.Equals("button"))
+            {
+                if (cmd.getArg(0).Equals("top"))
+                {
+                    addTopButton(cmd.getArgSubst(1, dictStrings), cmd.getArgSubst(2, dictStrings));
+                }
+                else if (cmd.getArg(0).Equals("bottom"))
+                {
+                    addBottomButton(cmd.getArgSubst(1, dictStrings), cmd.getArgSubst(2, dictStrings));
+                }
+            }
             else if (cmd.Command.Equals("exec"))
             {
                 ExecuteCommand(cmd.getArgSubst(0, dictStrings));
@@ -1860,6 +1888,51 @@ namespace GCAL
             {
                 WebBrowser.Document.InvokeScript(cmd.getArg(0));
             }
+            else if (cmd.Command.Equals("if"))
+            {
+                if (evaluateConditionExpression(cmd.getArgSubst(0, dictStrings), cmd.getArgSubst(1, dictStrings), cmd.getArgSubst(2, dictStrings)))
+                {
+                    foreach(FlowCommand fc in cmd.Commands)
+                    {
+                        executeFlowCommand(fc);
+                    }
+                }
+            }
+        }
+
+        public bool evaluateConditionExpression(string arg1, string oper, string arg2)
+        {
+            switch(oper)
+            {
+                case "==":
+                    return safeInt(arg1) == safeInt(arg2);
+                case "!=":
+                    return safeInt(arg1) != safeInt(arg2);
+                case ">":
+                    return safeInt(arg1) > safeInt(arg2);
+                case "<":
+                    return safeInt(arg1) < safeInt(arg2);
+                case ">=":
+                    return safeInt(arg1) >= safeInt(arg2);
+                case "<=":
+                    return safeInt(arg1) <= safeInt(arg2);
+                case "eq":
+                    return arg1.Equals(arg2);
+                case "ne":
+                    return !arg1.Equals(arg2);
+                default:
+                    break;
+            }
+
+            return false;
+        }
+
+        public int safeInt(string s)
+        {
+            int i;
+            if (int.TryParse(s, out i))
+                return i;
+            return 0;
         }
 
         public void saveContent()
@@ -2174,6 +2247,7 @@ namespace GCAL
 
             WebBrowser.Location = origin;
             WebBrowser.Size = size;
+
         }
     }
 }

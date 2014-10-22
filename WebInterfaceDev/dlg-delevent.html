@@ -11,44 +11,28 @@
 <body>
 
 <center>
-<h1>{%gstr 1071}</h1>
+<h1>{%gstr 1064}</h1>
 
 <div id='branchYes'>
 <p width=50%>{%gstr 1070}</p>
-<table>
+<table cellspacing=0 cellpadding=8>
 	<tr>
-		<td>{%gstr 315}</td>
+		<td><b>{%gstr 315}</b></td>
 		<td>{%string eventtitle}</td>
 	</tr>
 </table>
 
 </center>
 
-<script type="text/javascript">
-writeNavigStart();
-writeNavigItem("{%string leftArrow} {%title -1}", "goBack()");
-writeNavigItem("{%gstr 1072}", "goPage(\"mainmenu\")");
-writeNavigItem("{%gstr 1073}", "goNext();");
-writeNavigEnd();
-</script>
-
 </div>
 
 <div id='branchNo'>
 <p align=center><i>{%gstr 1074}</i>
 
-
-<script type="text/javascript">
-writeNavigStart();
-writeNavigItem("{%string leftArrow} {%title -1}", "goBack()");
-writeNavigItem("Main menu", "goPage(\"mainmenu\")");
-writeNavigEnd();
-</script>
-
 </div>
 
 <script type="text/javascript">
-if (scriptObject.getInt("eventspec") > 0)
+if (scriptObject.getInt("eventused") == 0)
 {
     setDisplay('branchYes', 'none');
 }
@@ -58,3 +42,5 @@ else
 }
 </script>
 
+</body>
+</html>

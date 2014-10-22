@@ -850,7 +850,9 @@ end page
 
 page dlg-findevent-ee
   source dlg-findevent
+  button bottom "$239" 'action:next'
   action next
+    script "onSave"
     set $disableeventtype 1
     exec loadeventid
     set $currTitle $1165
@@ -860,7 +862,9 @@ end page
 
 page dlg-findevent-ed
   source dlg-findevent
+  button bottom "$239" 'action:next'
   action next
+    script "onSave"
     exec loadeventid
     goto dlg-delevent
   end action
@@ -878,6 +882,7 @@ end page
 
 page dlg-editevent-edit
   source dlg-editevent
+  button bottom "$1062" 'action:next'
   action next
     script "onSave"
     exec savechangedevent
@@ -888,11 +893,16 @@ end page
 
 page dlg-delevent
   source dlg-delevent
+  button bottom "$239" 'action:next'
   action next
     exec removeeventid
     goto geo-events
   end action
 end page
+
+##################################################
+#     TIMEZONES                                  #
+##################################################
 
 page geo-tzones
   source geo-tzones
@@ -918,7 +928,9 @@ end page
 
 page dlg-edittimezone
   source dlg-edittimezone
+  button bottom "$1062" 'action:next'
   action next
+    script "onSave"
     exec $nextedittzaction
     goto geo-tzones
   end action
@@ -926,7 +938,9 @@ end page
 
 page dlg-findtz-te
   source dlg-findtz
+  button bottom "$239" 'action:next'
   action next
+    script "onSave"
     exec loadtzone
     goto dlg-edittimezone
   end action
@@ -934,7 +948,9 @@ end page
 
 page dlg-findtz-td
   source dlg-findtz
+  button bottom "$239" 'action:next'
   action next
+    script "onSave"
     exec loadtzone
     goto dlg-deltzone
   end action
@@ -942,6 +958,13 @@ end page
 
 page dlg-deltzone
   source dlg-deltzone
+  if $tzusedcount == 0
+    button bottom "$1072" 'action:cancel'
+    button bottom "$1073" 'action:next'
+  end if
+  if $tzusedcount > 0
+    button bottom "$239" 'action:cancel'
+  end if
   action next
     exec deltzone
     goto geo-tzones
