@@ -705,8 +705,10 @@ namespace GCAL.Base
             bool dst;
             DateTime dt;
             getLocalTimeEx(out dt, out dst);
+            if (dt.Second >= 30)
+                dt = dt.AddMinutes(1);
             int h = dt.Hour;
-            int m = dt.Minute + ((dt.Second > 30) ? 1 : 0);
+            int m = dt.Minute;
 
             if (dstIndicator != null && getLocation().getTimeZone().isSupportDaylightSaving())
                 dstIndicator = GPAppHelper.GetDSTSignature(dst ? 1 : 0);
