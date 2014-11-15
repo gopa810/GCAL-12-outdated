@@ -145,7 +145,7 @@ namespace GCAL.Base
                         m_text.Append(dayText);
                         m_text.Append("\",");
 
-                        str2 = string.Format("\"{0}.{1}.{2}\",\"0:00:00\",\"{3}.{4}.{5}\",\"0:00:00\",\"True\",\"false\"\n",
+                        str2 = string.Format("\"{0}.{1}.{2}\",\"0:00:00\",\"{3}.{4}.{5}\",\"0:00:00\",\"True\",\"False\"\n",
                             pvd.date.getDay(), pvd.date.getMonth(), pvd.date.getYear(), nextd.date.getDay(),
                             nextd.date.getMonth(), nextd.date.getYear());
                         m_text.Append(str2);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.IO;
@@ -97,11 +98,12 @@ namespace GCAL.Base
 
                 if (bSucc == false)
                 {
+                    NumberFormatInfo fmt = new NumberFormatInfo();
                     GPLocation loc = new GPLocation();
                     loc.setCity(GPUserDefaults.StringForKey("myloc.city", "Mayapur"));
                     loc.setCountryCode(GPUserDefaults.StringForKey("myloc.country", "IN"));
-                    loc.setLatitudeNorthPositive(double.Parse(GPUserDefaults.StringForKey("myloc.lat", "23.423413")));
-                    loc.setLongitudeEastPositive(double.Parse(GPUserDefaults.StringForKey("myloc.lon", "88.388079")));
+                    loc.setLatitudeNorthPositive(double.Parse(GPUserDefaults.StringForKey("myloc.lat", "23.423413"), fmt));
+                    loc.setLongitudeEastPositive(double.Parse(GPUserDefaults.StringForKey("myloc.lon", "88.388079"), fmt));
                     loc.setTimeZoneName(GPUserDefaults.StringForKey("myloc.tzname", "Asia/Calcutta"));
                     myLocation.setDefaultLocation(loc);
                 }

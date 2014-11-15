@@ -379,16 +379,18 @@ namespace GCAL.Base
                 if (GPDisplays.Calendar.EkadasiParanaDetails())
                 {
                     shortTime = ekadasiParanaStart.getShortTimeString(false, ref dstIndicator);
-                    str = string.Format("{0} {1} ({2}) - {3} ({4}) {5}", GPStrings.getString(60),
+                    str = string.Format("{0} {1} ({2}) - {3} ({4})", GPStrings.getString(60),
                         shortTime, GPAppHelper.GetParanaReasonText(EkadasiParanaReasonStart),
-                        ekadasiParanaEnd.getShortTimeString(false, ref dstIndicator2), GPAppHelper.GetParanaReasonText(EkadasiParanaReasonEnd), dstIndicator);
+                        ekadasiParanaEnd.getShortTimeString(false, ref dstIndicator2), GPAppHelper.GetParanaReasonText(EkadasiParanaReasonEnd));
                 }
                 else
                 {
                     shortTime = ekadasiParanaStart.getShortTimeString(false, ref dstIndicator);
-                    str = string.Format("{0} {1} - {2} {3}", GPStrings.getString(60),
-                        shortTime, ekadasiParanaEnd.getShortTimeString(false, ref dstIndicator2), dstIndicator);
+                    str = string.Format("{0} {1} - {2}", GPStrings.getString(60),
+                        shortTime, ekadasiParanaEnd.getShortTimeString(false, ref dstIndicator2));
                 }
+                if (!String.IsNullOrEmpty(dstIndicator))
+                    str += " " + dstIndicator;
             }
             else if (ekadasiParanaStart != null)
             {

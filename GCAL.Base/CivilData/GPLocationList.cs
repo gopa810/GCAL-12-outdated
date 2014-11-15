@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Resources;
@@ -31,10 +32,11 @@ namespace GCAL.Base
         {
             if (parts.Length >= 5 && parts[0].Length > 0)
             {
+                NumberFormatInfo fmt = new NumberFormatInfo();
                 GPLocation location = new GPLocation();
                 location.setCity(parts[0]);
-                location.setLatitudeNorthPositive(double.Parse(parts[1]));
-                location.setLongitudeEastPositive(double.Parse(parts[2]));
+                location.setLatitudeNorthPositive(double.Parse(parts[1], fmt));
+                location.setLongitudeEastPositive(double.Parse(parts[2], fmt));
                 location.setCountryCode(parts[3]);
                 location.setTimeZoneName(parts[4]);
                 locations.Add(location);
