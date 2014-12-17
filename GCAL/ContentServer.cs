@@ -11,6 +11,7 @@ using System.Drawing;
 
 using GCAL.Base;
 using GCAL.Engine;
+using GCAL.Dialogs;
 
 namespace GCAL
 {
@@ -446,6 +447,17 @@ namespace GCAL
             //LoadFile("dlg-findtz.html");
         }
 
+        public void EditString(int i)
+        {
+            DialogEditString des = new DialogEditString(i);
+
+            if (des.ShowDialog() == DialogResult.OK)
+            {
+                GPStrings.getSharedStrings().setString(i, des.getNewText());
+                LoadPage(CurrentPage.Name, false);
+            }
+        }
+
         /// <summary>
         /// Loading definition of page. Here we can decide if we will build
         /// some html page based on definition in file, or we if we will
@@ -456,6 +468,18 @@ namespace GCAL
         /// </param>
         public void LoadPage(string pageId, bool bInsertHistory)
         {
+            if (pageId.StartsWith("editstr_"))
+            {
+                MainForm.Invoke((MethodInvoker)delegate {
+                    int i = -1;
+                    if (int.TryParse(pageId.Substring(8), out i))
+                    {
+                        EditString(i); 
+                    }
+                });
+                return;
+            }
+
             if (bInsertHistory)
             {
                 while (pageHistoryIndex + 1 >= 0 && pageHistoryIndex + 1 < pageHistory.Count)
@@ -471,11 +495,11 @@ namespace GCAL
             clearTopButtons();
             if (pageHistoryIndex > 0)
             {
-                addTopButton("< " + GPStrings.getString(238), "goBack");
+                addTopButton("< " + GPStrings.getPlainString(238), "goBack");
             }
             if (!pageId.Equals("mainmenu"))
             {
-                addTopButton(GPStrings.getString(1054), "mainmenu");
+                addTopButton(GPStrings.getPlainString(1054), "mainmenu");
             }
 
             recalculateLayout();
@@ -699,6 +723,11 @@ namespace GCAL
         public string getMasaName(int i)
         {
             return GPMasa.GetName(i);
+        }
+
+        public string getMasaAbr(int i)
+        {
+            return GPAppHelper.getMonthAbr(i);
         }
 
         public string getFastName(int i)

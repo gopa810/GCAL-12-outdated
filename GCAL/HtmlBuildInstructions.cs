@@ -47,10 +47,10 @@ namespace GCAL
                 {
                     if (!bTableStarted)
                     {
-                        sb.AppendLine("<table width=100%>");
+                        sb.AppendLine("<table width=100% cellpadding=8 cellspacing=6>");
                         bTableStarted = true;
                     }
-                    sb.AppendLine("<tr height=32px><td style='cursor:pointer;border:1px solid black'");
+                    sb.AppendLine("<tr height=32px><td class='choice'");
                     sb.AppendFormat(" onmouseover='shh(1,\"t{0}\")' ", cid);
                     sb.AppendFormat(" onmouseout='shh(0,\"t{0}\")'", cid);
                     sb.AppendFormat(" onclick='runAction(\"{0}\")' id='t{1}'>", cmd.getArg(1), cid);
@@ -62,7 +62,7 @@ namespace GCAL
                 {
                     if (cmd.getArg(0).Equals("start"))
                     {
-                        sb.AppendFormat("<table style='border:0px' align=center width='66%' cellpadding=4 cellspacing=0>");
+                        sb.AppendFormat("<table style='border:0px' align=center width='66%' cellpadding=4 cellspacing=4>");
                         bTableStarted = true;
                     }
                     else if (cmd.getArg(0).Equals("end"))

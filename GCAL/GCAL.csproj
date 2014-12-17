@@ -86,6 +86,12 @@
     <Compile Include="Controls\TravellingEditControl.Designer.cs">
       <DependentUpon>TravellingEditControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\DialogEditString.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\DialogEditString.Designer.cs">
+      <DependentUpon>DialogEditString.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\DisplaySettingsDlg.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -277,6 +283,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\TravellingEditControl.resx">
       <DependentUpon>TravellingEditControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\DialogEditString.resx">
+      <DependentUpon>DialogEditString.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\DisplaySettingsDlg.resx">
       <DependentUpon>DisplaySettingsDlg.cs</DependentUpon>

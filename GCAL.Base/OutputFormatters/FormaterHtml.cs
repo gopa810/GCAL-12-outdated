@@ -521,7 +521,7 @@ namespace GCAL.Base
             int i = 0;
             StringBuilder fout = new StringBuilder();
 
-            fprintf(fout, "<td class=hed colspan=2>{0}</td>", getSharedStringHtml(986).ToUpper());
+            fprintf(fout, "<td class=hed colspan=2>{0}</td>", getSharedStringHtml(985).ToUpper());
             i += 2;
             fprintf(fout, "<td class=hed>{0}</td>", getSharedStringHtml(986).ToUpper());
             i++;

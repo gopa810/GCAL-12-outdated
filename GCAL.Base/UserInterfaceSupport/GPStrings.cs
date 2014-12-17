@@ -38,6 +38,7 @@ namespace GCAL.Base
         }
 
         private static GPStrings _sharedStrings = null;
+        private static GPStrings _originalStrings = null;
         
         public static GPStrings getSharedStrings()
         {
@@ -46,6 +47,16 @@ namespace GCAL.Base
                 _sharedStrings = GPLanguageList.getCurrentLanguage().getStrings();
             }
             return _sharedStrings;
+        }
+
+        public static GPStrings getOriginalStrings()
+        {
+            if (_originalStrings == null)
+            {
+                _originalStrings = new GPStrings();
+                _originalStrings.InitializeFromResources();
+            }
+            return _originalStrings;
         }
 
         public static void setSharedStrings(GPStrings value)
@@ -113,18 +124,35 @@ namespace GCAL.Base
             return getSharedStrings().getStringValue(index);
         }
 
+        public static string getPlainString(int index)
+        {
+            return getSharedStrings().getPlainStringValue(index);
+        }
+
+        public static string getOriginalString(int index)
+        {
+            return getOriginalStrings().getPlainStringValue(index);
+        }
+
         public string getStringValue(int index)
         {
             if (index < 0 || index >= gstr.Count)
                 return string.Empty;
             if (showNumberOfString)
             {
-                return string.Format("<span class=highred>[{0}]</span> {1}", index, gstr[index]);
+                return string.Format("<span class=highred onclick='window.location.href=\"editstr_{0}\"'>{1}</span>", index, gstr[index]);
             }
             else
             {
                 return gstr[index];
             }
+        }
+
+        public string getPlainStringValue(int index)
+        {
+            if (index < 0 || index >= gstr.Count)
+                return string.Empty;
+            return gstr[index];
         }
 
         public string getString(string key)
