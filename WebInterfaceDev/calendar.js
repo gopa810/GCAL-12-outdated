@@ -69,6 +69,12 @@ function setNextMonth() {
    selectedDate.setFullYear(year);
 }
 
+function setd(d,m,y) {
+   selectedDate.setDate(d);
+   selectedDate.setMonth(m);
+   selectedDate.setFullYear(y);
+}
+
 function calendar() {
   // Get the current date parameters.
   date = selectedDate;
@@ -92,7 +98,63 @@ function calendar() {
   var days_in_this_month = getMonthDays(year,month);
 
   // Create the basic Calendar structure.
-  var calendar_html = '<center><table class="calendarTable">';
+  var calendar_html = '<center>';
+  
+    calendar_html += '<table cellspacing=8><tr><td class="calLinks">';
+   cmx = selectedDate.getFullYear();
+  for(ix = -3; ix <= 3; ix++)
+  {
+      if (ix > -3) {
+		calendar_html += ' | ';
+	  }
+      if (ix != 0)
+	  {
+ 		calendar_html += '<span onclick="setd(1,0,' + (ix + cmx) + ');calendar();" ';
+	    calendar_html += ' class="linka"';
+		calendar_html += '>';
+	  }
+	  else 
+	  {
+		calendar_html += '<span>';
+	  }
+	  calendar_html += (ix + cmx);
+	  calendar_html += '</span>';
+  } 
+
+  calendar_html += '</td></tr><tr><td class="calLinks">';
+  cmx = selectedDate.getMonth();
+	cmy = selectedDate.getFullYear();
+  for(ix = -2; ix <= 2; ix++)
+  {
+    nm = cmx + ix;
+	ny = cmy;
+	if (nm < 0) {
+		nm += 12;
+		ny--;
+	} else if (nm > 11) {
+		nm -= 12;
+		ny++;
+	}
+      if (ix > -2) {
+		calendar_html += ' | ';
+	  }
+      if (ix != 0)
+	  {
+		calendar_html += '<span onclick="setd(1, ' + nm + ', ' + ny + ');calendar();" ';
+	    calendar_html += ' class="linka"';
+		calendar_html += '>';
+	  }
+	  else 
+	  {
+		calendar_html += '<span>';
+	  }
+	  calendar_html += scriptObject.getMasaAbr(nm + 1);
+	  calendar_html += '</span>';
+  }
+  calendar_html += '</td></tr></table>';
+
+  
+  calendar_html += '<table class="calendarTable">';
   calendar_html += '<tr>';
   calendar_html += '<td class="monthHead" colspan="7">' + months[month] + ' ' + year + '</td>';
   calendar_html += '</tr>';
@@ -123,6 +185,8 @@ function calendar() {
   }
   calendar_html += '</tr>';
   calendar_html += '</table>';
+  
+  
   calendar_html += '</center>';
   
   // Display the calendar.

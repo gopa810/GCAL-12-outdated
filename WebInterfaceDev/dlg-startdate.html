@@ -40,21 +40,6 @@ function onSave()
   </div>
   <script type="text/javascript">calendar();</script>
 
-  <center>
-  <table class="navigCal" cellpadding=8 cellspacing=8>
-  <tr>
-      <td class="menuItem" onclick="setPrevMonth();calendar();">{%string leftArrow} {%gstr 1055}</td>
-	  <td class="menuItem" onclick="selectedDate.setDate(1);calendar();">{%gstr 1059}</td>
-	  <td class="menuItem" onclick="setNextMonth();calendar();">{%gstr 1056} {%string rightArrow}</td>
-  </tr>
-  <tr>
-	  <td class="menuItem" onclick="setPrevYear();calendar();">{%string leftArrow} {%gstr 1057}</td>
-	  <td class="menuItem" onclick="selectedDate.setDate(1);selectedDate.setMonth(0);calendar();">{%gstr 1060}</td>
-	  <td class="menuItem" onclick="setNextYear();calendar();">{%gstr 1058} {%string rightArrow}</td>
-  </tr>
-  </table>
-  
-  </center>
 
 </body>
 </html>

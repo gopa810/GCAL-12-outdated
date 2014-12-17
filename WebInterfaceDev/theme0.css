@@ -4,12 +4,14 @@
 }
 
 .highred {
-	color:red;
-	font-size:9pt;
+	/*color:red;
+	font-size:9pt;*/
+	cursor:alias;
 }
 body {
    font-family:Helvetica;
    font-size:10pt;
+   background:rgb(242,231,212);
 }
 
 h1 {
@@ -30,6 +32,30 @@ h2 {
 
 td {
     font-size:10pt;
+}
+
+td.choice {
+    color:#663300;
+	cursor:pointer;
+	border:4px solid rgb(233,217,196);
+	background:rgb(224,204,174);
+}
+
+td.calLinks {
+	text-align:center;
+}
+
+td.stepperButton
+{
+	border:1pt solid black;
+	text-align:center;
+	cursor:pointer;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 .calendarTable {
@@ -94,6 +120,10 @@ td {
 	text-align:center;
 }
 
+.linka {
+	color:green;
+	cursor:pointer;
+}
 
 .menuBar td.menuItem {
     cursor:pointer;
@@ -101,7 +131,7 @@ td {
 }
 
 .shadowSubtitle {
-	color: rgb(128,128,128);
+	color: rgb(140,70,0);
 }
 .highlightFinding {
 	background-color: rgb(255,255,128);
@@ -118,13 +148,13 @@ td {
     padding:10pt;
 }
 tr.evenLine {
-    background-color:#ddddff;
+    background-color:rgb(233,217,196);
 }
 td.hed {
     font-family:Verdana;
     font-size:10pt;
     font-weight:bold;
-    background:#aaaaaa;
+    background:rgb(153,134,117);
     color:white;
     text-align:left;
     vertical-align:center;

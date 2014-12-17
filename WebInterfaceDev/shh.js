@@ -11,7 +11,8 @@ function absm(a)
 
 function shh(highIndex, elemId) {
 
-	var highColor2 = '#bbbbbb';
+	var highColor2 = 'rgb(200,175,150)';
+	var highColor3 = 'rgb(233,217,196)';
 
     var elem = document.getElementById(elemId);
 	var isSelectedElem = 0;
@@ -20,16 +21,16 @@ function shh(highIndex, elemId) {
 	}
 	if (highIndex == 2) {
 	    if (isSelectedElem == 1) {
-			elem.style.backgroundColor = '#dddddd';
+			elem.style.backgroundColor = highColor2;
 			elem.setAttribute('seld', 0);
 		} else {
-			elem.style.backgroundColor = '#bbbbbb';
+			elem.style.backgroundColor = highColor3;
 			elem.setAttribute('seld', 1);
 		}
 	}
 	else if (highIndex == 1) {
 	    if (isSelectedElem == 0) {
-			elem.style.backgroundColor = '#dddddd';
+			elem.style.backgroundColor = highColor2;
 		}
 	}
 	else if (highIndex == 0) {

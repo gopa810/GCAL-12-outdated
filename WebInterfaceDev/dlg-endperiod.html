@@ -43,7 +43,7 @@ function setRadioA(elemId, value) {
 	}
 	else
 	{
-		elem.style.backgroundColor = '#ffb';
+		elem.style.backgroundColor = 'rgb(224,204,174)';
 	}
 }
 
@@ -66,6 +66,14 @@ function updateCounter()
 {
 	var elem = document.getElementById('counter');
 	elem.innerHTML = count;
+	
+	
+}
+
+function setCounter(nv)
+{
+    count = nv;
+	updateCounter();
 }
 
 function incr(dif)
@@ -89,16 +97,17 @@ function decr(dif)
 <body>
 
 
-<h1 align=center>{%gstr 262}</h1>
+<h1 align=center>{%gstr 304}</h1>
+<p style='text-align:center'>{%gstr 1175}</p>
 
-<table width=240pt align=center>
+<table width=240pt align=center cellpadding=8 cellspacing=8>
 <tr>
 <td style='text-align:right;font-size:24pt' id='counter' rowspan=2>1</td>
-<td width=32pt class='noselect' style='text-align:center;cursor:pointer' onclick='incr(1);'>+1</td>
-<td width=32pt class='noselect' style='text-align:center;cursor:pointer' onclick='incr(10);'>+10</td>
+<td width=32pt class='stepperButton' onclick='incr(1);'>+1</td>
+<td width=32pt class='stepperButton' onclick='incr(10);'>+10</td>
 </tr><tr>
-<td width=32pt class='noselect' style='text-align:center;cursor:pointer' onclick='decr(1);'>-1</td>
-<td width=32pt class='noselect' style='text-align:center;cursor:pointer' onclick='decr(10);'>-10</td>
+<td width=32pt class='stepperButton' onclick='decr(1);'>-1</td>
+<td width=32pt class='stepperButton' onclick='decr(10);'>-10</td>
 </tr>
 </table>
 
