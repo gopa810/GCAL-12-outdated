@@ -19,6 +19,12 @@ namespace GCAL
     [ComVisibleAttribute(true)]
     public class ContentServer
     {
+        public class ButtonCommandTag
+        {
+            public string Command { get; set; }
+            public int StringIndex { get; set; }
+        }
+
         public class PageHistoryEntry
         {
             public string Page { get; set; }
@@ -85,7 +91,19 @@ namespace GCAL
                     return string.Empty;
                 return Args[i];
             }
-            public string getArgSubst(int i, Dictionary<string, string> dict)
+            public int getArgInt(int i)
+            {
+                int value = -1;
+
+                if (int.TryParse(getArg(i), out value))
+                {
+                    return value;
+                }
+
+                return -1;
+            }
+
+            public string getArgSubst(int i, Dictionary<string, string> dict, bool bPlain)
             {
                 string sa = getArg(i);
                 if (sa.IndexOf("$") >= 0)
@@ -105,7 +123,10 @@ namespace GCAL
                             }
                             else if (int.TryParse(sq, out ik))
                             {
-                                nas[im] = GPStrings.getString(ik);
+                                if (bPlain)
+                                    nas[im] = GPStrings.getPlainString(ik);
+                                else
+                                    nas[im] = GPStrings.getString(ik);
                             }
                             else
                             {
@@ -160,10 +181,17 @@ namespace GCAL
         public List<Button> TopButtons = new List<Button>();
         public List<Button> BottomButtons = new List<Button>();
 
+        public static int currentEditButtonStringIndex = -1;
+
         public ContentServer()
         {
             dictStrings.Add("leftArrow", "&nbsp;&#9001;&#9001;&nbsp;");
             dictStrings.Add("rightArrow", "&nbsp;&#9002;&#9002;&nbsp;");
+        }
+
+        public Dictionary<string, string> getProperties()
+        {
+            return dictStrings;
         }
 
         public string GetFilePath(string file)
@@ -441,21 +469,32 @@ namespace GCAL
         public void LoadStartPage()
         {
             if (getCurrentLanguageId() < 0)
+            {
                 LoadPage("languages", true);
+            }
             else
-                LoadPage("mainmenu", true);
-            //LoadFile("dlg-findtz.html");
+            {
+                int startPage = GPUserDefaults.IntForKey("gen.startpage", 0);
+                if (startPage == 1)
+                {
+                    LoadPage("nextfest", true);
+                }
+                else if (startPage == 2)
+                {
+                    LoadPage("today", true);
+                }
+                else
+                {
+                    LoadPage("mainmenu", true);
+                }
+            }
         }
 
         public void EditString(int i)
         {
-            DialogEditString des = new DialogEditString(i);
+            currentEditButtonStringIndex = i;
 
-            if (des.ShowDialog() == DialogResult.OK)
-            {
-                GPStrings.getSharedStrings().setString(i, des.getNewText());
-                LoadPage(CurrentPage.Name, false);
-            }
+            (MainForm as StartForm).showEditTranslationMenu();
         }
 
         /// <summary>
@@ -468,18 +507,6 @@ namespace GCAL
         /// </param>
         public void LoadPage(string pageId, bool bInsertHistory)
         {
-            if (pageId.StartsWith("editstr_"))
-            {
-                MainForm.Invoke((MethodInvoker)delegate {
-                    int i = -1;
-                    if (int.TryParse(pageId.Substring(8), out i))
-                    {
-                        EditString(i); 
-                    }
-                });
-                return;
-            }
-
             if (bInsertHistory)
             {
                 while (pageHistoryIndex + 1 >= 0 && pageHistoryIndex + 1 < pageHistory.Count)
@@ -495,11 +522,11 @@ namespace GCAL
             clearTopButtons();
             if (pageHistoryIndex > 0)
             {
-                addTopButton("< " + GPStrings.getPlainString(238), "goBack");
+                addTopButton("< " + GPStrings.getPlainString(238), "goBack", 238);
             }
             if (!pageId.Equals("mainmenu"))
             {
-                addTopButton(GPStrings.getPlainString(1054), "mainmenu");
+                addTopButton(GPStrings.getPlainString(1054), "mainmenu", 1054);
             }
 
             recalculateLayout();
@@ -715,6 +742,16 @@ namespace GCAL
             return GPTithi.getFullName(i);
         }
 
+        public string getNaksatraName(int i)
+        {
+            return GPNaksatra.getName(i);
+        }
+
+        public string getYogaName(int i)
+        {
+            return GPYoga.getName(i);
+        }
+
         public string getSankrantiName(int i)
         {
             return GPSankranti.getName(i);
@@ -812,7 +849,7 @@ namespace GCAL
                         resetToday();
 
                     StringBuilder sb = new StringBuilder();
-                    FormaterHtml.WriteTodayInfoHTML(myDate, loc, sb, 10);
+                    FormaterHtml.WriteTodayInfoHTML(myDate, loc, sb, 10, ContentDir);
                     return sb.ToString();
                 }
                 else if (p2 == "nextfest")
@@ -1056,6 +1093,56 @@ namespace GCAL
             }
         }
 
+        private void loadEventFromParameters()
+        {
+            GPEvent ev = GPEventList.getShared().find(getInt("eventid"));
+            if (ev != null)
+            {
+                if (ev is GPEventTithi)
+                {
+                    saveInt("eventtithi", ((GPEventTithi)ev).nTithi);
+                    saveInt("eventmasa", ((GPEventTithi)ev).nMasa);
+                    saveInt("eventtype", 0);
+                }
+                else if (ev is GPEventSankranti)
+                {
+                    saveInt("eventsankranti", ((GPEventSankranti)ev).nSankranti);
+                    saveInt("eventtype", 1);
+                }
+                else if (ev is GPEventRelative)
+                {
+                    saveInt("eventeventref", ((GPEventRelative)ev).nSpecRef);
+                    saveInt("eventtype", 2);
+                }
+                else if (ev is GPEventNaksatra)
+                {
+                    saveInt("eventnaksatra", ((GPEventNaksatra)ev).nNaksatra);
+                    saveInt("eventtype", 3);
+                }
+                else if (ev is GPEventAstro)
+                {
+                    saveInt("eventastro1", ((GPEventAstro)ev).nAstroType);
+                    saveInt("eventdata1", ((GPEventAstro)ev).nData);
+                    saveInt("eventtype", 5);
+                }
+                else if (ev is GPEventYoga)
+                {
+                    saveInt("eventyoga", ((GPEventYoga)ev).nYoga);
+                    saveInt("eventtype", 4);
+                }
+                saveInt("eventclass", ev.nClass);
+                saveInt("eventoffset1", ev.nOffset);
+                saveInt("eventoffset2", ev.nOffset);
+                saveString("eventtitle", ev.strText);
+                saveString("eventfastsubject", ev.strFastSubject);
+                saveInt("eventsinceyear", ev.nStartYear);
+                saveInt("eventvisibility", ev.nVisible);
+                saveInt("eventfasttype", ev.getRawFastType());
+                saveInt("eventspec", ev.nSpec);
+                saveInt("eventused", ev.nUsed);
+            }
+        }
+
         public GPEvent saveEventFromParameters()
         {
             GPEvent ev = null;
@@ -1081,6 +1168,25 @@ namespace GCAL
                 evx.nOffset = getInt("eventoffset2");
                 ev = evx;
             }
+            else if (evType == 3)
+            {
+                GPEventNaksatra evn = new GPEventNaksatra();
+                evn.nNaksatra = getInt("eventnaksatra");
+                ev = evn;
+            }
+            else if (evType == 4)
+            {
+                GPEventYoga evy = new GPEventYoga();
+                evy.nYoga = getInt("eventyoga");
+                ev = evy;
+            }
+            else if (evType == 5)
+            {
+                GPEventAstro eva = new GPEventAstro();
+                eva.nAstroType = getInt("eventastro1");
+                eva.nData = getInt("eventdata1");
+                ev = eva;
+            }
             ev.strText = getString("eventtitle");
             ev.strFastSubject = getString("eventfastsubject");
             ev.nClass = getInt("eventclass");
@@ -1088,6 +1194,7 @@ namespace GCAL
             ev.nUsed = 1;
             ev.nVisible = getInt("eventvisibility");
             ev.setRawFastType(getInt("eventfasttype"));
+            ev.eventId = GPEventList.getNextID();
 
             GPEventList.getShared().add(ev);
 
@@ -1120,6 +1227,15 @@ namespace GCAL
                 GPLocationProvider lp = getLocationWithPostfix("");
                 GPAppHelper.setMyLocation(lp);
                 GPAppHelper.saveMyLocation();
+            }
+            else if (cmd.Equals("clearlocationdata"))
+            {
+                saveString("locationname", null);
+                saveString("locationcountrycode", null);
+                saveString("locationcountry", null);
+                saveString("locationlatitude", null);
+                saveString("locationlongitude", null);
+                saveString("locationtimezone", null);
             }
             else if (cmd.Equals("loadlocationid"))
             {
@@ -1168,33 +1284,7 @@ namespace GCAL
             }
             else if (cmd.Equals("loadeventid"))
             {
-                GPEvent ev = GPEventList.getShared().find(getInt("eventid"));
-                if (ev != null)
-                {
-                    if (ev is GPEventTithi)
-                    {
-                        saveInt("eventtithi", ((GPEventTithi)ev).nTithi);
-                        saveInt("eventmasa", ((GPEventTithi)ev).nMasa);
-                    }
-                    else if (ev is GPEventSankranti)
-                    {
-                        saveInt("eventsankranti", ((GPEventSankranti)ev).nSankranti);
-                    }
-                    else if (ev is GPEventRelative)
-                    {
-                        saveInt("eventeventref", ((GPEventRelative)ev).nSpecRef);
-                    }
-                    saveInt("eventclass", ev.nClass);
-                    saveInt("eventoffset1", ev.nOffset);
-                    saveInt("eventoffset2", ev.nOffset);
-                    saveString("eventtitle", ev.strText);
-                    saveString("eventfastsubject", ev.strFastSubject);
-                    saveInt("eventsinceyear", ev.nStartYear);
-                    saveInt("eventvisibility", ev.nVisible);
-                    saveInt("eventfasttype", ev.getRawFastType());
-                    saveInt("eventspec", ev.nSpec);
-                    saveInt("eventused", ev.nUsed);
-                }
+                loadEventFromParameters();
             }
             else if (cmd.Equals("initnewevent"))
             {
@@ -1209,6 +1299,8 @@ namespace GCAL
                 saveInt("eventfasttype", 0);
                 saveString("eventfastsubject", "");
                 saveInt("eventsinceyear", -10000);
+                saveInt("eventnaksatra", 0);
+                saveInt("eventastro1", 0);
                 saveInt("eventvisibility", 1);
             }
             else if (cmd.Equals("savetzone"))
@@ -1251,6 +1343,7 @@ namespace GCAL
             {
                 if (pageHistoryIndex > 0)
                 {
+                    runAction("onBack");
                     pageHistoryIndex--;
                     PageHistoryEntry phe = pageHistory[pageHistoryIndex];
                     LoadPage(phe.Page, false);
@@ -1284,6 +1377,8 @@ namespace GCAL
                 }
             }
         }
+
+
 
         public int getTimezoneUsage(int tzoneid)
         {
@@ -1322,6 +1417,27 @@ namespace GCAL
                     }
                 }
                 foreach (GPEventRelative er in list.relativeEvents)
+                {
+                    if (er.strText.IndexOf(name, StringComparison.CurrentCultureIgnoreCase) >= 0)
+                    {
+                        events.Add(er);
+                    }
+                }
+                foreach (GPEventNaksatra er in list.naksatraEvents)
+                {
+                    if (er.strText.IndexOf(name, StringComparison.CurrentCultureIgnoreCase) >= 0)
+                    {
+                        events.Add(er);
+                    }
+                }
+                foreach (GPEventAstro er in list.astroEvents)
+                {
+                    if (er.strText.IndexOf(name, StringComparison.CurrentCultureIgnoreCase) >= 0)
+                    {
+                        events.Add(er);
+                    }
+                }
+                foreach (GPEventYoga er in list.yogaEvents)
                 {
                     if (er.strText.IndexOf(name, StringComparison.CurrentCultureIgnoreCase) >= 0)
                     {
@@ -1412,6 +1528,27 @@ namespace GCAL
                     events.Add(er);
                 }
             }
+            foreach (GPEventNaksatra er in list.naksatraEvents)
+            {
+                if (er.nClass == classId)
+                {
+                    events.Add(er);
+                }
+            }
+            foreach (GPEventAstro er in list.astroEvents)
+            {
+                if (er.nClass == classId)
+                {
+                    events.Add(er);
+                }
+            }
+            foreach (GPEventYoga er in list.yogaEvents)
+            {
+                if (er.nClass == classId)
+                {
+                    events.Add(er);
+                }
+            }
 
             StringBuilder sb = new StringBuilder();
             foreach (GPEvent ev in events)
@@ -1472,9 +1609,17 @@ namespace GCAL
         public void saveString(string key, string value)
         {
             if (dictStrings.ContainsKey(key))
-                dictStrings[key] = value;
+            {
+                if (value == null)
+                    dictStrings.Remove(key);
+                else
+                    dictStrings[key] = value;
+            }
             else
-                dictStrings.Add(key, value);
+            {
+                if (value != null)
+                    dictStrings.Add(key, value);
+            }
             Debugger.Log(0,"","saveString(" + key + "," + value + ")\n");
         }
 
@@ -1510,6 +1655,14 @@ namespace GCAL
             return (GPUserDefaults.BoolForKey(key, false) ? 1 : 0).ToString();
         }
 
+        public GPLocation getLocation(int i)
+        {
+            if (i >= 0 && i < locationsList.Count)
+            {
+                return locationsList[i];
+            }
+            return null;
+        }
 
         public void findLocations(string s)
         {
@@ -1793,8 +1946,28 @@ namespace GCAL
             }
         }
 
+
+        public void specialCommand(string str)
+        {
+            if (str.Equals("#calcm;"))
+            {
+                TestForm form = new TestForm();
+                form.content = this;
+                form.Show();
+            }
+        }
+
         public void searchResultString(string str)
         {
+            if (str.StartsWith("#"))
+            {
+                if (str.EndsWith(";"))
+                {
+                    specialCommand(str);
+                }
+                return;
+            }
+
             if (searchTask != null)
                 searchTask.ShouldCancel = true;
 
@@ -1888,7 +2061,7 @@ namespace GCAL
         {
             if (cmd.Command.Equals("goto"))
             {
-                LoadPage(cmd.getArgSubst(0, dictStrings), true);
+                LoadPage(cmd.getArgSubst(0, dictStrings, true), true);
                 return;
             }
             else if (cmd.Command.Equals("set"))
@@ -1896,22 +2069,22 @@ namespace GCAL
                 string var = cmd.getArg(0);
                 if (var.StartsWith("$"))
                     var = var.Substring(1);
-                dictStrings[var] = cmd.getArgSubst(1, dictStrings);
+                dictStrings[var] = cmd.getArgSubst(1, dictStrings, true);
             }
             else if (cmd.Equals("button"))
             {
                 if (cmd.getArg(0).Equals("top"))
                 {
-                    addTopButton(cmd.getArgSubst(1, dictStrings), cmd.getArgSubst(2, dictStrings));
+                    addTopButton(cmd.getArgSubst(1, dictStrings, true), cmd.getArgSubst(2, dictStrings, true), cmd.getArgInt(3));
                 }
                 else if (cmd.getArg(0).Equals("bottom"))
                 {
-                    addBottomButton(cmd.getArgSubst(1, dictStrings), cmd.getArgSubst(2, dictStrings));
+                    addBottomButton(cmd.getArgSubst(1, dictStrings, true), cmd.getArgSubst(2, dictStrings, true), cmd.getArgInt(3));
                 }
             }
             else if (cmd.Command.Equals("exec"))
             {
-                ExecuteCommand(cmd.getArgSubst(0, dictStrings));
+                ExecuteCommand(cmd.getArgSubst(0, dictStrings, true));
             }
             else if (cmd.Command.Equals("script"))
             {
@@ -1919,7 +2092,7 @@ namespace GCAL
             }
             else if (cmd.Command.Equals("if"))
             {
-                if (evaluateConditionExpression(cmd.getArgSubst(0, dictStrings), cmd.getArgSubst(1, dictStrings), cmd.getArgSubst(2, dictStrings)))
+                if (evaluateConditionExpression(cmd.getArgSubst(0, dictStrings, true), cmd.getArgSubst(1, dictStrings, true), cmd.getArgSubst(2, dictStrings, true)))
                 {
                     foreach(FlowCommand fc in cmd.Commands)
                     {
@@ -2208,7 +2381,7 @@ namespace GCAL
             return index;
         }
 
-        public void addTopButton(string buttonTitle, string buttonTag)
+        public void addTopButton(string buttonTitle, string buttonTag, int buttonStringIndex)
         {
             int index = -1;
             for (int i = 0; i < TopButtons.Count; i++)
@@ -2224,12 +2397,15 @@ namespace GCAL
             {
                 Button btn = TopButtons[index];
                 btn.Text = buttonTitle;
-                btn.Tag = buttonTag;
+                ButtonCommandTag bct = new ButtonCommandTag();
+                bct.Command = buttonTag;
+                bct.StringIndex = buttonStringIndex;
+                btn.Tag = bct;
                 btn.Visible = true;
             }
         }
         
-        public void addBottomButton(string buttonTitle, string buttonTag)
+        public void addBottomButton(string buttonTitle, string buttonTag, int buttonStringIndex)
         {
             int index = -1;
             for (int i = 0; i < BottomButtons.Count; i++)
@@ -2245,7 +2421,10 @@ namespace GCAL
             {
                 Button btn = BottomButtons[index];
                 btn.Text = buttonTitle;
-                btn.Tag = buttonTag;
+                ButtonCommandTag bct = new ButtonCommandTag();
+                bct.Command = buttonTag;
+                bct.StringIndex = buttonStringIndex;
+                btn.Tag = bct;
                 btn.Visible = true;
             }
         }

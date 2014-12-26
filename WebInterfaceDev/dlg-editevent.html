@@ -20,12 +20,17 @@ function onSave()
 	saveString("eventclass", getElementValue("fldEventClass"));
 	saveString("eventsinceyear", getElementValue("fldSinceYear"));
 	saveString("eventvisibility", getElementValue("fldVisibility"));
+	saveString("eventnaksatra", getElementValue("fldNaksatra"));
+	saveString("eventyoga", getElementValue("fldYoga"));
+	saveString("eventastro1", getElementValue("fldAstroType"));
+	saveString("eventdata1", getElementValue("fldAstroData"));
 }
 
 function onLoad()
 {
-	setElementValue("fldTitle", loadString("eventtitle"));
 	setElementValue("fldEventType", Number(loadString("eventtype")));
+	onTypeChange();
+	setElementValue("fldTitle", loadString("eventtitle"));
 	setElementValue("fldTithi", Number(loadString("eventtithi")));
 	setElementValue("fldMasa", Number(loadString("eventmasa")));
 	setElementValue("fldSankranti", Number(loadString("eventsankranti")));
@@ -37,28 +42,154 @@ function onLoad()
 	setElementValue("fldEventClass", Number(loadString("eventclass")));
 	setElementValue("fldSinceYear", Number(loadString("eventsinceyear")));
 	setElementValue("fldVisibility", Number(loadString("eventvisibility")));
+	setElementValue("fldAstroType", Number(loadString("eventastro1")));
+	onAstroTypeChange();
+	setElementValue("fldAstroData", Number(loadString("eventdata1")));
+	setElementValue("fldNaksatra", Number(loadString("eventnaksatra")));
+	setElementValue("fldYoga", Number(loadString("eventyoga")));
 }
 
 function onTypeChange()
 {
+	setTitleNote("");
     var el = document.getElementById('fldEventType').value;
-	if (el == 0)
+    document.getElementById('specTithi').style.display = (el == 0 ? 'block' : 'none');
+    document.getElementById('specSank').style.display = (el == 1 ? 'block' : 'none');
+    document.getElementById('specRef').style.display = (el == 2 ? 'block' : 'none');
+    document.getElementById('specNaks').style.display = (el == 3 ? 'block' : 'none');
+    document.getElementById('specYoga').style.display = (el == 4 ? 'block' : 'none');
+    document.getElementById('specAstro').style.display = (el == 5 ? 'block' : 'none');
+}
+
+function setTitleNote(note)
+{
+    var el = document.getElementById('fldTitleNote');
+	if (el != null)
 	{
-	    document.getElementById('specTithi').style.display = 'block';
-	    document.getElementById('specSank').style.display = 'none';
-	    document.getElementById('specRef').style.display = 'none';
+		el.innerHTML = note;
 	}
+}
+
+function onAstroTypeChange()
+{
+// fldAstroType
+    var el = document.getElementById('fldAstroType').value;
+    var data = document.getElementById('fldAstroData');
+    var specdata = document.getElementById('specAstroData');
+	var opt;
+	
+	while (data.hasChildNodes()) {
+		data.removeChild(data.lastChild);
+	}
+
+	specdata.style.display='none';
+	
 	if (el == 1)
 	{
-	    document.getElementById('specTithi').style.display = 'none';
-	    document.getElementById('specSank').style.display = 'block';
-	    document.getElementById('specRef').style.display = 'none';
+		opt = document.createElement('option');
+		opt.value = -1;
+		opt.innerHTML = "&lt;" + scriptObject.gstr(132) + "&gt;";
+		data.appendChild(opt);
+		for (var i = 0; i < 30; i++){
+			opt = document.createElement('option');
+			opt.value = i;
+			opt.innerHTML = scriptObject.getTithiName(i);
+			data.appendChild(opt);
+		}
+		data.value = 0;
+		setTitleNote("You can use placeholders $tithi, $start and $end as part of the name. Examples:" 
+		+ "<br>&nbsp;&nbsp;&nbsp;<i>$tithi tithi from $start until $end</i>"
+		+ "<br>&nbsp;&nbsp;&nbsp;<i>$tithi tithi starts at $start");
+		specdata.style.display='block';
 	}
-	if (el == 2)
+	else if (el == 2)
 	{
-	    document.getElementById('specTithi').style.display = 'none';
-	    document.getElementById('specSank').style.display = 'none';
-	    document.getElementById('specRef').style.display = 'block';
+		opt = document.createElement('option');
+		opt.value = -1;
+		opt.innerHTML = "&lt;" + scriptObject.gstr(132) + "&gt;";
+		data.appendChild(opt);
+		for (var i = 0; i < 27; i++){
+			opt = document.createElement('option');
+			opt.value = i;
+			opt.innerHTML = scriptObject.getNaksatraName(i);
+			data.appendChild(opt);
+		}
+		data.value = 0;
+		setTitleNote("You can use placeholders $naksatra, $start and $end as part of the name. Examples:" 
+		+ "<br>&nbsp;&nbsp;&nbsp;<i>$naksatra naksatra from $start until $end</i>"
+		+ "<br>&nbsp;&nbsp;&nbsp;<i>$naksatra naksatra starts at $start");
+		specdata.style.display='block';
+	}
+	else if (el == 3)
+	{
+		opt = document.createElement('option');
+		opt.value = -1;
+		opt.innerHTML = "&lt;" + scriptObject.gstr(132) + "&gt;";
+		data.appendChild(opt);
+		for (var i = 0; i < 27; i++){
+			opt = document.createElement('option');
+			opt.value = i;
+			opt.innerHTML = scriptObject.getYogaName(i);
+			data.appendChild(opt);
+		}
+		data.value = 0;
+		setTitleNote("You can use placeholders $yoga, $start and $end as part of the name. Examples:" 
+		+ "<br>&nbsp;&nbsp;&nbsp;<i>$yoga yoga from $start until $end</i>"
+		+ "<br>&nbsp;&nbsp;&nbsp;<i>$yoga yoga starts at $start");
+		specdata.style.display='block';
+	}
+	else if (el == 4)
+	{
+		setTitleNote("Yo can use placeholder $time for the time of the event. As extension you can use also ${time-N} or ${time+N} where N is integer number with offset minutes. Examples:"
+		+ "<br><i>&nbsp;&nbsp;&nbsp;Sunrise is at $time</i>"
+		+ "<br><i>&nbsp;&nbsp;&nbsp;Sunrise sandhya ${time-24} to ${time+24}</i>"
+		+ "<br><i>&nbsp;&nbsp;&nbsp;Brahma muhurta ${time-96} to ${time-48}</i>");
+	}
+	else if (el == 5)
+	{
+		setTitleNote("Yo can use placeholder $time for the time of the event. As extension you can use also ${time-N} or ${time+N} where N is integer number with offset minutes. Examples:"
+		+ "<br><i>&nbsp;&nbsp;&nbsp;Noon is at $time</i>"
+		+ "<br><i>&nbsp;&nbsp;&nbsp;Noon sandhya ${time-24} to ${time+24}</i>");
+	}
+	else if (el == 6)
+	{
+		setTitleNote("Yo can use placeholder $time for the time of the event. As extension you can use also ${time-N} or ${time+N} where N is integer number with offset minutes. Examples:"
+		+ "<br><i>&nbsp;&nbsp;&nbsp;Sunset time is $time</i>"
+		+ "<br><i>&nbsp;&nbsp;&nbsp;Sunset sandhya ${time-24} to ${time+24}</i>");
+	}
+	else if (el == 7)
+	{
+		opt = document.createElement('option');
+		opt.value = -1;
+		opt.innerHTML = "&lt;" + scriptObject.gstr(132) + "&gt;";
+		data.appendChild(opt);
+		for (var i = 0; i < 12; i++){
+			opt = document.createElement('option');
+			opt.value = i;
+			opt.innerHTML = scriptObject.getSankrantiName(i);
+			data.appendChild(opt);
+		}
+		data.value = 0;
+		setTitleNote("You can use placeholders $rasi, $start and $end as part of the name. Examples:" 
+		+ "<br>&nbsp;&nbsp;&nbsp;<i>Rasi of the moon $rasi from $start until $end</i>"
+		+ "<br>&nbsp;&nbsp;&nbsp;<i>$rasi rasi (moon) starts at $start");
+		specdata.style.display='block';
+	}
+	else if (el == 8)
+	{
+		setTitleNote("");
+	}
+	else if (el == 9)
+	{
+		setTitleNote("");
+	}
+	else if (el == 10)
+	{
+		setTitleNote("");
+	}
+	else if (el == 11)
+	{
+		setTitleNote("");
 	}
 }
 
@@ -71,122 +202,201 @@ function onTypeChange()
 
 <h2>{%gstr 315}</h2>
 <p width=50%>{%gstr 1083}</p>
-<p><input type="text" id="fldTitle" value="">
+<p><input type="text" id="fldTitle" value="" size=50><br><span id='fldTitleNote'></span>
 
 <h2>{%gstr 1082}</h2>
 <select onchange='onTypeChange();' id='fldEventType'>
   <option value='0'>{%gstr 314}</option>
   <option value='1'>{%gstr 316}</option>
   <option value='2'>{%gstr 317}</option>
+  <option value='3'>{%gstr 1255}</option>
+  <option value='4'>{%gstr 1256}</option>
+  <option value='5'>{%gstr 1257}</option>
 </select>
 
+<!-- ------------------ -->
+<!-- tithi based events -->
+<!-- ------------------ -->
 <div id='specTithi'>
-<h2>{%gstr 13}</h2>
-<select id='fldTithi'>
-<script>
-  for(i= 0; i < 30; i++)
-  {
-     document.write("<option value='" + i + "'>");
-	 document.write(scriptObject.getTithiName(i));
-	 document.write("</option>");
-  }
-</script>
-</select>
-
-<h2>{%gstr 22}</h2>
-<select id='fldMasa'>
-<script>
-  for(i= 0; i < 12; i++)
-  {
-     document.write("<option value='" + i + "'>");
-	 document.write(scriptObject.getMasaName(i));
-	 document.write("</option>");
-  }
-</script>
-</select>
-
-</div>
-
-<div id='specSank'>
-<h2>{%gstr 56}</h2>
-<select id='fldSankranti'>
-<script>
-  for(i= 0; i < 12; i++)
-  {
-     document.write("<option value='" + i + "'>");
-	 document.write(scriptObject.getSankrantiName(i));
-	 document.write("</option>");
-  }
-</script>
-</select>
-
-<h2>{%gstr 281}</h2>
-<select id='fldOffset1'>
-<script>
-  for(i= -4; i < 5; i++)
-  {
-     document.write("<option value='" + i + "'>");
-	 document.write(i.toString() + " days");
-	 document.write("</option>");
-  }
-</script>
-</select>
-
-
-</div>
-
-<div id='specRef'>
-<h2>{%gstr 1084}</h2>
-<select id='fldEventRef'>
-<script>
-var events = scriptObject.getSpecEventsList();
-var list = events.split('<line>');
-var line = [];
-
-  for(i= 0; i < list.length; i++)
-  {
-     line = list[i].split('<r>');
-	 if (line.length == 2)
-	 {
-		 document.write("<option value='" + line[0] + "'>");
-		 document.write(line[1]);
+	<h2>{%gstr 13}</h2>
+	<select id='fldTithi'>
+	<script>
+	  for(i= 0; i < 30; i++)
+	  {
+		 document.write("<option value='" + i + "'>");
+		 document.write(scriptObject.getTithiName(i));
 		 document.write("</option>");
-	 }
-  }
-</script>
-</select>
+	  }
+	</script>
+	</select>
 
-<h2>{%gstr 281}</h2>
-<select id='fldOffset2'>
-<script>
-  for(i= -4; i < 5; i++)
-  {
-     document.write("<option value='" + i + "'>");
-	 document.write(i.toString() + " days");
-	 document.write("</option>");
-  }
-</script>
-</select>
+	<h2>{%gstr 22}</h2>
+	<select id='fldMasa'>
+	<script>
+	  for(i= 0; i < 12; i++)
+	  {
+		 document.write("<option value='" + i + "'>");
+		 document.write(scriptObject.getMasaName(i));
+		 document.write("</option>");
+	  }
+	</script>
+	</select>
 
 </div>
 
-<h2>{%gstr 275}</h2>
-<p>{%gstr 1085}
-<p><input type="text" id="fldFastSubject">
+<!-- ------------------ -->
+<!-- naksatra based events -->
+<!-- ------------------ -->
+<div id='specNaks'>
+	<h2>{%gstr 15}</h2>
+	<select id='fldNaksatra'>
+		<option value='-1'>&lt;{%gstr 132}&gt;</option>
+		<script>
+			for(i = 0; i < 27; i++)
+			{
+			 document.write("<option value='" + i + "'>");
+			 document.write(scriptObject.getNaksatraName(i));
+			 document.write("</option>");
+			}
+		</script>
+	</select>
+</div>
 
-<h2>{%gstr 276}</h2>
-<select id='fldFastType'>
-  <option id='0'>{%gstr 204}</option>
-<script>
-  
-  for(i = 1; i < 7; i++)
-  {
-     document.write('<option value=\'' + i + '\'>');
-	 document.write(scriptObject.getFastName(i));
-	 document.write('</option>');
-  }
-</script>
-</select>
+<!-- ------------------ -->
+<!-- yoga based events -->
+<!-- ------------------ -->
+<div id='specYoga'>
+		<h2>{%gstr 104}</h2>
+		<select id='fldYoga'>
+				<option value='-1'>&lt;{%gstr 132}&gt;</option>
+				<script>
+					for(i = 0; i < 27; i++)
+					{
+					 document.write("<option value='" + i + "'>");
+					 document.write(scriptObject.getYogaName(i));
+					 document.write("</option>");
+					}
+				</script>
+		</select>
+</div>
+
+<!-- ------------------ -->
+<!-- naksatra based events -->
+<!-- ------------------ -->
+<div id='specAstro'>
+		<h2>{%gstr 1258}</h2>
+		<select id='fldAstroType' onchange='onAstroTypeChange();'>
+			<option value='1'>Tithi</option>
+			<option value='2'>Naksatra</option>
+			<option value='3'>Yoga</option>
+			<option value='4'>Sunrise</option>
+			<option value='5'>Noon</option>
+			<option value='6'>Sunset</option>
+			<option value='7'>Rasi of the moon</option>
+			<option value='8'>Rahu Kala</option>
+			<option value='9'>Yamaghantam</option>
+			<option value='10'>Guli Kala</option>
+		</select>
+		
+		<div id='specAstroData'>
+		<h2>Specific data</h2>
+		<select id='fldAstroData'>
+			<option value=0>Sunrise time (festival style)</option>
+			<option value=1>True naksatra start (astronomical)</option>
+		</select>
+		</div>
+</div>
+<!-- ------------------ -->
+<!-- sankranti based events -->
+<!-- ------------------ -->
+<div id='specSank'>
+		<h2>{%gstr 56}</h2>
+		<select id='fldSankranti'>
+				<script>
+				  for(i= 0; i < 12; i++)
+				  {
+					 document.write("<option value='" + i + "'>");
+					 document.write(scriptObject.getSankrantiName(i));
+					 document.write("</option>");
+				  }
+				</script>
+		</select>
+
+		<h2>{%gstr 281}</h2>
+		<select id='fldOffset1'>
+				<script>
+				  for(i= -8; i < 9; i++)
+				  {
+					 document.write("<option value='" + i + "'>");
+					 document.write(i.toString() + " days");
+					 document.write("</option>");
+				  }
+				</script>
+		</select>
+</div>
+
+<!-- ------------------ -->
+<!-- relative based events -->
+<!-- ------------------ -->
+<div id='specRef'>
+	<h2>{%gstr 1084}</h2>
+	<select id='fldEventRef'>
+	<script>
+	var events = scriptObject.getSpecEventsList();
+	var list = events.split('<line>');
+	var line = [];
+
+	  for(i= 0; i < list.length; i++)
+	  {
+		 line = list[i].split('<r>');
+		 if (line.length == 2)
+		 {
+			 document.write("<option value='" + line[0] + "'>");
+			 document.write(line[1]);
+			 document.write("</option>");
+		 }
+	  }
+	</script>
+	</select>
+
+	<h2>{%gstr 281}</h2>
+	<select id='fldOffset2'>
+	<script>
+	  for(i= -8; i < 9; i++)
+	  {
+		 document.write("<option value='" + i + "'>");
+		 document.write(i.toString() + " days");
+		 document.write("</option>");
+	  }
+	</script>
+	</select>
+
+</div>
+
+<p>&nbsp;<br>&nbsp;</p>
+
+<!-- ------------------ -->
+<!-- ------------------ -->
+
+<div class='innerOperList' style='padding:18px'>
+	<h2>{%gstr 275}</h2>
+	<p>{%gstr 1085}
+	<p><input type="text" id="fldFastSubject">
+
+	<h2>{%gstr 276}</h2>
+	<select id='fldFastType'>
+	  <option id='0'>{%gstr 204}</option>
+	<script>
+	  
+	  for(i = 1; i < 7; i++)
+	  {
+		 document.write('<option value=\'' + i + '\'>');
+		 document.write(scriptObject.getFastName(i));
+		 document.write('</option>');
+	  }
+	</script>
+	</select>
+</div>
 
 <h2>{%gstr 277}</h2>
 <select id='fldEventClass'>
@@ -214,9 +424,8 @@ var line = [];
 
 
 <script type="text/javascript">
-onTypeChange();
+setElementValue("fldAstroType", 1);
 onLoad();
-
 
 if (scriptObject.getInt('disableventtype') == 1)
 {

@@ -155,5 +155,15 @@ namespace GCAL.Base
 
             return array[index];
         }
+
+        public static double getUniversalTimeFromDynamicTime(double jd)
+        {
+            return jd - GetDeltaT(jd)/86400.0;
+        }
+
+        public static double getDynamicTimeFromUniversalTime(double j)
+        {
+            return j + GetDeltaT(j)/86400.0;
+        }
     }
 }

@@ -1,6 +1,6 @@
 class choice
 
-h1 "Main Menu"
+h1 "{%gstr 1054}"
 
 choice "{%gstr 387}" calc
 choice "{%gstr 372}" set

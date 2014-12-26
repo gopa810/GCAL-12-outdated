@@ -258,7 +258,7 @@ namespace GCAL.Base
                 {
                     while (b > 100)
                         b = b / 10;
-                    while (b < 10)
+                    while (b < 10 && b > 0)
                         b = b * 10;
                     if (b >= 60)
                     {

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StartForm));
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -42,8 +43,11 @@
             this.buttonBottom3 = new System.Windows.Forms.Button();
             this.buttonBottom2 = new System.Windows.Forms.Button();
             this.buttonBottom1 = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.editTranslationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flowLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // webBrowser1
@@ -89,6 +93,7 @@
             this.button1.Text = "< Back";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button1_MouseClick);
             // 
             // button2
             // 
@@ -106,6 +111,7 @@
             this.button2.Text = "Main Menu";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button1_Click);
+            this.button2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button1_MouseClick);
             // 
             // button3
             // 
@@ -123,6 +129,7 @@
             this.button3.Text = "Main Menu";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button1_Click);
+            this.button3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button1_MouseClick);
             // 
             // button4
             // 
@@ -140,6 +147,7 @@
             this.button4.Text = "Main Menu";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button1_Click);
+            this.button4.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button1_MouseClick);
             // 
             // button5
             // 
@@ -157,6 +165,7 @@
             this.button5.Text = "Main Menu";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button1_Click);
+            this.button5.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button1_MouseClick);
             // 
             // button6
             // 
@@ -174,6 +183,7 @@
             this.button6.Text = "Main Menu";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button1_Click);
+            this.button6.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button1_MouseClick);
             // 
             // flowLayoutPanel2
             // 
@@ -257,6 +267,20 @@
             this.buttonBottom1.UseVisualStyleBackColor = true;
             this.buttonBottom1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editTranslationToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(157, 26);
+            // 
+            // editTranslationToolStripMenuItem
+            // 
+            this.editTranslationToolStripMenuItem.Name = "editTranslationToolStripMenuItem";
+            this.editTranslationToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.editTranslationToolStripMenuItem.Text = "Edit Translation";
+            this.editTranslationToolStripMenuItem.Click += new System.EventHandler(this.editTranslationToolStripMenuItem_Click);
+            // 
             // StartForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -273,6 +297,7 @@
             this.flowLayoutPanel1.PerformLayout();
             this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel2.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -292,5 +317,7 @@
         private System.Windows.Forms.Button buttonBottom3;
         private System.Windows.Forms.Button buttonBottom2;
         private System.Windows.Forms.Button buttonBottom1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem editTranslationToolStripMenuItem;
     }
 }

@@ -52,7 +52,7 @@ namespace GCAL.Base
         /// Reading content from stream
         /// </summary>
         /// <param name="reader"></param>
-        public void ReadStream(TextReader reader, FileKey key)
+        public virtual void ReadStream(TextReader reader, FileKey key)
         {
             string line;
             while ((line = reader.ReadLine()) != null)

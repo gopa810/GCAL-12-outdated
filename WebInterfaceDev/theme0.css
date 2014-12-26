@@ -30,6 +30,30 @@ h2 {
    font-weight: bold;
 }
 
+.head3
+{
+    border-bottom-width:1px;
+	border-bottom-color:black;
+	border-bottom-style:solid;
+}
+
+button.nice {
+   background:rgb(242,231,212);
+   padding:8px;
+}
+
+button.niceInner
+{
+   background:rgb(250,245,235);
+   padding:6px;
+}
+
+.innerOperList
+{
+   background:rgb(250,245,235);
+   border:1px solid rgb(40,20,0);
+}
+
 td {
     font-size:10pt;
 }
@@ -151,7 +175,6 @@ tr.evenLine {
     background-color:rgb(233,217,196);
 }
 td.hed {
-    font-family:Verdana;
     font-size:10pt;
     font-weight:bold;
     background:rgb(153,134,117);
@@ -164,17 +187,18 @@ td.hed {
     padding-bottom:4pt;
 }
 td.hed2 {
-   font-family:Helvetica;
-   font-size:10pt;
-   background:#999999;
-   color:white;
-   text-align:center;
-   vertical-align:center;
-   padding-left:2pt;
-   padding-right:2pt;
-   padding-top:3pt;
-   padding-bottom:3pt;
+    font-size:10pt;
+    font-weight:bold;
+    background:rgb(180,160,140);
+    color:white;
+    text-align:left;
+    vertical-align:center;
+    padding-left:5pt;
+    padding-right:5pt;
+    padding-top:4pt;
+    padding-bottom:4pt;
 }
+
 table.TodayFestBorder {
     border-width:1pt;
     border-color:#555555;

@@ -137,13 +137,24 @@ namespace GCAL.Base.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Type	Class	Masa	Tithi	Visible	Fast Subject	Text	FastType	Used	Start Year	Spec	SpecRef	Sanskranti	Offset
-        ///T	3	0	6	1		Sri Abhirama Thakura -- Disappearance	0	1	-10000				
-        ///T	3	0	9	1		Srila Vrndavana Dasa Thakura -- Disappearance	0	1	-10000				
-        ///T	3	0	14	1		Sri Gadadhara Pandita -- Appearance	0	1	-10000				
-        ///T	1	0	17	1		Aksaya Trtiya. Candana Yatra starts. (Continues for 21 days)	0	1	-10000				
-        ///T	5	0	21	1		Jahnu Saptami	0	1	-10000				
-        ///T	1	0	23	1		Srimati Sita Devi (consort of Lord Sri Rama) -- Appearance	0	1 [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+        ///&lt;events nextid=&quot;500&quot;&gt;
+        ///  &lt;event type=&quot;TITHI&quot; class=&quot;3&quot; visible=&quot;1&quot; used=&quot;1&quot;&gt;
+        ///    &lt;fastsubject&gt;
+        ///    &lt;/fastsubject&gt;
+        ///    &lt;startyear&gt;-10000&lt;/startyear&gt;
+        ///    &lt;specid&gt;0&lt;/specid&gt;
+        ///    &lt;offset&gt;0&lt;/offset&gt;
+        ///    &lt;deleted&gt;0&lt;/deleted&gt;
+        ///    &lt;text&gt;Sri Abhirama Thakura -- Disappearance&lt;/text&gt;
+        ///    &lt;eventid&gt;2&lt;/eventid&gt;
+        ///    &lt;fasttype&gt;0&lt;/fasttype&gt;
+        ///    &lt;tithi&gt;6&lt;/tithi&gt;
+        ///    &lt;masa&gt;0&lt;/masa&gt;
+        ///  &lt;/event&gt;
+        ///  &lt;event type=&quot;TITHI&quot; class=&quot;3&quot; visible=&quot;1&quot; used=&quot;1&quot;&gt;
+        ///    &lt;fastsubject&gt;
+        ///    &lt;/fa [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Events {
             get {
@@ -170,33 +181,27 @@ namespace GCAL.Base.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to note	text	key	comment	
-        ///0	Sunday	Weekday.0.Full		
-        ///1	Monday			
-        ///2	Tuesday			
-        ///3	Wednesday			
-        ///4	Thursday			
-        ///5	Friday			
-        ///6	Saturday			
-        ///7	Date			
-        ///8	Time			
-        ///9	Location			
-        ///10	Latitude			
-        ///11	Longitude			
-        ///12	Timezone			
-        ///13	Tithi			
-        ///14	Tithi Elaps.			
-        ///15	Naksatra			
-        ///16	Naksatra Elaps.			
-        ///17	Child Name Suggestions			
-        ///18	(according naksatra)			
-        ///19	(according rasi)			
-        ///20	Paksa			
-        ///21	(during Purusottama Adhika Masa)			
-        ///22	Masa			
-        ///23	Gaurabda Year			
-        ///24	Celebrations			
-        ///25	Appearance Day Calculation [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to lang	English
+        ///langid	2
+        ///0	Sunday	Weekday.0.Full		Sunday
+        ///1	Monday			Monday
+        ///2	Tuesday			Tuesday
+        ///3	Wednesday			Wednesday
+        ///4	Thursday			Thursday
+        ///5	Friday			Friday
+        ///6	Saturday			Saturday
+        ///7	Date			Date
+        ///8	Time			Time
+        ///9	Location			Location
+        ///10	Latitude			Latitude
+        ///11	Longitude			Longitude
+        ///12	Timezone			Timezone
+        ///13	Tithi			Tithi
+        ///14	Tithi Elaps.			Tithi Elaps.
+        ///15	Naksatra			Naksatra
+        ///16	Naksatra Elaps.			Naksatra Elaps.
+        ///17	Child Name Suggestions			Child Name Suggestions
+        ///18	(according naksatra)			(accordi [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Strings {
             get {
@@ -205,20 +210,20 @@ namespace GCAL.Base.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
-        ///  &lt;timezone_list&gt;
-        ///    &lt;timezone&gt;
-        ///      &lt;name&gt;Africa/Abidjan&lt;/name&gt;
-        ///      &lt;transition date=&quot;2012-08-07 20:16:36 +0000&quot; offset=&quot;0&quot; abbr=&quot;GMT&quot; dst=&quot;0&quot; /&gt;
-        ///    &lt;/timezone&gt;
-        ///    &lt;timezone&gt;
-        ///      &lt;name&gt;Africa/Accra&lt;/name&gt;
-        ///      &lt;transition date=&quot;2012-08-07 20:16:36 +0000&quot; offset=&quot;0&quot; abbr=&quot;GMT&quot; dst=&quot;0&quot; /&gt;
-        ///    &lt;/timezone&gt;
-        ///    &lt;timezone&gt;
-        ///      &lt;name&gt;Africa/Addis_Ababa&lt;/name&gt;
-        ///      &lt;transition date=&quot;2012-08-07 20:16:36 +0000&quot; offset=&quot;10800&quot; abbr=&quot;EAT&quot; dst=&quot;0&quot; /&gt;
-        ///     [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to &lt;timezone_list&gt;
+        ///  &lt;timezone normalAbbr=&quot;GMT&quot; dstAbbr=&quot;GMT&quot; offset=&quot;0&quot; dst=&quot;False&quot;&gt;
+        ///    &lt;name&gt;Africa/Abidjan&lt;/name&gt;
+        ///  &lt;/timezone&gt;
+        ///  &lt;timezone normalAbbr=&quot;GMT&quot; dstAbbr=&quot;GMT&quot; offset=&quot;0&quot; dst=&quot;False&quot;&gt;
+        ///    &lt;name&gt;Africa/Accra&lt;/name&gt;
+        ///  &lt;/timezone&gt;
+        ///  &lt;timezone normalAbbr=&quot;EAT&quot; dstAbbr=&quot;EAT&quot; offset=&quot;180&quot; dst=&quot;False&quot;&gt;
+        ///    &lt;name&gt;Africa/Addis_Ababa&lt;/name&gt;
+        ///  &lt;/timezone&gt;
+        ///  &lt;timezone normalAbbr=&quot;CET&quot; dstAbbr=&quot;CET&quot; offset=&quot;60&quot; dst=&quot;False&quot;&gt;
+        ///    &lt;name&gt;Africa/Algiers&lt;/name&gt;
+        ///  &lt;/timezone&gt;
+        ///  &lt;timezone normalAbbr=&quot;EA [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Timezones {
             get {

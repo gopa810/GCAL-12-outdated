@@ -48,6 +48,7 @@ langid	2
 45	Appearance Day			Appearance Day
 46	Core Events			Core Events
 48	Masa List			Masa List
+49	*	fasting flag
 50	Could not create new window.			Could not create new window.
 51	Sunrise			Sunrise
 52	Sunset			Sunset
@@ -867,10 +868,10 @@ langid	2
 1107	DST Abbreviation			DST Abbreviation
 1108	Enter abbreviation of this timezone when DST is in effect.			Enter abbreviation of this timezone when DST is in effect.
 1109	Rules			Rules
-1110	Here are definitions of rules for offset transitions. Rule specifies day of week, week of month and month for both starting and ending day of DST.			Here are definitions of rules for offset transitions. Rule specifies day of week, week of month and month for both starting and ending day of DST.
+1110	Here are definitions of rules for offset transitions. Rule specifies day of week, week of month and month for both starting and ending day of DST. Using of Daylight Saving is defined either by rule or by transition. A rule defines pattern for transitions over more years. A transition defines transition to and from Daylight hours within one year.			Here are definitions of rules for offset transitions. Rule specifies day of week, week of month and month for both starting and ending day of DST.
 1111	Add			Add
 1112	Remove All			Remove All
-1113	Here are definitions of offset transitions. Transition is defined by exact start and end dates.			Here are definitions of offset transitions. Transition is defined by exact start and end dates.
+1113	Here are definitions of offset transitions. Transition is defined by exact start and end dates for one year. Use rule instead of 'transition', if you want to define transition pattern over more years.			Here are definitions of offset transitions. Transition is defined by exact start and end dates.
 1114	Add New Transition			Add New Transition
 1115	Edit Transition			Edit Transition
 1116	Day Hour of Change			Day Hour of change
@@ -964,4 +965,10 @@ langid	2
 1208	The Event Finder feature could save you from visually scanning pages of calendars to find, for example, the dates of next 3 Janmastamis, or all the fast days for the next year. Just select Search in the main manu. Once you find an event you are looking for, press the Show button to see the surrounding days.			The Event Finder feature could save you from visually scanning pages of calendars to find, for example, the dates of the last 25 Janmastamis, or all the fast days for the next year. Just press Ctrl-F. Once you find an event you are looking for, choose the Calendar Context tab to see the surrounding days.
 1209	Gcal has a lot of options to show particular astronomical or calculation information on the calendar output pages. Or, to streamline your calendar you can remove unneeded types of event notifications. From the Settings menu check out Calendar Display.			Gcal has a lot of options to show particular astronomical or calculation information on the calendar output pages. Or, to streamline your calendar you can remove unneeded types of event notifications. From the Settings menu check out Calendar Display.
 1210	GCal has facility to output in multiple languages, but it requires some effort to set things up. If you would like to volunteer for set up work, please contact the KrishnaDays team.			GCal has facility to output in multiple languages, but it requires some effort to set things up. If you would like to volunteer for set up work, please contact the KrishnaDays team.
-1229	- end of tips -		
+1249	- end of tips -		
+1250	1 week				
+1251	1 month				
+1252	6 months				
+1253	1 year				
+1254	Other Period								
+1255	Naksatra-based Events			

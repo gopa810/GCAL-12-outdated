@@ -330,16 +330,23 @@ namespace GCAL.Base
             double start = m_vcStart.getJulianGreenwichTime();
             double end = m_vcEnd.getJulianGreenwichTime();
 
-            for (int i = 0; i < m_location.getChangeCount(); i++)
+            if (m_location.getChangeCount() > 0)
             {
-                GPLocationChange lc = m_location.getChangeAtIndex(i);
-
-                if ((lc.julianStart >= start && lc.julianStart <= end) &&
-                    (lc.julianEnd >= start && lc.julianEnd <= end))
+                for (int i = 0; i < m_location.getChangeCount(); i++)
                 {
-                    addLocationToList(lc.LocationA, locList);
-                    addLocationToList(lc.LocationB, locList);
+                    GPLocationChange lc = m_location.getChangeAtIndex(i);
+
+                    if ((lc.julianStart >= start && lc.julianStart <= end) &&
+                        (lc.julianEnd >= start && lc.julianEnd <= end))
+                    {
+                        addLocationToList(lc.LocationA, locList);
+                        addLocationToList(lc.LocationB, locList);
+                    }
                 }
+            }
+            else
+            {
+                addLocationToList(m_location.getLocationAtIndex(0), locList);
             }
 
             return locList;

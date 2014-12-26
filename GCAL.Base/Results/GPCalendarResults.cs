@@ -15,6 +15,12 @@ namespace GCAL.Base
         public int m_vcCount;
         public IReportProgress progressReport = null;
 
+        public class AstroEvent
+        {
+            public int data;
+            public GPGregorianTime time;
+        }
+
         public void ResolveFestivalsFasting(int nIndex)
         {
             GPCalendarDay previousDay = m_pData[nIndex - 1];
@@ -130,8 +136,16 @@ namespace GCAL.Base
         protected double GcGetNaksatraEndHour(GPLocationProvider earth, GPGregorianTime yesterday, GPGregorianTime today)
         {
             GPGregorianTime nend;
-            GPGregorianTime snd = yesterday;
+            GPGregorianTime snd = new GPGregorianTime(yesterday);
             snd.setDayHours(0.5);
+            GPNaksatra.GetNextNaksatra(snd, out nend);
+            return nend.getJulianLocalNoon() - today.getJulianLocalNoon() + nend.getDayHours();
+        }
+
+        protected double GcGetNextNaksatraStartHour(GPGregorianTime today)
+        {
+            GPGregorianTime nend;
+            GPGregorianTime snd = new GPGregorianTime(today);
             GPNaksatra.GetNextNaksatra(snd, out nend);
             return nend.getJulianLocalNoon() - today.getJulianLocalNoon() + nend.getDayHours();
         }
@@ -764,32 +778,285 @@ namespace GCAL.Base
             }*/
 
 
-            // ------------------------
-            // test for other festivals
-            // ------------------------
+            // test for other events
+            addTithiEvents(s, t);
+            addNaksatraEvents(s, t);
 
+            // caturmasya tests
+            addCaturmasyaEvents(s, t, u);
+
+            // bhisma pancaka test
+            addBhismaPancaka(t, u);
+
+            return 1;
+        }
+
+        private static void addBhismaPancaka(GPCalendarDay t, GPCalendarDay u)
+        {
+            if (t.astrodata.nMasa == GPMasa.DAMODARA_MASA)
+            {
+                if ((t.astrodata.nPaksa == GPPaksa.GAURA_PAKSA) && (t.nFastType == GPConstants.FAST_EKADASI))
+                {
+                    t.Festivals.Add(new GPCalendarDay.Festival(448, GPStrings.getString(81)));
+                }
+
+                if (GPTithi.TITHI_TRANSIT(t.astrodata.nTithi, u.astrodata.nTithi, GPTithi.TITHI_PURNIMA, GPTithi.TITHI_KRSNA_PRATIPAT))
+                {
+                    // on last day of Caturmasya pratipat system is Bhisma Pancaka ending
+                    t.Festivals.Add(new GPCalendarDay.Festival(448, GPStrings.getString(82)));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Adding caturmasya notes for purnima system
+        /// </summary>
+        /// <param name="s">yesterday</param>
+        /// <param name="t">today</param>
+        /// <param name="u">tomorrow</param>
+        private static void addCaturmasyaPurnimaEvents(GPCalendarDay s, GPCalendarDay t, GPCalendarDay u)
+        {
+            if (t.astrodata.nMasa == GPMasa.VAMANA_MASA && u.astrodata.nMasa == GPMasa.SRIDHARA_MASA)
+            {
+                t.Festivals.Add(new GPCalendarDay.Festival(400, GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getString(112) + " " + GPStrings.getString(965)));
+                t.Festivals.Add(new GPCalendarDay.Festival(401, GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getString(114)));
+            }
+            else if (t.astrodata.nMasa == GPMasa.SRIDHARA_MASA)
+            {
+                if (s.astrodata.nMasa == GPMasa.ADHIKA_MASA)
+                {
+                    t.Festivals.Add(new GPCalendarDay.Festival(404, GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getString(115)));
+                }
+                else if (u.astrodata.nMasa == GPMasa.HRSIKESA_MASA)
+                {
+                    t.Festivals.Add(new GPCalendarDay.Festival(409, GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getString(116) + " " + GPStrings.getString(965)));
+                    t.Festivals.Add(new GPCalendarDay.Festival(410, GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getString(118)));
+                    s.Festivals.Add(new GPCalendarDay.Festival(411, GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getString(113) + " " + GPStrings.getString(965)));
+                }
+            }
+            else if (t.astrodata.nMasa == GPMasa.HRSIKESA_MASA)
+            {
+                if (s.astrodata.nMasa == GPMasa.ADHIKA_MASA)
+                {
+                    t.Festivals.Add(new GPCalendarDay.Festival(415, GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getString(119)));
+                }
+                else if (u.astrodata.nMasa == GPMasa.PADMANABHA_MASA)
+                {
+                    t.Festivals.Add(new GPCalendarDay.Festival(421, GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getString(120) + " " + GPStrings.getString(965)));
+                    t.Festivals.Add(new GPCalendarDay.Festival(422, GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getString(122)));
+                    s.Festivals.Add(new GPCalendarDay.Festival(423, GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getString(117) + " " + GPStrings.getString(965)));
+                }
+            }
+            else if (t.astrodata.nMasa == GPMasa.PADMANABHA_MASA)
+            {
+                if (s.astrodata.nMasa == GPMasa.ADHIKA_MASA)
+                {
+                    t.Festivals.Add(new GPCalendarDay.Festival(427, GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getString(123)));
+                }
+                else if (u.astrodata.nMasa == GPMasa.DAMODARA_MASA)
+                {
+                    t.Festivals.Add(new GPCalendarDay.Festival(433, GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getString(124) + " " + GPStrings.getString(965)));
+                    t.Festivals.Add(new GPCalendarDay.Festival(434, GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getString(126)));
+                    s.Festivals.Add(new GPCalendarDay.Festival(435, GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getString(121) + " " + GPStrings.getString(965)));
+                }
+            }
+            else if (t.astrodata.nMasa == GPMasa.DAMODARA_MASA)
+            {
+                if (s.astrodata.nMasa == GPMasa.ADHIKA_MASA)
+                {
+                    t.Festivals.Add(new GPCalendarDay.Festival(439, GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getString(127)));
+                }
+                else if (u.astrodata.nMasa == GPMasa.KESAVA_MASA)
+                {
+                    s.Festivals.Add(new GPCalendarDay.Festival(445, GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getString(125) + " " + GPStrings.getString(965)));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Adding caturmasya events for pratipat system
+        /// </summary>
+        /// <param name="s">yesterday</param>
+        /// <param name="t">today</param>
+        /// <param name="u">tomorrow</param>
+        private static void addCaturmasyaPratipatEvents(GPCalendarDay s, GPCalendarDay t, GPCalendarDay u)
+        {
+            if (t.astrodata.nMasa == GPMasa.SRIDHARA_MASA)
+            {
+                if (s.astrodata.nMasa == GPMasa.ADHIKA_MASA)
+                {
+                    t.Festivals.Add(new GPCalendarDay.Festival(405, GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getString(115)));
+                }
+                else if (s.astrodata.nMasa == GPMasa.VAMANA_MASA)
+                {
+                    t.Festivals.Add(new GPCalendarDay.Festival(407, GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getString(112) + " " + GPStrings.getString(966)));
+                    t.Festivals.Add(new GPCalendarDay.Festival(408, GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getString(114)));
+                }
+            }
+            else if (t.astrodata.nMasa == GPMasa.HRSIKESA_MASA)
+            {
+                if (s.astrodata.nMasa == GPMasa.ADHIKA_MASA)
+                {
+                    t.Festivals.Add(new GPCalendarDay.Festival(416, GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getString(119)));
+                }
+                else if (s.astrodata.nMasa == GPMasa.SRIDHARA_MASA)
+                {
+                    t.Festivals.Add(new GPCalendarDay.Festival(418, GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getString(116) + " " + GPStrings.getString(966)));
+                    t.Festivals.Add(new GPCalendarDay.Festival(419, GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getString(118)));
+                    s.Festivals.Add(new GPCalendarDay.Festival(420, GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getString(113) + " " + GPStrings.getString(966)));
+                }
+            }
+            else if (t.astrodata.nMasa == GPMasa.PADMANABHA_MASA)
+            {
+                if (s.astrodata.nMasa == GPMasa.ADHIKA_MASA)
+                {
+                    t.Festivals.Add(new GPCalendarDay.Festival(428, GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getString(123)));
+                }
+                else if (s.astrodata.nMasa == GPMasa.HRSIKESA_MASA)
+                {
+                    t.Festivals.Add(new GPCalendarDay.Festival(430, GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getString(120) + " " + GPStrings.getString(966)));
+                    t.Festivals.Add(new GPCalendarDay.Festival(431, GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getString(122)));
+                    s.Festivals.Add(new GPCalendarDay.Festival(432, GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getString(117) + " " + GPStrings.getString(966)));
+                }
+            }
+            else if (t.astrodata.nMasa == GPMasa.DAMODARA_MASA)
+            {
+                if (s.astrodata.nMasa == GPMasa.ADHIKA_MASA)
+                {
+                    t.Festivals.Add(new GPCalendarDay.Festival(440, GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getString(127)));
+                }
+                else if (s.astrodata.nMasa == GPMasa.PADMANABHA_MASA)
+                {
+                    t.Festivals.Add(new GPCalendarDay.Festival(442, GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getString(124) + " " + GPStrings.getString(966)));
+                    t.Festivals.Add(new GPCalendarDay.Festival(443, GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getString(126)));
+                    s.Festivals.Add(new GPCalendarDay.Festival(444, GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getString(121) + " " + GPStrings.getString(966)));
+                }
+                else if (u.astrodata.nMasa == GPMasa.KESAVA_MASA)
+                {
+                    t.Festivals.Add(new GPCalendarDay.Festival(447, GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getString(125) + " " + GPStrings.getString(966)));
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Adding caturmasya events for ekadasi system
+        /// </summary>
+        /// <param name="s">yesterday</param>
+        /// <param name="t">today</param>
+        /// <param name="u">tomorrow</param>
+        private static void addCaturmasyaEkadasiEvents(GPCalendarDay s, GPCalendarDay t, GPCalendarDay u)
+        {
+            if (t.astrodata.nMasa == GPMasa.VAMANA_MASA)
+            {
+                if ((t.astrodata.nPaksa == GPPaksa.GAURA_PAKSA) && (t.nMahadvadasiType != GPConstants.EV_NULL))
+                {
+                    t.Festivals.Add(new GPCalendarDay.Festival(402, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getString(112) + " " + GPStrings.getString(967)));
+                    t.Festivals.Add(new GPCalendarDay.Festival(403, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getString(114)));
+                }
+            }
+            else if (t.astrodata.nMasa == GPMasa.SRIDHARA_MASA)
+            {
+                if (s.astrodata.nMasa == GPMasa.ADHIKA_MASA)
+                {
+                    t.Festivals.Add(new GPCalendarDay.Festival(406, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getString(115)));
+                }
+                else if ((t.astrodata.nPaksa == GPPaksa.GAURA_PAKSA) && (t.nMahadvadasiType != GPConstants.EV_NULL))
+                {
+                    t.Festivals.Add(new GPCalendarDay.Festival(412, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getString(116) + " " + GPStrings.getString(967)));
+                    t.Festivals.Add(new GPCalendarDay.Festival(413, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getString(118)));
+                    s.Festivals.Add(new GPCalendarDay.Festival(414, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getString(113) + " " + GPStrings.getString(967)));
+                }
+            }
+            else if (t.astrodata.nMasa == GPMasa.HRSIKESA_MASA)
+            {
+                if (s.astrodata.nMasa == GPMasa.ADHIKA_MASA)
+                {
+                    t.Festivals.Add(new GPCalendarDay.Festival(417, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getString(119)));
+                }
+                else if ((t.astrodata.nPaksa == GPPaksa.GAURA_PAKSA) && (t.nMahadvadasiType != GPConstants.EV_NULL))
+                {
+                    t.Festivals.Add(new GPCalendarDay.Festival(424, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getString(120) + " " + GPStrings.getString(967)));
+                    t.Festivals.Add(new GPCalendarDay.Festival(425, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getString(122)));
+                    s.Festivals.Add(new GPCalendarDay.Festival(426, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getString(117) + " " + GPStrings.getString(967)));
+                }
+            }
+            else if (t.astrodata.nMasa == GPMasa.PADMANABHA_MASA)
+            {
+                if (s.astrodata.nMasa == GPMasa.ADHIKA_MASA)
+                {
+                    t.Festivals.Add(new GPCalendarDay.Festival(429, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getString(123)));
+                }
+                else if ((t.astrodata.nPaksa == GPPaksa.GAURA_PAKSA) && (t.nMahadvadasiType != GPConstants.EV_NULL))
+                {
+                    t.Festivals.Add(new GPCalendarDay.Festival(436, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getString(124) + " " + GPStrings.getString(967)));
+                    t.Festivals.Add(new GPCalendarDay.Festival(437, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getString(126)));
+                    s.Festivals.Add(new GPCalendarDay.Festival(438, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getString(121) + " " + GPStrings.getString(967)));
+                }
+            }
+            else if (t.astrodata.nMasa == GPMasa.DAMODARA_MASA)
+            {
+                if (s.astrodata.nMasa == GPMasa.ADHIKA_MASA)
+                {
+                    t.Festivals.Add(new GPCalendarDay.Festival(441, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getString(127)));
+                }
+                else if ((t.astrodata.nPaksa == GPPaksa.GAURA_PAKSA) && (t.nMahadvadasiType != GPConstants.EV_NULL))
+                {
+                    s.Festivals.Add(new GPCalendarDay.Festival(446, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getString(125) + " " + GPStrings.getString(967)));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Adding caturmasya events
+        /// </summary>
+        /// <param name="s">yesterday</param>
+        /// <param name="t">today</param>
+        /// <param name="u">tomorrow</param>
+        private static void addCaturmasyaEvents(GPCalendarDay s, GPCalendarDay t, GPCalendarDay u)
+        {
+            if (GPDisplays.General.CaturmasyaEkadasi())
+            {
+                addCaturmasyaEkadasiEvents(s, t, u);
+            }
+            else if (GPDisplays.General.CaturmasyaPratipat())
+            {
+                addCaturmasyaPratipatEvents(s, t, u);
+            }
+            else if (GPDisplays.General.CaturmasyaPurnima())
+            {
+                addCaturmasyaPurnimaEvents(s, t, u);
+            }
+        }
+
+        /// <summary>
+        /// Adding events based on tithi
+        /// </summary>
+        /// <param name="s">yesterday</param>
+        /// <param name="t">today</param>
+        private static void addTithiEvents(GPCalendarDay s, GPCalendarDay t)
+        {
             int n, n2;
             int _masa_from = 0, _masa_to;
             int _tithi_from = 0, _tithi_to;
-            //GPEventTithi pEvx = null;
 
             bool s1 = true, s2 = false;
-
-            if (t.astrodata.nMasa > 11)
-                goto other_fest;
 
             n = t.astrodata.nMasa * 30 + t.astrodata.nTithi;
             _tithi_to = t.astrodata.nTithi;
             _masa_to = t.astrodata.nMasa;
 
+            // in case tithi is vriddhi, then we do not observe events
+            // on second day
             if (s.astrodata.nTithi == t.astrodata.nTithi)
                 s1 = false;
 
-            // if ksaya tithi, then s2 is true
+            // in case tithi is ksaya tithi, 
+            // then we do observe events on next day
+            // then s2 is true
             if ((t.astrodata.nTithi != s.astrodata.nTithi) &&
                 (t.astrodata.nTithi != (s.astrodata.nTithi + 1) % 30))
             {
-                n2 = (n + 359) % 360; // this is index into table of festivals for previous tithi
+                n2 = (n + 359) % 360;
                 _tithi_from = n2 % 30;
                 _masa_from = n2 / 30;
                 s2 = true;
@@ -816,194 +1083,543 @@ namespace GCAL.Base
                     }
                 }
             }
+        }
 
-        other_fest:
-            // ---------------------------
-            // bhisma pancaka test
-            // ---------------------------
+        /// <summary>
+        /// Adding events based on naksatra
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="t"></param>
+        private void addNaksatraEvents(GPCalendarDay s, GPCalendarDay t)
+        {
+            addAstroEvents(s, t);
 
-            if (t.astrodata.nMasa == GPMasa.DAMODARA_MASA)
+            foreach (GPEventNaksatra pEvx in GPEventList.getShared().naksatraEvents)
             {
-                if ((t.astrodata.nPaksa == GPPaksa.GAURA_PAKSA) && (t.nFastType == GPConstants.FAST_EKADASI))
+                if (pEvx.nUsed == 0 || pEvx.nVisible == 0)
+                    continue;
+                if (pEvx.nNaksatra < 0
+                    || ((pEvx.nNaksatra == t.astrodata.nNaksatra)
+                       && (t.astrodata.nNaksatra != s.astrodata.nNaksatra))
+                    || (t.astrodata.nNaksatra == GPNaksatra.NEXT_NAKSATRA(pEvx.nNaksatra)
+                       && (s.astrodata.nNaksatra == GPNaksatra.PREV_NAKSATRA(pEvx.nNaksatra))))
                 {
-                    t.Festivals.Add(new GPCalendarDay.Festival(448, GPStrings.getString(81)));
+                    t.AddFestivalCopy(pEvx);
                 }
             }
 
-            // ---------------------------
-            // caturmasya tests
-            // ---------------------------
+        }
 
-            // first month for punima and ekadasi systems
-            if (t.astrodata.nMasa == GPMasa.VAMANA_MASA)
+        private static void addAstroEvents(GPCalendarDay s, GPCalendarDay t)
+        {
+            foreach (GPEventAstro pe in GPEventList.getShared().astroEvents)
             {
-                // purnima system
-                if (GPTithi.TITHI_TRANSIT(t.astrodata.nTithi, u.astrodata.nTithi, GPTithi.TITHI_GAURA_CATURDASI, GPTithi.TITHI_PURNIMA))
-                {
-                    u.Festivals.Add(new GPCalendarDay.Festival(400, GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getString(112) + " " + GPStrings.getString(965)));
-                    u.Festivals.Add(new GPCalendarDay.Festival(401, GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getString(114)));
-                }
+                if (pe.nUsed == 0 || pe.nVisible == 0)
+                    continue;
+                if (pe.nAstroType == GPEventAstro.AT_NAKSATRA)
+                    addNaksatraAstroEvents(s, t, pe);
+                if (pe.nAstroType == GPEventAstro.AT_TITHI)
+                    addTithiAstroEvents(s, t, pe);
+                if (pe.nAstroType == GPEventAstro.AT_YOGA)
+                    addYogaAstroEvents(s, t, pe);
+                if (pe.nAstroType == GPEventAstro.AT_SUNRISE
+                    || pe.nAstroType == GPEventAstro.AT_NOON
+                    || pe.nAstroType == GPEventAstro.AT_SUNSET)
+                    addSunAstroEvents(s, t, pe);
+                if (pe.nAstroType == GPEventAstro.AT_MOONRASI)
+                    addMoonRasiAstroEvents(s, t, pe);
+                if (pe.nAstroType == GPEventAstro.AT_RAHUKALA)
+                    addRahuKalaAstroEvents(s, t, pe);
+                if (pe.nAstroType == GPEventAstro.AT_YAMAGHANTAM)
+                    addYamaghantaAstroEvents(s, t, pe);
+                if (pe.nAstroType == GPEventAstro.AT_GULIKALAM)
+                    addGuliKalaAstroEvents(s, t, pe);
+            }
 
-                // ekadasi system
-                //if (GPTithi.TITHI_TRANSIT(s.astrodata.nTithi, t.astrodata.nTithi, GPTithi.TITHI_GAURA_DASAMI, GPTithi.TITHI_GAURA_EKADASI))
-                if ((t.astrodata.nPaksa == GPPaksa.GAURA_PAKSA) && (t.nMahadvadasiType != GPConstants.EV_NULL))
+        }
+
+        private static void addRahuKalaAstroEvents(GPCalendarDay s, GPCalendarDay t, GPEventAstro pe)
+        {
+            Dictionary<string, object> data = new Dictionary<string, object>();
+            GPCalendarDay.Festival f = new GPCalendarDay.Festival();
+            int[] part = { 8, 2, 7, 5, 6, 4, 3 };
+            GPGregorianTime snd, end; 
+            double partLength = t.astrodata.sun.DayLength / 8;
+
+            snd = new GPGregorianTime(t.astrodata.sun.rise);
+            snd.addDayHours(partLength * part[t.date.getDayOfWeek()] / 24.0);
+
+            end = new GPGregorianTime(snd);
+            end.addDayHours(partLength / 24.0);
+
+            f.ShowSettingItem = GPDisplays.Keys.FestivalClass(6);
+            data["start"] = snd;
+            data["end"] = end;
+            data["today"] = t.date;
+            f.Text = EvaluateString(pe.strText, data);
+            t.Festivals.Add(f);
+        }
+
+        private static void addYamaghantaAstroEvents(GPCalendarDay s, GPCalendarDay t, GPEventAstro pe)
+        {
+            Dictionary<string, object> data = new Dictionary<string, object>();
+            GPCalendarDay.Festival f = new GPCalendarDay.Festival();
+            int[] part = { 9, 7, 5, 3, 1, 13, 11 };
+            GPGregorianTime snd, end;
+            double partLength = t.astrodata.sun.DayLength / 15;
+
+            snd = new GPGregorianTime(t.astrodata.sun.rise);
+            snd.addDayHours(partLength * part[t.date.getDayOfWeek()] / 24.0);
+
+            end = new GPGregorianTime(snd);
+            end.addDayHours(partLength / 24.0);
+
+            f.ShowSettingItem = GPDisplays.Keys.FestivalClass(6);
+            data["start"] = snd;
+            data["end"] = end;
+            data["today"] = t.date;
+            f.Text = EvaluateString(pe.strText, data);
+            t.Festivals.Add(f);
+        }
+
+        private static void addGuliKalaAstroEvents(GPCalendarDay s, GPCalendarDay t, GPEventAstro pe)
+        {
+            Dictionary<string, object> data = new Dictionary<string, object>();
+            GPCalendarDay.Festival f = new GPCalendarDay.Festival();
+            int[] part = { 6, 5, 4, 3, 2, 1, 7 };
+            GPGregorianTime snd, end;
+            double partLength = t.astrodata.sun.DayLength / 8;
+
+            snd = new GPGregorianTime(t.astrodata.sun.rise);
+            snd.addDayHours(partLength * part[t.date.getDayOfWeek()] / 24.0);
+
+            end = new GPGregorianTime(snd);
+            end.addDayHours(partLength / 24.0);
+
+            f.ShowSettingItem = GPDisplays.Keys.FestivalClass(6);
+            data["start"] = snd;
+            data["end"] = end;
+            data["today"] = t.date;
+            f.Text = EvaluateString(pe.strText, data);
+            t.Festivals.Add(f);
+        }
+
+
+        private static void addSunAstroEvents(GPCalendarDay s, GPCalendarDay t, GPEventAstro pe)
+        {
+            List<AstroEvent> list = new List<AstroEvent>();
+            GPGregorianTime snd = new GPGregorianTime(s.astrodata.sun.rise);
+
+            if (pe.nAstroType == GPEventAstro.AT_SUNRISE)
+                snd = t.astrodata.sun.rise;
+            else if (pe.nAstroType == GPEventAstro.AT_SUNSET)
+                snd = t.astrodata.sun.set;
+            else if (pe.nAstroType == GPEventAstro.AT_NOON)
+                snd = t.astrodata.sun.noon;
+
+            Dictionary<string, object> data = new Dictionary<string, object>();
+            GPCalendarDay.Festival f = new GPCalendarDay.Festival();
+            f.ShowSettingItem = GPDisplays.Keys.FestivalClass(6);
+            data["time"] = snd;
+            data["today"] = t.date;
+            f.Text = EvaluateString(pe.strText, data);
+            t.Festivals.Add(f);
+        }
+
+        private static void addMoonRasiAstroEvents(GPCalendarDay s, GPCalendarDay t, GPEventAstro pe)
+        {
+            List<AstroEvent> list = new List<AstroEvent>();
+            GPGregorianTime nend = null;
+            int naks;
+            GPGregorianTime snd = new GPGregorianTime(s.astrodata.sun.rise);
+            if (pe.nData < 0 || pe.nData == t.astrodata.nMoonRasi)
+            {
+                if (t.astrodata.nMoonRasi != s.astrodata.nMoonRasi)
                 {
-                    t.Festivals.Add(new GPCalendarDay.Festival(402, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getString(112) + " " + GPStrings.getString(967)));
-                    t.Festivals.Add(new GPCalendarDay.Festival(403, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getString(114)));
+                    AstroEvent ae = new AstroEvent();
+                    ae.data = GPMoonRasi.GetNextRasi(snd, out ae.time);
+                    list.Add(ae);
                 }
             }
 
-            // first month for pratipat system
-            // month transit for purnima and ekadasi systems
-            if (t.astrodata.nMasa == GPMasa.SRIDHARA_MASA)
+            Dictionary<string, object> data = new Dictionary<string, object>();
+            foreach (AstroEvent ae in list)
             {
-                if (s.astrodata.nMasa == GPMasa.ADHIKA_MASA)
+                naks = GPMoonRasi.GetNextRasi(ae.time, out nend);
+                GPCalendarDay.Festival f = new GPCalendarDay.Festival();
+                f.ShowSettingItem = GPDisplays.Keys.FestivalClass(6);
+                data["rasi"] = GPSankranti.getName(ae.data);
+                data["start"] = ae.time;
+                data["end"] = nend;
+                data["today"] = ae.time;
+                f.Text = EvaluateString(pe.strText, data);
+                if (ae.time != null && ae.time.CompareYMD(s.date) == 0)
                 {
-                    t.Festivals.Add(new GPCalendarDay.Festival(404, GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getString(115)));
-                    t.Festivals.Add(new GPCalendarDay.Festival(405, GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getString(115)));
-                    t.Festivals.Add(new GPCalendarDay.Festival(406, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getString(115)));
+                    s.Festivals.Add(f);
                 }
-
-                // pratipat system
-                if (GPTithi.TITHI_TRANSIT(s.astrodata.nTithi, t.astrodata.nTithi, GPTithi.TITHI_PURNIMA, GPTithi.TITHI_KRSNA_PRATIPAT))
+                else
                 {
-                    t.Festivals.Add(new GPCalendarDay.Festival(407, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getString(112) + " " + GPStrings.getString(966)));
-                    t.Festivals.Add(new GPCalendarDay.Festival(408, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getString(114)));
+                    t.Festivals.Add(f);
                 }
+            }
+        }
 
-                // first day of particular month for PURNIMA system, when purnima is not KSAYA
-                if (GPTithi.TITHI_TRANSIT(t.astrodata.nTithi, u.astrodata.nTithi, GPTithi.TITHI_GAURA_CATURDASI, GPTithi.TITHI_PURNIMA))
+        private static void addTithiAstroEvents(GPCalendarDay s, GPCalendarDay t, GPEventAstro pe)
+        {
+            List<AstroEvent> list = new List<AstroEvent>();
+            GPGregorianTime nend = null;
+            int naks;
+            int diff = 0;
+            GPGregorianTime snd = new GPGregorianTime(s.astrodata.sun.rise);
+            if (pe.nData < 0)
+            {
+                diff = (t.astrodata.nTithi - s.astrodata.nTithi + 27) % 27;
+                for (int i = 0; i < diff; i++)
                 {
-                    u.Festivals.Add(new GPCalendarDay.Festival(409, GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getString(116) + " " + GPStrings.getString(965)));
-                    u.Festivals.Add(new GPCalendarDay.Festival(410, GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getString(118)));
-                    t.Festivals.Add(new GPCalendarDay.Festival(411, GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getString(113) + " " + GPStrings.getString(965)));
+                    AstroEvent ae = new AstroEvent();
+                    ae.data = GPTithi.GetNextTithiStart(snd, out ae.time);
+                    snd.Copy(ae.time);
+                    snd.addDayHours(1 / 12.0);
+                    list.Add(ae);
                 }
-
-                // ekadasi system
-                //if (GPTithi.TITHI_TRANSIT(s.astrodata.nTithi, t.astrodata.nTithi, GPTithi.TITHI_GAURA_DASAMI, GPTithi.TITHI_GAURA_EKADASI))
-                if ((t.astrodata.nPaksa == GPPaksa.GAURA_PAKSA) && (t.nMahadvadasiType != GPConstants.EV_NULL))
+            }
+            else
+            {
+                if (pe.nData == t.astrodata.nTithi)
                 {
-                    t.Festivals.Add(new GPCalendarDay.Festival(412, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getString(116) + " " + GPStrings.getString(967)));
-                    t.Festivals.Add(new GPCalendarDay.Festival(413, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getString(118)));
-                    s.Festivals.Add(new GPCalendarDay.Festival(414, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getString(113) + " " + GPStrings.getString(967)));
+                    snd = new GPGregorianTime(t.astrodata.sun.rise);
+                    AstroEvent ae = new AstroEvent();
+                    ae.data = (GPTithi.GetPrevTithiStart(snd, out ae.time) + 1) % 30;
+                    list.Add(ae);
+                }
+                if (pe.nData == GPTithi.NEXT_TITHI(s.astrodata.nTithi)
+                    && pe.nData == GPTithi.PREV_TITHI(t.astrodata.nTithi))
+                {
+                    AstroEvent ae = new AstroEvent();
+                    ae.data = GPTithi.GetNextTithiStart(snd, out ae.time);
+                    list.Add(ae);
                 }
             }
 
-            // second month for pratipat system
-            // month transit for purnima and ekadasi systems
-            if (t.astrodata.nMasa == GPMasa.HRSIKESA_MASA)
+            Dictionary<string, object> data = new Dictionary<string, object>();
+            foreach (AstroEvent ae in list)
             {
-                if (s.astrodata.nMasa == GPMasa.ADHIKA_MASA)
+                naks = GPTithi.GetNextTithiStart(ae.time, out nend);
+                GPCalendarDay.Festival f = new GPCalendarDay.Festival();
+                f.ShowSettingItem = GPDisplays.Keys.FestivalClass(6);
+                data["tithi"] = GPTithi.getName(ae.data);
+                data["start"] = ae.time;
+                data["end"] = nend;
+                data["today"] = ae.time;
+                f.Text = EvaluateString(pe.strText, data);
+                if (ae.time != null && ae.time.CompareYMD(s.date) == 0)
                 {
-                    t.Festivals.Add(new GPCalendarDay.Festival(415, GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getString(119)));
-                    t.Festivals.Add(new GPCalendarDay.Festival(416, GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getString(119)));
-                    t.Festivals.Add(new GPCalendarDay.Festival(417, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getString(119)));
+                    s.Festivals.Add(f);
                 }
+                else
+                {
+                    t.Festivals.Add(f);
+                }
+            }
+        }
 
-                // pratipat system
-                if (GPTithi.TITHI_TRANSIT(s.astrodata.nTithi, t.astrodata.nTithi, GPTithi.TITHI_PURNIMA, GPTithi.TITHI_KRSNA_PRATIPAT))
-                //		if (s.astrodata.nMasa == SRIDHARA_MASA)
+        private static void addYogaAstroEvents(GPCalendarDay s, GPCalendarDay t, GPEventAstro pe)
+        {
+            List<AstroEvent> list = new List<AstroEvent>();
+            GPGregorianTime nend = null;
+            int naks;
+            int diff = 0;
+            GPGregorianTime snd = new GPGregorianTime(s.astrodata.sun.rise);
+            if (pe.nData < 0)
+            {
+                diff = (t.astrodata.nYoga - s.astrodata.nYoga + 27) % 27;
+                for (int i = 0; i < diff; i++)
                 {
-                    t.Festivals.Add(new GPCalendarDay.Festival(418, GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getString(116) + " " + GPStrings.getString(966)));
-                    t.Festivals.Add(new GPCalendarDay.Festival(419, GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getString(118)));
-                    s.Festivals.Add(new GPCalendarDay.Festival(420, GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getString(113) + " " + GPStrings.getString(966)));
+                    AstroEvent ae = new AstroEvent();
+                    ae.data = GPYoga.GetNextStart(snd, out ae.time);
+                    snd.Copy(ae.time);
+                    snd.addDayHours(1 / 12.0);
+                    list.Add(ae);
                 }
-
-                // first day of particular month for PURNIMA system, when purnima is not KSAYA
-                if (GPTithi.TITHI_TRANSIT(t.astrodata.nTithi, u.astrodata.nTithi, GPTithi.TITHI_GAURA_CATURDASI, GPTithi.TITHI_PURNIMA))
+            }
+            else
+            {
+                if (pe.nData == t.astrodata.nYoga)
                 {
-                    u.Festivals.Add(new GPCalendarDay.Festival(421, GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getString(120) + " " + GPStrings.getString(965)));
-                    u.Festivals.Add(new GPCalendarDay.Festival(422, GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getString(122)));
-                    t.Festivals.Add(new GPCalendarDay.Festival(423, GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getString(117) + " " + GPStrings.getString(965)));
+                    snd = new GPGregorianTime(t.astrodata.sun.rise);
+                    AstroEvent ae = new AstroEvent();
+                    ae.data = (GPYoga.GetPrevStart(snd, out ae.time) + 1) % 30;
+                    list.Add(ae);
                 }
-                // ekadasi system
-                if ((t.astrodata.nPaksa == GPPaksa.GAURA_PAKSA) && (t.nMahadvadasiType != GPConstants.EV_NULL))
-                //if (GPTithi.TITHI_TRANSIT(s.astrodata.nTithi, t.astrodata.nTithi, GPTithi.TITHI_GAURA_DASAMI, GPTithi.TITHI_GAURA_EKADASI))
+                if (pe.nData == GPYoga.NEXT_YOGA(s.astrodata.nYoga)
+                    && pe.nData == GPYoga.PREV_YOGA(t.astrodata.nYoga))
                 {
-                    t.Festivals.Add(new GPCalendarDay.Festival(424, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getString(120) + " " + GPStrings.getString(967)));
-                    t.Festivals.Add(new GPCalendarDay.Festival(425, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getString(122)));
-                    s.Festivals.Add(new GPCalendarDay.Festival(426, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getString(117) + " " + GPStrings.getString(967)));
+                    AstroEvent ae = new AstroEvent();
+                    ae.data = GPYoga.GetNextStart(snd, out ae.time);
+                    list.Add(ae);
                 }
             }
 
-            // third month for pratipat
-            // month transit for purnima and ekadasi systems
-            if (t.astrodata.nMasa == GPMasa.PADMANABHA_MASA)
+            Dictionary<string, object> data = new Dictionary<string, object>();
+            foreach (AstroEvent ae in list)
             {
-                if (s.astrodata.nMasa == GPMasa.ADHIKA_MASA)
+                naks = GPYoga.GetNextStart(ae.time, out nend);
+                GPCalendarDay.Festival f = new GPCalendarDay.Festival();
+                f.ShowSettingItem = GPDisplays.Keys.FestivalClass(6);
+                data["yoga"] = GPYoga.getName(ae.data);
+                data["start"] = ae.time;
+                data["end"] = nend;
+                data["today"] = ae.time;
+                f.Text = EvaluateString(pe.strText, data);
+                if (ae.time != null && ae.time.CompareYMD(s.date) == 0)
                 {
-                    t.Festivals.Add(new GPCalendarDay.Festival(427, GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getString(123)));
-                    t.Festivals.Add(new GPCalendarDay.Festival(428, GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getString(123)));
-                    t.Festivals.Add(new GPCalendarDay.Festival(429, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getString(123)));
+                    s.Festivals.Add(f);
                 }
-                // pratipat system
-                if (GPTithi.TITHI_TRANSIT(s.astrodata.nTithi, t.astrodata.nTithi, GPTithi.TITHI_PURNIMA, GPTithi.TITHI_KRSNA_PRATIPAT))
-                //		if (s.astrodata.nMasa == HRSIKESA_MASA)
+                else
                 {
-                    t.Festivals.Add(new GPCalendarDay.Festival(430, GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getString(120) + " " + GPStrings.getString(966)));
-                    t.Festivals.Add(new GPCalendarDay.Festival(431, GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getString(122)));
-                    s.Festivals.Add(new GPCalendarDay.Festival(432, GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getString(117) + " " + GPStrings.getString(966)));
+                    t.Festivals.Add(f);
                 }
+            }
+        }
 
-                // first day of particular month for PURNIMA system, when purnima is not KSAYA
-                if (GPTithi.TITHI_TRANSIT(t.astrodata.nTithi, u.astrodata.nTithi, GPTithi.TITHI_GAURA_CATURDASI, GPTithi.TITHI_PURNIMA))
-                {
-                    u.Festivals.Add(new GPCalendarDay.Festival(433, GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getString(124) + " " + GPStrings.getString(965)));
-                    u.Festivals.Add(new GPCalendarDay.Festival(434, GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getString(126)));
-                    t.Festivals.Add(new GPCalendarDay.Festival(435, GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getString(121) + " " + GPStrings.getString(965)));
-                }
 
-                // ekadasi system
-                if ((t.astrodata.nPaksa == GPPaksa.GAURA_PAKSA) && (t.nMahadvadasiType != GPConstants.EV_NULL))
-                //if (GPTithi.TITHI_TRANSIT(s.astrodata.nTithi, t.astrodata.nTithi, GPTithi.TITHI_GAURA_DASAMI, GPTithi.TITHI_GAURA_EKADASI))
+        private static void addNaksatraAstroEvents(GPCalendarDay s, GPCalendarDay t, GPEventAstro pe)
+        {
+            List<AstroEvent> list = new List<AstroEvent>();
+            GPGregorianTime nend = null;
+            int naks;
+            int diff = 0;
+            GPGregorianTime snd = new GPGregorianTime(s.astrodata.sun.rise);
+            if (pe.nData < 0)
+            {
+                diff = (t.astrodata.nNaksatra - s.astrodata.nNaksatra + 27) % 27;
+                for (int i = 0; i < diff; i++)
                 {
-                    t.Festivals.Add(new GPCalendarDay.Festival(436, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getString(124) + " " + GPStrings.getString(967)));
-                    t.Festivals.Add(new GPCalendarDay.Festival(437, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getString(126)));
-                    s.Festivals.Add(new GPCalendarDay.Festival(438, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getString(121) + " " + GPStrings.getString(967)));
+                    AstroEvent ae = new AstroEvent();
+                    ae.data = GPNaksatra.GetNextNaksatra(snd, out ae.time);
+                    snd.Copy(ae.time);
+                    snd.addDayHours(1/12.0);
+                    list.Add(ae);
+                }
+            }
+            else
+            {
+                if (pe.nData == t.astrodata.nNaksatra)
+                {
+                    snd = new GPGregorianTime(t.astrodata.sun.rise);
+                    AstroEvent ae = new AstroEvent();
+                    ae.data = (GPNaksatra.GetPrevNaksatra(snd, out ae.time) + 1) % 27;
+                    list.Add(ae);
+                }
+                if (pe.nData == GPNaksatra.NEXT_NAKSATRA(s.astrodata.nNaksatra)
+                    && pe.nData == GPNaksatra.PREV_NAKSATRA(t.astrodata.nNaksatra))
+                {
+                    AstroEvent ae = new AstroEvent();
+                    ae.data = GPNaksatra.GetNextNaksatra(snd, out ae.time);
+                    list.Add(ae);
                 }
             }
 
-            // fourth month for pratipat system
-            // month transit for purnima and ekadasi systems
-            if (t.astrodata.nMasa == GPMasa.DAMODARA_MASA)
+            Dictionary<string, object> data = new Dictionary<string, object>();
+            foreach (AstroEvent ae in list)
             {
-                if (s.astrodata.nMasa == GPMasa.ADHIKA_MASA)
+                naks = GPNaksatra.GetNextNaksatra(ae.time, out nend);
+                GPCalendarDay.Festival f = new GPCalendarDay.Festival();
+                f.ShowSettingItem = GPDisplays.Keys.FestivalClass(6);
+                data["naksatra"] = GPNaksatra.getName(ae.data);
+                data["start"] = ae.time;
+                data["end"] = nend;
+                data["today"] = ae.time;
+                f.Text = EvaluateString(pe.strText, data);
+                if (ae.time != null && ae.time.CompareYMD(s.date) == 0)
                 {
-                    t.Festivals.Add(new GPCalendarDay.Festival(439, GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getString(127)));
-                    t.Festivals.Add(new GPCalendarDay.Festival(440, GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getString(127)));
-                    t.Festivals.Add(new GPCalendarDay.Festival(441, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getString(127)));
+                    s.Festivals.Add(f);
                 }
-                // pratipat system
-                if (GPTithi.TITHI_TRANSIT(s.astrodata.nTithi, t.astrodata.nTithi, GPTithi.TITHI_PURNIMA, GPTithi.TITHI_KRSNA_PRATIPAT))
+                else
                 {
-                    t.Festivals.Add(new GPCalendarDay.Festival(442, GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getString(124) + " " + GPStrings.getString(966)));
-                    t.Festivals.Add(new GPCalendarDay.Festival(443, GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getString(126)));
-                    s.Festivals.Add(new GPCalendarDay.Festival(444, GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getString(121) + " " + GPStrings.getString(966)));
-                }
-
-                // last day for punima system
-                if (GPTithi.TITHI_TRANSIT(t.astrodata.nTithi, u.astrodata.nTithi, GPTithi.TITHI_GAURA_CATURDASI, GPTithi.TITHI_PURNIMA))
-                {
-                    t.Festivals.Add(new GPCalendarDay.Festival(445, GPDisplays.Keys.CaturmasyaPurnima, GPStrings.getString(125) + " " + GPStrings.getString(965)));
-                }
-
-                // ekadasi system
-                //if (GPTithi.TITHI_TRANSIT(t.astrodata.nTithi, u.astrodata.nTithi, GPTithi.TITHI_GAURA_DASAMI, GPTithi.TITHI_GAURA_EKADASI))
-                if ((t.astrodata.nPaksa == GPPaksa.GAURA_PAKSA) && (t.nMahadvadasiType != GPConstants.EV_NULL))
-                {
-                    s.Festivals.Add(new GPCalendarDay.Festival(446, GPDisplays.Keys.CaturmasyaEkadasi, GPStrings.getString(125) + " " + GPStrings.getString(967)));
-                }
-
-                if (GPTithi.TITHI_TRANSIT(t.astrodata.nTithi, u.astrodata.nTithi, GPTithi.TITHI_PURNIMA, GPTithi.TITHI_KRSNA_PRATIPAT))
-                {
-                    t.Festivals.Add(new GPCalendarDay.Festival(447, GPDisplays.Keys.CaturmasyaPratipat, GPStrings.getString(125) + " " + GPStrings.getString(966)));
-
-                    // on last day of Caturmasya pratipat system is Bhisma Pancaka ending
-                    t.Festivals.Add(new GPCalendarDay.Festival(448, GPStrings.getString(82)));
+                    t.Festivals.Add(f);
                 }
             }
+        }
 
-            return 1;
+        public static string EvaluateString(string templ, Dictionary<string, object> data)
+        {
+            int mode = 0;
+            int oper = 0;
+            bool hasWrap = false;
+            string name = "";
+            string number = "";
+            string apdx = "";
+            int startTag = 0, endTag = 0;
+            int action = 0;
+            templ += " ";
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < templ.Length; i++)
+            {
+                if (mode == 0)
+                {
+                    if (templ[i] == '$')
+                    {
+                        startTag = i;
+                        mode = 1;
+                        name = "";
+                        number = "";
+                    }
+                    else
+                    {
+                        sb.Append(templ[i]);
+                    }
+                }
+                else if (mode == 1)
+                {
+                    if (templ[i] == '{')
+                    {
+                        mode = 2;
+                        hasWrap = true;
+                    }
+                    else if (Char.IsLetter(templ[i]))
+                    {
+                        name += templ[i];
+                        mode = 2;
+                    }
+                }
+                else if (mode == 2)
+                {
+                    if (hasWrap)
+                    {
+                        if (Char.IsLetter(templ[i]))
+                        {
+                            name += templ[i];
+                            mode = 2;
+                        }
+                        else if (templ[i] == '-')
+                        {
+                            oper = 1;
+                            mode = 4;
+                        }
+                        else if (templ[i] == '+')
+                        {
+                            oper = 2;
+                            mode = 4;
+                        }
+                        else if (templ[i] == '}')
+                        {
+                            endTag = i;
+                            action = 1;
+                        }
+                        else
+                        {
+                            mode = 3;
+                        }
+                    }
+                    else
+                    {
+                        if (Char.IsLetter(templ[i]))
+                        {
+                            name += templ[i];
+                            mode = 2;
+                        }
+                        else
+                        {
+                            apdx += templ[i];
+                            endTag = i;
+                            action = 1;
+                        }
+                    }
+                }
+                else if (mode == 3)
+                {
+                    if (templ[i] == '-')
+                    {
+                        oper = 1;
+                        mode = 4;
+                    }
+                    else if (templ[i] == '+')
+                    {
+                        oper = 2;
+                        mode = 4;
+                    }
+                    else if (templ[i] == '}')
+                    {
+                        endTag = i;
+                        action = 1;
+                    }
+                }
+                else if (mode == 4)
+                {
+                    if (Char.IsDigit(templ[i]))
+                    {
+                        number += templ[i];
+                    }
+                    else if (templ[i] == '}')
+                    {
+                        endTag = i;
+                        action = 1;
+                    }
+                }
+
+                if (action == 1)
+                {
+                    object ob = "";
+                    
+                    if (data.ContainsKey(name))
+                        ob = data[name];
+                    // substitute
+                    if (oper == 0)
+                    {
+                        if (ob is string)
+                        {
+                            sb.Append(ob.ToString());
+                        }
+                        else if (ob is GPGregorianTime)
+                        {
+                            GPGregorianTime gt = ob as GPGregorianTime;
+                            sb.Append(gt.getLongTimeString());
+                        }
+                    }
+                    else if (oper == 1)
+                    {
+                        int num = 0;
+                        if (ob is string)
+                        {
+                            sb.Append(ob.ToString());
+                        }
+                        else if (ob is GPGregorianTime)
+                        {
+                            if (int.TryParse(number, out num))
+                            {
+                                GPGregorianTime gt = new GPGregorianTime(ob as GPGregorianTime);
+                                gt.addDayHours(-Convert.ToDouble(num)/1440);
+                                sb.Append(gt.getLongTimeString());
+                            }
+                        }
+                    }
+                    else if (oper == 2)
+                    {
+                        int num = 0;
+                        if (ob is string)
+                        {
+                            sb.Append(ob.ToString());
+                        }
+                        else if (ob is GPGregorianTime)
+                        {
+                            if (int.TryParse(number, out num))
+                            {
+                                GPGregorianTime gt = new GPGregorianTime(ob as GPGregorianTime);
+                                gt.addDayHours(Convert.ToDouble(num) / 1440);
+                                sb.Append(gt.getLongTimeString());
+                            }
+                        }
+                    }
+
+                    sb.Append(apdx);
+                    apdx = "";
+
+                    mode = 0;
+                    action = 0;
+                }
+            }
+            return sb.ToString();
         }
 
         public int EkadasiCalc(int nIndex, GPLocationProvider earth)

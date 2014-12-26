@@ -196,12 +196,12 @@ namespace GCAL.Base
 
         public static int PREV_NAKSATRA(int n)
         {
-            return (n + 27) % 28;
+            return (n + 26) % 27;
         }
     
         public static int NEXT_NAKSATRA(int n)
         {
-            return (n + 1) % 28;
+            return (n + 1) % 27;
         }
 
     }

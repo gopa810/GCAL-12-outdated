@@ -221,7 +221,7 @@ namespace GCAL_Strings_Editor
             string s = richTextBox1.Text;
             if (s.Length > 0)
             {
-                string d = s.Substring(0, 1).ToUpper() + s.Substring(1);
+                string d = s.Substring(0, 1) + s.Substring(1);
                 richTextBox1.Text = d;
             }
         }

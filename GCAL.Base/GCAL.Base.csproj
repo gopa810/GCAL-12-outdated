@@ -40,9 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CivilData\GPEventAstro.cs" />
+    <Compile Include="CivilData\GPEventNaksatra.cs" />
+    <Compile Include="CivilData\GPEventYoga.cs" />
     <Compile Include="CivilData\GPLocationChange.cs" />
     <Compile Include="CivilData\GPLocationProvider.cs" />
     <Compile Include="Deprecated\GPAstroIterator.cs" />
+    <Compile Include="Deprecated\GPMoonRasi.cs" />
     <Compile Include="GPSortedIntStringList.cs" />
     <Compile Include="OutputFormatters\FormaterCSV.cs" />
     <Compile Include="OutputFormatters\FormaterHtml.cs" />
@@ -76,7 +80,7 @@
     <Compile Include="CivilData\GPCountryList.cs" />
     <Compile Include="UserInterfaceSupport\GPDisplays.cs" />
     <Compile Include="UserInterfaceSupport\GPEngine.cs" />
-    <Compile Include="Results\GPEvent.cs" />
+    <Compile Include="CivilData\GPEvent.cs" />
     <Compile Include="CivilData\GPEventClass.cs" />
     <Compile Include="CivilData\GPEventList.cs" />
     <Compile Include="CivilData\GPEventRelative.cs" />
@@ -99,6 +103,7 @@
     <Compile Include="Deprecated\GPMoon.cs" />
     <Compile Include="Deprecated\GPNaksatra.cs" />
     <Compile Include="UserInterfaceSupport\GPObjectListBase.cs" />
+    <Compile Include="UserInterfaceSupport\GPObjectXmlListBase.cs" />
     <Compile Include="UserInterfaceSupport\GPPaksa.cs" />
     <Compile Include="Deprecated\GPSankranti.cs" />
     <Compile Include="Deprecated\GPShowSetting.cs" />
@@ -142,7 +147,7 @@
     <EmbeddedResource Include="Files\Countries.txt" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Files\Events.txt" />
+    <Content Include="Files\Events.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Files\Locations.txt" />

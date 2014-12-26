@@ -67,10 +67,10 @@ end page
 
 page today
   source today
-  button top "$372" 'action:settings'
-  button bottom "< $369" 'today:prev'
-  button bottom "$43" 'today:today'
-  button bottom "$370 >" 'today:next'
+  button top "$372" 'action:settings' 372
+  button bottom "< $369" 'today:prev' 369
+  button bottom "$43" 'today:today' 43
+  button bottom "$370 >" 'today:next' 370
   action settings
     goto set-disp-today
   end action
@@ -78,7 +78,7 @@ end page
 
 page nextfest
   source nextfest
-  button top "$372" 'action:settings'
+  button top "$372" 'action:settings' 372
   action settings
     goto set-disp-nextfest
   end action
@@ -158,7 +158,7 @@ end page
 
 page dlg-selloc
   source dlg-selloc
-  button bottom "$239 >" 'action:next'
+  button bottom "$239 >" 'action:next' 239
   action next
     script "onSave"
     goto $nextpage
@@ -167,7 +167,7 @@ end page
 
 page dlg-locfull
   source dlg-locfull
-  button bottom "$239 >" 'action:next'
+  button bottom "$239 >" 'action:next' 239
   action next
     script "onSave"
     goto dlg-country
@@ -176,7 +176,7 @@ end page
 
 page dlg-country
   source dlg-country
-  button bottom "$239 >" 'action:next'
+  button bottom "$239 >" 'action:next' 239
   action next
     script "onSave"
     goto dlg-enterlongitude
@@ -185,7 +185,7 @@ end page
 
 page dlg-enterlongitude
   source dlg-enterlongitude
-  button bottom "$239 >" 'action:next'
+  button bottom "$239 >" 'action:next' 239
   action next
     script "onSave"
     goto dlg-enterlatitude
@@ -194,7 +194,7 @@ end page
 
 page dlg-enterlatitude
   source dlg-enterlatitude
-  button bottom "$239 >" 'action:next'
+  button bottom "$239 >" 'action:next' 239
   action next
     script "onSave"
     goto dlg-selcoutz
@@ -203,7 +203,7 @@ end page
 
 page dlg-selcoutz
   source dlg-selcoutz
-  button bottom "$239 >" 'action:next'
+  button bottom "$239 >" 'action:next' 239
   action next
     script "onSave"
     goto $nextpage
@@ -212,27 +212,27 @@ end page
 
 page dlg-startdate-cal
   source dlg-startdate
-  button bottom "$239 >" 'action:next'
+  button bottom "$239 >" 'action:next' 239
   action next
     script "onSave"
     set $nextpage calendar
-    goto dlg-endperiod-x
+    goto dlg-endperiod-a
   end action
 end page
 
 page dlg-startdate-core
   source dlg-startdate
-  button bottom "$239 >" 'action:next'
+  button bottom "$239 >" 'action:next' 239
   action next
     script "onSave"
     set $nextpage coreevents
-    goto dlg-endperiod-x
+    goto dlg-endperiod-a
   end action
 end page
 
 page dlg-startdate-app
   source dlg-startdate
-  button bottom "$239 >" 'action:next'
+  button bottom "$239 >" 'action:next' 239
   action next
     script "onSave"
     goto dlg-time-app
@@ -241,27 +241,54 @@ end page
 
 page dlg-startdate-cal2cal
   source dlg-startdate
-  button bottom "$239 >" 'action:next'
+  button bottom "$239 >" 'action:next' 239
   action next
     script "onSave"
     set $nextpage cal2locs
-    goto dlg-endperiod-x
+    goto dlg-endperiod-a
   end action
 end page
 
 page dlg-startdate-cal2core
   source dlg-startdate
-  button bottom "$239 >" 'action:next'
+  button bottom "$239 >" 'action:next' 239
   action next
     script "onSave"
     set $nextpage calcore
+    goto dlg-endperiod-a
+  end action
+end page
+
+page dlg-endperiod-a
+  source dlg-predefperiod
+  action week
+    set $endperiodlength 1
+	set $endperiodtype 2
+    goto $nextpage
+  end action
+  action month
+    set $endperiodlength 1
+	set $endperiodtype 3
+    goto $nextpage
+  end action
+  action sixmonths
+    set $endperiodlength 6
+	set $endperiodtype 3
+    goto $nextpage
+  end action
+  action year
+    set $endperiodlength 1
+	set $endperiodtype 4
+    goto $nextpage
+  end action
+  action other
     goto dlg-endperiod-x
   end action
 end page
 
 page dlg-endperiod-x
   source dlg-endperiod
-  button bottom "$239 >" 'action:next'
+  button bottom "$239 >" 'action:next' 239
   action next
     script "onSave"
     goto $nextpage
@@ -270,7 +297,7 @@ end page
 
 page dlg-startyear
   source dlg-startyear
-  button bottom "$239 >" 'action:next'
+  button bottom "$239 >" 'action:next' 239
   action next
     script "onSave"
     goto dlg-yearcount
@@ -279,7 +306,7 @@ end page
 
 page dlg-yearcount
   source dlg-yearcount
-  button bottom "$239 >" 'action:next'
+  button bottom "$239 >" 'action:next' 239
   action next
     script "onSave"
     goto masalist
@@ -288,7 +315,7 @@ end page
 
 page dlg-time-app
   source dlg-time
-  button bottom "$239 >" 'action:next'
+  button bottom "$239 >" 'action:next' 239
   action next
     script "onSave"
     goto appday
@@ -297,49 +324,49 @@ end page
 
 page calendar
   source calendar
-  button top $1062 saveContent
-  button top "$372" 'action:settings'
+  button top $1062 saveContent 1062
+  button top "$372" 'action:settings' 372
   action settings
     goto set-disp-cal
   end action
 end page
 
 page calcore
-  button top $1062 saveContent
+  button top $1062 saveContent 1062
   source calcore
 end page
 
 page cal2locs
-  button top $1062 saveContent
+  button top $1062 saveContent 1062
   source cal2locs
-  button top "$372" 'action:settings'
+  button top "$372" 'action:settings' 372
   action settings
     goto set-disp-cal
   end action
 end page
 
 page masalist
-  button top $1062 saveContent
+  button top $1062 saveContent 1062
   source masalist
-  button top "$372" 'action:settings'
+  button top "$372" 'action:settings' 372
   action settings
     goto set-disp-masa
   end action
 end page
 
 page coreevents
-  button top $1062 saveContent
+  button top $1062 saveContent 1062
   source coreevents
-  button top "$372" 'action:settings'
+  button top "$372" 'action:settings' 372
   action settings
     goto set-disp-core
   end action
 end page
 
 page appday
-  button top $1062 saveContent
+  button top $1062 saveContent 1062
   source appday
-  button top "$372" 'action:settings'
+  button top "$372" 'action:settings' 372
   action settings
     goto set-disp-app
   end action
@@ -389,7 +416,10 @@ end page
 
 page set-disp-cal
   source set-disp-cal
-  button bottom "$44" "action:calendar"
+  button bottom "$44" "action:calendar" 44
+  action onBack
+    script "onSave"
+  end action
   action ann
     script "onSave"
     goto set-disp-cal-ann
@@ -409,7 +439,10 @@ end page
 
 page set-disp-cal-ann
   source set-disp-cal-ann
-  button bottom "$44" "action:calendar"
+  button bottom "$44" "action:calendar" 44
+  action onBack
+    script "onSave"
+  end action
   action set-disp-cal
     script "onSave"
     goto set-disp-cal
@@ -422,8 +455,12 @@ end page
 
 page set-disp-cal-hdt
   source set-disp-cal-hdt
-  button bottom "$44" "action:calendar"
+  button bottom "$44" "action:calendar" 44
+  action onBack
+    script "onSave"
+  end action
   action set-disp-cal
+    script "onSave"
     goto set-disp-cal
   end action
   action calendar
@@ -434,7 +471,10 @@ end page
 
 page set-disp-core
   source set-disp-core
-  button bottom "$46" "action:coreevents"
+  button bottom "$46" "action:coreevents" 46
+  action onBack
+    script "onSave"
+  end action
   action sort
     goto set-disp-core-sort
   end action
@@ -447,7 +487,10 @@ end page
 
 page set-disp-core-sort
   source set-disp-core-sort
-  button bottom "$46" "action:coreevents"
+  button bottom "$46" "action:coreevents" 46
+  action onBack
+    script "onSave"
+  end action
   action set-disp-core
    goto set-disp-core
   end action
@@ -459,24 +502,36 @@ end page
 
 page set-disp-app
   source set-disp-app
-  button bottom "$45" "action:calculate"
+  button bottom "$45" "action:calculate" 45
+  action onBack
+    script "onSave"
+  end action
   action calculate
+    script "onSave"
     goto appday
   end action
 end page
 
 page set-disp-masa
   source set-disp-masa
-  button bottom "$48" "action:calculate"
+  button bottom "$48" "action:calculate" 48
+  action onBack
+    script "onSave"
+  end action
   action calculate
+    script "onSave"
     goto masalist
   end action
 end page
 
 page set-disp-today
   source set-disp-today
-  button bottom "$43" "action:calculate"
+  button bottom "$43" "action:calculate" 43
+  action onBack
+    script "onSave"
+  end action
   action calculate
+    script "onSave"
     goto today
   end action
 end page
@@ -484,8 +539,12 @@ end page
 
 page set-disp-nextfest
   source set-disp-nextfest
-  button bottom "$452" "action:calculate"
+  button bottom "$452" "action:calculate" 452
+  action onBack
+    script "onSave"
+  end action
   action calculate
+    script "onSave"
     goto nextfest
   end action
 end page
@@ -544,7 +603,7 @@ end page
 page languages
   source languages
   action select
-    goto mainmenu-set
+    goto mainmenu
   end action
 end page
 
@@ -587,7 +646,7 @@ end page
 
 page dlg-selloc-x
   source dlg-selloc
-  button bottom "$239 >" 'action:next'
+  button bottom "$239 >" 'action:next' 239
   action next
     script "onSave"
     exec loadlocationid
@@ -597,8 +656,9 @@ end page
 
 page dlg-locfull-c
   source dlg-locfull
-  button bottom "$239 >" 'action:next'
+  button bottom "$239 >" 'action:next' 239
   action next
+	exec clearlocationdata
     script "onSave"
     goto dlg-country-c
   end action
@@ -606,7 +666,7 @@ end page
 
 page dlg-country-c
   source dlg-country
-  button bottom "$239 >" 'action:next'
+  button bottom "$239 >" 'action:next' 239
   action next
     script "onSave"
     goto dlg-enterlongitude-c
@@ -615,7 +675,7 @@ end page
 
 page dlg-enterlongitude-c
   source dlg-enterlongitude
-  button bottom "$239 >" 'action:next'
+  button bottom "$239 >" 'action:next' 239
   action next
     script "onSave"
     goto dlg-enterlatitude-c
@@ -624,7 +684,7 @@ end page
 
 page dlg-enterlatitude-c
   source dlg-enterlatitude
-  button bottom "$239 >" 'action:next'
+  button bottom "$239 >" 'action:next' 239
   action next
     script "onSave"
     goto dlg-selcoutz-c
@@ -633,7 +693,7 @@ end page
 
 page dlg-selcoutz-c
   source dlg-selcoutz
-  button bottom "$239 >" 'action:next'
+  button bottom "$239 >" 'action:next' 239
   action next
     script "onSave"
     goto dlg-savelocation-c
@@ -642,7 +702,7 @@ end page
 
 page dlg-savelocation-c
   source dlg-savelocation
-  button bottom "$1062" 'action:save'
+  button bottom "$1062" 'action:save' 1062
   action save
     script "onSave"
     goto geo-cities
@@ -651,7 +711,7 @@ end page
 
 page dlg-editlocation-ce
   source dlg-editlocation
-  button bottom "$1062" 'action:save'
+  button bottom "$1062" 'action:save' 1062
   action save
     script "onSave"
     goto geo-cities
@@ -676,7 +736,7 @@ end page
 page dlg-editloc-locfull
   source dlg-locfull
   set $ppx ""
-  button bottom "$239 >" 'action:next'
+  button bottom "$239 >" 'action:next' 239
   action next
     script "onSave"
     goto dlg-editlocation-ce
@@ -687,7 +747,7 @@ end page
 
 page dlg-editloc-country
   source dlg-country
-  button bottom "$239 >" 'action:next'
+  button bottom "$239 >" 'action:next' 239
   action next
     script "onSave"
     set locationtimezone ""
@@ -697,7 +757,7 @@ end page
 
 page dlg-editloc-selcoutz
   source dlg-selcoutz
-  button bottom "$239 >" 'action:next'
+  button bottom "$239 >" 'action:next' 239
   action next
     script "onSave"
     goto dlg-editlocation-ce
@@ -708,7 +768,7 @@ end page
 
 page dlg-editloc-enterlongitude
   source dlg-enterlongitude
-  button bottom "$239 >" 'action:next'
+  button bottom "$239 >" 'action:next' 239
   action next
     script "onSave"
     goto dlg-editlocation-ce
@@ -717,7 +777,7 @@ end page
 
 page dlg-editloc-enterlatitude
   source dlg-enterlatitude
-  button bottom "$239 >" 'action:next'
+  button bottom "$239 >" 'action:next' 239
   action next
     script "onSave"
     goto dlg-editlocation-ce
@@ -726,8 +786,8 @@ end page
 
 page dlg-dellocation-ce
   source dlg-dellocation
-  button bottom "$1072" 'action:dontdelete'
-  button bottom "$1073" 'action:delete'
+  button bottom "$1072" 'action:dontdelete' 1072
+  button bottom "$1073" 'action:delete' 1073
   action delete
     script "onSave"
     set $locationid ""
@@ -741,8 +801,8 @@ end page
 page dlg-confmylocation
   source dlg-confmylocation
   exec loadlocationid
-  button bottom "$237" 'action:cancel'
-  button bottom "$1062" 'action:next'
+  button bottom "$237" 'action:cancel' 237
+  button bottom "$1062" 'action:next' 1062
   action next
      exec setmylocation
      goto mainmenu-set
@@ -767,7 +827,7 @@ end page
 
 page dlg-country-coe
   source dlg-country
-  button bottom "$1151" 'action:next'
+  button bottom "$1151" 'action:next' 1151
   action next
     script "onSave"
     goto dlg-renamecountry
@@ -783,7 +843,7 @@ end page
 
 page dlg-newcountry
   source dlg-newcountry
-  button bottom "$1062" 'action:next'
+  button bottom "$1062" 'action:next' 1062
   action next
     script "onSave"
     goto dlg-editcoutz
@@ -792,7 +852,7 @@ end page
 
 page dlg-editcoutz
   source dlg-editcoutz
-  button bottom "$1062" 'action:parent'
+  button bottom "$1062" 'action:parent' 1062
   action add
     goto dlg-editctz-seltzoff
   end action
@@ -818,7 +878,7 @@ end page
 
 page dlg-renamecountry
   source dlg-renamecountry
-  button bottom "$1062" 'action:next'
+  button bottom "$1062" 'action:next' 1062
   action next
     script "onSave"
     goto geo-countries
@@ -850,7 +910,7 @@ end page
 
 page dlg-findevent-ee
   source dlg-findevent
-  button bottom "$239" 'action:next'
+  button bottom "$239" 'action:next' 239
   action next
     script "onSave"
     set $disableeventtype 1
@@ -862,7 +922,7 @@ end page
 
 page dlg-findevent-ed
   source dlg-findevent
-  button bottom "$239" 'action:next'
+  button bottom "$239" 'action:next' 239
   action next
     script "onSave"
     exec loadeventid
@@ -872,7 +932,7 @@ end page
 
 page dlg-editevent-add
   source dlg-editevent
-  button bottom "$1062" 'action:next'
+  button bottom "$1062" 'action:next' 1062
   action next
     script "onSave"
     exec newevent
@@ -882,7 +942,7 @@ end page
 
 page dlg-editevent-edit
   source dlg-editevent
-  button bottom "$1062" 'action:next'
+  button bottom "$1062" 'action:next' 1062
   action next
     script "onSave"
     exec savechangedevent
@@ -893,7 +953,7 @@ end page
 
 page dlg-delevent
   source dlg-delevent
-  button bottom "$239" 'action:next'
+  button bottom "$239" 'action:next' 239
   action next
     exec removeeventid
     goto geo-events
@@ -928,7 +988,7 @@ end page
 
 page dlg-edittimezone
   source dlg-edittimezone
-  button bottom "$1062" 'action:next'
+  button bottom "$1062" 'action:next' 1062
   action next
     script "onSave"
     exec $nextedittzaction
@@ -938,7 +998,7 @@ end page
 
 page dlg-findtz-te
   source dlg-findtz
-  button bottom "$239" 'action:next'
+  button bottom "$239" 'action:next' 239
   action next
     script "onSave"
     exec loadtzone
@@ -948,7 +1008,7 @@ end page
 
 page dlg-findtz-td
   source dlg-findtz
-  button bottom "$239" 'action:next'
+  button bottom "$239" 'action:next' 239
   action next
     script "onSave"
     exec loadtzone
@@ -959,11 +1019,11 @@ end page
 page dlg-deltzone
   source dlg-deltzone
   if $tzusedcount == 0
-    button bottom "$1072" 'action:cancel'
-    button bottom "$1073" 'action:next'
+    button bottom "$1072" 'action:cancel' 1072
+    button bottom "$1073" 'action:next' 1073
   end if
   if $tzusedcount > 0
-    button bottom "$239" 'action:cancel'
+    button bottom "$239" 'action:cancel' 239
   end if
   action next
     exec deltzone

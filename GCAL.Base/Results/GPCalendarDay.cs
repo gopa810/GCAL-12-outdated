@@ -359,7 +359,7 @@ namespace GCAL.Base
 
         public string getFastingFlag()
         {
-                return ((nFastType != GPConstants.FAST_NULL) ? GPStrings.getString(987).ToUpper() : string.Empty);
+                return ((nFastType != GPConstants.FAST_NULL) ? GPStrings.getString(49) : string.Empty);
         }
 
         public string getYogaName()

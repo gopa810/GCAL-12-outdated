@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using GCAL.Base;
+using GCAL.Dialogs;
 
 namespace GCAL
 {
@@ -37,6 +38,8 @@ namespace GCAL
             content.BottomBar = flowLayoutPanel2;
             webBrowser1.ObjectForScripting = content;
             content.LoadStartPage();
+
+            //content.specialCommand("#calcm;");
         }
 
         private void webBrowser1_Navigating(object sender, WebBrowserNavigatingEventArgs e)
@@ -66,11 +69,49 @@ namespace GCAL
             if (sender is Button)
             {
                 Button b = sender as Button;
-                if (b.Tag != null)
+                if (b.Tag != null && b.Tag is ContentServer.ButtonCommandTag)
                 {
-                    content.ExecuteCommand(b.Tag.ToString());
+                    ContentServer.ButtonCommandTag bct = b.Tag as ContentServer.ButtonCommandTag;
+                    content.ExecuteCommand(bct.Command);
                 }
             }
+        }
+
+        private void button1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (sender is Button)
+            {
+                if (e.Button == System.Windows.Forms.MouseButtons.Right)
+                {
+                    Button b = sender as Button;
+                    if (b.Tag != null && b.Tag is ContentServer.ButtonCommandTag)
+                    {
+                        ContentServer.ButtonCommandTag bct = b.Tag as ContentServer.ButtonCommandTag;
+                        if (bct.StringIndex >= 0)
+                        {
+                            ContentServer.currentEditButtonStringIndex = bct.StringIndex;
+                            showEditTranslationMenu();
+                        }
+                    }
+                }
+            }
+        }
+
+        private void editTranslationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogEditString des = new DialogEditString(ContentServer.currentEditButtonStringIndex);
+
+            if (des.ShowDialog() == DialogResult.OK)
+            {
+                GPStrings.getSharedStrings().setString(ContentServer.currentEditButtonStringIndex, des.getNewText());
+                GPStrings.getSharedStrings().Modified = true;
+                content.LoadPage(content.CurrentPage.Name, false);
+            }
+        }
+
+        public void showEditTranslationMenu()
+        {
+            contextMenuStrip1.Show(System.Windows.Forms.Cursor.Position);
         }
 
     }

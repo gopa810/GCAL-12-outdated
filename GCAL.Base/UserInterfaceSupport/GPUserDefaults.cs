@@ -71,7 +71,7 @@ namespace GCAL.Base
         {
             if (File.Exists(fileName))
             {
-                string [] s = File.ReadAllLines(fileName);
+                string[] s = File.ReadAllLines(fileName);
                 boolValues.Clear();
                 intValues.Clear();
                 stringValues.Clear();
@@ -94,6 +94,10 @@ namespace GCAL.Base
                         }
                     }
                 }
+            }
+            else
+            {
+                initDefault();
             }
         }
 
@@ -125,6 +129,91 @@ namespace GCAL.Base
         }
 
         #endregion
+
+        public void initDefault()
+        {
+            SetIntForKey("gen.caturmasya", 2);
+            SetIntForKey("gen.week.firstday", 0);
+            SetBoolForKey("gen.defevents.editable", false);
+            SetBoolForKey("gen.highlight.oddlines", true);
+            SetIntForKey("gen.timeformat", 1);
+            SetIntForKey("gen.fastingnotation", 0);
+            SetIntForKey("gen.masaname.format", 0);
+            SetIntForKey("gen.sankranti.name.format", 0);
+            SetBoolForKey("masa.visible.0", true);
+            SetBoolForKey("masa.visible.1", true);
+            SetBoolForKey("masa.visible.2", true);
+            SetBoolForKey("masa.visible.3", true);
+            SetBoolForKey("masa.visible.4", true);
+            SetBoolForKey("masa.visible.5", true);
+            SetBoolForKey("masa.visible.6", true);
+            SetBoolForKey("masa.visible.7", true);
+            SetBoolForKey("masa.visible.8", true);
+            SetBoolForKey("masa.visible.9", true);
+            SetBoolForKey("masa.visible.10", true);
+            SetBoolForKey("masa.visible.11", true);
+            SetBoolForKey("masa.visible.12", true);
+            SetIntForKey("cal.headertype", 0);
+            SetIntForKey("cal.anniversary", 0);
+            SetBoolForKey("cal.ekadasi.parana.details", true);
+            SetBoolForKey("cal.sunrise.moon.rasi", true);
+            SetBoolForKey("cal.sunrise.paksa", true);
+            SetBoolForKey("cal.sunrise.fastingflag", true);
+            SetBoolForKey("cal.sunrise.yoga", true);
+            SetBoolForKey("cal.sunrise.naksatra", true);
+            SetBoolForKey("cal.dst.info", true);
+            SetBoolForKey("cal.noon.time", false);
+            SetBoolForKey("cal.festivals.0", true);
+            SetBoolForKey("cal.festivals.1", true);
+            SetBoolForKey("cal.festivals.2", true);
+            SetBoolForKey("cal.festivals.3", true);
+            SetBoolForKey("cal.festivals.4", true);
+            SetBoolForKey("cal.festivals.5", true);
+            SetBoolForKey("cal.festivals.6", true);
+            SetBoolForKey("cal.masastart.info", true);
+            SetBoolForKey("cal.hide.empty", false);
+            SetBoolForKey("cal.fastingekadasi.info", true);
+            SetBoolForKey("cal.sankranti.info", true);
+            SetBoolForKey("cal.sunrise.julianday", false);
+            SetBoolForKey("cal.sunrise.ayanamsa", false);
+            SetBoolForKey("cal.sunrise.moon.longitude", false);
+            SetBoolForKey("cal.sunrise.sun.longitude", false);
+            SetBoolForKey("cal.festivals", true);
+            SetBoolForKey("cal.moonset.time", false);
+            SetBoolForKey("cal.moonrise.time", false);
+            SetBoolForKey(GPDisplays.Keys.CalSunsetTime, false);
+            SetBoolForKey(GPDisplays.Keys.CalSunriseTime, false);
+            SetBoolForKey(GPDisplays.Keys.CalArunodayaTime, false);
+            SetBoolForKey(GPDisplays.Keys.CalArunodayaTithi, false);
+            SetBoolForKey(GPDisplays.Keys.CalendarKsaya, false);
+            SetBoolForKey(GPDisplays.Keys.CalendarVriddhi, false);
+            SetIntForKey("core.sorttype", 1);
+            SetBoolForKey("core.mooneclipse", true);
+            SetBoolForKey("core.suneclipse", true);
+            SetBoolForKey("core.conjunction", true);
+            SetBoolForKey("core.sankranti", true);
+            SetBoolForKey("core.naksatra", true);
+            SetBoolForKey("core.tithi", true);
+            SetBoolForKey("core.moon", true);
+            SetBoolForKey("core.sun", true);
+            SetBoolForKey("todayform.topmost", false);
+            SetBoolForKey("todayform.visiblelaunch", true);
+            SetBoolForKey("todayframe.autosize", false);
+            SetBoolForKey("today.naksatra.list", false);
+            SetBoolForKey("today.tithi.list", false);
+            SetBoolForKey("today.naksatra.pada", false);
+            SetBoolForKey("today.rasi.moon", true);
+            SetBoolForKey("today.muhurta.brahma", true);
+            SetBoolForKey("today.sunrise.info", true);
+            SetBoolForKey("today.sandhyas", false);
+            SetBoolForKey("today.sunset", true);
+            SetBoolForKey("today.noon", true);
+            SetBoolForKey("today.sunrise", true);
+            SetIntForKey("appday.celebs", 3);
+            SetBoolForKey("appday.childn", true);
+            SetIntForKey("nextfest.days", 16);
+            SetBoolForKey("nextfest.onlyfast", false);
+        }
 
     }
 }

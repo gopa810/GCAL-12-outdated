@@ -102,11 +102,11 @@ namespace GCAL.Base
             }
             foreach (GPCalendarDay day in calendar.m_pData)
             {
-                sb.AppendFormat("sun.right_ascession {0}\t{1}\n", day.date.ToString(), day.astrodata.sun.right_asc_deg);
+                sb.AppendFormat("sun.right_ascession {0}\t{1}\n", day.date.ToString(), day.astrodata.sun.rightAscession);
             }
             foreach (GPCalendarDay day in calendar.m_pData)
             {
-                sb.AppendFormat("sun.declination {0}\t{1}\n", day.date.ToString(), day.astrodata.sun.declination_deg);
+                sb.AppendFormat("sun.declination {0}\t{1}\n", day.date.ToString(), day.astrodata.sun.declination);
             }
             foreach (GPCalendarDay day in calendar.m_pData)
             {

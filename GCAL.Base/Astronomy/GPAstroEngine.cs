@@ -396,7 +396,7 @@ namespace GCAL.Base
             if (LowPrecision)
             {
                 double l, ls;
-                // (*@/// delta_phi and delta_epsilon - low accuracy *)
+                // delta_phi and delta_epsilon - low accuracy
                 // mean longitude of sun (l) and moon (ls)
                 l = 280.4665 + 36000.7698 * t;
                 ls = 218.3165 + 481267.8813 * t;
@@ -461,15 +461,32 @@ namespace GCAL.Base
             nutation = coord.delta_phi;
             obliquity = coord.epsilon;
             //calc_epsilon_phi(date, out nutation, out obliquity);
-            coord.eclipticalLongitude = GPMath.putIn360(coord.eclipticalLongitude + nutation);
+            double longitude = GPMath.putIn360(coord.eclipticalLongitude + nutation);
 
             // 12.3
-            alpha = GPMath.arctan2Deg(GPMath.sinDeg(coord.eclipticalLongitude) * GPMath.cosDeg(obliquity) - GPMath.tanDeg(coord.eclipticalLatitude) * GPMath.sinDeg(obliquity), GPMath.cosDeg(coord.eclipticalLongitude));
+            alpha = GPMath.arctan2Deg(GPMath.sinDeg(longitude) * GPMath.cosDeg(obliquity) - GPMath.tanDeg(coord.eclipticalLatitude) * GPMath.sinDeg(obliquity), GPMath.cosDeg(longitude));
             // 12.4
-            delta = GPMath.arcsinDeg(GPMath.sinDeg(coord.eclipticalLatitude) * GPMath.cosDeg(obliquity) + GPMath.cosDeg(coord.eclipticalLatitude) * GPMath.sinDeg(obliquity) * GPMath.sinDeg(coord.eclipticalLongitude));
+            delta = GPMath.arcsinDeg(GPMath.sinDeg(coord.eclipticalLatitude) * GPMath.cosDeg(obliquity) + GPMath.cosDeg(coord.eclipticalLatitude) * GPMath.sinDeg(obliquity) * GPMath.sinDeg(longitude));
 
             coord.right_ascession = GPMath.putIn360(alpha);
             coord.declination = GPMath.putIn180(delta);
+        }
+
+        public static double getEquationOfTime(double julian, double alpha)
+        {
+            double tau = (julian - J2000) / 365250;
+
+            double L0 = 280.4664567 + 360007.6982779 * tau + 0.03032028 * tau * tau
+                + tau * tau * tau / 49931 - tau * tau * tau * tau / 15299;
+
+            double deltaPhi, epsilon;
+
+            //julian = 2446895.5;
+            calc_epsilon_phi(julian, out deltaPhi, out epsilon);
+
+            double E = L0 - 0.0057183 - alpha + deltaPhi * GPMath.cosDeg(epsilon);
+
+            return E;
         }
 
         /// <summary>
@@ -516,20 +533,33 @@ namespace GCAL.Base
         /// Based on Chapter 11 of Astronomical Algorithms.
         /// </summary>
         /// <param name="date">Julian Ephemeris Day</param>
-        /// <returns>Sidereal time in degrees.</returns>
+        /// <returns>Apparent sidereal time in degrees.</returns>
         public static double GetSiderealTime(double date, out double delta_phi, out double epsilon)
         {
             double t;
             //date = 2446896.30625;
             //jd = date;
             t = (date - GPAstroEngine.J2000) / 36525.0;
+            double t2 = t * t;
+            double t3 = t2 * t;
             GPAstroEngine.calc_epsilon_phi(date, out delta_phi, out epsilon);
 
-            // 11.2
-            double mean_sidereal_time = GPMath.putIn360(280.46061837 + 360.98564736629 * (date - GPAstroEngine.J2000) +
-                             t * t * (0.000387933 - t / 38710000));
+            // 11.4
+            double mean_sidereal_time;
+            
+            mean_sidereal_time = 280.46061837
+                               + 360.98564736629 * (date - GPAstroEngine.J2000)
+                               + 0.000387933 * t2
+                               - t3 / 38710000;
+            // 11.3
+            /*mean_sidereal_time = 100.46061837 
+                               + 36000.770053608 * t
+                               + 0.000387933 * t2
+                               - t3 / 38710000;*/
 
-            return GPMath.putIn360(mean_sidereal_time + delta_phi * GPMath.cosDeg(epsilon));
+            double time = GPMath.putIn360(mean_sidereal_time + delta_phi * GPMath.cosDeg(epsilon));
+
+            return time;
         }
 
         /// <summary>
@@ -752,251 +782,6 @@ namespace GCAL.Base
             e = 1 - ts * (0.002516 + ts * 0.0000074);
 
         }
-
-        public double age_of_moon(double jd)
-        {
-            GPCelestialBodyCoordinates sun_coord;
-            GPCelestialBodyCoordinates moon_coord;
-
-            sun_coord = sun_coordinate(jd);
-            moon_coord = moon_coordinate(jd);
-
-            return GPMath.putIn360(moon_coord.eclipticalLongitude - sun_coord.eclipticalLongitude) / 360 * mean_lunation;
-        }
-
-        public double nextphase_approx(double date, TMoonPhase phase)
-        {
-            double epsilon = 1e-7;
-            int phases = 8;
-            double target_age;
-            double h;
-
-            target_age = Convert.ToInt32(phase) * mean_lunation / phases;
-            double result = date;
-            do
-            {
-                h = age_of_moon(result) - target_age;
-                if (h > mean_lunation / 2)
-                {
-                    h = h - mean_lunation;
-                }
-                result = result - h;
-            } while (Math.Abs(h) >= epsilon);
-
-            return result;
-        }
-
-        public double nextphase_49(double date, TMoonPhase phase)
-        {
-            double result;
-            double t, kk, jde, m, ms, f, o, e, korr, w, akorr;
-            double[] a = new double[15];
-
-            calc_phase_data(date, phase, out jde, out kk, out m, out ms, out f, out o, out e);
-            t = kk / 1236.85;
-
-            switch (phase)
-            {
-                case TMoonPhase.Newmoon:
-                    {
-                        korr = -0.40720 * GPMath.sinDeg(ms)
-                           + 0.17241 * e * GPMath.sinDeg(m)
-                           + 0.01608 * GPMath.sinDeg(2 * ms)
-                           + 0.01039 * GPMath.sinDeg(2 * f)
-                           + 0.00739 * e * GPMath.sinDeg(ms - m)
-                           - 0.00514 * e * GPMath.sinDeg(ms + m)
-                           + 0.00208 * e * e * GPMath.sinDeg(2 * m)
-                           - 0.00111 * GPMath.sinDeg(ms - 2 * f)
-                           - 0.00057 * GPMath.sinDeg(ms + 2 * f)
-                           + 0.00056 * e * GPMath.sinDeg(2 * ms + m)
-                           - 0.00042 * GPMath.sinDeg(3 * ms)
-                           + 0.00042 * e * GPMath.sinDeg(m + 2 * f)
-                           + 0.00038 * e * GPMath.sinDeg(m - 2 * f)
-                           - 0.00024 * e * GPMath.sinDeg(2 * ms - m)
-                           - 0.00017 * GPMath.sinDeg(o)
-                           - 0.00007 * GPMath.sinDeg(ms + 2 * m)
-                           + 0.00004 * GPMath.sinDeg(2 * ms - 2 * f)
-                           + 0.00004 * GPMath.sinDeg(3 * m)
-                           + 0.00003 * GPMath.sinDeg(ms + m - 2 * f)
-                           + 0.00003 * GPMath.sinDeg(2 * ms + 2 * f)
-                           - 0.00003 * GPMath.sinDeg(ms + m + 2 * f)
-                           + 0.00003 * GPMath.sinDeg(ms - m + 2 * f)
-                           - 0.00002 * GPMath.sinDeg(ms - m - 2 * f)
-                           - 0.00002 * GPMath.sinDeg(3 * ms + m)
-                           + 0.00002 * GPMath.sinDeg(4 * ms);
-
-                    }
-                    break;
-                case TMoonPhase.FirstQuarter:
-                case TMoonPhase.LastQuarter:
-                    {
-                        korr = -0.62801 * GPMath.sinDeg(ms)
-                               + 0.17172 * e * GPMath.sinDeg(m)
-                               - 0.01183 * e * GPMath.sinDeg(ms + m)
-                               + 0.00862 * GPMath.sinDeg(2 * ms)
-                               + 0.00804 * GPMath.sinDeg(2 * f)
-                               + 0.00454 * e * GPMath.sinDeg(ms - m)
-                               + 0.00204 * e * e * GPMath.sinDeg(2 * m)
-                               - 0.00180 * GPMath.sinDeg(ms - 2 * f)
-                               - 0.00070 * GPMath.sinDeg(ms + 2 * f)
-                               - 0.00040 * GPMath.sinDeg(3 * ms)
-                               - 0.00034 * e * GPMath.sinDeg(2 * ms - m)
-                               + 0.00032 * e * GPMath.sinDeg(m + 2 * f)
-                               + 0.00032 * e * GPMath.sinDeg(m - 2 * f)
-                               - 0.00028 * e * e * GPMath.sinDeg(ms + 2 * m)
-                               + 0.00027 * e * GPMath.sinDeg(2 * ms + m)
-                               - 0.00017 * GPMath.sinDeg(o)
-                               - 0.00005 * GPMath.sinDeg(ms - m - 2 * f)
-                               + 0.00004 * GPMath.sinDeg(2 * ms + 2 * f)
-                               - 0.00004 * GPMath.sinDeg(ms + m + 2 * f)
-                               + 0.00004 * GPMath.sinDeg(ms - 2 * m)
-                               + 0.00003 * GPMath.sinDeg(ms + m - 2 * f)
-                               + 0.00003 * GPMath.sinDeg(3 * m)
-                               + 0.00002 * GPMath.sinDeg(2 * ms - 2 * f)
-                               + 0.00002 * GPMath.sinDeg(ms - m + 2 * f)
-                               - 0.00002 * GPMath.sinDeg(3 * ms + m);
-                        w = 0.00306 - 0.00038 * e * GPMath.cosDeg(m)
-                                  + 0.00026 * GPMath.cosDeg(ms)
-                                  - 0.00002 * GPMath.cosDeg(ms - m)
-                                  + 0.00002 * GPMath.cosDeg(ms + m)
-                                  + 0.00002 * GPMath.cosDeg(2 * f);
-                        if (phase == TMoonPhase.FirstQuarter)
-                        {
-                            korr = korr + w;
-
-                        }
-                        else
-                        {
-                            korr = korr - w;
-                        }
-
-                    }
-                    break;
-                case TMoonPhase.Fullmoon:
-                    {
-                        korr = -0.40614 * GPMath.sinDeg(ms)
-                           + 0.17302 * e * GPMath.sinDeg(m)
-                           + 0.01614 * GPMath.sinDeg(2 * ms)
-                           + 0.01043 * GPMath.sinDeg(2 * f)
-                           + 0.00734 * e * GPMath.sinDeg(ms - m)
-                           - 0.00515 * e * GPMath.sinDeg(ms + m)
-                           + 0.00209 * e * e * GPMath.sinDeg(2 * m)
-                           - 0.00111 * GPMath.sinDeg(ms - 2 * f)
-                           - 0.00057 * GPMath.sinDeg(ms + 2 * f)
-                           + 0.00056 * e * GPMath.sinDeg(2 * ms + m)
-                           - 0.00042 * GPMath.sinDeg(3 * ms)
-                           + 0.00042 * e * GPMath.sinDeg(m + 2 * f)
-                           + 0.00038 * e * GPMath.sinDeg(m - 2 * f)
-                           - 0.00024 * e * GPMath.sinDeg(2 * ms - m)
-                           - 0.00017 * GPMath.sinDeg(o)
-                           - 0.00007 * GPMath.sinDeg(ms + 2 * m)
-                           + 0.00004 * GPMath.sinDeg(2 * ms - 2 * f)
-                           + 0.00004 * GPMath.sinDeg(3 * m)
-                           + 0.00003 * GPMath.sinDeg(ms + m - 2 * f)
-                           + 0.00003 * GPMath.sinDeg(2 * ms + 2 * f)
-                           - 0.00003 * GPMath.sinDeg(ms + m + 2 * f)
-                           + 0.00003 * GPMath.sinDeg(ms - m + 2 * f)
-                           - 0.00002 * GPMath.sinDeg(ms - m - 2 * f)
-                           - 0.00002 * GPMath.sinDeg(3 * ms + m)
-                           + 0.00002 * GPMath.sinDeg(4 * ms);
-
-                    }
-                    break;
-                default:
-                    korr = 0;
-                    break;
-            }
-
-
-            // Additional Corrections due to planets
-            a[1] = 299.77 + 0.107408 * kk - 0.009173 * t * t;
-            a[2] = 251.88 + 0.016321 * kk;
-            a[3] = 251.83 + 26.651886 * kk;
-            a[4] = 349.42 + 36.412478 * kk;
-            a[5] = 84.66 + 18.206239 * kk;
-            a[6] = 141.74 + 53.303771 * kk;
-            a[7] = 207.14 + 2.453732 * kk;
-            a[8] = 154.84 + 7.306860 * kk;
-            a[9] = 34.52 + 27.261239 * kk;
-            a[10] = 207.19 + 0.121824 * kk;
-            a[11] = 291.34 + 1.844379 * kk;
-            a[12] = 161.72 + 24.198154 * kk;
-            a[13] = 239.56 + 25.513099 * kk;
-            a[14] = 331.55 + 3.592518 * kk;
-            akorr = +0.000325 * GPMath.sinDeg(a[1])
-                      + 0.000165 * GPMath.sinDeg(a[2])
-                      + 0.000164 * GPMath.sinDeg(a[3])
-                      + 0.000126 * GPMath.sinDeg(a[4])
-                      + 0.000110 * GPMath.sinDeg(a[5])
-                      + 0.000062 * GPMath.sinDeg(a[6])
-                      + 0.000060 * GPMath.sinDeg(a[7])
-                      + 0.000056 * GPMath.sinDeg(a[8])
-                      + 0.000047 * GPMath.sinDeg(a[9])
-                      + 0.000042 * GPMath.sinDeg(a[10])
-                      + 0.000040 * GPMath.sinDeg(a[11])
-                      + 0.000037 * GPMath.sinDeg(a[12])
-                      + 0.000035 * GPMath.sinDeg(a[13])
-                      + 0.000023 * GPMath.sinDeg(a[14]);
-            korr = korr + akorr;
-            //
-            result = jde + korr;
-
-            return result;
-        }
-
-        public double nextphase(double date, TMoonPhase phase)
-        {
-            switch (phase)
-            {
-                case TMoonPhase.Newmoon:
-                case TMoonPhase.FirstQuarter:
-                case TMoonPhase.Fullmoon:
-                case TMoonPhase.LastQuarter:
-                    return nextphase_49(date, phase);
-                case TMoonPhase.WaningCrescent:
-                case TMoonPhase.WaningGibbous:
-                case TMoonPhase.WaxingCrescrent:
-                case TMoonPhase.WaxingGibbous:
-                    return nextphase_approx(date, phase);
-                default:
-                    return 0;
-            }
-        }
-
-        public double last_phase(double date, TMoonPhase phase)
-        {
-            double temp_date = date + 28;
-            double result = temp_date;
-            while (result > date)
-            {
-                result = nextphase(temp_date, phase);
-                if (result < 0.1)
-                    throw new Exception("No date time possible");
-                temp_date = temp_date - 28;
-            }
-
-            return result;
-        }
-
-        public double next_phase(double date, TMoonPhase phase)
-        {
-            double temp_date = date - 28;
-            double result = temp_date;
-            while (result < date)
-            {
-                result = nextphase(temp_date, phase);
-                if (result < 0.1)
-                    throw new Exception("No date time possible");
-                temp_date += 28;
-            }
-            return result;
-        }
-
-        public int lunation(double date)
-        {
-            return Convert.ToInt32(Math.Round((last_phase(date, TMoonPhase.Newmoon) - JFirstLunation) / mean_lunation) + 1);
-        }
-
 
         private static short[,] arg_apo = new short[,] {
                  { 2, 0, 0},
@@ -1406,7 +1191,7 @@ namespace GCAL.Base
         /// <param name="y3">Value of Y for X = +1</param>
         /// <param name="n">Input value of X</param>
         /// <returns>Interpolated value of Y for given X</returns>
-        private static double interpolation(double y1, double y2, double y3, double n)
+        public static double interpolation(double y1, double y2, double y3, double n)
         {
             double a, b, c;
 
@@ -1490,8 +1275,19 @@ namespace GCAL.Base
             double L = obs.GetLongitudeWestPositive();
             double phi = obs.GetLatitudeNorthPositive();
             double deltaT;
-
+            
             h0 = -0.8333;
+            /*
+            pos2 = new GPCelestialBodyCoordinates();
+            obs.setLatitudeNorthPositive(42.3333);
+            obs.SetLongitudeWestPositive(71.083333);
+            h0 = -0.56667;
+            deltaT = 56;
+            pos2.declination = 18.44092;
+            phi = 42.33333;
+            cos_H0 = (GPMath.sinDeg(h0) - GPMath.sinDeg(phi) * GPMath.sinDeg(pos2.declination)) /
+        (GPMath.cosDeg(phi) * GPMath.cosDeg(pos2.declination));
+*/
             // this is dynamic time of midnight at greenwich
             // UT = TD - deltaT
             h = date.getJulianGreenwichNoon() - 0.5;
@@ -1507,9 +1303,9 @@ namespace GCAL.Base
             deltaT = GPDynamicTime.GetDeltaT(h);
             theta0 = GetSiderealTime(ttheta.getGreenwichJulianEphemerisDay());
 
-            pos1 = sun_coordinate(h - 1);
-            pos2 = sun_coordinate(h);
-            pos3 = sun_coordinate(h + 1);
+            pos1 = sun_coordinate(h - 1 - deltaT/86400.0);
+            pos2 = sun_coordinate(h - deltaT/86400.0);
+            pos3 = sun_coordinate(h + 1 - deltaT/86400.0);
 
             double T = (h - J2000) / 365250;
             double T2 = T * T;
@@ -1532,7 +1328,7 @@ namespace GCAL.Base
             m2 = m0 + H0 / 360;
 
             double diffM;
-
+            
             for (int k = 0; k < 2; k++)
             {
                 m0 = GPMath.putIn1(m0);
@@ -1796,6 +1592,30 @@ namespace GCAL.Base
             date = temp_date;
 
             return result;
+        }
+
+        public static double sunLongitudeMethodM(double julian)
+        {
+            double t = (julian - 2451545.0) / 36525;
+            double t2 = t * t;
+            double t3 = t2 * t;
+            double t4 = t2 * t2;
+
+            // mean ecliptic longitude of the sun 
+            double L0 = 280.4664567 + 36000.76982779 * t + 0.0003032028 * t2 + t3 / 49931000;
+
+            // mean anomaly of the sun
+            double M = 357.5291 + 35999.05030 * t - 0.0001559 * t2 - 0.00000048 * t3;
+
+            L0 = GPMath.putIn360(L0);
+            M = GPMath.putIn360(M);
+
+            double C = (1.9146 - 0.004817 * t - 0.000014 * t2) * GPMath.sinDeg(M)
+                     + (0.019993 - 0.000101 * t) * GPMath.sinDeg(2 * M)
+                     + 0.00029 * GPMath.sinDeg(3 * M);
+
+            // ecliptic longitude of the sun
+            return GPMath.putIn360(L0 + C);
         }
 
         /// <summary>

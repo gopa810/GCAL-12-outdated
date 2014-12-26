@@ -4,15 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Diagnostics;
 using System.IO;
+using System.Xml;
 
 namespace GCAL.Base
 {
-    public class GPEventList: GPObjectListBase
+    public class GPEventList: GPObjectXmlListBase
     {
         public List<GPEventTithi> tithiEvents = new List<GPEventTithi>();
         public List<GPEventSankranti> sankrantiEvents = new List<GPEventSankranti>();
         public List<GPEventRelative> relativeEvents = new List<GPEventRelative>();
+        public List<GPEventNaksatra> naksatraEvents = new List<GPEventNaksatra>();
+        public List<GPEventYoga> yogaEvents = new List<GPEventYoga>();
+        public List<GPEventAstro> astroEvents = new List<GPEventAstro>();
 
+        public static int nextId = 1;
         private static GPEventList _sharedList = null;
         private static GPEvent eventNotFound = new GPEvent("Not found");
         
@@ -36,6 +41,8 @@ namespace GCAL.Base
                     rel.addChildrenItem(ev);
                 }
             }
+
+            Modified = false;
         }
 
         public override string GetDefaultResourceForKey(FileKey fk)
@@ -45,81 +52,218 @@ namespace GCAL.Base
 
         public override string GetDefaultFileNameForKey(FileKey fk)
         {
-            return "Events.txt";
+            return "Events.xml";
         }
-        public override void InsertNewObjectFromStrings(string[] parts, FileKey fk)
+        public override void AcceptXml(XmlDocument doc)
         {
-            if (parts.Length < 1)
-                return;
+            foreach (XmlNode elem in doc.ChildNodes)
+            {
+                if (elem.NodeType == XmlNodeType.Element && elem.Name.Equals("events"))
+                {
+                    XmlElement root = elem as XmlElement;
+                    nextId = GetAttributeIntValue(root, "nextid", 1000);
+                    foreach (XmlElement ev in root.ChildNodes)
+                    {
+                        InsertEvent(ev);
+                    }
+                }
+            }
 
-            Debugger.Log(0, "", parts[0] + "," + parts.Length.ToString() + "\n");
-            if (parts[0] == "T" && parts.Length >= 11)
+            Modified = false;
+        }
+
+        public void InsertEvent(XmlElement elem)
+        {
+            string evType = elem.GetAttribute("type");
+            GPEvent e = null;
+            if (evType.Equals("TITHI"))
             {
-                GPEventTithi eve = new GPEventTithi();
-                eve.nClass = int.Parse(parts[1]);
-                eve.nMasa = int.Parse(parts[2]);
-                eve.nTithi = int.Parse(parts[3]);
-                eve.nVisible = int.Parse(parts[4]);
-                eve.strFastSubject = parts[5];
-                eve.strText = parts[6];
-                eve.setRawFastType(int.Parse(parts[7]));
-                eve.nUsed = int.Parse(parts[8]);
-                eve.nStartYear = int.Parse(parts[9]);
-                int.TryParse(parts[10], out eve.nSpec);
-                tithiEvents.Add(eve);
+                GPEventTithi et = new GPEventTithi();
+                et.nTithi = GetSubelementIntValue(elem, "tithi", 0);
+                et.nMasa = GetSubelementIntValue(elem, "masa", 0);
+                e = et;
             }
-            else if (parts[0] == "R" && parts.Length >= 14)
+            else if (evType.Equals("REL"))
             {
-                GPEventRelative eve = new GPEventRelative();
-                eve.nClass = int.Parse(parts[1]);
-                eve.nVisible = int.Parse(parts[4]);
-                eve.strFastSubject = parts[5];
-                eve.strText = parts[6];
-                eve.setRawFastType(int.Parse(parts[7]));
-                eve.nUsed = int.Parse(parts[8]);
-                eve.nStartYear = int.Parse(parts[9]);
-                int.TryParse(parts[10], out eve.nSpec);
-                eve.nSpecRef = int.Parse(parts[11]);
-                eve.nOffset = int.Parse(parts[13]);
-                relativeEvents.Add(eve);
+                GPEventRelative er = new GPEventRelative();
+                er.nSpecRef = GetSubelementIntValue(elem, "specref", 0);
+                e = er;
             }
-            else if (parts[0] == "S" && parts.Length >= 13)
+            else if (evType.Equals("SAN"))
             {
-                GPEventSankranti eve = new GPEventSankranti();
-                eve.nClass = int.Parse(parts[1]);
-                eve.nVisible = int.Parse(parts[4]);
-                eve.strFastSubject = parts[5];
-                eve.strText = parts[6];
-                eve.setRawFastType(int.Parse(parts[7]));
-                eve.nUsed = int.Parse(parts[8]);
-                eve.nStartYear = int.Parse(parts[9]);
-                int.TryParse(parts[10], out eve.nSpec);
-                eve.nSankranti = int.Parse(parts[12]);
-                eve.nOffset = int.Parse(parts[13]);
-                sankrantiEvents.Add(eve);
+                GPEventSankranti es = new GPEventSankranti();
+                es.nSankranti = GetSubelementIntValue(elem, "sankranti", 0);
+                e = es;
+            }
+            else if (evType.Equals("NAK"))
+            {
+                GPEventNaksatra en = new GPEventNaksatra();
+                en.nNaksatra = GetSubelementIntValue(elem, "naksatra", 0);
+                e = en;
+            }
+            else if (evType.Equals("YOG"))
+            {
+                GPEventYoga en = new GPEventYoga();
+                en.nYoga = GetSubelementIntValue(elem, "naksatra", 0);
+                e = en;
+            }
+            else if (evType.Equals("ASTRO"))
+            {
+                GPEventAstro ea = new GPEventAstro();
+                ea.nAstroType = GetSubelementIntValue(elem, "astrotype", 1);
+                ea.nData = GetSubelementIntValue(elem, "data", 0);
+                e = ea;
+            }
+
+            e.nClass = GetAttributeIntValue(elem, "class", 6);
+            e.nVisible = GetAttributeIntValue(elem, "visible", 1);
+            e.nUsed = GetAttributeIntValue(elem, "used", 0);
+
+            e.nStartYear = GetSubelementIntValue(elem, "startyear", -10000);
+            e.nSpec = GetSubelementIntValue(elem, "specid", -1);
+            e.nOffset = GetSubelementIntValue(elem, "offset", 0);
+            e.nDeleted = GetSubelementIntValue(elem, "deleted", 0);
+            e.setRawFastType(GetSubelementIntValue(elem, "fasttype", 0));
+            e.strFastSubject = GetSubelementValue(elem, "fastsubject", "");
+            e.strText = GetSubelementValue(elem, "text", "");
+            e.eventId = GetSubelementIntValue(elem, "eventid", 0);
+
+            add(e);
+        }
+
+        public static string GetSubelementValue(XmlElement elem, String subElemName, String defaultValue)
+        {
+            string value = defaultValue;
+            foreach (XmlElement item in elem.GetElementsByTagName(subElemName))
+            {
+                value = item.InnerText;
+                break;
+            }
+            return value;
+        }
+
+        public static int GetSubelementIntValue(XmlElement elem, String subElemName, int defaultValue)
+        {
+            String s = GetSubelementValue(elem, subElemName, defaultValue.ToString());
+            int value = 0;
+            if (int.TryParse(s, out value))
+            {
+                return value;
+            }
+            return defaultValue;
+        }
+
+        public static int GetAttributeIntValue(XmlElement elem, String attributeName, int defaultValue)
+        {
+            String s = elem.GetAttribute(attributeName);
+            int value = 0;
+            if (int.TryParse(s, out value))
+            {
+                return value;
+            }
+            return defaultValue;
+        }
+
+        public void Save()
+        {
+            if (Modified)
+            {
+                string fileName = getFullPathForFile(GetDefaultFileNameForKey(FileKey.Primary));
+                using (StreamWriter sw = new StreamWriter(fileName))
+                {
+                    SaveData(sw, FileKey.Primary);
+                }
             }
         }
 
         public override void SaveData(StreamWriter writer, FileKey fk)
         {
+            XmlDocument doc = new XmlDocument();
+
+            XmlElement root = doc.CreateElement("events");
+            XmlElement elem;
+            doc.AppendChild(root);
+            root.SetAttribute("nextid", nextId.ToString());
+
             foreach (GPEventTithi eve in tithiEvents)
             {
-                writer.WriteLine("T\t{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}\t{8}\t{9}",
-                    eve.nClass, eve.nMasa, eve.nTithi, eve.nVisible, eve.strFastSubject, eve.strText,
-                    eve.getRawFastType(), eve.nUsed, eve.nStartYear, eve.nSpec);
+                elem = doc.CreateElement("event");
+                elem.SetAttribute("type", "TITHI");
+                SaveEventElement(doc, eve, elem);
+                SaveElementChild(elem, "tithi", eve.nTithi.ToString());
+                SaveElementChild(elem, "masa", eve.nMasa.ToString());
+                root.AppendChild(elem);
             }
             foreach (GPEventRelative eve in relativeEvents)
             {
-                writer.WriteLine("R\t{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}\t{8}\t{9}\t{10}\t{11}\t{12}",
-                    eve.nClass, "", "", eve.nVisible, eve.strFastSubject, eve.strText, eve.getRawFastType(),
-                    eve.nUsed, eve.nStartYear, eve.nSpec, eve.nSpecRef, "", eve.nOffset);
+                elem = doc.CreateElement("event");
+                elem.SetAttribute("type", "REL");
+                SaveEventElement(doc, eve, elem);
+                SaveElementChild(elem, "specref", eve.nSpecRef.ToString());
+                root.AppendChild(elem);
             }
             foreach (GPEventSankranti eve in sankrantiEvents)
             {
-                writer.WriteLine("S\t{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}\t{8}\t{9}\t{10}\t{11}",
-                    eve.nClass, "", "", eve.nVisible, eve.strFastSubject, eve.strText, eve.getRawFastType(),
-                    eve.nUsed, eve.nStartYear, eve.nSpec, "", eve.nOffset);
+                elem = doc.CreateElement("event");
+                elem.SetAttribute("type", "SAN");
+                SaveEventElement(doc, eve, elem);
+                SaveElementChild(elem, "sankranti", eve.nSankranti.ToString());
+                root.AppendChild(elem);
             }
+            foreach (GPEventNaksatra eve in naksatraEvents)
+            {
+                elem = doc.CreateElement("event");
+                elem.SetAttribute("type", "NAK");
+                SaveEventElement(doc, eve, elem);
+                SaveElementChild(elem, "naksatra", eve.nNaksatra.ToString());
+                root.AppendChild(elem);
+            }
+            foreach (GPEventYoga evy in yogaEvents)
+            {
+                elem = doc.CreateElement("event");
+                elem.SetAttribute("type", "YOG");
+                SaveEventElement(doc, evy, elem);
+                SaveElementChild(elem, "yoga", evy.nYoga.ToString());
+                root.AppendChild(elem);
+            }
+            foreach (GPEventAstro eva in astroEvents)
+            {
+                elem = doc.CreateElement("event");
+                elem.SetAttribute("type", "ASTRO");
+                SaveEventElement(doc, eva, elem);
+                SaveElementChild(elem, "astrotype", eva.nAstroType.ToString());
+                SaveElementChild(elem, "data", eva.nData.ToString());
+                root.AppendChild(elem);
+            }
+
+            doc.Save(writer);
+        }
+
+        private static XmlElement SaveEventElement(XmlDocument doc, GPEvent eve, XmlElement elem)
+        {
+            // ---
+            elem.SetAttribute("class", eve.nClass.ToString());
+            elem.SetAttribute("visible", eve.nVisible.ToString());
+            elem.SetAttribute("used", eve.nUsed.ToString());
+            // ---
+            SaveElementChild(elem, "fastsubject", eve.strFastSubject);
+            SaveElementChild(elem, "startyear", eve.nStartYear.ToString());
+            SaveElementChild(elem, "specid", eve.nSpec.ToString());
+            SaveElementChild(elem, "offset", eve.nOffset.ToString());
+            SaveElementChild(elem, "deleted", eve.nDeleted.ToString());
+            SaveElementChild(elem, "text", eve.strText);
+            SaveElementChild(elem, "eventid", eve.eventId.ToString());
+            SaveElementChild(elem, "fasttype", eve.getRawFastType().ToString());
+
+            return elem;
+        }
+
+        private static XmlElement SaveElementChild(XmlElement elem, string property, string value)
+        {
+            XmlElement prop = elem.OwnerDocument.CreateElement(property);
+            prop.InnerText = value;
+            elem.AppendChild(prop);
+            return prop;
         }
 
         public GPEvent GetSpecialEvent(int i)
@@ -135,6 +279,11 @@ namespace GCAL.Base
                     return eve;
             }
             foreach (GPEvent eve in sankrantiEvents)
+            {
+                if (eve.nSpec == i)
+                    return eve;
+            }
+            foreach (GPEvent eve in naksatraEvents)
             {
                 if (eve.nSpec == i)
                     return eve;
@@ -157,6 +306,20 @@ namespace GCAL.Base
             {
                 tithiEvents.Remove(eve as GPEventTithi);
             }
+            else if (eve is GPEventNaksatra)
+            {
+                naksatraEvents.Remove(eve as GPEventNaksatra);
+            }
+            else if (eve is GPEventAstro)
+            {
+                astroEvents.Remove(eve as GPEventAstro);
+            }
+            else if (eve is GPEventYoga)
+            {
+                yogaEvents.Remove(eve as GPEventYoga);
+            }
+
+            Modified = true;
         }
 
         public void add(object eve)
@@ -173,6 +336,20 @@ namespace GCAL.Base
             {
                 tithiEvents.Add(eve as GPEventTithi);
             }
+            else if (eve is GPEventNaksatra)
+            {
+                naksatraEvents.Add(eve as GPEventNaksatra);
+            }
+            else if (eve is GPEventAstro)
+            {
+                astroEvents.Add(eve as GPEventAstro);
+            }
+            else if (eve is GPEventYoga)
+            {
+                yogaEvents.Add(eve as GPEventYoga);
+            }
+
+            Modified = true;
         }
 
         public GPEvent find(int id)
@@ -195,7 +372,32 @@ namespace GCAL.Base
                     return ev3;
             }
 
+            foreach (GPEventNaksatra ev4 in naksatraEvents)
+            {
+                if (ev4.eventId == id)
+                    return ev4;
+            }
+
+            foreach (GPEventAstro ev4 in astroEvents)
+            {
+                if (ev4.eventId == id)
+                    return ev4;
+            }
+
+            foreach (GPEventYoga ev4 in yogaEvents)
+            {
+                if (ev4.eventId == id)
+                    return ev4;
+            }
+
             return null;
+        }
+
+        public static int getNextID()
+        {
+            int nid = nextId;
+            nextId++;
+            return nid;
         }
     }
 }

@@ -32,7 +32,7 @@ namespace GCAL.Base
             //GetNextTithiStart(m_earth, vc, dnext);
             //vcsun.setDayHours(vcsun.getDayHours() - vcsun.getTimeZoneOffsetHours() / 24.0);
             vcsun.normalizeValues();
-            d.sun.calculateCoordinates(vcsun, -1);
+            d.sun.calculateCoordinatesMethodC(vcsun, -1);
             d.moon.MoonCalc(vcsun.getJulianGreenwichTime());
             d.msDistance = GPMath.putIn360(d.moon.longitude_deg - d.sun.eclipticalLongitude - 180.0);
             d.msAyanamsa = GPAyanamsa.GetAyanamsa(vc.getJulianGreenwichTime());

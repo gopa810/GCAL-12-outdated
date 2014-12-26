@@ -53,7 +53,7 @@ namespace GCAL
                     sb.AppendLine("<tr height=32px><td class='choice'");
                     sb.AppendFormat(" onmouseover='shh(1,\"t{0}\")' ", cid);
                     sb.AppendFormat(" onmouseout='shh(0,\"t{0}\")'", cid);
-                    sb.AppendFormat(" onclick='runAction(\"{0}\")' id='t{1}'>", cmd.getArg(1), cid);
+                    sb.AppendFormat(" onclick='runAction(\"{0}\")' id='t{1}'>", cmd.getArgSubst(1, contentServer.getProperties(), true), cid);
                     sb.AppendLine(cmd.getArg(0));
                     sb.AppendLine("</td></tr>");
                     cid++;

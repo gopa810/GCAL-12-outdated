@@ -37,7 +37,7 @@ function getTimezonesList()
 			str += "<tr>";
 			str += "<td>" + tags[2] + "</td>";
 			str += "<td>" + tags[1] + "</td>";
-			str += "<td><button type=\"button\" onclick=\"deleteItem('" + tags[1] + "')\">{%gstr 351}</button></td>";
+			str += "<td><button class=\"nice\" type=\"button\" onclick=\"deleteItem('" + tags[1] + "')\">{%gstr 351}</button></td>";
 			str += "</tr>";
 		}
 	}
@@ -69,11 +69,12 @@ function initList()
 
 <h1>{%gstr 1080} {%string locationcountry}</h1>
 
-<div id='list0'>
+<div id='list0' class='innerOperList'>
 </div>
 
 <center>
-<button type="button" onclick='runAction("add");'>{%gstr 1081}</button>
+<hr>
+<button class='nice' type="button" onclick='runAction("add");'>{%gstr 1081}</button>
 </center>
 
 <script>

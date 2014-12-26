@@ -358,15 +358,15 @@ function getRulesHtmlText(encodedText)
 		html += "{%gstr 281}: " + parts[11];
 		html += "<div id='confRR" + parts[0] + "' style='display:none'>"
 		html += "{%gstr 1099}";
-		html += "<br><button type=button onclick=\"deleteRule('" + parts[0] + "');showElem3('confRR" + parts[0] + "', 'none');showElem3('confInitRR" + parts[0] + "', 'inline');refreshTransitionList();\">{%gstr 1073}</button>";
-		html += "<button type=button onclick=\"showElem3('confRR" + parts[0] + "', 'none');showElem3('confInitRR" + parts[0] + "', 'inline')\">{%gstr 1072}</button>";
+		html += "<br><button class='niceInner' type=button onclick=\"deleteRule('" + parts[0] + "');showElem3('confRR" + parts[0] + "', 'none');showElem3('confInitRR" + parts[0] + "', 'inline');refreshTransitionList();\">{%gstr 1073}</button>";
+		html += "<button class='niceInner' type=button onclick=\"showElem3('confRR" + parts[0] + "', 'none');showElem3('confInitRR" + parts[0] + "', 'inline')\">{%gstr 1072}</button>";
 		html += "</div>";
 		html += "<td>";
-		html += "<button type=button onclick=\"";
+		html += "<button class='niceInner' type=button onclick=\"";
 		html += "onAddRule('" + parts[0] + "');"; // script for editing this transition
 		html += "\">{%gstr 338}</button>";
-		html += "<br>";
-		html += "<button id='confInitRR" + parts[0] + "' type=button onclick=\"";
+		//html += "<br>";
+		html += "<button class='niceInner' id='confInitRR" + parts[0] + "' type=button onclick=\"";
 		html += "showElem3('confRR" + parts[0] + "', 'block');showElem3('confInitRR" + parts[0] + "', 'none')"; // script for removing this rule
 		html += "\">{%gstr 351}</button>";
 		html += "</tr>";
@@ -390,15 +390,15 @@ function getTransitionsHtmlText(encodedText)
 			html += "{%gstr 281}: " + parts[9] + " {%gstr 328}";
 			html += "<div id='confRT" + parts[0] + "' style='display:none'>"
 			html += "{%gstr 1100}";
-			html += "<br><button type=button onclick=\"deleteTransition('" + parts[0] + "');showElem3('confRT" + parts[0] + "', 'none');showElem3('confInitRT" + parts[0] + "', 'inline');refreshTransitionList();\">{%gstr 1073}</button>";
-			html += "<button type=button onclick=\"showElem3('confRT" + parts[0] + "', 'none');showElem3('confInitRT" + parts[0] + "', 'inline')\">{%gstr 1072}</button>";
+			html += "<br><button class='niceInner' type=button onclick=\"deleteTransition('" + parts[0] + "');showElem3('confRT" + parts[0] + "', 'none');showElem3('confInitRT" + parts[0] + "', 'inline');refreshTransitionList();\">{%gstr 1073}</button>";
+			html += "<button class='niceInner' type=button onclick=\"showElem3('confRT" + parts[0] + "', 'none');showElem3('confInitRT" + parts[0] + "', 'inline')\">{%gstr 1072}</button>";
 			html += "</div>";
 			html += "<td>";
-			html += "<button type=button onclick=\"";
+			html += "<button class='niceInner' type=button onclick=\"";
 			html += "onAddTransition('" + parts[0] + "');"; // script for editing this transition
 			html += "\">{%gstr 338}</button>";
-			html += "<br>";
-			html += "<button id='confInitRT" + parts[0] + "' type=button onclick=\"";
+			//html += "<br>";
+			html += "<button class='niceInner' id='confInitRT" + parts[0] + "' type=button onclick=\"";
 			html += "showElem3('confRT" + parts[0] + "', 'block');showElem3('confInitRT" + parts[0] + "', 'none')"; // script for removing this transition
 			html += "\">{%gstr 351}</button>";
 			html += "</tr>";
@@ -602,20 +602,20 @@ function onUpdateTransition()
 
 		<h2>{%gstr 1109}</h2>
 		<p>{%gstr 1110}</p>
-		<div id='listOfRules'>
+		<div id='listOfRules' class='innerOperList'>
 		</div>
 		<div>
-			<button type='button' onclick="onAddRule('');">{%gstr 1111}</button>
-			<button type='button' onclick="onRemoveAllRules();">{%gstr 1112}</button>
+			<button class='nice' type='button' onclick="onAddRule('');">{%gstr 1111}</button>
+			<button class='nice' type='button' onclick="onRemoveAllRules();">{%gstr 1112}</button>
 		</div>
 
 		<h2>{%gstr 322}</h2>
 		<p>{%gstr 1113}
-		<div id='listOfTransitions'>
+		<div id='listOfTransitions' class='innerOperList'>
 		</div>
 		<div>
-			<button type='button' onclick="onAddTransition('');">{%gstr 1111}</button>
-			<button type='button' onclick="onRemoveAllTransitions();">{%gstr 1112}</button>
+			<button class='nice' type='button' onclick="onAddTransition('');">{%gstr 1111}</button>
+			<button class='nice' type='button' onclick="onRemoveAllTransitions();">{%gstr 1112}</button>
 		</div>
 
 	</div>
@@ -625,10 +625,10 @@ function onUpdateTransition()
 	<h2 id='h403'>{%gstr 1114}</h2>
 	<h2 id='h404'>{%gstr 1115}</h2>
 
-	<p>{%gstr 261}</p>
+	<p class='head3'>{%gstr 261}</p>
 	<input type=date id='fld200' value='2014-03-02'>
 	
-	<p>{%gstr 1116}</p>
+	<p class='head3'>{%gstr 1116}</p>
 	<select id='fld205'>
 			<option value='0'>00:00</option>
 			<option value='1'>01:00</option>
@@ -656,10 +656,10 @@ function onUpdateTransition()
 			<option value='23'>23:00</option>
 	</select>
 
-	<p>{%gstr 262}</p>
+	<p class='head3'>{%gstr 262}</p>
 	<input type=date id='fld201' value='2014-03-02'>
 
-	<p>{%gstr 1116}</p>
+	<p class='head3'>{%gstr 1116}</p>
 	<select id='fld206'>
 			<option value='0'>00:00</option>
 			<option value='1'>01:00</option>
@@ -687,7 +687,7 @@ function onUpdateTransition()
 			<option value='23'>23:00</option>
 	</select>
 
-	<p>{%gstr 1117}</p>
+	<p class='head3'>{%gstr 1117}</p>
 	<select id='fld202'>
 	   <option value=0>+00 {%gstr 328}</option>
 	   <option value=15>+15 {%gstr 328}</option>
@@ -696,10 +696,12 @@ function onUpdateTransition()
 	   <option value=60>+60 {%gstr 328}</option>
 	</select>
 
-	<div>
-	  <button type='button' onclick="onBackToList();">{%gstr 1118}</button>
-	  <button id='btn403' type='button' onclick="onCreateTransition();">{%gstr 1119}</button>
-	  <button id='btn404' type='button' onclick="onUpdateTransition();">{%gstr 1120}</button>
+		<p>&nbsp;&nbsp;<br>&nbsp;</p>
+
+	<div style='margin-top:32px;'>
+	  <button class='nice' type='button' onclick="onBackToList();">{%gstr 1118}</button>
+	  <button class='nice' id='btn403' type='button' onclick="onCreateTransition();">{%gstr 1119}</button>
+	  <button class='nice' id='btn404' type='button' onclick="onUpdateTransition();">{%gstr 1120}</button>
 	</div>
 	
 </div>
@@ -708,7 +710,7 @@ function onUpdateTransition()
 	<h2 id='h303'>{%gstr 1121}</h2>
 	<h2 id='h304'>{%gstr 1122}</h2>
 	
-	<p>{%gstr 1117}</p>
+	<p class='head3'>{%gstr 1117}</p>
 	<select id='fld301'>
 	   <option value=0>+00 {%gstr 328}</option>
 	   <option value=15>+15 {%gstr 328}</option>
@@ -718,7 +720,7 @@ function onUpdateTransition()
 	</select>
 	
 	
-	<p>{%gstr 1123}</p>
+	<p class='head3'>{%gstr 1123}</p>
 	
 	<table width=240pt>
 		<tr>
@@ -731,7 +733,7 @@ function onUpdateTransition()
 		</tr>
 	</table>
 
-	<p>{%gstr 1124}</p>
+	<p class='head3'>{%gstr 1124}</p>
 	<table width=240pt>
 		<tr>
 			<td style='text-align:right;font-size:24pt' id='endYear2' rowspan=2>2050</td>
@@ -743,7 +745,7 @@ function onUpdateTransition()
 		</tr>
 	</table>
 	
-	<p>{%gstr 1125}</p>
+	<p class='head3'>{%gstr 1125}</p>
 
 	<table id='operAddRuleStartWeek'>
 	<tr>
@@ -815,7 +817,7 @@ function onUpdateTransition()
 	</table>
 
 
-	<p>{%gstr 1126}</p>
+	<p class='head3'>{%gstr 1126}</p>
 
 	<table id='operAddRuleEndWeek'>
 	<tr>
@@ -886,11 +888,12 @@ function onUpdateTransition()
 		</select>
 	</table>
 
+	<p>&nbsp;&nbsp;<br>&nbsp;</p>
 
 	<div>
-	  <button type='button' onclick="onBackToList();">{%gstr 1118}</button>
-	  <button id='btn303' type='button' onclick="onCreateRule();">{%gstr 1119}</button>
-	  <button id='btn304' type='button' onclick="onUpdateRule();">{%gstr 1120}</button>
+	  <button class='nice' type='button' onclick="onBackToList();">{%gstr 1118}</button>
+	  <button class='nice' id='btn303' type='button' onclick="onCreateRule();">{%gstr 1119}</button>
+	  <button class='nice' id='btn304' type='button' onclick="onUpdateRule();">{%gstr 1120}</button>
 	</div>
 
 </div>
@@ -900,9 +903,10 @@ function onUpdateTransition()
 	
 	<p>{%gstr 1130}</p>
 	
+	<p>&nbsp;&nbsp;<br>&nbsp;</p>
 	<div>
-	  <button type='button' onclick="onBackToList();">{%gstr 1118}</button>
-	  <button type='button' onclick="showElem3('main', 'block');currentTransitions=[];refreshTransitionList();showElem3('operClearTrans', 'none');">{%gstr 1073}</button>
+	  <button class='nice' type='button' onclick="onBackToList();">{%gstr 1118}</button>
+	  <button class='nice' type='button' onclick="showElem3('main', 'block');currentTransitions=[];refreshTransitionList();showElem3('operClearTrans', 'none');">{%gstr 1073}</button>
 	</div>
 
 </div>
@@ -911,10 +915,10 @@ function onUpdateTransition()
 	<h2>{%gstr 1131}</h2>
 	
 	<p>{%gstr 1132}</p>
-	
+	<p>&nbsp;&nbsp;<br>&nbsp;</p>
 	<div>
-	  <button type='button' onclick="showElem3('main', 'block');showElem3('operClearRule', 'none');">{%gstr 1118}</button>
-	  <button type='button' onclick="showElem3('main', 'block');currentRules=[];refreshTransitionList();showElem3('operClearRule', 'none');">{%gstr 1073}</button>
+	  <button class='nice' type='button' onclick="showElem3('main', 'block');showElem3('operClearRule', 'none');">{%gstr 1118}</button>
+	  <button class='nice' type='button' onclick="showElem3('main', 'block');currentRules=[];refreshTransitionList();showElem3('operClearRule', 'none');">{%gstr 1073}</button>
 	</div>
 
 </div>

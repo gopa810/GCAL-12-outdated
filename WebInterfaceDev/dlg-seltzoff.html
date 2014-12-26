@@ -20,7 +20,7 @@ var str = '';
 for(i = 0; i < list.length; i++)
 {
     var line = list[i].split("<br>");
-	str += "<input type=\"button\" onclick='saveString(\"tzgroup\", \"offset\");saveString(\"tzoffset\", \"" + line[0] + "\");saveString(\"tzoffsettext\", \"" + line[1] + "\");runAction(\"next\");' value=\"" + line[1] + "\">";
+	str += "<input class=\"nice\" type=\"button\" onclick='saveString(\"tzgroup\", \"offset\");saveString(\"tzoffset\", \"" + line[0] + "\");saveString(\"tzoffsettext\", \"" + line[1] + "\");runAction(\"next\");' value=\"" + line[1] + "\">";
 }
 
 document.write(str);

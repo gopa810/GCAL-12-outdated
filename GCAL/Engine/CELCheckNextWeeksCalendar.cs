@@ -13,11 +13,12 @@ namespace GCAL.Engine
         public List<GPStringPair> lines = new List<GPStringPair>();
         private GPCalendarResults p_cal = new GPCalendarResults();
         private GPGregorianTime p_today = null;
+        private GPLocationProvider loc = null;
 
         protected override void Execute()
         {
 
-            GPLocationProvider loc = GPAppHelper.getMyLocation();
+            loc = GPAppHelper.getMyLocation();
 
             //Testing.Report(loc, "gcal13");
 
@@ -129,13 +130,6 @@ namespace GCAL.Engine
                     {
                         temp.Add(vd.getEkadasiParanaString());
                     }
-                    /*foreach (GPCalendarDay.Festival fest in vd.Festivals)
-                    {
-                        //if (onlyFast == false || fest.getPreviousFastType() != GPConstants.FAST_NULL)
-                        {
-                            temp.Add(fest.Text);
-                        }
-                    }*/
                     foreach (GPCalendarDay.Festival fest in vd.Festivals)
                     {
                         if (GPUserDefaults.BoolForKey(fest.ShowSettingItem, true))
@@ -173,7 +167,7 @@ namespace GCAL.Engine
                     return string.Empty;
 
                 StringBuilder sb = new StringBuilder();
-                FormaterHtml.WriteTodayInfoHTML(p_today, p_cal, sb, GPUserDefaults.IntForKey("FontSize", 10));
+                FormaterHtml.WriteTodayInfoHTML(p_today, p_cal, sb, GPUserDefaults.IntForKey("FontSize", 10), null);
                 return sb.ToString();
             }
         }
@@ -181,7 +175,11 @@ namespace GCAL.Engine
         public string getNextFestDaysString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("<table cellpadding=0 cellspacing=0 border=0 width=95%>");
+            sb.Append("<table cellpadding=12 cellspacing=0 border=0 width=95%>");
+            sb.AppendFormat("<tr><td class='hed'>{0}</td>", GPStrings.getString(452));
+            sb.AppendFormat("<td class='hed2'>{0}: {1}</td></tr>", GPStrings.getString(9), loc.getFullName());
+            sb.Append("</td>");
+            sb.Append("<table cellpadding=12 cellspacing=0 border=0 width=95%>");
             int ic = 0;
             bool rowStarted = false;
             foreach (GPStringPair dr in lines)
@@ -192,7 +190,7 @@ namespace GCAL.Engine
                         sb.AppendLine("</td></tr>");
 
                     if (ic % 2 == 0)
-                        sb.Append("<tr style='background:#cceeee'>");
+                        sb.Append("<tr class='evenLine'>");
                     else
                         sb.Append("<tr>");
                     ic++;

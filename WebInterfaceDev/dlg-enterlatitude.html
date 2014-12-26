@@ -65,76 +65,58 @@ if (date == '')
 function onSave()
 {
     var absc0 = absm(count0);
-	saveString("locationlatitude{%string ppx}", absc0 + (count0 < 0 ? 'S' : 'N') + count1);
+	saveString("locationlatitude{%string ppx}", absc0 + (count0 < 0 ? 'S' : 'N') + ((count1 < 10) ? '0' : '') + count1);
 }
 
 function updateCounter()
 {
-    var absc0 = absm(count0);
-	var elem = document.getElementById('counter');
-	elem.innerHTML = (absc0 < 10 ? "0" : "") + absc0 + (count0 < 0 ? 'S' : 'N') + (count1 < 10 ? "0" : "") + count1;
+	validateHours();
+    var ac = absm(count0);
+	
+	document.getElementById('counterb').innerHTML = Math.floor((ac % 100)/10);
+	document.getElementById('counterc').innerHTML = Math.floor(ac%10);
+	document.getElementById('counterd').innerHTML = (count0 < 0 ? 'S' : 'N');
+	document.getElementById('countere').innerHTML = Math.floor(count1/10);
+	document.getElementById('counterf').innerHTML = Math.floor(count1%10);
 }
 
 function validateHours()
 {
-	  if (count0 > 90)
-	  {
-	    count0 -= 180;
-	  }
-	  if (count0 < -90)
-	     count0 += 180;
+    while (count1 >= 60) {
+		count1 -= 60;
+		count0 += 1;
+	}
+	
+	while(count1 < 0) {
+		count1 += 60;
+		count0 -= 1;
+	}
+	
+	if (count0 > 65) {
+		count0 = 65;
+		count1 = 0;
+	}
+	
+	while (count0 < -65) {
+		count0 = -65;
+		count1 = 0;
+	}
 }
 
 function incr(type, dif)
 {
 	if (type == 0) {
 	  if (count0 < 0)
-	  {
-		  decr(type, dif);
-	  }
+		count0 -= dif;
 	  else
-	  {
-		  count0 += dif;
-		  validateHours();
-	  }
+		count0 += dif;
 	}
     else {
-	  count1 += dif;
-	  if (count1 > 59)
-	  {
-	     count1 -= 60;
- 		 count0 ++;
-		 validateHours();
-	  }
-	}
-	updateCounter();
-}
-
-function decr(type, dif)
-{
-	if (type == 0)
-	{
-	  if (count0 < 0)
-	  {
-	      incr(type,dif);
-	  }
-	  else
-	  {
-          count0 -= dif;
-	      validateHours();
-	  }
-	}
-    else
-	{
-	  count1 -= dif;
 	  if (count1 < 0)
-	  {
-	     count1 += 60;
-		 count0 --;
-		 validateHours();
-	  }
+		count1 -= dif;
+	  else
+		count1 += dif;
 	}
-
 	updateCounter();
 }
 
@@ -147,22 +129,42 @@ function decr(type, dif)
 
 <h1>{%gstr 1041}</h1>
 
-<table width=240pt align=center>
+<table align=center>
 <tr>
-<td style='text-align:center;font-size:24pt;vertical-align:center' id='counter' rowspan=4>00:00</td>
-<td class='buttonw' ><input type="button" value="+10 Deg" onclick='incr(0, 10);'></td>
-<td class='buttonw' ><input type="button" value="+10 Arc" onclick='incr(1, 10);'></td>
-</tr><tr>
-<td class='buttonw' ><input type="button" value="+1 Deg" onclick='incr(0, 1);'></td>
-<td class='buttonw' ><input type="button" value="+1 Arc" onclick='incr(1, 1);'></td>
-</tr><tr>
-<td class='buttonw' ><input type="button" value="-1 Deg" onclick='decr(0, 1);'></td>
-<td class='buttonw' ><input type="button" value="-1 Arc" onclick='decr(1, 1);'></td>
-</tr><tr>
-<td class='buttonw' ><input type="button" value="-10 Deg" onclick='decr(0, 10);'></td>
-<td class='buttonw' ><input type="button" value="-10 Arc" onclick='decr(1, 10);'></td>
+<td><img src="{%homedir}/sarrow-to-up.png" onclick='incr(0,10);'
+                                        ondblclick='incr(0,20);'></td>
+<td><img src="{%homedir}/sarrow-to-up.png" onclick='incr(0,1);'
+                                        ondblclick='incr(0,2);'></td>
+<td><img src="{%homedir}/sarrow-to-up.png" onclick='count0=-count0;updateCounter();'
+                                        ondblclick='count0=-count0;updateCounter();'></td>
+<td><img src="{%homedir}/sarrow-to-up.png" onclick='incr(1,10);'
+                                        ondblclick='incr(1,20);'></td>
+<td><img src="{%homedir}/sarrow-to-up.png" onclick='incr(1,1);'
+                                        ondblclick='incr(1,2)'></td>
 </tr>
+<tr>
+<td style='text-align:center;font-size:24pt' id='counterb'>0</td>
+<td style='text-align:center;font-size:24pt' id='counterc'>0</td>
+<td style='text-align:center;font-size:24pt' id='counterd'>0</td>
+<td style='text-align:center;font-size:24pt' id='countere'>0</td>
+<td style='text-align:center;font-size:24pt' id='counterf'>0</td>
+<!-- <td style='text-align:center;font-size:24pt' id='counter' colspan=4>00:00</td> -->
+</tr>
+<tr>
+<td><img src="{%homedir}/sarrow-to-down.png" onclick='incr(0,-10);'
+                                        ondblclick='incr(0,-20);'></td>
+<td><img src="{%homedir}/sarrow-to-down.png" onclick='incr(0,-1);'
+                                        ondblclick='incr(0,-2);'></td>
+<td><img src="{%homedir}/sarrow-to-down.png" onclick='count0=-count0;updateCounter();'
+                                        ondblclick='count0=-count0;updateCounter();'></td>
+<td><img src="{%homedir}/sarrow-to-down.png" onclick='incr(1,-10);'
+                                        ondblclick='incr(1,-20);'></td>
+<td><img src="{%homedir}/sarrow-to-down.png" onclick='incr(1,-1);'
+                                        ondblclick='incr(1,-2)'></td>
+</tr>
+
 </table>
+
 
 <script>
 	updateCounter();

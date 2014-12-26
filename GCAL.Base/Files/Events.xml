@@ -1,0 +1,1940 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<events nextid="500">
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Abhirama Thakura -- Disappearance</text>
+    <eventid>2</eventid>
+    <fasttype>0</fasttype>
+    <tithi>6</tithi>
+    <masa>0</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Srila Vrndavana Dasa Thakura -- Disappearance</text>
+    <eventid>3</eventid>
+    <fasttype>0</fasttype>
+    <tithi>9</tithi>
+    <masa>0</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Gadadhara Pandita -- Appearance</text>
+    <eventid>4</eventid>
+    <fasttype>0</fasttype>
+    <tithi>14</tithi>
+    <masa>0</masa>
+  </event>
+  <event type="TITHI" class="1" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Aksaya Trtiya. Candana Yatra starts. (Continues for 21 days)</text>
+    <eventid>5</eventid>
+    <fasttype>0</fasttype>
+    <tithi>17</tithi>
+    <masa>0</masa>
+  </event>
+  <event type="TITHI" class="5" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Jahnu Saptami</text>
+    <eventid>6</eventid>
+    <fasttype>0</fasttype>
+    <tithi>21</tithi>
+    <masa>0</masa>
+  </event>
+  <event type="TITHI" class="1" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Srimati Sita Devi (consort of Lord Sri Rama) -- Appearance</text>
+    <eventid>7</eventid>
+    <fasttype>0</fasttype>
+    <tithi>23</tithi>
+    <masa>0</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Madhu Pandita -- Disappearance</text>
+    <eventid>8</eventid>
+    <fasttype>0</fasttype>
+    <tithi>23</tithi>
+    <masa>0</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Srimati Jahnava Devi -- Appearance</text>
+    <eventid>9</eventid>
+    <fasttype>0</fasttype>
+    <tithi>23</tithi>
+    <masa>0</masa>
+  </event>
+  <event type="TITHI" class="1" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Rukmini Dvadasi</text>
+    <eventid>10</eventid>
+    <fasttype>0</fasttype>
+    <tithi>26</tithi>
+    <masa>0</masa>
+  </event>
+  <event type="TITHI" class="4" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Jayananda Prabhu -- Disappearance</text>
+    <eventid>11</eventid>
+    <fasttype>0</fasttype>
+    <tithi>27</tithi>
+    <masa>0</masa>
+  </event>
+  <event type="TITHI" class="0" visible="1" used="1">
+    <fastsubject>Lord Nrsimhadeva</fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Nrsimha Caturdasi: Appearance of Lord Nrsimhadeva</text>
+    <eventid>12</eventid>
+    <fasttype>4</fasttype>
+    <tithi>28</tithi>
+    <masa>0</masa>
+  </event>
+  <event type="TITHI" class="1" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Krsna Phula Dola, Salila Vihara</text>
+    <eventid>13</eventid>
+    <fasttype>0</fasttype>
+    <tithi>29</tithi>
+    <masa>0</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Paramesvari Dasa Thakura -- Disappearance</text>
+    <eventid>14</eventid>
+    <fasttype>0</fasttype>
+    <tithi>29</tithi>
+    <masa>0</masa>
+  </event>
+  <event type="TITHI" class="1" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Sri Radha-Ramana Devaji -- Appearance</text>
+    <eventid>15</eventid>
+    <fasttype>0</fasttype>
+    <tithi>29</tithi>
+    <masa>0</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Madhavendra Puri -- Appearance</text>
+    <eventid>16</eventid>
+    <fasttype>0</fasttype>
+    <tithi>29</tithi>
+    <masa>0</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Srinivasa Acarya -- Appearance</text>
+    <eventid>17</eventid>
+    <fasttype>0</fasttype>
+    <tithi>29</tithi>
+    <masa>0</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Ramananda Raya -- Disappearance</text>
+    <eventid>18</eventid>
+    <fasttype>0</fasttype>
+    <tithi>4</tithi>
+    <masa>1</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Srila Vrndavana Dasa Thakura -- Appearance</text>
+    <eventid>19</eventid>
+    <fasttype>0</fasttype>
+    <tithi>11</tithi>
+    <masa>1</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Baladeva Vidyabhusana -- Disappearance</text>
+    <eventid>20</eventid>
+    <fasttype>0</fasttype>
+    <tithi>24</tithi>
+    <masa>1</masa>
+  </event>
+  <event type="TITHI" class="1" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Ganga Puja</text>
+    <eventid>21</eventid>
+    <fasttype>0</fasttype>
+    <tithi>24</tithi>
+    <masa>1</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Srimati Gangamata Gosvamini -- Appearance</text>
+    <eventid>22</eventid>
+    <fasttype>0</fasttype>
+    <tithi>24</tithi>
+    <masa>1</masa>
+  </event>
+  <event type="TITHI" class="1" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Panihati Cida Dahi Utsava</text>
+    <eventid>23</eventid>
+    <fasttype>0</fasttype>
+    <tithi>27</tithi>
+    <masa>1</masa>
+  </event>
+  <event type="TITHI" class="1" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Snana Yatra</text>
+    <eventid>24</eventid>
+    <fasttype>0</fasttype>
+    <tithi>29</tithi>
+    <masa>1</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Mukunda Datta -- Disappearance</text>
+    <eventid>25</eventid>
+    <fasttype>0</fasttype>
+    <tithi>29</tithi>
+    <masa>1</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Sridhara Pandita -- Disappearance</text>
+    <eventid>26</eventid>
+    <fasttype>0</fasttype>
+    <tithi>29</tithi>
+    <masa>1</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Syamananda Prabhu -- Disappearance</text>
+    <eventid>27</eventid>
+    <fasttype>0</fasttype>
+    <tithi>0</tithi>
+    <masa>2</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Vakresvara Pandita -- Appearance</text>
+    <eventid>28</eventid>
+    <fasttype>0</fasttype>
+    <tithi>4</tithi>
+    <masa>2</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Srivasa Pandita -- Disappearance</text>
+    <eventid>29</eventid>
+    <fasttype>0</fasttype>
+    <tithi>9</tithi>
+    <masa>2</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Gadadhara Pandita -- Disappearance</text>
+    <eventid>30</eventid>
+    <fasttype>0</fasttype>
+    <tithi>14</tithi>
+    <masa>2</masa>
+  </event>
+  <event type="TITHI" class="2" visible="1" used="1">
+    <fastsubject>Bhaktivinoda Thakura</fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Srila Bhaktivinoda Thakura -- Disappearance</text>
+    <eventid>31</eventid>
+    <fasttype>1</fasttype>
+    <tithi>14</tithi>
+    <masa>2</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Svarupa Damodara Gosvami -- Disappearance</text>
+    <eventid>32</eventid>
+    <fasttype>0</fasttype>
+    <tithi>16</tithi>
+    <masa>2</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Sivananda Sena -- Disappearance</text>
+    <eventid>33</eventid>
+    <fasttype>0</fasttype>
+    <tithi>16</tithi>
+    <masa>2</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Vakresvara Pandita -- Disappearance</text>
+    <eventid>34</eventid>
+    <fasttype>0</fasttype>
+    <tithi>20</tithi>
+    <masa>2</masa>
+  </event>
+  <event type="TITHI" class="1" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Guru (Vyasa) Purnima</text>
+    <eventid>35</eventid>
+    <fasttype>0</fasttype>
+    <tithi>29</tithi>
+    <masa>2</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Srila Sanatana Gosvami -- Disappearance</text>
+    <eventid>36</eventid>
+    <fasttype>0</fasttype>
+    <tithi>29</tithi>
+    <masa>2</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Srila Gopala Bhatta Gosvami -- Disappearance</text>
+    <eventid>37</eventid>
+    <fasttype>0</fasttype>
+    <tithi>4</tithi>
+    <masa>3</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Srila Lokanatha Gosvami -- Disappearance</text>
+    <eventid>38</eventid>
+    <fasttype>0</fasttype>
+    <tithi>7</tithi>
+    <masa>3</masa>
+  </event>
+  <event type="TITHI" class="4" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>The incorporation of ISKCON in New York</text>
+    <eventid>39</eventid>
+    <fasttype>0</fasttype>
+    <tithi>8</tithi>
+    <masa>3</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Raghunandana Thakura -- Disappearance</text>
+    <eventid>40</eventid>
+    <fasttype>0</fasttype>
+    <tithi>18</tithi>
+    <masa>3</masa>
+  </event>
+  <event type="TITHI" class="2" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Vamsidasa Babaji -- Disappearance</text>
+    <eventid>41</eventid>
+    <fasttype>0</fasttype>
+    <tithi>18</tithi>
+    <masa>3</masa>
+  </event>
+  <event type="TITHI" class="1" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Radha Govinda Jhulana Yatra begins</text>
+    <eventid>42</eventid>
+    <fasttype>0</fasttype>
+    <tithi>25</tithi>
+    <masa>3</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Srila Rupa Gosvami -- Disappearance</text>
+    <eventid>43</eventid>
+    <fasttype>0</fasttype>
+    <tithi>26</tithi>
+    <masa>3</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Gauridasa Pandita -- Disappearance</text>
+    <eventid>44</eventid>
+    <fasttype>0</fasttype>
+    <tithi>26</tithi>
+    <masa>3</masa>
+  </event>
+  <event type="TITHI" class="1" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Jhulana Yatra ends</text>
+    <eventid>45</eventid>
+    <fasttype>0</fasttype>
+    <tithi>29</tithi>
+    <masa>3</masa>
+  </event>
+  <event type="TITHI" class="0" visible="1" used="1">
+    <fastsubject>Lord Balarama</fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Lord Balarama -- Appearance</text>
+    <eventid>46</eventid>
+    <fasttype>1</fasttype>
+    <tithi>29</tithi>
+    <masa>3</masa>
+  </event>
+  <event type="TITHI" class="4" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Srila Prabhupada's departure for the USA</text>
+    <eventid>47</eventid>
+    <fasttype>0</fasttype>
+    <tithi>0</tithi>
+    <masa>4</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Srimati Sita Thakurani (Sri Advaita's consort) -- Appearance</text>
+    <eventid>48</eventid>
+    <fasttype>0</fasttype>
+    <tithi>19</tithi>
+    <masa>4</masa>
+  </event>
+  <event type="TITHI" class="1" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Lalita sasti</text>
+    <eventid>49</eventid>
+    <fasttype>0</fasttype>
+    <tithi>20</tithi>
+    <masa>4</masa>
+  </event>
+  <event type="TITHI" class="0" visible="1" used="1">
+    <fastsubject>Srimati Radharani</fastsubject>
+    <startyear>-10000</startyear>
+    <specid>16</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Radhastami: Appearance of Srimati Radharani</text>
+    <eventid>50</eventid>
+    <fasttype>1</fasttype>
+    <tithi>22</tithi>
+    <masa>4</masa>
+  </event>
+  <event type="TITHI" class="0" visible="1" used="1">
+    <fastsubject>Vamanadeva</fastsubject>
+    <startyear>-10000</startyear>
+    <specid>7</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Vamana Dvadasi: Appearance of Lord Vamanadeva</text>
+    <eventid>51</eventid>
+    <fasttype>1</fasttype>
+    <tithi>26</tithi>
+    <masa>4</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Srila Jiva Gosvami -- Appearance</text>
+    <eventid>52</eventid>
+    <fasttype>0</fasttype>
+    <tithi>26</tithi>
+    <masa>4</masa>
+  </event>
+  <event type="TITHI" class="2" visible="1" used="1">
+    <fastsubject>Bhaktivinoda Thakura</fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Srila Bhaktivinoda Thakura -- Appearance</text>
+    <eventid>53</eventid>
+    <fasttype>1</fasttype>
+    <tithi>27</tithi>
+    <masa>4</masa>
+  </event>
+  <event type="TITHI" class="1" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Ananta Caturdasi Vrata</text>
+    <eventid>54</eventid>
+    <fasttype>0</fasttype>
+    <tithi>28</tithi>
+    <masa>4</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Srila Haridasa Thakura -- Disappearance</text>
+    <eventid>55</eventid>
+    <fasttype>0</fasttype>
+    <tithi>28</tithi>
+    <masa>4</masa>
+  </event>
+  <event type="TITHI" class="1" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Visvarupa Mahotsava</text>
+    <eventid>56</eventid>
+    <fasttype>0</fasttype>
+    <tithi>29</tithi>
+    <masa>4</masa>
+  </event>
+  <event type="TITHI" class="4" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Acceptance of sannyasa by Srila Prabhupada</text>
+    <eventid>57</eventid>
+    <fasttype>0</fasttype>
+    <tithi>29</tithi>
+    <masa>4</masa>
+  </event>
+  <event type="TITHI" class="4" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Srila Prabhupada's arrival in the USA</text>
+    <eventid>58</eventid>
+    <fasttype>0</fasttype>
+    <tithi>6</tithi>
+    <masa>5</masa>
+  </event>
+  <event type="TITHI" class="5" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Durga Puja</text>
+    <eventid>59</eventid>
+    <fasttype>0</fasttype>
+    <tithi>21</tithi>
+    <masa>5</masa>
+  </event>
+  <event type="TITHI" class="1" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Ramacandra Vijayotsava</text>
+    <eventid>60</eventid>
+    <fasttype>0</fasttype>
+    <tithi>24</tithi>
+    <masa>5</masa>
+  </event>
+  <event type="TITHI" class="2" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Madhvacarya -- Appearance</text>
+    <eventid>61</eventid>
+    <fasttype>0</fasttype>
+    <tithi>24</tithi>
+    <masa>5</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>1571</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Srila Raghunatha Dasa Gosvami -- Disappearance</text>
+    <eventid>62</eventid>
+    <fasttype>0</fasttype>
+    <tithi>26</tithi>
+    <masa>5</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>1505</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Srila Raghunatha Bhatta Gosvami -- Disappearance</text>
+    <eventid>63</eventid>
+    <fasttype>0</fasttype>
+    <tithi>26</tithi>
+    <masa>5</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Srila Krsnadasa Kaviraja Gosvami -- Disappearance</text>
+    <eventid>64</eventid>
+    <fasttype>0</fasttype>
+    <tithi>26</tithi>
+    <masa>5</masa>
+  </event>
+  <event type="TITHI" class="1" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Krsna Saradiya Rasayatra</text>
+    <eventid>65</eventid>
+    <fasttype>0</fasttype>
+    <tithi>29</tithi>
+    <masa>5</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Murari Gupta -- Disappearance</text>
+    <eventid>66</eventid>
+    <fasttype>0</fasttype>
+    <tithi>29</tithi>
+    <masa>5</masa>
+  </event>
+  <event type="TITHI" class="5" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Laksmi Puja</text>
+    <eventid>67</eventid>
+    <fasttype>0</fasttype>
+    <tithi>29</tithi>
+    <masa>5</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Srila Narottama Dasa Thakura -- Disappearance</text>
+    <eventid>68</eventid>
+    <fasttype>0</fasttype>
+    <tithi>4</tithi>
+    <masa>6</masa>
+  </event>
+  <event type="TITHI" class="1" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Appearance of Radha Kunda, snana dana</text>
+    <eventid>69</eventid>
+    <fasttype>0</fasttype>
+    <tithi>7</tithi>
+    <masa>6</masa>
+  </event>
+  <event type="TITHI" class="1" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Bahulastami</text>
+    <eventid>70</eventid>
+    <fasttype>0</fasttype>
+    <tithi>7</tithi>
+    <masa>6</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Virabhadra -- Appearance</text>
+    <eventid>71</eventid>
+    <fasttype>0</fasttype>
+    <tithi>8</tithi>
+    <masa>6</masa>
+  </event>
+  <event type="TITHI" class="1" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Dipa dana, Dipavali, (Kali Puja)</text>
+    <eventid>72</eventid>
+    <fasttype>0</fasttype>
+    <tithi>14</tithi>
+    <masa>6</masa>
+  </event>
+  <event type="TITHI" class="1" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Bali Daityaraja Puja</text>
+    <eventid>73</eventid>
+    <fasttype>0</fasttype>
+    <tithi>15</tithi>
+    <masa>6</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Rasikananda -- Appearance</text>
+    <eventid>74</eventid>
+    <fasttype>0</fasttype>
+    <tithi>15</tithi>
+    <masa>6</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Vasudeva Ghosh -- Disappearance</text>
+    <eventid>75</eventid>
+    <fasttype>0</fasttype>
+    <tithi>16</tithi>
+    <masa>6</masa>
+  </event>
+  <event type="TITHI" class="2" visible="1" used="1">
+    <fastsubject>Srila Prabhupada</fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Srila Prabhupada -- Disappearance</text>
+    <eventid>76</eventid>
+    <fasttype>1</fasttype>
+    <tithi>18</tithi>
+    <masa>6</masa>
+  </event>
+  <event type="TITHI" class="1" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Gopastami, Gosthastami</text>
+    <eventid>77</eventid>
+    <fasttype>0</fasttype>
+    <tithi>22</tithi>
+    <masa>6</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Gadadhara Dasa Gosvami -- Disappearance</text>
+    <eventid>78</eventid>
+    <fasttype>0</fasttype>
+    <tithi>22</tithi>
+    <masa>6</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Dhananjaya Pandita -- Disappearance</text>
+    <eventid>79</eventid>
+    <fasttype>0</fasttype>
+    <tithi>22</tithi>
+    <masa>6</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Srinivasa Acarya -- Disappearance</text>
+    <eventid>80</eventid>
+    <fasttype>0</fasttype>
+    <tithi>22</tithi>
+    <masa>6</masa>
+  </event>
+  <event type="TITHI" class="5" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Jagaddhatri Puja</text>
+    <eventid>81</eventid>
+    <fasttype>0</fasttype>
+    <tithi>23</tithi>
+    <masa>6</masa>
+  </event>
+  <event type="TITHI" class="2" visible="1" used="1">
+    <fastsubject>Gaura Kisora Dasa Babaji</fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Srila Gaura Kisora Dasa Babaji -- Disappearance</text>
+    <eventid>82</eventid>
+    <fasttype>1</fasttype>
+    <tithi>25</tithi>
+    <masa>6</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Bhugarbha Gosvami -- Disappearance</text>
+    <eventid>83</eventid>
+    <fasttype>0</fasttype>
+    <tithi>28</tithi>
+    <masa>6</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Kasisvara Pandita -- Disappearance</text>
+    <eventid>84</eventid>
+    <fasttype>0</fasttype>
+    <tithi>28</tithi>
+    <masa>6</masa>
+  </event>
+  <event type="TITHI" class="1" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Krsna Rasayatra</text>
+    <eventid>85</eventid>
+    <fasttype>0</fasttype>
+    <tithi>29</tithi>
+    <masa>6</masa>
+  </event>
+  <event type="TITHI" class="1" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Tulasi-Saligrama Vivaha (marriage)</text>
+    <eventid>86</eventid>
+    <fasttype>0</fasttype>
+    <tithi>29</tithi>
+    <masa>6</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Nimbarkacarya -- Appearance</text>
+    <eventid>87</eventid>
+    <fasttype>0</fasttype>
+    <tithi>29</tithi>
+    <masa>6</masa>
+  </event>
+  <event type="TITHI" class="1" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Katyayani vrata begins</text>
+    <eventid>88</eventid>
+    <fasttype>0</fasttype>
+    <tithi>0</tithi>
+    <masa>7</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Narahari Sarakara Thakura -- Disappearance</text>
+    <eventid>89</eventid>
+    <fasttype>0</fasttype>
+    <tithi>10</tithi>
+    <masa>7</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Kaliya Krsnadasa -- Disappearance</text>
+    <eventid>90</eventid>
+    <fasttype>0</fasttype>
+    <tithi>11</tithi>
+    <masa>7</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Saranga Thakura -- Disappearance</text>
+    <eventid>91</eventid>
+    <fasttype>0</fasttype>
+    <tithi>12</tithi>
+    <masa>7</masa>
+  </event>
+  <event type="TITHI" class="1" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Odana sasthi</text>
+    <eventid>92</eventid>
+    <fasttype>0</fasttype>
+    <tithi>20</tithi>
+    <masa>7</masa>
+  </event>
+  <event type="TITHI" class="1" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Advent of Srimad Bhagavad-gita</text>
+    <eventid>93</eventid>
+    <fasttype>0</fasttype>
+    <tithi>25</tithi>
+    <masa>7</masa>
+  </event>
+  <event type="TITHI" class="1" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Katyayani vrata ends</text>
+    <eventid>94</eventid>
+    <fasttype>0</fasttype>
+    <tithi>29</tithi>
+    <masa>7</masa>
+  </event>
+  <event type="TITHI" class="2" visible="1" used="1">
+    <fastsubject>Bhaktisiddhanta Sarasvati</fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Srila Bhaktisiddhanta Sarasvati Thakura -- Disappearance</text>
+    <eventid>95</eventid>
+    <fasttype>1</fasttype>
+    <tithi>3</tithi>
+    <masa>8</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Devananda Pandita -- Disappearance</text>
+    <eventid>96</eventid>
+    <fasttype>0</fasttype>
+    <tithi>10</tithi>
+    <masa>8</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Mahesa Pandita -- Disappearance</text>
+    <eventid>97</eventid>
+    <fasttype>0</fasttype>
+    <tithi>12</tithi>
+    <masa>8</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Uddharana Datta Thakura -- Disappearance</text>
+    <eventid>98</eventid>
+    <fasttype>0</fasttype>
+    <tithi>12</tithi>
+    <masa>8</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Locana Dasa Thakura -- Appearance</text>
+    <eventid>99</eventid>
+    <fasttype>0</fasttype>
+    <tithi>15</tithi>
+    <masa>8</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Srila Jiva Gosvami -- Disappearance</text>
+    <eventid>100</eventid>
+    <fasttype>0</fasttype>
+    <tithi>17</tithi>
+    <masa>8</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Jagadisa Pandita -- Disappearance</text>
+    <eventid>101</eventid>
+    <fasttype>0</fasttype>
+    <tithi>17</tithi>
+    <masa>8</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Jagadisa Pandita -- Appearance</text>
+    <eventid>102</eventid>
+    <fasttype>0</fasttype>
+    <tithi>26</tithi>
+    <masa>8</masa>
+  </event>
+  <event type="TITHI" class="1" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Krsna Pusya Abhiseka</text>
+    <eventid>103</eventid>
+    <fasttype>0</fasttype>
+    <tithi>29</tithi>
+    <masa>8</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Ramacandra Kaviraja -- Disappearance</text>
+    <eventid>104</eventid>
+    <fasttype>0</fasttype>
+    <tithi>4</tithi>
+    <masa>9</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Srila Gopala Bhatta Gosvami -- Appearance</text>
+    <eventid>105</eventid>
+    <fasttype>0</fasttype>
+    <tithi>4</tithi>
+    <masa>9</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Jayadeva Gosvami -- Disappearance</text>
+    <eventid>106</eventid>
+    <fasttype>0</fasttype>
+    <tithi>5</tithi>
+    <masa>9</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Locana Dasa Thakura -- Disappearance</text>
+    <eventid>107</eventid>
+    <fasttype>0</fasttype>
+    <tithi>6</tithi>
+    <masa>9</masa>
+  </event>
+  <event type="TITHI" class="1" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Vasanta Pancami</text>
+    <eventid>108</eventid>
+    <fasttype>0</fasttype>
+    <tithi>19</tithi>
+    <masa>9</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Srimati Visnupriya Devi -- Appearance</text>
+    <eventid>109</eventid>
+    <fasttype>0</fasttype>
+    <tithi>19</tithi>
+    <masa>9</masa>
+  </event>
+  <event type="TITHI" class="5" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sarasvati Puja</text>
+    <eventid>110</eventid>
+    <fasttype>0</fasttype>
+    <tithi>19</tithi>
+    <masa>9</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Srila Visvanatha Cakravarti Thakura -- Disappearance</text>
+    <eventid>111</eventid>
+    <fasttype>0</fasttype>
+    <tithi>19</tithi>
+    <masa>9</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Pundarika Vidyanidhi -- Appearance</text>
+    <eventid>112</eventid>
+    <fasttype>0</fasttype>
+    <tithi>19</tithi>
+    <masa>9</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Raghunandana Thakura -- Appearance</text>
+    <eventid>113</eventid>
+    <fasttype>0</fasttype>
+    <tithi>19</tithi>
+    <masa>9</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Srila Raghunatha Dasa Gosvami -- Appearance</text>
+    <eventid>114</eventid>
+    <fasttype>0</fasttype>
+    <tithi>19</tithi>
+    <masa>9</masa>
+  </event>
+  <event type="TITHI" class="0" visible="1" used="1">
+    <fastsubject>Advaita Acarya</fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Advaita Acarya -- Appearance</text>
+    <eventid>115</eventid>
+    <fasttype>1</fasttype>
+    <tithi>21</tithi>
+    <masa>9</masa>
+  </event>
+  <event type="TITHI" class="1" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Bhismastami</text>
+    <eventid>116</eventid>
+    <fasttype>0</fasttype>
+    <tithi>22</tithi>
+    <masa>9</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Madhvacarya -- Disappearance</text>
+    <eventid>117</eventid>
+    <fasttype>0</fasttype>
+    <tithi>23</tithi>
+    <masa>9</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Ramanujacarya -- Disappearance</text>
+    <eventid>118</eventid>
+    <fasttype>0</fasttype>
+    <tithi>24</tithi>
+    <masa>9</masa>
+  </event>
+  <event type="TITHI" class="0" visible="1" used="1">
+    <fastsubject>Varahadeva</fastsubject>
+    <startyear>-10000</startyear>
+    <specid>8</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Varaha Dvadasi: Appearance of Lord Varahadeva</text>
+    <eventid>119</eventid>
+    <fasttype>1</fasttype>
+    <tithi>26</tithi>
+    <masa>9</masa>
+  </event>
+  <event type="TITHI" class="0" visible="1" used="1">
+    <fastsubject>Sri Nityananda</fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Nityananda Trayodasi: Appearance of Sri Nityananda Prabhu</text>
+    <eventid>120</eventid>
+    <fasttype>1</fasttype>
+    <tithi>27</tithi>
+    <masa>9</masa>
+  </event>
+  <event type="TITHI" class="1" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Krsna Madhura Utsava</text>
+    <eventid>121</eventid>
+    <fasttype>0</fasttype>
+    <tithi>29</tithi>
+    <masa>9</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Srila Narottama Dasa Thakura -- Appearance</text>
+    <eventid>122</eventid>
+    <fasttype>0</fasttype>
+    <tithi>29</tithi>
+    <masa>9</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Purusottama Das Thakura -- Disappearance</text>
+    <eventid>123</eventid>
+    <fasttype>0</fasttype>
+    <tithi>4</tithi>
+    <masa>10</masa>
+  </event>
+  <event type="TITHI" class="2" visible="1" used="1">
+    <fastsubject>Bhaktisiddhanta Sarasvati</fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Srila Bhaktisiddhanta Sarasvati Thakura -- Appearance</text>
+    <eventid>124</eventid>
+    <fasttype>1</fasttype>
+    <tithi>4</tithi>
+    <masa>10</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Isvara Puri -- Disappearance</text>
+    <eventid>125</eventid>
+    <fasttype>0</fasttype>
+    <tithi>11</tithi>
+    <masa>10</masa>
+  </event>
+  <event type="TITHI" class="1" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Siva Ratri</text>
+    <eventid>126</eventid>
+    <fasttype>0</fasttype>
+    <tithi>13</tithi>
+    <masa>10</masa>
+  </event>
+  <event type="TITHI" class="2" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Srila Jagannatha Dasa Babaji -- Disappearance</text>
+    <eventid>127</eventid>
+    <fasttype>0</fasttype>
+    <tithi>15</tithi>
+    <masa>10</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Rasikananda -- Disappearance</text>
+    <eventid>128</eventid>
+    <fasttype>0</fasttype>
+    <tithi>15</tithi>
+    <masa>10</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Purusottama Dasa Thakura -- Appearance</text>
+    <eventid>129</eventid>
+    <fasttype>0</fasttype>
+    <tithi>18</tithi>
+    <masa>10</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Madhavendra Puri -- Disappearance</text>
+    <eventid>130</eventid>
+    <fasttype>0</fasttype>
+    <tithi>26</tithi>
+    <masa>10</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Srivasa Pandita -- Appearance</text>
+    <eventid>131</eventid>
+    <fasttype>0</fasttype>
+    <tithi>7</tithi>
+    <masa>11</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Govinda Ghosh -- Disappearance</text>
+    <eventid>132</eventid>
+    <fasttype>0</fasttype>
+    <tithi>11</tithi>
+    <masa>11</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Ramanujacarya -- Appearance</text>
+    <eventid>133</eventid>
+    <fasttype>0</fasttype>
+    <tithi>19</tithi>
+    <masa>11</masa>
+  </event>
+  <event type="TITHI" class="1" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Damanakaropana Dvadasi</text>
+    <eventid>134</eventid>
+    <fasttype>0</fasttype>
+    <tithi>26</tithi>
+    <masa>11</masa>
+  </event>
+  <event type="TITHI" class="1" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Balarama Rasayatra</text>
+    <eventid>135</eventid>
+    <fasttype>0</fasttype>
+    <tithi>29</tithi>
+    <masa>11</masa>
+  </event>
+  <event type="TITHI" class="1" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Krsna Vasanta Rasa</text>
+    <eventid>136</eventid>
+    <fasttype>0</fasttype>
+    <tithi>29</tithi>
+    <masa>11</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Vamsivadana Thakura -- Appearance</text>
+    <eventid>137</eventid>
+    <fasttype>0</fasttype>
+    <tithi>29</tithi>
+    <masa>11</masa>
+  </event>
+  <event type="TITHI" class="3" visible="1" used="1">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Syamananda Prabhu -- Appearance</text>
+    <eventid>138</eventid>
+    <fasttype>0</fasttype>
+    <tithi>29</tithi>
+    <masa>11</masa>
+  </event>
+  <event type="TITHI" class="0" visible="1" used="0">
+    <fastsubject>Sri Krsna</fastsubject>
+    <startyear>-10000</startyear>
+    <specid>10</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Sri Krsna Janmastami: Appearance of Lord Sri Krsna</text>
+    <eventid>139</eventid>
+    <fasttype>5</fasttype>
+    <tithi>7</tithi>
+    <masa>4</masa>
+  </event>
+  <event type="TITHI" class="0" visible="1" used="0">
+    <fastsubject>Sri Krsna Caitanya Mahaprabhu</fastsubject>
+    <startyear>-10000</startyear>
+    <specid>12</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Gaura Purnima: Appearance of Sri Caitanya Mahaprabhu</text>
+    <eventid>140</eventid>
+    <fasttype>3</fasttype>
+    <tithi>29</tithi>
+    <masa>10</masa>
+  </event>
+  <event type="TITHI" class="1" visible="1" used="0">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>6</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Go Puja. Go Krda. Govardhana Puja.</text>
+    <eventid>141</eventid>
+    <fasttype>0</fasttype>
+    <tithi>0</tithi>
+    <masa>6</masa>
+  </event>
+  <event type="TITHI" class="0" visible="1" used="0">
+    <fastsubject>Sri Ramacandra</fastsubject>
+    <startyear>-10000</startyear>
+    <specid>9</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Rama Navami: Appearance of Lord Sri Ramacandra</text>
+    <eventid>142</eventid>
+    <fasttype>2</fasttype>
+    <tithi>23</tithi>
+    <masa>11</masa>
+  </event>
+  <event type="TITHI" class="1" visible="1" used="0">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>11</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Ratha Yatra</text>
+    <eventid>143</eventid>
+    <fasttype>0</fasttype>
+    <tithi>1</tithi>
+    <masa>2</masa>
+  </event>
+  <event type="REL" class="1" visible="1" used="0">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>13</specid>
+    <offset>1</offset>
+    <deleted>0</deleted>
+    <text>Nandotsava</text>
+    <eventid>144</eventid>
+    <fasttype>0</fasttype>
+    <specref>10</specref>
+  </event>
+  <event type="REL" class="2" visible="1" used="0">
+    <fastsubject>Srila Prabhupada</fastsubject>
+    <startyear>1896</startyear>
+    <specid>15</specid>
+    <offset>1</offset>
+    <deleted>0</deleted>
+    <text>Srila Prabhupada -- Appearance</text>
+    <eventid>145</eventid>
+    <fasttype>1</fasttype>
+    <specref>10</specref>
+  </event>
+  <event type="REL" class="1" visible="1" used="0">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>3</specid>
+    <offset>8</offset>
+    <deleted>0</deleted>
+    <text>Return Ratha (8 days after Ratha Yatra)</text>
+    <eventid>146</eventid>
+    <fasttype>0</fasttype>
+    <specref>11</specref>
+  </event>
+  <event type="REL" class="1" visible="1" used="0">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>4</specid>
+    <offset>4</offset>
+    <deleted>0</deleted>
+    <text>Hera Pancami (4 days after Ratha Yatra)</text>
+    <eventid>147</eventid>
+    <fasttype>0</fasttype>
+    <specref>11</specref>
+  </event>
+  <event type="REL" class="1" visible="1" used="0">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>5</specid>
+    <offset>-1</offset>
+    <deleted>0</deleted>
+    <text>Gundica Marjana</text>
+    <eventid>148</eventid>
+    <fasttype>0</fasttype>
+    <specref>11</specref>
+  </event>
+  <event type="REL" class="1" visible="1" used="0">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>14</specid>
+    <offset>1</offset>
+    <deleted>0</deleted>
+    <text>Festival of Jagannatha Misra</text>
+    <eventid>149</eventid>
+    <fasttype>0</fasttype>
+    <specref>12</specref>
+  </event>
+  <event type="SAN" class="5" visible="1" used="0">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Ganga Sagara Mela</text>
+    <eventid>150</eventid>
+    <fasttype>0</fasttype>
+    <sankranti>9</sankranti>
+  </event>
+  <event type="SAN" class="5" visible="1" used="0">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>0</offset>
+    <deleted>0</deleted>
+    <text>Tulasi Jala Dan begins</text>
+    <eventid>151</eventid>
+    <fasttype>0</fasttype>
+    <sankranti>0</sankranti>
+  </event>
+  <event type="SAN" class="5" visible="1" used="0">
+    <fastsubject>
+    </fastsubject>
+    <startyear>-10000</startyear>
+    <specid>0</specid>
+    <offset>-1</offset>
+    <deleted>0</deleted>
+    <text>Tulasi Jala Dan ends</text>
+    <eventid>152</eventid>
+    <fasttype>0</fasttype>
+    <sankranti>1</sankranti>
+  </event>
+</events>

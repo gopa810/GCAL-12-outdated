@@ -12,7 +12,7 @@ namespace GCAL.Base
         public List<string> gstr = new List<string>();
         public List<string> keys = new List<string>();
         public Dictionary<string, int> map = new Dictionary<string, int>();
-        public static bool showNumberOfString = false;
+        public static bool showNumberOfString = true;
 
         public GPStrings()
         {
@@ -121,7 +121,12 @@ namespace GCAL.Base
 
         public static string getString(int index)
         {
-            return getSharedStrings().getStringValue(index);
+            return getSharedStrings().getStringValue(index, false);
+        }
+
+        public static string getUpperString(int index)
+        {
+            return getSharedStrings().getStringValue(index, true);
         }
 
         public static string getPlainString(int index)
@@ -136,14 +141,21 @@ namespace GCAL.Base
 
         public string getStringValue(int index)
         {
+            return getStringValue(index, false);
+        }
+
+        public string getStringValue(int index, bool bUpper)
+        {
             if (index < 0 || index >= gstr.Count)
                 return string.Empty;
             if (showNumberOfString)
             {
-                return string.Format("<span class=highred onclick='window.location.href=\"editstr_{0}\"'>{1}</span>", index, gstr[index]);
+                return string.Format("<span class=highred oncontextmenu='javascript:scriptObject.EditString({0});return false;'>{1}</span>", index, (bUpper ? gstr[index].ToUpper() : gstr[index]));
             }
             else
             {
+                if (bUpper)
+                    return gstr[index].ToUpper();
                 return gstr[index];
             }
         }
@@ -236,8 +248,14 @@ namespace GCAL.Base
             });
 
             mapPropertyTextValue.Add("core.sorttype", new string[] {
-                "Sort by Event Type",
-                "Sort by Time"
+                getStringValue(1263),
+                getStringValue(1264)
+            });
+
+            mapPropertyTextValue.Add("gen.startpage", new string[] {
+                getStringValue(1054),
+                getStringValue(452),
+                getStringValue(174)
             });
         }
 

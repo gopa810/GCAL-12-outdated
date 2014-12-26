@@ -80,8 +80,8 @@ namespace GCAL.Base
 
         public double eclipticalLongitude;
         public double eclipticalLatitude;
-        public double right_asc_deg;
-        public double declination_deg;
+        public double rightAscession;
+        public double declination;
         public double equationOfTime;
         public double parallax;
         public double azimuth;
@@ -101,15 +101,15 @@ namespace GCAL.Base
 
         protected void copyFrom(GPSunData sn)
         {
-            this.declination_deg = sn.declination_deg;
+            this.declination = sn.declination;
             this.eclipticalLongitude = sn.eclipticalLongitude;
-            this.right_asc_deg = sn.right_asc_deg;
+            this.rightAscession = sn.rightAscession;
             this.parallax = sn.parallax;
         }
 
         public override string ToString()
         {
-            return String.Format("Longitude:{0}, RA:{1}, Azimuth:{2}, Elevation:{3}, Declination: {4}", eclipticalLongitude, right_asc_deg, azimuth, elevation, declination_deg);
+            return String.Format("Longitude:{0}, RA:{1}, Azimuth:{2}, Elevation:{3}, Declination: {4}", eclipticalLongitude, rightAscession, azimuth, elevation, declination);
         }
 
         public static int GetRasi(double SunLongitude, double Ayanamsa)
@@ -122,7 +122,11 @@ namespace GCAL.Base
             return Convert.ToInt32(Math.Floor(GPMath.putIn360(eclipticalLongitude - Ayanamsa) / 30.0));
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="jdate">Julian day (Universal Time)</param>
+        /// <returns>Returns value of ecliptic longitude</returns>
         public static double GetSunLongitude(double jdate)
         {
             GPCelestialBodyCoordinates coord = GPAstroEngine.sun_coordinate(jdate);

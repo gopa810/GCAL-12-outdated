@@ -17,11 +17,13 @@ namespace GCAL.Base
         public int nUsed = 0;
         public int nDeleted = 0;
         public int nSpec = 0;
+
         public string strFastSubject = string.Empty;
         public string strText = string.Empty;
         public List<GPEvent> childrenItems = null;
+
         // offset in days
-        // event specification + nOffset is day of this celebration
+        // event specification + nOffset is day of notification
         public int nOffset = 0;
 
         public GPEvent()

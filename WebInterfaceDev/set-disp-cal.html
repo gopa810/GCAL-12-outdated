@@ -46,7 +46,7 @@ function onSave()
 
 <body>
 
-<h1>{%gstr 971}</h1>
+<h1>{%gstr 372} - {%gstr 971}</h1>
 
 <h2>{%gstr 185}</h2>
 <hr>
@@ -64,7 +64,7 @@ writeCheckBox("{%gstr 926}", "", "t6");
 
 </table>
 
-<h2>{%gstr 186}</h2>
+<h2>{%gstr 1260}</h2>
 <hr>
 <table style='border:0px' align=center width='66%' cellpadding=4 cellspacing=0>
 
@@ -76,15 +76,22 @@ writeCheckBox("{%gstr 193}", "", "t13");
 writeCheckBox("{%gstr 205}", "", "t14");
 writeCheckBox("{%gstr 194}", "", "t15");
 writeCheckBox("{%gstr 195}", "", "t16");
+writeComboChoice("{%gstr 196}", "{%getCurrentSelectionText cal.anniversary}", "t22", "set-disp-cal-ann");
+writeComboChoice("{%gstr 188}", "{%getCurrentSelectionText cal.headertype}", "t23", "set-disp-cal-hdt");
+</script>
+</table>
+
+<h2>{%gstr 1259}</h2>
+<hr>
+<table style='border:0px' align=center width='66%' cellpadding=4 cellspacing=0>
+
+<script type="text/javascript">
 writeCheckBox("{%gstr 189}", "", "t17");
 writeCheckBox("{%gstr 192}", "", "t18");
 writeCheckBox("{%gstr 190}", "", "t19");
 writeCheckBox("{%gstr 197}", "", "t20");
 writeCheckBox("{%gstr 991}", "", "t21");
-writeComboChoice("{%gstr 196}", "{%getCurrentSelectionText cal.anniversary}", "t22", "set-disp-cal-ann");
-writeComboChoice("{%gstr 188}", "{%getCurrentSelectionText cal.headertype}", "t23", "set-disp-cal-hdt");
 </script>
-
 </table>
 
 <h2>{%gstr 206}</h2>

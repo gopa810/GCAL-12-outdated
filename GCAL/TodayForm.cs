@@ -134,7 +134,7 @@ namespace GCAL
         public void RefreshText()
         {
             StringBuilder sb = new StringBuilder();
-            FormaterHtml.WriteTodayInfoHTML(myDate, myLocation, sb, scales[scaleIndex]);
+            FormaterHtml.WriteTodayInfoHTML(myDate, myLocation, sb, scales[scaleIndex], null);
             webBrowser1.DocumentText = sb.ToString();
 
         }
@@ -261,7 +261,7 @@ namespace GCAL
                 }
                 else if (sdlg.FilterIndex == 3)
                 {
-                    FormaterHtml.WriteTodayInfoHTML(myDate, myLocation, sb, 11);
+                    FormaterHtml.WriteTodayInfoHTML(myDate, myLocation, sb, 11, null);
                 }
                 File.WriteAllText(sdlg.FileName, sb.ToString());
             }

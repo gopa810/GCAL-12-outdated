@@ -170,6 +170,21 @@ namespace GCAL.Base
         /// JULIAN(local) = JULIAN(greenwich) + TIMEZONEHOURS
         /// </summary>
         /// <param name="jdate">Julian Time</param>
+        public void setJulianGreenwichTime(double jdate)
+        {
+            double jd = jdate + getLocation().getTimeZoneOffsetHours() / 24.0;
+
+            setJulianLocalTime(jd);
+
+            // greenwich julian day
+            p_julian = jdate;
+        }
+
+        /// <summary>
+        /// JULIAN(greenwich) = JULIAN(local) - TIMEZONEHOURS
+        /// JULIAN(local) = JULIAN(greenwich) + TIMEZONEHOURS
+        /// </summary>
+        /// <param name="jdate">Julian Time</param>
         public void setJulianGreenwichTime(GPJulianTime jdate)
         {
             double jd = jdate.getGreenwichJulianDay() + getLocation().getTimeZoneOffsetHours()/24.0;
@@ -519,6 +534,7 @@ namespace GCAL.Base
 
         public bool getDaylightTimeON()
         {
+            normalizeValues();
             if (!dstValid)
             {
                 GPLocation loc = getLocation();
@@ -592,8 +608,8 @@ namespace GCAL.Base
 
         public void getLocalTimeEx(out DateTime dt, out bool dstOn)
         {
-            dstOn = getDaylightTimeON();
             normalizeValues();
+            dstOn = getDaylightTimeON();
             dt = new DateTime(getYear(), getMonth(), getDay(), getHour(), getMinute(), getSecond());
             if (dstOn)
             {

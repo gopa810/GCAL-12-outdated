@@ -98,7 +98,7 @@ function setNewComboChoice(myId)
   lastId = myId;
 }
 
-function getStringComboChoiceValue(title, valText, myId, val)
+function getStringComboChoiceValue(title, valText, myId, val, action)
 {
 	var str;
 	
@@ -106,7 +106,7 @@ function getStringComboChoiceValue(title, valText, myId, val)
     str += ' onmouseover=\'shh(1,"row' + myId + '")\'';
     str += ' onmouseout=\'shh(0,"row' + myId + '")\'';
 	str += '>\n';
-	str += '<td  style=\'cursor:pointer;\' onclick=\'setNewComboChoice("' + myId + '")\' width=24pt>';
+	str += '<td  style=\'cursor:pointer;\' onclick=\'setNewComboChoice("' + myId + '");' + action + '\' width=24pt>';
 	str += '<img id = "' + myId + '" src="';
 	str += getDir() + "/";
 	str += (val != 0 ? "checked-yes.png" : "checked-no.png");
@@ -165,14 +165,18 @@ function setVisibility(elemId, dispValue)
 
 function writeComboChoiceValue(title, valText, myId, val)
 {
-    document.write(getStringComboChoiceValue(title, valText, myId, val));
+    document.write(getStringComboChoiceValue(title, valText, myId, val, ""));
+}
+
+function writeComboChoiceValueAction(title, valText, myId, val, action)
+{
+    document.write(getStringComboChoiceValue(title, valText, myId, val, action));
 }
 
 function writeClickChoiceValue(title, valText, myId, val, retpage, property)
 {
     document.write(getStringClickChoiceValue(title, valText, myId, val, retpage, property));
 }
-
 
 function incrementCounterChoice(myId, valDif)
 {
@@ -190,7 +194,7 @@ function writeCounterChoice(title, valText, myId)
     
     str = '<tr height=32px>\n';
     str += '<td style=\'cursor:pointer;\'>\n';
-    str += '<p><span style=\'font-weight:bold;font-size:120%\'>' + title + '</span>\n';
+    str += '<p><span style=\'font-size:120%\'>' + title + '</span>\n';
     str += '<br><span style=\'color:#aaa\'>' + valText + '</span>\n';
     str += '</td>\n';
     str += '<td width=24pt>';
@@ -200,9 +204,17 @@ function writeCounterChoice(title, valText, myId)
     str += '<tr>';
     str += '<td style=\'text-align:right;font-size:24pt\' id=\'' + myId + '\'>1</td>';
     str += '<td width=32pt class=\'noselect\' style=\'text-align:center;cursor:pointer\'';
-    str += ' onclick=\'incrementCounterChoice("' + myId + '", 1);\'>+1</td>';
+    str += ' onclick=\'incrementCounterChoice("' + myId + '", 1);\'';
+    str += ' ondblclick=\'incrementCounterChoice("' + myId + '", 2);\'';
+	str += '>';
+	str += '<img src="' + getDir() + '/choice_plus.png">';
+	str += '</td>';
     str += '<td width=32pt class=\'noselect\' style=\'text-align:center;cursor:pointer\'';
-    str += ' onclick=\'incrementCounterChoice("' + myId + '", -1);\'>-1</td>';
+    str += ' onclick=\'incrementCounterChoice("' + myId + '", -1);\'';
+    str += ' ondblclick=\'incrementCounterChoice("' + myId + '", -2);\'';
+	str += '>';
+	str += '<img src="' + getDir() + '/choice_minus.png">';
+	str += '</td>';
     str += '</tr></table>';
 
 
