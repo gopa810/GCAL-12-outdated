@@ -213,6 +213,11 @@ namespace GCAL.Base
             SetBoolForKey("appday.childn", true);
             SetIntForKey("nextfest.days", 16);
             SetBoolForKey("nextfest.onlyfast", false);
+            SetIntForKey("search.today.days", 3);
+            SetIntForKey("search.calendar.months", 12);
+            SetIntForKey("search.coreevents.months", 1);
+            SetIntForKey("search.masalist.years", 3);
+
         }
 
     }

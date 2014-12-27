@@ -108,7 +108,7 @@ namespace GCAL.Engine
         {
             ResultsList.Clear();
             //ClearControlList();
-
+            int limit;
             if (Location == null || p_text == null || p_text.Length == 0)
             {
                 return;
@@ -124,7 +124,8 @@ namespace GCAL.Engine
             // today results (this day, tomorrow and day after
             //
             #region today screen results
-            for (int i = 0; i < 3; i++)
+            limit = GPUserDefaults.IntForKey("search.today.days", 3);
+            for (int i = 0; i < limit; i++)
             {
                 sb.Remove(0, sb.Length);
                 FormaterPlain.AvcGetTodayInfo(vc, Location, sb);
@@ -151,12 +152,12 @@ namespace GCAL.Engine
             #endregion
 
             #region calendar results
-
+            limit = GPUserDefaults.IntForKey("search.calendar.months", 12);
             GPCalendarResults rcal = new GPCalendarResults();
 
             vc.Today();
             vc.AddDays(1 - vc.getDay());
-            for (int i = 0; i < 12; i++)
+            for (int i = 0; i < limit; i++)
             {
                 rcal.CalculateCalendar(vc, GPGregorianTime.GetMonthMaxDays(vc.getYear(), vc.getMonth()));
                 FormaterPlain.FormatCalendarOld(rcal, sb);
@@ -190,13 +191,12 @@ namespace GCAL.Engine
 
             #endregion
 
-
             #region core events results
-
+            limit = GPUserDefaults.IntForKey("search.coreevents.months", 1);
             GPCoreEventResults reve = new GPCoreEventResults();
             vc.Today();
             vc.AddDays(1 - vc.getDay());
-            for (int i = 0; i < 1; i++)
+            for (int i = 0; i < limit; i++)
             {
                 sb.Remove(0, sb.Length);
                 GPGregorianTime vcEnd = vc.Copy();
@@ -231,12 +231,11 @@ namespace GCAL.Engine
 
             #endregion
 
-
             #region masa list
-
+            limit = GPUserDefaults.IntForKey("search.masalist.years", 3);
             GPMasaListResults rmas = new GPMasaListResults();
             vc.Today();
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < limit; i++)
             {
                 sb.Remove(0, sb.Length);
                 rmas.CalcMasaList(Location, vc.getYear(), 1);
