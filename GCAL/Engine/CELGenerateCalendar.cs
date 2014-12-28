@@ -57,7 +57,7 @@ namespace GCAL.Engine
                     sb.AppendLine("<body>");
                     sb.AppendLine("<pre>");
                     StringBuilder fout = new StringBuilder();
-                    FormaterPlain.FormatCalendarOld(cal, fout);
+                    FormaterPlain.FormatCalendarPlain(cal, fout);
                     sb.Append(fout);
 
                     sb.AppendLine("</pre></body></html>");

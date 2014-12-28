@@ -65,9 +65,10 @@ namespace GCAL.Base
         /// <summary>
         /// Reads data for object list from file on permanent storage
         /// </summary>
-        public void InitializeFromResources()
+        public int InitializeFromResources()
         {
             FileKey[] keys = GetFileKeys();
+            int countCustomized = 0;
 
             foreach (FileKey key in keys)
             {
@@ -78,6 +79,7 @@ namespace GCAL.Base
                     {
                         ReadStream(reader, key);
                     }
+                    countCustomized++;
                 }
                 else
                 {
@@ -88,6 +90,21 @@ namespace GCAL.Base
                 }
             }
 
+            return countCustomized;
+        }
+
+
+        public void InitializeFromDefaultResources()
+        {
+            FileKey[] keys = GetFileKeys();
+
+            foreach (FileKey key in keys)
+            {
+                using (StringReader reader = new StringReader(GetDefaultResourceForKey(key)))
+                {
+                    ReadStream(reader, key);
+                }
+            }
         }
 
         public virtual void SaveData(StreamWriter writer, FileKey key)
@@ -112,7 +129,12 @@ namespace GCAL.Base
 
         public virtual void Save()
         {
-            if (Modified)
+            Save(Modified);
+        }
+
+        public virtual void Save(bool write)
+        {
+            if (write)
             {
                 FileKey[] keys = GetFileKeys();
 

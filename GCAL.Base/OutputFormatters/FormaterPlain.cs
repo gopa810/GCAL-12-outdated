@@ -147,7 +147,7 @@ namespace GCAL.Base
             return str;
         }
 
-        public static int FormatCalendarOld(GPCalendarResults daybuff, StringBuilder m_text)
+        public static int FormatCalendarPlain(GPCalendarResults daybuff, StringBuilder m_text)
         {
             int k, nMasaHeader;
             String str;

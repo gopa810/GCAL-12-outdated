@@ -160,7 +160,7 @@ namespace GCAL.Engine
             for (int i = 0; i < limit; i++)
             {
                 rcal.CalculateCalendar(vc, GPGregorianTime.GetMonthMaxDays(vc.getYear(), vc.getMonth()));
-                FormaterPlain.FormatCalendarOld(rcal, sb);
+                FormaterPlain.FormatCalendarPlain(rcal, sb);
                 res.Title = string.Format("{0} {1}", GPStrings.getString(759 + vc.getMonth()), vc.getYear());
                 res.Type = GPStrings.getString(44);
                 res.ScanText(p_text, sb);

@@ -1959,6 +1959,8 @@ namespace GCAL
 
         public void searchResultString(string str)
         {
+            if (str == null)
+                return;
             if (str.StartsWith("#"))
             {
                 if (str.EndsWith(";"))
@@ -2180,7 +2182,7 @@ namespace GCAL
                     StringBuilder sb = new StringBuilder();
                     if (sfd.FilterIndex == 1)
                     {
-                        FormaterPlain.FormatCalendarOld((CurrentCalculatedObject as GPCalendarResults), sb);
+                        FormaterPlain.FormatCalendarPlain((CurrentCalculatedObject as GPCalendarResults), sb);
                     }
                     else if (sfd.FilterIndex == 2)
                     {

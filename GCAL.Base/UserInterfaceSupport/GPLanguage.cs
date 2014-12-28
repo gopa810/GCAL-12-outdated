@@ -10,19 +10,19 @@ namespace GCAL.Base
     {
         public string LanguageName = string.Empty;
         public string LanguageFile = string.Empty;
+        public int LanguageVersion = 1;
         public int LanguageId = 1;
-        public bool modified_this = false;
+        public bool LanguageModified = false;
         private GPStrings _strs = null;
 
-
-        public bool getModified()
-        {
-            return modified_this || getStrings().Modified;
-        }
+        public static readonly string LANGFILETAG_NAME = "lang\t";
+        public static readonly string LANGFILETAG_ID = "langid\t";
+        public static readonly string LANGFILETAG_VERSION = "version\t";
+        public static readonly string LANGFILETAG_MODIFIED = "modified\t";
 
         public void setModified(bool value)
         {
-            modified_this = value;
+            LanguageModified = value;
             getStrings().Modified = value;
         }
 
@@ -33,7 +33,7 @@ namespace GCAL.Base
                 _strs = new GPStrings();
                 if (LanguageFile.Length == 0)
                 {
-                    _strs.InitializeFromResources();
+                    _strs.InitializeFromDefaultResources();
                 }
                 else
                 {
@@ -51,6 +51,40 @@ namespace GCAL.Base
         {
             _strs = new GPStrings(value);
             setModified(true);
+        }
+
+        /// <summary>
+        /// Loading information about language strings contained in given file
+        /// </summary>
+        /// <param name="filename">Full path of file with language strings</param>
+        public bool LoadHeader(string filename)
+        {
+            this.LanguageFile = filename;
+            int maxLines = 20;
+
+            using (StreamReader reader = new StreamReader(filename))
+            {
+                string line = reader.ReadLine();
+                while (line != null && maxLines > 0)
+                {
+                    if (line.StartsWith(LANGFILETAG_ID))
+                    {
+                        int n = -1;
+                        if (int.TryParse(line.Substring(LANGFILETAG_ID.Length), out n))
+                        {
+                            this.LanguageId = n;
+                        }
+                    }
+                    else if (line.StartsWith(LANGFILETAG_NAME))
+                    {
+                        this.LanguageName = line.Substring(LANGFILETAG_NAME.Length);
+                    }
+                    line = reader.ReadLine();
+                    maxLines--;
+                }
+            }
+
+            return this.LanguageId > 0;
         }
 
         public bool loadFile(string fileName)
@@ -77,14 +111,6 @@ namespace GCAL.Base
                     if (getStrings().gstr[i].Length > 0)
                         sw.WriteLine("{0}\t{1}\t{2}", i, getStrings().gstr[i], getStrings().keys[i]);
                 }
-            }
-        }
-
-        ~GPLanguage()
-        {
-            if (getModified() && LanguageFile.Length > 0)
-            {
-                saveFile(LanguageFile);
             }
         }
 

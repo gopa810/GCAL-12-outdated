@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 
 namespace GCAL.Base
 {
@@ -9,10 +10,15 @@ namespace GCAL.Base
     {
         public string Language = "English";
         public int LanguageId = 2;
+        public int LanguageVersion = 1;
+
         public List<string> gstr = new List<string>();
         public List<string> keys = new List<string>();
         public Dictionary<string, int> map = new Dictionary<string, int>();
+
         public static bool showNumberOfString = true;
+        private static GPStrings _sharedStrings = null;
+        private static GPStrings _originalStrings = null;
 
         public GPStrings()
         {
@@ -37,14 +43,25 @@ namespace GCAL.Base
             }
         }
 
-        private static GPStrings _sharedStrings = null;
-        private static GPStrings _originalStrings = null;
-        
         public static GPStrings getSharedStrings()
         {
             if (_sharedStrings == null)
             {
-                _sharedStrings = GPLanguageList.getCurrentLanguage().getStrings();
+                _sharedStrings = new GPStrings();
+                string fileName = _sharedStrings.getFullPathForFile(_sharedStrings.GetDefaultFileNameForKey(FileKey.Primary));
+                if (File.Exists(fileName))
+                {
+                    using (StreamReader sr = new StreamReader(fileName))
+                    {
+                        _sharedStrings.ReadStream(sr, FileKey.Primary);
+                    }
+                }
+                else
+                {
+                    _sharedStrings = GPLanguageList.getCurrentLanguage().getStrings();
+                    _sharedStrings.Modified = false;
+                    _sharedStrings.Save(true);
+                }
             }
             return _sharedStrings;
         }
@@ -54,7 +71,7 @@ namespace GCAL.Base
             if (_originalStrings == null)
             {
                 _originalStrings = new GPStrings();
-                _originalStrings.InitializeFromResources();
+                _originalStrings.InitializeFromDefaultResources();
             }
             return _originalStrings;
         }
@@ -62,6 +79,7 @@ namespace GCAL.Base
         public static void setSharedStrings(GPStrings value)
         {
             _sharedStrings = value;
+            _sharedStrings.Save(true);
         }
 
         public override string GetDefaultResourceForKey(FileKey fk)
@@ -87,16 +105,17 @@ namespace GCAL.Base
                 {
                     int.TryParse(parts[1], out LanguageId);
                 }
+                else if (parts[0].Equals("modified"))
+                {
+                    bool.TryParse(parts[1], out Modified);
+                }
+                else if (parts[0].Equals("version"))
+                {
+                    int.TryParse(parts[1], out LanguageVersion);
+                }
                 else if (int.TryParse(parts[0], out index))
                 {
-                    if (parts.Length > 2)
-                        setString(index, parts[1], parts[2]);
-                    else
-                        setString(index, parts[1]);
-                    if (parts.Length >= 3)
-                    {
-                        map[parts[2]] = index;
-                    }
+                    setString(index, parts[1]);
                 }
             }
         }
@@ -182,9 +201,12 @@ namespace GCAL.Base
         public override void SaveData(System.IO.StreamWriter writer, FileKey fk)
         {
             writer.WriteLine("lang\t{0}", Language);
+            writer.WriteLine("langid\t{0}", LanguageId);
+            writer.WriteLine("modified\t{0}", Modified.ToString());
+            writer.WriteLine("version\t{0}", LanguageVersion);
             for (int i = 0; i < gstr.Count; i++)
             {
-                writer.WriteLine("{0}\t{1}\t[2}", i, gstr[i], keys[i]);
+                writer.WriteLine("{0}\t{1}", i, gstr[i]);
             }
         }
 

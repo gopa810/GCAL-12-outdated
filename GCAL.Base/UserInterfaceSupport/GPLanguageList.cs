@@ -30,9 +30,18 @@ namespace GCAL.Base
         {
             if (currLang == null)
             {
-                if (GPLanguageList.getShared().languages.Count == 0)
+                int currLangId = GPUserDefaults.IntForKey("gcal.current.language", -1);
+                List<GPLanguage> languages = GPLanguageList.getShared().languages; 
+                foreach (GPLanguage lang in languages)
+                {
+                    if (lang.LanguageId == currLangId)
+                    {
+                        currLang = lang;
+                    }
+                }
+
+                if (currLang == null)
                     return new GPLanguage("<default>", "");
-                currLang = GPLanguageList.getShared().languages[0];
             }
             return currLang;
         }
@@ -78,28 +87,13 @@ namespace GCAL.Base
         private void initialize()
         {
             currentLanguageId = GPUserDefaults.IntForKey("gcal.current.language", -1);
-            string langFileStart = "lang\t";
             string[] files = GPFileHelper.EnumerateLanguageFiles();
             foreach (string s in files)
             {
-                using (StreamReader reader = new StreamReader(s))
+                GPLanguage nlang = new GPLanguage();
+                if (nlang.LoadHeader(s))
                 {
-                    string line = reader.ReadLine();
-                    if (line != null && line.StartsWith(langFileStart))
-                    {
-                        GPLanguage nlang = new GPLanguage();
-                        nlang.LanguageName = line.Substring(langFileStart.Length);
-                        nlang.LanguageFile = s;
-                        line = reader.ReadLine();
-                        if (line != null && line.StartsWith("langid\t"))
-                        {
-                            if (int.TryParse(line.Substring(7), out nlang.LanguageId))
-                            {
-                                languages.Add(nlang);
-                            }
-                        }
-
-                    }
+                    languages.Add(nlang);
                 }
             }
         }
