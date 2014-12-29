@@ -33,21 +33,19 @@ if (count == '')
 
 function updateCounter()
 {
-	var elem = document.getElementById('counter');
-	elem.innerHTML = count;
+    var hp = Math.floor(count/10);
+	if (hp > 0)
+		document.getElementById('counterb').innerHTML = hp;
+	else
+		document.getElementById('counterb').innerHTML = "";
+	document.getElementById('counterc').innerHTML = Math.floor(count%10);
 }
 
 function incr(dif)
 {
-    count += dif;
-	updateCounter();
-}
-
-function decr(dif)
-{
-    count -= dif;
+    count = Number(count) + Number(dif);
 	if (count < 1)
-		count = 1;
+	    count = 1;
 	updateCounter();
 }
 
@@ -60,14 +58,23 @@ function decr(dif)
 
 <h1>{%gstr 1123}</h1>
 
-<table width=240pt align=center>
+
+<table align=center cellspacing=0 cellpadding=0>
 <tr>
-<td style='text-align:right;font-size:24pt' id='counter' rowspan=2>1</td>
-<td width=32pt class='noselect' style='text-align:center;cursor:pointer' onclick='incr(1);'>+1</td>
-<td width=32pt class='noselect' style='text-align:center;cursor:pointer' onclick='incr(10);'>+10</td>
-</tr><tr>
-<td width=32pt class='noselect' style='text-align:center;cursor:pointer' onclick='decr(1);'>-1</td>
-<td width=32pt class='noselect' style='text-align:center;cursor:pointer' onclick='decr(10);'>-10</td>
+<td style='text-align:right'><img src="{%homedir}/sarrow-to-up.png" onclick='incr(10);'
+                                        ondblclick='incr(10);'></td>
+<td><img src="{%homedir}/sarrow-to-up.png" onclick='incr(1);'
+                                        ondblclick='incr(2);'></td>
+</tr>
+<tr>
+<td style='text-align:center;font-size:24pt' id='counterb'></td>
+<td style='text-align:center;font-size:24pt' id='counterc'>0</td>
+</tr>
+<tr>
+<td style='text-align:right'><img src="{%homedir}/sarrow-to-down.png" onclick='incr(-10);'
+                                        ondblclick='incr(-10);'></td>
+<td><img src="{%homedir}/sarrow-to-down.png" onclick='incr(-1);'
+                                        ondblclick='incr(-2);'></td>
 </tr>
 </table>
 

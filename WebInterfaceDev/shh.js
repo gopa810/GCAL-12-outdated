@@ -11,7 +11,7 @@ function absm(a)
 
 function shh(highIndex, elemId) {
 
-	var highColor2 = 'rgb(200,175,150)';
+	var highColor2 = 'rgb(225,205,185)';
 	var highColor3 = 'rgb(233,217,196)';
 
     var elem = document.getElementById(elemId);
@@ -57,13 +57,20 @@ function writeChoice(text,myId,targetUrl)
 
 function writeChoiceWithAction(text,myId,targetAction)
 {
-   var str = '<tr height=32px><td style=\'cursor:pointer;border:1px solid black\'';
+   document.write('<tr height=32px>');
+   writeChoiceTdWithAction(text,myId,targetAction);
+   document.write('</tr>');   
+}
+
+function writeChoiceTdWithAction(text,myId,targetAction)
+{
+   var str = '<td style=\'cursor:pointer;border:0px solid black\'';
    str += ' onmouseover=\'shh(1,"' + myId + '")\'';
    str += ' onmouseout=\'shh(0,"' + myId + '")\'';
    str += ' onclick=\'' + targetAction + '\'';
    str += ' id=\'' + myId + '\'>';
    str += text;
-   str += '</td></tr>';
+   str += '</td>';
    
    document.write(str);
 }
@@ -426,5 +433,12 @@ function todayToday()
 function runAction(action)
 {
     window.external.runAction(action);
+}
+
+function getNextTip(elemTip)
+{
+	var str = scriptObject.nextTip();
+	
+	document.getElementById(elemTip).innerHTML = str;
 }
 

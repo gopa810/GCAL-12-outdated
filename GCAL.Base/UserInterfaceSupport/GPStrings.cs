@@ -43,12 +43,35 @@ namespace GCAL.Base
             }
         }
 
+        public override string ToString()
+        {
+            StringBuilder writer = new StringBuilder();
+            writer.AppendFormat("lang\t{0}\n", Language);
+            writer.AppendFormat("langid\t{0}\n", LanguageId);
+            writer.AppendFormat("modified\t{0}\n", Modified.ToString());
+            writer.AppendFormat("version\t{0}\n", LanguageVersion);
+            for (int i = 0; i < gstr.Count; i++)
+            {
+                writer.AppendFormat("{0}\t{1}\n", i, gstr[i]);
+            }
+            return writer.ToString();
+        }
+
+        public string getCustomFilePath()
+        {
+            string fileName = string.Empty;
+            
+            fileName = getFullPathForFile(GetDefaultFileNameForKey(FileKey.Primary));
+
+            return fileName;
+        }
+
         public static GPStrings getSharedStrings()
         {
             if (_sharedStrings == null)
             {
                 _sharedStrings = new GPStrings();
-                string fileName = _sharedStrings.getFullPathForFile(_sharedStrings.GetDefaultFileNameForKey(FileKey.Primary));
+                string fileName = _sharedStrings.getCustomFilePath();
                 if (File.Exists(fileName))
                 {
                     using (StreamReader sr = new StreamReader(fileName))

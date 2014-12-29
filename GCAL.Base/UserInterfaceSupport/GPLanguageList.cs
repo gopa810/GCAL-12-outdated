@@ -87,6 +87,12 @@ namespace GCAL.Base
         private void initialize()
         {
             currentLanguageId = GPUserDefaults.IntForKey("gcal.current.language", -1);
+            refreshLanguageList();
+        }
+
+        public void refreshLanguageList()
+        {
+            languages = new List<GPLanguage>();
             string[] files = GPFileHelper.EnumerateLanguageFiles();
             foreach (string s in files)
             {
@@ -98,5 +104,21 @@ namespace GCAL.Base
             }
         }
 
+
+        public bool IsNewVersion(GPLanguage lang)
+        {
+            if (lang.LanguageId <= 0 || lang.LanguageVersion <= 0)
+                return false;
+
+            foreach (GPLanguage lan in languages)
+            {
+                if (lan.LanguageId == lang.LanguageId)
+                {
+                    return lang.LanguageVersion > lan.LanguageVersion;
+                }
+            }
+
+            return true;
+        }
     }
 }

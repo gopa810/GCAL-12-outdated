@@ -171,6 +171,8 @@ namespace GCAL
         private List<GPLocation> locationsList = new List<GPLocation>();
         private int locationsEnumerator = 0;
         private CELSearch searchTask = null;
+        private CELUpdateLanguageList updateLanguageListTask = null;
+        private CELSendMyLanguageFile sendMyLanguageFileTask = null;
         public object CurrentCalculatedObject = null;
         public Dictionary<string, FlowPage> Pages = new Dictionary<string, FlowPage>();
 
@@ -187,6 +189,8 @@ namespace GCAL
         {
             dictStrings.Add("leftArrow", "&nbsp;&#9001;&#9001;&nbsp;");
             dictStrings.Add("rightArrow", "&nbsp;&#9002;&#9002;&nbsp;");
+            dictStrings.Add("stringsFile", GPStrings.getSharedStrings().getCustomFilePath());
+            dictStrings.Add("transemail", "translations@gcal.home.sk");
         }
 
         public Dictionary<string, string> getProperties()
@@ -1955,6 +1959,36 @@ namespace GCAL
                 form.content = this;
                 form.Show();
             }
+        }
+
+        public void updateLanguageList()
+        {
+            updateLanguageListTask = new CELUpdateLanguageList();
+            updateLanguageListTask.Invoke();
+        }
+
+        public string getUpdateLanguageListStatus()
+        {
+            if (updateLanguageListTask != null)
+            {
+                return updateLanguageListTask.getMessage();
+            }
+            return String.Empty;
+        }
+
+        public void sendMyLanguageFile()
+        {
+            sendMyLanguageFileTask = new CELSendMyLanguageFile();
+            sendMyLanguageFileTask.Invoke();
+        }
+
+        public string getSendMyLanguageFileStatus()
+        {
+            if (sendMyLanguageFileTask != null)
+            {
+                return sendMyLanguageFileTask.getMessage();
+            }
+            return string.Empty;
         }
 
         public void searchResultString(string str)

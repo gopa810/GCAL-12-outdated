@@ -3,6 +3,7 @@
 <title>
 </title>
 <script type="text/javascript" src="{%homedir}/shh.js"></script>
+<script type="text/javascript" src="{%homedir}/search.js"></script>
 <link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
 
 
@@ -19,19 +20,237 @@ http://stackoverflow.com/questions/826782/css-rule-to-disable-text-selection-hig
 
 -->
 
+<style>
+   td.mmeps1 {
+       border-left-width:1px;
+	   border-left-style:solid;
+	   border-left-color:rgb(120,100,80);
+   }
+   td.mmc {
+       background:rgb(242,231,212);
+	   cursor:pointer;
+	   font-size:12pt;
+   }
+</style>
+
+<script>
+var last_mm_choice = '';
+
+function onSave()
+{
+	saveString('findstr', getElementValue('textField0'));
+	saveString('mmchoice', last_mm_choice);
+}
+
+function setMMchoice(cc)
+{
+    var elem;
+	
+    if (last_mm_choice != '')
+	{
+		elem = document.getElementById(last_mm_choice);
+		if (elem != null)
+		{
+		    elem.style.fontSize = "12pt";
+			elem.style.fontWeight = "normal";
+		}
+		
+		elem = document.getElementById('d' + last_mm_choice);
+		if (elem != null)
+		{
+		    elem.style.display = "none";
+		}
+	}
+	
+	elem = document.getElementById(cc);
+	if (elem != null)
+	{
+	    elem.style.fontSize = "15pt";
+		elem.style.fontWeight = "bold";
+	}
+	elem = document.getElementById('d' + cc);
+	if (elem != null)
+	{
+		elem.style.display = "block";
+	}
+	
+	last_mm_choice = cc;
+}
+
+var lastMainItem = '';
+
+</script>
+
 </head>
 
 <body style='padding-left:32px;padding-right:32px'>
-<table width=100%>
-<script>
-writeChoiceWithAction("{%gstr 387}...", "t0", 'goPage("mainmenu-calc.html")');
-writeChoiceWithAction("{%gstr 372}...", "t1", 'goPage("mainmenu-set.html")');
-writeChoiceWithAction("{%gstr 360}...", "t2", 'goPage("mainmenu-geo.html")');
-writeChoiceWithAction("{%gstr 394}...", "t3", 'goPage("help.html")');
-</script>
+<table cellpadding=12 cellspacing=0 border=0>
+<tr>
+<td>
+<td class='mmc' id='mm1' onclick='setMMchoice("mm1");'>{%gstr 387}</td><!-- -->
+<td class='mmc' id='mm2' onclick='setMMchoice("mm2");'>{%gstr 372}</td><!-- -->
+<td class='mmc' id='mm3' onclick='setMMchoice("mm3");'>{%gstr 360}</td><!-- -->
+<td class='mmc' id='mm4' onclick='setMMchoice("mm4");'>{%gstr 170}</td><!-- -->
+<td class='mmc' id='mm5' onclick='setMMchoice("mm5");'>{%gstr 394}</td><!-- -->
+</tr>
 </table>
+<hr style=solid color='rgb(120,80,60)' height=1 noshade>
+
+<!--  ################## -->
+<!--  # CALCULATE MENU # -->
+<!--  ################## -->
+<div id='dmm1' style='display:none'>
+	<table cellpadding=12>
+	<script>
+		document.write('<tr>');
+			document.write('<td><img src="' + scriptObject.getDir() + '/images/calc_calendar.png" width=32 height=32>');
+			writeChoiceTdWithAction("{%gstr 44}", "t0", "runAction(\"calendar\");");
+			document.write('<td width=16><img src="' + scriptObject.getDir() + '/images/calc_cal2cal.png" width=32 height=32>');
+			writeChoiceTdWithAction("{%gstr 389}", "t5", "runAction(\"cal2cal\");");
+		document.write('<tr>');
+			document.write('<td><img src="' + scriptObject.getDir() + '/images/calc_coreevents.png" width=32 height=32>');
+			writeChoiceTdWithAction("{%gstr 46}", "t1", "runAction(\"coreevents\");");
+			document.write('<td><img src="' + scriptObject.getDir() + '/images/calc_cal2core.png" width=32 height=32>');
+			writeChoiceTdWithAction("{%gstr 388}", "t6", "runAction(\"cal2core\");");
+		document.write('<tr>');
+			document.write('<td><img src="' + scriptObject.getDir() + '/images/calc_appday.png" width=32 height=32>');
+			writeChoiceTdWithAction("{%gstr 45}", "t2", "runAction(\"appday\");");
+			document.write('<td>');
+			document.write('<td>');
+		document.write('<tr>');
+			document.write('<td><img src="' + scriptObject.getDir() + '/images/calc_masalist.png" width=32 height=32>');
+			writeChoiceTdWithAction("{%gstr 48}", "t3", "runAction(\"masalist\");");
+			document.write('<td>');
+			document.write('<td>');
+		document.write('<tr>');
+			document.write('<td><img src="' + scriptObject.getDir() + '/images/calc_today.png" width=32 height=32>');
+			writeChoiceTdWithAction("{%gstr 43}", "t4", "runAction(\"today\");");
+			document.write('<td><img src="' + scriptObject.getDir() + '/images/calc_nextfest.png" width=32 height=32>');
+			writeChoiceTdWithAction("{%gstr 452}", "t7", "runAction(\"nextfest\");");
+	</script>
+	</table>
+</div>
+
+<!--  ################## -->
+<!--  # SETTINGS MENU  # -->
+<!--  ################## -->
+<div id='dmm2' style='display:none'>
+	<table cellpadding=12 cellspacing=0>
+	<tr>
+	<td width=48px>
+	<td style='text-size:9pt;text-decoration:underline;'><i>{%gstr 235}</i></td>
+	<td width=12px>
+	<td width=12px class='mmeps1'>
+	<td style='text-size:9pt;text-decoration:underline;'><i>{%gstr 1278}</i></td>
+	<script>
+		document.write('<tr>');
+		document.write('<td width="10%"><img src="' + scriptObject.getDir() + '/images/set_calendar.png" width=32 height=32>');
+		writeChoiceTdWithAction("{%gstr 971}", "mms6", "runAction(\"mms_disp_cal\");");
+		document.write('<td width="5%">');
+		document.write("<td width='5%' class='mmeps1'><img src=\"" + scriptObject.getDir() + "/images/set_general.png\" width=32 height=32>");
+		writeChoiceTdWithAction("{%gstr 390}", "mms1", "runAction(\"mms_general\");");
+		document.write('<tr>');
+		document.write('<td><img src="' + scriptObject.getDir() + '/images/set_coreevents.png" width=32 height=32>');
+		writeChoiceTdWithAction("{%gstr 972}", "mms7", "runAction(\"mms_disp_core\");");
+		document.write('<td>');
+		document.write('<td class=\'mmeps1\'><img src="' + scriptObject.getDir() + '/images/set_startpage.png" width=32 height=32>');
+		writeChoiceTdWithAction("{%gstr 1038}", "mms2", "runAction(\"mms_startpage\");");
+		document.write('<tr>');
+		document.write('<td><img src="' + scriptObject.getDir() + '/images/set_appday.png" width=32 height=32>');
+		writeChoiceTdWithAction("{%gstr 970}", "mms8", "runAction(\"mms_disp_app\");");
+		document.write('<td>');
+		document.write('<td class=\'mmeps1\'><img src="' + scriptObject.getDir() + '/images/set_myloc.png" width=32 height=32>');
+		writeChoiceTdWithAction("{%gstr 373}", "mms3", "runAction(\"mms_mylocation\");");
+		document.write('<tr>');
+		document.write('<td><img src="' + scriptObject.getDir() + '/images/set_masalist.png" width=32 height=32>');
+		writeChoiceTdWithAction("{%gstr 973}", "mms9", "runAction(\"mms_disp_masa\");");
+		document.write('<td>');
+		document.write('<td class=\'mmeps1\'><img src="' + scriptObject.getDir() + '/images/set_lang.png" width=32 height=32>');
+		writeChoiceTdWithAction("{%gstr 336}", "mms4", "runAction(\"mms_languages\");");
+		document.write('<tr>');
+		document.write('<td><img src="' + scriptObject.getDir() + '/images/set_today.png" width=32 height=32>');
+		writeChoiceTdWithAction("{%gstr 174}", "mms10", "runAction(\"mms_disp_today\");");
+		document.write('<td>');
+		document.write('<td class=\'mmeps1\'><img src="' + scriptObject.getDir() + '/images/set_search.png" width=32 height=32>');
+		writeChoiceTdWithAction("{%gstr 170}", "mms5", "runAction(\"mms_search\");");
+		document.write('<tr>');
+		document.write('<td><img src="' + scriptObject.getDir() + '/images/set_nextfest.png" width=32 height=32>');
+		writeChoiceTdWithAction("{%gstr 1187}", "mms11", "runAction(\"mms_disp_nextfest\");");
+		document.write('<td>');
+		document.write("<td class='mmeps1'>");
+		document.write('<td>');
+	</script>
+	</table>
+</div>
+
+<!--  ################## -->
+<!--  # ORGANIZER MENU # -->
+<!--  ################## -->
+<div id='dmm3' style='display:none'>
+	<table width=100% cellpadding=12>
+	<script>
+		document.write('<tr>');
+		document.write('<td width="15%">');
+		writeChoiceTdWithAction("{%gstr 311}", "mmo0", "runAction(\"mmo_cities\");");
+		document.write('<tr>');
+		document.write('<td>');
+		writeChoiceTdWithAction("{%gstr 312}", "mmo1", "runAction(\"mmo_countries\");");
+		document.write('<tr>');
+		document.write('<td>');
+		writeChoiceTdWithAction("{%gstr 984}", "mmo2", "runAction(\"mmo_events\");");
+		document.write('<tr>');
+		document.write('<td>');
+		writeChoiceTdWithAction("{%gstr 321}", "mmo3", "runAction(\"mmo_tzones\");");
+	</script>
+	</table>
+</div>
+
+<!--  ################## -->
+<!--  #   SEARCH       # -->
+<!--  ################## -->
+<div id='dmm4' style='display:none'>
+	<center>
+		<p width=50%>{%gstr 1138}</p>
+		<input type="text" id="textField0" value="{%string findstr}">
+	<hr>
+		<div id='findList'>
+		</div>
+	</center>
+	<script>
+	setElementValue("textField0", "{%string findstr}");
+	updateFindList();
+	</script>
+</div>
+
+<!--  ################## -->
+<!--  #    HELP        # -->
+<!--  ################## -->
+<div id='dmm5' style='display:none'>
+	<h1>{%gstr 395} {%version}</h1>
+	<p>{%gstr 463}
+	<p>{%gstr 464}
+	<p><b>{%gstr 465}</b> Gopalapriya Das <i>gopalapriya.bvs@gmail.com</i>
+	<b>{%gstr 466}</b> Bhanu Swami <i>bhanu.swami@pamho.net</i>,	Bhaktarupa Das <i>bhaktarupa.acbsp@pamho.net</i>,
+	Sadasivananda Das <i>sadasivananda.jps@pamho.net</i></p>
+	<div style='border:1px solid black;width=75%;padding:16pt;margin:16pt'>
+		<div id='tip0'>
+		</div>
+	<p align=right><span class=menuitem onclick='getNextTip("tip0");'>{%gstr 239}&nbsp;&#9002;</span>
+	</div>
+	<script type="text/javascript">
+		getNextTip('tip0');
+	</script>
+</div>
 
 
+<script>
+var cmc = loadString('mmchoice');
+if (cmc != 'mm1' && cmc != 'mm2' && cmc != 'mm3' && cmc != 'mm4' && cmc != 'mm5')
+{
+	cmc = 'mm1';
+}
+setMMchoice(cmc);
+</script>
 
 </body>
 </html>

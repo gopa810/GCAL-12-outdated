@@ -1,14 +1,3 @@
-<html>
-<head>
-<title></title>
-<script type="text/javascript" src="{%homedir}/shh.js"></script>
-<link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
-<script type="text/javascript">
-function onSave()
-{
-	saveString('findstr', getElementValue('textField0'));
-}
-
 var searchLastPart = "{%string findstr}";
 var searchNeedUpdate = 0;
 
@@ -31,7 +20,7 @@ function checkName()
 		}
 		else
 		{
-			document.getElementById('findList').innerHTML = "<p align=center><i>{%gstr 1136}</i></p>";
+			document.getElementById('findList').innerHTML = "<p align=center><i>" + scriptObject.gstr(1136) + "</i></p>";
 		}
 	}
 }
@@ -67,7 +56,7 @@ function updateFindList()
 			}
 			str += "</td><td>";
 			str += "<button type=button class=menuItem onclick=\"onSave();" + line[3] + "\">";
-			str += "{%gstr 1135} &#10217";
+			str += scriptObject.gstr(1135) + " &#10217";
 			str += "</button>";
 			str += "</td></tr>";
 		}
@@ -76,32 +65,7 @@ function updateFindList()
 	str += '</table>';
 	
 	if (m < 1)
-		str = "<p align=center><i>{%gstr 1137}</i></p>";
+		str = "<p align=center><i>" + scriptObject.gstr(1137) + "</i></p>";
 
 	document.getElementById('findList').innerHTML = str;
 }
-
-</script>
-</head>
-
-<body>
-
-<center>
-<h1>{%gstr 170}</h1>
-<p width=50%>{%gstr 1138}</p>
-<input type="text" id="textField0" value="{%string findstr}">
-</center>
-<hr>
-<div id='findList'>
-</div>
-
-
-<script>
-setElementValue("textField0", "{%string findstr}");
-updateFindList();
-</script>
-
-
-</body>
-
-</html>

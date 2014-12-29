@@ -32,6 +32,12 @@ function getLanguageChoiceValue(title, valText, myId, val, action)
     return str;
 }
 
+function initLanguageList()
+{
+    var m = document.getElementById('langListElem');
+	m.innerHTML = getLangList("select");
+}
+
 function getLangList(retpage)
 {
 	var m = scriptObject.getLanguagesCount();
@@ -60,6 +66,75 @@ function getLangList(retpage)
 	return str;
 }
 
+var startUpdateInterval = 'no';
+var startSendMyInterval = 'no';
+
+function startUpdate()
+{
+	if (startUpdateInterval != 'no')
+		return;
+		
+    // display message window
+	var elem = document.getElementById('messageWindow');
+	elem.style.display='block';
+	elem.innerText = scriptObject.gstr(1284);
+	
+	// start process in scriptObject
+	scriptObject.updateLanguageList();
+	
+	// start periodic updating function
+	startUpdateInterval = setInterval(updateUpdateStatus, 1000);
+}
+
+function updateUpdateStatus()
+{
+	var elem = document.getElementById('messageWindow');
+
+	var status = scriptObject.getUpdateLanguageListStatus();
+
+	if (status == 'stop:') {
+		elem.style.display='none';
+		clearInterval(startUpdateInterval);
+		initLanguageList();
+		startUpdateInterval = 'no';
+	} else if (status.substring(0,4) == 'msg:') {
+		elem.innerText = status.substring(4);
+	}
+}
+
+function startSendMy()
+{
+	if (startSendMyInterval != 'no')
+		return;
+		
+	// display message window
+	var elem = document.getElementById('messageWindow');
+	elem.style.display='block';
+	elem.innerText = scriptObject.gstr(1284);
+	
+	// start process in scriptObject
+	scriptObject.sendMyLanguageFile();
+	
+	// start periodic updating function
+	startSendMyInterval = setInterval(updateSendMyStatus, 1000);
+}
+
+function updateSendMyStatus()
+{
+	var elem = document.getElementById('messageWindow');
+	
+	var status = scriptObject.getSendMyLanguageFileStatus();
+
+	if (status == 'stop:') {
+		elem.style.display='none';
+		clearInterval(startSendMyInterval);
+		startSendMyInterval = 'no';
+	} else if (status.substring(0,4) == 'msg:') {
+		elem.innerText = status.substring(4);
+	}
+	
+}
+
 </script>
 
 
@@ -70,16 +145,27 @@ function getLangList(retpage)
 <p>&nbsp;</p>
 
 <center>
-<table style='border:0px;' align=center cellspacing=0 cellpadding=8>
-<script type="text/javascript">
+<div id='langListElem'>
+</div>
 
-document.write(getLangList("select"));
-
-</script>
+<hr width='60%'>
+<div id='messageWindow' class='innerOperList'
+     style='margin:8px;padding:16px;border:1px solid black;display:none;font-size:14pt;text-align:center;'>
+</div>
+<table style='border:0px;' cellspacing=0 cellpadding=8>
+	<tr>
+		<td><span class='linka' onclick='startUpdate();'>{%gstr 1282}</span> {%gstr 1283}</td>
+	</tr>
+	
 </table>
+<p>{%gstr 1280} {%string stringsFile} <br>{%gstr 1281} {%string transemail}</p>
 </center>
 
+<script type="text/javascript">
 
+initLanguageList();
+
+</script>
 
 
 </body>

@@ -1,0 +1,52 @@
+<html>
+<head><title></title>
+<script type="text/javascript" src="{%homedir}/shh.js"></script>
+<link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
+
+<script type="text/javascript">
+
+function onSave()
+{
+    setUserDefaultsInt('search.today.days',        getElementInnerText("t0"));
+    setUserDefaultsInt('search.calendar.months',   getElementInnerText("t1"));
+    setUserDefaultsInt('search.coreevents.months', getElementInnerText("t2"));
+    setUserDefaultsInt('search.masalist.years',    getElementInnerText("t3"));
+}
+
+</script>
+
+</head>
+
+<body>
+
+<h1>{%gstr 372} - {%gstr 170}</h1>
+
+<table style='border:0px' cellspacing=16 align=center>
+
+<script type="text/javascript">
+	writeCounterChoice("{%gstr 1270}", "{%gstr 1271}", "t0");
+	writeCounterChoice("{%gstr 1272}", "{%gstr 1273}", "t1");
+	writeCounterChoice("{%gstr 1274}", "{%gstr 1275}", "t2");
+	writeCounterChoice("{%gstr 1276}", "{%gstr 1277}", "t3");
+</script>
+</table>
+
+<script type="text/javascript">
+	setElementInnerText("t0", getUserDefaultsInt('search.today.days'));
+	setElementInnerText("t1", getUserDefaultsInt('search.calendar.months'));
+	setElementInnerText("t2", getUserDefaultsInt('search.coreevents.months'));
+	setElementInnerText("t3", getUserDefaultsInt('search.masalist.years'));
+</script>
+
+<center>
+<hr width='66%'>
+<button class='nice' onclick='onSave();runAction("return");'>{%gstr 1062}</button>
+</center>
+</body>
+</html>
+
+
+
+
+
+

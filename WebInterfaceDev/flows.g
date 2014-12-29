@@ -5,19 +5,120 @@
 page mainmenu
   source mainmenu
   action calc
+    script "onSave"
     goto mainmenu-calc
   end action
   action set
+    script "onSave"
     goto mainmenu-set
   end action
   action geo
+    script "onSave"
     goto mainmenu-geo
   end action
   action help
+    script "onSave"
     goto help
   end action
   action search
+    script "onSave"
     goto dlg-find
+  end action
+  action today
+    script "onSave"
+    goto today
+  end action
+  action nextfest
+    script "onSave"
+    goto nextfest
+  end action
+  action calendar
+    script "onSave"
+    set $nextpage dlg-startdate-cal
+    goto dlg-enterloc
+  end action
+  action coreevents
+    script "onSave"
+    set $nextpage dlg-startdate-core
+    goto dlg-enterloc
+  end action
+  action appday
+    script "onSave"
+    set $nextpage dlg-startdate-app
+    goto dlg-enterloc
+  end action
+  action masalist
+    script "onSave"
+    set $nextpage dlg-startyear
+    goto dlg-enterloc
+  end action
+  action cal2cal
+    script "onSave"
+    goto dlg-enterloc-a
+  end action
+  action cal2core
+    script "onSave"
+    set $nextpage dlg-startdate-cal2core
+    goto dlg-enterloc
+  end action
+  action mms_disp
+    script "onSave"
+    goto set-disp
+  end action
+  action mms_general
+    script "onSave"
+    goto set-general
+  end action
+  action mms_startpage
+    script "onSave"
+    goto set-startpage
+  end action
+  action mms_mylocation
+    script "onSave"
+    set $nextpage dlg-confmylocation
+    goto dlg-entermyloc
+  end action
+  action mms_languages
+    script "onSave"
+    goto languages
+  end action
+  action mms_search
+    script "onSave"
+    goto set-search
+  end action
+  action mmo_cities
+    script "onSave"
+    goto geo-cities
+  end action
+  action mmo_countries
+    script "onSave"
+    goto geo-countries
+  end action
+  action mmo_events
+    script "onSave"
+    goto geo-events
+  end action
+  action mmo_tzones
+    script "onSave"
+    goto geo-tzones
+  end action
+  action mms_disp_cal
+    goto set-disp-cal
+  end action
+  action mms_disp_core
+    goto set-disp-core
+  end action
+  action mms_disp_app
+    goto set-disp-app
+  end action
+  action mms_disp_masa
+    goto set-disp-masa
+  end action
+  action mms_disp_today
+    goto set-disp-today
+  end action
+  action mms_disp_nextfest
+    goto set-disp-nextfest
   end action
 end page
 
@@ -374,21 +475,34 @@ end page
 
 page mainmenu-set
   source mainmenu-set
-  action disp
+  action mms_disp
     goto set-disp
   end action
-  action general
+  action mms_general
     goto set-general
   end action
-  action startpage
+  action mms_startpage
     goto set-startpage
   end action
-  action mylocation
+  action mms_mylocation
     set $nextpage dlg-confmylocation
     goto dlg-entermyloc
   end action
-  action languages
+  action mms_languages
     goto languages
+  end action
+  action mms_search
+    goto set-search
+  end action
+end page
+
+page set-search
+  source set-search
+  action onBack
+    script "onSave"
+  end action
+  action return
+    goto mainmenu-set
   end action
 end page
 
