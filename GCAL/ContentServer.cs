@@ -1232,6 +1232,11 @@ namespace GCAL
                 GPAppHelper.setMyLocation(lp);
                 GPAppHelper.saveMyLocation();
             }
+            else if (cmd.Equals("saveRecentLocation"))
+            {
+                GPLocationProvider locProv = getLocationWithPostfix(dictStrings["ppx"]);
+                GPLocationProvider.putRecent(locProv);
+            }
             else if (cmd.Equals("clearlocationdata"))
             {
                 saveString("locationname", null);
@@ -1704,6 +1709,17 @@ namespace GCAL
             return GPTimeZoneList.sharedTimeZones().getTimezonesOffsetListDesc();
         }
 
+        public string getRecentLocationsCount()
+        {
+            return GPLocationProvider.getRecent().Count.ToString();
+        }
+
+        public string getRecentLocation(int i)
+        {
+            GPLocationProvider lp = GPLocationProvider.getRecent()[i];
+            return String.Format("{0}<tr>{1}<tr>{2}<tr>{3}", lp.getType(), lp.getName(), lp.getLocationDescription(), i);
+        }
+
         public string getTimezonesByName(string partName)
         {
             StringBuilder sb = new StringBuilder();
@@ -1844,12 +1860,16 @@ namespace GCAL
 
         public GPLocationProvider getLocationWithPostfix(string postfix)
         {
+            GPLocationProvider locProv = null;
             string type = getString("locationtype" + postfix);
             if (type == "selected")
             {
                 GPLocation loc = GPLocationList.getShared().findLocationById(getInt("locationid" + postfix));
                 if (loc != null)
-                    return new GPLocationProvider(loc);
+                {
+                    locProv = new GPLocationProvider(loc);
+                    locProv.setType(GPLocationProvider.TYPE_SELECTED);
+                }
             }
 
             if (type == "entered")
@@ -1859,13 +1879,30 @@ namespace GCAL
                 loc.setLongitudeString(getString("locationlongitude" + postfix));
                 loc.setLatitudeString(getString("locationlatitude" + postfix));
                 loc.setTimeZoneName(getString("locationtimezone" + postfix));
-                return new GPLocationProvider(loc);
+                locProv = new GPLocationProvider(loc);
+                locProv.setType(GPLocationProvider.TYPE_FULLENTER);
             }
 
             if (type == "mylocation")
-                return GPAppHelper.getMyLocation();
+            {
+                locProv = GPAppHelper.getMyLocation();
+                locProv.setType(GPLocationProvider.TYPE_MYLOCATION);
+            }
 
-            return null;
+            if (type == "recent")
+            {
+                string idxs = getString("recentIndex" + postfix);
+                int idx;
+                if (int.TryParse(idxs, out idx))
+                {
+                    if (idx >= 0 && idx < GPLocationProvider.getRecent().Count)
+                    {
+                        locProv = GPLocationProvider.getRecent()[idx];
+                    }
+                }
+            }
+
+            return locProv;
         }
 
         public void saveNewLocation()

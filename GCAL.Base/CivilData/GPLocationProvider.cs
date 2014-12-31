@@ -3,18 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml;
+using System.IO;
+using System.Xml;
 
 namespace GCAL.Base
 {
     public class GPLocationProvider
     {
+        public static readonly int TYPE_MYLOCATION = 1;
+        public static readonly int TYPE_SELECTED = 2;
+        public static readonly int TYPE_FULLENTER = 3;
+
         private List<GPLocationChange> changes = new List<GPLocationChange>();
         private GPLocation defaultLocation = null;
         private double currStart = -1;
         private double currEnd = -1;
         private GPLocationChange currentChange = null;
         private GPLocation currentLocation = null;
+        private int type = TYPE_SELECTED;
 
+        private static List<GPLocationProvider> recent = null;
 
         public GPLocationProvider()
         {
@@ -23,6 +31,26 @@ namespace GCAL.Base
         public GPLocationProvider(GPLocation loc)
         {
             defaultLocation = loc;
+        }
+
+        public void setType(int i)
+        {
+            type = i;
+        }
+
+        public int getType()
+        {
+            return type;
+        }
+
+        public static List<GPLocationProvider> getRecent()
+        {
+            if (recent == null)
+            {
+                recent = new List<GPLocationProvider>();
+                LoadRecent();
+            }
+            return recent;
         }
 
         public void setDefaultLocation(GPLocation def)
@@ -147,6 +175,11 @@ namespace GCAL.Base
         public string getName()
         {
             return getLocation(0).getName();
+        }
+
+        public string getCountryCode()
+        {
+            return getLocation(0).getCountryCode();
         }
 
         public int getLocationsCount()
@@ -292,22 +325,22 @@ namespace GCAL.Base
 
             doc.Load(file);
 
-            if (doc.ChildNodes.Count != 1)
-                return;
-            XmlElement elem = null;
-            foreach (XmlNode node in doc.ChildNodes)
+            if (doc.HasChildNodes)
             {
-                if (node.Name.Equals("MyLocation"))
+                foreach (XmlNode node in doc.ChildNodes)
                 {
-                    elem = node as XmlElement;
+                    if (node.Name.Equals("MyLocation"))
+                    {
+                        readXmlNode(node as XmlElement);
+                    }
                 }
             }
+        }
 
-            if (elem == null)
-                return;
-
+        public bool readXmlNode(XmlElement elem)
+        {
             changes = new List<GPLocationChange>();
-
+            bool succ = false;
             foreach (XmlElement e1 in elem.ChildNodes)
             {
                 if (e1.Name.Equals("Change"))
@@ -320,8 +353,11 @@ namespace GCAL.Base
                 {
                     defaultLocation = new GPLocation();
                     defaultLocation.loadFromXmlNode(e1);
+                    succ = true;
                 }
             }
+
+            return succ;
         }
 
         /// <summary>
@@ -332,10 +368,19 @@ namespace GCAL.Base
         {
             XmlDocument doc = new XmlDocument();
             XmlElement elem1;
+
+            elem1 = getXmlElement(doc, "MyLocation");
+            doc.AppendChild(elem1);
+            doc.Save(file);
+
+        }
+
+        public XmlElement getXmlElement(XmlDocument doc, string elemName)
+        {
+            XmlElement elem1;
             XmlElement elem2;
 
-            elem1 = doc.CreateElement("MyLocation");
-            doc.AppendChild(elem1);
+            elem1 = doc.CreateElement(elemName);
 
             foreach (GPLocationChange chng in changes)
             {
@@ -350,8 +395,91 @@ namespace GCAL.Base
 
             defaultLocation.writeToXmlNode(elem2, doc);
 
-            doc.Save(file);
+            return elem1;
+        }
 
+
+        public static void putRecent(GPLocationProvider lp)
+        {
+            int idx = findRecent(lp);
+            if (idx > 0)
+            {
+                recent.RemoveAt(idx);
+            }
+            recent.Insert(0, lp);
+            while (recent.Count > 10)
+            {
+                recent.RemoveAt(10);
+            }
+        }
+
+        public static int findRecent(GPLocationProvider lp)
+        {
+            for (int i = 0; i < recent.Count; i++)
+            {
+                if (recent[i].Equals(lp))
+                    return i;
+            }
+            return -1;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return ToString().Equals(obj.ToString());
+        }
+
+        public override string ToString()
+        {
+            if (defaultLocation == null)
+                return "nulldeflocation";
+            return defaultLocation.ToString();
+        }
+
+        public object getLocationDescription()
+        {
+            return String.Format("{0} {1}, {2}", defaultLocation.getLatitudeString(), defaultLocation.getLongitudeString(), defaultLocation.getTimeZoneString());
+        }
+
+        public static string GetRecentFileName()
+        {
+            return Path.Combine(GPFileHelper.getAppDataDirectory(), "recentloc.xml");
+        }
+
+        public static void SaveRecent()
+        {
+            XmlDocument doc = new System.Xml.XmlDocument();
+
+            XmlElement root = doc.CreateElement("recent");
+            doc.AppendChild(root);
+            foreach (GPLocationProvider lp in recent)
+            {
+                root.AppendChild(lp.getXmlElement(doc, "location"));
+            }
+
+            doc.Save(GetRecentFileName());
+        }
+
+        public static void LoadRecent()
+        {
+            XmlDocument doc = new System.Xml.XmlDocument();
+            String fileName = GetRecentFileName();
+            if (File.Exists(fileName))
+            {
+                recent.Clear();
+                doc.Load(fileName);
+                foreach (XmlElement elem in doc.ChildNodes)
+                {
+                    if (elem.Name.Equals("recent"))
+                    {
+                        foreach (XmlElement child in elem.ChildNodes)
+                        {
+                            GPLocationProvider lp = new GPLocationProvider();
+                            if (lp.readXmlNode(child))
+                                recent.Add(lp);
+                        }
+                    }
+                }
+            }
         }
     }
 }

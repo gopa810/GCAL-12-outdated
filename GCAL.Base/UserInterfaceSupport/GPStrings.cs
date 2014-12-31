@@ -14,6 +14,7 @@ namespace GCAL.Base
 
         public List<string> gstr = new List<string>();
         public List<string> keys = new List<string>();
+        public Dictionary<int, bool> edited = new Dictionary<int, bool>();
         public Dictionary<string, int> map = new Dictionary<string, int>();
 
         public static bool showNumberOfString = true;
@@ -138,17 +139,25 @@ namespace GCAL.Base
                 }
                 else if (int.TryParse(parts[0], out index))
                 {
-                    setString(index, parts[1]);
+                    bool editFlag = false;
+                    if (parts.Length >= 3)
+                        bool.TryParse(parts[2], out editFlag);
+                    setString(index, parts[1], editFlag);
                 }
             }
         }
 
-        public void setString(int index, string strValue)
+        public void setString(int index, string strValue, bool editFlag)
         {
-            setString(index, strValue, string.Empty);
+            setString(index, strValue, string.Empty, editFlag);
         }
 
-        public void setString(int index, string strValue, string strKey)
+        public void setString(int index, string strValue)
+        {
+            setString(index, strValue, string.Empty, true);
+        }
+
+        public void setString(int index, string strValue, string strKey, bool editedFlag)
         {
             while (keys.Count <= index)
             {
@@ -158,6 +167,7 @@ namespace GCAL.Base
 
             keys[index] = strKey;
             gstr[index] = strValue;
+            edited[index] = editedFlag;
 
         }
 
@@ -229,7 +239,7 @@ namespace GCAL.Base
             writer.WriteLine("version\t{0}", LanguageVersion);
             for (int i = 0; i < gstr.Count; i++)
             {
-                writer.WriteLine("{0}\t{1}", i, gstr[i]);
+                writer.WriteLine("{0}\t{1}\t{2}", i, gstr[i], (edited.ContainsKey(i) ? edited[i].ToString() : false.ToString()));
             }
         }
 

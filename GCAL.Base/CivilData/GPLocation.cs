@@ -281,5 +281,10 @@ namespace GCAL.Base
                 return Convert.ToDouble(timezone.OffsetSeconds) / 3600.0;
             return 0.0;
         }
+
+        public override string ToString()
+        {
+            return String.Format("{0} [{1}] {2}, {3}, {4}", city, countryCode, getLongitudeString(), getLatitudeString(), getTimeZoneName());
+        }
     }
 }

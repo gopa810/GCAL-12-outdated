@@ -62,6 +62,7 @@ namespace GCAL
             GPEventList.getShared().Save();
             GPCountryList.getShared().Save();
             GPTimeZoneList.sharedTimeZones().Save();
+            GPLocationProvider.SaveRecent();
         }
 
         private void button1_Click(object sender, EventArgs e)
