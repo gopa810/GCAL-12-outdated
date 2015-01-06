@@ -1,0 +1,90 @@
+<html>
+<head>
+<title>Get Start Date</title>
+<script type="text/javascript" src="{%homedir}/shh.js"></script>
+<link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
+<script type="text/javascript" src="{%homedir}/calendar.js"></script>
+
+<script type="text/javascript">
+var selectedDate = new Date();
+
+ var sd = '{%string startday}';
+ var sm = Number('{%string startmonth}');
+ var sy = '{%string startyear}';
+ 
+ if (sm > 0) {
+    sm--;
+ }
+ 
+ if (sd != '' && sy != '')
+ {
+     selectedDate.setFullYear(sy);
+	 selectedDate.setMonth(sm);
+	 selectedDate.setDate(sd);
+ }
+
+function onSave()
+{
+    saveString("startday", selectedDate.getDate());
+	saveString("startmonth", selectedDate.getMonth() + 1);
+	saveString("startyear", selectedDate.getFullYear());
+}
+
+</script>
+</head>
+
+<body>
+  <h1>{%gstr 1288}</h1>
+
+  <table cellpadding=8 cellspacing=0 width=208>
+	  <tr>
+		  <td style='cursor:pointer;text-align:center' onclick='runAction("month0")'>
+		  <img src="{%homedir}/images/period_month.png" width=48 height=48><br>
+		  {%dstr month 0}
+		  </td>
+		  <td style='cursor:pointer;text-align:center' onclick='runAction("month1")'>
+		  <img src="{%homedir}/images/period_month.png" width=48 height=48><br>
+		  {%dstr month 1}
+		  </td>
+		  <td width=16px>
+		  </td>
+		  <td style='cursor:pointer;text-align:center' onclick='runAction("masa0")'>
+		  <img src="{%homedir}/images/period_month.png" width=48 height=48><br>
+		  {%dstr masa 0}
+		  </td>
+		  <td style='cursor:pointer;text-align:center' onclick='runAction("masa1")'>
+		  <img src="{%homedir}/images/period_month.png" width=48 height=48><br>
+		  {%dstr masa 1}
+		  </td>
+	  </tr>
+	  <tr>
+		  <td style='cursor:pointer;text-align:center' onclick='runAction("year0")'>
+		  <img src="{%homedir}/images/period_year.png" width=48 height=48><br>
+		  {%dstr year 0}
+		  </td>
+		  <td style='cursor:pointer;text-align:center' onclick='runAction("year1")'>
+		  <img src="{%homedir}/images/period_year.png" width=48 height=48><br>
+		  {%dstr year 1}
+		  </td>
+		  <td>
+		  </td>
+		  <td style='cursor:pointer;text-align:center' onclick='runAction("gyear0")'>
+		  <img src="{%homedir}/images/period_year.png" width=48 height=48><br>
+		  {%dstr gyear 0}
+		  </td>
+		  <td style='cursor:pointer;text-align:center' onclick='runAction("gyear1")'>
+		  <img src="{%homedir}/images/period_year.png" width=48 height=48><br>
+		  {%dstr gyear 1}
+		  </td>
+	  </tr>
+	  <tr>
+		  <td colspan=5 style='cursor:pointer;text-align:center' onclick='runAction("other")'>
+		  <img src="{%homedir}/images/period_other.png" width=48 height=48><br>
+		  {%gstr 1254}
+		  </td>
+	  </tr>
+  </table>
+
+
+</body>
+</html>

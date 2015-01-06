@@ -845,6 +845,12 @@ namespace GCAL
                     CurrentCalculatedObject = gcc.CalculatedObject;
                     return gcc.HtmlText;
                 }
+                else if (p2 == "travel")
+                {
+                    CELGenerateCalendarTravelling gcc = new CELGenerateCalendarTravelling(this);
+                    CurrentCalculatedObject = gcc.CalculatedObject;
+                    return gcc.HtmlText;
+                }
                 else if (p2 == "today")
                 {
                     GPLocationProvider loc = GPAppHelper.getMyLocation();
@@ -919,6 +925,35 @@ namespace GCAL
                 {
                     int idx2 = GPUserDefaults.IntForKey(p2, 0);
                     return idx == idx2 ? "1" : "0";
+                }
+            }
+            else if (p1.Equals("dstr"))
+            {
+                GPLocationProvider currentLocation = getLocationWithPostfix(dictStrings["ppx"]);
+                GPGregorianTime gt = new GPGregorianTime(currentLocation);
+                GPVedicTime va;
+                GPEngine.VCTIMEtoVATIME(gt, out va, gt.getLocationProvider());
+                int num = 0;
+                int.TryParse(p3, out num);
+                if (p2.Equals("month"))
+                {
+                    gt.AddMonths(num);
+                    return gt.getMonthYearString();
+                }
+                else if (p2.Equals("year"))
+                {
+                    gt.AddYears(num);
+                    return gt.getYear().ToString();
+                }
+                else if (p2.Equals("masa"))
+                {
+                    va.masa = (va.masa + num)%12;
+                    return String.Format("{0} {1}", GPMasa.GetName(va.masa), GPStrings.getString(22));
+                }
+                else if (p2.Equals("gyear"))
+                {
+                    va.gyear += num;
+                    return String.Format("{0} {1}", GPStrings.getString(23), va.gyear);
                 }
             }
 
@@ -1234,7 +1269,12 @@ namespace GCAL
             }
             else if (cmd.Equals("saveRecentLocation"))
             {
-                GPLocationProvider locProv = getLocationWithPostfix(dictStrings["ppx"]);
+                string ppx = String.Empty;
+                if (dictStrings.ContainsKey("ppx"))
+                {
+                    ppx = dictStrings["ppx"];
+                }
+                GPLocationProvider locProv = getLocationWithPostfix(ppx);
                 GPLocationProvider.putRecent(locProv);
             }
             else if (cmd.Equals("clearlocationdata"))
@@ -1366,8 +1406,91 @@ namespace GCAL
             {
                 saveContent();
             }
+            else if (cmd.Equals("printContent"))
+            {
+                ((StartForm)MainForm).showPrintMenu();
+                //WebBrowser.ShowPrintDialog();
+            }
             else if (cmd.Equals("settings"))
             {
+            }
+            else if (cmd.Equals("setCurrentDate"))
+            {
+                GPLocationProvider currentLocation = getLocationWithPostfix(dictStrings["ppx"]);
+                GPGregorianTime gt = new GPGregorianTime(currentLocation);
+                dictStrings["startday"] = gt.getDay().ToString();
+                dictStrings["startmonth"] = gt.getMonth().ToString();
+                dictStrings["startyear"] = gt.getYear().ToString();
+            }
+            else if (cmd.Equals("gotoNextMonth"))
+            {
+                GPLocationProvider currentLocation = getLocationWithPostfix(dictStrings["ppx"]);
+                GPGregorianTime gt = new GPGregorianTime(currentLocation);
+                gt.setDate(getInt("startyear", gt.getYear()), getInt("startmonth", gt.getMonth()), getInt("startday", gt.getDay()));
+                gt.AddMonths(1);
+                dictStrings["startday"] = gt.getDay().ToString();
+                dictStrings["startmonth"] = gt.getMonth().ToString();
+                dictStrings["startyear"] = gt.getYear().ToString();
+            }
+            else if (cmd.Equals("gotoNextYear"))
+            {
+                GPLocationProvider currentLocation = getLocationWithPostfix(dictStrings["ppx"]);
+                GPGregorianTime gt = new GPGregorianTime(currentLocation);
+                gt.setDate(getInt("startyear", gt.getYear()), getInt("startmonth", gt.getMonth()), getInt("startday", gt.getDay()));
+                gt.AddYears(1);
+                dictStrings["startday"] = gt.getDay().ToString();
+                dictStrings["startmonth"] = gt.getMonth().ToString();
+                dictStrings["startyear"] = gt.getYear().ToString();
+            }
+            else if (cmd.Equals("setCurrentVedicDate"))
+            {
+                GPLocationProvider currentLocation = getLocationWithPostfix(dictStrings["ppx"]);
+                GPGregorianTime gt = new GPGregorianTime(currentLocation);
+                GPVedicTime va;
+                GPEngine.VCTIMEtoVATIME(gt, out va, gt.getLocationProvider());
+                dictStrings["starttithi"] = va.tithi.ToString();
+                dictStrings["startmasa"] = va.masa.ToString();
+                dictStrings["startgaurabda"] = va.gyear.ToString();
+            }
+            else if (cmd.Equals("vedicDateToGregorian"))
+            {
+                GPLocationProvider currentLocation = getLocationWithPostfix(dictStrings["ppx"]);
+                GPVedicTime va = new GPVedicTime();
+                va.tithi = getInt("starttithi", 0);
+                va.masa = getInt("startmasa", 11);
+                va.gyear = getInt("startgaurabda", 530);
+                GPGregorianTime gt = new GPGregorianTime(currentLocation);
+                GPEngine.VATIMEtoVCTIME(va, out gt, gt.getLocationProvider());
+                dictStrings["startday"] = gt.getDay().ToString();
+                dictStrings["startmonth"] = gt.getMonth().ToString();
+                dictStrings["startyear"] = gt.getYear().ToString();
+            }
+            else if (cmd.Equals("moveOneMasa"))
+            {
+                GPVedicTime va = new GPVedicTime();
+                va.tithi = getInt("starttithi", 0);
+                va.masa = getInt("startmasa", 11);
+                va.gyear = getInt("startgaurabda", 530);
+                if (va.masa == 10)
+                {
+                    va.masa = 11;
+                    va.gyear++;
+                }
+                else
+                {
+                    va.masa = (va.masa + 1) % 12;
+                }
+                dictStrings["startmasa"] = va.masa.ToString();
+                dictStrings["startgaurabda"] = va.gyear.ToString();
+            }
+            else if (cmd.Equals("moveOneGaurabda"))
+            {
+                GPVedicTime va = new GPVedicTime();
+                va.tithi = getInt("starttithi", 0);
+                va.masa = getInt("startmasa", 11);
+                va.gyear = getInt("startgaurabda", 530);
+                va.gyear++;
+                dictStrings["startgaurabda"] = va.gyear.ToString();
             }
             else if (cmd.StartsWith("today:"))
             {

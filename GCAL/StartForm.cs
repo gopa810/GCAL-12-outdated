@@ -115,5 +115,40 @@ namespace GCAL
             contextMenuStrip1.Show(System.Windows.Forms.Cursor.Position);
         }
 
+        private void printToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            webBrowser1.ShowPrintDialog();
+        }
+
+        private void pageSetupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            webBrowser1.ShowPageSetupDialog();
+            webBrowser1.ShowPrintDialog();
+        }
+
+        private void printPreviewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            webBrowser1.ShowPrintPreviewDialog();
+        }
+
+        public void showPrintMenu()
+        {
+            foreach(ToolStripMenuItem item in contextMenuStrip2.Items)
+            {
+                if (item.Tag != null)
+                {
+                    string tag = item.Tag.ToString();
+                    if (tag.StartsWith("gstr:"))
+                    {
+                        int index = 0;
+                        if (int.TryParse(tag.Substring(5), out index))
+                        {
+                            item.Text = GPStrings.getPlainString(index);
+                        }
+                    }
+                }
+            }
+            contextMenuStrip2.Show(Cursor.Position);
+        }
     }
 }

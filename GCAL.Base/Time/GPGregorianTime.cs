@@ -641,6 +641,15 @@ namespace GCAL.Base
             return string.Format("{0} {1} {2}", dt.Day, GPAppHelper.getMonthAbr(dt.Month), dt.Year);
         }
 
+        public string getMonthYearString()
+        {
+            bool dst;
+            DateTime dt;
+            GPStrings shared = GPStrings.getSharedStrings();
+            getLocalTimeEx(out dt, out dst);
+            return string.Format("{0} {1}", shared.getStringValue(759 + dt.Month), dt.Year);
+        }
+
         public string getCompleteLongDateString()
         {
             bool dst;

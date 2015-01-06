@@ -1,24 +1,57 @@
 <html>
 <head><title></title>
 <script type="text/javascript" src="{%homedir}/shh.js"></script>
+<script type="text/javascript" src="{%homedir}/recentlist.js"></script>
 <link rel="stylesheet" type="text/css" href="{%homedir}/{%current_theme}">
 </head>
 
 <body>
 
+<center>
 <h1>{%string currTitle}</h1>
+<hr width=66%>
+<table style='border:0px' cellspacing=20 cellpadding=8>
+	<tr>
+		<script type="text/javascript">
+			writeStartTdWithAction("t0", 'runAction("select")');
+		</script>
+			<center>
+			<img src="{%homedir}/images/select_item.png" width=64 height=64>
+			<br>
+			{%gstr 1045}
+			</center>
+		</td>
+		<script>
+			writeStartTdWithAction("t1", 'runAction("full")');
+		</script>
+			<center>
+			<img src="{%homedir}/images/globe.png" width=64 height=64>
+			<br>
+			{%gstr 1046}
+			</center>
+		</td>
+		<script>
+			writeStartTdWithAction("t2", 'runAction("mylocation")');
+		</script>
+			<center>
+			<img src="{%homedir}/images/home.png" width=64 height=64>
+			<br>
+			{%gstr 1047}
+			</center>
+		</td>
+	</tr>
+</table>
+<div id='recent'>
+<hr width="66%">
+<p><i><u>Recent Places</u></i></p>
+<div id='recentList' style='margin:16pt'>
+</div>
+</div>
 
-<table style='border:0px' width="100%" cellspacing=8 cellpadding=8>
-
-<script type="text/javascript">
-
-writeChoiceWithAction("{%gstr 1045}", "t0", 'runAction("select")');
-writeChoiceWithAction("{%gstr 1046}", "t1", 'runAction("full")');
-writeChoiceWithAction("{%gstr 1047}", "t2", 'runAction("mylocation")');
-
+<script>
+   updateRecentList();
 </script>
 
-</table>
-
+</center>
 </body>
 </html>

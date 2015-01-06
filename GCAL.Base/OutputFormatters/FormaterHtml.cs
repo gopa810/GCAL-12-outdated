@@ -386,7 +386,15 @@ namespace GCAL.Base
                         {
                             if (lastLocChange != lc)
                             {
-                                fout.AppendFormat("<span class=HeaderLocation>{0} &#10132; {1}</span><br>", lc.LocationA.getFullName(), lc.LocationB.getFullName());
+                                fout.AppendFormat("<span class=HeaderLocation>");
+                                fout.AppendFormat("{0}, {1} {2},<br>{3}<br>@ {4}</span><br>",
+                                    lc.LocationA.getName(), lc.LocationA.getLongitudeString(),
+                                    lc.LocationA.getLatitudeString(), lc.LocationA.getTimeZoneString(), lc.humanStart);
+                                fout.AppendFormat("&#10132;<br>");
+                                fout.AppendFormat("{0}, {1} {2}<br>{3}<br>@ {4}</span><br>",
+                                    lc.LocationB.getName(), lc.LocationB.getLongitudeString(),
+                                    lc.LocationB.getLatitudeString(), lc.LocationB.getTimeZoneString(), lc.humanEnd);
+
                                 lastLocChange = lc;
                             }
                         }
@@ -1000,7 +1008,15 @@ span.GramE
                         {
                             if (lastLocChange != lc)
                             {
-                                fout.AppendFormat("<span class=HeaderLocation>{0} &#10132; {1}</span><br>", lc.LocationA.getFullName(), lc.LocationB.getFullName());
+                                fout.AppendFormat("<span class=HeaderLocation>");
+                                fout.AppendFormat("{0}, {1} {2},<br>{3}<br>@ {4}</span><br>",
+                                    lc.LocationA.getName(), lc.LocationA.getLongitudeString(),
+                                    lc.LocationA.getLatitudeString(), lc.LocationA.getTimeZoneString(), lc.humanStart);
+                                fout.AppendFormat("&#10132;<br>");
+                                fout.AppendFormat("{0}, {1} {2}<br>{3}<br>@ {4}</span><br>",
+                                    lc.LocationB.getName(), lc.LocationB.getLongitudeString(),
+                                    lc.LocationB.getLatitudeString(), lc.LocationB.getTimeZoneString(), lc.humanEnd);
+
                                 lastLocChange = lc;
                             }
                         }
@@ -1326,7 +1342,7 @@ span.GramE
             f.Append("</div>");
 
 
-            f.Append("<p>&nbsp;</p>");
+            //f.Append("<p>&nbsp;</p>");
 
             /*BEGIN GCAL 1.4.3*/
             //List<string> gstr = GPStrings.getSharedStrings().gstr;
@@ -1369,16 +1385,16 @@ span.GramE
             // other info
             //
 
-            f.Append("<p>&nbsp;</p>");
+            //f.Append("<p>&nbsp;</p>");
 
 
-            f.Append("<center><table width=\"80%\"><tr><td style='text-align:center'>");
+            f.Append("<center><table width=\"80%\" cellpadding=8 cellspacing=0><tr><td style='text-align:center'>");
             if (GPDisplays.Today.SunriseInfo())
             {
-                f.AppendFormat("<p><b>{0}</b></p>", GPStrings.getString(990));
-                f.AppendFormat("<p><img src=\"{0}/separator.png\" width=320>", (baseDir == null ? "" : baseDir));
+                f.AppendFormat("<p style='text-align:left'><b style='color:rgb(0,100,0);'>{0}:</b> ", GPStrings.getString(990));
+                //f.AppendFormat("<p><img src=\"{0}/separator.png\" width=320>", (baseDir == null ? "" : baseDir));
 
-                f.AppendFormat("<p  style='text-align:left'>{0}: <b>{1}</b> ", GPStrings.getString(15), GPNaksatra.getName(p.astrodata.nNaksatra));
+                //f.AppendFormat("<p >{0}: <b>{1}</b> ", GPStrings.getString(15), GPNaksatra.getName(p.astrodata.nNaksatra));
                 if (GPDisplays.Today.NaksatraPadaVisible())
                 {
                     f.AppendFormat("{0} {1} ({2})", p.getNaksatraElapsedString(), GPStrings.getString(993), GPStrings.getString(811 + p.getNaksatraPada()));
@@ -1397,14 +1413,14 @@ span.GramE
             
             if (GPDisplays.Today.TithiList())
             {
-                f.AppendFormat("<p><b>{0}</b></p>", GPStrings.getString(1005));
-                f.AppendFormat("<p><img src=\"{0}/separator.png\" width=320>", (baseDir == null ? "" : baseDir));
+                f.AppendFormat("<p style='text-align:left'><b style='color:rgb(0,100,0);'>{0}: </b>", GPStrings.getString(1005));
+                //f.AppendFormat("<p><img src=\"{0}/separator.png\" width=320>", (baseDir == null ? "" : baseDir));
 
                 GPLocalizedTithi current = p.getCurrentTithi();
                 GPLocalizedTithi previous = current.getPreviousTithi();
                 GPLocalizedTithi next = current.getNextTithi();
 
-                f.Append("<p style='text-align:left'>");
+                //f.Append("<p style='text-align:left'>");
                 f.AppendFormat("<b>{0}</b> {1}, {2} - {3}, {4}; ", previous.getName(), 
                     previous.getStartTime().getShortDateString(), 
                     previous.getStartTime().getShortTimeString(),
@@ -1425,14 +1441,14 @@ span.GramE
 
             if (GPDisplays.Today.NaksatraList())
             {
-                f.AppendFormat("<p><b>{0}</b></p>", GPStrings.getString(1006));
-                f.AppendFormat("<p><img src=\"{0}/separator.png\" width=320></p>", (baseDir == null ? "" : baseDir));
+                f.AppendFormat("<p style='text-align:left'><b style='color:rgb(0,100,0);'>{0}: </b>", GPStrings.getString(1006));
+//                f.AppendFormat("<p><img src=\"{0}/separator.png\" width=320></p>", (baseDir == null ? "" : baseDir));
 
                 GPLocalizedNaksatra current = p.getCurrentNaksatra();
                 GPLocalizedNaksatra previous = current.getPreviousNaksatra();
                 GPLocalizedNaksatra next = current.getNextNaksatra();
 
-                f.Append("<p style='text-align:left'>");
+                //f.Append("<p style='text-align:left'>");
                 f.AppendFormat("<b>{0}</b> {1}, {2} - {3}, {4}; ", previous.getName(),
                     previous.getStartTime().getShortDateString(),
                     previous.getStartTime().getShortTimeString(),

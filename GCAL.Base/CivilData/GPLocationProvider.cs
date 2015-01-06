@@ -43,12 +43,17 @@ namespace GCAL.Base
             return type;
         }
 
+        public static void initRecent()
+        {
+            recent = new List<GPLocationProvider>();
+            LoadRecent();
+        }
+
         public static List<GPLocationProvider> getRecent()
         {
             if (recent == null)
             {
-                recent = new List<GPLocationProvider>();
-                LoadRecent();
+                initRecent();
             }
             return recent;
         }
@@ -64,14 +69,6 @@ namespace GCAL.Base
                 return false;
 
             double dist = 1000.0;
-
-            if (julianDay >= currStart && julianDay <= currEnd)
-            {
-                dist = Math.Min(dist, Math.Abs(currStart - julianDay));
-                dist = Math.Min(dist, Math.Abs(currEnd - julianDay));
-                if (dist < 0.7)
-                    return true;
-            }
 
             foreach (GPLocationChange lch in changes)
             {
@@ -91,18 +88,6 @@ namespace GCAL.Base
         /// <returns></returns>
         public GPLocation getLocation(double julianDay)
         {
-            if (julianDay >= currStart && julianDay <= currEnd)
-            {
-                if (currentLocation != null)
-                {
-                    return currentLocation;
-                }
-                if (currentChange != null)
-                {
-                    return currentChange.getLocation(julianDay);
-                }
-            }
-
             if (changes.Count < 1)
                 return defaultLocation;
             double lastStart = 0;
@@ -124,7 +109,8 @@ namespace GCAL.Base
                     currEnd = lch.julianEnd;
                     currentLocation = null;
                     currentChange = lch;
-                    return currentChange.getLocation(julianDay);
+                    GPLocation lp = currentChange.getLocation(julianDay);
+                    return lp;
                 }
 
                 lastStart = lch.julianEnd;
@@ -185,6 +171,11 @@ namespace GCAL.Base
         public int getLocationsCount()
         {
             return changes.Count + 1;
+        }
+
+        public GPLocation getDefaultLocation()
+        {
+            return defaultLocation;
         }
 
         public GPLocation getLocationAtIndex(int i)
@@ -354,6 +345,15 @@ namespace GCAL.Base
                     defaultLocation = new GPLocation();
                     defaultLocation.loadFromXmlNode(e1);
                     succ = true;
+
+                    if (e1.HasAttribute("type"))
+                    {
+                        int i = TYPE_SELECTED;
+                        if (int.TryParse(e1.GetAttribute("type"), out i))
+                        {
+                            this.setType(i);
+                        }
+                    }
                 }
             }
 
@@ -391,9 +391,11 @@ namespace GCAL.Base
             }
 
             elem2 = doc.CreateElement("DefaultLocation");
+            elem2.SetAttribute("type", type.ToString());
             elem1.AppendChild(elem2);
 
             defaultLocation.writeToXmlNode(elem2, doc);
+
 
             return elem1;
         }
@@ -415,6 +417,11 @@ namespace GCAL.Base
 
         public static int findRecent(GPLocationProvider lp)
         {
+            if (recent == null)
+            {
+                initRecent();
+            }
+
             for (int i = 0; i < recent.Count; i++)
             {
                 if (recent[i].Equals(lp))
@@ -447,16 +454,19 @@ namespace GCAL.Base
 
         public static void SaveRecent()
         {
-            XmlDocument doc = new System.Xml.XmlDocument();
-
-            XmlElement root = doc.CreateElement("recent");
-            doc.AppendChild(root);
-            foreach (GPLocationProvider lp in recent)
+            if (recent != null)
             {
-                root.AppendChild(lp.getXmlElement(doc, "location"));
-            }
+                XmlDocument doc = new System.Xml.XmlDocument();
 
-            doc.Save(GetRecentFileName());
+                XmlElement root = doc.CreateElement("recent");
+                doc.AppendChild(root);
+                foreach (GPLocationProvider lp in recent)
+                {
+                    root.AppendChild(lp.getXmlElement(doc, "location"));
+                }
+
+                doc.Save(GetRecentFileName());
+            }
         }
 
         public static void LoadRecent()
@@ -465,7 +475,10 @@ namespace GCAL.Base
             String fileName = GetRecentFileName();
             if (File.Exists(fileName))
             {
-                recent.Clear();
+                if (recent == null)
+                    recent = new List<GPLocationProvider>();
+                else
+                    recent.Clear();
                 doc.Load(fileName);
                 foreach (XmlElement elem in doc.ChildNodes)
                 {
@@ -480,6 +493,19 @@ namespace GCAL.Base
                     }
                 }
             }
+        }
+
+        public GPLocationChange getChangeForJulian(double julianDay)
+        {
+            foreach (GPLocationChange lch in changes)
+            {
+                if (lch.julianStart <= julianDay && lch.julianEnd >= julianDay)
+                {
+                    return lch;
+                }
+            }
+
+            return null;
         }
     }
 }

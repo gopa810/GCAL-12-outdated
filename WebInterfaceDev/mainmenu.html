@@ -84,125 +84,234 @@ var lastMainItem = '';
 </head>
 
 <body style='padding-left:32px;padding-right:32px'>
-<table cellpadding=12 cellspacing=0 border=0>
-<tr>
-<td>
-<td class='mmc' id='mm1' onclick='setMMchoice("mm1");'>{%gstr 387}</td><!-- -->
-<td class='mmc' id='mm2' onclick='setMMchoice("mm2");'>{%gstr 372}</td><!-- -->
-<td class='mmc' id='mm3' onclick='setMMchoice("mm3");'>{%gstr 360}</td><!-- -->
-<td class='mmc' id='mm4' onclick='setMMchoice("mm4");'>{%gstr 170}</td><!-- -->
-<td class='mmc' id='mm5' onclick='setMMchoice("mm5");'>{%gstr 394}</td><!-- -->
-</tr>
-</table>
-<hr style=solid color='rgb(120,80,60)' height=1 noshade>
+<center>
+	<table cellpadding=12 cellspacing=0 border=0>
+		<tr>
+			<td>
+			<td class='mmc' id='mm1' onclick='setMMchoice("mm1");'>{%gstr 387}</td><!-- -->
+			<td class='mmc' id='mm2' onclick='setMMchoice("mm2");'>{%gstr 372}</td><!-- -->
+			<td class='mmc' id='mm3' onclick='setMMchoice("mm3");'>{%gstr 360}</td><!-- -->
+			<td class='mmc' id='mm4' onclick='setMMchoice("mm4");'>{%gstr 170}</td><!-- -->
+			<td class='mmc' id='mm5' onclick='setMMchoice("mm5");'>{%gstr 394}</td><!-- -->
+		</tr>
+	</table>
+	<hr style=solid color='rgb(120,80,60)' height=1 noshade>
+</center>
 
 <!--  ################## -->
 <!--  # CALCULATE MENU # -->
 <!--  ################## -->
 <div id='dmm1' style='display:none'>
+<center>
 	<table cellpadding=12>
-	<script>
-		document.write('<tr>');
-			document.write('<td><img src="' + scriptObject.getDir() + '/images/calc_calendar.png" width=32 height=32>');
-			writeChoiceTdWithAction("{%gstr 44}", "t0", "runAction(\"calendar\");");
-			document.write('<td width=16><img src="' + scriptObject.getDir() + '/images/calc_cal2cal.png" width=32 height=32>');
-			writeChoiceTdWithAction("{%gstr 389}", "t5", "runAction(\"cal2cal\");");
-		document.write('<tr>');
-			document.write('<td><img src="' + scriptObject.getDir() + '/images/calc_coreevents.png" width=32 height=32>');
-			writeChoiceTdWithAction("{%gstr 46}", "t1", "runAction(\"coreevents\");");
-			document.write('<td><img src="' + scriptObject.getDir() + '/images/calc_cal2core.png" width=32 height=32>');
-			writeChoiceTdWithAction("{%gstr 388}", "t6", "runAction(\"cal2core\");");
-		document.write('<tr>');
-			document.write('<td><img src="' + scriptObject.getDir() + '/images/calc_appday.png" width=32 height=32>');
-			writeChoiceTdWithAction("{%gstr 45}", "t2", "runAction(\"appday\");");
-			document.write('<td>');
-			document.write('<td>');
-		document.write('<tr>');
-			document.write('<td><img src="' + scriptObject.getDir() + '/images/calc_masalist.png" width=32 height=32>');
-			writeChoiceTdWithAction("{%gstr 48}", "t3", "runAction(\"masalist\");");
-			document.write('<td>');
-			document.write('<td>');
-		document.write('<tr>');
-			document.write('<td><img src="' + scriptObject.getDir() + '/images/calc_today.png" width=32 height=32>');
-			writeChoiceTdWithAction("{%gstr 43}", "t4", "runAction(\"today\");");
-			document.write('<td><img src="' + scriptObject.getDir() + '/images/calc_nextfest.png" width=32 height=32>');
-			writeChoiceTdWithAction("{%gstr 452}", "t7", "runAction(\"nextfest\");");
-	</script>
+		<tr>
+			<script>
+				writeStartTdWithAction("t0", "runAction(\"calendar\");");
+				writeMmIcon("calc_calendar.png");
+			</script>
+			{%gstr 44}
+			</td>
+
+			<script>
+				writeStartTdWithAction("t5", "runAction(\"cal2cal\");");
+				writeMmIcon("calc_cal2cal.png");
+			</script>
+			{%gstr 389}
+			</td>
+		</tr>		
+		<tr>
+			<script>
+				writeStartTdWithAction("t1", "runAction(\"coreevents\");");
+				writeMmIcon("calc_coreevents.png");
+			</script>
+			{%gstr 46}
+			</td>
+
+			<script>
+				writeStartTdWithAction("t6", "runAction(\"cal2core\");");
+				writeMmIcon("calc_cal2core.png");
+			</script>
+			{%gstr 388}
+			</td>
+		</tr>		
+		<tr>
+			<script>
+				writeStartTdWithAction("t4", "runAction(\"today\");");
+				writeMmIcon("calc_today.png");
+			</script>
+			{%gstr 43}
+			</td>
+
+			<script>
+				writeStartTdWithAction("t7", "runAction(\"nextfest\");");
+				writeMmIcon("calc_nextfest.png");
+			</script>
+			{%gstr 452}
+			</td>
+		</tr>		
+		<tr>
+			<script>
+				writeStartTdWithAction("t2", "runAction(\"appday\");");
+				writeMmIcon("calc_appday.png");
+			</script>
+			{%gstr 45}
+			</td>
+			<script>
+				writeStartTdWithAction("t8", "runAction(\"travel\");");
+				writeMmIcon("cal_travel.png");
+			</script>
+			Travelling
+			</td>
+		</tr>		
+		<tr>
+			<script>
+				writeStartTdWithAction("t3", "runAction(\"masalist\");");
+				writeMmIcon("calc_masalist.png");
+			</script>
+			{%gstr 48}
+			</td>
+			<td>
+			</td>
+		</tr>		
 	</table>
+</center>
 </div>
 
 <!--  ################## -->
 <!--  # SETTINGS MENU  # -->
 <!--  ################## -->
 <div id='dmm2' style='display:none'>
+	<center>
 	<table cellpadding=12 cellspacing=0>
 	<tr>
-	<td width=48px>
-	<td style='text-size:9pt;text-decoration:underline;'><i>{%gstr 235}</i></td>
-	<td width=12px>
-	<td width=12px class='mmeps1'>
-	<td style='text-size:9pt;text-decoration:underline;'><i>{%gstr 1278}</i></td>
-	<script>
-		document.write('<tr>');
-		document.write('<td width="10%"><img src="' + scriptObject.getDir() + '/images/set_calendar.png" width=32 height=32>');
-		writeChoiceTdWithAction("{%gstr 971}", "mms6", "runAction(\"mms_disp_cal\");");
-		document.write('<td width="5%">');
-		document.write("<td width='5%' class='mmeps1'><img src=\"" + scriptObject.getDir() + "/images/set_general.png\" width=32 height=32>");
-		writeChoiceTdWithAction("{%gstr 390}", "mms1", "runAction(\"mms_general\");");
-		document.write('<tr>');
-		document.write('<td><img src="' + scriptObject.getDir() + '/images/set_coreevents.png" width=32 height=32>');
-		writeChoiceTdWithAction("{%gstr 972}", "mms7", "runAction(\"mms_disp_core\");");
-		document.write('<td>');
-		document.write('<td class=\'mmeps1\'><img src="' + scriptObject.getDir() + '/images/set_startpage.png" width=32 height=32>');
-		writeChoiceTdWithAction("{%gstr 1038}", "mms2", "runAction(\"mms_startpage\");");
-		document.write('<tr>');
-		document.write('<td><img src="' + scriptObject.getDir() + '/images/set_appday.png" width=32 height=32>');
-		writeChoiceTdWithAction("{%gstr 970}", "mms8", "runAction(\"mms_disp_app\");");
-		document.write('<td>');
-		document.write('<td class=\'mmeps1\'><img src="' + scriptObject.getDir() + '/images/set_myloc.png" width=32 height=32>');
-		writeChoiceTdWithAction("{%gstr 373}", "mms3", "runAction(\"mms_mylocation\");");
-		document.write('<tr>');
-		document.write('<td><img src="' + scriptObject.getDir() + '/images/set_masalist.png" width=32 height=32>');
-		writeChoiceTdWithAction("{%gstr 973}", "mms9", "runAction(\"mms_disp_masa\");");
-		document.write('<td>');
-		document.write('<td class=\'mmeps1\'><img src="' + scriptObject.getDir() + '/images/set_lang.png" width=32 height=32>');
-		writeChoiceTdWithAction("{%gstr 336}", "mms4", "runAction(\"mms_languages\");");
-		document.write('<tr>');
-		document.write('<td><img src="' + scriptObject.getDir() + '/images/set_today.png" width=32 height=32>');
-		writeChoiceTdWithAction("{%gstr 174}", "mms10", "runAction(\"mms_disp_today\");");
-		document.write('<td>');
-		document.write('<td class=\'mmeps1\'><img src="' + scriptObject.getDir() + '/images/set_search.png" width=32 height=32>');
-		writeChoiceTdWithAction("{%gstr 170}", "mms5", "runAction(\"mms_search\");");
-		document.write('<tr>');
-		document.write('<td><img src="' + scriptObject.getDir() + '/images/set_nextfest.png" width=32 height=32>');
-		writeChoiceTdWithAction("{%gstr 1187}", "mms11", "runAction(\"mms_disp_nextfest\");");
-		document.write('<td>');
-		document.write("<td class='mmeps1'>");
-		document.write('<td>');
-	</script>
+		<td style='text-size:9pt;text-decoration:underline;'><i>{%gstr 235}</i></td>
+		<td style='text-size:9pt;text-decoration:underline;'><i>{%gstr 1278}</i></td>
+	</tr>
+	<tr>
+		<script>
+			writeStartTdWithAction("mms6", "runAction(\"mms_disp_cal\");");
+			writeMmIcon("set_calendar.png");
+		</script>
+		{%gstr 971}
+		</td>
+
+		<script>
+			writeStartTdWithAction("mms1", "runAction(\"mms_general\");");
+			writeMmIcon("set_general.png");
+		</script>
+		{%gstr 390}
+		</td>
+	</tr>
+	<tr>
+		<script>
+			writeStartTdWithAction("mms7", "runAction(\"mms_disp_core\");");
+			writeMmIcon("set_coreevents.png");
+		</script>
+		{%gstr 972}
+		</td>
+
+		<script>
+			writeStartTdWithAction("mms2", "runAction(\"mms_startpage\");");
+			writeMmIcon("set_startpage.png");
+		</script>
+		{%gstr 1038}
+		</td>
+	</tr>
+	<tr>
+		<script>
+			writeStartTdWithAction("mms8", "runAction(\"mms_disp_app\");");
+			writeMmIcon("set_appday.png");
+		</script>
+		{%gstr 970}
+		</td>
+
+		<script>
+			writeStartTdWithAction("mms3", "runAction(\"mms_mylocation\");");
+			writeMmIcon("set_myloc.png");
+		</script>
+		{%gstr 373}
+		</td>
+	</tr>
+	<tr>
+		<script>
+			writeStartTdWithAction("mms9", "runAction(\"mms_disp_masa\");");
+			writeMmIcon("set_masalist.png");
+		</script>
+		{%gstr 973}
+		</td>
+
+		<script>
+			writeStartTdWithAction("mms4", "runAction(\"mms_languages\");");
+			writeMmIcon("set_lang.png");
+		</script>
+		{%gstr 336}
+		</td>
+	</tr>
+	<tr>
+		<script>
+			writeStartTdWithAction("mms10", "runAction(\"mms_disp_today\");");
+			writeMmIcon("set_today.png");
+		</script>
+		{%gstr 174}
+		</td>
+
+		<script>
+			writeStartTdWithAction("mms5", "runAction(\"mms_search\");");
+			writeMmIcon("set_search.png");
+		</script>
+		{%gstr 170}
+		</td>
+	</tr>
+	<tr>
+		<script>
+			writeStartTdWithAction("mms11", "runAction(\"mms_disp_nextfest\");");
+			writeMmIcon("set_nextfest.png");
+		</script>
+		{%gstr 1187}
+		</td>
+		<td>
+		</td>
+	</tr>
 	</table>
+	</center>
 </div>
 
 <!--  ################## -->
 <!--  # ORGANIZER MENU # -->
 <!--  ################## -->
 <div id='dmm3' style='display:none'>
-	<table width=100% cellpadding=12>
-	<script>
-		document.write('<tr>');
-		document.write('<td width="15%">');
-		writeChoiceTdWithAction("{%gstr 311}", "mmo0", "runAction(\"mmo_cities\");");
-		document.write('<tr>');
-		document.write('<td>');
-		writeChoiceTdWithAction("{%gstr 312}", "mmo1", "runAction(\"mmo_countries\");");
-		document.write('<tr>');
-		document.write('<td>');
-		writeChoiceTdWithAction("{%gstr 984}", "mmo2", "runAction(\"mmo_events\");");
-		document.write('<tr>');
-		document.write('<td>');
-		writeChoiceTdWithAction("{%gstr 321}", "mmo3", "runAction(\"mmo_tzones\");");
-	</script>
+	<center>
+	<table cellpadding=12>
+		<tr>
+			<script>
+				writeStartTdWithAction("mmo0", "runAction(\"mmo_cities\");");
+				writeMmIcon("geo_city.png");
+			</script>
+			{%gstr 311}
+			</td>
+		
+			<script>
+				writeStartTdWithAction("mmo1", "runAction(\"mmo_countries\");");
+				writeMmIcon("geo_country.png");
+			</script>
+			{%gstr 312}
+			</td>
+		<tr>
+			<script>
+				writeStartTdWithAction("mmo2", "runAction(\"mmo_events\");");
+				writeMmIcon("geo_event.png");
+			</script>
+			{%gstr 984}
+			</td>
+		
+			<script>
+				writeStartTdWithAction("mmo3", "runAction(\"mmo_tzones\");");
+				writeMmIcon("geo_timezone.png");
+			</script>
+			{%gstr 321}
+			</td>
 	</table>
+	</center>
 </div>
 
 <!--  ################## -->
@@ -210,8 +319,16 @@ var lastMainItem = '';
 <!--  ################## -->
 <div id='dmm4' style='display:none'>
 	<center>
-		<p width=50%>{%gstr 1138}</p>
-		<input type="text" id="textField0" value="{%string findstr}">
+	<table width="320">
+	<tr>
+		<td style='vertical-align:top'>
+			<img style='vertical-align:top' src="{%homedir}/images/search.png" height=32 width=32>
+		</td>
+		<td>
+			<p><input size=50 type="text" id="textField0" value="{%string findstr}">
+			<br>{%gstr 1138}			
+		</td>
+	</table>
 	<hr>
 		<div id='findList'>
 		</div>

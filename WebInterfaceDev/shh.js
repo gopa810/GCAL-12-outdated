@@ -64,13 +64,26 @@ function writeChoiceWithAction(text,myId,targetAction)
 
 function writeChoiceTdWithAction(text,myId,targetAction)
 {
-   var str = '<td style=\'cursor:pointer;border:0px solid black\'';
+   writeStartTdWithAction(myId,targetAction);
+
+   document.write(text);
+   document.write('</td>');
+   
+}
+
+function writeMmIcon(icon)
+{
+   document.write('<img style=\'vertical-align:middle\' src="' + scriptObject.getDir() + '/images/' + icon + '" width=32 height=32>');
+}
+
+function writeStartTdWithAction(myId,targetAction)
+{
+   var str = '<td style=\'cursor:pointer;border:0px solid black;vertical-align:middle\'';
    str += ' onmouseover=\'shh(1,"' + myId + '")\'';
    str += ' onmouseout=\'shh(0,"' + myId + '")\'';
    str += ' onclick=\'' + targetAction + '\'';
    str += ' id=\'' + myId + '\'>';
-   str += text;
-   str += '</td>';
+
    
    document.write(str);
 }

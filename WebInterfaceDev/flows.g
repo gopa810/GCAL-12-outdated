@@ -34,12 +34,14 @@ page mainmenu
   end action
   action calendar
     script "onSave"
-    set $nextpage dlg-startdate-cal
+	set $nextpagesd calendar
+    set $nextpage dlg-startdate
     goto dlg-enterloc
   end action
   action coreevents
     script "onSave"
-    set $nextpage dlg-startdate-core
+	set $nextpagesd coreevents
+    set $nextpage dlg-startdate
     goto dlg-enterloc
   end action
   action appday
@@ -56,9 +58,14 @@ page mainmenu
     script "onSave"
     goto dlg-enterloc-a
   end action
+  action travel
+    script "onSave"
+    goto dlg-enterloc-travela
+  end action
   action cal2core
     script "onSave"
-    set $nextpage dlg-startdate-cal2core
+    set $nextpagesd calcore
+    set $nextpage dlg-startdate
     goto dlg-enterloc
   end action
   action mms_disp
@@ -142,11 +149,13 @@ page mainmenu-calc
     goto dlg-find
   end action
   action calendar
-    set $nextpage dlg-startdate-cal
+    set $nextpagesd calendar
+    set $nextpage dlg-startdate
     goto dlg-enterloc
   end action
   action coreevents
-    set $nextpage dlg-startdate-core
+    set $nextpagesd coreevents
+    set $nextpage dlg-startdate
     goto dlg-enterloc
   end action
   action appday
@@ -161,7 +170,8 @@ page mainmenu-calc
     goto dlg-enterloc-a
   end action
   action cal2core
-    set $nextpage dlg-startdate-cal2core
+    set $nextpagesd calcore
+    set $nextpage dlg-startdate
     goto dlg-enterloc
   end action
 end page
@@ -192,8 +202,11 @@ end page
 page dlg-enterloc
   source dlg-enterloc
   set $currTitle $1033
+  set $ppx ''
+  set $locationid ''
   action mylocation
     set $locationtype mylocation
+	exec saveRecentLocation
     goto $nextpage
   end action
   action full
@@ -203,6 +216,10 @@ page dlg-enterloc
   action select
     set $locationtype selected
     goto dlg-selloc
+  end action
+  action recent
+    set $locationtype recent
+    goto $nextpage
   end action
 end page
 
@@ -210,18 +227,25 @@ page dlg-enterloc-a
   source dlg-enterloc
   set $currTitle $308
   set $ppx 'a'
+  set $locationida ''
   set $nextpage dlg-enterloc-b
   action mylocation
-    set $locationtype mylocation
+    set $locationtypea mylocation
+	exec saveRecentLocation
     goto $nextpage
   end action
   action full
-    set $locationtype entered
+    set $locationtypea entered
     goto dlg-locfull
   end action
   action select
-    set $locationtype selected
+    set $locationtypea selected
     goto dlg-selloc
+  end action
+  action recent
+    set $locationtypea recent
+	set $recentIndexa $recentIndex
+    goto $nextpage
   end action
 end page
 
@@ -229,9 +253,12 @@ page dlg-enterloc-b
   source dlg-enterloc
   set $currTitle $309
   set $ppx 'b'
-  set $nextpage dlg-startdate-cal2cal
+  set $nextpagesd cal2locs
+  set $nextpage dlg-startdate
+  set $locationidb ''
   action mylocation
     set $locationtypeb mylocation
+	exec saveRecentLocation
     goto $nextpage
   end action
   action full
@@ -242,7 +269,97 @@ page dlg-enterloc-b
     set $locationtypeb selected
     goto dlg-selloc
   end action
+  action recent
+    set $locationtypeb recent
+	set $recentIndexb $recentIndex
+    goto $nextpage
+  end action
 end page
+
+page dlg-enterloc-travela
+  source dlg-enterloc
+  set $currTitle $308
+  set $ppx 'a'
+  set $locationida ''
+  set $nextpage dlg-enterloc-travelb
+  action mylocation
+    set $locationtypea mylocation
+	exec saveRecentLocation
+    goto $nextpage
+  end action
+  action full
+    set $locationtypea entered
+    goto dlg-locfull
+  end action
+  action select
+    set $locationtypea selected
+    goto dlg-selloc
+  end action
+  action recent
+    set $locationtypea recent
+	set $recentIndexa $recentIndex
+    goto $nextpage
+  end action
+end page
+
+page dlg-enterloc-travelb
+  source dlg-enterloc
+  set $currTitle $309
+  set $ppx 'b'
+  set $nextpagesd travel
+  set $nextpage dlg-startdate-travel
+  set $locationidb ''
+  action mylocation
+    set $locationtypeb mylocation
+	exec saveRecentLocation
+    goto $nextpage
+  end action
+  action full
+    set $locationtypeb entered
+    goto dlg-locfull
+  end action
+  action select
+    set $locationtypeb selected
+    goto dlg-selloc
+  end action
+  action recent
+    set $locationtypeb recent
+	set $recentIndexb $recentIndex
+    goto $nextpage
+  end action
+end page
+
+page dlg-startdate-travel
+  source dlg-startdate
+  button bottom "$239 >" 'action:next' 239
+  action next
+    script "onSave"
+    goto dlg-time-travel
+  end action
+end page
+
+page dlg-time-travel
+  source dlg-time
+  button bottom "$239 >" 'action:next' 239
+  action next
+    script "onSave"
+	set $starttravelhr $starthour
+    set $starttravelmin $startmin
+    goto dlg-time-travel-duration
+  end action
+end page
+
+page dlg-time-travel-duration
+  source dlg-duration
+  button bottom "$239 >" 'action:next' 239
+  action next
+    script "onSave"
+	set $durtravelhr $durationhour
+    set $durtravelmin $durationmin	
+    goto travel
+  end action
+end page
+
 
 page dlg-entermyloc
   source dlg-entermyloc
@@ -262,6 +379,7 @@ page dlg-selloc
   button bottom "$239 >" 'action:next' 239
   action next
     script "onSave"
+	exec saveRecentLocation
     goto $nextpage
   end action
 end page
@@ -307,26 +425,92 @@ page dlg-selcoutz
   button bottom "$239 >" 'action:next' 239
   action next
     script "onSave"
+	exec saveRecentLocation
     goto $nextpage
   end action
 end page
 
-page dlg-startdate-cal
-  source dlg-startdate
-  button bottom "$239 >" 'action:next' 239
-  action next
-    script "onSave"
-    set $nextpage calendar
-    goto dlg-endperiod-a
+page dlg-startdate
+  source dlg-period
+  action month0
+    exec setCurrentDate
+	set $startday 1
+    set $endperiodlength 1
+	set $endperiodtype 3
+	goto $nextpagesd
+  end action
+  action year0
+    exec setCurrentDate
+	set $startday 1
+	set $startmonth 1
+    set $endperiodlength 1
+	set $endperiodtype 4
+	goto $nextpagesd
+  end action
+  action month1
+    exec setCurrentDate
+	set $startday 1
+	exec gotoNextMonth
+    set $endperiodlength 1
+	set $endperiodtype 3
+	goto $nextpagesd
+  end action
+  action year1
+    exec setCurrentDate
+	set $startday 1
+	set $startmonth 1
+	exec gotoNextYear
+    set $endperiodlength 1
+	set $endperiodtype 4
+	goto $nextpagesd
+  end action
+  action masa0
+    exec setCurrentVedicDate
+	set $starttithi 0
+	exec vedicDateToGregorian
+    set $endperiodlength 1
+	set $endperiodtype 6
+	goto $nextpagesd
+  end action
+  action gyear0
+    exec setCurrentVedicDate
+	set $starttithi 0
+	set $startmasa 11
+	exec vedicDateToGregorian
+    set $endperiodlength 1
+	set $endperiodtype 7
+	goto $nextpagesd
+  end action
+  action masa1
+    exec setCurrentVedicDate
+	set $starttithi 0
+	exec moveOneMasa
+	exec vedicDateToGregorian
+    set $endperiodlength 1
+	set $endperiodtype 6
+	goto $nextpagesd
+  end action
+  action gyear1
+    exec setCurrentVedicDate
+	set $starttithi 0
+	set $startmasa 11
+	exec moveOneGaurabda
+	exec vedicDateToGregorian
+    set $endperiodlength 1
+	set $endperiodtype 7
+	goto $nextpagesd
+  end action
+  action other
+    goto dlg-startdate-ext
   end action
 end page
 
-page dlg-startdate-core
+page dlg-startdate-ext
   source dlg-startdate
   button bottom "$239 >" 'action:next' 239
   action next
     script "onSave"
-    set $nextpage coreevents
+    set $nextpage $nextpagesd
     goto dlg-endperiod-a
   end action
 end page
@@ -337,26 +521,6 @@ page dlg-startdate-app
   action next
     script "onSave"
     goto dlg-time-app
-  end action
-end page
-
-page dlg-startdate-cal2cal
-  source dlg-startdate
-  button bottom "$239 >" 'action:next' 239
-  action next
-    script "onSave"
-    set $nextpage cal2locs
-    goto dlg-endperiod-a
-  end action
-end page
-
-page dlg-startdate-cal2core
-  source dlg-startdate
-  button bottom "$239 >" 'action:next' 239
-  action next
-    script "onSave"
-    set $nextpage calcore
-    goto dlg-endperiod-a
   end action
 end page
 
@@ -426,6 +590,7 @@ end page
 page calendar
   source calendar
   button top $1062 saveContent 1062
+  button top "$363" printContent 363
   button top "$372" 'action:settings' 372
   action settings
     goto set-disp-cal
@@ -434,11 +599,13 @@ end page
 
 page calcore
   button top $1062 saveContent 1062
+  button top "$363" printContent 363
   source calcore
 end page
 
 page cal2locs
   button top $1062 saveContent 1062
+  button top "$363" printContent 363
   source cal2locs
   button top "$372" 'action:settings' 372
   action settings
@@ -446,8 +613,16 @@ page cal2locs
   end action
 end page
 
+page travel
+  button top $1062 saveContent 1062
+  button top "$363" printContent 363
+  source travel
+end page
+
+
 page masalist
   button top $1062 saveContent 1062
+  button top "$363" printContent 363
   source masalist
   button top "$372" 'action:settings' 372
   action settings
@@ -457,6 +632,7 @@ end page
 
 page coreevents
   button top $1062 saveContent 1062
+  button top "$363" printContent 363
   source coreevents
   button top "$372" 'action:settings' 372
   action settings
@@ -466,6 +642,7 @@ end page
 
 page appday
   button top $1062 saveContent 1062
+  button top "$363" printContent 363
   source appday
   button top "$372" 'action:settings' 372
   action settings
@@ -919,10 +1096,10 @@ page dlg-confmylocation
   button bottom "$1062" 'action:next' 1062
   action next
      exec setmylocation
-     goto mainmenu-set
+     goto mainmenu
   end action
   action cancel
-    goto mainmenu-set
+    goto mainmenu
   end action
 end page
 

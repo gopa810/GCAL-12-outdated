@@ -225,6 +225,7 @@
     <Compile Include="Engine\CELGenerateAppearanceDay.cs" />
     <Compile Include="Engine\CELGenerateCalendar.cs" />
     <Compile Include="Engine\CELGenerateCalendarPlusCore.cs" />
+    <Compile Include="Engine\CELGenerateCalendarTravelling.cs" />
     <Compile Include="Engine\CELGenerateCalendarTwoLocs.cs" />
     <Compile Include="Engine\CELGenerateCoreEvents.cs" />
     <Compile Include="Engine\CELGenerateHtml.cs" />

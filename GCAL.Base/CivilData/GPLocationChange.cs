@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml;
+using System.Diagnostics;
 
 namespace GCAL.Base
 {
@@ -22,7 +23,7 @@ namespace GCAL.Base
             {
                 GPGregorianTime gt = new GPGregorianTime(LocationA);
                 gt.setJulianGreenwichTime(new GPJulianTime(julianStart, 0));
-                return string.Format("{0} {1} {2}", gt.getShortDateString(), gt.getLongTimeString(), LocationA.getTimeZoneName());
+                return string.Format("{0} {1}", gt.getShortDateString(), gt.getLongTimeString());
             }
         }
         public String humanEnd
@@ -31,7 +32,7 @@ namespace GCAL.Base
             {
                 GPGregorianTime gt = new GPGregorianTime(LocationB);
                 gt.setJulianGreenwichTime(new GPJulianTime(julianEnd, 0));
-                return string.Format("{0} {1} {2}", gt.getShortDateString(), gt.getLongTimeString(), LocationB.getTimeZoneName());
+                return string.Format("{0} {1}", gt.getShortDateString(), gt.getLongTimeString());
             }
         }
 
@@ -124,7 +125,7 @@ namespace GCAL.Base
             newLoc.setLatitudeNorthPositive(latA + (latB - latA) * ratio);
             newLoc.SetAltitude(0);
 
-            return temp;
+            return newLoc;
         }
 
         public GPLocation getLocation(double jdate)
@@ -145,6 +146,7 @@ namespace GCAL.Base
             temp.setTimeZone(TimezoneStart ? LocationA.getTimeZone() : LocationB.getTimeZone());
             temp.setLongitudeEastPositive(lonA + (lonB - lonA) * (jdate - julianStart) / (julianEnd - julianStart));
             temp.setLatitudeNorthPositive(latA + (latB - latA) * (jdate - julianStart) / (julianEnd - julianStart));
+            //Debugger.Log(0, "", String.Format("== longitude/latitude {0} {1}\n", temp.getLongitudeString(), temp.getLatitudeString()));
             temp.SetAltitude(0);
 
             return temp;

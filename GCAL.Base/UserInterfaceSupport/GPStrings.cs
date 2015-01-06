@@ -216,7 +216,7 @@ namespace GCAL.Base
         {
             if (index < 0 || index >= gstr.Count)
                 return string.Empty;
-            return gstr[index];
+            return System.Net.WebUtility.HtmlDecode(gstr[index]);
         }
 
         public string getString(string key)

@@ -20,8 +20,8 @@ user-select: none;
 var format24 = 1;
 var lastRadio = '';
 var date = new Date();
-var count0 = '{%string starthour}';
-var count1 = '{%string startmin}';
+var count0 = '{%string durationhour}';
+var count1 = '{%string durationmin}';
 
 if (count0 == '' || count1 == '')
 {
@@ -31,8 +31,8 @@ if (count0 == '' || count1 == '')
 
 function onSave()
 {
-	saveInt("starthour", count0);
-	saveInt("startmin", count1);
+	saveInt("durationhour", count0);
+	saveInt("durationmin", count1);
 }
 
 
