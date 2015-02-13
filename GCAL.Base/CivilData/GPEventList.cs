@@ -20,7 +20,10 @@ namespace GCAL.Base
         public static int nextId = 1;
         private static GPEventList _sharedList = null;
         private static GPEvent eventNotFound = new GPEvent("Not found");
-        
+
+        /*private int currSid = 1300;
+        private StringBuilder sidSb = new StringBuilder();*/
+
         public static GPEventList getShared()
         {
             if (_sharedList == null)
@@ -70,6 +73,11 @@ namespace GCAL.Base
             }
 
             Modified = false;
+            /*if (currSid > 1300)
+            {
+                Modified = true;
+                File.WriteAllText("c:\\Users\\Gopa702\\AppData\\Roaming\\GCAL\\newstrings.txt", sidSb.ToString());
+            }*/
         }
 
         public void InsertEvent(XmlElement elem)
@@ -124,9 +132,28 @@ namespace GCAL.Base
             e.nOffset = GetSubelementIntValue(elem, "offset", 0);
             e.nDeleted = GetSubelementIntValue(elem, "deleted", 0);
             e.setRawFastType(GetSubelementIntValue(elem, "fasttype", 0));
-            e.strFastSubject = GetSubelementValue(elem, "fastsubject", "");
-            e.strText = GetSubelementValue(elem, "text", "");
+            e.setRawFastSubject(GetSubelementValue(elem, "fastsubject", "").Trim());
+            e.setRawText(GetSubelementValue(elem, "text", "").Trim());
+            e.textStringId = GetSubelementIntValue(elem, "textstringid", -1);
+            e.fastSubjectStringId = GetSubelementIntValue(elem, "fastsubjectstringid", -1);
             e.eventId = GetSubelementIntValue(elem, "eventid", 0);
+
+            /*if (e.nClass < 6)
+            {
+                if (e.strText.Length > 0 && e.textStringId < 0)
+                {
+                    sidSb.AppendFormat("{0}\t{1}\n", currSid, e.strText);
+                    e.textStringId = currSid;
+                    currSid++;
+                }
+
+                if (e.strFastSubject.Length > 0 && e.fastSubjectStringId < 0)
+                {
+                    sidSb.AppendFormat("{0}\t{1}\n", currSid, e.strFastSubject);
+                    e.fastSubjectStringId = currSid;
+                    currSid++;
+                }
+            }*/
 
             add(e);
         }
@@ -164,7 +191,7 @@ namespace GCAL.Base
             return defaultValue;
         }
 
-        public void Save()
+        public override void Save()
         {
             if (Modified)
             {
@@ -246,12 +273,19 @@ namespace GCAL.Base
             elem.SetAttribute("visible", eve.nVisible.ToString());
             elem.SetAttribute("used", eve.nUsed.ToString());
             // ---
-            SaveElementChild(elem, "fastsubject", eve.strFastSubject);
+            // save fast subject
+            SaveElementChild(elem, "fastsubjectstringid", eve.fastSubjectStringId.ToString());
+            SaveElementChild(elem, "fastsubject", eve.getRawFastSubject());
+
+            // save text
+            SaveElementChild(elem, "textstringid", eve.textStringId.ToString());
+            SaveElementChild(elem, "text", eve.getRawText());
+
+            // save others
             SaveElementChild(elem, "startyear", eve.nStartYear.ToString());
             SaveElementChild(elem, "specid", eve.nSpec.ToString());
             SaveElementChild(elem, "offset", eve.nOffset.ToString());
             SaveElementChild(elem, "deleted", eve.nDeleted.ToString());
-            SaveElementChild(elem, "text", eve.strText);
             SaveElementChild(elem, "eventid", eve.eventId.ToString());
             SaveElementChild(elem, "fasttype", eve.getRawFastType().ToString());
 

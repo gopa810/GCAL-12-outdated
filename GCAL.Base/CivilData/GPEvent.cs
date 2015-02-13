@@ -18,9 +18,51 @@ namespace GCAL.Base
         public int nDeleted = 0;
         public int nSpec = 0;
 
-        public string strFastSubject = string.Empty;
-        public string strText = string.Empty;
+        public int textStringId = -1;
+        public int fastSubjectStringId = -1;
+        protected string strFastSubject = string.Empty;
+        protected string strText = string.Empty;
         public List<GPEvent> childrenItems = null;
+
+        public string getFastSubject()
+        {
+            if (fastSubjectStringId > 0)
+                return GPStrings.getString(fastSubjectStringId);
+            return strFastSubject;
+        }
+
+        public void setFastSubject(string s)
+        {
+            if (fastSubjectStringId > 0)
+            {
+                GPStrings.getSharedStrings().setString(fastSubjectStringId, s, true);
+                GPStrings.getSharedStrings().Modified = true;
+            }
+            else
+            {
+                strFastSubject = s;
+            }
+        }
+
+        public string getText()
+        {
+            if (textStringId > 0)
+                return GPStrings.getString(textStringId);
+            return strText;
+        }
+
+        public void setText(string s)
+        {
+            if (textStringId > 0)
+            {
+                GPStrings.getSharedStrings().setString(textStringId, s, true);
+                GPStrings.getSharedStrings().Modified = true;
+            }
+            else
+            {
+                strText = s;
+            }
+        }
 
         // offset in days
         // event specification + nOffset is day of notification
@@ -117,6 +159,26 @@ namespace GCAL.Base
         public bool hasFasting()
         {
             return nFastType != 0;
+        }
+
+        public string getRawText()
+        {
+            return strText;
+        }
+
+        public string getRawFastSubject()
+        {
+            return strFastSubject;
+        }
+
+        public void setRawText(string p)
+        {
+            strText = p;
+        }
+
+        public void setRawFastSubject(string p)
+        {
+            strFastSubject = p;
         }
     }
 }

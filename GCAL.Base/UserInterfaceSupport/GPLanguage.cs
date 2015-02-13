@@ -109,7 +109,7 @@ namespace GCAL.Base
                 for (int i = 0; i < getStrings().gstr.Count; i++)
                 {
                     if (getStrings().gstr[i].Length > 0)
-                        sw.WriteLine("{0}\t{1}\t{2}", i, getStrings().gstr[i], getStrings().keys[i]);
+                        sw.WriteLine("{0}\t{1}\t{2}", i, getStrings().gstr[i], getStrings().edited[i]);
                 }
             }
         }

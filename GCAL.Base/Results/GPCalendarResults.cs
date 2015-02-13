@@ -1156,7 +1156,7 @@ namespace GCAL.Base
             data["start"] = snd;
             data["end"] = end;
             data["today"] = t.date;
-            f.Text = EvaluateString(pe.strText, data);
+            f.Text = EvaluateString(pe.getText(), data);
             t.Festivals.Add(f);
         }
 
@@ -1178,7 +1178,7 @@ namespace GCAL.Base
             data["start"] = snd;
             data["end"] = end;
             data["today"] = t.date;
-            f.Text = EvaluateString(pe.strText, data);
+            f.Text = EvaluateString(pe.getText(), data);
             t.Festivals.Add(f);
         }
 
@@ -1200,7 +1200,7 @@ namespace GCAL.Base
             data["start"] = snd;
             data["end"] = end;
             data["today"] = t.date;
-            f.Text = EvaluateString(pe.strText, data);
+            f.Text = EvaluateString(pe.getText(), data);
             t.Festivals.Add(f);
         }
 
@@ -1222,7 +1222,7 @@ namespace GCAL.Base
             f.ShowSettingItem = GPDisplays.Keys.FestivalClass(6);
             data["time"] = snd;
             data["today"] = t.date;
-            f.Text = EvaluateString(pe.strText, data);
+            f.Text = EvaluateString(pe.getText(), data);
             t.Festivals.Add(f);
         }
 
@@ -1252,7 +1252,7 @@ namespace GCAL.Base
                 data["start"] = ae.time;
                 data["end"] = nend;
                 data["today"] = ae.time;
-                f.Text = EvaluateString(pe.strText, data);
+                f.Text = EvaluateString(pe.getText(), data);
                 if (ae.time != null && ae.time.CompareYMD(s.date) == 0)
                 {
                     s.Festivals.Add(f);
@@ -1311,7 +1311,7 @@ namespace GCAL.Base
                 data["start"] = ae.time;
                 data["end"] = nend;
                 data["today"] = ae.time;
-                f.Text = EvaluateString(pe.strText, data);
+                f.Text = EvaluateString(pe.getText(), data);
                 if (ae.time != null && ae.time.CompareYMD(s.date) == 0)
                 {
                     s.Festivals.Add(f);
@@ -1370,7 +1370,7 @@ namespace GCAL.Base
                 data["start"] = ae.time;
                 data["end"] = nend;
                 data["today"] = ae.time;
-                f.Text = EvaluateString(pe.strText, data);
+                f.Text = EvaluateString(pe.getText(), data);
                 if (ae.time != null && ae.time.CompareYMD(s.date) == 0)
                 {
                     s.Festivals.Add(f);
@@ -1430,7 +1430,7 @@ namespace GCAL.Base
                 data["start"] = ae.time;
                 data["end"] = nend;
                 data["today"] = ae.time;
-                f.Text = EvaluateString(pe.strText, data);
+                f.Text = EvaluateString(pe.getText(), data);
                 if (ae.time != null && ae.time.CompareYMD(s.date) == 0)
                 {
                     s.Festivals.Add(f);
@@ -1922,7 +1922,7 @@ namespace GCAL.Base
                 {
                     if (m_pData[i].sankranti_zodiac == eve.nSankranti)
                     {
-                        m_pData[i + eve.nOffset].Festivals.Add(new GPCalendarDay.Festival(80, GPDisplays.Keys.FestivalClass(eve.nClass), eve.strText));
+                        m_pData[i + eve.nOffset].Festivals.Add(new GPCalendarDay.Festival(80, GPDisplays.Keys.FestivalClass(eve.nClass), eve.getText()));
                     }
                 }
                 /*if (m_pData[i].sankranti_zodiac == GPSankranti.MAKARA_SANKRANTI)

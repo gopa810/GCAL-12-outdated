@@ -158,8 +158,9 @@ namespace GCAL.Base
             int lastmonth = -1;
             int tp1;
             bool bCalcMoon = (getShowSettingsValue(4) > 0 || getShowSettingsValue(5) > 0);
-            bool plainTextSet = GPStrings.showNumberOfString;
-            GPStrings.showNumberOfString = false;
+
+            GPStrings.pushRich(false);
+
             m_text.Remove(0, m_text.Length);
 
             for (k = 0; k < daybuff.m_vcCount; k++)
@@ -266,7 +267,7 @@ namespace GCAL.Base
 
             AddNoteText(m_text);
 
-            GPStrings.showNumberOfString = plainTextSet;
+            GPStrings.popRich();
             return 1;
         }
 

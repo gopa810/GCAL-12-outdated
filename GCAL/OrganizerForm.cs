@@ -352,12 +352,12 @@ namespace GCAL
                     continue;
                 if (group != null && eve.nClass != group.group)
                     continue;
-                ListViewItem lvi = new ListViewItem(eve.strText);
+                ListViewItem lvi = new ListViewItem(eve.getText());
                 lvi.SubItems.Add(GPTithi.getName(eve.nTithi));
                 lvi.SubItems.Add(GPMasa.GetName(eve.nMasa));
                 lvi.SubItems.Add(GPPaksa.getName(eve.nTithi / 15));
                 lvi.SubItems.Add(GPFastType.getName(eve.getRawFastType()));
-                lvi.SubItems.Add(eve.strFastSubject);
+                lvi.SubItems.Add(eve.getFastSubject());
                 lvi.SubItems.Add(GPEventClass.getName(eve.nClass));
                 lvi.SubItems.Add(eve.nStartYear < -9999 ? "" : eve.nStartYear.ToString());
                 lvi.Tag = eve;
@@ -374,11 +374,11 @@ namespace GCAL
             listView6.Items.Clear();
             foreach (GPEventRelative eve in eventList.relativeEvents)
             {
-                ListViewItem lvi = new ListViewItem(eve.strText);
-                lvi.SubItems.Add(eventList.GetSpecialEvent(eve.nSpecRef).strText);
+                ListViewItem lvi = new ListViewItem(eve.getText());
+                lvi.SubItems.Add(eventList.GetSpecialEvent(eve.nSpecRef).getText());
                 lvi.SubItems.Add(eve.nOffset.ToString());
                 lvi.SubItems.Add(GPFastType.getName(eve.getRawFastType()));
-                lvi.SubItems.Add(eve.strFastSubject);
+                lvi.SubItems.Add(eve.getFastSubject());
                 lvi.SubItems.Add(GPEventClass.getName(eve.nClass));
                 lvi.SubItems.Add(eve.nStartYear < -9999 ? "" : eve.nStartYear.ToString());
                 lvi.Tag = eve;
@@ -394,11 +394,11 @@ namespace GCAL
             listView7.Items.Clear();
             foreach (GPEventSankranti eve in eventList.sankrantiEvents)
             {
-                ListViewItem lvi = new ListViewItem(eve.strText);
+                ListViewItem lvi = new ListViewItem(eve.getText());
                 lvi.SubItems.Add(GPSankranti.getName(eve.nSankranti));
                 lvi.SubItems.Add(eve.nOffset.ToString());
                 lvi.SubItems.Add(GPFastType.getName(eve.getRawFastType()));
-                lvi.SubItems.Add(eve.strFastSubject);
+                lvi.SubItems.Add(eve.getFastSubject());
                 lvi.SubItems.Add(GPEventClass.getName(eve.nClass));
                 lvi.SubItems.Add(eve.nStartYear < -9999 ? "" : eve.nStartYear.ToString());
                 lvi.Tag = eve;
@@ -418,7 +418,7 @@ namespace GCAL
             {
                 GPEventTithi eve = new GPEventTithi();
 
-                eve.strText = dlg.EventTitle;
+                eve.setText(dlg.EventTitle);
                 eve.nClass = dlg.Group;
                 eve.setRawFastType(dlg.FastType);
                 eve.nMasa = dlg.Masa;
@@ -427,7 +427,7 @@ namespace GCAL
                 eve.nTithi = dlg.Tithi;
                 eve.nUsed = 1;
                 eve.nVisible = dlg.EventVisible ? 1 : 0;
-                eve.strFastSubject = dlg.FastSubject;
+                eve.setFastSubject(dlg.FastSubject);
 
                 GPEventList.getShared().tithiEvents.Add(eve);
                 GPEventList.getShared().Modified = true;
@@ -447,7 +447,7 @@ namespace GCAL
             {
                 GPEventRelative eve = new GPEventRelative();
 
-                eve.strText = dlg.EventTitle;
+                eve.setText(dlg.EventTitle);
                 eve.nClass = dlg.Group;
                 eve.setRawFastType(dlg.FastType);
                 eve.nOffset = dlg.Offset;
@@ -456,7 +456,7 @@ namespace GCAL
                 eve.nSpecRef = dlg.RefSpec;
                 eve.nUsed = 1;
                 eve.nVisible = dlg.EventVisible ? 1 : 0;
-                eve.strFastSubject = dlg.FastSubject;
+                eve.setFastSubject(dlg.FastSubject);
 
                 GPEventList.getShared().relativeEvents.Add(eve);
                 GPEventList.getShared().Modified = true;
@@ -475,7 +475,7 @@ namespace GCAL
             {
                 GPEventSankranti eve = new GPEventSankranti();
 
-                eve.strText = dlg.EventTitle;
+                eve.setText(dlg.EventTitle);
                 eve.nClass = dlg.Group;
                 eve.setRawFastType(dlg.FastType);
                 eve.nOffset = dlg.Offset;
@@ -484,7 +484,7 @@ namespace GCAL
                 eve.nSankranti = dlg.Sankranti;
                 eve.nUsed = 1;
                 eve.nVisible = dlg.EventVisible ? 1 : 0;
-                eve.strFastSubject = dlg.FastSubject;
+                eve.setFastSubject(dlg.FastSubject);
 
                 GPEventList.getShared().sankrantiEvents.Add(eve);
                 GPEventList.getShared().Modified = true;
@@ -589,18 +589,18 @@ namespace GCAL
         public void EditTithiBasedEvent(ListViewItem lvi, GPEventTithi eve)
         {
             EditTithiEvent dlg = new EditTithiEvent();
-            dlg.EventTitle = eve.strText;
+            dlg.EventTitle = eve.getText();
             dlg.Group = eve.nClass;
             dlg.FastType = eve.getRawFastType();
             dlg.Masa = eve.nMasa;
             dlg.SinceYear = ((eve.nStartYear < -9999) ? "" : eve.nStartYear.ToString());
             dlg.Tithi = eve.nTithi;
             dlg.EventVisible = (eve.nVisible != 0);
-            dlg.FastSubject = eve.strFastSubject;
+            dlg.FastSubject = eve.getFastSubject();
 
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                eve.strText = dlg.EventTitle;
+                eve.setText(dlg.EventTitle);
                 eve.nClass = dlg.Group;
                 eve.setRawFastType(dlg.FastType);
                 eve.nMasa = dlg.Masa;
@@ -608,7 +608,7 @@ namespace GCAL
                 int.TryParse(dlg.SinceYear, out eve.nStartYear);
                 eve.nTithi = dlg.Tithi;
                 eve.nVisible = dlg.EventVisible ? 1 : 0;
-                eve.strFastSubject = dlg.FastSubject;
+                eve.setFastSubject(dlg.FastSubject);
 
                 GPEventList.getShared().Modified = true;
 
@@ -620,18 +620,18 @@ namespace GCAL
         {
             EditRelativeEventDlg dlg = new EditRelativeEventDlg();
 
-            dlg.EventTitle = eve.strText;
+            dlg.EventTitle = eve.getText();
             dlg.Group = eve.nClass;
             dlg.FastType = eve.getRawFastType();
             dlg.Offset = eve.nOffset;
             dlg.SinceYear = ((eve.nStartYear < -9999) ? "" : eve.nStartYear.ToString());
             dlg.RefSpec = eve.nSpecRef;
             dlg.EventVisible = (eve.nVisible != 0);
-            dlg.FastSubject = eve.strFastSubject;
+            dlg.FastSubject = eve.getFastSubject();
 
             if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                eve.strText = dlg.EventTitle;
+                eve.setText(dlg.EventTitle);
                 eve.nClass = dlg.Group;
                 eve.setRawFastType(dlg.FastType);
                 eve.nOffset = dlg.Offset;
@@ -640,7 +640,7 @@ namespace GCAL
                 eve.nSpecRef = dlg.RefSpec;
                 eve.nUsed = 1;
                 eve.nVisible = dlg.EventVisible ? 1 : 0;
-                eve.strFastSubject = dlg.FastSubject;
+                eve.setFastSubject(dlg.FastSubject);
 
                 GPEventList.getShared().Modified = true;
 
@@ -652,18 +652,18 @@ namespace GCAL
         {
             EditSankrantiBasedEventDlg dlg = new EditSankrantiBasedEventDlg();
 
-            dlg.EventTitle = eve.strText;
+            dlg.EventTitle = eve.getText();
             dlg.Group = eve.nClass;
             dlg.FastType = eve.getRawFastType();
             dlg.Offset = eve.nOffset;
             dlg.SinceYear = ((eve.nStartYear < -9999) ? "" : eve.nStartYear.ToString());
             dlg.Sankranti = eve.nSankranti;
             dlg.EventVisible = (eve.nVisible != 0);
-            dlg.FastSubject = eve.strFastSubject;
+            dlg.FastSubject = eve.getFastSubject();
 
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                eve.strText = dlg.EventTitle;
+                eve.setText(dlg.EventTitle);
                 eve.nClass = dlg.Group;
                 eve.setRawFastType(dlg.FastType);
                 eve.nOffset = dlg.Offset;
@@ -672,7 +672,7 @@ namespace GCAL
                 eve.nSankranti = dlg.Sankranti;
                 eve.nUsed = 1;
                 eve.nVisible = dlg.EventVisible ? 1 : 0;
-                eve.strFastSubject = dlg.FastSubject;
+                eve.setFastSubject(dlg.FastSubject);
 
                 GPEventList.getShared().Modified = true;
 
@@ -794,12 +794,12 @@ namespace GCAL
                 listView3.BeginUpdate();
                 foreach (GPEventTithi eve in eventList.tithiEvents)
                 {
-                    ListViewItem lvi = new ListViewItem(eve.strText);
+                    ListViewItem lvi = new ListViewItem(eve.getText());
                     lvi.SubItems.Add(GPTithi.getName(eve.nTithi));
                     lvi.SubItems.Add(GPMasa.GetName(eve.nMasa));
                     lvi.SubItems.Add(GPPaksa.getName(eve.nTithi / 15));
                     lvi.SubItems.Add(GPFastType.getName(eve.getRawFastType()));
-                    lvi.SubItems.Add(eve.strFastSubject);
+                    lvi.SubItems.Add(eve.getFastSubject());
                     lvi.SubItems.Add(GPEventClass.getName(eve.nClass));
                     lvi.SubItems.Add(eve.nStartYear < -9999 ? "" : eve.nStartYear.ToString());
                     lvi.Tag = eve;

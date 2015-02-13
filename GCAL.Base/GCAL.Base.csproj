@@ -107,6 +107,7 @@
     <Compile Include="UserInterfaceSupport\GPPaksa.cs" />
     <Compile Include="Deprecated\GPSankranti.cs" />
     <Compile Include="Deprecated\GPShowSetting.cs" />
+    <Compile Include="UserInterfaceSupport\GPString.cs" />
     <Compile Include="UserInterfaceSupport\GPStringPair.cs" />
     <Compile Include="UserInterfaceSupport\GPStrings.cs" />
     <Compile Include="Deprecated\GPSun.cs" />

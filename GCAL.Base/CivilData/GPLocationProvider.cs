@@ -507,5 +507,19 @@ namespace GCAL.Base
 
             return null;
         }
+
+        public List<GPLocationChange> getChangesForJulianDay(double p)
+        {
+            List<GPLocationChange> chr = new List<GPLocationChange>(); 
+            foreach (GPLocationChange lch in changes)
+            {
+                if (lch.julianEnd > (p - 0.5) && lch.julianStart < (p + 0.5))
+                {
+                    chr.Add(lch);
+                }
+            }
+
+            return chr;
+        }
     }
 }

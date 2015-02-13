@@ -48,6 +48,7 @@ langid	2
 45	Appearance Day			Appearance Day
 46	Core Events			Core Events
 48	Masa List			Masa List
+49	*	fasting flag
 50	Could not create new window.			Could not create new window.
 51	Sunrise			Sunrise
 52	Sunset			Sunset
@@ -128,7 +129,7 @@ langid	2
 129				
 130	GCal			GCal
 131	Gaurabda Calendar			Gaurabda Calendar
-132	&lt;all sankrantis&gt;			&lt;all sankrantis&gt;
+132	all			all
 133	&lt;all tithis&gt;			&lt;all tithis&gt;
 134	&lt;all fasting days&gt;			&lt;all fasting days&gt;
 135	(Fasting for Ekadasi)			(Fasting for Ekadasi)
@@ -867,10 +868,10 @@ langid	2
 1107	DST Abbreviation			DST Abbreviation
 1108	Enter abbreviation of this timezone when DST is in effect.			Enter abbreviation of this timezone when DST is in effect.
 1109	Rules			Rules
-1110	Here are definitions of rules for offset transitions. Rule specifies day of week, week of month and month for both starting and ending day of DST.			Here are definitions of rules for offset transitions. Rule specifies day of week, week of month and month for both starting and ending day of DST.
+1110	Here are definitions of rules for offset transitions. Rule specifies day of week, week of month and month for both starting and ending day of DST. Using of Daylight Saving is defined either by rule or by transition. A rule defines pattern for transitions over more years. A transition defines transition to and from Daylight hours within one year.			Here are definitions of rules for offset transitions. Rule specifies day of week, week of month and month for both starting and ending day of DST.
 1111	Add			Add
 1112	Remove All			Remove All
-1113	Here are definitions of offset transitions. Transition is defined by exact start and end dates.			Here are definitions of offset transitions. Transition is defined by exact start and end dates.
+1113	Here are definitions of offset transitions. Transition is defined by exact start and end dates for one year. Use rule instead of 'transition', if you want to define transition pattern over more years.			Here are definitions of offset transitions. Transition is defined by exact start and end dates.
 1114	Add New Transition			Add New Transition
 1115	Edit Transition			Edit Transition
 1116	Day Hour of Change			Day Hour of change
@@ -944,7 +945,7 @@ langid	2
 1184	Show times for sandhya periods			Show times for sandhya periods
 1185	Other information present at sunrise			Other information present at sunrise
 1186	Show time of brahma muhurta			Show time of brahma muhurta
-1187	Nest Festivals Screen			Nest Festivals Screen
+1187	Next Festivals Screen			Nest Festivals Screen
 1188	Caturmasya events not showed			Caturmasya events not showed
 1189	Caturmasya month starts on Purnima			Caturmasya month starts on Purnima
 1190	Caturmasya month starts on Pratipat			Caturmasya month starts on Pratipat
@@ -964,4 +965,214 @@ langid	2
 1208	The Event Finder feature could save you from visually scanning pages of calendars to find, for example, the dates of next 3 Janmastamis, or all the fast days for the next year. Just select Search in the main manu. Once you find an event you are looking for, press the Show button to see the surrounding days.			The Event Finder feature could save you from visually scanning pages of calendars to find, for example, the dates of the last 25 Janmastamis, or all the fast days for the next year. Just press Ctrl-F. Once you find an event you are looking for, choose the Calendar Context tab to see the surrounding days.
 1209	Gcal has a lot of options to show particular astronomical or calculation information on the calendar output pages. Or, to streamline your calendar you can remove unneeded types of event notifications. From the Settings menu check out Calendar Display.			Gcal has a lot of options to show particular astronomical or calculation information on the calendar output pages. Or, to streamline your calendar you can remove unneeded types of event notifications. From the Settings menu check out Calendar Display.
 1210	GCal has facility to output in multiple languages, but it requires some effort to set things up. If you would like to volunteer for set up work, please contact the KrishnaDays team.			GCal has facility to output in multiple languages, but it requires some effort to set things up. If you would like to volunteer for set up work, please contact the KrishnaDays team.
-1229	- end of tips -		
+1249	- end of tips -		
+1250	1 week				
+1251	1 month				
+1252	6 months				
+1253	1 year				
+1254	Other Period								
+1255	Naksatra-based Events			
+1256	Yoga-based Events				
+1257	Astro Events			
+1258	Astro Event Type			
+1259	Other Columns		
+1260	Main Column		
+1261	Events are grouped by event type and then sorted by time	
+1262	All events are in chronological order		
+1263	Sort by Event Type		
+1264	Sort by Time		
+1270	Days in Today screen	
+1271	Number of days to search in 'today screen'		
+1272	Months in Calendar		
+1273	Number of months to search in calendar results		
+1274	Months in Core Events		
+1275	Number of months to search in core events results		
+1276	Years in the list of Masas			
+1277	Number of years to search in the list of masas		
+1278	Other Settings		
+1280	If you made some corrections to texts in GCAL, send your file	
+1281	to email address	
+1282	Update	
+1283	language list
+1284	Connecting	
+1285	Fetching list	
+1286	Downloading	
+1287	No updates	
+1288	Calculation period	
+1290	Print Preview	
+1291	Page Setup and Print	
+1292	Starting Location
+1293	Destination Location	
+1294	Travelling Start Date	
+1295	Travelling Start Time
+1296	Travelling Duration [hours]
+1297	Strings
+1298	Type part of string you want to search or type number (index) of string. Search results are limited to 100 items.
+1300	Sri Abhirama Thakura -- Disappearance
+1301	Srila Vrndavana Dasa Thakura -- Disappearance
+1302	Sri Gadadhara Pandita -- Appearance
+1303	Aksaya Trtiya. Candana Yatra starts. (Continues for 21 days)
+1304	Jahnu Saptami
+1305	Srimati Sita Devi (consort of Lord Sri Rama) -- Appearance
+1306	Sri Madhu Pandita -- Disappearance
+1307	Srimati Jahnava Devi -- Appearance
+1308	Rukmini Dvadasi
+1309	Sri Jayananda Prabhu -- Disappearance
+1310	Nrsimha Caturdasi: Appearance of Lord Nrsimhadeva
+1311	Lord Nrsimhadeva
+1312	Krsna Phula Dola, Salila Vihara
+1313	Sri Paramesvari Dasa Thakura -- Disappearance
+1314	Sri Sri Radha-Ramana Devaji -- Appearance
+1315	Sri Madhavendra Puri -- Appearance
+1316	Sri Srinivasa Acarya -- Appearance
+1317	Sri Ramananda Raya -- Disappearance
+1318	Srila Vrndavana Dasa Thakura -- Appearance
+1319	Sri Baladeva Vidyabhusana -- Disappearance
+1320	Ganga Puja
+1321	Srimati Gangamata Gosvamini -- Appearance
+1322	Panihati Cida Dahi Utsava
+1323	Snana Yatra
+1324	Sri Mukunda Datta -- Disappearance
+1325	Sri Sridhara Pandita -- Disappearance
+1326	Sri Syamananda Prabhu -- Disappearance
+1327	Sri Vakresvara Pandita -- Appearance
+1328	Sri Srivasa Pandita -- Disappearance
+1329	Sri Gadadhara Pandita -- Disappearance
+1330	Srila Bhaktivinoda Thakura -- Disappearance
+1331	Bhaktivinoda Thakura
+1332	Sri Svarupa Damodara Gosvami -- Disappearance
+1333	Sri Sivananda Sena -- Disappearance
+1334	Sri Vakresvara Pandita -- Disappearance
+1335	Guru (Vyasa) Purnima
+1336	Srila Sanatana Gosvami -- Disappearance
+1337	Srila Gopala Bhatta Gosvami -- Disappearance
+1338	Srila Lokanatha Gosvami -- Disappearance
+1339	The incorporation of ISKCON in New York
+1340	Sri Raghunandana Thakura -- Disappearance
+1341	Sri Vamsidasa Babaji -- Disappearance
+1342	Radha Govinda Jhulana Yatra begins
+1343	Srila Rupa Gosvami -- Disappearance
+1344	Sri Gauridasa Pandita -- Disappearance
+1345	Jhulana Yatra ends
+1346	Lord Balarama -- Appearance
+1347	Lord Balarama
+1348	Srila Prabhupada's departure for the USA
+1349	Srimati Sita Thakurani (Sri Advaita's consort) -- Appearance
+1350	Lalita sasti
+1351	Radhastami: Appearance of Srimati Radharani
+1352	Srimati Radharani
+1353	Sri Vamana Dvadasi: Appearance of Lord Vamanadeva
+1354	Vamanadeva
+1355	Srila Jiva Gosvami -- Appearance
+1356	Srila Bhaktivinoda Thakura -- Appearance
+1357	Bhaktivinoda Thakura
+1358	Ananta Caturdasi Vrata
+1359	Srila Haridasa Thakura -- Disappearance
+1360	Sri Visvarupa Mahotsava
+1361	Acceptance of sannyasa by Srila Prabhupada
+1362	Srila Prabhupada's arrival in the USA
+1363	Durga Puja
+1364	Ramacandra Vijayotsava
+1365	Sri Madhvacarya -- Appearance
+1366	Srila Raghunatha Dasa Gosvami -- Disappearance
+1367	Srila Raghunatha Bhatta Gosvami -- Disappearance
+1368	Srila Krsnadasa Kaviraja Gosvami -- Disappearance
+1369	Sri Krsna Saradiya Rasayatra
+1370	Sri Murari Gupta -- Disappearance
+1371	Laksmi Puja
+1372	Srila Narottama Dasa Thakura -- Disappearance
+1373	Appearance of Radha Kunda, snana dana
+1374	Bahulastami
+1375	Sri Virabhadra -- Appearance
+1376	Dipa dana, Dipavali, (Kali Puja)
+1377	Bali Daityaraja Puja
+1378	Sri Rasikananda -- Appearance
+1379	Sri Vasudeva Ghosh -- Disappearance
+1380	Srila Prabhupada -- Disappearance
+1381	Srila Prabhupada
+1382	Gopastami, Gosthastami
+1383	Sri Gadadhara Dasa Gosvami -- Disappearance
+1384	Sri Dhananjaya Pandita -- Disappearance
+1385	Sri Srinivasa Acarya -- Disappearance
+1386	Jagaddhatri Puja
+1387	Srila Gaura Kisora Dasa Babaji -- Disappearance
+1388	Gaura Kisora Dasa Babaji
+1389	Sri Bhugarbha Gosvami -- Disappearance
+1390	Sri Kasisvara Pandita -- Disappearance
+1391	Sri Krsna Rasayatra
+1392	Tulasi-Saligrama Vivaha (marriage)
+1393	Sri Nimbarkacarya -- Appearance
+1394	Katyayani vrata begins
+1395	Sri Narahari Sarakara Thakura -- Disappearance
+1396	Sri Kaliya Krsnadasa -- Disappearance
+1397	Sri Saranga Thakura -- Disappearance
+1398	Odana sasthi
+1399	Advent of Srimad Bhagavad-gita
+1400	Katyayani vrata ends
+1401	Srila Bhaktisiddhanta Sarasvati Thakura -- Disappearance
+1402	Bhaktisiddhanta Sarasvati
+1403	Sri Devananda Pandita -- Disappearance
+1404	Sri Mahesa Pandita -- Disappearance
+1405	Sri Uddharana Datta Thakura -- Disappearance
+1406	Sri Locana Dasa Thakura -- Appearance
+1407	Srila Jiva Gosvami -- Disappearance
+1408	Sri Jagadisa Pandita -- Disappearance
+1409	Sri Jagadisa Pandita -- Appearance
+1410	Sri Krsna Pusya Abhiseka
+1411	Sri Ramacandra Kaviraja -- Disappearance
+1412	Srila Gopala Bhatta Gosvami -- Appearance
+1413	Sri Jayadeva Gosvami -- Disappearance
+1414	Sri Locana Dasa Thakura -- Disappearance
+1415	Vasanta Pancami
+1416	Srimati Visnupriya Devi -- Appearance
+1417	Sarasvati Puja
+1418	Srila Visvanatha Cakravarti Thakura -- Disappearance
+1419	Sri Pundarika Vidyanidhi -- Appearance
+1420	Sri Raghunandana Thakura -- Appearance
+1421	Srila Raghunatha Dasa Gosvami -- Appearance
+1422	Sri Advaita Acarya -- Appearance
+1423	Advaita Acarya
+1424	Bhismastami
+1425	Sri Madhvacarya -- Disappearance
+1426	Sri Ramanujacarya -- Disappearance
+1427	Varaha Dvadasi: Appearance of Lord Varahadeva
+1428	Varahadeva
+1429	Nityananda Trayodasi: Appearance of Sri Nityananda Prabhu
+1430	Sri Nityananda
+1431	Sri Krsna Madhura Utsava
+1432	Srila Narottama Dasa Thakura -- Appearance
+1433	Sri Purusottama Das Thakura -- Disappearance
+1434	Srila Bhaktisiddhanta Sarasvati Thakura -- Appearance
+1435	Bhaktisiddhanta Sarasvati
+1436	Sri Isvara Puri -- Disappearance
+1437	Siva Ratri
+1438	Srila Jagannatha Dasa Babaji -- Disappearance
+1439	Sri Rasikananda -- Disappearance
+1440	Sri Purusottama Dasa Thakura -- Appearance
+1441	Sri Madhavendra Puri -- Disappearance
+1442	Sri Srivasa Pandita -- Appearance
+1443	Sri Govinda Ghosh -- Disappearance
+1444	Sri Ramanujacarya -- Appearance
+1445	Damanakaropana Dvadasi
+1446	Sri Balarama Rasayatra
+1447	Sri Krsna Vasanta Rasa
+1448	Sri Vamsivadana Thakura -- Appearance
+1449	Sri Syamananda Prabhu -- Appearance
+1450	Sri Krsna Janmastami: Appearance of Lord Sri Krsna
+1451	Sri Krsna
+1452	Gaura Purnima: Appearance of Sri Caitanya Mahaprabhu
+1453	Sri Krsna Caitanya Mahaprabhu
+1454	Go Puja. Go Krda. Govardhana Puja.
+1455	Rama Navami: Appearance of Lord Sri Ramacandra
+1456	Sri Ramacandra
+1457	Ratha Yatra
+1458	Nandotsava
+1459	Srila Prabhupada -- Appearance
+1460	Srila Prabhupada
+1461	Return Ratha (8 days after Ratha Yatra)
+1462	Hera Pancami (4 days after Ratha Yatra)
+1463	Gundica Marjana
+1464	Festival of Jagannatha Misra
+1465	Ganga Sagara Mela
+1466	Tulasi Jala Dan begins
+1467	Tulasi Jala Dan ends

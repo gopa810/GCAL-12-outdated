@@ -196,11 +196,11 @@ namespace GCAL.Base
 
         public void calculateRise(GPGregorianTime vct, GPLocationProvider ed)
         {
-            Debugger.Log(0,"", "stepA: ");
+            //Debugger.Log(0,"", "stepA: ");
             calculateRiseSet(vct, ed, 0);
-            Debugger.Log(0, "", "stepB: ");
+            //Debugger.Log(0, "", "stepB: ");
             calculateRiseSet(vct, ed, sunrise_deg - 180);
-            Debugger.Log(0, "", "stepC: ");
+            //Debugger.Log(0, "", "stepC: ");
             calculateRiseSet(vct, ed, sunrise_deg - 180);
         }
 
@@ -285,7 +285,7 @@ namespace GCAL.Base
             double time = vct.getJulianLocalNoon() - 0.5 + DayHours/360 - vct.getTimeZoneOffsetHours() / 24.0;
             double dLatitude = ed.getLocation(time).GetLatitudeNorthPositive();
             double dLongitude = ed.getLocation(time).GetLongitudeEastPositive();
-            Debugger.Log(0,"",String.Format("{0}     {1} {2}\n", vct.getLongDateString(), dLatitude, dLongitude));
+            //Debugger.Log(0,"",String.Format("{0}     {1} {2}\n", vct.getLongDateString(), dLatitude, dLongitude));
             // definition of event
             // eventdef = 0.0;
             // civil twilight eventdef = 0.10453;
@@ -324,28 +324,14 @@ namespace GCAL.Base
         // brahma 0 = calculation at sunrise
 
 
-        public void updateArunodaya(GPGregorianTime vct, GPLocationProvider earth)
-        {
-            arunodaya_deg = sunrise_deg - 24.0;
-            longitude_arun_deg = eclipticalLongitude - 24.0 / 365.25;
-            // arunodaya is 96 min before sunrise
-            //  sunrise_deg is from range 0-360 so 96min=24deg
-            arunodaya = new GPGregorianTime(vct);
-            arunodaya.setDayHours(SetDegTime(arunodaya_deg + earth.getTimeZoneOffsetHours() * 15.0));
-
-            // sunrise
-            rise = new GPGregorianTime(vct);
-            rise.setDayHours(SetDegTime(sunrise_deg + earth.getTimeZoneOffsetHours() * 15.0));
-        }
 
         public void SunCalc(GPGregorianTime vct, GPLocationProvider earth)
         {
-            GPSun sun = this;
-            GPSun s_rise = new GPSun();
-            GPSun s_set = new GPSun();
-
             if (sunPosMethod == SUNPOSMETHOD_CALCULATOR)
             {
+                GPSun s_rise = new GPSun();
+                GPSun s_set = new GPSun();
+
                 // first calculation
                 // for 12:00 universal time
                 s_rise.calculateRise(vct, earth);
@@ -355,28 +341,14 @@ namespace GCAL.Base
                 s_set.calculateSet(vct, earth);
 
                 // calculate times
-                sun.longitude_arun_deg = s_rise.eclipticalLongitude - (24.0 / 365.25);
-                sun.eclipticalLongitude = s_rise.eclipticalLongitude;
-                sun.rightAscession = s_rise.rightAscession;
-                sun.longitude_set_deg = s_set.eclipticalLongitude;
+                longitude_arun_deg = s_rise.eclipticalLongitude - (24.0 / 365.25);
+                eclipticalLongitude = s_rise.eclipticalLongitude;
+                rightAscession = s_rise.rightAscession;
+                longitude_set_deg = s_set.eclipticalLongitude;
 
-                sun.sunrise_deg = s_rise.sunrise_deg;
-                sun.sunset_deg = s_set.sunset_deg;
+                sunrise_deg = s_rise.sunrise_deg;
+                sunset_deg = s_set.sunset_deg;
 
-                updateArunodaya(vct, earth);
-
-                // sunrise
-                sun.rise = new GPGregorianTime(vct);
-                sun.rise.setDayHours(SetDegTime(sun.sunrise_deg + earth.getTimeZoneOffsetHours() * 15.0));
-
-                // noon
-                sun.noon = new GPGregorianTime(vct);
-                sun.noon.setDayHours(SetDegTime((sun.sunset_deg + sun.sunrise_deg) / 2 + earth.getTimeZoneOffsetHours() * 15.0));
-
-                // sunset
-                sun.set = new GPGregorianTime(vct);
-                sun.set.setDayHours(SetDegTime(sun.sunset_deg + earth.getTimeZoneOffsetHours() * 15.0));
-                // length
             }
             else
             {
@@ -387,100 +359,297 @@ namespace GCAL.Base
                 eclipticalLongitude = GPAstroEngine.sunLongitudeMethodM(julianDayRise);
                 longitude_set_deg = GPAstroEngine.sunLongitudeMethodM(julianDaySet);
 
-                arunodaya_deg = sunrise_deg - 24.0;
-                sun.arunodaya = new GPGregorianTime(vct);
-                sun.arunodaya.setJulianGreenwichTime(GPAstroEngine.ConvertDynamicToUniversal(julianDayRise - 96/1440.0));
-
-                sun.rise = new GPGregorianTime(vct);
-                sun.rise.setJulianGreenwichTime(GPAstroEngine.ConvertDynamicToUniversal(julianDayRise));
-
-                sun.noon = new GPGregorianTime(vct);
-                sun.noon.setJulianGreenwichTime(GPAstroEngine.ConvertDynamicToUniversal(julianDayNoon));
-
-                sun.set = new GPGregorianTime(vct);
-                sun.set.setJulianGreenwichTime(GPAstroEngine.ConvertDynamicToUniversal(julianDaySet));
             }
 
-            GPLocationChange locChange = earth.getChangeForJulian(sun.arunodaya.getJulianGreenwichTime());
-            if (locChange != null)
+            updateSunriseTimes(vct, earth);
+            updateNoonTimes(vct, earth);
+            updateSetTimes(vct, earth);
+
+            List<GPLocationChange> chr = earth.getChangesForJulianDay(arunodaya.getJulianGreenwichNoon());
+            processTravellingChanges(chr);
+
+            // finally calculate length of the daylight
+            DayLength = (set.getJulianGreenwichTime() - rise.getJulianGreenwichTime()) * 24.0;
+
+        }
+
+        public void updateSunriseTimes(GPGregorianTime vct, GPLocationProvider earth)
+        {
+            arunodaya_deg = sunrise_deg - 24.0;
+            longitude_arun_deg = eclipticalLongitude - 24.0 / 365.25;
+            arunodaya = new GPGregorianTime(vct);
+            rise = new GPGregorianTime(vct);
+
+            if (sunPosMethod == SUNPOSMETHOD_CALCULATOR)
             {
-                GPSun newSun = new GPSun();
-                double drStep = 0.5;
-                double dr = 0.0;
-                int steps = 0;
-                while (steps < 25)
+                // arunodaya is 96 min before sunrise
+                //  sunrise_deg is from range 0-360 so 96min=24deg
+                arunodaya.setDayHours(SetDegTime(arunodaya_deg + earth.getTimeZoneOffsetHours() * 15.0));
+                rise.setDayHours(SetDegTime(sunrise_deg + earth.getTimeZoneOffsetHours() * 15.0));
+            }
+            else
+            {
+                arunodaya.setJulianGreenwichTime(GPAstroEngine.ConvertDynamicToUniversal(julianDayRise - 96 / 1440.0));
+                rise.setJulianGreenwichTime(GPAstroEngine.ConvertDynamicToUniversal(julianDayRise));
+            }
+        }
+
+        private void updateSetTimes(GPGregorianTime vct, GPLocationProvider earth)
+        {
+            set = new GPGregorianTime(vct);
+            if (sunPosMethod == SUNPOSMETHOD_CALCULATOR)
+            {
+                set.setDayHours(SetDegTime(sunset_deg + earth.getTimeZoneOffsetHours() * 15.0));
+            }
+            else
+            {
+                set.setJulianGreenwichTime(GPAstroEngine.ConvertDynamicToUniversal(julianDaySet));
+            }
+        }
+
+        /// <summary>
+        /// This can be used only after calculating sunrise and sunset time
+        /// using functions calculateRise and calculateSet
+        /// </summary>
+        /// <param name="vct"></param>
+        /// <param name="earth"></param>
+        private void updateNoonTimes(GPGregorianTime vct, GPLocationProvider earth)
+        {
+            noon = new GPGregorianTime(vct);
+            if (sunPosMethod == SUNPOSMETHOD_CALCULATOR)
+            {
+                noon.setDayHours(SetDegTime((sunset_deg + sunrise_deg) / 2 + earth.getTimeZoneOffsetHours() * 15.0));
+            }
+            else
+            {
+                noon.setJulianGreenwichTime(GPAstroEngine.ConvertDynamicToUniversal(julianDayNoon));
+            }
+        }
+
+        /// <summary>
+        /// Recalculation of sunset time for given travelling
+        /// </summary>
+        /// <param name="sun"></param>
+        /// <param name="locChange"></param>
+        private static void recalculateSetTravel(GPSun sun, GPLocationChange locChange)
+        {
+            GPSun newSun = new GPSun();
+            double drStep = 0.5;
+            double dr = 0.0;
+            int steps = 0;
+            while (steps < 25)
+            {
+                GPLocation lp = locChange.getTravellingLocation(dr);
+                double jd = locChange.julianStart + (locChange.julianEnd - locChange.julianStart) * dr;
+                GPGregorianTime gt = new GPGregorianTime(lp);
+                gt.setJulianGreenwichTime(jd);
+                GPLocationProvider lpr = new GPLocationProvider(lp);
+                newSun.calculateSet(sun.rise, lpr);
+                newSun.updateSetTimes(sun.rise, lpr);
+
+                if (gt.getJulianGreenwichTime() > newSun.set.getJulianGreenwichTime())
                 {
-                    GPLocation lp = locChange.getTravellingLocation(dr);
-                    double jd = locChange.julianStart + (locChange.julianEnd - locChange.julianStart) * dr;
-                    GPGregorianTime gt = new GPGregorianTime(lp);
-                    gt.setJulianGreenwichTime(jd);
-                    GPLocationProvider lpr = new GPLocationProvider(lp);
-                    newSun.calculateRise(sun.rise, lpr);
-                    newSun.updateArunodaya(sun.rise, lpr);
-//                    Debugger.Log(0, "", String.Format("ROW: {0} {1}   {2}  {3}\n", lp.getLongitudeString(), lp.getLatitudeString(),
-//                        newSun.rise.getLongTimeString(), gt.getLongTimeString()));
-
-                    if (gt.getJulianGreenwichTime() > newSun.arunodaya.getJulianGreenwichTime())
-                    {
-                        drStep = drStep / 2;
-                        dr -= drStep;
-                    }
-                    else
-                    {
-                        dr += drStep;
-                    }
-
-                    steps++;
+                    drStep = drStep / 2;
+                    dr -= drStep;
+                }
+                else
+                {
+                    dr += drStep;
                 }
 
-                sun.arunodaya = newSun.arunodaya;
-                sun.arunodaya_deg = newSun.arunodaya_deg;
-                sun.longitude_arun_deg = newSun.longitude_arun_deg;
+                steps++;
             }
 
-            locChange = earth.getChangeForJulian(sun.rise.getJulianGreenwichTime());
-            if (locChange != null)
+            sun.set = newSun.set;
+            sun.sunset_deg = newSun.sunset_deg;
+        }
+
+        /// <summary>
+        /// Recalculation of noon time for given travelling
+        /// </summary>
+        /// <param name="sun"></param>
+        /// <param name="locChange"></param>
+        private static void recalculateNoonTravel(GPSun sun, GPLocationChange locChange)
+        {
+            GPSun newSun = new GPSun();
+            GPSun oldSun = new GPSun();
+            double drStep = 0.5;
+            double dr = 0.0;
+            int steps = 0;
+            while (steps < 25)
             {
-                GPSun newSun = new GPSun();
-                double drStep = 0.5;
-                double dr = 0.0;
-                int steps = 0;
-                while (steps < 25)
+                GPLocation lp = locChange.getTravellingLocation(dr);
+                double jd = locChange.julianStart + (locChange.julianEnd - locChange.julianStart) * dr;
+                GPGregorianTime gt = new GPGregorianTime(lp);
+                gt.setJulianGreenwichTime(jd);
+                GPLocationProvider lpr = new GPLocationProvider(lp);
+                newSun.calculateRise(sun.rise, lpr);
+                oldSun.calculateSet(sun.set, lpr);
+                newSun.sunset_deg = oldSun.sunset_deg;
+                newSun.updateNoonTimes(sun.rise, lpr);
+
+                if (gt.getJulianGreenwichTime() > newSun.noon.getJulianGreenwichTime())
                 {
-                    GPLocation lp = locChange.getTravellingLocation(dr);
-                    double jd = locChange.julianStart + (locChange.julianEnd - locChange.julianStart) * dr;
-                    GPGregorianTime gt = new GPGregorianTime(lp);
-                    gt.setJulianGreenwichTime(jd);
-                    GPLocationProvider lpr = new GPLocationProvider(lp);
-                    newSun.calculateRise(sun.rise, lpr);
-                    newSun.updateArunodaya(sun.rise, lpr);
-
-                    if (gt.getJulianGreenwichTime() > newSun.rise.getJulianGreenwichTime())
-                    {
-                        drStep = drStep / 2;
-                        dr -= drStep;
-                    }
-                    else
-                    {
-                        dr += drStep;
-                    }
-
-                    steps++;
+                    drStep = drStep / 2;
+                    dr -= drStep;
+                }
+                else
+                {
+                    dr += drStep;
                 }
 
-                sun.rise = newSun.rise;
-                sun.sunrise_deg = newSun.sunrise_deg;
-                sun.eclipticalLongitude = newSun.eclipticalLongitude;
+                steps++;
             }
 
-            // if there is travelling during arunodaya/sunrise
-            // then we need to recalculate exact time of arunodaya for travelling path
+            sun.noon = newSun.noon;
+            sun.noon_deg = newSun.noon_deg;
+        }
 
-            sun.length_deg = s_set.sunset_deg - s_rise.sunrise_deg;
-            sun.DayLength = (sun.length_deg / 360.0) * 24.0;
+        /// <summary>
+        /// Recalculation of sunrise time for given travelling
+        /// </summary>
+        /// <param name="sun"></param>
+        /// <param name="locChange"></param>
+        private static void recalculateSunriseTravel(GPSun sun, GPLocationChange locChange)
+        {
+            GPSun newSun = new GPSun();
+            double drStep = 0.5;
+            double dr = 0.0;
+            int steps = 0;
+            while (steps < 25)
+            {
+                GPLocation lp = locChange.getTravellingLocation(dr);
+                double jd = locChange.julianStart + (locChange.julianEnd - locChange.julianStart) * dr;
+                GPGregorianTime gt = new GPGregorianTime(lp);
+                gt.setJulianGreenwichTime(jd);
+                GPLocationProvider lpr = new GPLocationProvider(lp);
+                newSun.calculateRise(sun.rise, lpr);
+                newSun.updateSunriseTimes(sun.rise, lpr);
 
+                if (gt.getJulianGreenwichTime() > newSun.rise.getJulianGreenwichTime())
+                {
+                    drStep = drStep / 2;
+                    dr -= drStep;
+                }
+                else
+                {
+                    dr += drStep;
+                }
 
+                steps++;
+            }
 
+            sun.rise = newSun.rise;
+            sun.sunrise_deg = newSun.sunrise_deg;
+            sun.eclipticalLongitude = newSun.eclipticalLongitude;
+        }
+
+        /// <summary>
+        /// recalculation of arunodaya time for given travelling
+        /// </summary>
+        /// <param name="sun"></param>
+        /// <param name="locChange"></param>
+        private static void recalculateArunodayaTravel(GPSun sun, GPLocationChange locChange)
+        {
+            GPSun newSun = new GPSun();
+            double drStep = 0.5;
+            double dr = 0.0;
+            int steps = 0;
+            while (steps < 25)
+            {
+                GPLocation lp = locChange.getTravellingLocation(dr);
+                double jd = locChange.julianStart + (locChange.julianEnd - locChange.julianStart) * dr;
+                GPGregorianTime gt = new GPGregorianTime(lp);
+                gt.setJulianGreenwichTime(jd);
+                GPLocationProvider lpr = new GPLocationProvider(lp);
+                newSun.calculateRise(sun.rise, lpr);
+                newSun.updateSunriseTimes(sun.rise, lpr);
+                //                    Debugger.Log(0, "", String.Format("ROW: {0} {1}   {2}  {3}\n", lp.getLongitudeString(), lp.getLatitudeString(),
+                //                        newSun.rise.getLongTimeString(), gt.getLongTimeString()));
+
+                if (gt.getJulianGreenwichTime() > newSun.arunodaya.getJulianGreenwichTime())
+                {
+                    drStep = drStep / 2;
+                    dr -= drStep;
+                }
+                else
+                {
+                    dr += drStep;
+                }
+
+                steps++;
+            }
+
+            sun.arunodaya = newSun.arunodaya;
+            sun.arunodaya_deg = newSun.arunodaya_deg;
+            sun.longitude_arun_deg = newSun.longitude_arun_deg;
+        }
+
+        /// <summary>
+        /// goes throuhg list of travellings and for each travelling tests
+        /// whether it interferes with times for sun (arunodaya, sunrise, noon, sunset)
+        /// </summary>
+        /// <param name="chr"></param>
+        private void processTravellingChanges(List<GPLocationChange> chr)
+        {
+            foreach (GPLocationChange locc in chr)
+            {
+                GPLocationProvider prov = new GPLocationProvider(locc.LocationA);
+                GPSun newSun = new GPSun();
+                newSun.SunCalc(rise, prov);
+                double[] t = new double[4];
+                t[0] = newSun.arunodaya.getJulianGreenwichTime();
+                t[1] = newSun.rise.getJulianGreenwichTime();
+                t[2] = newSun.noon.getJulianGreenwichTime();
+                t[3] = newSun.set.getJulianGreenwichTime();
+
+                for (int i = 0; i < 4; i++)
+                {
+                    if (locc.julianStart > t[i])
+                        t[i] = -1;
+                }
+
+                prov = new GPLocationProvider(locc.LocationB);
+                newSun = new GPSun();
+                newSun.SunCalc(rise, prov);
+                double[] s = new double[4];
+                s[0] = newSun.arunodaya.getJulianGreenwichTime();
+                s[1] = newSun.rise.getJulianGreenwichTime();
+                s[2] = newSun.noon.getJulianGreenwichTime();
+                s[3] = newSun.set.getJulianGreenwichTime();
+
+                for (int i = 0; i < 4; i++)
+                {
+                    if (locc.julianEnd < s[i])
+                        s[i] = -1;
+                }
+
+                bool[] b = new bool[4];
+                for (int i = 0; i < 4; i++)
+                {
+                    b[i] = (t[i] > 0 && s[i] > 0);
+                }
+
+                if (b[0])
+                {
+                    recalculateArunodayaTravel(this, locc);
+                }
+
+                if (b[1])
+                {
+                    recalculateSunriseTravel(this, locc);
+                }
+
+                if (b[2])
+                {
+                    recalculateNoonTravel(this, locc);
+                }
+
+                if (b[3])
+                {
+                    recalculateSetTravel(this, locc);
+                }
+            }
         }
 
         public double getSunriseDayHours()

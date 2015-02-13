@@ -485,11 +485,11 @@ namespace GCAL.Base
             GPCalendarDay.Festival fest = null;
             if (pEvx.hasFasting())
             {
-                fest = new GPCalendarDay.Festival(((pEvx.nClass >= 0) ? pEvx.nClass*5 + 30 : 200), GPDisplays.Keys.FestivalClass(pEvx.nClass), pEvx.strText, pEvx.getFastType(), pEvx.strFastSubject);
+                fest = new GPCalendarDay.Festival(((pEvx.nClass >= 0) ? pEvx.nClass*5 + 30 : 200), GPDisplays.Keys.FestivalClass(pEvx.nClass), pEvx.getText(), pEvx.getFastType(), pEvx.getFastSubject());
             }
             else
             {
-                fest = new GPCalendarDay.Festival(((pEvx.nClass >= 0) ? pEvx.nClass*5 + 30 : 200), GPDisplays.Keys.FestivalClass(pEvx.nClass), pEvx.strText);
+                fest = new GPCalendarDay.Festival(((pEvx.nClass >= 0) ? pEvx.nClass*5 + 30 : 200), GPDisplays.Keys.FestivalClass(pEvx.nClass), pEvx.getText());
             }
             Festivals.Add(fest);
 

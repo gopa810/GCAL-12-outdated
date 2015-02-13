@@ -170,6 +170,8 @@ namespace GCAL
         private GPGregorianTime myDate = null;
         private List<GPLocation> locationsList = new List<GPLocation>();
         private int locationsEnumerator = 0;
+        private List<GPString> stringsList = new List<GPString>();
+        private int stringsEnumerator = 0;
         private CELSearch searchTask = null;
         private CELUpdateLanguageList updateLanguageListTask = null;
         private CELSendMyLanguageFile sendMyLanguageFileTask = null;
@@ -191,6 +193,9 @@ namespace GCAL
             dictStrings.Add("rightArrow", "&nbsp;&#9002;&#9002;&nbsp;");
             dictStrings.Add("stringsFile", GPStrings.getSharedStrings().getCustomFilePath());
             dictStrings.Add("transemail", "translations@gcal.home.sk");
+            dictStrings.Add("durationhour", "6");
+            dictStrings.Add("durationmin", "0");
+            dictStrings.Add("strpart", "0");
         }
 
         public Dictionary<string, string> getProperties()
@@ -501,6 +506,18 @@ namespace GCAL
             (MainForm as StartForm).showEditTranslationMenu();
         }
 
+        public void EditStringDialog(int i)
+        {
+            DialogEditString des = new DialogEditString(i);
+
+            if (des.ShowDialog() == DialogResult.OK)
+            {
+                GPStrings.getSharedStrings().setString(i, des.getNewText());
+                GPStrings.getSharedStrings().Modified = true;
+                LoadPage(CurrentPage.Name, false);
+            }
+        }
+
         /// <summary>
         /// Loading definition of page. Here we can decide if we will build
         /// some html page based on definition in file, or we if we will
@@ -524,6 +541,7 @@ namespace GCAL
             }
 
             clearTopButtons();
+            GPStrings.pushRich(false);
             if (pageHistoryIndex > 0)
             {
                 addTopButton("< " + GPStrings.getPlainString(238), "goBack", 238);
@@ -532,6 +550,7 @@ namespace GCAL
             {
                 addTopButton(GPStrings.getPlainString(1054), "mainmenu", 1054);
             }
+            GPStrings.popRich();
 
             recalculateLayout();
 
@@ -735,7 +754,7 @@ namespace GCAL
                 {
                     if (sb.Length > 0)
                         sb.Append("<line>");
-                    sb.AppendFormat("{0}<r>{1}", ev.nSpec, ev.strText);
+                    sb.AppendFormat("{0}<r>{1}", ev.nSpec, ev.getText());
                 }
             }
             return sb.ToString();
@@ -1172,8 +1191,16 @@ namespace GCAL
                 saveInt("eventclass", ev.nClass);
                 saveInt("eventoffset1", ev.nOffset);
                 saveInt("eventoffset2", ev.nOffset);
-                saveString("eventtitle", ev.strText);
-                saveString("eventfastsubject", ev.strFastSubject);
+
+                GPStrings.pushRich(false);
+                saveString("eventtitle", GPString.htmlToPlain(ev.getText()));
+                saveString("eventfastsubject", GPString.htmlToPlain(ev.getFastSubject()));
+                GPStrings.popRich();
+
+                saveString("eventtitleraw", ev.getRawText());
+                saveString("eventfastsubjectraw", ev.getRawFastSubject());
+                saveInt("eventtitleid", ev.textStringId);
+                saveInt("eventfastsubjectid", ev.fastSubjectStringId);
                 saveInt("eventsinceyear", ev.nStartYear);
                 saveInt("eventvisibility", ev.nVisible);
                 saveInt("eventfasttype", ev.getRawFastType());
@@ -1226,8 +1253,12 @@ namespace GCAL
                 eva.nData = getInt("eventdata1");
                 ev = eva;
             }
-            ev.strText = getString("eventtitle");
-            ev.strFastSubject = getString("eventfastsubject");
+            ev.fastSubjectStringId = getInt("eventfastsubjectid");
+            ev.textStringId = getInt("eventtitleid");
+            ev.setText(GPString.plainToHtml(getString("eventtitle")));
+            ev.setFastSubject(GPString.plainToHtml(getString("eventfastsubject")));
+            ev.setRawText(getString("eventtitleraw"));
+            ev.setRawFastSubject(getString("eventfastsubjectraw"));
             ev.nClass = getInt("eventclass");
             ev.nStartYear = getInt("eventsinceyear");
             ev.nUsed = 1;
@@ -1344,9 +1375,13 @@ namespace GCAL
                 saveInt("eventclass", 6);
                 saveInt("eventoffset1", 0);
                 saveInt("eventoffset2", 0);
-                saveString("eventtitle", "New Event");
                 saveInt("eventfasttype", 0);
+                saveString("eventtitle", "New Event");
+                saveString("eventtitleraw", "New Event");
                 saveString("eventfastsubject", "");
+                saveString("eventfastsubjectraw", "");
+                saveInt("eventtitleid", -1);
+                saveInt("eventfastsubjectid", -1);
                 saveInt("eventsinceyear", -10000);
                 saveInt("eventnaksatra", 0);
                 saveInt("eventastro1", 0);
@@ -1536,42 +1571,42 @@ namespace GCAL
             {
                 foreach (GPEventTithi et in list.tithiEvents)
                 {
-                    if (et.strText.IndexOf(name, StringComparison.CurrentCultureIgnoreCase) >= 0)
+                    if (et.getText().IndexOf(name, StringComparison.CurrentCultureIgnoreCase) >= 0)
                     {
                         events.Add(et);
                     }
                 }
                 foreach (GPEventSankranti es in list.sankrantiEvents)
                 {
-                    if (es.strText.IndexOf(name, StringComparison.CurrentCultureIgnoreCase) >= 0)
+                    if (es.getText().IndexOf(name, StringComparison.CurrentCultureIgnoreCase) >= 0)
                     {
                         events.Add(es);
                     }
                 }
                 foreach (GPEventRelative er in list.relativeEvents)
                 {
-                    if (er.strText.IndexOf(name, StringComparison.CurrentCultureIgnoreCase) >= 0)
+                    if (er.getText().IndexOf(name, StringComparison.CurrentCultureIgnoreCase) >= 0)
                     {
                         events.Add(er);
                     }
                 }
                 foreach (GPEventNaksatra er in list.naksatraEvents)
                 {
-                    if (er.strText.IndexOf(name, StringComparison.CurrentCultureIgnoreCase) >= 0)
+                    if (er.getText().IndexOf(name, StringComparison.CurrentCultureIgnoreCase) >= 0)
                     {
                         events.Add(er);
                     }
                 }
                 foreach (GPEventAstro er in list.astroEvents)
                 {
-                    if (er.strText.IndexOf(name, StringComparison.CurrentCultureIgnoreCase) >= 0)
+                    if (er.getText().IndexOf(name, StringComparison.CurrentCultureIgnoreCase) >= 0)
                     {
                         events.Add(er);
                     }
                 }
                 foreach (GPEventYoga er in list.yogaEvents)
                 {
-                    if (er.strText.IndexOf(name, StringComparison.CurrentCultureIgnoreCase) >= 0)
+                    if (er.getText().IndexOf(name, StringComparison.CurrentCultureIgnoreCase) >= 0)
                     {
                         events.Add(er);
                     }
@@ -1583,7 +1618,7 @@ namespace GCAL
             {
                 if (sb.Length > 0)
                     sb.Append("<line>");
-                sb.AppendFormat("{0}<r>{1}<r>{2}", ev.eventId, ev.strText, ev.getShortDesc());
+                sb.AppendFormat("{0}<r>{1}<r>{2}", ev.eventId, ev.getText(), ev.getShortDesc());
             }
 
             return sb.ToString();
@@ -1606,7 +1641,7 @@ namespace GCAL
             {
                 if (sb.Length > 0)
                     sb.Append("<line>");
-                sb.AppendFormat("{0}<r>{1}<r>{2}", ev.eventId, ev.strText, ev.getShortDesc());
+                sb.AppendFormat("{0}<r>{1}<r>{2}", ev.eventId, ev.getText(), ev.getShortDesc());
             }
 
             return sb.ToString();
@@ -1629,7 +1664,7 @@ namespace GCAL
             {
                 if (sb.Length > 0)
                     sb.Append("<line>");
-                sb.AppendFormat("{0}<r>{1}<r>{2}", ev.eventId, ev.strText, ev.getShortDesc());
+                sb.AppendFormat("{0}<r>{1}<r>{2}", ev.eventId, ev.getText(), ev.getShortDesc());
             }
 
             return sb.ToString();
@@ -1687,7 +1722,7 @@ namespace GCAL
             {
                 if (sb.Length > 0)
                     sb.Append("<line>");
-                sb.AppendFormat("{0}<r>{1}<r>{2}", ev.eventId, ev.strText, ev.getShortDesc());
+                sb.AppendFormat("{0}<r>{1}<r>{2}", ev.eventId, ev.getText(), ev.getShortDesc());
             }
 
             return sb.ToString();
@@ -1796,6 +1831,44 @@ namespace GCAL
             return null;
         }
 
+        public void findStrings(string s)
+        {
+            stringsList = new List<GPString>();
+            if (s == null)
+                s = string.Empty;
+            GPStrings gstr = GPStrings.getSharedStrings();
+            int startIndex = 0;
+            int.TryParse(s, out startIndex);
+            bool indexDefined = (startIndex > 0 || s.Equals("0"));
+
+            for (int i = startIndex; i < gstr.gstr.Count; i++ )
+            {
+                String loc = gstr.getStringValue(i);
+                if (indexDefined || s.Length == 0 || loc.IndexOf(s, StringComparison.CurrentCultureIgnoreCase) >= 0)
+                {
+                    GPString gs = new GPString();
+                    gs.index = i;
+                    gs.rawHtml = loc;
+                    stringsList.Add(gs);
+                    if (stringsList.Count > 100)
+                        break;
+                }
+            }
+            stringsEnumerator = 0;
+        }
+        
+        public string getNextString()
+        {
+            if (stringsEnumerator >= 0 && stringsEnumerator < stringsList.Count)
+            {
+                GPString loc = stringsList[stringsEnumerator];
+                stringsEnumerator++;
+                return string.Format("{0}<br>{1}", loc.index, loc.rawHtml);
+            }
+
+            return string.Empty;
+        }
+        
         public void findLocations(string s)
         {
             locationsList = new List<GPLocation>();

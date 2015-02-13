@@ -60,7 +60,12 @@ namespace GCAL.Base
             if (lan != null)
             {
                 lan.loadFile(lan.LanguageFile);
-                GPStrings.setSharedStrings(lan.getStrings());
+                GPStrings languageStrings = lan.getStrings();
+                GPStrings originalStrings = GPStrings.getOriginalStrings();
+                GPStrings shared = GPStrings.getSharedStrings();
+                shared.Clear();
+                shared.AddRange(originalStrings);
+                shared.AddRange(languageStrings);
             }
         }
 

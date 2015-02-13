@@ -13,13 +13,34 @@ namespace GCAL.Base
         public int LanguageVersion = 1;
 
         public List<string> gstr = new List<string>();
-        public List<string> keys = new List<string>();
+//        public List<string> keys = new List<string>();
         public Dictionary<int, bool> edited = new Dictionary<int, bool>();
-        public Dictionary<string, int> map = new Dictionary<string, int>();
+//        public Dictionary<string, int> map = new Dictionary<string, int>();
 
         public static bool showNumberOfString = true;
         private static GPStrings _sharedStrings = null;
         private static GPStrings _originalStrings = null;
+
+        public static List<Boolean> plainStack = new List<bool>();
+
+        public static void pushRich(bool b)
+        {
+            plainStack.Insert(0, showNumberOfString);
+            showNumberOfString = b;
+        }
+
+        public static void popRich()
+        {
+            if (plainStack.Count > 0)
+            {
+                showNumberOfString = plainStack[0];
+                plainStack.RemoveAt(0);
+            }
+            else
+            {
+                showNumberOfString = true;
+            }
+        }
 
         public GPStrings()
         {
@@ -33,7 +54,7 @@ namespace GCAL.Base
                 gstr.Add(s1);
             }
 
-            foreach (string sa in str.keys)
+            /*foreach (string sa in str.keys)
             {
                 keys.Add(sa);
             }
@@ -41,7 +62,38 @@ namespace GCAL.Base
             foreach (string s2 in str.map.Keys)
             {
                 map[s2] = str.map[s2];
+            }*/
+        }
+
+        public void Clear()
+        {
+            edited.Clear();
+            gstr.Clear();
+
+            Modified = true;
+        }
+
+        public int Count
+        {
+            get
+            {
+                return gstr.Count;
             }
+        }
+
+        public void AddRange(GPStrings range)
+        {
+            pushRich(false);
+            for (int i = 0; i < range.Count; i++)
+            {
+                string s = range.getStringValue(i);
+                if (s.Length > 0)
+                {
+                    setString(i, s, false);
+                }
+            }
+            popRich();
+            Modified = true;
         }
 
         public override string ToString()
@@ -149,26 +201,18 @@ namespace GCAL.Base
 
         public void setString(int index, string strValue, bool editFlag)
         {
-            setString(index, strValue, string.Empty, editFlag);
+            while (gstr.Count <= index)
+            {
+                gstr.Add(string.Empty);
+            }
+
+            gstr[index] = strValue;
+            edited[index] = editFlag;
         }
 
         public void setString(int index, string strValue)
         {
-            setString(index, strValue, string.Empty, true);
-        }
-
-        public void setString(int index, string strValue, string strKey, bool editedFlag)
-        {
-            while (keys.Count <= index)
-            {
-                keys.Add(string.Empty);
-                gstr.Add(string.Empty);
-            }
-
-            keys[index] = strKey;
-            gstr[index] = strValue;
-            edited[index] = editedFlag;
-
+            setString(index, strValue, true);
         }
 
         public static string getString(int index)
@@ -216,14 +260,7 @@ namespace GCAL.Base
         {
             if (index < 0 || index >= gstr.Count)
                 return string.Empty;
-            return System.Net.WebUtility.HtmlDecode(gstr[index]);
-        }
-
-        public string getString(string key)
-        {
-            if (map.ContainsKey(key))
-                return getStringValue(map[key]);
-            return string.Empty;
+            return GPString.htmlToPlain(gstr[index]);
         }
 
         public static int getCount()

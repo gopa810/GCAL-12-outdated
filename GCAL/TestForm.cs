@@ -62,7 +62,8 @@ namespace GCAL
             GPObserver obs = new GPObserver();
             obs = loc;
 
-            GPStrings.showNumberOfString = false;
+            GPStrings.pushRich(false);
+
             StringBuilder sba = new StringBuilder();
             GPJulianTime sunRise, sunNoon, sunSet;
             for (int i = 0; i < calA.getCount(); i++)
@@ -82,7 +83,8 @@ namespace GCAL
                 gt.setDate(1992,10,13);
                 //cd.astrodata.sun.calculateCoordinatesMethodM(gt, 360/24.0);
             }
-            GPStrings.showNumberOfString = true;
+
+            GPStrings.popRich();
 
             richTextBox1.Text = sba.ToString();
 
