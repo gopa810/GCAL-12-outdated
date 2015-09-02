@@ -675,7 +675,7 @@ namespace GCAL.Base
                         vcStart.NextDay();
                         vcStart.PreviousDay();
                         calendar.CalculateCalendar(vcStart, nCount);
-                        FormaterXml.WriteCalendarXml(calendar, fout);
+                        FormaterXml.WriteXml(FormaterXml.GetCalendarXmlDocument(calendar), fout);
                         break;
                     case 11:
                         // -R -O -LAT -LON -SG -ST [-NAME]
@@ -691,7 +691,7 @@ namespace GCAL.Base
                             vcEnd = vcStart;
                             vcEnd.AddDays(nCount);
                         }
-                        FormaterXml.WriteXML_Sankrantis(fout, loc, vcStart, vcEnd);
+                        FormaterXml.WriteXml(FormaterXml.GetSankrantiXml(loc, vcStart, vcEnd), fout);
                         break;
                     case 14:
                         FormaterXml.WriteXML_Naksatra(fout, loc, vcStart, nCount);
@@ -704,7 +704,7 @@ namespace GCAL.Base
                         vcEnd = GPGaurabdaYear.getFirstDayOfYear(loc, vcStart.getYear() + 1);
                         nCount = Convert.ToInt32(vcEnd.getJulianLocalNoon() - vcStart.getJulianLocalNoon());
                         calendar.CalculateCalendar(vcStart, nCount);
-                        FormaterXml.WriteCalendarXml(calendar, fout);
+                        FormaterXml.WriteXml(FormaterXml.GetCalendarXmlDocument(calendar), fout);
                         break;
                     case 17:
                         FormaterXml.WriteXML_GaurabdaTithi(fout, loc, vaStart, vaEnd);

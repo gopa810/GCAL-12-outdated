@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml;
 
 namespace GCAL.Base
 {
@@ -39,6 +40,15 @@ namespace GCAL.Base
             strXml.Append("</xml>\n");
 
             return 1;
+        }
+
+        public static XmlDocument GetAppDayXml(GPAppDayResults app)
+        {
+            XmlDocument doc = new XmlDocument();
+            StringBuilder sb = new StringBuilder();
+            FormatAppDayXML(app, sb);
+            doc.LoadXml(sb.ToString());
+            return doc;
         }
 
         public static void FormatAppDayXML(GPAppDayResults app, StringBuilder strResult)
@@ -103,6 +113,7 @@ namespace GCAL.Base
 
         public static int WriteXML_FirstDay_Year(StringBuilder doc, GPGregorianTime vcStart)
         {
+
             vcStart = GPGaurabdaYear.getFirstDayOfYear(vcStart.getLocationProvider(), vcStart.getYear());
 
             // write
@@ -120,63 +131,147 @@ namespace GCAL.Base
             return 0;
         }
 
-        public static int WriteXML_Sankrantis(StringBuilder doc, GPLocationProvider loc, GPGregorianTime vcStart, GPGregorianTime vcEnd)
+        public static XmlDocument GetSankrantiXml(GPLocationProvider loc, GPGregorianTime vcStart, GPGregorianTime vcEnd)
         {
+            XmlDocument doc = new XmlDocument();
+            XmlElement e1, e2, e3, eday, e5, e6;
+
             GPGregorianTime d = new GPGregorianTime(loc);
             int zodiac;
 
             d.Copy(vcStart);
 
-            doc.Append("<xml>\n");
-            doc.Append("\t<request name=\"Sankranti\" version=\"" + GPFileHelper.FileVersion + "\">\n");
-            doc.Append("\t\t<arg name=\"longitude\" val=\"" + loc.GetLongitudeEastPositive() + "\" />\n");
-            doc.Append("\t\t<arg name=\"latitude\" val=\"" + loc.GetLatitudeNorthPositive() + "\" />\n");
-            doc.Append("\t\t<arg name=\"timezone\" val=\"" + loc.getTimeZone().OffsetSeconds / 60 + "\" />\n");
-            doc.Append("\t\t<arg name=\"location\" val=\"" + loc.getName() + "\" />\n");
-            doc.Append("\t\t<arg name=\"startdate\" val=\"" + vcStart + "\" />\n");
-            doc.Append("\t\t<arg name=\"enddate\" val=\"" + vcEnd + "\" />\n");
-            doc.Append("\t</request>\n");
-            doc.Append("\t<result name=\"SankrantiList\">\n");
+
+            e1 = doc.CreateElement("xml");
+            doc.AppendChild(e1);
+
+            e2 = doc.CreateElement("request");
+            e1.AppendChild(e2);
+            e2.SetAttribute("name", "Sankranti");
+            e2.SetAttribute("version", GPFileHelper.FileVersion);
+
+            e3 = doc.CreateElement("arg");
+            e2.AppendChild(e3);
+            e3.SetAttribute("name", "longitude");
+            e3.SetAttribute("val", loc.GetLongitudeEastPositive().ToString());
+
+            e3 = doc.CreateElement("arg");
+            e2.AppendChild(e3);
+            e3.SetAttribute("name", "latitude");
+            e3.SetAttribute("val", loc.GetLatitudeNorthPositive().ToString());
+
+            e3 = doc.CreateElement("arg");
+            e2.AppendChild(e3);
+            e3.SetAttribute("name", "timezone");
+            e3.SetAttribute("val", (loc.getTimeZone().OffsetSeconds / 60).ToString());
+
+            e3 = doc.CreateElement("arg");
+            e2.AppendChild(e3);
+            e3.SetAttribute("name", "startdate");
+            e3.SetAttribute("val", vcStart.ToString());
+
+            e3 = doc.CreateElement("arg");
+            e2.AppendChild(e3);
+            e3.SetAttribute("name", "enddate");
+            e3.SetAttribute("val", vcEnd.ToString());
+
+            e2 = doc.CreateElement("result");
+            e1.AppendChild(e2);
+            e2.SetAttribute("name", "SankrantiList");
+
+
 
             while (d.IsBeforeThis(vcEnd))
             {
                 d = GPSankranti.GetNextSankranti(d, out zodiac);
-                doc.Append("\t\t<sank date=\"" + d + "\" ");
-                doc.Append("dayweekid=\"" + d.getDayOfWeek() + "\" dayweek=\"" + getSharedStringHtml(d.getDayOfWeek()) + "\" ");
-                doc.Append(" time=\"" + d.getShortTimeString() + "\" >\n");
-                doc.Append("\t\t<zodiac sans=\"" + GPSankranti.GetNameSan(zodiac));
-                doc.Append("\" eng=\"" + GPSankranti.GetNameEng(zodiac) + "\" id=\"" + zodiac + "\" />\n");
-                doc.Append("\t\t</sank>\n\n");
+
+                eday = doc.CreateElement("sank");
+                e2.AppendChild(eday);
+
+                eday.SetAttribute("date", d.getLongDateString());
+                eday.SetAttribute("time", d.getLongTimeString());
+                eday.SetAttribute("dayweekid", d.getDayOfWeek().ToString());
+                eday.SetAttribute("dayweek", getSharedStringHtml(d.getDayOfWeek()));
+
+                e5 = doc.CreateElement("zodiac");
+                eday.AppendChild(e5);
+
+                e5.SetAttribute("sans", GPSankranti.GetNameSan(zodiac));
+                e5.SetAttribute("eng", GPSankranti.GetNameEng(zodiac));
+                e5.SetAttribute("id", zodiac.ToString());
 
                 d.NextDay();
                 d.NextDay();
             }
 
-            doc.Append("\t</result>\n");
-            doc.Append("</xml>");
+            return doc;
+        }
+
+        public static int WriteXml(XmlDocument xmlDoc, StringBuilder doc)
+        {
+            XmlWriter xw = XmlWriter.Create(doc);
+
+            xmlDoc.WriteTo(xw);
+            xw.Flush();
 
             return 1;
         }
 
-        public static int WriteCalendarXml(GPCalendarResults daybuff, StringBuilder doc)
+        public static XmlDocument GetCalendarXmlDocument(GPCalendarResults daybuff)
         {
+            XmlDocument doc = new XmlDocument();
+            XmlElement e1, e2, e3, eday, e5, e6;
             int k;
             string str, st;
 
             GPCalendarDay pvd;
             int nPrevMasa = -1;
 
-            doc.Append("<xml>\n");
-            doc.Append("\t<request name=\"Calendar\" version=\"" + GPFileHelper.FileVersion + "\">\n");
-            doc.Append("\t\t<arg name=\"longitude\" val=\"" + daybuff.m_Location.getLocation(0).GetLongitudeEastPositive() + "\" />\n");
-            doc.Append("\t\t<arg name=\"latitude\" val=\"" + daybuff.m_Location.getLocation(0).GetLatitudeNorthPositive() + "\" />\n");
-            doc.Append("\t\t<arg name=\"timezone\" val=\"" + daybuff.m_Location.getLocation(0).getTimeZone().OffsetSeconds / 60 + "\" />\n");
-            doc.Append("\t\t<arg name=\"startdate\" val=\"" + daybuff.m_vcStart + "\" />\n");
-            doc.Append("\t\t<arg name=\"daycount\" val=\"" + daybuff.m_vcCount + "\" />\n");
-            doc.Append("\t\t<arg name=\"dst\" val=\"" + daybuff.m_Location.getLocation(0).getTimeZoneName() + "\" />\n");
-            doc.Append("\t</request>\n");
-            doc.Append("\t<result name=\"Calendar\">\n");
-            doc.Append("\t<dstsystem name=\"" + daybuff.m_Location.getLocation(0).getTimeZoneName() + "\" />\n");
+            e1 = doc.CreateElement("xml");
+            doc.AppendChild(e1);
+
+            e2 = doc.CreateElement("request");
+            e1.AppendChild(e2);
+            e2.SetAttribute("name", "Calendar");
+            e2.SetAttribute("version", GPFileHelper.FileVersion);
+
+            e3 = doc.CreateElement("arg");
+            e2.AppendChild(e3);
+            e3.SetAttribute("name", "longitude");
+            e3.SetAttribute("val", daybuff.CurrentLocation.getLocation(0).GetLongitudeEastPositive().ToString());
+
+            e3 = doc.CreateElement("arg");
+            e2.AppendChild(e3);
+            e3.SetAttribute("name", "latitude");
+            e3.SetAttribute("val", daybuff.CurrentLocation.getLocation(0).GetLatitudeNorthPositive().ToString());
+
+            e3 = doc.CreateElement("arg");
+            e2.AppendChild(e3);
+            e3.SetAttribute("name", "timezone");
+            e3.SetAttribute("val", (daybuff.CurrentLocation.getLocation(0).getTimeZone().OffsetSeconds / 60).ToString());
+
+            e3 = doc.CreateElement("arg");
+            e2.AppendChild(e3);
+            e3.SetAttribute("name", "startdate");
+            e3.SetAttribute("val", daybuff.m_vcStart.ToString());
+
+            e3 = doc.CreateElement("arg");
+            e2.AppendChild(e3);
+            e3.SetAttribute("name", "daycount");
+            e3.SetAttribute("val", daybuff.m_vcCount.ToString());
+
+            e3 = doc.CreateElement("arg");
+            e2.AppendChild(e3);
+            e3.SetAttribute("name", "dst");
+            e3.SetAttribute("val", daybuff.CurrentLocation.getLocation(0).getTimeZoneName());
+
+            e2 = doc.CreateElement("result");
+            e1.AppendChild(e2);
+            e2.SetAttribute("name", "Calendar");
+
+            e3 = doc.CreateElement("dstsystem");
+            e2.AppendChild(e3);
+            e3.SetAttribute("name", daybuff.CurrentLocation.getLocation(0).getTimeZoneName());
 
             for (k = 0; k < daybuff.m_vcCount; k++)
             {
@@ -185,141 +280,131 @@ namespace GCAL.Base
                 {
                     if (nPrevMasa != pvd.astrodata.nMasa)
                     {
-                        if (nPrevMasa != -1)
-                            doc.Append("\t</masa>\n");
-                        doc.Append("\t<masa name=\"" + GPMasa.GetName(pvd.astrodata.nMasa) + " Masa");
-                        if (nPrevMasa == GPMasa.ADHIKA_MASA)
-                            doc.Append(" " + getSharedStringHtml(109));
-                        doc.Append("\"");
-                        doc.Append(" gyear=\"Gaurabda " + pvd.getGaurabdaYearLongString() + "\"");
-                        doc.Append(">\n");
+                        e3 = doc.CreateElement("masa");
+                        e2.AppendChild(e3);
+                        e3.SetAttribute("name", GPMasa.GetName(pvd.astrodata.nMasa) + " Masa" + (nPrevMasa == GPMasa.ADHIKA_MASA ? " " + getSharedStringHtml(109) : ""));
+                        e3.SetAttribute("gyear", pvd.getGaurabdaYearLongString());
                     }
 
                     nPrevMasa = pvd.astrodata.nMasa;
 
-                    // date data
-                    doc.Append("\t<day date=\"" + pvd.date + "\" dayweekid=\"" + pvd.date.getDayOfWeek());
-                    doc.Append("\" dayweek=\"");
-                    st = getSharedStringHtml(150 + pvd.date.getDayOfWeek());
-                    doc.Append(st + "\">\n");
+                    eday = doc.CreateElement("day");
+                    e3.AppendChild(eday);
+                    eday.SetAttribute("date", pvd.date.ToString());
+                    eday.SetAttribute("dayweekid", pvd.date.getDayOfWeek().ToString());
+                    eday.SetAttribute("dayweek", getSharedStringHtml(150 + pvd.date.getDayOfWeek()));
 
                     // sunrise data
-                    doc.Append("\t\t<sunrise time=\"" + pvd.astrodata.sun.rise + "\">\n");
+                    e5 = doc.CreateElement("sunrise");
+                    eday.AppendChild(e5);
+                    e5.SetAttribute("time", pvd.astrodata.sun.rise.getLongTimeString());
 
-                    doc.Append("\t\t\t<tithi name=\"");
-                    doc.Append(GPTithi.getName(pvd.astrodata.nTithi));
-                    if ((pvd.astrodata.nTithi == 10) || (pvd.astrodata.nTithi == 25)
-                        || (pvd.astrodata.nTithi == 11) || (pvd.astrodata.nTithi == 26))
-                    {
-                        if (pvd.hasEkadasiParana() == false)
-                        {
-                            if (pvd.nMahadvadasiType == GPConstants.EV_NULL)
-                            {
-                                doc.Append(" " + getSharedStringHtml(58));
-                            }
-                            else
-                            {
-                                doc.Append(" " + getSharedStringHtml(59));
-                            }
-                        }
-                    }
-                    str = string.Format("\" elapse=\"{0}\" index=\"{1}\"/>\n"
-                        , pvd.astrodata.nTithiElapse, pvd.astrodata.nTithi % 30 + 1);
-                    doc.Append(str);
+                    e6 = doc.CreateElement("tithi");
+                    e5.AppendChild(e6);
+                    e6.SetAttribute("name", pvd.getTithiNameExtended());
+                    e6.SetAttribute("elapse", pvd.astrodata.nTithiElapse.ToString());
+                    e6.SetAttribute("index", (pvd.astrodata.nTithi % 30 + 1).ToString());
 
-                    str = string.Format("\t\t\t<naksatra name=\"{0}\" elapse=\"{1}\" />\n"
-                        , GPNaksatra.getName(pvd.astrodata.nNaksatra), pvd.astrodata.nNaksatraElapse);
-                    doc.Append(str);
+                    e6 = doc.CreateElement("naksatra");
+                    e5.AppendChild(e6);
+                    e6.SetAttribute("name", pvd.getNaksatraName());
+                    e6.SetAttribute("elapse", pvd.astrodata.nNaksatraElapse.ToString());
 
-                    str = string.Format("\t\t\t<yoga name=\"{0}\" />\n", GPYoga.getName(pvd.astrodata.nYoga));
-                    doc.Append(str);
+                    e6 = doc.CreateElement("yoga");
+                    e5.AppendChild(e6);
+                    e6.SetAttribute("name", pvd.getYogaName());
 
-                    str = string.Format("\t\t\t<paksa id=\"{0}\" name=\"{1}\"/>\n", GPPaksa.getAbbreviation(pvd.astrodata.nPaksa), GPPaksa.getName(pvd.astrodata.nPaksa));
-                    doc.Append(str);
+                    e6 = doc.CreateElement("paksa");
+                    e5.AppendChild(e6);
+                    e6.SetAttribute("id", GPPaksa.getAbbreviation(pvd.astrodata.nPaksa));
+                    e6.SetAttribute("name", GPPaksa.getName(pvd.astrodata.nPaksa));
 
-                    doc.Append("\t\t</sunrise>\n");
+                    e5 = doc.CreateElement("dst");
+                    eday.AppendChild(e5);
+                    e5.SetAttribute("offset", pvd.date.getDaylightTimeBias().ToString());
 
-                    doc.Append("\t\t<dst offset=\"" + pvd.date.getDaylightTimeBias() + "\" />\n");
+
                     // arunodaya data
-                    doc.Append("\t\t<arunodaya time=\"" + pvd.astrodata.sun.arunodaya + "\">\n");
-                    doc.Append("\t\t\t<tithi name=\"" + GPTithi.getName(pvd.astrodata.getTithiAtArunodaya()) + "\" />\n");
-                    doc.Append("\t\t</arunodaya>\n");
+                    e5 = doc.CreateElement("arunodaya");
+                    eday.AppendChild(e5);
+                    e5.SetAttribute("time", pvd.astrodata.sun.arunodaya.getLongTimeString());
+                    
+                    e6 = doc.CreateElement("tithi");
+                    e5.AppendChild(e6);
+                    e6.SetAttribute("name", GPTithi.getName(pvd.astrodata.getTithiAtArunodaya()));
 
-                    str = string.Empty;
+                    e5 = doc.CreateElement("noon");
+                    eday.AppendChild(e5);
+                    e5.SetAttribute("time", pvd.astrodata.sun.noon.getLongTimeString());
 
-                    doc.Append("\t\t<noon time=\"" + pvd.astrodata.sun.noon + "\" />\n");
-
-                    doc.Append("\t\t<sunset time=\"" + pvd.astrodata.sun.set + "\" />\n");
-
-                    // moon data
-                    doc.Append("\t\t<moon rise=\"" + pvd.moonrise + "\" set=\"" + pvd.moonset + "\" />\n");
+                    e5 = doc.CreateElement("sunset");
+                    eday.AppendChild(e5);
+                    e5.SetAttribute("time", pvd.astrodata.sun.set.getLongTimeString());
 
                     if (pvd.hasEkadasiParana() && pvd.ekadasiParanaStart != null)
                     {
+                        e5 = doc.CreateElement("parana");
+                        eday.AppendChild(e5);
                         if (pvd.ekadasiParanaEnd != null)
                         {
-                            str = string.Format("\t\t<parana from=\"{0}\" to=\"{1}\" />\n", pvd.ekadasiParanaStart.getShortTimeString(), pvd.ekadasiParanaEnd.getShortTimeString());
+                            e5.SetAttribute("from", pvd.ekadasiParanaStart.getShortTimeString());
+                            e5.SetAttribute("to", pvd.ekadasiParanaEnd.getShortTimeString());
                         }
                         else
                         {
-                            str = string.Format("\t\t<parana after=\"{0}\" />\n",pvd.ekadasiParanaStart.getShortTimeString());
+                            e5.SetAttribute("after", pvd.ekadasiParanaStart.getShortTimeString());
                         }
-                        doc.Append(str);
                     }
                     str = string.Empty;
 
                     foreach (GPCalendarDay.Festival fest in pvd.Festivals)
                     {
-                        doc.AppendFormat("\t\t<festival name=\"{0}\" class=\"{1}\" />\n", fest.Text, fest.ShowSettingItem);
+                        e5 = doc.CreateElement("festival");
+                        eday.AppendChild(e5);
+                        e5.SetAttribute("name", fest.Text);
+                        e5.SetAttribute("class", fest.ShowSettingItem);
                     }
 
                     if (pvd.nFastType != GPConstants.FAST_NULL)
                     {
-                        if (pvd.nFastType == GPConstants.FAST_EKADASI)
-                        {
-                            doc.Append("\t\t<fast type=\"" + pvd.nFastType + "\" mark=\"*\" />\n");
-                        }
-                        else
-                        {
-                            doc.Append("\t\t<fast type=\"\" mark=\"\" />\n");
-                        }
+                        e5 = doc.CreateElement("fast");
+                        eday.AppendChild(e5);
+
+                        e5.SetAttribute("type", pvd.nFastType.ToString());
+                        e5.SetAttribute("mark", "*");
                     }
 
                     if (pvd.sankranti_zodiac >= 0)
                     {
-                        //double h1, m1, s1;
-                        //m1 = modf(pvd.sankranti_day.shour*24, &h1);
-                        //				s1 = modf(m1*60, &m1);
-                        str = string.Format("\t\t<sankranti rasi=\"{0}\" time=\"{1}\" />\n"
-                            , GPSankranti.getName(pvd.sankranti_zodiac), pvd.sankranti_day.getLongTimeString());
-                        doc.Append(str);
+                        e5 = doc.CreateElement("sankranti");
+                        eday.AppendChild(e5);
+                        e5.SetAttribute("rasi", GPSankranti.getName(pvd.sankranti_zodiac));
+                        e5.SetAttribute("time", pvd.sankranti_day.getLongTimeString());
                     }
 
                     if (pvd.hasKsayaTithi())
                     {
                         GPGregorianTime vcStart = pvd.ksayaTithi.getStartTime();
                         GPGregorianTime vcEnd = pvd.ksayaTithi.getEndTime();
-                        str = string.Format("\t\t<ksaya from=\"{0} {1}\" to=\"{2} {3}\" />\n", vcStart.ToString(), vcStart.getShortTimeString(), vcEnd.ToString(), vcEnd.getShortTimeString());
-                        doc.Append(str);
+
+                        e5 = doc.CreateElement("ksaya");
+                        eday.AppendChild(e5);
+                        e5.SetAttribute("from", vcStart.ToString() + " " + vcStart.getShortTimeString());
+                        e5.SetAttribute("to", vcEnd.ToString() + " " + vcEnd.getShortTimeString());
                     }
+
 
                     if (pvd.IsSecondDayTithi)
                     {
-                        doc.Append("\t\t<vriddhi sd=\"yes\" />\n");
+                        e5 = doc.CreateElement("vriddhi");
+                        eday.AppendChild(e5);
+                        e5.SetAttribute("sd", "yes");
                     }
-                    else
-                    {
-                        doc.Append("\t\t<vriddhi sd=\"no\" />\n");
-                    }
-
-                    doc.Append("\t</day>\n\n");
 
                 }
             }
-            doc.Append("\t</masa>\n");
-            doc.Append("</result>\n" + "</xml>\n");
 
-            return 1;
+            return doc;
         }
 
         public static int WriteXML_Naksatra(StringBuilder doc, GPLocationProvider loc, GPGregorianTime vc, int nDaysCount)

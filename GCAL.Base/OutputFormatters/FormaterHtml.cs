@@ -274,7 +274,7 @@ namespace GCAL.Base
             //List<string> gstr = GPStrings.getSharedStrings().gstr;
             //int k;
             //string str;
-            GPGregorianTime date = new GPGregorianTime(daybuff.m_Location);
+            GPGregorianTime date = new GPGregorianTime(daybuff.CurrentLocation);
             //GPCalendarDay pvd;
             //int nPrevMasa = -1;
             //int nPrevMonth = -1;
@@ -318,7 +318,7 @@ namespace GCAL.Base
             //List<string> gstr = GPStrings.getSharedStrings().gstr;
             int k;
             string str;
-            GPGregorianTime date = new GPGregorianTime(daybuff.m_Location);
+            GPGregorianTime date = new GPGregorianTime(daybuff.CurrentLocation);
             GPCalendarDay pvd;
             int nPrevMasa = -1;
             int nPrevMonth = -1;
@@ -572,7 +572,7 @@ namespace GCAL.Base
 
             //List<string> gstr = GPStrings.getSharedStrings().gstr;
             //int k;
-            GPGregorianTime date = new GPGregorianTime(daybuffA.m_Location);
+            GPGregorianTime date = new GPGregorianTime(daybuffA.CurrentLocation);
 
             fprintf(fout, "<html><head><title>\n");
 
@@ -600,7 +600,7 @@ namespace GCAL.Base
 
             //List<string> gstr = GPStrings.getSharedStrings().gstr;
             int k;
-            GPGregorianTime date = new GPGregorianTime(daybuffA.m_Location);
+            GPGregorianTime date = new GPGregorianTime(daybuffA.CurrentLocation);
             GPCalendarDay pvd;
             GPCalendarDay pve;
             int nPrevMasaA = -1;
@@ -949,7 +949,7 @@ span.GramE
             int k;
             string columnHeader;
             int columnHeaderCount;
-            GPGregorianTime date = new GPGregorianTime(daybuff.m_Location);
+            GPGregorianTime date = new GPGregorianTime(daybuff.CurrentLocation);
             StringBuilder tempBuilder = new StringBuilder();
             //List<string> gstr = GPStrings.getSharedStrings().gstr;
 

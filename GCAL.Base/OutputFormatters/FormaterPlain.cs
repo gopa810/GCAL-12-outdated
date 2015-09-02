@@ -188,7 +188,7 @@ namespace GCAL.Base
                             AddListText(m_text, getSharedStringPlain(128));
                         }
                         m_text.AppendLine();
-                        m_text.AppendLine(GPAppHelper.CenterString(daybuff.m_Location.getLocation(pvd.date.getJulianGreenwichTime()).getFullName(), 80));
+                        m_text.AppendLine(GPAppHelper.CenterString(daybuff.CurrentLocation.getLocation(pvd.date.getJulianGreenwichTime()).getFullName(), 80));
                         m_text.AppendLine();
                         lastmasa = pvd.astrodata.nMasa;
                     }
@@ -205,7 +205,7 @@ namespace GCAL.Base
                         if (tmpString.Length < tp1)
                             m_text.Append(string.Empty.PadLeft(tp1 - tmpString.Length));
                         m_text.AppendLine(GPAppHelper.getShortVersionText());
-                        m_text.AppendLine(GPAppHelper.CenterString(daybuff.m_Location.getLocation(pvd.date.getJulianGreenwichTime()).getFullName(), 80));
+                        m_text.AppendLine(GPAppHelper.CenterString(daybuff.CurrentLocation.getLocation(pvd.date.getJulianGreenwichTime()).getFullName(), 80));
                         m_text.AppendLine();
                         lastmonth = pvd.date.getMonth();
                     }
@@ -229,7 +229,7 @@ namespace GCAL.Base
                     else if (pvd.FlagNewLocation)
                     {
                         m_text.AppendLine(GPAppHelper.CenterString(GPStrings.getString(9), 80));
-                        m_text.AppendLine(GPAppHelper.CenterString(daybuff.m_Location.getLocation(pvd.date.getJulianGreenwichTime()).getFullName(), 80));
+                        m_text.AppendLine(GPAppHelper.CenterString(daybuff.CurrentLocation.getLocation(pvd.date.getJulianGreenwichTime()).getFullName(), 80));
                         m_text.AppendLine();
 
                         nMasaHeader = 1;
@@ -318,7 +318,7 @@ namespace GCAL.Base
             //List<string> gstr = GPStrings.getSharedStrings().gstr;
             int k;
             string str;
-            GPGregorianTime date = new GPGregorianTime(daybuff.m_Location);
+            GPGregorianTime date = new GPGregorianTime(daybuff.CurrentLocation);
             GPCalendarDay pvd;
             GPCalendarDay prevd;
             GPCalendarDay nextd;

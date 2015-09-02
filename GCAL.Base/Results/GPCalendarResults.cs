@@ -10,7 +10,7 @@ namespace GCAL.Base
         public GPCalendarDay[] m_pData = null;
         public int m_nCount;
         public int m_PureCount;
-        public GPLocationProvider m_Location = null;
+        public GPLocationProvider CurrentLocation = null;
         public GPGregorianTime m_vcStart;
         public int m_vcCount;
         public IReportProgress progressReport = null;
@@ -567,8 +567,8 @@ namespace GCAL.Base
             {
                 if (t.astrodata.nTithi == GPTithi.TITHI_GAURA_PRATIPAT)
                 {
-                    GPMoon.CalcMoonTimes(m_Location, u.date, out s.moonrise, out s.moonset);
-                    GPMoon.CalcMoonTimes(m_Location, t.date, out t.moonrise, out t.moonset);
+                    GPMoon.CalcMoonTimes(CurrentLocation, u.date, out s.moonrise, out s.moonset);
+                    GPMoon.CalcMoonTimes(CurrentLocation, t.date, out t.moonrise, out t.moonset);
                     if (s.astrodata.nTithi == GPTithi.TITHI_GAURA_PRATIPAT)
                     {
                     }
@@ -1734,7 +1734,7 @@ namespace GCAL.Base
             bool bCalcMoon = (GPDisplays.Calendar.TimeMoonriseVisible() || GPDisplays.Calendar.TimeMoonsetVisible());
 
             m_nCount = 0;
-            m_Location = begDate.getLocationProvider();
+            CurrentLocation = begDate.getLocationProvider();
             m_vcStart = new GPGregorianTime(begDate);
             m_vcCount = iCount;
 
@@ -1779,7 +1779,7 @@ namespace GCAL.Base
             // init of astro data
             foreach (GPCalendarDay vd in m_pData)
             {
-                vd.astrodata.calculateDayData(vd.date, m_Location);
+                vd.astrodata.calculateDayData(vd.date, CurrentLocation);
             }
 
             bool calc_masa = true;

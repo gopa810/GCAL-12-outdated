@@ -2477,7 +2477,7 @@ namespace GCAL
                     }
                     else if (sfd.FilterIndex == 8)
                     {
-                        FormaterXml.WriteCalendarXml((CurrentCalculatedObject as GPCalendarResults), sb);
+                        FormaterXml.WriteXml(FormaterXml.GetCalendarXmlDocument(CurrentCalculatedObject as GPCalendarResults), sb);
                     }
                     File.WriteAllText(sfd.FileName, sb.ToString());
                 }

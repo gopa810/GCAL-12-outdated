@@ -11,9 +11,9 @@ namespace GCAL.Base
         {
             StringBuilder sb = new StringBuilder();
 
-            sb.AppendFormat("Location: {0}\n", calendar.m_Location.getLocation(0).ToString());
-            sb.AppendFormat("Longitude: {0}\nLatitude: {1}\n\n", calendar.m_Location.getLocation(0).getLongitudeString(),
-                calendar.m_Location.getLocation(0).getLatitudeString());
+            sb.AppendFormat("Location: {0}\n", calendar.CurrentLocation.getLocation(0).ToString());
+            sb.AppendFormat("Longitude: {0}\nLatitude: {1}\n\n", calendar.CurrentLocation.getLocation(0).getLongitudeString(),
+                calendar.CurrentLocation.getLocation(0).getLatitudeString());
 
             // julian day
             foreach (GPCalendarDay day in calendar.m_pData)

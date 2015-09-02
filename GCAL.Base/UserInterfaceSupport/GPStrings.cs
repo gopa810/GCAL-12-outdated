@@ -17,7 +17,7 @@ namespace GCAL.Base
         public Dictionary<int, bool> edited = new Dictionary<int, bool>();
 //        public Dictionary<string, int> map = new Dictionary<string, int>();
 
-        public static bool showNumberOfString = true;
+        public static bool showNumberOfString = false;
         private static GPStrings _sharedStrings = null;
         private static GPStrings _originalStrings = null;
 
@@ -38,7 +38,7 @@ namespace GCAL.Base
             }
             else
             {
-                showNumberOfString = true;
+                showNumberOfString = false;
             }
         }
 

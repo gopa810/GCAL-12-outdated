@@ -488,7 +488,7 @@ langid	2
 649	Purva-asadha			Purva-asadha
 650	Uttara-asadha  			Uttara-asadha  
 651	Sravana			Sravana
-652	Dhanista			Dhanista
+652	Dhanistha			Dhanistha
 653	Satabhisa			Satabhisa
 654	Purva-bhadra			Purva-bhadra
 655	Uttara-bhadra			Uttara-bhadra

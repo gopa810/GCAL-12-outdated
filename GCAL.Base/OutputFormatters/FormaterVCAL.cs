@@ -27,7 +27,7 @@ namespace GCAL.Base
             m_text.Append(str2);
             m_text.Append("\nX-WR-TIMEZONE:");
 
-            m_text.Append(daybuff.m_Location.getLocation(0).getTimeZoneName());
+            m_text.Append(daybuff.CurrentLocation.getLocation(0).getTimeZoneName());
             m_text.Append("\n");
 
             m_text.Append("CALSCALE:GREGORIAN\nMETHOD:PUBLISH\n");

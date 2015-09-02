@@ -18,7 +18,7 @@ namespace GCAL.Base
             GPCalendarDay pvd, prevd, nextd;
             string SPACE_BEFORE_LINE = " , ";
             GPGregorianTime vc = new GPGregorianTime(daybuff.m_vcStart);
-            GPLocation loc = daybuff.m_Location.getLocation(0);
+            GPLocation loc = daybuff.CurrentLocation.getLocation(0);
 
             DateTime st = new DateTime();
 

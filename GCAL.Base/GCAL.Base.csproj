@@ -47,6 +47,7 @@
     <Compile Include="CivilData\GPLocationProvider.cs" />
     <Compile Include="Deprecated\GPAstroIterator.cs" />
     <Compile Include="Deprecated\GPMoonRasi.cs" />
+    <Compile Include="GCALBase.cs" />
     <Compile Include="GPSortedIntStringList.cs" />
     <Compile Include="OutputFormatters\FormaterCSV.cs" />
     <Compile Include="OutputFormatters\FormaterHtml.cs" />
