@@ -8,6 +8,14 @@ namespace GCAL.Base
 {
     public class GCALBase
     {
+        /// <summary>
+        /// Creates GPLocationProvider object from given data.
+        /// </summary>
+        /// <param name="city">Any string</param>
+        /// <param name="longitude">Unit is degrees. Positive values are to the east, negative values are to the west.</param>
+        /// <param name="latitude">Unit is degrees. Positive values are for the north hemisphere, negative values are for south hemisphere.</param>
+        /// <param name="timeZoneName">Name of timezone. This is one of the values returned by function GPTimeZoneList.sharedTimeZones().getTimeZones()</param>
+        /// <returns></returns>
         public static GPLocationProvider EncapsulateLocation(string city, double longitude, double latitude, string timeZoneName)
         {
             GPLocation loca = new GPLocation();
@@ -19,7 +27,7 @@ namespace GCAL.Base
             GPLocationProvider locProv = new GPLocationProvider();
 
             locProv.setDefaultLocation(loca);
-
+            
             return locProv;
         }
 
