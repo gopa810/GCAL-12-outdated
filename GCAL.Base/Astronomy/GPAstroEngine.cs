@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Diagnostics;
 
+using GCAL.Base.Astronomy;
+
 namespace GCAL.Base
 {
     public enum TMoonPhase
@@ -588,6 +590,7 @@ namespace GCAL.Base
             result.distanceFromEarth = r * AU;
             result.SetSiderealTime(date);
             //result.SetJulianEphemerisDay(date);
+
 
             // initialize equatorial coordinates
             CalculateEquatorial(result, date);
@@ -1383,7 +1386,7 @@ namespace GCAL.Base
         /// <param name="obs">Position of observer on Earth</param>
         /// <param name="kind"></param>
         /// <returns></returns>
-        public static GPJulianTime GetNextMoonEvent(GPJulianTime startDate, GPLocationProvider obs, out TRiseSet kind)
+        public static GPJulianTime GetNextMoonEvent(GPJulianTime startDate, GPLocation obs, out TRiseSet kind)
         {
             kind = TRiseSet.RISE;
             double [] array = new double[2];
@@ -1397,7 +1400,7 @@ namespace GCAL.Base
             {
                 times[i] = new GPJulianTime();
                 times[i].setLocalJulianDay(startDate.getLocalJulianDay() + i/24.0);
-                c = GetMoonTopocentric(times[i], obs.getLocation(times[i].getGreenwichJulianDay()));
+                c = GetMoonTopocentric(times[i], obs);
                 array[i] = c.elevation;
                 //Debugger.Log(0, "", String.Format("elev[{0}] = {1}\n", times[i], array[i]));
 
@@ -1410,7 +1413,7 @@ namespace GCAL.Base
                 times[1].setLocalJulianDay(startDate.getLocalJulianDay() + i / 24.0);
                 i++;
                 array[0] = array[1];
-                array[1] = GetMoonTopocentric(times[1], obs.getLocation(times[1].getGreenwichJulianDay())).elevation;
+                array[1] = GetMoonTopocentric(times[1], obs).elevation;
                 //Debugger.Log(0, "", String.Format("elev[{0}] = {1}\n", times[2], array[2]));
             }
 
@@ -1426,7 +1429,7 @@ namespace GCAL.Base
         /// <param name="array"></param>
         /// <returns>Returns true if rise/set time was found, 
         /// false if we need to move in time 1 hour forward</returns>
-        private static TRiseSet GetNextMoonEvent_DecideTime(double[] array, GPJulianTime[] times, GPLocationProvider obs, ref GPJulianTime time)
+        private static TRiseSet GetNextMoonEvent_DecideTime(double[] array, GPJulianTime[] times, GPLocation obs, ref GPJulianTime time)
         {
             double elevationLimit = -0.5;
             GPJulianTime nta, ntb, ntc;
@@ -1442,7 +1445,7 @@ namespace GCAL.Base
                 {
                     ntc = new GPJulianTime();
                     ntc.setLocalJulianDay((nta.getLocalJulianDay() + ntb.getLocalJulianDay()) / 2);
-                    elc = GetMoonTopocentric(ntc, obs.getLocation(ntc.getGreenwichJulianDay())).elevation;
+                    elc = GetMoonTopocentric(ntc, obs).elevation;
                     if (elc < elevationLimit)
                     {
                         ela = elc;
@@ -1463,7 +1466,7 @@ namespace GCAL.Base
                 {
                     ntc = new GPJulianTime();
                     ntc.setLocalJulianDay((nta.getLocalJulianDay() + ntb.getLocalJulianDay()) / 2);
-                    elc = GetMoonTopocentric(ntc, obs.getLocation(ntc.getGreenwichJulianDay())).elevation;
+                    elc = GetMoonTopocentric(ntc, obs).elevation;
                     if (elc > elevationLimit)
                     {
                         ela = elc;

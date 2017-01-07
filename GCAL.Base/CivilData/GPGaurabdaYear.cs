@@ -9,7 +9,7 @@ namespace GCAL.Base
     {
 
 
-        public static int getGaurabdaYear(GPGregorianTime vc, GPLocationProvider earth)
+        public static int calculateGaurabdaYear(GPGregorianTime vc, GPLocation earth)
         {
             GPAstroData day = new GPAstroData();
             int n;
@@ -28,7 +28,7 @@ namespace GCAL.Base
         /*                                                                   */
         /*********************************************************************/
 
-        public static GPGregorianTime getFirstDayOfYear(GPLocationProvider earth, int nYear)
+        public static GPGregorianTime getFirstDayOfYear(GPLocation earth, int nYear)
         {
 
             int[] a = new int[] { 2, 15, 3, 1, 3, 15, 4, 1, 4, 15 };
@@ -90,7 +90,7 @@ namespace GCAL.Base
         /*                                                                   */
         /*********************************************************************/
 
-        public static GPGregorianTime getFirstDayOfMasa(GPLocationProvider earth, int GYear, int nMasa)
+        public static GPGregorianTime getFirstDayOfMasa(GPLocation earth, int GYear, int nMasa)
         {
             return GPTithi.CalcTithiDate(GYear, nMasa, 0, 0, earth);
         }

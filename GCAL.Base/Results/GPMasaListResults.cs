@@ -7,38 +7,28 @@ namespace GCAL.Base
 {
     public class GPMasaListResults
     {
-        private void alloc(int nCountYears)
-        {
-            arr.Clear();
-            for (int i = 0; i < nCountYears * 14; i++)
-            {
-                arr.Add(new GPMasaDays());
-            }
-        }
-
         public List<GPMasaDays> arr = new List<GPMasaDays>();
         public GPGregorianTime vc_end = null;
         public GPGregorianTime vc_start = null;
         public int n_countYears = 0;
-        public int n_countMasa = 0;
         public int n_startYear = 0;
-        public GPLocationProvider m_location;
+        public GPLocation m_location;
         public IReportProgress progressReport = null;
         
         public GPMasaListResults()
         {
-            n_countMasa = 0;
             n_countYears = 0;
             n_startYear = 0;
         }
 
-        public int CalcMasaList(GPLocationProvider loc, int nYear, int nCount)
+        public int CalcMasaList(GPLocation loc, int nYear, int nCount)
         {
             GPMasaListResults mlist = this;
             GPAstroData day = new GPAstroData();
             GPGregorianTime d = new GPGregorianTime(loc);
             GPGregorianTime de = new GPGregorianTime(loc);
             GPGregorianTime t = new GPGregorianTime(loc);
+            GPMasaDays current = null;
             vc_end = new GPGregorianTime(loc);
             vc_start = new GPGregorianTime(loc);
             int lm = -1;
@@ -51,12 +41,7 @@ namespace GCAL.Base
             mlist.vc_end.Copy(de);
             mlist.m_location = loc;
 
-            alloc(nCount);
-
-            int i = 0;
             int prev_paksa = -1;
-            int current = 0;
-
 
             while (d.IsBeforeThis(de))
             {
@@ -64,34 +49,42 @@ namespace GCAL.Base
                 if (prev_paksa != day.nPaksa)
                 {
                     day.nMasa = day.determineMasa(d, out day.nGaurabdaYear);
+                    prev_paksa = day.nPaksa;
 
                     if (lm != day.nMasa)
                     {
-                        if (lm >= 0)
+                        if (current != null)
                         {
                             t.Copy(d);
                             t.PreviousDay();
-                            mlist.arr[current].vc_end.Copy(t);
-                            current++;
+                            current.vc_end.Copy(t);
                         }
                         lm = day.nMasa;
-                        mlist.arr[current].masa = day.nMasa;
-                        mlist.arr[current].year = day.nGaurabdaYear;
-                        mlist.arr[current].vc_start.Copy(d);
+                        current = new GPMasaDays();
+                        current.masa = day.nMasa;
+                        current.year = day.nGaurabdaYear;
+                        current.vc_start.Copy(d);
+                        arr.Add(current);
                     }
+
+                    d.AddDays(12);
                 }
-                prev_paksa = day.nPaksa;
+
                 d.NextDay();
-                i++;
             }
 
-            t.Copy(d);
-            mlist.arr[current].vc_end.Copy(t);
-            current++;
-            mlist.n_countMasa = current;
+            current.vc_end.Copy(d);
 
             return 1;
         }
 
+
+        public int Count
+        {
+            get
+            {
+                return arr.Count;
+            }
+        }
     }
 }

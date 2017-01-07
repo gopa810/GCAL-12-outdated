@@ -18,14 +18,11 @@ namespace GCAL.Base
         private int p_day = 1;
         private double p_shour = 0.5;
 
-        // Greenwich Julian day
-        private double p_julian = -1;
-
         private bool dstValid = false;
         private bool p_dst_on = false;
         private int p_dst_bias = 0;
 
-        private GPLocationProvider p_locationProvider = null;
+        private GPLocation p_locationProvider = null;
 
         public GPGregorianTime(GPLocation loc)
         {
@@ -34,12 +31,6 @@ namespace GCAL.Base
             setDayHours(0.0);
         }
 
-        public GPGregorianTime(GPLocationProvider loc)
-        {
-            p_locationProvider = loc;
-            Today();
-            setDayHours(0.0);
-        }
 
         public GPGregorianTime(GPLocation loc, GPJulianTime julianTime)
         {
@@ -47,25 +38,24 @@ namespace GCAL.Base
             setJulianGreenwichTime(julianTime);
         }
 
-        public GPGregorianTime(GPLocationProvider loc, GPJulianTime julianTime)
-        {
-            p_locationProvider = loc;
-            setJulianGreenwichTime(julianTime);
-        }
-
         public GPGregorianTime(GPGregorianTime vc)
         {
             Copy(vc);
         }
- 
+
+        public void setDayHours(int hour, int minute)
+        {
+            setDayHours(hour / 24.0 + minute / 1440.0);
+        }
+
+        public void setDayHours(int hour, int minute, int second)
+        {
+            setDayHours(hour / 24.0 + minute / 1440.0 + second / 86400.0);
+        }
+
         public void addDayHours(double hr)
         {
-            if (p_julian < 0)
-            {
-                recalculateJulianGreenwichTime();
-            }
             p_shour += hr;
-            p_julian += hr;
             normalizeValues();
         }
 
@@ -85,7 +75,11 @@ namespace GCAL.Base
         {
             p_year = p_month = p_day = -1;
             p_shour = 0;
-            p_julian = -1;
+        }
+
+        public GPLocation getLocationProvider()
+        {
+            return p_locationProvider;
         }
 
         public void setTimestamp(long value)
@@ -99,7 +93,6 @@ namespace GCAL.Base
             p_month = Convert.ToInt32(v % 12);
             v = (v - getMonth()) / 12;
             p_year = Convert.ToInt32(v);
-            recalculateJulianGreenwichTime();
         }
 
         // vracia -1, ak zadany den je den nasledujuci po THIS
@@ -124,7 +117,6 @@ namespace GCAL.Base
             DateTime dt = DateTime.Now;
             setDate(dt.Year, dt.Month, dt.Day);
             setDayHours(dt.TimeOfDay.TotalHours / 24.0);
-            recalculateJulianGreenwichTime();
         }
 
         public override bool Equals(object obj)
@@ -172,12 +164,14 @@ namespace GCAL.Base
         /// <param name="jdate">Julian Time</param>
         public void setJulianGreenwichTime(double jdate)
         {
-            double jd = jdate + getLocation().getTimeZoneOffsetHours() / 24.0;
+            double jd = jdate;
+
+            if (p_locationProvider != null)
+            {
+                jd += getLocation().getTimeZoneOffsetHours() / 24.0;
+            }
 
             setJulianLocalTime(jd);
-
-            // greenwich julian day
-            p_julian = jdate;
         }
 
         /// <summary>
@@ -190,14 +184,10 @@ namespace GCAL.Base
             double jd = jdate.getGreenwichJulianDay() + getLocation().getTimeZoneOffsetHours()/24.0;
 
             setJulianLocalTime(jd);
-
-            // greenwich julian day
-            p_julian = jdate.getGreenwichJulianDay();
         }
 
         public void setJulianLocalTime(double jd)
         {
-            p_julian = jd - getTimeZoneOffsetHours();
             double z = Math.Floor(jd + 0.5);
 
             double f = (jd + 0.5) - z;
@@ -280,15 +270,12 @@ namespace GCAL.Base
         /// <returns></returns>
         public double getJulianGreenwichTime()
         {
-            if (p_julian < 0)
-               recalculateJulianGreenwichTime();
-            return p_julian;
-            //return getJulianLocalNoon() - 0.5 + getDayHours() - getTimeZoneOffsetHours() / 24.0;
+            return getJulianLocalNoon() - 0.5 + getDayHours() - getTimeZoneOffsetHours() / 24.0;
         }
 
-        private void recalculateJulianGreenwichTime()
+        public double getJulianLocalTime()
         {
-            p_julian = getJulianLocalNoon() - 0.5 + getDayHours() - getTimeZoneOffsetHours() / 24.0;
+            return getJulianLocalNoon() - 0.5 + getDayHours();
         }
 
         public void AddYears(int a)
@@ -310,7 +297,6 @@ namespace GCAL.Base
                 p_year++;
             }
 
-            recalculateJulianGreenwichTime();
         }
 
         public void AddDays(int a)
@@ -353,7 +339,6 @@ namespace GCAL.Base
                 }
                 p_day = 1;
             }
-            p_julian += 1;
         }
 
         public void PreviousDay()
@@ -369,7 +354,6 @@ namespace GCAL.Base
                 }
                 p_day = GetMonthMaxDays(getYear(), getMonth());
             }
-            p_julian -= 1;
         }
 
         public bool IsLeapYear()
@@ -452,7 +436,6 @@ namespace GCAL.Base
             if (d > 0)
                 p_day = d;
             normalizeValues();
-            recalculateJulianGreenwichTime();
             dstValid = false;
         }
 
@@ -478,7 +461,6 @@ namespace GCAL.Base
 
         public void setDayHours(double value)
         {
-            p_julian += (value - p_shour);
             p_shour = value;
             dstValid = false;
         }
@@ -501,8 +483,7 @@ namespace GCAL.Base
             p_month = vc.getMonth();
             p_day = vc.getDay();
             setDayHours(vc.getDayHours());
-            setLocationProvider(vc.getLocationProvider());
-            recalculateJulianGreenwichTime();
+            setLocation(vc.getLocation());
         }
 
         public GPGregorianTime Copy()
@@ -512,24 +493,20 @@ namespace GCAL.Base
 
         public GPLocation getLocation()
         {
-            return p_locationProvider.getLocation(p_julian);
+            return p_locationProvider;
         }
 
         public void setLocation(GPLocation value)
         {
-            p_locationProvider = new GPLocationProvider();
-            p_locationProvider.setDefaultLocation(value);
-        }
-
-        public GPLocationProvider getLocationProvider()
-        {
-            return p_locationProvider;
-        }
-
-        public void setLocationProvider(GPLocationProvider value)
-        {
+            double newTimeOffset = value != null ? value.getTimeZoneOffsetHours() : 0.0;
+            double oldTimeOffset = getTimeZoneOffsetHours();
             p_locationProvider = value;
+
+            addDayHours((newTimeOffset - oldTimeOffset)/24.0);
+            normalizeValues();
         }
+
+
 
 
         public bool getDaylightTimeON()

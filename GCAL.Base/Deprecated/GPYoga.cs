@@ -40,7 +40,7 @@ namespace GCAL.Base
             double ayanamsa = GPAyanamsa.GetAyanamsa(jday);
             GPMoon moon = new GPMoon();
             GPGregorianTime d = new GPGregorianTime(startDate);
-            GPGregorianTime xd = new GPGregorianTime(startDate.getLocationProvider());
+            GPGregorianTime xd = new GPGregorianTime(startDate.getLocation());
             double scan_step = 0.5;
             int prev_tit = 0;
             int new_tit = -1;

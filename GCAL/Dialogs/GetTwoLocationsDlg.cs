@@ -38,7 +38,7 @@ namespace GCAL.Dialogs
             locationPickerControl2.SaveInterfaceValues("getlocationb");
         }
 
-        public GPLocationProvider SelectedLocationA
+        public GPLocation SelectedLocationA
         {
             get
             {
@@ -46,7 +46,7 @@ namespace GCAL.Dialogs
             }
         }
 
-        public GPLocationProvider SelectedLocationB
+        public GPLocation SelectedLocationB
         {
             get
             {

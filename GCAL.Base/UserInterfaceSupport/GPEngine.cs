@@ -14,7 +14,7 @@ namespace GCAL.Base
             return Math.Min(maxCounts[unitType], count);
         }
 
-        public static int CalcEndDate(GPLocationProvider m_earth, GPGregorianTime vcStart, GPVedicTime vaStart, out GPGregorianTime vcEnd, out GPVedicTime vaEnd, int nType, int nCount)
+        public static int CalcEndDate(GPLocation m_earth, GPGregorianTime vcStart, GPVedicTime vaStart, out GPGregorianTime vcEnd, out GPVedicTime vaEnd, int nType, int nCount)
         {
             vcEnd = new GPGregorianTime(vcStart);
             vaEnd = new GPVedicTime(vaStart);
@@ -110,7 +110,7 @@ namespace GCAL.Base
         //
         //===========================================================================
 
-        public static void VATIMEtoVCTIME(GPVedicTime va, out GPGregorianTime vc, GPLocationProvider earth)
+        public static void VATIMEtoVCTIME(GPVedicTime va, out GPGregorianTime vc, GPLocation earth)
         {
             vc = GPTithi.CalcTithiDate(va.gyear, va.masa, va.tithi / 15, va.tithi % 15, earth);
         }
@@ -119,7 +119,7 @@ namespace GCAL.Base
         //
         //===========================================================================
 
-        public static void VCTIMEtoVATIME(GPGregorianTime vc, out GPVedicTime va, GPLocationProvider earth)
+        public static void VCTIMEtoVATIME(GPGregorianTime vc, out GPVedicTime va, GPLocation earth)
         {
             GPAstroData day = new GPAstroData();
             va = new GPVedicTime();

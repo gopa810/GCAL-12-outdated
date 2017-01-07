@@ -55,28 +55,15 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.buttonInsertAfter = new System.Windows.Forms.Button();
-            this.buttonInsertBefore = new System.Windows.Forms.Button();
-            this.buttonRemoveBefore = new System.Windows.Forms.Button();
-            this.buttonClearAll = new System.Windows.Forms.Button();
-            this.labelSubtitle = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.buttonEdit = new System.Windows.Forms.Button();
-            this.labelCount = new System.Windows.Forms.Label();
-            this.buttonRemoveAfter = new System.Windows.Forms.Button();
-            this.buttonAddTravelling = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.MinimumSize = new System.Drawing.Size(341, 251);
@@ -337,140 +324,6 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Location name";
             // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.buttonInsertAfter);
-            this.tabPage3.Controls.Add(this.buttonInsertBefore);
-            this.tabPage3.Controls.Add(this.buttonRemoveBefore);
-            this.tabPage3.Controls.Add(this.buttonClearAll);
-            this.tabPage3.Controls.Add(this.labelSubtitle);
-            this.tabPage3.Controls.Add(this.listBox1);
-            this.tabPage3.Controls.Add(this.buttonEdit);
-            this.tabPage3.Controls.Add(this.labelCount);
-            this.tabPage3.Controls.Add(this.buttonRemoveAfter);
-            this.tabPage3.Controls.Add(this.buttonAddTravelling);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(507, 303);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Traveller";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // buttonInsertAfter
-            // 
-            this.buttonInsertAfter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonInsertAfter.Location = new System.Drawing.Point(398, 144);
-            this.buttonInsertAfter.Name = "buttonInsertAfter";
-            this.buttonInsertAfter.Size = new System.Drawing.Size(96, 23);
-            this.buttonInsertAfter.TabIndex = 9;
-            this.buttonInsertAfter.Text = "Insert After";
-            this.buttonInsertAfter.UseVisualStyleBackColor = true;
-            this.buttonInsertAfter.Click += new System.EventHandler(this.button7_Click);
-            // 
-            // buttonInsertBefore
-            // 
-            this.buttonInsertBefore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonInsertBefore.Location = new System.Drawing.Point(398, 57);
-            this.buttonInsertBefore.Name = "buttonInsertBefore";
-            this.buttonInsertBefore.Size = new System.Drawing.Size(96, 23);
-            this.buttonInsertBefore.TabIndex = 8;
-            this.buttonInsertBefore.Text = "Insert Before";
-            this.buttonInsertBefore.UseVisualStyleBackColor = true;
-            this.buttonInsertBefore.Click += new System.EventHandler(this.button6_Click);
-            // 
-            // buttonRemoveBefore
-            // 
-            this.buttonRemoveBefore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonRemoveBefore.Location = new System.Drawing.Point(398, 28);
-            this.buttonRemoveBefore.Name = "buttonRemoveBefore";
-            this.buttonRemoveBefore.Size = new System.Drawing.Size(96, 23);
-            this.buttonRemoveBefore.TabIndex = 7;
-            this.buttonRemoveBefore.Text = "Remove Before";
-            this.buttonRemoveBefore.UseVisualStyleBackColor = true;
-            this.buttonRemoveBefore.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // buttonClearAll
-            // 
-            this.buttonClearAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonClearAll.Location = new System.Drawing.Point(398, 202);
-            this.buttonClearAll.Name = "buttonClearAll";
-            this.buttonClearAll.Size = new System.Drawing.Size(96, 23);
-            this.buttonClearAll.TabIndex = 6;
-            this.buttonClearAll.Text = "Clear All";
-            this.buttonClearAll.UseVisualStyleBackColor = true;
-            this.buttonClearAll.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // labelSubtitle
-            // 
-            this.labelSubtitle.AutoSize = true;
-            this.labelSubtitle.Location = new System.Drawing.Point(7, 10);
-            this.labelSubtitle.Name = "labelSubtitle";
-            this.labelSubtitle.Size = new System.Drawing.Size(151, 13);
-            this.labelSubtitle.TabIndex = 1;
-            this.labelSubtitle.Text = "List of locations and transitions";
-            // 
-            // listBox1
-            // 
-            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(7, 28);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(385, 268);
-            this.listBox1.TabIndex = 0;
-            this.listBox1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.listBox1_DrawItem);
-            this.listBox1.MeasureItem += new System.Windows.Forms.MeasureItemEventHandler(this.listBox1_MeasureItem);
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
-            // 
-            // buttonEdit
-            // 
-            this.buttonEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonEdit.Enabled = false;
-            this.buttonEdit.Location = new System.Drawing.Point(398, 115);
-            this.buttonEdit.Name = "buttonEdit";
-            this.buttonEdit.Size = new System.Drawing.Size(96, 23);
-            this.buttonEdit.TabIndex = 4;
-            this.buttonEdit.Text = "Edit";
-            this.buttonEdit.UseVisualStyleBackColor = true;
-            this.buttonEdit.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // labelCount
-            // 
-            this.labelCount.AutoSize = true;
-            this.labelCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCount.Location = new System.Drawing.Point(340, 10);
-            this.labelCount.Name = "labelCount";
-            this.labelCount.Size = new System.Drawing.Size(14, 13);
-            this.labelCount.TabIndex = 2;
-            this.labelCount.Text = "0";
-            this.labelCount.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.labelCount.Visible = false;
-            // 
-            // buttonRemoveAfter
-            // 
-            this.buttonRemoveAfter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonRemoveAfter.Enabled = false;
-            this.buttonRemoveAfter.Location = new System.Drawing.Point(398, 173);
-            this.buttonRemoveAfter.Name = "buttonRemoveAfter";
-            this.buttonRemoveAfter.Size = new System.Drawing.Size(96, 23);
-            this.buttonRemoveAfter.TabIndex = 5;
-            this.buttonRemoveAfter.Text = "Remove After";
-            this.buttonRemoveAfter.UseVisualStyleBackColor = true;
-            this.buttonRemoveAfter.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // buttonAddTravelling
-            // 
-            this.buttonAddTravelling.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonAddTravelling.Location = new System.Drawing.Point(398, 86);
-            this.buttonAddTravelling.Name = "buttonAddTravelling";
-            this.buttonAddTravelling.Size = new System.Drawing.Size(96, 23);
-            this.buttonAddTravelling.TabIndex = 3;
-            this.buttonAddTravelling.Text = "Add Travelling";
-            this.buttonAddTravelling.UseVisualStyleBackColor = true;
-            this.buttonAddTravelling.Click += new System.EventHandler(this.button1_Click);
-            // 
             // LocationPickerControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -485,8 +338,6 @@
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -520,16 +371,5 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboBox8;
-        private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Label labelCount;
-        private System.Windows.Forms.Label labelSubtitle;
-        private System.Windows.Forms.Button buttonRemoveAfter;
-        private System.Windows.Forms.Button buttonEdit;
-        private System.Windows.Forms.Button buttonAddTravelling;
-        private System.Windows.Forms.Button buttonClearAll;
-        private System.Windows.Forms.Button buttonRemoveBefore;
-        private System.Windows.Forms.Button buttonInsertAfter;
-        private System.Windows.Forms.Button buttonInsertBefore;
     }
 }

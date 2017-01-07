@@ -5,6 +5,8 @@ using System.Text;
 using System.Diagnostics;
 using System.IO;
 
+using GCAL.Base.Astronomy;
+
 namespace GCAL.Base
 {
     public class Testing
@@ -19,6 +21,28 @@ namespace GCAL.Base
             Debugger.Log(0, "", "\n");
         }
 
+        public static void TestAlg()
+        {
+            GPLocation location = new GPLocation();
+            location.setCity("Vrakun");
+            location.setCountryCode("SK");
+            location.setLatitudeNorthPositive(47.93922);
+            location.setLongitudeEastPositive(17.59145);
+            location.setTimeZoneName("Europe/Bratislava");
+
+
+            GPGregorianTime time = new GPGregorianTime(location);
+            time.setDate(2016, 8, 7);
+            time.setDayHours(8, 12, 0);
+
+            GPCelestialBodyCoordinates coord = GPAstroEngine.sun_coordinate(time.getJulianGreenwichTime());
+
+            GPAstroEngine.calcHorizontal(coord, location);
+
+            Log("Sun Coordinates: Azimut: {0}, Elevation: {1}", coord.azimuth, coord.elevation);
+
+        }
+
         public static void TestMoonEvents()
         {
             TRiseSet kind;
@@ -26,7 +50,7 @@ namespace GCAL.Base
             dp.setLocalJulianDay(defJulian);
             GPLocation obs = new GPLocation();
             obs.setLatitudeNorthPositive(defLatitude).setLongitudeEastPositive(defLongitude).SetAltitude(0.2);
-            GPLocationProvider prov = new GPLocationProvider(obs);
+            GPLocation prov = obs;
 
             for (int k = 0; k < 26; k++)
             {
@@ -151,7 +175,7 @@ namespace GCAL.Base
             Log("== end test conjunctions ==");
         }
 
-        public static void Report(GPLocationProvider loc, string prefix)
+        public static void Report(GPLocation loc, string prefix)
         {
             GPGregorianTime start = new GPGregorianTime(loc);
             GPGregorianTime end = new GPGregorianTime(loc);

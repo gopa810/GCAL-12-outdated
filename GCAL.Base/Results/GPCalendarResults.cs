@@ -10,7 +10,7 @@ namespace GCAL.Base
         public GPCalendarDay[] m_pData = null;
         public int m_nCount;
         public int m_PureCount;
-        public GPLocationProvider CurrentLocation = null;
+        public GPLocation CurrentLocation = null;
         public GPGregorianTime m_vcStart;
         public int m_vcCount;
         public IReportProgress progressReport = null;
@@ -133,7 +133,7 @@ namespace GCAL.Base
             return pevent != null;
         }
 
-        protected double GcGetNaksatraEndHour(GPLocationProvider earth, GPGregorianTime yesterday, GPGregorianTime today)
+        protected double GcGetNaksatraEndHour(GPLocation earth, GPGregorianTime yesterday, GPGregorianTime today)
         {
             GPGregorianTime nend;
             GPGregorianTime snd = new GPGregorianTime(yesterday);
@@ -260,7 +260,7 @@ namespace GCAL.Base
 
           */
 
-        public void CalculateEParana(GPCalendarDay s, GPCalendarDay t, GPLocationProvider earth)
+        public void CalculateEParana(GPCalendarDay s, GPCalendarDay t, GPLocation earth)
         {
             t.nMahadvadasiType = GPConstants.EV_NULL;
             t.nFastType = GPConstants.FAST_NULL;
@@ -500,7 +500,7 @@ namespace GCAL.Base
             return m_PureCount;
         }
 
-        public int MahadvadasiCalc(int nIndex, GPLocationProvider earth)
+        public int MahadvadasiCalc(int nIndex, GPLocation earth)
         {
             int nMahaType = 0;
             int nMhdDay = -1;
@@ -555,7 +555,7 @@ namespace GCAL.Base
             return 1;
         }
 
-        public int CompleteCalc(int nIndex, GPLocationProvider earth)
+        public int CompleteCalc(int nIndex, GPLocation earth)
         {
             GPCalendarDay s = m_pData[nIndex - 1];
             GPCalendarDay t = m_pData[nIndex];
@@ -1622,7 +1622,7 @@ namespace GCAL.Base
             return sb.ToString();
         }
 
-        public int EkadasiCalc(int nIndex, GPLocationProvider earth)
+        public int EkadasiCalc(int nIndex, GPLocation earth)
         {
             GPCalendarDay s = m_pData[nIndex - 1];
             GPCalendarDay t = m_pData[nIndex];
@@ -1693,7 +1693,7 @@ namespace GCAL.Base
             return 1;
         }
 
-        public int ExtendedCalc(int nIndex, GPLocationProvider earth)
+        public int ExtendedCalc(int nIndex, GPLocation earth)
         {
             GPCalendarDay s = m_pData[nIndex - 1];
             GPCalendarDay t = m_pData[nIndex];
@@ -1728,13 +1728,13 @@ namespace GCAL.Base
             int i, m = 0, weekday;
             int nTotalCount = BEFORE_DAYS + iCount + BEFORE_DAYS;
             GPGregorianTime date;
-            GPLocationProvider loc = begDate.getLocationProvider();
+            GPLocation loc = begDate.getLocation();
             int nYear = 0;
             int prev_paksa = 0;
             bool bCalcMoon = (GPDisplays.Calendar.TimeMoonriseVisible() || GPDisplays.Calendar.TimeMoonsetVisible());
 
             m_nCount = 0;
-            CurrentLocation = begDate.getLocationProvider();
+            CurrentLocation = begDate.getLocation();
             m_vcStart = new GPGregorianTime(begDate);
             m_vcCount = iCount;
 
@@ -1755,7 +1755,7 @@ namespace GCAL.Base
 
             for (i = 0; i <= nTotalCount; i++)
             {
-                m_pData[i] = new GPCalendarDay(begDate.getLocationProvider(), this, i - BEFORE_DAYS);
+                m_pData[i] = new GPCalendarDay(begDate.getLocation(), this, i - BEFORE_DAYS);
             }
 
             // 1
@@ -1955,67 +1955,6 @@ namespace GCAL.Base
 
             // travellings insert into data array
             int currIndex = BEFORE_DAYS;
-            for (int ci = 0; ci < loc.getChangeCount(); ci++)
-            {
-                GPLocationChange lc = loc.getChangeAtIndex(ci);
-
-                GPGregorianTime timeStart = new GPGregorianTime(lc.LocationA, new GPJulianTime(lc.julianStart, 0));
-                GPGregorianTime timeEnd = new GPGregorianTime(lc.LocationB, new GPJulianTime(lc.julianEnd, 0));
-
-                currIndex = IndexOf(timeStart, currIndex);
-                if (currIndex == -2)
-                {
-                    currIndex = BEFORE_DAYS;
-                }
-                else if (currIndex == -1)
-                {
-                    break;
-                }
-                else
-                {
-                    if (m_pData[currIndex].Travelling == null)
-                        m_pData[currIndex].Travelling = new List<GPLocationChange>();
-                    m_pData[currIndex].Travelling.Add(lc);
-                }
-
-                currIndex = IndexOf(timeEnd, currIndex);
-                if (currIndex == -2)
-                {
-                    currIndex = BEFORE_DAYS;
-                }
-                else if (currIndex == -1)
-                {
-                    break;
-                }
-                else
-                {
-                    if (m_pData[currIndex].Travelling == null)
-                        m_pData[currIndex].Travelling = new List<GPLocationChange>();
-                    m_pData[currIndex].Travelling.Add(lc);
-                }
-            }
-
-            // adjust travellings list and newlocation flag
-            for (i = BEFORE_DAYS; i < m_PureCount + BEFORE_DAYS; i++)
-            {
-                if (m_pData[i].Travelling != null)
-                {
-                    for (int mi = i + 1; mi < m_PureCount + BEFORE_DAYS; mi++)
-                    {
-                        if (m_pData[mi].Travelling != null)
-                        {
-                            m_pData[i].Travelling.AddRange(m_pData[mi].Travelling);
-                            m_pData[mi].Travelling = null;
-                        }
-                        else
-                        {
-                            m_pData[mi].FlagNewLocation = true;
-                            i = mi;
-                            break;
-                        }
-                    }
-                }
-            }
 
             for (i = BEFORE_DAYS; i < m_PureCount + BEFORE_DAYS; i++)
             {
@@ -2105,7 +2044,7 @@ namespace GCAL.Base
         }
 
 
-        public bool NextNewFullIsVriddhi(int nIndex, GPLocationProvider earth)
+        public bool NextNewFullIsVriddhi(int nIndex, GPLocation earth)
         {
             int i = 0;
             int nTithi;

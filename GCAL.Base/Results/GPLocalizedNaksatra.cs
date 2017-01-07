@@ -9,11 +9,11 @@ namespace GCAL.Base
     {
         private int p_naksatra = 0;
         private GPGregorianTime p_initDate = null;
-        private GPLocationProvider p_location = null;
+        private GPLocation p_location = null;
         private GPGregorianTime p_startTime = null;
         private GPGregorianTime p_endTime = null;
 
-        public GPLocalizedNaksatra(GPLocationProvider loc, GPGregorianTime start, int nNaks)
+        public GPLocalizedNaksatra(GPLocation loc, GPGregorianTime start, int nNaks)
         {
             p_naksatra = nNaks;
             p_initDate = new GPGregorianTime(start);

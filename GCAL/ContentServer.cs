@@ -864,15 +864,9 @@ namespace GCAL
                     CurrentCalculatedObject = gcc.CalculatedObject;
                     return gcc.HtmlText;
                 }
-                else if (p2 == "travel")
-                {
-                    CELGenerateCalendarTravelling gcc = new CELGenerateCalendarTravelling(this);
-                    CurrentCalculatedObject = gcc.CalculatedObject;
-                    return gcc.HtmlText;
-                }
                 else if (p2 == "today")
                 {
-                    GPLocationProvider loc = GPAppHelper.getMyLocation();
+                    GPLocation loc = GPAppHelper.getMyLocation();
 
                     if (myDate == null)
                         resetToday();
@@ -903,7 +897,7 @@ namespace GCAL
                 else if (p2.Equals("locationFullName"))
                 {
                     if (myDate != null)
-                        return myDate.getLocation().getFullName();
+                        return myDate.getLocation().format("{Ci} ({Cn}), {Las} {Los}, {Tzs}");
                 }
             }
 
@@ -924,7 +918,7 @@ namespace GCAL
                     {
                         if (sb.Length > 0)
                             sb.Append(",\n");
-                        sb.AppendFormat("[\"{0}\", \"{1}\", \"{2}\"]", loc.getCity(), loc.getFullName(), loc.getId());
+                        sb.AppendFormat("[\"{0}\", \"{1}\", \"{2}\"]", loc.getCity(), loc.format("{Ci} ({Cn}), {Las} {Los}, {Tzs}"), loc.getId());
                     }
                     return sb.ToString();
                 }
@@ -948,10 +942,10 @@ namespace GCAL
             }
             else if (p1.Equals("dstr"))
             {
-                GPLocationProvider currentLocation = getLocationWithPostfix(dictStrings["ppx"]);
+                GPLocation currentLocation = getLocationWithPostfix(dictStrings["ppx"]);
                 GPGregorianTime gt = new GPGregorianTime(currentLocation);
                 GPVedicTime va;
-                GPEngine.VCTIMEtoVATIME(gt, out va, gt.getLocationProvider());
+                GPEngine.VCTIMEtoVATIME(gt, out va, gt.getLocation());
                 int num = 0;
                 int.TryParse(p3, out num);
                 if (p2.Equals("month"))
@@ -1016,7 +1010,7 @@ namespace GCAL
 
         public void resetToday()
         {
-            GPLocationProvider lp = GPAppHelper.getMyLocation();
+            GPLocation lp = GPAppHelper.getMyLocation();
             myDate = new GPGregorianTime(lp);
             myDate.Today();
         }
@@ -1294,9 +1288,10 @@ namespace GCAL
 
             if (cmd.Equals("setmylocation"))
             {
-                GPLocationProvider lp = getLocationWithPostfix("");
+                GPLocation lp = getLocationWithPostfix("");
                 GPAppHelper.setMyLocation(lp);
-                GPAppHelper.saveMyLocation();
+                Properties.Settings.Default.MyLocation = lp.encodeLocation();
+                Properties.Settings.Default.Save();
             }
             else if (cmd.Equals("saveRecentLocation"))
             {
@@ -1305,8 +1300,8 @@ namespace GCAL
                 {
                     ppx = dictStrings["ppx"];
                 }
-                GPLocationProvider locProv = getLocationWithPostfix(ppx);
-                GPLocationProvider.putRecent(locProv);
+                GPLocation locProv = getLocationWithPostfix(ppx);
+                GPLocationListRecent.putRecent(locProv);
             }
             else if (cmd.Equals("clearlocationdata"))
             {
@@ -1451,7 +1446,7 @@ namespace GCAL
             }
             else if (cmd.Equals("setCurrentDate"))
             {
-                GPLocationProvider currentLocation = getLocationWithPostfix(dictStrings["ppx"]);
+                GPLocation currentLocation = getLocationWithPostfix(dictStrings["ppx"]);
                 GPGregorianTime gt = new GPGregorianTime(currentLocation);
                 dictStrings["startday"] = gt.getDay().ToString();
                 dictStrings["startmonth"] = gt.getMonth().ToString();
@@ -1459,7 +1454,7 @@ namespace GCAL
             }
             else if (cmd.Equals("gotoNextMonth"))
             {
-                GPLocationProvider currentLocation = getLocationWithPostfix(dictStrings["ppx"]);
+                GPLocation currentLocation = getLocationWithPostfix(dictStrings["ppx"]);
                 GPGregorianTime gt = new GPGregorianTime(currentLocation);
                 gt.setDate(getInt("startyear", gt.getYear()), getInt("startmonth", gt.getMonth()), getInt("startday", gt.getDay()));
                 gt.AddMonths(1);
@@ -1469,7 +1464,7 @@ namespace GCAL
             }
             else if (cmd.Equals("gotoNextYear"))
             {
-                GPLocationProvider currentLocation = getLocationWithPostfix(dictStrings["ppx"]);
+                GPLocation currentLocation = getLocationWithPostfix(dictStrings["ppx"]);
                 GPGregorianTime gt = new GPGregorianTime(currentLocation);
                 gt.setDate(getInt("startyear", gt.getYear()), getInt("startmonth", gt.getMonth()), getInt("startday", gt.getDay()));
                 gt.AddYears(1);
@@ -1479,23 +1474,23 @@ namespace GCAL
             }
             else if (cmd.Equals("setCurrentVedicDate"))
             {
-                GPLocationProvider currentLocation = getLocationWithPostfix(dictStrings["ppx"]);
+                GPLocation currentLocation = getLocationWithPostfix(dictStrings["ppx"]);
                 GPGregorianTime gt = new GPGregorianTime(currentLocation);
                 GPVedicTime va;
-                GPEngine.VCTIMEtoVATIME(gt, out va, gt.getLocationProvider());
+                GPEngine.VCTIMEtoVATIME(gt, out va, gt.getLocation());
                 dictStrings["starttithi"] = va.tithi.ToString();
                 dictStrings["startmasa"] = va.masa.ToString();
                 dictStrings["startgaurabda"] = va.gyear.ToString();
             }
             else if (cmd.Equals("vedicDateToGregorian"))
             {
-                GPLocationProvider currentLocation = getLocationWithPostfix(dictStrings["ppx"]);
+                GPLocation currentLocation = getLocationWithPostfix(dictStrings["ppx"]);
                 GPVedicTime va = new GPVedicTime();
                 va.tithi = getInt("starttithi", 0);
                 va.masa = getInt("startmasa", 11);
                 va.gyear = getInt("startgaurabda", 530);
                 GPGregorianTime gt = new GPGregorianTime(currentLocation);
-                GPEngine.VATIMEtoVCTIME(va, out gt, gt.getLocationProvider());
+                GPEngine.VATIMEtoVCTIME(va, out gt, gt.getLocation());
                 dictStrings["startday"] = gt.getDay().ToString();
                 dictStrings["startmonth"] = gt.getMonth().ToString();
                 dictStrings["startyear"] = gt.getYear().ToString();
@@ -1894,7 +1889,7 @@ namespace GCAL
             {
                 GPLocation loc = locationsList[locationsEnumerator];
                 locationsEnumerator++;
-                return string.Format("{0}<br>{1}<br>{2}", loc.getCity(), loc.getFullName(), loc.getId());
+                return string.Format("{0}<br>{1}<br>{2}", loc.getCity(), loc.format("{Ci} ({Cn}), {Las} {Los}, {Tzs}"), loc.getId());
             }
 
             return string.Empty;
@@ -1907,13 +1902,13 @@ namespace GCAL
 
         public string getRecentLocationsCount()
         {
-            return GPLocationProvider.getRecent().Count.ToString();
+            return GPLocationListRecent.getRecent().Count.ToString();
         }
 
         public string getRecentLocation(int i)
         {
-            GPLocationProvider lp = GPLocationProvider.getRecent()[i];
-            return String.Format("{0}<tr>{1}<tr>{2}<tr>{3}", lp.getType(), lp.getName(), lp.getLocationDescription(), i);
+            GPLocation lp = GPLocationListRecent.getRecent()[i];
+            return String.Format("{0}<tr>{1}<tr>{2}<tr>{3}", lp.getType(), lp.format("{Ci} ({Cn})"), lp.format("{Las} {Los}, {Tzs}"), i);
         }
 
         public string getTimezonesByName(string partName)
@@ -2054,17 +2049,17 @@ namespace GCAL
             return locs;
         }
 
-        public GPLocationProvider getLocationWithPostfix(string postfix)
+        public GPLocation getLocationWithPostfix(string postfix)
         {
-            GPLocationProvider locProv = null;
+            GPLocation locProv = null;
             string type = getString("locationtype" + postfix);
             if (type == "selected")
             {
                 GPLocation loc = GPLocationList.getShared().findLocationById(getInt("locationid" + postfix));
                 if (loc != null)
                 {
-                    locProv = new GPLocationProvider(loc);
-                    locProv.setType(GPLocationProvider.TYPE_SELECTED);
+                    locProv = new GPLocation(loc);
+                    locProv.setType(GPLocation.TYPE_SELECTED);
                 }
             }
 
@@ -2075,14 +2070,14 @@ namespace GCAL
                 loc.setLongitudeString(getString("locationlongitude" + postfix));
                 loc.setLatitudeString(getString("locationlatitude" + postfix));
                 loc.setTimeZoneName(getString("locationtimezone" + postfix));
-                locProv = new GPLocationProvider(loc);
-                locProv.setType(GPLocationProvider.TYPE_FULLENTER);
+                locProv = new GPLocation(loc);
+                locProv.setType(GPLocation.TYPE_FULLENTER);
             }
 
             if (type == "mylocation")
             {
                 locProv = GPAppHelper.getMyLocation();
-                locProv.setType(GPLocationProvider.TYPE_MYLOCATION);
+                locProv.setType(GPLocation.TYPE_MYLOCATION);
             }
 
             if (type == "recent")
@@ -2091,9 +2086,9 @@ namespace GCAL
                 int idx;
                 if (int.TryParse(idxs, out idx))
                 {
-                    if (idx >= 0 && idx < GPLocationProvider.getRecent().Count)
+                    if (idx >= 0 && idx < GPLocationListRecent.getRecent().Count)
                     {
-                        locProv = GPLocationProvider.getRecent()[idx];
+                        locProv = GPLocationListRecent.getRecent()[idx];
                     }
                 }
             }

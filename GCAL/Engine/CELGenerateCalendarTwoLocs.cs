@@ -13,12 +13,12 @@ namespace GCAL.Engine
         public GPGregorianTime startDateB = null;
         public int nCount = 1;
 
-        public void SetData(GPLocationProvider loa, GPLocationProvider lob, GPGregorianTime sd, int cn)
+        public void SetData(GPLocation loa, GPLocation lob, GPGregorianTime sd, int cn)
         {
             startDateA = new GPGregorianTime(sd);
-            startDateA.setLocationProvider(loa);
+            startDateA.setLocation(loa);
             startDateB = new GPGregorianTime(sd);
-            startDateB.setLocationProvider(lob);
+            startDateB.setLocation(lob);
             nCount = cn;
         }
 
@@ -55,8 +55,8 @@ namespace GCAL.Engine
 
         public CELGenerateCalendarTwoLocs(GCAL.ContentServer content)
         {
-            GPLocationProvider locProvA = null;
-            GPLocationProvider locProvB = null;
+            GPLocation locProvA = null;
+            GPLocation locProvB = null;
             GPGregorianTime startWesternTime = null;
             GPGregorianTime endWesternTime = null;
 

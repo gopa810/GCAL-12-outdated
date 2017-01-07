@@ -43,8 +43,16 @@ namespace GCAL
             task.Window = this;
             task.Invoke(this);
 
+            //
+            // initialization of App Helper
             this.Text = GPAppHelper.getLongVersionText();
-            //cnwc.Invoke(this);
+            GPLocation myLocation = new GPLocation();
+            myLocation.decodeLocation(Properties.Settings.Default.MyLocation);
+            GPAppHelper.setMyLocation(myLocation);
+
+            TestForm tf = new TestForm();
+            tf.Show();
+            //Testing.TestAlg();
         }
 
         public void SetUserInterfaceStrings()
@@ -248,7 +256,7 @@ namespace GCAL
                 {
                     if (results.ContainsKey(GPCalculationParameters.LocationProvider))
                     {
-                        GetStartDateDlg dlg2 = new GetStartDateDlg(results[GPCalculationParameters.LocationProvider] as GPLocationProvider);
+                        GetStartDateDlg dlg2 = new GetStartDateDlg(results[GPCalculationParameters.LocationProvider] as GPLocation);
                         dlg2.Picker.LoadInterfaceValues("getstartdate");
                         result = dlg2.ShowDialog();
                         if (result == System.Windows.Forms.DialogResult.Cancel)
@@ -272,7 +280,7 @@ namespace GCAL
                 {
                     if (results.ContainsKey(GPCalculationParameters.LocationProvider) && results.ContainsKey(GPCalculationParameters.StartVedicDate) && results.ContainsKey(GPCalculationParameters.StartWesternDate))
                     {
-                        GetPeriodLengthDlg dlg3 = new GetPeriodLengthDlg(results[GPCalculationParameters.LocationProvider] as GPLocationProvider,
+                        GetPeriodLengthDlg dlg3 = new GetPeriodLengthDlg(results[GPCalculationParameters.LocationProvider] as GPLocation,
                             results[GPCalculationParameters.StartWesternDate] as GPGregorianTime,
                             results[GPCalculationParameters.StartVedicDate] as GPVedicTime);
                         dlg3.Picker.LoadInterfaceValues("getperiod");
@@ -317,7 +325,7 @@ namespace GCAL
                 {
                     if (results.ContainsKey(GPCalculationParameters.LocationProvider))
                     {
-                        GetDateTimeDlg dlg5 = new GetDateTimeDlg(results[GPCalculationParameters.LocationProvider] as GPLocationProvider);
+                        GetDateTimeDlg dlg5 = new GetDateTimeDlg(results[GPCalculationParameters.LocationProvider] as GPLocation);
                         result = dlg5.ShowDialog();
                         if (result == System.Windows.Forms.DialogResult.Cancel)
                             return null;
@@ -461,32 +469,36 @@ namespace GCAL
             else if (task is CELCheckNextWeeksCalendar)
             {
                 CELCheckNextWeeksCalendar checktask = task as CELCheckNextWeeksCalendar;
-                HtmlElement htme = webBrowser1.Document.GetElementById("nefid");
-                if (htme != null)
+                HtmlElement htme = null;
+
+                if (Properties.Settings.Default.StartupScreen.Equals("nextFest"))
                 {
-                    StringBuilder sb = new StringBuilder();
-                    sb.Append("<table cellpadding=0 cellspacing=0 border=0 width=95%>");
-                    int ic = 0;
-                    foreach (GPStringPair dr in (task as CELCheckNextWeeksCalendar).lines)
+                    htme = webBrowser1.Document.GetElementById("info");
+                    if (htme != null)
                     {
-                        if (ic % 2 == 0)
-                            sb.Append("<tr style='background:#cceeee'>");
-                        else
-                            sb.Append("<tr>");
-                        sb.AppendFormat("<td><span style='font-weight:bold'>{0}</span><br>&nbsp;&nbsp;{1}</td></tr>", dr.Name, dr.Value);
-                        ic++;
+                        StringBuilder sb = new StringBuilder();
+                        sb.Append("<table cellpadding=0 cellspacing=0 border=0 width=95%>");
+                        int ic = 0;
+                        foreach (GPStringPair dr in (task as CELCheckNextWeeksCalendar).lines)
+                        {
+                            if (ic % 2 == 0)
+                                sb.Append("<tr style='background:#cceeee'>");
+                            else
+                                sb.Append("<tr>");
+                            sb.AppendFormat("<td><span style='font-weight:bold'>{0}</span><br>&nbsp;&nbsp;{1}</td></tr>", dr.Name, dr.Value);
+                            ic++;
+                        }
+                        sb.Append("</table>");
+                        htme.InnerHtml = sb.ToString();
                     }
-                    sb.Append("</table>");
-                    htme.InnerHtml = sb.ToString();
-
-                    SetDisplayProperty("nefidMain", "block");
                 }
-
-                htme = webBrowser1.Document.GetElementById("todaypart");
-                if (htme != null)
+                else if (Properties.Settings.Default.StartupScreen.Equals("today"))
                 {
-                    htme.InnerHtml = checktask.TodayString;
-                    SetDisplayProperty("todaypartMain", "block");
+                    htme = webBrowser1.Document.GetElementById("info");
+                    if (htme != null)
+                    {
+                        htme.InnerHtml = checktask.TodayString;
+                    }
                 }
             }
             else if (task is CELCheckUpdates)
@@ -699,7 +711,7 @@ namespace GCAL
                 GPGregorianTime start = aResultParams[GPCalculationParameters.StartWesternDate] as GPGregorianTime;
                 GPGregorianTime end = aResultParams[GPCalculationParameters.EndWesternDate] as GPGregorianTime;
 
-                task.SetData(aResultParams[GPCalculationParameters.LocationProvider] as GPLocationProvider,
+                task.SetData(aResultParams[GPCalculationParameters.LocationProvider] as GPLocation,
                     start, Convert.ToInt32(end.getJulianLocalNoon() - start.getJulianLocalNoon()));
 
                 task.Invoke(this);
@@ -709,7 +721,7 @@ namespace GCAL
                 CELGenerateCalendarPlusCore task = new CELGenerateCalendarPlusCore();
                 task.SearchText = searchText;
 
-                task.SetData(aResultParams[GPCalculationParameters.LocationProvider] as GPLocationProvider,
+                task.SetData(aResultParams[GPCalculationParameters.LocationProvider] as GPLocation,
                     aResultParams[GPCalculationParameters.StartWesternDate] as GPGregorianTime,
                     aResultParams[GPCalculationParameters.EndWesternDate] as GPGregorianTime);
                 task.Invoke(this);
@@ -722,8 +734,8 @@ namespace GCAL
                 GPGregorianTime start = aResultParams[GPCalculationParameters.StartWesternDate] as GPGregorianTime;
                 GPGregorianTime end = aResultParams[GPCalculationParameters.EndWesternDate] as GPGregorianTime;
 
-                task.SetData(aResultParams[GPCalculationParameters.LocationA] as GPLocationProvider,
-                    aResultParams[GPCalculationParameters.LocationB] as GPLocationProvider,
+                task.SetData(aResultParams[GPCalculationParameters.LocationA] as GPLocation,
+                    aResultParams[GPCalculationParameters.LocationB] as GPLocation,
                     start, Convert.ToInt32(end.getJulianLocalNoon() - start.getJulianLocalNoon()));
 
                 task.Invoke(this);
@@ -733,7 +745,7 @@ namespace GCAL
                 CELGenerateCoreEvents task = new CELGenerateCoreEvents();
                 task.SearchText = searchText;
 
-                task.SetData(aResultParams[GPCalculationParameters.LocationProvider] as GPLocationProvider,
+                task.SetData(aResultParams[GPCalculationParameters.LocationProvider] as GPLocation,
                     aResultParams[GPCalculationParameters.StartWesternDate] as GPGregorianTime,
                     aResultParams[GPCalculationParameters.EndWesternDate] as GPGregorianTime);
 
@@ -743,7 +755,7 @@ namespace GCAL
             {
                 CELGenerateMasaList task = new CELGenerateMasaList();
                 task.SearchText = searchText;
-                task.SetData(aResultParams[GPCalculationParameters.LocationProvider] as GPLocationProvider,
+                task.SetData(aResultParams[GPCalculationParameters.LocationProvider] as GPLocation,
                     (int)aResultParams[GPCalculationParameters.StartYear],
                     (int)aResultParams[GPCalculationParameters.CountYear]);
                 task.Invoke(this);
@@ -752,7 +764,7 @@ namespace GCAL
             {
                 CELGenerateAppearanceDay task = new CELGenerateAppearanceDay();
                 task.SearchText = searchText;
-                task.SetData(aResultParams[GPCalculationParameters.LocationProvider] as GPLocationProvider,
+                task.SetData(aResultParams[GPCalculationParameters.LocationProvider] as GPLocation,
                     aResultParams[GPCalculationParameters.WesternDateTime] as GPGregorianTime);
                 task.Invoke(this);
             }
@@ -826,7 +838,7 @@ namespace GCAL
         }
 
 
-        public void StartSearch(GPLocationProvider loc, string text)
+        public void StartSearch(GPLocation loc, string text)
         {
             CELSearch search = new CELSearch(text);
             search.Location = loc;

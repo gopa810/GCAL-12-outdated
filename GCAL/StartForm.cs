@@ -39,6 +39,9 @@ namespace GCAL
             webBrowser1.ObjectForScripting = content;
             content.LoadStartPage();
 
+            TestForm form = new TestForm();
+            form.Show();
+            //Testing.TestAlg();
             //content.specialCommand("#calcm;");
         }
 
@@ -62,7 +65,7 @@ namespace GCAL
             GPEventList.getShared().Save();
             GPCountryList.getShared().Save();
             GPTimeZoneList.sharedTimeZones().Save();
-            GPLocationProvider.SaveRecent();
+            GPLocationListRecent.SaveRecent();
         }
 
         private void button1_Click(object sender, EventArgs e)

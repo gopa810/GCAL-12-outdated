@@ -81,12 +81,6 @@
     <Compile Include="Controls\SearchResultsList.Designer.cs">
       <DependentUpon>SearchResultsList.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\TravellingEditControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\TravellingEditControl.Designer.cs">
-      <DependentUpon>TravellingEditControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="Dialogs\DialogEditString.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -225,7 +219,6 @@
     <Compile Include="Engine\CELGenerateAppearanceDay.cs" />
     <Compile Include="Engine\CELGenerateCalendar.cs" />
     <Compile Include="Engine\CELGenerateCalendarPlusCore.cs" />
-    <Compile Include="Engine\CELGenerateCalendarTravelling.cs" />
     <Compile Include="Engine\CELGenerateCalendarTwoLocs.cs" />
     <Compile Include="Engine\CELGenerateCoreEvents.cs" />
     <Compile Include="Engine\CELGenerateHtml.cs" />
@@ -290,9 +283,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\TimeRangeLengthControl.resx">
       <DependentUpon>TimeRangeLengthControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\TravellingEditControl.resx">
-      <DependentUpon>TravellingEditControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\DialogEditString.resx">
       <DependentUpon>DialogEditString.cs</DependentUpon>

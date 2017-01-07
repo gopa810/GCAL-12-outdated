@@ -7,14 +7,14 @@ namespace GCAL.Base
 {
     public class GPAppDayResults
     {
-        public GPLocationProvider location = null;
+        public GPLocation location = null;
         public GPGregorianTime evente;
         public GPAstroData details = new GPAstroData();
         public Boolean b_adhika;
 
         public List<GPStringPair> output = new List<GPStringPair>();
 
-        public void calculateAppearanceDayData(GPLocationProvider aLocation, GPGregorianTime aEvente)
+        public void calculateAppearanceDayData(GPLocation aLocation, GPGregorianTime aEvente)
         {
             //MOONDATA moon;
             //SUNDATA sun;
@@ -32,9 +32,11 @@ namespace GCAL.Base
             //GetNextTithiStart(m_earth, vc, dnext);
             //vcsun.setDayHours(vcsun.getDayHours() - vcsun.getTimeZoneOffsetHours() / 24.0);
             vcsun.normalizeValues();
-            d.sun.calculateCoordinatesMethodC(vcsun, -1);
+            GPSunMethod.SunCoords coords = new GPSunMethod.SunCoords();
+            d.sun.calculateCoordinatesMethodC(vcsun, vcsun.getDayHours()*360.0, coords);
+            d.sun.rise.eclipticalLongitude = coords.eclipticalLongitude;
             d.moon.MoonCalc(vcsun.getJulianGreenwichTime());
-            d.msDistance = GPMath.putIn360(d.moon.longitude_deg - d.sun.eclipticalLongitude - 180.0);
+            d.msDistance = GPMath.putIn360(d.moon.longitude_deg - coords.eclipticalLongitude - 180.0);
             d.msAyanamsa = GPAyanamsa.GetAyanamsa(vc.getJulianGreenwichTime());
 
             // tithi
@@ -51,11 +53,11 @@ namespace GCAL.Base
             d.nNaksatraElapse = GPMath.frac(dd) * 100.0;
             d.nMasa = d.determineMasa(vc, out d.nGaurabdaYear);
             d.nMoonRasi = GPEngine.GetRasi(d.moon.longitude_deg, d.msAyanamsa);
-            d.nSunRasi = GPEngine.GetRasi(d.sun.eclipticalLongitude, d.msAyanamsa);
+            d.nSunRasi = GPEngine.GetRasi(d.sun.rise.eclipticalLongitude, d.msAyanamsa);
 
             if (d.nMasa == GPMasa.ADHIKA_MASA)
             {
-                d.nMasa = GPEngine.GetRasi(d.sun.eclipticalLongitude, d.msAyanamsa);
+                d.nMasa = GPEngine.GetRasi(d.sun.rise.eclipticalLongitude, d.msAyanamsa);
                 b_adhika = true;
             }
             string dstApplicable = "";
@@ -63,7 +65,7 @@ namespace GCAL.Base
             output.Add(new GPStringPair(GPStrings.getString(25), "", true));
             output.Add(new GPStringPair(GPStrings.getString(7), vc.ToString()));
             output.Add(new GPStringPair(GPStrings.getString(8), vc.getShortTimeString(true, ref dstApplicable)));
-            output.Add(new GPStringPair(GPStrings.getString(9), vc.getLocation().getFullName()));
+            output.Add(new GPStringPair(GPStrings.getString(9), vc.getLocation().format("{Ci} ({Cn}), {Las} {Los}, {Tzs}")));
             //output.Add(new GPStringPair(gstr[10], vc.getLocation().getLatitudeString()));
             //output.Add(new GPStringPair(gstr[11], vc.getLocation().getLongitudeString()));
             //output.Add(new GPStringPair(gstr[12], vc.getLocation().getTimeZoneName()));
@@ -96,7 +98,7 @@ namespace GCAL.Base
 
             va.tithi = d.nTithi;
             va.masa = d.nMasa;
-            va.gyear = GPGaurabdaYear.getGaurabdaYear(vc, location);
+            va.gyear = GPGaurabdaYear.calculateGaurabdaYear(vc, location);
             if (va.gyear < d.nGaurabdaYear)
                 va.gyear = d.nGaurabdaYear;
 

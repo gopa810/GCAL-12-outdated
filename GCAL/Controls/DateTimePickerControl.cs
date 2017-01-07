@@ -16,7 +16,7 @@ namespace GCAL.Controls
         private bool keepSycnhro = true;
         private string prevYear = string.Empty;
         private string prevGaurabda = string.Empty;
-        private GPLocationProvider location = null;
+        private GPLocation location = null;
 
         public void SetUserInterfaceStrings()
         {
@@ -37,7 +37,7 @@ namespace GCAL.Controls
         }
 
 
-        public GPLocationProvider LocationPlace
+        public GPLocation LocationPlace
         {
             get
             {

@@ -63,7 +63,7 @@ namespace GCAL.Base
 
         public GPAppHelper()
         {
-            GPLocationProvider loc = getMyLocation();
+            GPLocation loc = getMyLocation();
             TodayDate = new GPGregorianTime(loc);
             TodayDate.Today();
             YesterdayDate = new GPGregorianTime(loc);
@@ -75,68 +75,25 @@ namespace GCAL.Base
         }
 
 
-        private static GPLocationProvider myLocation = null;
+        private static GPLocation myLocation = null;
 
-        public static GPLocationProvider getMyLocation()
+        public static GPLocation getMyLocation()
         {
             if (myLocation == null)
             {
-                myLocation = new GPLocationProvider();
-                bool bSucc = false;
-                string possibleFile = GPFileHelper.getAppDataFile("mylocation.xml");
-                if (File.Exists(possibleFile))
-                {
-                    try
-                    {
-                        myLocation.loadXml(possibleFile);
-                        bSucc = true;
-                    }
-                    catch
-                    {
-                    }
-                }
-
-                if (bSucc == false)
-                {
-                    NumberFormatInfo fmt = new NumberFormatInfo();
-                    GPLocation loc = new GPLocation();
-                    loc.setCity(GPUserDefaults.StringForKey("myloc.city", "Mayapur"));
-                    loc.setCountryCode(GPUserDefaults.StringForKey("myloc.country", "IN"));
-                    loc.setLatitudeNorthPositive(double.Parse(GPUserDefaults.StringForKey("myloc.lat", "23.423413"), fmt));
-                    loc.setLongitudeEastPositive(double.Parse(GPUserDefaults.StringForKey("myloc.lon", "88.388079"), fmt));
-                    loc.setTimeZoneName(GPUserDefaults.StringForKey("myloc.tzname", "Asia/Calcutta"));
-                    myLocation.setDefaultLocation(loc);
-                }
+                GPLocation loc = new GPLocation();
+                loc.decodeLocation("Mayapur;IN;88.388079;23.423413;Asia/Calcutta;2;0.0");
+                myLocation = loc;
             }
 
             return myLocation;
         }
 
-        public static void saveMyLocation()
-        {
-            string possibleFile = GPFileHelper.getAppDataFile("mylocation.xml");
-            try
-            {
-                if (myLocation != null)
-                    myLocation.saveXml(possibleFile);
-            }
-            catch
-            {
-            }
-
-        }
-
-        public static void setMyLocation(GPLocationProvider value)
+        public static void setMyLocation(GPLocation value)
         {
             if (value != null)
             {
                 myLocation = value;
-
-                GPUserDefaults.SetStringForKey("myloc.city", value.getCity());
-                GPUserDefaults.SetStringForKey("myloc.country", value.getLocation(0).getCountryCode());
-                GPUserDefaults.SetStringForKey("myloc.lat", value.GetLatitudeNorthPositive().ToString());
-                GPUserDefaults.SetStringForKey("myloc.lon", value.GetLongitudeEastPositive().ToString());
-                GPUserDefaults.SetStringForKey("myloc.tzname", value.getLocation(0).getTimeZoneName());
             }
         }
 
@@ -470,12 +427,12 @@ namespace GCAL.Base
             sb.AppendLine("</script>");
             sb.AppendLine("</head>");
             sb.AppendLine("<body>");
-            sb.AppendLine("<table align=center><tr><td valign=top width=33%>");
+            //sb.AppendLine("<table align=center><tr><td valign=top width=33%>");
 
             
-            sb.AppendLine(GenerateAnnouncementHtmlString(GPStrings.getString(451), GPStrings.getString(453), "nvid", false));
+            //sb.AppendLine(GenerateAnnouncementHtmlString(GPStrings.getString(451), GPStrings.getString(453), "nvid", false));
 
-
+            /*
             string tip = NextStartupTip();
             if (tip != null)
             {
@@ -487,12 +444,11 @@ namespace GCAL.Base
             }
 
             sb.AppendLine("</td><td valign=top>");
+            */
+            sb.AppendLine("<div id='info' style='align:center;padding:5px'></div>");
 
-            sb.AppendLine(GenerateAnnouncementHtmlString(GPStrings.getString(452), GPStrings.getString(454), "nefid", false));
-            sb.AppendLine(GenerateAnnouncementHtmlString(null, GPStrings.getString(454), "todaypart", false));
 
-
-            sb.AppendLine("</td></tr></table>");
+            //sb.AppendLine("</td></tr></table>");
             sb.AppendLine("</body>");
             sb.AppendLine("</html>");
 

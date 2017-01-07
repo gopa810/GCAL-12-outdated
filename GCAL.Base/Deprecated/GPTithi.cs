@@ -215,7 +215,7 @@ namespace GCAL.Base
             double xj;
             GPMoon moon = new GPMoon();
             GPGregorianTime d = new GPGregorianTime(startDate);
-            GPGregorianTime xd = new GPGregorianTime(startDate.getLocationProvider());
+            GPGregorianTime xd = new GPGregorianTime(startDate.getLocation());
             double scan_step = 0.5;
             int prev_tit = 0;
             int new_tit = -1;
@@ -286,7 +286,7 @@ namespace GCAL.Base
             double xj;
             GPMoon moon = new GPMoon();
             GPGregorianTime d = new GPGregorianTime(startDate);
-            GPGregorianTime xd = new GPGregorianTime(startDate.getLocationProvider());
+            GPGregorianTime xd = new GPGregorianTime(startDate.getLocation());
             double scan_step = 0.5;
             int prev_tit = 0;
             int new_tit = -1;
@@ -342,7 +342,7 @@ namespace GCAL.Base
         /*  Calculates Date of given Tithi                                   */
         /*********************************************************************/
 
-        public static GPGregorianTime CalcTithiDate(int nGYear, int nMasa, int nPaksa, int nTithi, GPLocationProvider earth)
+        public static GPGregorianTime CalcTithiDate(int nGYear, int nMasa, int nPaksa, int nTithi, GPLocation earth)
         {
             int i = 0, gy = 0;
             GPGregorianTime d = new GPGregorianTime(earth);
@@ -484,20 +484,20 @@ namespace GCAL.Base
         /*                                                                   */
         /*********************************************************************/
 
-        public static GPGregorianTime CalcTithiEnd(int nGYear, int nMasa, int nPaksa, int nTithi, GPLocationProvider earth, out GPGregorianTime endTithi)
+        public static GPGregorianTime CalcTithiEnd(int nGYear, int nMasa, int nPaksa, int nTithi, GPLocation earth, out GPGregorianTime endTithi)
         {
             GPGregorianTime d;
 
             d = GPGaurabdaYear.getFirstDayOfYear(earth, nGYear + 1486);
             d.setDayHours(0.5);
-            d.setLocationProvider(earth);
+            d.setLocation(earth);
 
             return CalcTithiEndEx(d, nGYear, nMasa, nPaksa, nTithi, earth, out endTithi);
         }
 
 
 
-        public static GPGregorianTime CalcTithiEndEx(GPGregorianTime vcStart, int GYear, int nMasa, int nPaksa, int nTithi, GPLocationProvider earth, out GPGregorianTime endTithi)
+        public static GPGregorianTime CalcTithiEndEx(GPGregorianTime vcStart, int GYear, int nMasa, int nPaksa, int nTithi, GPLocation earth, out GPGregorianTime endTithi)
         {
             int i, gy, nType;
             GPGregorianTime d = new GPGregorianTime(earth);

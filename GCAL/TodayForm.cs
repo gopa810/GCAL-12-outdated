@@ -17,7 +17,7 @@ namespace GCAL
     public partial class TodayForm : Form
     {
         private static TodayForm shared_today_form = null;
-        private GPLocationProvider myLocation = null;
+        private GPLocation myLocation = null;
         private GPGregorianTime myDate = null;
         private int scaleIndex = 3;
         private int[] scales = new int[] { 8, 9, 10, 12, 14, 17, 20, 25, 30, 40 };
@@ -121,7 +121,7 @@ namespace GCAL
 
         public void InitializeData()
         {
-            GPLocationProvider loc = GPAppHelper.getMyLocation();
+            GPLocation loc = GPAppHelper.getMyLocation();
 
             myLocation = loc;
 

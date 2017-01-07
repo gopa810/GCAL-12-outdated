@@ -18,7 +18,7 @@ namespace GCAL.Base
             GPCalendarDay pvd, prevd, nextd;
             string SPACE_BEFORE_LINE = " , ";
             GPGregorianTime vc = new GPGregorianTime(daybuff.m_vcStart);
-            GPLocation loc = daybuff.CurrentLocation.getLocation(0);
+            GPLocation loc = daybuff.CurrentLocation;
 
             DateTime st = new DateTime();
 
@@ -136,7 +136,7 @@ namespace GCAL.Base
                     dayText.Append("\n");
                     initialLength += dayText.Length;
 
-                    if (pvd.astrodata.sun.eclipticalLongitude < 0.0)
+                    if (pvd.astrodata.sun.rise.eclipticalLongitude < 0.0)
                     {
                         goto _resolve_text;
                     }
@@ -229,7 +229,7 @@ namespace GCAL.Base
                         /*str2 = string.Format("DTEND;VALUE=DATE:{0:0000}{0:00}{0:00}T{0:00}{0:00}{0:00}\n", pvd.date.year, pvd.date.month, pvd.date.day,
                             pvd.astrodata.sun.set.hour, pvd.astrodata.sun.set.min, pvd.astrodata.sun.set.sec);
                         m_text.Append(str2);*/
-                        str2 = string.Format("LOCATION:{0}\n", loc.getFullName());
+                        str2 = loc.format("LOCATION: {Ci} ({Cn}), {Las} {Los}, {Tzs}\n");
                         str2.Replace(",", "\\,");
                         m_text.Append(str2);
                         m_text.Append("SUMMARY:");

@@ -11,7 +11,7 @@ namespace GCAL.Base
         protected double pJulianDate = 0;
         protected int currentPosition = -1;
         protected GPMoon pMoon = new GPMoon();
-        protected GPSunData pSun = new GPSunData();
+        protected GPSunMethodSimple pSun = new GPSunMethodSimple();
 
         public void setStartDate(GPGregorianTime st)
         {

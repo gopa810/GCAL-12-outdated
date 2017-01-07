@@ -27,7 +27,7 @@ namespace GCAL.Base
             m_text.Append(str2);
             m_text.Append("\nX-WR-TIMEZONE:");
 
-            m_text.Append(daybuff.CurrentLocation.getLocation(0).getTimeZoneName());
+            m_text.Append(daybuff.CurrentLocation.getTimeZoneName());
             m_text.Append("\n");
 
             m_text.Append("CALSCALE:GREGORIAN\nMETHOD:PUBLISH\n");
@@ -87,7 +87,7 @@ namespace GCAL.Base
                     dayText.AppendLine();
                     initialLength += dayText.Length;
 
-                    if (pvd.astrodata.sun.eclipticalLongitude >= 0.0)
+                    if (pvd.astrodata.sun.rise.eclipticalLongitude >= 0.0)
                     {
 
                         if (pvd.hasEkadasiParana())
@@ -137,7 +137,7 @@ namespace GCAL.Base
                         str2 = string.Format("DTEND:{0:0000}{1:00}{2:00}T{3:00}{4:00}{5:00}\n", pvd.date.getYear(), pvd.date.getMonth(), pvd.date.getDay(),
                             pvd.astrodata.sun.set.getHour(), pvd.astrodata.sun.set.getMinute(), pvd.astrodata.sun.set.getSecond());
                         m_text.Append(str2);
-                        str2 = string.Format("LOCATION:{0}\n", pvd.date.getLocation().getFullName());
+                        str2 = string.Format("LOCATION:{0}\n", pvd.date.getLocation().format("{Ci} ({Cn}), {Las} {Los}, {Tzs}"));
                         str2.Replace(",", "\\,");
                         m_text.Append(str2);
                         m_text.Append("SUMMARY:");

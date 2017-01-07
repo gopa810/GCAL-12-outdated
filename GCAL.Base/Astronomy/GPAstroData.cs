@@ -8,7 +8,7 @@ namespace GCAL.Base
 {
     public class GPAstroData
     {
-        private GPLocationProvider p_location = null;
+        private GPLocationListRecent p_location = null;
 
         private GPGregorianTime p_date = null;
 
@@ -54,12 +54,12 @@ namespace GCAL.Base
             Copy(dt);
         }
 
-        public void setLocation(GPLocationProvider value)
+        public void setLocation(GPLocationListRecent value)
         {
             p_location = value;
         }
 
-        public GPLocationProvider getLocation()
+        public GPLocationListRecent getLocation()
         {
             return p_location;
         }
@@ -103,7 +103,7 @@ namespace GCAL.Base
         /*                                                                   */
         /*********************************************************************/
 
-        public int calculateDayData(GPGregorianTime aDate, GPLocationProvider earth)
+        public int calculateDayData(GPGregorianTime aDate, GPLocation earth)
         {
             double d;
             GPAstroData day = this;
@@ -122,7 +122,7 @@ namespace GCAL.Base
 
             // correct_parallax(day.moon, jdate, earth.latitude_deg, earth.longitude_deg);
 
-            day.msDistance = GPMath.putIn360(day.moon.longitude_deg - day.sun.eclipticalLongitude - 180.0);
+            day.msDistance = GPMath.putIn360(day.moon.longitude_deg - day.sun.rise.eclipticalLongitude - 180.0);
             day.msAyanamsa = GPAyanamsa.GetAyanamsa(jdate);
 
             // tithi
@@ -139,7 +139,7 @@ namespace GCAL.Base
             day.nNaksatraElapse = GPMath.frac(d) * 100.0;
 
             // yoga
-            d = GPMath.putIn360(day.moon.longitude_deg + day.sun.eclipticalLongitude - 2 * day.msAyanamsa);
+            d = GPMath.putIn360(day.moon.longitude_deg + day.sun.rise.eclipticalLongitude - 2 * day.msAyanamsa);
             d = (d * 3.0) / 40.0;
             day.nYoga = Convert.ToInt32(Math.Floor(d));
             day.nYogaElapse = GPMath.frac(d) * 100.0;
@@ -148,7 +148,7 @@ namespace GCAL.Base
             day.nMasa = -1;
 
             // rasi
-            day.nSunRasi = GPEngine.GetRasi(day.sun.eclipticalLongitude, day.msAyanamsa);
+            day.nSunRasi = GPEngine.GetRasi(day.sun.rise.eclipticalLongitude, day.msAyanamsa);
             day.nMoonRasi = GPEngine.GetRasi(day.moon.longitude_deg, day.msAyanamsa);
 
             setDate(date);
@@ -165,7 +165,7 @@ namespace GCAL.Base
             if (p_tithi_arunodaya < 0)
             {
                 GPCelestialBodyCoordinates moonCoord = GPAstroEngine.moon_coordinate(sun.arunodaya.getJulianGreenwichTime());
-                double d = GPMath.putIn360(moonCoord.eclipticalLongitude - sun.longitude_arun_deg - 180) / 12.0;
+                double d = GPMath.putIn360(moonCoord.eclipticalLongitude - sun.arunodaya.eclipticalLongitude - 180) / 12.0;
                 p_tithi_arunodaya = Convert.ToInt32(Math.Floor(d));
             }
             return p_tithi_arunodaya;
@@ -177,7 +177,7 @@ namespace GCAL.Base
             if (p_tithi_sunset < 0)
             {
                 GPCelestialBodyCoordinates moonCoord = GPAstroEngine.moon_coordinate(sun.set.getJulianGreenwichTime());
-                double d = GPMath.putIn360(moonCoord.eclipticalLongitude - sun.longitude_set_deg - 180) / 12.0;
+                double d = GPMath.putIn360(moonCoord.eclipticalLongitude - sun.set.eclipticalLongitude - 180) / 12.0;
                 p_tithi_sunset = Convert.ToInt32(Math.Floor(d));
             }
             return p_tithi_sunset;
@@ -196,6 +196,7 @@ namespace GCAL.Base
             GPAstroData day = this;
             GPGregorianTime date = new GPGregorianTime(aDate);
             const int PREV_MONTHS = 6;
+            GPLocation earth = aDate.getLocation();
 
             double[] L = new double[8];
             GPGregorianTime[] C = new GPGregorianTime[8];
@@ -212,41 +213,27 @@ namespace GCAL.Base
             // and results are in argument DAYDATA day
             // *DayCalc(date, earth, day, moon, sun);*
 
-            GPConjunction cit = new GPConjunction();
-            cit.setStartDate(date);
-            for (n = 1; n >= 0; n--)
-            {
-                cit.getNext();
-                R[n] = cit.getCurrentPosition();
-            }
-            //L[1] = /*Long[0] =*/ GPConjunction.GetNextConjunction(date, ref C[1], false, earth);
-            //L[0] = /*LongA   =*/ GPConjunction.GetNextConjunction(C[1], ref C[0], true, earth);
 
-            cit = new GPConjunction();
-            cit.setStartDate(date);
-            for (n = 2; n < 8; n++)
-            {
-                cit.getPrev();
-                R[n] = cit.getCurrentPosition();
-            }
+            L[1] = /*Long[0] =*/ GPConjunction.GetNextConjunction(date, out C[1], false, earth);
+            L[0] = /*LongA   =*/ GPConjunction.GetNextConjunction(C[1], out C[0], true, earth);
+
             // on Pratipat (nTithi == 15) we need to look for previous conjunction
             // but this conjunction can occur on this date before sunrise
             // so we need to include this very date into looking for conjunction
             // on other days we cannot include it
             // and exclude it from looking for next because otherwise that will cause
             // incorrect detection of Purusottama adhika masa
-            /*L[2] = GPConjunction.GetPrevConjunction(date, ref C[2], false, earth);
+            L[2] = GPConjunction.GetPrevConjunction(date, out C[2], false, earth);
 
             for (n = 3; n < PREV_MONTHS; n++)
-                L[n] = GPConjunction.GetPrevConjunction(C[n - 1], ref C[n], true, earth);
+                L[n] = GPConjunction.GetPrevConjunction(C[n - 1], out C[n], true, earth);
 
             for (n = 0; n < PREV_MONTHS; n++)
             {
-                int nr = GPEngine.GetRasi(L[n], GPAyanamsa.GetAyanamsa(C[n].getJulianLocalNoon()));
+                R[n] = GPEngine.GetRasi(L[n], GPAyanamsa.GetAyanamsa(C[n].getJulianLocalNoon()));
                 //if (nr != R[n])
                 //    Debugger.Log(0, "", String.Format("Different rasi {0} <=> {1}  for input date: {2}", nr, R[n], date));
-                R[n] = nr;
-            }*/
+            }
 
             /*	TRACE("TEST Date: %d %d %d\n", date.day, date.month, date.year);
                 TRACE("FOUND CONJ Date: %d %d %d rasi: %d\n", C[1].day, C[1].month, C[1].year, R[1]);
@@ -341,17 +328,23 @@ namespace GCAL.Base
                     nGaurabdaYear--;
             }
 
+            Debugger.Log(0, "", String.Format("---- MASA CALC --------------------{0} {1} -\n", date.getLongDateString(), date.getLongTimeString()));
+            Debugger.Log(0, "", " No   Rasi   Long     Date\n");
+            for (int i = 0; i < PREV_MONTHS; i++)
+            {
+                Debugger.Log(0, "", String.Format(" {0:#0}   {1:#0}  {2:000.000}    {3}  {4}\n", i, R[i], L[i], C[i].getLongDateString(), C[i].getLongTimeString()));
+            }
+            Debugger.Log(0, "", "\n\n");
 
             return masa;
 
         }
 
-        public static int calculateNaksatraAtMidnight(GPGregorianTime date, GPLocationProvider earth)
+        public static int calculateNaksatraAtMidnight(GPGregorianTime date, GPLocation earth)
         {
             double d;
             double jdate;
             GPMoon moon = new GPMoon();
-            GPSun sun = new GPSun();
 
             jdate = date.getJulianGreenwichNoon() + 0.5;
             moon.MoonCalc(jdate);

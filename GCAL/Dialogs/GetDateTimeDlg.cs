@@ -13,9 +13,9 @@ namespace GCAL.Dialogs
 {
     public partial class GetDateTimeDlg : Form
     {
-        private GPLocationProvider location = null;
+        private GPLocation location = null;
 
-        public GetDateTimeDlg(GPLocationProvider loc)
+        public GetDateTimeDlg(GPLocation loc)
         {
             InitializeComponent();
             location = loc;

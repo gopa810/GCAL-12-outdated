@@ -14,7 +14,7 @@ namespace GCAL.Dialogs
 {
     public partial class GetPeriodLengthDlg : Form
     {
-        public GetPeriodLengthDlg(GPLocationProvider loc, GPGregorianTime startW, GPVedicTime startA)
+        public GetPeriodLengthDlg(GPLocation loc, GPGregorianTime startW, GPVedicTime startA)
         {
             InitializeComponent();
 

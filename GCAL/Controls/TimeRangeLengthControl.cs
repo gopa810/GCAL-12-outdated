@@ -15,7 +15,7 @@ namespace GCAL.Controls
     {
         private string prevCount = "1";
 
-        private GPLocationProvider location = null;
+        private GPLocation location = null;
         private GPGregorianTime startWesternTime = null;
         private GPGregorianTime endWesternTime = null;
         private GPVedicTime startVedicTime = null;
@@ -45,7 +45,7 @@ namespace GCAL.Controls
 
         }
 
-        public void SetData(GPLocationProvider loca, GPGregorianTime startWesternDate, GPVedicTime startVedicDate)
+        public void SetData(GPLocation loca, GPGregorianTime startWesternDate, GPVedicTime startVedicDate)
         {
             location = loca;
             startWesternTime = startWesternDate;

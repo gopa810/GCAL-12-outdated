@@ -556,5 +556,17 @@ namespace GCAL.Base
 
             return joinList(data, "<sep>");
         }
+
+        public static GPTimeZone UTC0 
+        {
+            get
+            {
+                GPTimeZone tz = new GPTimeZone();
+                tz.Name = "UTC+0";
+                tz.NormalAbbr = "utc";
+                tz.OffsetSeconds = 0;
+                return tz;
+            }
+        }
     }
 }

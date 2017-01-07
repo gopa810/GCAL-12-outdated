@@ -41,7 +41,7 @@ namespace GCAL.Dialogs
 
         private void locationPickerControl1_SelectedLocationChange(object sender, EventArgs data)
         {
-            GPLocationProvider loc = locationPickerControl1.SelectedLocation;
+            GPLocation loc = locationPickerControl1.SelectedLocation;
             button2.Enabled = (loc != null);
         }
 
@@ -79,7 +79,7 @@ namespace GCAL.Dialogs
             }
         }
 
-        public GPLocationProvider SelectedLocation
+        public GPLocation SelectedLocation
         {
             get
             {

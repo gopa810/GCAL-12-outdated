@@ -19,7 +19,7 @@ namespace GCAL.Base
             int new_naks = -1;
 
             double xj;
-            GPGregorianTime xd = new GPGregorianTime(startDate.getLocationProvider());
+            GPGregorianTime xd = new GPGregorianTime(startDate.getLocation());
 
             moon.MoonCalc(jday);
             //l1 = GPMath.putIn360(moon.longitude_deg - ayanamsa);

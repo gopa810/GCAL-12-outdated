@@ -9,11 +9,11 @@ namespace GCAL.Engine
 {
     public class CELGenerateMasaList: CELGenerateHtml
     {
-        public GPLocationProvider location = null;
+        public GPLocation location = null;
         public int startYear = 2013;
         public int count = 1;
 
-        public void SetData(GPLocationProvider lo, int sy, int cy)
+        public void SetData(GPLocation lo, int sy, int cy)
         {
             location = lo;
             startYear = sy;
@@ -75,7 +75,7 @@ namespace GCAL.Engine
 
         public CELGenerateMasaList(GCAL.ContentServer content)
         {
-            GPLocationProvider locProv = null;
+            GPLocation locProv = null;
 
             locProv = content.getLocationWithPostfix("");
 

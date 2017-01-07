@@ -17,6 +17,9 @@ namespace GCAL
         public TestForm()
         {
             InitializeComponent();
+            UpdateSunPosValues();
+
+
         }
 
         public void ReportProgressBase(double d)
@@ -28,7 +31,7 @@ namespace GCAL
             GPLocation loc;
             content.findLocations("Bratislava");
             loc = content.getLocation(0);
-            GPLocationProvider provider = new GPLocationProvider(loc);
+            GPLocation provider = new GPLocation(loc);
             int nCount = 365;
 
             GPGregorianTime startDateA = new GPGregorianTime(loc);
@@ -40,12 +43,12 @@ namespace GCAL
 
             if (startDateA != null)
             {
-                GPSun.sunPosMethod = GPSun.SUNPOSMETHOD_CALCULATOR;
+//                GPSun.sunPosMethod = GPSun.SUNPOSMETHOD_CALCULATOR;
                 calA.CalculateCalendar(startDateA, nCount);
-                GPSun.sunPosMethod = GPSun.SUNPOSMETHOD_CALCULATOREX;
+                //GPSun.sunPosMethod = GPSun.SUNPOSMETHOD_CALCULATOREX;
                 calB.CalculateCalendar(startDateA, nCount);
             }
-            GPSun.sunPosMethod = GPSun.SUNPOSMETHOD_CALCULATOR;
+            //GPSun.sunPosMethod = GPSun.SUNPOSMETHOD_CALCULATOR;
 
             StringBuilder sb = new StringBuilder();
 
@@ -103,6 +106,49 @@ namespace GCAL
                 sba.AppendFormat("{0} : {1} {2} {3}\n", jd+d, ml, sl1, sl2);
             }
             richTextBox2.Text = sba.ToString();
+        }
+
+        private void trackBar1_ValueChanged(object sender, EventArgs e)
+        {
+            UpdateSunPosValues();
+        }
+
+        private void UpdateSunPosValues()
+        {
+            GPLocation location = new GPLocation();
+            location.setCity("Vrakun");
+            location.setCountryCode("SK");
+            location.setLatitudeNorthPositive(47.93922);
+            location.setLongitudeEastPositive(17.59145);
+            location.setTimeZoneName("Europe/Bratislava");
+
+
+            GPGregorianTime time = new GPGregorianTime(location);
+            time.setDate((int)numericUpDown1.Value, (int)numericUpDown2.Value, (numericUpDown3.Value <= GPGregorianTime.GetMonthMaxDays((int)numericUpDown1.Value, (int)numericUpDown2.Value) ? (int)numericUpDown3.Value : GPGregorianTime.GetMonthMaxDays((int)numericUpDown1.Value, (int)numericUpDown2.Value)));
+            time.setDayHours((int)numericUpDown4.Value, (int)numericUpDown5.Value, (int)numericUpDown6.Value);
+
+            GPCelestialBodyCoordinates coord = GPAstroEngine.sun_coordinate(time.getJulianGreenwichTime());
+
+            GPAstroEngine.calcHorizontal(coord, location);
+
+            //Log("Sun Coordinates: Azimut: {0}, Elevation: {1}", coord.azimuth, coord.elevation);
+
+            textBox1.Text = coord.eclipticalLongitude.ToString();
+            textBox2.Text = coord.eclipticalLatitude.ToString();
+            textBox3.Text = coord.right_ascession.ToString();
+            textBox4.Text = coord.declination.ToString();
+            textBox5.Text = GPMath.putIn360(coord.azimuth + 180).ToString();
+            textBox6.Text = coord.elevation.ToString();
+
+            double jd = time.getJulianGreenwichTime();
+
+            textBox7.Text = time.getShortDateString() + " " + time.getLongTimeString() + " JD: " + jd.ToString();
+
+            GPMoon moon = new GPMoon();
+            moon.MoonCalc(time.getJulianGreenwichTime());
+            textBox8.Text = moon.longitude_deg.ToString();
+            textBox9.Text = moon.latitude_deg.ToString();
+
         }
     }
 }

@@ -8,12 +8,18 @@ namespace GCAL.Base
 {
     public class GPLocation : GPObserver
     {
+        public static readonly int TYPE_MYLOCATION = 1;
+        public static readonly int TYPE_SELECTED = 2;
+        public static readonly int TYPE_FULLENTER = 3;
+
+
         private static int globalLocationId = 0;
 
         private string city = string.Empty;
         private string countryCode = string.Empty;
         private string timezoneName = "GMT";
         private GPTimeZone timezone = null;
+        private int type = TYPE_SELECTED;
         private int _id = 0;
 
         private static int getNextId()
@@ -38,85 +44,21 @@ namespace GCAL.Base
             timezone = loc.timezone;
         }
 
-        public static GPLocation getEmptyLocation()
-        {
-            return new GPLocation();
-        }
-
-        public bool Equals(GPLocation loc)
-        {
-            return (loc.getCity().Equals(getCity())
-                && Math.Abs(loc.GetLatitudeNorthPositive() - GetLatitudeNorthPositive()) < 0.01
-                && Math.Abs(loc.GetLongitudeEastPositive() - GetLongitudeEastPositive()) < 0.01) ;
-        }
+        #region Getters/Setters
 
         public int getId()
         {
             return _id;
         }
 
-        public void writeToXmlNode(XmlElement elem, XmlDocument doc)
+        public void setType(int i)
         {
-            XmlElement e1;
-
-            e1 = doc.CreateElement("Latitude");
-            elem.AppendChild(e1);
-            e1.InnerText = GetLatitudeNorthPositive().ToString();
-
-            e1 = doc.CreateElement("Longitude");
-            elem.AppendChild(e1);
-            e1.InnerText = GetLongitudeEastPositive().ToString();
-
-            e1 = doc.CreateElement("Altitude");
-            elem.AppendChild(e1);
-            e1.InnerText = GetAltitude().ToString();
-
-            e1 = doc.CreateElement("City");
-            elem.AppendChild(e1);
-            e1.InnerText = city;
-
-            e1 = doc.CreateElement("CountryCode");
-            elem.AppendChild(e1);
-            e1.InnerText = countryCode;
-
-            e1 = doc.CreateElement("Timezone");
-            elem.AppendChild(e1);
-            e1.InnerText = timezoneName;
+            type = i;
         }
 
-        public void loadFromXmlNode(XmlElement elem)
+        public int getType()
         {
-            double d;
-            foreach (XmlElement e1 in elem.ChildNodes)
-            {
-                if (e1.Name.Equals("Latitude"))
-                {
-                    if (double.TryParse(e1.InnerText, out d))
-                        setLatitudeNorthPositive(d);
-                }
-                else if (e1.Name.Equals("Longitude"))
-                {
-                    if (double.TryParse(e1.InnerText, out d))
-                        setLongitudeEastPositive(d);
-                }
-                else if (e1.Name.Equals("Altitude"))
-                {
-                    if (double.TryParse(e1.InnerText, out d))
-                        SetAltitude(d);
-                }
-                else if (e1.Name.Equals("City"))
-                {
-                    setCity(e1.InnerText);
-                }
-                else if (e1.Name.Equals("CountryCode"))
-                {
-                    setCountryCode(e1.InnerText);
-                }
-                else if (e1.Name.Equals("Timezone"))
-                {
-                    setTimeZoneName(e1.InnerText);
-                }
-            }
+            return type;
         }
 
         public string getCity()
@@ -145,18 +87,6 @@ namespace GCAL.Base
             if (ctr != null)
                 return ctr.getName();
             return string.Empty;
-        }
-
-        public string getName()
-        {
-            return string.Format("{0} ({1})", getCity(), getCountryName());
-        }
-
-        public string getFullName()
-        {
-            return string.Format("{0} ({1}), {2} {3}, {4}", getCity(), getCountryName(),
-                getLatitudeString(), getLongitudeString(),
-                getTimeZoneString());
         }
 
         public string getTimeZoneName()
@@ -216,6 +146,61 @@ namespace GCAL.Base
             setLongitudeEastPositive(l);
         }
 
+        public double getTimeZoneOffsetHours()
+        {
+            if (timezone == null)
+                timezone = GPTimeZoneList.sharedTimeZones().GetTimezoneByName(timezoneName);
+            if (timezone != null)
+                return Convert.ToDouble(timezone.OffsetSeconds) / 3600.0;
+            return 0.0;
+        }
+
+
+        #endregion
+
+        public static GPLocation getEmptyLocation()
+        {
+            return new GPLocation();
+        }
+
+        public bool Equals(GPLocation loc)
+        {
+            return (loc.getCity().Equals(getCity())
+                && Math.Abs(loc.GetLatitudeNorthPositive() - GetLatitudeNorthPositive()) < 0.01
+                && Math.Abs(loc.GetLongitudeEastPositive() - GetLongitudeEastPositive()) < 0.01) ;
+        }
+
+
+        public string encodeLocation()
+        {
+            return string.Format("{0};{1};{2};{3};{4};{5};{6}", city.Replace(';', ','),
+                countryCode, GetLongitudeEastPositive(), GetLatitudeNorthPositive(), timezoneName, type,
+                GetAltitude());
+        }
+
+        public void decodeLocation(string s)
+        {
+            double d;
+            int i;
+            string[] p = s.Split(';');
+            if (p.Length == 7)
+            {
+                setCity(p[0]);
+                setCountryCode(p[1]);
+                if (double.TryParse(p[2], out d))
+                    setLongitudeEastPositive(d);
+                if (double.TryParse(p[3], out d))
+                    setLatitudeNorthPositive(d);
+                setTimeZoneName(p[4]);
+                if (int.TryParse(p[5], out i))
+                    setType(i);
+                else
+                    setType(TYPE_SELECTED);
+                if (double.TryParse(p[6], out d))
+                    SetAltitude(d);
+            }
+        }
+
         /// <summary>
         /// Converts string with geographical coordinate to double number
         /// </summary>
@@ -273,18 +258,37 @@ namespace GCAL.Base
             return false;
         }
 
-        public double getTimeZoneOffsetHours()
+        public string format(string fmt)
         {
-            if (timezone == null)
-                timezone = GPTimeZoneList.sharedTimeZones().GetTimezoneByName(timezoneName);
-            if (timezone != null)
-                return Convert.ToDouble(timezone.OffsetSeconds) / 3600.0;
-            return 0.0;
+            StringBuilder sb = new StringBuilder(fmt);
+            if (fmt.IndexOf("{Ci}") >= 0)
+                sb.Replace("{Ci}", getCity());
+            if (fmt.IndexOf("{Cn}") >= 0)
+                sb.Replace("{Cn}", getCountryName());
+            if (fmt.IndexOf("{Las}") >= 0)
+                sb.Replace("{Las}", getLatitudeString());
+            if (fmt.IndexOf("{Los}") >= 0)
+                sb.Replace("{Los}", getLongitudeString());
+            if (fmt.IndexOf("{Tzs}") >= 0)
+                sb.Replace("{Tzs}", getTimeZoneString());
+            return sb.ToString();
         }
 
         public override string ToString()
         {
-            return String.Format("{0} [{1}] {2}, {3}, {4}", city, countryCode, getLongitudeString(), getLatitudeString(), getTimeZoneName());
+            return format("{Ci} ({Cn}), {Las} {Los}, {Tzs}");
+        }
+
+        public static GPLocation Zero 
+        {
+            get
+            {
+                GPLocation loc = new GPLocation();
+                loc.setLongitudeEastPositive(0);
+                loc.setLatitudeNorthPositive(0);
+                loc.setTimeZone(GPTimeZone.UTC0);
+                return loc;
+            }
         }
     }
 }

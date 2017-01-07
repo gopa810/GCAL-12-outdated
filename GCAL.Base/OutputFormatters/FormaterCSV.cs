@@ -65,7 +65,7 @@ namespace GCAL.Base
                     dayText.Append("; ");
                     initialLength = dayText.Length;
 
-                    if (pvd.astrodata.sun.eclipticalLongitude < 0.0)
+                    if (pvd.astrodata.sun.rise.eclipticalLongitude < 0.0)
                     {
                         goto _resolve_text;
                     }

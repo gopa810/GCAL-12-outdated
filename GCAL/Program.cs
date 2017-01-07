@@ -16,10 +16,11 @@ namespace GCAL
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Application.Run(new StartForm());
+//            Application.Run(new MainForm());
+            //Application.Run(new StartForm());
 //            StartForm svf = 
-//            SupervisorForm svf = new SupervisorForm();
-//            Application.Run();
+            SupervisorForm svf = new SupervisorForm();
+            Application.Run();
         }
 
     }

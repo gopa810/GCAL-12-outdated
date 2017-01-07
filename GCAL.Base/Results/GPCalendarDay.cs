@@ -84,7 +84,7 @@ namespace GCAL.Base
             }
         }
 
-        private GPLocationProvider p_location = null;
+        private GPLocation p_location = null;
 
         // date
         public GPGregorianTime date = new GPGregorianTime(GPLocation.getEmptyLocation());
@@ -98,8 +98,6 @@ namespace GCAL.Base
         public int nFastType = GPConstants.FAST_NULL;
         public int nMahadvadasiType = GPConstants.EV_NULL;
         public String sEkadasiVrataName = String.Empty;
-        public List<GPLocationChange> Travelling = null;
-        public bool FlagNewLocation = false;
         public GPGregorianTime ekadasiParanaStart = null;
         public GPGregorianTime ekadasiParanaEnd = null;
         public int EkadasiParanaReasonStart = GPConstants.EP_TYPE_NULL;
@@ -265,7 +263,7 @@ namespace GCAL.Base
 
             if (GPDisplays.Calendar.SunLongitudeVisible())
             {
-                fests.Add(new Festival(310, GPDisplays.Keys.CalSunLong, string.Format("{0}: {1} (*)", GPStrings.getString(100), astrodata.sun.eclipticalLongitude)));
+                fests.Add(new Festival(310, GPDisplays.Keys.CalSunLong, string.Format("{0}: {1} (*)", GPStrings.getString(100), astrodata.sun.rise.eclipticalLongitude)));
             }
 
             if (GPDisplays.Calendar.MoonLongitudeVisible())
@@ -463,7 +461,7 @@ namespace GCAL.Base
         }
 
         // flag for validity
-        public GPCalendarDay(GPLocationProvider aLoc, GPCalendarResults res, int nIndex)
+        public GPCalendarDay(GPLocation aLoc, GPCalendarResults res, int nIndex)
         {
             p_location = aLoc;
             resultCalendar = res;

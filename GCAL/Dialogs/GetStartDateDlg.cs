@@ -14,7 +14,7 @@ namespace GCAL.Dialogs
 {
     public partial class GetStartDateDlg : Form
     {
-        public GetStartDateDlg(GPLocationProvider location)
+        public GetStartDateDlg(GPLocation location)
         {
             InitializeComponent();
 
@@ -35,7 +35,7 @@ namespace GCAL.Dialogs
         /// <summary>
         /// location for recalutaion of dates
         /// </summary>
-        public GPLocationProvider LocationPlace
+        public GPLocation LocationPlace
         {
             set
             {

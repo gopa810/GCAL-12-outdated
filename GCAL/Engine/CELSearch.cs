@@ -83,7 +83,7 @@ namespace GCAL.Engine
             public string Postfix = string.Empty;
         }
 
-        public GPLocationProvider Location = null;
+        public GPLocation Location = null;
         public bool ShouldCancel = false;
         public SearchResultsList listControl = null;
         private string p_text = string.Empty;

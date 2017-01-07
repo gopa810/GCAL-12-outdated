@@ -130,7 +130,7 @@ namespace GCAL.Base
             fprintf(f, "<p class=HeaderLocation>");
             foreach (GPLocation loc in locList)
             {
-                fprintf(f, "{0}: {1}<br>", GPStrings.getString(9), loc.getFullName());
+                fprintf(f, "{0}: {1}<br>", GPStrings.getString(9), loc.format("{Ci} ({Cn}), {Las} {Los}, {Tzs}"));
             }
             fprintf(f, "</p>\n");
             
@@ -233,8 +233,8 @@ namespace GCAL.Base
             //List<string> gstr = GPStrings.getSharedStrings().gstr;
 
             fprintf(f, "<p class=Header1>{0}</p>\n", GPStrings.getString(48));
-            fprintf(f, "<p class=HeaderLocation>{0}</p>", mlist.m_location.getLocation(0).getFullName());
-            fprintf(f, "<p class=HeaderTimezone>{0}</p>", mlist.m_location.getLocation(0).getTimeZone().getFullName());
+            fprintf(f, "<p class=HeaderLocation>{0}</p>", mlist.m_location.format("{Ci} ({Cn}), {Las} {Los}, {Tzs}"));
+            fprintf(f, "<p class=HeaderTimezone>{0}</p>", mlist.m_location.getTimeZone().getFullName());
             fprintf(f, "<p class=HeaderTimezone>");
             fprintf(f, GPStrings.getString(41), mlist.vc_start, mlist.vc_end);
             fprintf(f, "</p>\n");
@@ -245,7 +245,7 @@ namespace GCAL.Base
                 GPStrings.getUpperString(1002), GPStrings.getUpperString(1003), GPStrings.getUpperString(1004));
             int i;
             bool evline = false;
-            for (i = 0; i < mlist.n_countMasa; i++)
+            for (i = 0; i < mlist.Count; i++)
             {
                 if (evline && GPDisplays.General.HighlightEvenLines())
                 {
@@ -352,7 +352,7 @@ namespace GCAL.Base
                             fprintf(fout, " " + GPStrings.getString(109));
                         fprintf(fout, "</span>");
                         fprintf(fout, "<br><span class=HeaderLocation>{0}</span>", pvd.getGaurabdaYearLongString());
-                        fprintf(fout, "<br><span class=HeaderLocation>{0}</span>", pvd.date.getLocation().getFullName());
+                        fprintf(fout, "<br><span class=HeaderLocation>{0}</span>", pvd.date.getLocation().format("{Ci} ({Cn}), {Las} {Los}, {Tzs}"));
                         //fout.AppendFormat("<br><span class=HeaderTimezone>{0}: {1}</span>", gstr[12], pvd.date.getLocation().getTimeZone().getFullName());
                         fprintf(fout, "</p>");
                         fout.Append("</tr>");
@@ -366,7 +366,7 @@ namespace GCAL.Base
                         fout.AppendFormat("<td colspan={0}>", columnHeaderCount);
                         fout.Append("<p class=MasaHeader>");
                         fout.AppendFormat("<span class=HeaderTitle>{0} {1}</span><br>", GPStrings.getString(759 + pvd.date.getMonth()), pvd.date.getYear());
-                        fout.AppendFormat("<span class=HeaderLocation>{0}</span><br>", pvd.date.getLocation().getFullName());
+                        fout.AppendFormat("<span class=HeaderLocation>{0}</span><br>", pvd.date.getLocation().format("{Ci} ({Cn}), {Las} {Los}, {Tzs}"));
                         //fout.AppendFormat("<span class=HeaderTimezone>{0}: {1}</span>", gstr[12], pvd.date.getLocation().getTimeZone().getFullName());
                         fout.Append("</p>");
                         fout.Append("</td>");
@@ -375,50 +375,6 @@ namespace GCAL.Base
                         nPrevMonth = pvd.date.getMonth();
                         writeHeaders = true;
                     }
-                    else if (pvd.Travelling != null)
-                    {
-                        fout.Append("<tr>");
-                        fout.AppendFormat("<td colspan={0}>", columnHeaderCount);
-                        fout.Append("<p class=MasaHeader>");
-                        fout.AppendFormat("<span class=HeaderTitle>{0}</span><br>", GPStrings.getString(1030));
-                        GPLocationChange lastLocChange = null;
-                        foreach (GPLocationChange lc in pvd.Travelling)
-                        {
-                            if (lastLocChange != lc)
-                            {
-                                fout.AppendFormat("<span class=HeaderLocation>");
-                                fout.AppendFormat("{0}, {1} {2},<br>{3}<br>@ {4}</span><br>",
-                                    lc.LocationA.getName(), lc.LocationA.getLongitudeString(),
-                                    lc.LocationA.getLatitudeString(), lc.LocationA.getTimeZoneString(), lc.humanStart);
-                                fout.AppendFormat("&#10132;<br>");
-                                fout.AppendFormat("{0}, {1} {2}<br>{3}<br>@ {4}</span><br>",
-                                    lc.LocationB.getName(), lc.LocationB.getLongitudeString(),
-                                    lc.LocationB.getLatitudeString(), lc.LocationB.getTimeZoneString(), lc.humanEnd);
-
-                                lastLocChange = lc;
-                            }
-                        }
-                        fout.Append("</p>");
-                        fout.Append("</td>");
-                        fout.Append("</tr>");
-
-                        writeHeaders = true;
-                    }
-                    else if (pvd.FlagNewLocation)
-                    {
-                        fout.Append("<tr>");
-                        fout.AppendFormat("<td colspan={0}>", columnHeaderCount);
-                        fout.Append("<p class=MasaHeader>");
-                        fout.AppendFormat("<span class=HeaderTitle>{0}</span><br>", GPStrings.getString(9));
-                        fout.AppendFormat("<span class=HeaderLocation>{0}</span><br>", pvd.date.getLocation().getFullName());
-                        //fout.AppendFormat("<span class=HeaderTimezone>Timezone: {0}</span>", pvd.date.getLocation().getTimeZone().getFullName());
-                        fout.Append("</p>");
-                        fout.Append("</td>");
-                        fout.Append("</tr>");
-
-                        writeHeaders = true;
-                    }
-
 
                     if (writeHeaders)
                     {
@@ -636,7 +592,7 @@ namespace GCAL.Base
                             fprintf(colA, " " + GPStrings.getString(109));
                         fprintf(colA, "</span>");
                         fprintf(colA, "<br><span style=\'font-size:10pt;\'>{0}", pvd.getGaurabdaYearLongString());
-                        fprintf(colA, "<br>" + pvd.date.getLocation().getFullName() + "</font>");
+                        fprintf(colA, "<br>" + pvd.date.getLocation().format("{Ci} ({Cn}), {Las} {Los}, {Tzs}") + "</font>");
                         fprintf(colA, "</span></td>\n");
                     }
                     nPrevMasaA = pvd.astrodata.nMasa;
@@ -649,7 +605,7 @@ namespace GCAL.Base
                             fprintf(colB, " " + GPStrings.getString(109));
                         fprintf(colB, "</span>");
                         fprintf(colB, "<br><span style=\'font-size:10pt;\'>{0}", pve.getGaurabdaYearLongString());
-                        fprintf(colB, "<br>" + pve.date.getLocation().getFullName() + "</font>");
+                        fprintf(colB, "<br>" + pve.date.getLocation().format("{Ci} ({Cn}), {Las} {Los}, {Tzs}") + "</font>");
                         fprintf(colB, "</span></td>\n");
                     }
                     nPrevMasaB = pve.astrodata.nMasa;
@@ -974,7 +930,7 @@ span.GramE
                             fprintf(fout, " " + GPStrings.getString(109));
                         fprintf(fout, "</span>");
                         fprintf(fout, "<br><span class=HeaderLocation>{0}</span>", pvd.getGaurabdaYearLongString());
-                        fprintf(fout, "<br><span class=HeaderLocation>{0}</span>", pvd.date.getLocation().getFullName());
+                        fprintf(fout, "<br><span class=HeaderLocation>{0}</span>", pvd.date.getLocation().format("{Ci} ({Cn}), {Las} {Los}, {Tzs}"));
                         //fout.AppendFormat("<br><span class=HeaderTimezone>{0}: {1}</span>", gstr[12], pvd.date.getLocation().getTimeZone().getFullName());
                         fprintf(fout, "</p>");
                         fout.Append("</tr>");
@@ -988,7 +944,7 @@ span.GramE
                         fout.AppendFormat("<td colspan={0}>", columnHeaderCount);
                         fout.Append("<p class=MasaHeader>");
                         fout.AppendFormat("<span class=HeaderTitle>{0} {1}</span><br>", GPStrings.getString(759 + pvd.date.getMonth()), pvd.date.getYear());
-                        fout.AppendFormat("<span class=HeaderLocation>{0}</span><br>", pvd.date.getLocation().getFullName());
+                        fout.AppendFormat("<span class=HeaderLocation>{0}</span><br>", pvd.date.getLocation().format("{Ci} ({Cn}), {Las} {Los}, {Tzs}"));
                         //fout.AppendFormat("<span class=HeaderTimezone>Timezone: {0}</span>", pvd.date.getLocation().getTimeZone().getFullName());
                         fout.Append("</p>");
                         fout.Append("</td>");
@@ -997,50 +953,6 @@ span.GramE
                         nPrevMonth = pvd.date.getMonth();
                         writeHeaders = true;
                     }
-                    else if (pvd.Travelling != null)
-                    {
-                        fout.Append("<tr>");
-                        fout.AppendFormat("<td colspan={0}>", columnHeaderCount);
-                        fout.Append("<p class=MasaHeader>");
-                        fout.AppendFormat("<span class=HeaderTitle>{0}</span><br>", GPStrings.getString(1030));
-                        GPLocationChange lastLocChange = null;
-                        foreach (GPLocationChange lc in pvd.Travelling)
-                        {
-                            if (lastLocChange != lc)
-                            {
-                                fout.AppendFormat("<span class=HeaderLocation>");
-                                fout.AppendFormat("{0}, {1} {2},<br>{3}<br>@ {4}</span><br>",
-                                    lc.LocationA.getName(), lc.LocationA.getLongitudeString(),
-                                    lc.LocationA.getLatitudeString(), lc.LocationA.getTimeZoneString(), lc.humanStart);
-                                fout.AppendFormat("&#10132;<br>");
-                                fout.AppendFormat("{0}, {1} {2}<br>{3}<br>@ {4}</span><br>",
-                                    lc.LocationB.getName(), lc.LocationB.getLongitudeString(),
-                                    lc.LocationB.getLatitudeString(), lc.LocationB.getTimeZoneString(), lc.humanEnd);
-
-                                lastLocChange = lc;
-                            }
-                        }
-                        fout.Append("</p>");
-                        fout.Append("</td>");
-                        fout.Append("</tr>");
-
-                        writeHeaders = true;
-                    }
-                    else if (pvd.FlagNewLocation)
-                    {
-                        fout.Append("<tr>");
-                        fout.AppendFormat("<td colspan={0}>", columnHeaderCount);
-                        fout.Append("<p class=MasaHeader>");
-                        fout.AppendFormat("<span class=HeaderTitle>{0}</span><br>", GPStrings.getString(9));
-                        fout.AppendFormat("<span class=HeaderLocation>{0}</span><br>", pvd.date.getLocation().getFullName());
-                        //fout.AppendFormat("<span class=HeaderTimezone>Timezone: {0}</span>", pvd.date.getLocation().getTimeZone().getFullName());
-                        fout.Append("</p>");
-                        fout.Append("</td>");
-                        fout.Append("</tr>");
-
-                        writeHeaders = true;
-                    }
-
 
                     if (writeHeaders)
                     {
@@ -1202,7 +1114,7 @@ span.GramE
                         }
                         fprintf(fout, "\n<table width=\"100%\" border=0 frame=bottom cellspacing=0 cellpadding=0><tr><td width=\"60%\"><p class=month>" + GPStrings.getString(pvd.date.getMonth() + 759) + " " + pvd.date.getYear());
                         fprintf(fout, "</p></td><td><p class=tnote align=right>");
-                        fprintf(fout, pvd.date.getLocation().getFullName());
+                        fprintf(fout, pvd.date.getLocation().format("{Ci} ({Cn}), {Las} {Los}, {Tzs}"));
                         fprintf(fout, "<br>Timezone: ");
                         fprintf(fout, pvd.date.getLocation().getTimeZoneName());
                         fprintf(fout, "</p>");
@@ -1306,7 +1218,7 @@ span.GramE
             //
             f.Append("<p align=center>");
             f.AppendFormat("<span style='font-size:130%;font-weight:bold'>{0}</span>\n", GPAppHelper.getDateText(vc));
-            f.AppendFormat("<br>{0}", vc.getLocation().getFullName());
+            f.AppendFormat("<br>{0}", vc.getLocation().format("{Ci} ({Cn}), {Las} {Los}, {Tzs}"));
             f.AppendFormat("<br>{0}: {1}\n", GPStrings.getString(12), vc.getLocation().getTimeZoneString());
             f.Append("</p>");
 
@@ -1324,7 +1236,7 @@ span.GramE
             if (allFestivals.Count > 0)
             {
                 StringBuilder sbt = new StringBuilder();
-                sbt.AppendFormat("<table class=TodayFestBorder><tr><td class=TodayFestCell style='background:{0}'>\n", GetTodayFestivalBackground(p));
+                sbt.AppendFormat("<table class=TodayFestBorder align=center><tr><td class=TodayFestCell style='background:{0}'>\n", GetTodayFestivalBackground(p));
                 foreach (GPCalendarDay.Festival fest in allFestivals)
                 {
                     if (GPUserDefaults.BoolForKey(fest.ShowSettingItem, true))
@@ -1347,7 +1259,7 @@ span.GramE
             /*BEGIN GCAL 1.4.3*/
             //List<string> gstr = GPStrings.getSharedStrings().gstr;
 
-            f.Append("<table border=0 cellpadding=8><tr>");
+            f.Append("<table border=0 cellpadding=8 align=center><tr>");
             if (GPDisplays.Today.SunriseVisible())
             {
                 f.AppendFormat("<td class=hed style='text-align:center'>{0}<br> <span style='font-size:110%'>{1}</span></td>",
@@ -1475,11 +1387,11 @@ span.GramE
             /* END GCAL 1.4.3 */
         }
 
-        public static void WriteTodayInfoHTML(GPGregorianTime vc, GPLocationProvider loc, StringBuilder f, int fontSize, string baseDir)
+        public static void WriteTodayInfoHTML(GPGregorianTime vc, GPLocation loc, StringBuilder f, int fontSize, string baseDir)
         {
             GPCalendarResults db = new GPCalendarResults();
             GPGregorianTime vc2 = new GPGregorianTime(vc);
-            vc2.setLocationProvider(loc);
+            vc2.setLocation(loc);
             vc2.PreviousDay();
             vc2.PreviousDay();
             vc2.PreviousDay();

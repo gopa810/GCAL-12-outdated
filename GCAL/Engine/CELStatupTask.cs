@@ -30,8 +30,8 @@ namespace GCAL.Engine
                 c1.Invoke((CELAsyncResultReceiver)Window);
 
                 // starting check new version availability
-                CELCheckUpdates c2 = new CELCheckUpdates();
-                c2.Invoke((CELAsyncResultReceiver)Window);
+                /*CELCheckUpdates c2 = new CELCheckUpdates();
+                c2.Invoke((CELAsyncResultReceiver)Window);*/
 
             }
         }

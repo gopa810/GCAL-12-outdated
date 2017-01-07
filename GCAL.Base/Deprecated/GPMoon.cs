@@ -109,7 +109,7 @@ namespace GCAL.Base
         {
             return String.Format("Azimut:{0}, Elevation:{1}", azimuth, elevation);
         }
-        public static void CalcMoonTimes(GPLocationProvider e, GPGregorianTime vc, out GPGregorianTime rise, out GPGregorianTime set)
+        public static void CalcMoonTimes(GPLocation e, GPGregorianTime vc, out GPGregorianTime rise, out GPGregorianTime set)
         {
             double UT;
 

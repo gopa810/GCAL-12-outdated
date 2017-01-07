@@ -24,7 +24,6 @@ namespace GCAL.Controls
         private bool modifiedFlagAdded = false;
         private CELFindCity findOperation = null;
         private WizardDialogDelegate wizardDelegate = null;
-        private bool travellingChanged = true;
 
         public void setParent(WizardDialogDelegate aDelegate)
         {
@@ -91,7 +90,7 @@ namespace GCAL.Controls
             }
         }
 
-        public GPLocationProvider SelectedLocation
+        public GPLocation SelectedLocation
         {
             get
             {
@@ -100,7 +99,7 @@ namespace GCAL.Controls
                     case 0:
                         if (listView1.SelectedItems.Count > 0 && listView1.SelectedItems[0].Tag is GPLocation)
                         {
-                            return new GPLocationProvider(listView1.SelectedItems[0].Tag as GPLocation);
+                            return new GPLocation(listView1.SelectedItems[0].Tag as GPLocation);
                         }
                         return null;
                     case 1:
@@ -110,37 +109,12 @@ namespace GCAL.Controls
                         loc.setLatitudeNorthPositive(SelectedLatitude);
                         loc.setLongitudeEastPositive(SelectedLongitude);
                         loc.setTimeZoneName(comboBox8.SelectedItem as string);
-                        return new GPLocationProvider(loc);
+                        return new GPLocation(loc);
                     case 2:
                         return GPAppHelper.getMyLocation();
                     default:
                         return null;
                 }
-            }
-        }
-
-        private bool p_trav_visible = true;
-
-        public bool TravellerVisible
-        {
-            get
-            {
-                return p_trav_visible;
-            }
-            set
-            {
-                p_trav_visible = value;
-                if (value)
-                {
-                    tabControl1.TabPages.Add(tabPage3);
-                }
-                else
-                {
-                    tabControl1.TabPages.Remove(tabPage3);
-                }
-                ActiveControl = textBox1;
-                textBox1.Select();
-                textBox1.Focus();
             }
         }
 
@@ -188,7 +162,6 @@ namespace GCAL.Controls
             comboBox6.SelectedIndex = 0;
             comboBox7.SelectedIndex = 0;
 
-            UpdateEnabledButtons();
 
             Debugger.Log(0, "", "textBox1 focus start\n");
             textBox1.Select();
@@ -197,23 +170,6 @@ namespace GCAL.Controls
             Debugger.Log(0, "", "textBox1 focus end\n");
         }
 
-
-        private void UpdateEnabledButtons()
-        {
-            bool bItems = (GPAppHelper.getMyLocation().getChangeCount() > 0);
-            bool bSomeSelected = listBox1.SelectedIndex >= 0;
-            bool bLocSelected = (listBox1.SelectedItem is GPLocation);
-            bool bNotFirstItem = listBox1.SelectedIndex > 0;
-            bool bNotLastItem = listBox1.SelectedIndex < (listBox1.Items.Count - 1);
-
-            buttonAddTravelling.Enabled = !bItems;
-            buttonEdit.Enabled = bSomeSelected & !bLocSelected;
-            buttonRemoveAfter.Enabled = bSomeSelected & bItems & (listBox1.SelectedIndex < (listBox1.Items.Count - 2));
-            buttonClearAll.Enabled = bItems;
-            buttonRemoveBefore.Enabled = bSomeSelected & bItems & (listBox1.SelectedIndex > 1);
-            buttonInsertBefore.Enabled = bSomeSelected & bItems;
-            buttonInsertAfter.Enabled = bSomeSelected & bItems;
-        }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
@@ -427,7 +383,6 @@ namespace GCAL.Controls
             comboBox8.SelectedIndex = GPUserDefaults.IntForKey(prefix + ".tzoneindex", -1);
             modifiedFlagAdded = GPUserDefaults.BoolForKey(prefix + ".modifyflag", false);
 
-            LoadProvider();
         }
 
         public void SaveInterfaceValues(string prefix)
@@ -510,78 +465,6 @@ namespace GCAL.Controls
         {
         }
 
-        private void LoadProvider()
-        {
-            GPLocationProvider lp = GPAppHelper.getMyLocation();
-
-            int i;
-            int count = lp.getChangeCount();
-
-            listBox1.Items.Clear();
-            for (i = 0; i < count; i++)
-            {
-                listBox1.Items.Add(lp.getLocationAtIndex(i));
-                listBox1.Items.Add(lp.getChangeAtIndex(i));
-            }
-            listBox1.Items.Add(lp.getLocationAtIndex(i));
-            UpdateEnabledButtons();
-        }
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            UpdateEnabledButtons();
-        }
-
-        private void listBox1_DrawItem(object sender, DrawItemEventArgs e)
-        {
-            // Cast the sender object back to ListBox type.
-            ListBox theListBox = (ListBox)sender;
-
-            // Get the string contained in each item. 
-            object item = theListBox.Items[e.Index];
-
-            // If the item is the selected item, then draw the rectangle 
-            // filled in blue. The item is selected when a bitwise And   
-            // of the State property and the DrawItemState.Selected  
-            // property is true. 
-            if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
-            {
-                e.Graphics.FillRectangle(Brushes.LightBlue, e.Bounds);
-            }
-            else
-            {
-                // Otherwise, draw the rectangle filled in beige.
-                e.Graphics.FillRectangle(SystemBrushes.ControlLightLight, e.Bounds);
-            }
-
-            // Draw a rectangle in blue around each item.
-            //e.Graphics.DrawRectangle(Pens.Blue, e.Bounds);
-
-            if (item is GPLocation)
-            {
-                GPLocation loc = item as GPLocation;
-                e.Graphics.DrawString(loc.getName(), labelCount.Font, Brushes.Black, e.Bounds.X + 4, e.Bounds.Y + 4);
-                e.Graphics.DrawString("Timezone: " + loc.getTimeZone().getFullName(), label1.Font, Brushes.Black, e.Bounds.X + 4, e.Bounds.Y + 20);
-            }
-            else if (item is GPLocationChange)
-            {
-                GPLocationChange chan = item as GPLocationChange;
-                GPGregorianTime gt = new GPGregorianTime(chan.LocationA);
-                gt.setJulianGreenwichTime(new GPJulianTime(chan.julianStart, 0));
-                string humanStart = string.Format("{0} {1}", gt.getLongTimeString(), chan.LocationA.getTimeZoneName());
-
-                e.Graphics.DrawString(gt.getLongDateString() + " - travelling", labelCount.Font, Brushes.Black, e.Bounds.X + 48, e.Bounds.Y + 4);
-                e.Graphics.DrawLine(Pens.Black, e.Bounds.X + 40, e.Bounds.Y + 4, e.Bounds.X + 40, e.Bounds.Bottom - 4);
-
-                e.Graphics.DrawString("Start: " + chan.humanStart, label1.Font, Brushes.Black, e.Bounds.X + 48, e.Bounds.Y + 20);
-                //e.Graphics.DrawString("End: " + chan.humanEnd, label1.Font, Brushes.Black, e.Bounds.X + 48, e.Bounds.Y + 36);
-                e.Graphics.DrawString("Length: " + chan.humanLength, label1.Font, Brushes.Black, e.Bounds.X + 48, e.Bounds.Y + 36);
-            }
-
-            // Draw the focus rectangle around the selected item.
-            e.DrawFocusRectangle();
-
-        }
 
         private void listBox1_MeasureItem(object sender, MeasureItemEventArgs e)
         {
@@ -595,362 +478,15 @@ namespace GCAL.Controls
             {
                 e.ItemHeight = 40;
             }
-            else if (item is GPLocationChange)
-            {
-                e.ItemHeight = 50;
-            }
-        }
-
-        /// <summary>
-        /// Add new travelling
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void button1_Click(object sender, EventArgs e)
-        {
-            WizardDlg wizard = new WizardDlg();
-
-            LocationPickerControl lpc = new LocationPickerControl();
-            lpc.TravellerVisible = false;
-            wizard.AddPage(lpc, "Start Location", "Select location, where you start your travelling");
-
-            LocationPickerControl lpc2 = new LocationPickerControl();
-            lpc2.TravellerVisible = false;
-            wizard.AddPage(lpc2, "Target Location", "Select location, where you finish your traveling");
-
-            TravellingEditControl tec = new TravellingEditControl();
-            tec.LocationPicker = lpc;
-            tec.LocationPicker2 = lpc2;
-            tec.TransitionTimezoneIndex = 0;
-            wizard.AddPage(tec, "Travelling time", "Specify travelling time");
-
-            wizard.ResetPages();
-
-            if (wizard.ShowDialog() == DialogResult.OK)
-            {
-                GPLocationChange newChange = new GPLocationChange();
-
-                newChange.LocationA = lpc.SelectedLocation.getLocation(0);
-                newChange.LocationB = lpc2.SelectedLocation.getLocation(0);
-
-                GPGregorianTime start = new GPGregorianTime(newChange.LocationA);
-                start.setDateTime(tec.getUTCDateTime(0).AddHours(newChange.LocationA.getTimeZoneOffsetHours()));
-                newChange.julianStart = start.getJulianGreenwichTime();
-
-                GPGregorianTime end = new GPGregorianTime(newChange.LocationB);
-                end.setDateTime(tec.getUTCDateTime(1).AddHours(newChange.LocationB.getTimeZoneOffsetHours()));
-                newChange.julianEnd = end.getJulianGreenwichTime();
-
-                newChange.TimezoneStart = (tec.TransitionTimezoneIndex == 0);
-
-                GPLocationProvider lp = GPAppHelper.getMyLocation();
-
-                lp.addChange(newChange);
-
-                RefreshList();
-                travellingChanged = true;
-            }
-        }
-
-        private void RefreshList()
-        {
-            int prevTop = listBox1.TopIndex;
-            LoadProvider();
-            listBox1.TopIndex = prevTop;
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            ListBox lbox = listBox1;
-            int index = listBox1.SelectedIndex;
-
-            if (lbox.SelectedItem is GPLocation)
-            {
-                EditLocationInListbox(lbox, index);
-            }
-            else if (lbox.SelectedItem is GPLocationChange)
-            {
-                EditTravellingInListbox(lbox, index);
-            }
-            travellingChanged = true;
-
-
         }
 
         private void EditLocationInListbox(ListBox lbox, int index)
         {
         }
 
-        private void EditTravellingInListbox(ListBox lbox, int index)
-        {
-            GPLocationChange newChange = (GPLocationChange)lbox.SelectedItem;
-
-            if (newChange != null)
-            {
-                WizardDlg wizard = new WizardDlg();
-                GPGregorianTime start, end;
-                TravellingEditControl tec = new TravellingEditControl();
-                tec.LocationObj = newChange.LocationA;
-                tec.LocationObj2 = newChange.LocationB;
-                wizard.AddPage(tec, "Travelling time", "Specify travelling time");
-
-                tec.TransitionTimezoneIndex = (newChange.TimezoneStart ? 0 : 1);
-
-                start = new GPGregorianTime(newChange.TimezoneStart ? newChange.LocationA : newChange.LocationB);
-                start.setJulianGreenwichTime(new GPJulianTime(newChange.julianStart, 0));
-                tec.setUTCDateTime(start.getLocalTime(), 0);
-
-                start.setJulianGreenwichTime(new GPJulianTime(newChange.julianEnd, 0));
-                tec.setUTCDateTime(start.getLocalTime(), 1);
-
-                wizard.ResetPages();
-
-                if (wizard.ShowDialog() == DialogResult.OK)
-                {
-                    start = new GPGregorianTime(newChange.LocationA);
-                    start.setDateTime(tec.getUTCDateTime(0).AddHours(newChange.LocationA.getTimeZoneOffsetHours()));
-                    newChange.julianStart = start.getJulianGreenwichTime();
-
-                    end = new GPGregorianTime(newChange.LocationB);
-                    end.setDateTime(tec.getUTCDateTime(1).AddHours(newChange.LocationB.getTimeZoneOffsetHours()));
-                    newChange.julianEnd = end.getJulianGreenwichTime();
-
-                    newChange.TimezoneStart = (tec.TransitionTimezoneIndex == 0);
-
-                    listBox1.Invalidate();
-                    listBox1.Update();
-                }
-            }
-        }
-
         private int getChangeIndexFromListBoxIndex(int index)
         {
             return index / 2;
-        }
-
-        private int SelectedIndex
-        {
-            get
-            {
-                return listBox1.SelectedIndex;
-            }
-        }
-
-        private bool IsSelectedLocation
-        {
-            get
-            {
-                return (SelectedIndex % 2) == 0;
-            }
-        }
-
-        private bool IsSelectedTravelling
-        {
-            get
-            {
-                return (SelectedIndex % 2) == 1;
-            }
-        }
-
-        // remove after
-        private void button3_Click(object sender, EventArgs e)
-        {
-            ListBox lbox = listBox1;
-            int index = lbox.SelectedIndex;
-            int changeIndex = getChangeIndexFromListBoxIndex(index);
-            GPLocationProvider provider = GPAppHelper.getMyLocation();
-
-            while (lbox.Items.Count > changeIndex)
-            {
-                provider.removeChangeAtIndex(changeIndex);
-            }
-            RefreshList();
-            travellingChanged = true;
-
-        }
-
-        // clear all
-        private void button4_Click(object sender, EventArgs e)
-        {
-            GPLocationProvider prov = GPAppHelper.getMyLocation();
-
-            prov.Clear();
-
-            RefreshList();
-            travellingChanged = true;
-
-        }
-
-        // remove before
-        private void button5_Click(object sender, EventArgs e)
-        {
-            ListBox lbox = listBox1;
-            int index = lbox.SelectedIndex;
-            int changeIndex = getChangeIndexFromListBoxIndex(index);
-            GPLocationProvider provider = GPAppHelper.getMyLocation();
-            int i = 0;
-            while (i < changeIndex)
-            {
-                //lbox.Items.RemoveAt(0);
-                provider.removeChangeAtIndex(0);
-                i++;
-            }
-            RefreshList();
-            travellingChanged = true;
-
-        }
-
-        // insert before
-        private void button6_Click(object sender, EventArgs e)
-        {
-            ListBox lbox = listBox1;
-            int index = lbox.SelectedIndex;
-            int changeIndex = getChangeIndexFromListBoxIndex(index);
-            GPLocationChange chng = null;
-            GPLocationProvider provider = GPAppHelper.getMyLocation();
-
-            // ask for travelling time
-            // ask for starting location
-            WizardDlg wizard = new WizardDlg();
-
-            LocationPickerControl lpc = new LocationPickerControl();
-            lpc.TravellerVisible = false;
-            wizard.AddPage(lpc, "Start Location", "Select location, where you start your travelling");
-
-            //LocationPickerControl lpc2 = new LocationPickerControl();
-            //lpc2.TravellerVisible = false;
-            //wizard.AddPage(lpc2, "Target Location", "Select location, where you finish your traveling");
-
-            TravellingEditControl tec = new TravellingEditControl();
-            tec.LocationPicker = lpc;
-            if (IsSelectedLocation)
-            {
-                tec.LocationObj2 = listBox1.SelectedItem as GPLocation;
-                if ((listBox1.SelectedIndex + 1) < listBox1.Items.Count)
-                {
-                    chng = (listBox1.Items[listBox1.SelectedIndex + 1] as GPLocationChange);
-                }
-            }
-            if (IsSelectedTravelling)
-            {
-                chng = (listBox1.SelectedItem as GPLocationChange);
-                tec.LocationObj2 = chng.LocationA;
-            }
-            tec.TransitionTimezoneIndex = 0;
-            if (chng != null)
-            {
-                GPGregorianTime start = new GPGregorianTime(tec.LocationObj2);
-                start.setJulianGreenwichTime(new GPJulianTime(chng.julianStart, 0));
-                tec.SetTopStartDateLimit(start.getLocalTime());
-            }
-            wizard.AddPage(tec, "Travelling time", "Specify travelling time");
-
-            wizard.ResetPages();
-
-            if (wizard.ShowDialog() == DialogResult.OK)
-            {
-                GPLocationChange newChange = new GPLocationChange();
-
-                newChange.LocationA = lpc.SelectedLocation.getLocation(0);
-                newChange.LocationB = tec.LocationObj2;
-
-                GPGregorianTime start = new GPGregorianTime(newChange.LocationA);
-                start.setDateTime(tec.getUTCDateTime(0).AddHours(newChange.LocationA.getTimeZoneOffsetHours()));
-                newChange.julianStart = start.getJulianGreenwichTime();
-
-                GPGregorianTime end = new GPGregorianTime(newChange.LocationB);
-                end.setDateTime(tec.getUTCDateTime(1).AddHours(newChange.LocationB.getTimeZoneOffsetHours()));
-                newChange.julianEnd = end.getJulianGreenwichTime();
-
-                newChange.TimezoneStart = (tec.TransitionTimezoneIndex == 0);
-
-                // remove travellings before changeIndex
-                // insert new travelling at index 0
-                provider.removeChangesBeforeIndex(changeIndex);
-                provider.insertChangeAtIndex(0, newChange);
-
-                RefreshList();
-                travellingChanged = true;
-
-            }
-
-        }
-
-        // insert after
-        private void button7_Click(object sender, EventArgs e)
-        {
-            ListBox lbox = listBox1;
-            int index = lbox.SelectedIndex;
-            int changeIndex = getChangeIndexFromListBoxIndex(index);
-
-            GPLocationChange chng = null;
-            GPLocationProvider provider = GPAppHelper.getMyLocation();
-
-            // ask for travelling time
-            // ask for starting location
-            WizardDlg wizard = new WizardDlg();
-
-            LocationPickerControl lpc = new LocationPickerControl();
-            lpc.TravellerVisible = false;
-            wizard.AddPage(lpc, "Target Location", "Select location, where you end your travelling");
-
-            //LocationPickerControl lpc2 = new LocationPickerControl();
-            //lpc2.TravellerVisible = false;
-            //wizard.AddPage(lpc2, "Target Location", "Select location, where you finish your traveling");
-
-            TravellingEditControl tec = new TravellingEditControl();
-            if (IsSelectedLocation)
-            {
-                tec.LocationObj = listBox1.SelectedItem as GPLocation;
-                if ((listBox1.SelectedIndex - 1) > 0)
-                {
-                    chng = (listBox1.Items[listBox1.SelectedIndex - 1] as GPLocationChange);
-                }
-            }
-            if (IsSelectedTravelling)
-            {
-                chng = (listBox1.SelectedItem as GPLocationChange);
-                tec.LocationObj = chng.LocationB;
-            }
-            tec.LocationPicker2 = lpc;
-            tec.TransitionTimezoneIndex = 0;
-            if (chng != null)
-            {
-                GPGregorianTime start = new GPGregorianTime(tec.LocationObj);
-                start.setJulianGreenwichTime(new GPJulianTime(chng.julianStart, 0));
-                tec.SetBottomEndDateLimit(start.getLocalTime());
-            }
-            wizard.AddPage(tec, "Travelling time", "Specify travelling time");
-
-            wizard.ResetPages();
-
-            if (wizard.ShowDialog() == DialogResult.OK)
-            {
-                GPLocationChange newChange = new GPLocationChange();
-
-                newChange.LocationA = tec.LocationObj;
-                newChange.LocationB = lpc.SelectedLocation.getLocation(0);
-
-                GPGregorianTime start = new GPGregorianTime(newChange.LocationA);
-                start.setDateTime(tec.getUTCDateTime(0).AddHours(newChange.LocationA.getTimeZoneOffsetHours()));
-                newChange.julianStart = start.getJulianGreenwichTime();
-
-                GPGregorianTime end = new GPGregorianTime(newChange.LocationB);
-                end.setDateTime(tec.getUTCDateTime(1).AddHours(newChange.LocationB.getTimeZoneOffsetHours()));
-                newChange.julianEnd = end.getJulianGreenwichTime();
-
-                newChange.TimezoneStart = (tec.TransitionTimezoneIndex == 0);
-
-                // remove travellings before changeIndex
-                // insert new travelling at index 0
-                provider.removeChangesAfterIndex(changeIndex);
-                provider.addChange(newChange);
-
-                RefreshList();
-                travellingChanged = true;
-
-            }
-
         }
 
         private void textBox1_Enter(object sender, EventArgs e)
@@ -969,10 +505,6 @@ namespace GCAL.Controls
 
         private void LocationPickerControl_Leave(object sender, EventArgs e)
         {
-            if (TravellerVisible && travellingChanged)
-            {
-                GPAppHelper.saveMyLocation();
-            }
         }
 
     }

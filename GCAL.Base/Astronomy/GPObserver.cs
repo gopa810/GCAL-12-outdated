@@ -5,6 +5,9 @@ using System.Text;
 
 namespace GCAL.Base
 {
+    /// <summary>
+    /// Coordinates of the observer on the Earth
+    /// </summary>
     public class GPObserver
     {
         private double longitude = 0;

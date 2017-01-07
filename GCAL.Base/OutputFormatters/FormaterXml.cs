@@ -14,9 +14,9 @@ namespace GCAL.Base
             int i;
 
             strXml.AppendFormat("<xml>\r\n<program version=\"{0}\">\r\n<location longitude=\"{1}\" latitude=\"{2}\" timezone=\"{3}\"/>\n"
-                , GPFileHelper.FileVersion, inEvents.m_location.getLocation(0).GetLongitudeEastPositive(), 
-                inEvents.m_location.getLocation(0).GetLatitudeNorthPositive()
-                , inEvents.m_location.getLocation(0).getTimeZoneName());
+                , GPFileHelper.FileVersion, inEvents.m_location.GetLongitudeEastPositive(),
+                inEvents.m_location.GetLatitudeNorthPositive()
+                , inEvents.m_location.getTimeZoneName());
             GPGregorianTime prevd = new GPGregorianTime(inEvents.m_location);
 
             prevd.setDate(1800, 1, 1);
@@ -114,7 +114,7 @@ namespace GCAL.Base
         public static int WriteXML_FirstDay_Year(StringBuilder doc, GPGregorianTime vcStart)
         {
 
-            vcStart = GPGaurabdaYear.getFirstDayOfYear(vcStart.getLocationProvider(), vcStart.getYear());
+            vcStart = GPGaurabdaYear.getFirstDayOfYear(vcStart.getLocation(), vcStart.getYear());
 
             // write
             doc.Append("<xml>\n");
@@ -131,7 +131,7 @@ namespace GCAL.Base
             return 0;
         }
 
-        public static XmlDocument GetSankrantiXml(GPLocationProvider loc, GPGregorianTime vcStart, GPGregorianTime vcEnd)
+        public static XmlDocument GetSankrantiXml(GPLocation loc, GPGregorianTime vcStart, GPGregorianTime vcEnd)
         {
             XmlDocument doc = new XmlDocument();
             XmlElement e1, e2, e3, eday, e5, e6;
@@ -238,17 +238,17 @@ namespace GCAL.Base
             e3 = doc.CreateElement("arg");
             e2.AppendChild(e3);
             e3.SetAttribute("name", "longitude");
-            e3.SetAttribute("val", daybuff.CurrentLocation.getLocation(0).GetLongitudeEastPositive().ToString());
+            e3.SetAttribute("val", daybuff.CurrentLocation.GetLongitudeEastPositive().ToString());
 
             e3 = doc.CreateElement("arg");
             e2.AppendChild(e3);
             e3.SetAttribute("name", "latitude");
-            e3.SetAttribute("val", daybuff.CurrentLocation.getLocation(0).GetLatitudeNorthPositive().ToString());
+            e3.SetAttribute("val", daybuff.CurrentLocation.GetLatitudeNorthPositive().ToString());
 
             e3 = doc.CreateElement("arg");
             e2.AppendChild(e3);
             e3.SetAttribute("name", "timezone");
-            e3.SetAttribute("val", (daybuff.CurrentLocation.getLocation(0).getTimeZone().OffsetSeconds / 60).ToString());
+            e3.SetAttribute("val", (daybuff.CurrentLocation.getTimeZone().OffsetSeconds / 60).ToString());
 
             e3 = doc.CreateElement("arg");
             e2.AppendChild(e3);
@@ -263,7 +263,7 @@ namespace GCAL.Base
             e3 = doc.CreateElement("arg");
             e2.AppendChild(e3);
             e3.SetAttribute("name", "dst");
-            e3.SetAttribute("val", daybuff.CurrentLocation.getLocation(0).getTimeZoneName());
+            e3.SetAttribute("val", daybuff.CurrentLocation.getTimeZoneName());
 
             e2 = doc.CreateElement("result");
             e1.AppendChild(e2);
@@ -271,7 +271,7 @@ namespace GCAL.Base
 
             e3 = doc.CreateElement("dstsystem");
             e2.AppendChild(e3);
-            e3.SetAttribute("name", daybuff.CurrentLocation.getLocation(0).getTimeZoneName());
+            e3.SetAttribute("name", daybuff.CurrentLocation.getTimeZoneName());
 
             for (k = 0; k < daybuff.m_vcCount; k++)
             {
@@ -407,7 +407,7 @@ namespace GCAL.Base
             return doc;
         }
 
-        public static int WriteXML_Naksatra(StringBuilder doc, GPLocationProvider loc, GPGregorianTime vc, int nDaysCount)
+        public static int WriteXML_Naksatra(StringBuilder doc, GPLocation loc, GPGregorianTime vc, int nDaysCount)
         {
             doc.Append("<xml>\n");
             doc.Append("\t<request name=\"Naksatra\" version=\"" + GPFileHelper.FileVersion + "\">\n");
@@ -458,7 +458,7 @@ namespace GCAL.Base
             return 1;
         }
 
-        public static int WriteXML_Tithi(StringBuilder doc, GPLocationProvider loc, GPGregorianTime vc)
+        public static int WriteXML_Tithi(StringBuilder doc, GPLocation loc, GPGregorianTime vc)
         {
             doc.Append("<xml>\n");
             doc.Append("\t<request name=\"Tithi\" version=\"" + GPFileHelper.FileVersion + "\">\n");
@@ -502,7 +502,7 @@ namespace GCAL.Base
             return 1;
         }
 
-        public static int WriteXML_GaurabdaTithi(StringBuilder doc, GPLocationProvider loc, GPVedicTime vaStart, GPVedicTime vaEnd)
+        public static int WriteXML_GaurabdaTithi(StringBuilder doc, GPLocation loc, GPVedicTime vaStart, GPVedicTime vaEnd)
         {
             int gyearA = vaStart.gyear;
             int gyearB = vaEnd.gyear;
@@ -517,9 +517,9 @@ namespace GCAL.Base
 
             doc.Append("<xml>\n");
             doc.Append("\t<request name=\"Tithi\" version=\"" + GPFileHelper.FileVersion + "\">\n");
-            doc.Append("\t\t<arg name=\"longitude\" val=\"" + loc.getLocation(0).GetLongitudeEastPositive() + "\" />\n");
-            doc.Append("\t\t<arg name=\"latitude\" val=\"" + loc.getLocation(0).GetLatitudeNorthPositive() + "\" />\n");
-            doc.Append("\t\t<arg name=\"timezone\" val=\"" + loc.getLocation(0).getTimeZone().OffsetSeconds / 60 + "\" />\n");
+            doc.Append("\t\t<arg name=\"longitude\" val=\"" + loc.GetLongitudeEastPositive() + "\" />\n");
+            doc.Append("\t\t<arg name=\"latitude\" val=\"" + loc.GetLatitudeNorthPositive() + "\" />\n");
+            doc.Append("\t\t<arg name=\"timezone\" val=\"" + loc.getTimeZone().OffsetSeconds / 60 + "\" />\n");
             if (gyearA > 1500)
             {
                 doc.Append("\t\t<arg name=\"year-start\" val=\"" + gyearA + "\" />\n");
@@ -630,7 +630,7 @@ namespace GCAL.Base
             return 1;
         }
 
-        public static int WriteXML_GaurabdaNextTithi(StringBuilder doc, GPLocationProvider loc, GPGregorianTime vcStart, GPVedicTime vaStart)
+        public static int WriteXML_GaurabdaNextTithi(StringBuilder doc, GPLocation loc, GPGregorianTime vcStart, GPVedicTime vaStart)
         {
             int gmasa, gpaksa, gtithi;
 

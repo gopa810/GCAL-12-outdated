@@ -10,7 +10,7 @@ namespace GCAL.Base
         public GPGregorianTime m_vcStart;
         public GPGregorianTime m_vcEnd;
         public UInt32 m_options;
-        public GPLocationProvider m_location;
+        public GPLocation m_location;
         private void clear()
         {
             b_sorted = true;
@@ -119,10 +119,10 @@ namespace GCAL.Base
             clear();
         }
 
-        public void CalculateEvents(GPLocationProvider loc, GPGregorianTime vcStart, GPGregorianTime vcEnd)
+        public void CalculateEvents(GPLocation loc, GPGregorianTime vcStart, GPGregorianTime vcEnd)
         {
             GPCoreEventResults inEvents = this;
-            GPLocationProvider earth = loc;
+            GPLocation earth = loc;
             GPGregorianTime vc = new GPGregorianTime(loc);
             GPSun sun = new GPSun();
             //int ndst = 0;
@@ -281,7 +281,7 @@ namespace GCAL.Base
 
                 while (julian.getGreenwichJulianDay() < julianEnd.getGreenwichJulianDay())
                 {
-                    nextJulian = GPAstroEngine.GetNextMoonEvent(julian, vc.getLocationProvider(), out kind);
+                    nextJulian = GPAstroEngine.GetNextMoonEvent(julian, vc.getLocation(), out kind);
                     if (kind == TRiseSet.RISE)
                     {
                         inEvents.AddEvent(new GPGregorianTime(loc, nextJulian), GPConstants.CoreEventMoonRise, 0);
@@ -294,31 +294,6 @@ namespace GCAL.Base
                 }
             }
 
-            // travellings
-            {
-                GPJulianTime julian = vc.getJulian();
-                GPJulianTime julianEnd = vcEnd.getJulian();
-                double start, end;
-
-                start = julian.getGreenwichJulianDay();
-                end = julianEnd.getGreenwichJulianDay();
-
-                for(int i = 0; i < loc.getChangeCount(); i++)
-                {
-                    GPLocationChange chn = loc.getChangeAtIndex(i);
-                    if ((chn.julianStart >= start && chn.julianStart <= end) 
-                        || (chn.julianStart >= start && chn.julianEnd <= end))
-                    {
-                        GPGregorianTime startTime = new GPGregorianTime(chn.LocationA);
-                        startTime.setJulianGreenwichTime(new GPJulianTime(chn.julianStart, 0));
-                        GPGregorianTime endTime = new GPGregorianTime(chn.LocationB);
-                        endTime.setJulianGreenwichTime(new GPJulianTime(chn.julianEnd, 0));
-                        inEvents.AddEvent(startTime, GPConstants.CCTYPE_TRAVELLING_START, 0);
-                        inEvents.AddEvent(endTime, GPConstants.CCTYPE_TRAVELLING_END, 0);
-                    }
-                }
-            }
-
             // eventual sorting
             inEvents.Sort(GPDisplays.CoreEvents.Sort());
         }
@@ -327,27 +302,7 @@ namespace GCAL.Base
         {
             List<GPLocation> locList = new List<GPLocation>();
 
-            double start = m_vcStart.getJulianGreenwichTime();
-            double end = m_vcEnd.getJulianGreenwichTime();
-
-            if (m_location.getChangeCount() > 0)
-            {
-                for (int i = 0; i < m_location.getChangeCount(); i++)
-                {
-                    GPLocationChange lc = m_location.getChangeAtIndex(i);
-
-                    if ((lc.julianStart >= start && lc.julianStart <= end) &&
-                        (lc.julianEnd >= start && lc.julianEnd <= end))
-                    {
-                        addLocationToList(lc.LocationA, locList);
-                        addLocationToList(lc.LocationB, locList);
-                    }
-                }
-            }
-            else
-            {
-                addLocationToList(m_location.getLocationAtIndex(0), locList);
-            }
+            locList.Add(m_location);
 
             return locList;
         }

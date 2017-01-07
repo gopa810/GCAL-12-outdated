@@ -14,7 +14,7 @@ namespace TestDllUI
 {
     public partial class Form1 : Form
     {
-        GPLocationProvider loc;
+        GPLocation loc;
         DateTime startDate;
         DateTime endDate;
         int days;
@@ -77,9 +77,8 @@ namespace TestDllUI
                 textBox3.Text = "0.0";
             }
 
-            loc = new GPLocationProvider();
             loca.setTimeZoneName(comboBox1.Text);
-            loc.setDefaultLocation(loca);
+            loc = loca;
 
             if (!int.TryParse(textBox4.Text, out l))
             {

@@ -40,13 +40,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Astronomy\GP87Body.cs" />
+    <Compile Include="Astronomy\GP87Earth.cs" />
+    <Compile Include="Astronomy\GP87Jupiter.cs" />
+    <Compile Include="Astronomy\GP87Mars.cs" />
+    <Compile Include="Astronomy\GP87Mercury.cs" />
+    <Compile Include="Astronomy\GP87Saturn.cs" />
+    <Compile Include="Astronomy\GP87Venus.cs" />
     <Compile Include="CivilData\GPEventAstro.cs" />
     <Compile Include="CivilData\GPEventNaksatra.cs" />
     <Compile Include="CivilData\GPEventYoga.cs" />
-    <Compile Include="CivilData\GPLocationChange.cs" />
-    <Compile Include="CivilData\GPLocationProvider.cs" />
+    <Compile Include="CivilData\GPLocationListRecent.cs" />
     <Compile Include="Deprecated\GPAstroIterator.cs" />
+    <Compile Include="Deprecated\GPBodyData.cs" />
     <Compile Include="Deprecated\GPMoonRasi.cs" />
+    <Compile Include="Deprecated\GPSunMethod.cs" />
+    <Compile Include="Deprecated\GPSunMethodMeeus.cs" />
     <Compile Include="GCALBase.cs" />
     <Compile Include="GPSortedIntStringList.cs" />
     <Compile Include="OutputFormatters\FormaterCSV.cs" />
@@ -112,7 +121,7 @@
     <Compile Include="UserInterfaceSupport\GPStringPair.cs" />
     <Compile Include="UserInterfaceSupport\GPStrings.cs" />
     <Compile Include="Deprecated\GPSun.cs" />
-    <Compile Include="Deprecated\GPSunData.cs" />
+    <Compile Include="Deprecated\GPSunMethodSimple.cs" />
     <Compile Include="UserInterfaceSupport\GPTimestamp.cs" />
     <Compile Include="UserInterfaceSupport\GPTimeZone.cs" />
     <Compile Include="UserInterfaceSupport\GPTimeZoneList.cs" />

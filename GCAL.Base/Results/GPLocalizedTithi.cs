@@ -9,11 +9,11 @@ namespace GCAL.Base
     {
         private int p_tithi = 0;
         private GPGregorianTime p_initDate = null;
-        private GPLocationProvider p_location = null;
+        private GPLocation p_location = null;
         private GPGregorianTime p_startTime = null;
         private GPGregorianTime p_endTime = null;
 
-        public GPLocalizedTithi(GPLocationProvider loc, GPGregorianTime start, int nTithi)
+        public GPLocalizedTithi(GPLocation loc, GPGregorianTime start, int nTithi)
         {
             p_tithi = nTithi;
             p_initDate = new GPGregorianTime(start);

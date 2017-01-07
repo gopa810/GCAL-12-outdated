@@ -16,7 +16,7 @@ namespace GCAL.Base
         /// <param name="latitude">Unit is degrees. Positive values are for the north hemisphere, negative values are for south hemisphere.</param>
         /// <param name="timeZoneName">Name of timezone. This is one of the values returned by function GPTimeZoneList.sharedTimeZones().getTimeZones()</param>
         /// <returns></returns>
-        public static GPLocationProvider EncapsulateLocation(string city, double longitude, double latitude, string timeZoneName)
+        public static GPLocation EncapsulateLocation(string city, double longitude, double latitude, string timeZoneName)
         {
             GPLocation loca = new GPLocation();
             loca.setCity(city);
@@ -24,11 +24,7 @@ namespace GCAL.Base
             loca.setLatitudeNorthPositive(latitude);
             loca.setTimeZoneName(timeZoneName);
 
-            GPLocationProvider locProv = new GPLocationProvider();
-
-            locProv.setDefaultLocation(loca);
-            
-            return locProv;
+            return loca;
         }
 
         /// <summary>
@@ -41,7 +37,7 @@ namespace GCAL.Base
         /// <param name="startDate"></param>
         /// <param name="days"></param>
         /// <returns></returns>
-        public static XmlDocument CalculateCalendar(GPLocationProvider locationProvider, DateTime startDate, int days)
+        public static XmlDocument CalculateCalendar(GPLocation locationProvider, DateTime startDate, int days)
         {
             GPCalendarResults cr = new GPCalendarResults();
 
@@ -57,7 +53,7 @@ namespace GCAL.Base
             return FormaterXml.GetCalendarXmlDocument(cr);
         }
 
-        public static XmlDocument CalculateAppearanceDay(GPLocationProvider loc, DateTime startDateTime)
+        public static XmlDocument CalculateAppearanceDay(GPLocation loc, DateTime startDateTime)
         {
             GPAppDayResults gap = new GPAppDayResults();
             gap.location = loc;
@@ -69,7 +65,7 @@ namespace GCAL.Base
             return FormaterXml.GetAppDayXml(gap);
         }
 
-        public static XmlDocument CalculateSankrantis(GPLocationProvider loc, DateTime startDate, DateTime endDate)
+        public static XmlDocument CalculateSankrantis(GPLocation loc, DateTime startDate, DateTime endDate)
         {
             GPGregorianTime vcStart = new GPGregorianTime(loc);
             vcStart.setDateTime(startDate);
@@ -86,7 +82,7 @@ namespace GCAL.Base
         /// <param name="loc"></param>
         /// <param name="year"></param>
         /// <returns></returns>
-        public static DateTime GetFirstDayOfYear(GPLocationProvider loc, int year)
+        public static DateTime GetFirstDayOfYear(GPLocation loc, int year)
         {
             GPGregorianTime vcStart = GPGaurabdaYear.getFirstDayOfYear(loc, year);
 

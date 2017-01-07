@@ -11,9 +11,9 @@ namespace GCAL.Base
         {
             StringBuilder sb = new StringBuilder();
 
-            sb.AppendFormat("Location: {0}\n", calendar.CurrentLocation.getLocation(0).ToString());
-            sb.AppendFormat("Longitude: {0}\nLatitude: {1}\n\n", calendar.CurrentLocation.getLocation(0).getLongitudeString(),
-                calendar.CurrentLocation.getLocation(0).getLatitudeString());
+            sb.AppendFormat("Location: {0}\n", calendar.CurrentLocation.ToString());
+            sb.AppendFormat("Longitude: {0}\nLatitude: {1}\n\n", calendar.CurrentLocation.getLongitudeString(),
+                calendar.CurrentLocation.getLatitudeString());
 
             // julian day
             foreach (GPCalendarDay day in calendar.m_pData)
@@ -86,11 +86,11 @@ namespace GCAL.Base
             }
             foreach (GPCalendarDay day in calendar.m_pData)
             {
-                sb.AppendFormat("sun.latitude_deg {0}\t{1}\n", day.date.ToString(), day.astrodata.sun.eclipticalLatitude);
+                sb.AppendFormat("sun.latitude_deg {0}\t{1}\n", day.date.ToString(), day.astrodata.sun.rise.eclipticalLatitude);
             }
             foreach (GPCalendarDay day in calendar.m_pData)
             {
-                sb.AppendFormat("sun.longitude_deg {0}\t{1}\n", day.date.ToString(), day.astrodata.sun.eclipticalLongitude);
+                sb.AppendFormat("sun.longitude_deg {0}\t{1}\n", day.date.ToString(), day.astrodata.sun.rise.eclipticalLongitude);
             }
             foreach (GPCalendarDay day in calendar.m_pData)
             {
@@ -102,11 +102,11 @@ namespace GCAL.Base
             }
             foreach (GPCalendarDay day in calendar.m_pData)
             {
-                sb.AppendFormat("sun.right_ascession {0}\t{1}\n", day.date.ToString(), day.astrodata.sun.rightAscession);
+                sb.AppendFormat("sun.right_ascession {0}\t{1}\n", day.date.ToString(), day.astrodata.sun.rise.rightAscession);
             }
             foreach (GPCalendarDay day in calendar.m_pData)
             {
-                sb.AppendFormat("sun.declination {0}\t{1}\n", day.date.ToString(), day.astrodata.sun.declination);
+                sb.AppendFormat("sun.declination {0}\t{1}\n", day.date.ToString(), day.astrodata.sun.rise.declination);
             }
             foreach (GPCalendarDay day in calendar.m_pData)
             {
@@ -139,7 +139,7 @@ namespace GCAL.Base
             res.AppendLine();
             res.AppendLine();
 
-            res.Append(inEvents.m_location.getFullName());
+            res.Append(inEvents.m_location.format("{Ci} ({Cn}), {Las} {Los}, {Tzs}"));
             res.AppendLine();
             res.AppendLine();
 

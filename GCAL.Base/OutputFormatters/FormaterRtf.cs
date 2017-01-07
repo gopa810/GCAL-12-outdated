@@ -76,7 +76,7 @@ namespace GCAL.Base
             List<GPLocation> locList = inEvents.getLocationList();
             foreach (GPLocation loc in locList)
             {
-                res.Append(loc.getFullName());
+                res.Append(loc.format("{Ci} ({Cn}), {Las} {Los}, {Tzs}"));
                 res.AppendLine("\\par");
             }
             res.AppendLine(); 
@@ -425,34 +425,12 @@ namespace GCAL.Base
                         lastmonth = pvd.date.getMonth();
                     }
 
-                    if (pvd.Travelling != null)
-                    {
-                        m_text.AppendFormat("\\par\\pard\\f2\\qc\\fs{0}\r\n", g_Header2Size);
-                        m_text.AppendFormat("{0}", getSharedStringRtf(1030));
-                        GPLocationChange lastLocChange = null;
-                        foreach (GPLocationChange lc in pvd.Travelling)
-                        {
-                            if (lastLocChange != lc)
-                            {
-                                m_text.Append("\\par\\pard\\qc\\cf2\\fs22 ");
-                                m_text.AppendFormat("{0} -> {1}", lc.LocationA.getFullName(), lc.LocationB.getFullName());
-                                lastLocChange = lc;
-                            }
-                        }
-                    }
-                    if (pvd.FlagNewLocation)
-                    {
-                        m_text.AppendFormat("\\par\\pard\\f2\\qc\\fs{0}\r\n", g_Header2Size);
-                        m_text.Append(GPStrings.getString(9));
-                        m_text.Append("\\par\\pard\\qc\\cf2\\fs22 ");
-                        m_text.Append(pvd.date.getLocation().getFullName());
-                    }
 
                     // print location text
                     if (bShowColumnHeaders != 0)
                     {
                         m_text.Append("\\par\\pard\\qc\\cf2\\fs22 ");
-                        m_text.Append(pvd.date.getLocation().getFullName());
+                        m_text.Append(pvd.date.getLocation().format("{Ci} ({Cn}), {Las} {Los}, {Tzs}"));
                     }
 
                     if (bShowColumnHeaders != 0)
@@ -563,7 +541,7 @@ namespace GCAL.Base
             stt = string.Format("{{\\fs{0}\\f2 {1}}\\par\\tx{2}\\tx{3}\\f2\\fs{4}\r\n\\par\r\n{5}: {6}\\par\r\n"
                 , g_HeaderSize
                 , getSharedStringRtf(39), 1000 * g_TextSize / 24, 4000 * g_TextSize / 24
-                , g_TextSize, getSharedStringRtf(40), mlist.m_location.getFullName());
+                , g_TextSize, getSharedStringRtf(40), mlist.m_location.format("{Ci} ({Cn}), {Las} {Los}, {Tzs}"));
             str.Append(stt);
             str.AppendFormat(getSharedStringRtf(41), mlist.vc_start, mlist.vc_end);
             str.AppendLine("\\par");
@@ -573,7 +551,7 @@ namespace GCAL.Base
 
             int i;
 
-            for (i = 0; i < mlist.n_countMasa; i++)
+            for (i = 0; i < mlist.Count; i++)
             {
                 stt2 = string.Format("\\tab {0} {1}\\tab ", GPMasa.GetName(mlist.arr[i].masa), mlist.arr[i].year);
                 str.Append(stt2);
@@ -633,7 +611,7 @@ namespace GCAL.Base
 
             str = GetTextRtf(pvd);
 
-            if (pvd.astrodata.sun.eclipticalLongitude < 0.0)
+            if (pvd.astrodata.sun.rise.eclipticalLongitude < 0.0)
             {
                 dayText.Append("\\par\\tab ");
                 dayText.Append(GPStrings.getString(974));
@@ -692,7 +670,7 @@ namespace GCAL.Base
             strText.Append("}");
         }
 
-        public static void FormatTodayInfoRtf(GPGregorianTime vc, GPLocationProvider loc, StringBuilder str)
+        public static void FormatTodayInfoRtf(GPGregorianTime vc, GPLocation loc, StringBuilder str)
         {
             string str2, str3 = string.Empty;
 
@@ -717,9 +695,9 @@ namespace GCAL.Base
             str.Append(str2);
 
             str.AppendFormat("\\par\\f2\\fs{0} {{\\fs{1} {2}}\\line {3} ({4}, {5}, {6}: {7})",
-                g_TextSize, g_TextSize + 4, getSharedStringRtf(p.date.getDayOfWeek()), loc.getFullName(), loc.getLocation(0).getLatitudeString(), 
-                loc.getLocation(0).getLongitudeString(), getSharedStringRtf(12), 
-                loc.getLocation(0).getTimeZoneName());
+                g_TextSize, g_TextSize + 4, getSharedStringRtf(p.date.getDayOfWeek()), loc.format("{Ci} ({Cn}), {Las} {Los}, {Tzs}"), loc.getLatitudeString(),
+                loc.getLongitudeString(), getSharedStringRtf(12),
+                loc.getTimeZoneName());
             str.AppendLine("\\par");
             str.AppendLine("\\par");
             str.AppendFormat("  {0}, {1}", p.getTithiName(), p.getPaksaName());

@@ -13,7 +13,7 @@ namespace GCAL.Engine
         public List<GPStringPair> lines = new List<GPStringPair>();
         private GPCalendarResults p_cal = new GPCalendarResults();
         private GPGregorianTime p_today = null;
-        private GPLocationProvider loc = null;
+        private GPLocation loc = null;
 
         protected override void Execute()
         {
@@ -177,7 +177,7 @@ namespace GCAL.Engine
             StringBuilder sb = new StringBuilder();
             sb.Append("<table cellpadding=12 cellspacing=0 border=0 width=95%>");
             sb.AppendFormat("<tr><td class='hed'>{0}</td>", GPStrings.getString(452));
-            sb.AppendFormat("<td class='hed2'>{0}: {1}</td></tr>", GPStrings.getString(9), loc.getFullName());
+            sb.AppendFormat("<td class='hed2'>{0}: {1}</td></tr>", GPStrings.getString(9), loc.format("{Ci} ({Cn}), {Las} {Los}, {Tzs}"));
             sb.Append("</td>");
             sb.Append("<table cellpadding=12 cellspacing=0 border=0 width=95%>");
             int ic = 0;

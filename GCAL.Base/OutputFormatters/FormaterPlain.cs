@@ -61,7 +61,7 @@ namespace GCAL.Base
             List<GPLocation> locList = inEvents.getLocationList();
             foreach (GPLocation loc in locList)
             {
-                res.AppendLine(inEvents.m_location.getLocation(0).getFullName());
+                res.AppendLine(inEvents.m_location.format("{Ci} ({Cn}), {Las} {Los}, {Tzs}"));
             }
             res.AppendLine();
 
@@ -188,7 +188,7 @@ namespace GCAL.Base
                             AddListText(m_text, getSharedStringPlain(128));
                         }
                         m_text.AppendLine();
-                        m_text.AppendLine(GPAppHelper.CenterString(daybuff.CurrentLocation.getLocation(pvd.date.getJulianGreenwichTime()).getFullName(), 80));
+                        m_text.AppendLine(GPAppHelper.CenterString(daybuff.CurrentLocation.format("{Ci} ({Cn}), {Las} {Los}, {Tzs}"), 80));
                         m_text.AppendLine();
                         lastmasa = pvd.astrodata.nMasa;
                     }
@@ -205,34 +205,9 @@ namespace GCAL.Base
                         if (tmpString.Length < tp1)
                             m_text.Append(string.Empty.PadLeft(tp1 - tmpString.Length));
                         m_text.AppendLine(GPAppHelper.getShortVersionText());
-                        m_text.AppendLine(GPAppHelper.CenterString(daybuff.CurrentLocation.getLocation(pvd.date.getJulianGreenwichTime()).getFullName(), 80));
+                        m_text.AppendLine(GPAppHelper.CenterString(daybuff.CurrentLocation.format("{Ci} ({Cn}), {Las} {Los}, {Tzs}"), 80));
                         m_text.AppendLine();
                         lastmonth = pvd.date.getMonth();
-                    }
-
-                    else if (pvd.Travelling != null)
-                    {
-                        m_text.AppendLine(GPAppHelper.CenterString(GPStrings.getString(1030), 80));
-                        GPLocationChange lastLocChange = null;
-                        foreach (GPLocationChange lc in pvd.Travelling)
-                        {
-                            if (lastLocChange != lc)
-                            {
-                                m_text.AppendLine(GPAppHelper.CenterString(String.Format("{0} -> {1}", lc.LocationA.getFullName(), lc.LocationB.getFullName()), 80));
-                                lastLocChange = lc;
-                            }
-                        }
-                        m_text.AppendLine();
-
-                        nMasaHeader = 1;
-                    }
-                    else if (pvd.FlagNewLocation)
-                    {
-                        m_text.AppendLine(GPAppHelper.CenterString(GPStrings.getString(9), 80));
-                        m_text.AppendLine(GPAppHelper.CenterString(daybuff.CurrentLocation.getLocation(pvd.date.getJulianGreenwichTime()).getFullName(), 80));
-                        m_text.AppendLine();
-
-                        nMasaHeader = 1;
                     }
 
                     if (nMasaHeader == 1)
@@ -281,7 +256,7 @@ namespace GCAL.Base
             str2 = str.Substring(16);
             str3 = str.Substring(0, 16);
             str = str3;
-            if (pvd.astrodata.sun.eclipticalLongitude < 0.0)
+            if (pvd.astrodata.sun.rise.eclipticalLongitude < 0.0)
             {
                 AddListText(dayText, str, getSharedStringPlain(974));
                 return 1;
@@ -349,7 +324,7 @@ namespace GCAL.Base
                         str = string.Format("{0} {1}", pvd.getMasaLongName(), ((nPrevMasa == GPMasa.ADHIKA_MASA) ?  GPStrings.getString(109) : ""));
                         fout.AppendLine(GPAppHelper.CenterString(str, 80));
                         fout.AppendLine(GPAppHelper.CenterString(pvd.getGaurabdaYearLongString(), 80));
-                        fout.AppendLine(GPAppHelper.CenterString(pvd.date.getLocation().getFullName(), 80));
+                        fout.AppendLine(GPAppHelper.CenterString(pvd.date.getLocation().format("{Ci} ({Cn}), {Las} {Los}, {Tzs}"), 80));
                         fout.AppendLine(GPAppHelper.CenterString(string.Format("{0}: {1}", GPStrings.getString(12), pvd.date.getLocation().getTimeZone().getFullName()), 80));
                         fout.AppendLine();
 
@@ -359,7 +334,7 @@ namespace GCAL.Base
                     else if (nPrevMonth != pvd.date.getMonth() && GPDisplays.Calendar.MonthHeader())
                     {
                         fout.AppendLine(GPAppHelper.CenterString(string.Format("{0} {1}", GPStrings.getString(759 + pvd.date.getMonth()), pvd.date.getYear()), 80));
-                        fout.AppendLine(GPAppHelper.CenterString(pvd.date.getLocation().getFullName(), 80));
+                        fout.AppendLine(GPAppHelper.CenterString(pvd.date.getLocation().format("{Ci} ({Cn}), {Las} {Los}, {Tzs}"), 80));
                         fout.AppendLine(GPAppHelper.CenterString(string.Format("{0}: {1}", GPStrings.getString(12), pvd.date.getLocation().getTimeZone().getFullName()), 80));
                         fout.AppendLine();
 
@@ -458,7 +433,7 @@ namespace GCAL.Base
             str.AppendLine(GPAppHelper.CenterString(getSharedStringPlain(39), 60));
             str.AppendLine();
             str.AppendLine();
-            str.AppendLine(GPAppHelper.CenterString(mlist.m_location.getLocation(0).getFullName(), 60));
+            str.AppendLine(GPAppHelper.CenterString(mlist.m_location.format("{Ci} ({Cn}), {Las} {Los}, {Tzs}"), 60));
             str.AppendFormat(getSharedStringPlain(41), mlist.vc_start, mlist.vc_end);
             str.AppendLine();
             str.AppendLine(string.Empty.PadRight(60,'='));
@@ -466,7 +441,7 @@ namespace GCAL.Base
 
             int i;
 
-            for (i = 0; i < mlist.n_countMasa; i++)
+            for (i = 0; i < mlist.Count; i++)
             {
                 stt = string.Format("{0} {1}", GPMasa.GetName(mlist.arr[i].masa), mlist.arr[i].year);
                 str.Append(stt.PadRight(30));
@@ -480,7 +455,7 @@ namespace GCAL.Base
             return 1;
         }
 
-        public static void AvcGetTodayInfo(GPGregorianTime vc, GPLocationProvider loc, StringBuilder str)
+        public static void AvcGetTodayInfo(GPGregorianTime vc, GPLocation loc, StringBuilder str)
         {
             string str2;
 
@@ -496,9 +471,9 @@ namespace GCAL.Base
             if (p == null)
                 return;
 
-            str.AppendFormat("{0}, {1} {2}", loc.getFullName(), loc.getLocation(0).getLatitudeString(), loc.getLocation(0).getLongitudeString());
+            str.AppendFormat("{0}, {1} {2}", loc.format("{Ci} ({Cn}), {Las} {Los}, {Tzs}"), loc.getLatitudeString(), loc.getLongitudeString());
             str.AppendLine();
-            str.AppendFormat("{0}: {1}", getSharedStringPlain(12), loc.getLocation(0).getTimeZoneString());
+            str.AppendFormat("{0}: {1}", getSharedStringPlain(12), loc.getTimeZoneString());
             str.AppendLine();
             str.AppendLine();
             str.AppendFormat("[{0} - {1}]", vc, getSharedStringPlain(vc.getDayOfWeek()));

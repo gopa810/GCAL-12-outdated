@@ -9,11 +9,11 @@ namespace GCAL.Engine
 {
     public class CELGenerateCalendar: CELGenerateHtml
     {
-        public GPLocationProvider location = null;
+        public GPLocation location = null;
         public GPGregorianTime startDate = null;
         public int nCount = 1;
 
-        public void SetData(GPLocationProvider lo, GPGregorianTime sd, int cn)
+        public void SetData(GPLocation lo, GPGregorianTime sd, int cn)
         {
             location = lo;
             startDate = sd;
@@ -81,7 +81,7 @@ namespace GCAL.Engine
 
         public CELGenerateCalendar(GCAL.ContentServer content)
         {
-            GPLocationProvider locProv = null;
+            GPLocation locProv = null;
             GPGregorianTime startWesternTime = null;
             GPGregorianTime endWesternTime = null;
 

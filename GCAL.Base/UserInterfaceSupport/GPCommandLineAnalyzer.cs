@@ -469,9 +469,8 @@ namespace GCAL.Base
         /// <returns></returns>
         public bool ParseCommandArguments(string[] args)
         {
-            GPLocationProvider loc = new GPLocationProvider();
             GPLocation loc1 = new GPLocation();
-            GPGregorianTime vcStart = new GPGregorianTime(loc), vcEnd = new GPGregorianTime(loc);
+            GPGregorianTime vcStart = new GPGregorianTime(loc1), vcEnd = new GPGregorianTime(loc1);
             GPVedicTime vaStart = new GPVedicTime(), vaEnd = new GPVedicTime();
             int nCount;
             int nReq = 0;
@@ -482,7 +481,6 @@ namespace GCAL.Base
                 loc1.setLatitudeNorthPositive(0.0);
                 loc1.setLongitudeEastPositive(0.0);
                 loc1.setTimeZoneName("");
-                loc.setDefaultLocation(loc1);
                 vcStart.Clear();
                 vcEnd = vcStart;
                 vaStart.tithi = vaStart.masa = vaStart.gyear = 0;
@@ -640,8 +638,8 @@ namespace GCAL.Base
                     }
                 }
 
-                vcStart.setLocationProvider(loc);
-                vcEnd.setLocationProvider(loc);
+                vcStart.setLocation(loc1);
+                vcEnd.setLocation(loc1);
 
                 switch (nReq)
                 {
@@ -649,9 +647,9 @@ namespace GCAL.Base
                     case 13:
                     case 14:
                         if (vcStart.getYear() == 0 && vaStart.gyear != 0)
-                            GPEngine.VATIMEtoVCTIME(vaStart, out vcStart, loc);
+                            GPEngine.VATIMEtoVCTIME(vaStart, out vcStart, loc1);
                         if (vcEnd.getYear() == 0 && vaEnd.gyear != 0)
-                            GPEngine.VATIMEtoVCTIME(vaEnd, out vcEnd, loc);
+                            GPEngine.VATIMEtoVCTIME(vaEnd, out vcEnd, loc1);
                         break;
                     default:
                         break;
@@ -679,11 +677,11 @@ namespace GCAL.Base
                         break;
                     case 11:
                         // -R -O -LAT -LON -SG -ST [-NAME]
-                        appday.calculateAppearanceDayData(loc, vcStart);
+                        appday.calculateAppearanceDayData(loc1, vcStart);
                         FormaterXml.FormatAppDayXML(appday, fout);
                         break;
                     case 12:
-                        FormaterXml.WriteXML_Tithi(fout, loc, vcStart);
+                        FormaterXml.WriteXML_Tithi(fout, loc1, vcStart);
                         break;
                     case 13:
                         if (vcEnd.getYear() == 0)
@@ -691,26 +689,26 @@ namespace GCAL.Base
                             vcEnd = vcStart;
                             vcEnd.AddDays(nCount);
                         }
-                        FormaterXml.WriteXml(FormaterXml.GetSankrantiXml(loc, vcStart, vcEnd), fout);
+                        FormaterXml.WriteXml(FormaterXml.GetSankrantiXml(loc1, vcStart, vcEnd), fout);
                         break;
                     case 14:
-                        FormaterXml.WriteXML_Naksatra(fout, loc, vcStart, nCount);
+                        FormaterXml.WriteXML_Naksatra(fout, loc1, vcStart, nCount);
                         break;
                     case 15:
                         FormaterXml.WriteXML_FirstDay_Year(fout, vcStart);
                         break;
                     case 16:
-                        vcStart = GPGaurabdaYear.getFirstDayOfYear(loc, vcStart.getYear());
-                        vcEnd = GPGaurabdaYear.getFirstDayOfYear(loc, vcStart.getYear() + 1);
+                        vcStart = GPGaurabdaYear.getFirstDayOfYear(loc1, vcStart.getYear());
+                        vcEnd = GPGaurabdaYear.getFirstDayOfYear(loc1, vcStart.getYear() + 1);
                         nCount = Convert.ToInt32(vcEnd.getJulianLocalNoon() - vcStart.getJulianLocalNoon());
                         calendar.CalculateCalendar(vcStart, nCount);
                         FormaterXml.WriteXml(FormaterXml.GetCalendarXmlDocument(calendar), fout);
                         break;
                     case 17:
-                        FormaterXml.WriteXML_GaurabdaTithi(fout, loc, vaStart, vaEnd);
+                        FormaterXml.WriteXML_GaurabdaTithi(fout, loc1, vaStart, vaEnd);
                         break;
                     case 18:
-                        FormaterXml.WriteXML_GaurabdaNextTithi(fout, loc, vcStart, vaStart);
+                        FormaterXml.WriteXML_GaurabdaNextTithi(fout, loc1, vcStart, vaStart);
                         break;
                 }
                 // application should be windowless

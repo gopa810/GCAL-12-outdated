@@ -27,13 +27,13 @@ namespace GCAL
 
             form.Show();
 
-            if (GPDisplays.Today.VisibleAtLaunch())
+            /*if (GPDisplays.Today.VisibleAtLaunch())
             {
                 TodayForm.ShowForm();
-            }
+            }*/
 
-            StartForm form2 = new StartForm();
-            form2.Show();
+            /*StartForm form2 = new StartForm();
+            form2.Show();*/
         }
 
         public static void WindowOpened(Form form)
